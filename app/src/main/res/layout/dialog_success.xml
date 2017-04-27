@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:background="@drawable/dialog_sucess_bg"
+    android:gravity="center_vertical"
+    android:paddingRight="22dp"
+    android:paddingLeft="22dp"
+    android:layout_height="70dp">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/success"
+        android:layout_marginRight="12dp"
+        />
+    <TextView
+        android:id="@+id/tv_dialog_success"
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:text="注册成功"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        />
+</LinearLayout>

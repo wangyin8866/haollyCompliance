@@ -6,8 +6,12 @@ import android.util.Log;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.custome.dialog.DialogNoTitleDoubleButton;
+import com.haolyy.compliance.custome.dialog.DialogSuccess;
 import com.haolyy.compliance.ui.home.presenter.MainPresenter;
 import com.haolyy.compliance.ui.home.view.MainView;
+import com.haolyy.compliance.utils.UIUtils;
+import com.xfqz.xjd.mylibrary.CustomProgressDialog;
 
 public class MainActivity extends BaseActivity<MainPresenter,MainView> implements MainView {
     private String phone, pwd, valid_code;
@@ -22,6 +26,7 @@ public class MainActivity extends BaseActivity<MainPresenter,MainView> implement
         setContentView(R.layout.activity_main);
         //登录的方法
         mPresenter.login(phone, pwd, valid_code);
+        UIUtils.showToastCommon(mContext,tag);
     }
 
     /**
@@ -34,7 +39,7 @@ public class MainActivity extends BaseActivity<MainPresenter,MainView> implement
         switch (s){
             case Config.LOGIN:
                 Log.e(tag,"收到了1001");
-                mPresenter.login(phone, pwd, valid_code);
+                //mPresenter.login(phone, pwd, valid_code);
                 break;
             case Config.GETUSERSTATUS:
                 break;
