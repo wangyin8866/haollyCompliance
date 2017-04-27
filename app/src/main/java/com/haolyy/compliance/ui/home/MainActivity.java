@@ -6,12 +6,9 @@ import android.util.Log;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.custome.dialog.DialogNoTitleDoubleButton;
-import com.haolyy.compliance.custome.dialog.DialogSuccess;
 import com.haolyy.compliance.ui.home.presenter.MainPresenter;
 import com.haolyy.compliance.ui.home.view.MainView;
 import com.haolyy.compliance.utils.UIUtils;
-import com.xfqz.xjd.mylibrary.CustomProgressDialog;
 
 public class MainActivity extends BaseActivity<MainPresenter,MainView> implements MainView {
     private String phone, pwd, valid_code;
@@ -27,6 +24,23 @@ public class MainActivity extends BaseActivity<MainPresenter,MainView> implement
         //登录的方法
         mPresenter.login(phone, pwd, valid_code);
         UIUtils.showToastCommon(mContext,tag);
+//        DialogNoTitleDoubleButton dialogNoTitleDoubleButton = new DialogNoTitleDoubleButton(mContext);
+//        dialogNoTitleDoubleButton.setContent("ssss").setButtonLeft("").setButtonRight("").setOnDoubleClickListener(new DialogNoTitleDoubleButton.OnDoubleClickListener() {
+//            @Override
+//            public void excuteLeft() {
+//
+//            }
+//
+//            @Override
+//            public void excuteRight() {
+//
+//            }
+//        }).show();
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     /**

@@ -9,9 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
 import java.util.List;
 
 import rx.Subscription;
@@ -74,7 +74,12 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
                 handleMessage(s);
             }
         });
+        initView();
     }
+
+
+    protected abstract void initView();
+
     protected abstract void handleMessage(Integer s);
 
     protected void unsubscribe() {
