@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
-import com.haolyy.compliance.ui.forget.ForgetActivity;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
-import com.haolyy.compliance.ui.register.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
