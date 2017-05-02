@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.ui.register.view.RegisterView;
+import com.haolyy.compliance.ui.login.view.RegisterView;
 
 
 /**

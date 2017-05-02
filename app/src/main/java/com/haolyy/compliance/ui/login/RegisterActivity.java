@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
-import com.haolyy.compliance.ui.register.presenter.RegisterPresenter;
-import com.haolyy.compliance.ui.register.view.RegisterView;
+import com.haolyy.compliance.ui.login.presenter.RegisterPresenter;
+import com.haolyy.compliance.ui.login.view.RegisterView;
 import com.haolyy.compliance.utils.CodeUtils;
 
 import butterknife.BindView;

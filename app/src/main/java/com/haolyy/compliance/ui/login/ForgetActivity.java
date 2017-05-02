@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
-import com.haolyy.compliance.ui.forget.presenter.ForgetPresenter;
-import com.haolyy.compliance.ui.forget.view.ForgetView;
+import com.haolyy.compliance.ui.login.presenter.ForgetPresenter;
+import com.haolyy.compliance.ui.login.view.ForgetView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
