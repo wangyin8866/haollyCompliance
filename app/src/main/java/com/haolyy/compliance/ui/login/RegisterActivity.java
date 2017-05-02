@@ -1,4 +1,4 @@
-package com.haolyy.compliance.ui.register;
+package com.haolyy.compliance.ui.login;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

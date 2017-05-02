@@ -1,10 +1,10 @@
-package com.haolyy.compliance.ui.forget.presenter;
+package com.haolyy.compliance.ui.login.presenter;
 
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.ui.forget.view.ForgetView;
+import com.haolyy.compliance.ui.login.view.ForgetView;
 
 
 /**

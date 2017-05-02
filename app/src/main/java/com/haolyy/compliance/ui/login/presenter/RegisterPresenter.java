@@ -1,4 +1,4 @@
-package com.haolyy.compliance.ui.register.presenter;
+package com.haolyy.compliance.ui.login.presenter;
 
 import android.content.Context;
 

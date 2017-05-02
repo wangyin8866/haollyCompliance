@@ -1,4 +1,4 @@
-package com.haolyy.compliance.ui.forget;
+package com.haolyy.compliance.ui.login;
 
 import android.os.Bundle;
 import android.view.View;
