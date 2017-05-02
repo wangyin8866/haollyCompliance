@@ -74,11 +74,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
                 handleMessage(s);
             }
         });
-        initView();
     }
-
-
-    protected abstract void initView();
 
     protected abstract void handleMessage(Integer s);
 

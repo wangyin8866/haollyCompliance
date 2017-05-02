@@ -38,11 +38,6 @@ public class MainActivity extends BaseActivity<MainPresenter,MainView> implement
 //        }).show();
     }
 
-    @Override
-    protected void initView() {
-
-    }
-
     /**
      * 在activity销毁之后可解除订阅
      * 重新获取token后的回调
