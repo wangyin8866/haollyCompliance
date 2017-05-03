@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
@@ -41,6 +42,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
     TextView tvRegister;
     @BindView(R.id.tv_forget)
     TextView tvForget;
+    @BindView(R.id.iv_finish)
+    ImageView ivFinish;
+    @BindView(R.id.iv_service)
+    ImageView ivService;
+    @BindView(R.id.tv_menu)
+    TextView tvMenu;
+    @BindView(R.id.iv_share)
+    ImageView ivShare;
+    @BindView(R.id.view_line)
+    View viewLine;
+    @BindView(R.id.titleBar)
+    RelativeLayout titleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initView();
+        //登录的方法
+        mPresenter.login("13120775735", "123456", "");
     }
 
     private void initView() {
@@ -92,43 +107,43 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             }
         });
 
-        etPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                String pwd = etPwd.getText().toString().trim();
-                if (hasFocus) {
-                    if (!TextUtils.isEmpty(pwd)) {
-                        ivPwdDel.setVisibility(View.VISIBLE);
-                    } else {
-                        ivPwdDel.setVisibility(View.INVISIBLE);
-                    }
-                } else {
-                    ivPwdDel.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        etPwd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String account = charSequence.toString();
-                if (TextUtils.isEmpty(account)) {
-                    ivPwdDel.setVisibility(View.INVISIBLE);
-                } else {
-                    ivPwdDel.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+//        etPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean hasFocus) {
+//                String pwd = etPwd.getText().toString().trim();
+//                if (hasFocus) {
+//                    if (!TextUtils.isEmpty(pwd)) {
+//                        ivPwdDel.setVisibility(View.VISIBLE);
+//                    } else {
+//                        ivPwdDel.setVisibility(View.INVISIBLE);
+//                    }
+//                } else {
+//                    ivPwdDel.setVisibility(View.INVISIBLE);
+//                }
+//            }
+//        });
+//
+//        etPwd.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                String account = charSequence.toString();
+//                if (TextUtils.isEmpty(account)) {
+//                    ivPwdDel.setVisibility(View.INVISIBLE);
+//                } else {
+//                    ivPwdDel.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
     }
 
     @Override
@@ -146,7 +161,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     }
 
-    @OnClick({R.id.iv_account_del, R.id.iv_pwd_del, R.id.tv_login, R.id.tv_register,R.id.tv_forget})
+    @OnClick({R.id.iv_account_del, R.id.iv_pwd_del, R.id.tv_login, R.id.tv_register, R.id.tv_forget})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -168,5 +183,4 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
                 break;
         }
     }
-
 }
