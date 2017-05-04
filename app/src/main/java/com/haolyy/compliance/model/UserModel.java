@@ -1,9 +1,12 @@
 package com.haolyy.compliance.model;
 
+import com.google.gson.Gson;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.UserInfoLogin;
 import com.haolyy.compliance.service.UserApi;
 
+import okhttp3.RequestBody;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -46,15 +49,17 @@ public class UserModel extends BaseModel {
      * @param subscriber
      * @param phone_num
      * @param password
-     * @param login_ip
+     * @param validate_code
      */
-    public void login(Subscriber<UserInfoLogin> subscriber, String phone_num, String password, String login_ip) {
+    public void login(Subscriber<Object> subscriber, String phone_num, String password, String validate_code) {
         map.put("mobile",phone_num);
         map.put("password",password);
-        map.put("login_ip",login_ip);
-        map.put("platform","haolyy");
-        map.put("client","Android");
-        Observable observable = userApi.login(map);
+        map.put("login_ip","192.168.1.1");
+        map.put("platform","Android");
+        map.put("client","haolyy");
+        Gson gson=new Gson();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),  gson.toJson(map));
+        Observable observable = userApi.login(body);
         toSubscribe(observable, subscriber);
     }
 }

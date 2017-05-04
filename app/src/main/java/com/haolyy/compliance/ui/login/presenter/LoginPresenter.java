@@ -1,12 +1,14 @@
 package com.haolyy.compliance.ui.login.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.login.UserInfoLogin;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.LoginView;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -24,17 +26,18 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     public void login(String phone, String pwd, String login_ip) {
 //        getToken(LOGIN);
 
-        UserModel.getInstance().login(new ProgressSubscriber<UserInfoLogin>(new SubscriberOnNextListener<UserInfoLogin>() {
+        UserModel.getInstance().login(new ProgressSubscriber<Object>(new SubscriberOnNextListener<Object>() {
             @Override
-            public void onNext(UserInfoLogin userInfoLogin) {
+            public void onNext(Object userInfoLogin) {
                 //登录成功刷新ui
+                Log.e("tag",userInfoLogin.toString());
+
                 getView().refresh();
-                Toast.makeText(mContext,"1",1).show();
             }
 
             @Override
             public void onError(Throwable e) {
-                //
+                UIUtils.showToastCommon(mContext,"jinlaile");
             }
         }, mContext), phone, pwd, login_ip);
     }

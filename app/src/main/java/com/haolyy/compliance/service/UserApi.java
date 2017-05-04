@@ -8,8 +8,11 @@ import com.haolyy.compliance.entity.login.UserInfoLogin;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -18,7 +21,8 @@ import rx.Observable;
  */
 
 public interface UserApi {
-    @FormUrlEncoded
+    //绑卡
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST(NetConstantValues.user_login)
-    Observable<UserInfoLogin> login(@FieldMap Map<String, String> params);
+    Observable<Object> login(@Body RequestBody requestBody);
 }

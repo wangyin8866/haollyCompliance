@@ -5,6 +5,7 @@ package com.haolyy.compliance.config;
  */
 
 public interface NetConstantValues {
-    String HOST_URL = "http://10.1.20.108:8006/cash/v1/api/";
-    String user_login="";
+    String HOST_URL = "http://192.168.14.170:10010/p2p/api/";
+    String user="user/";
+    String user_login=user+"login.jhtml";
 }

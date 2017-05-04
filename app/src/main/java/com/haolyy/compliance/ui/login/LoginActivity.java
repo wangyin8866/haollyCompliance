@@ -63,7 +63,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         ButterKnife.bind(this);
         initView();
         //登录的方法
-        mPresenter.login("13120775735", "123456", "");
+
     }
 
     private void initView() {
@@ -172,6 +172,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
                 etPwd.setText("");
                 break;
             case R.id.tv_login:
+                mPresenter.login("13120775735", "123456", "1");
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);
