@@ -1,6 +1,5 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.UserInfoLogin;
 import com.haolyy.compliance.service.UserApi;
@@ -47,13 +46,14 @@ public class UserModel extends BaseModel {
      * @param subscriber
      * @param phone_num
      * @param password
-     * @param validate_code
+     * @param login_ip
      */
-    public void login(Subscriber<UserInfoLogin> subscriber, String phone_num, String password, String validate_code) {
-        map.put("token", BaseApplication.token);
-        map.put("phone_num",phone_num);
+    public void login(Subscriber<UserInfoLogin> subscriber, String phone_num, String password, String login_ip) {
+        map.put("mobile",phone_num);
         map.put("password",password);
-        map.put("validate_code",validate_code);
+        map.put("login_ip",login_ip);
+        map.put("platform","haolyy");
+        map.put("client","Android");
         Observable observable = userApi.login(map);
         toSubscribe(observable, subscriber);
     }
