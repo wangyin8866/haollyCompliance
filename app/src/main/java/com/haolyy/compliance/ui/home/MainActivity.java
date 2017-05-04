@@ -12,6 +12,9 @@ import com.haolyy.compliance.utils.UIUtils;
 
 public class MainActivity extends BaseActivity<MainPresenter,MainView> implements MainView {
     private String phone, pwd, valid_code;
+
+
+
     @Override
     protected MainPresenter createPresenter() {
         return new MainPresenter(mContext);
