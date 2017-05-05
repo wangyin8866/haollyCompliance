@@ -14,10 +14,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
         <include layout="@layout/public_title_back" />
 
@@ -28,7 +28,7 @@
             android:layout_marginTop="70dp"
             android:src="@mipmap/login_logo" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -36,32 +36,24 @@
             android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
-            <EditText
+            <com.haolyy.compliance.custome.ClearEditText
                 android:id="@+id/et_account"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:background="@null"
+                android:drawableRight="@mipmap/login_delete"
                 android:gravity="center_vertical"
                 android:hint="请输入手机号码"
                 android:inputType="number"
                 android:maxLength="11"
-                android:singleLine="true"
                 android:textColor="@color/text_374666"
                 android:textColorHint="@color/text_9b9b9b"
                 android:textSize="15sp" />
 
-            <ImageView
-                android:id="@+id/iv_account_del"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.5"
-                android:paddingLeft="5dp"
-                android:src="@mipmap/login_delete"
-                android:visibility="invisible" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -70,40 +62,32 @@
             android:layout_marginRight="25dp"
             android:background="@color/E1E1E1" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:orientation="horizontal">
 
-            <EditText
+            <com.haolyy.compliance.custome.ClearEditText
                 android:id="@+id/et_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:background="@null"
                 android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:drawableRight="@mipmap/login_delete"
                 android:gravity="center_vertical"
                 android:hint="请输入您的密码"
                 android:inputType="textPassword"
                 android:maxLength="13"
-                android:singleLine="true"
                 android:textColor="@color/text_374666"
                 android:textColorHint="@color/text_9b9b9b"
                 android:textSize="15sp" />
 
-            <ImageView
-                android:id="@+id/iv_pwd_del"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.5"
-                android:paddingLeft="5dp"
-                android:src="@mipmap/login_delete"
-                android:visibility="invisible" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
