@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.entity.ErrorResponse;
 import com.haolyy.compliance.entity.login.UserInfoLogin;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.LoginView;
@@ -30,8 +32,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             @Override
             public void onNext(Object userInfoLogin) {
                 //登录成功刷新ui
-                Log.e("tag",userInfoLogin.toString());
-
+                Gson gson=new Gson();
+                ErrorResponse errorResponse = gson.fromJson(userInfoLogin.toString(), ErrorResponse.class);
+                Log.e("tag",errorResponse.getError_response().getCode());
                 getView().refresh();
             }
 

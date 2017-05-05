@@ -4,12 +4,15 @@ import android.content.Context;
 import android.util.Log;
 
 
+import com.google.gson.Gson;
+import com.haolyy.compliance.entity.ErrorResponse;
+
 import java.lang.ref.WeakReference;
 
 /**
  * Created by wy on 2016/9/2.
  */
-public abstract class BasePresenter<T>  {
+public abstract class BasePresenter<T> {
 
     //弱引用,有效防止view内存泄漏
     private WeakReference<T> mViewRef;
@@ -24,6 +27,7 @@ public abstract class BasePresenter<T>  {
     public BasePresenter(Context context) {
         this.mContext = context;
     }
+
     //关联
     void attach(T view) {
         mViewRef = new WeakReference<T>(view);
@@ -37,14 +41,12 @@ public abstract class BasePresenter<T>  {
             mViewRef = null;
         }
     }
-
-
     public T getView() {
         return mViewRef.get();
     }
 
-    public void getToken(final int type){
-        Log.e(tag,"发送了了1001");
+    public void getToken(final int type) {
+        Log.e(tag, "发送了了1001");
         RxBus.getInstance().post(1001);
       /* UserModel.getInstance().getToken(BaseApplication.userId+"", new Subscriber<TokenResponseBean>() {
             @Override

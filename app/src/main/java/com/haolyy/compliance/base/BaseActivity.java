@@ -5,12 +5,17 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
+import com.haolyy.compliance.R;
+import com.haolyy.compliance.utils.StatusBarCompat;
 
 import java.util.List;
 
@@ -22,7 +27,7 @@ import rx.schedulers.Schedulers;
 /**
  * activity 基类
  */
-public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCompatActivity  {
+public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCompatActivity {
     private static final String BASE_ACTIVITY = "BaseActivity";
     public String tag = getClass().getSimpleName();
     /**
@@ -61,19 +66,20 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
         ActivityCollector.addActivity(this);
         mSavedInstanceState = savedInstanceState;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-          //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         }
         mPresenter = createPresenter();
         mPresenter.attach((V) this);
         subscription = RxBus.getInstance().toObserverable(Integer.class).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer s) {
-                Log.e(tag,"调用抽象方法");
-                handleMessage(s);
-            }
-        });
+                    @Override
+                    public void call(Integer s) {
+                        Log.e(tag, "调用抽象方法");
+                        handleMessage(s);
+                    }
+                });
     }
 
     protected abstract void handleMessage(Integer s);
@@ -196,6 +202,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
             im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
     public boolean hasKitKat() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
