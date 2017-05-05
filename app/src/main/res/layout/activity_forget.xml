@@ -6,20 +6,20 @@
 
     <include layout="@layout/public_title_back" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <EditText
+        <com.haolyy.compliance.custome.ClearEditText
             android:id="@+id/et_account"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_marginRight="15dp"
             android:background="@null"
+            android:drawableRight="@mipmap/login_delete"
             android:gravity="center_vertical"
             android:hint="请输入您的手机号码"
             android:inputType="number"
@@ -28,16 +28,7 @@
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/iv_account_del"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="3.5"
-            android:paddingLeft="5dp"
-            android:src="@mipmap/login_delete"
-            android:visibility="invisible" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -46,19 +37,22 @@
         android:layout_marginRight="25dp"
         android:background="@color/E1E1E1" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <EditText
+        <com.haolyy.compliance.custome.ClearEditText
+            android:id="@+id/clearEditText"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:background="@null"
+            android:drawableRight="@mipmap/login_delete"
             android:gravity="center_vertical"
             android:hint="请输入图形验证码"
             android:inputType="number"
@@ -67,15 +61,7 @@
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/iv_code"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_weight="2.5"
-            android:gravity="center"
-            android:textSize="14sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -91,10 +77,11 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <EditText
+        <com.haolyy.compliance.custome.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@null"
             android:gravity="center_vertical"
@@ -138,7 +125,7 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <EditText
+        <com.haolyy.compliance.custome.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"

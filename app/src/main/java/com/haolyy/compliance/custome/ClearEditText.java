@@ -12,9 +12,6 @@ import android.widget.EditText;
 
 import com.haolyy.compliance.R;
 
-/**
- * 自定义Edittext
- */
 public class ClearEditText extends EditText implements
         OnFocusChangeListener, TextWatcher {
     /**
