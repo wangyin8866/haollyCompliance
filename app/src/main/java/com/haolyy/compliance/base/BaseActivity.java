@@ -1,21 +1,22 @@
 package com.haolyy.compliance.base;
 
+import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.utils.StatusBarCompat;
+import com.haolyy.compliance.utils.SystemBarTintManager;
 
 import java.util.List;
 
@@ -65,10 +66,21 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
         isInBackground = false;
         ActivityCollector.addActivity(this);
         mSavedInstanceState = savedInstanceState;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
+//        }
+        //判断当前系统版本是否>=Andoird4.4
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
+            //设置状态栏背景状态
+            //true：表明当前Android系统版本>=4.4
+            setTranslucentStatus(true);
         }
+        //实例化SystemBarTintManager
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        // 通知标题栏所需颜色
+        tintManager.setStatusBarTintResource(R.color.white);
         mPresenter = createPresenter();
         mPresenter.attach((V) this);
         subscription = RxBus.getInstance().toObserverable(Integer.class).subscribeOn(Schedulers.io())
@@ -211,5 +223,17 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
+    @TargetApi(19)
+    private void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
 
 }
