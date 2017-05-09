@@ -1,6 +1,7 @@
 package com.haolyy.compliance.base;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
@@ -18,6 +19,8 @@ import android.widget.EditText;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.utils.SystemBarTintManager;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import rx.Subscription;
@@ -75,6 +78,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
             //设置状态栏背景状态
             //true：表明当前Android系统版本>=4.4
             setTranslucentStatus(true);
+            setMiuiStatusBarDarkMode(this,true);
         }
         //实例化SystemBarTintManager
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
@@ -234,6 +238,22 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+    public static boolean setMiuiStatusBarDarkMode(Activity activity, boolean darkmode) {
+        Class<? extends Window> clazz = activity.getWindow().getClass();
+        try {
+            int darkModeFlag = 0;
+            Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
+            Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
+            darkModeFlag = field.getInt(layoutParams);
+            Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
+            extraFlagField.invoke(activity.getWindow(), darkmode ? darkModeFlag : 0, darkModeFlag);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
