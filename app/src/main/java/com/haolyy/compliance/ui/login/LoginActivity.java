@@ -12,6 +12,7 @@ import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
+import com.haolyy.compliance.utils.SystemBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +52,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemBarUtil.setSystemBar(mContext,R.color.white);
         // TODO: add setContentView(...) invocation
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
