@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,20 @@ public class UIUtils {
         return BaseApplication.getApplication();
     }
 
+    //尺寸转化
+    public static int dp2px(int dp, Context context) {
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                context.getResources().getDisplayMetrics());
+    }
+
+    public static int sp2px(int sp, Context context) {
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP,
+                sp,
+                context.getResources().getDisplayMetrics());
+    }
 
     /**
      * dip转换px
@@ -126,17 +141,18 @@ public class UIUtils {
     }
 
     /**
-     *  手势解锁获取屏幕的分辨率
+     * 手势解锁获取屏幕的分辨率
+     *
      * @param context
      * @return
      */
     public static int[] getScreenDispaly(Context context) {
-        WindowManager windowManager = (WindowManager) context .getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
-        int [] result = {width/2, height/2};
+        int[] result = {width / 2, height / 2};
         return result;
     }
 }

@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void switchPager(int currentPage) {
-        idMainViewPager.setCurrentItem(currentPage);
+        idMainViewPager.setCurrentItem(currentPage,false);
     }
     /**
      * 重置所有状态

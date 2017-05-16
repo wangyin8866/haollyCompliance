@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * Created by wing on 11/4/16.
+ * Created by wy on 11/4/16.
  * 不能滑动的ViewPager
  */
 
