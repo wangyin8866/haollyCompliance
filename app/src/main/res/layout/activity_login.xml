@@ -37,7 +37,7 @@
             android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
-            <com.haolyy.compliance.custome.ClearEditText
+            <com.haolyy.compliance.custom.ClearEditText
                 android:id="@+id/et_account"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -69,7 +69,7 @@
             android:layout_marginRight="25dp"
             android:orientation="horizontal">
 
-            <com.haolyy.compliance.custome.ClearEditText
+            <com.haolyy.compliance.custom.ClearEditText
                 android:id="@+id/et_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

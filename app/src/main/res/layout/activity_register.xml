@@ -13,7 +13,7 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <com.haolyy.compliance.custome.ClearEditText
+        <com.haolyy.compliance.custom.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -44,7 +44,7 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <com.haolyy.compliance.custome.ClearEditText
+        <com.haolyy.compliance.custom.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -83,7 +83,7 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <com.haolyy.compliance.custome.ClearEditText
+        <com.haolyy.compliance.custom.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -131,7 +131,7 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <com.haolyy.compliance.custome.ClearEditText
+        <com.haolyy.compliance.custom.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -201,7 +201,7 @@
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <com.haolyy.compliance.custome.ClearEditText
+        <com.haolyy.compliance.custom.ClearEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"

@@ -1,4 +1,4 @@
-package com.haolyy.compliance.custome.dialog;
+package com.haolyy.compliance.custom.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
-import com.haolyy.compliance.custome.ClearEditText;
+import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
 
