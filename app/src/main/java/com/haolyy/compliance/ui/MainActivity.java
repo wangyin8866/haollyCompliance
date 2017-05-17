@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
-import com.haolyy.compliance.ui.home.HomeFragment;
+import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView idTabIv04;
     @BindView(R.id.id_tab_tv_04)
     TextView idTabTv04;
-    private HomeFragment homeFragment;
+    private HomeNoLoginFragment homeNoLoginFragment;
     private ProductFragment productFragment;
     private FindFragment findFragment;
     private MyFragment myFragment;
@@ -84,12 +83,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        homeFragment = new HomeFragment();
+        homeNoLoginFragment = new HomeNoLoginFragment();
         productFragment = new ProductFragment();
         findFragment = new FindFragment();
         myFragment = new MyFragment();
         fragments = new ArrayList<>();
-        fragments.add(homeFragment);
+        fragments.add(homeNoLoginFragment);
         fragments.add(productFragment);
         fragments.add(findFragment);
         fragments.add(myFragment);

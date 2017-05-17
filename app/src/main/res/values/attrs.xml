@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--自定义圆-->
+    <declare-styleable name="CircleView">
+        <attr name="bg_color" format="color" />
+        <attr name="inner_color" format="color" />
+        <attr name="out_color" format="color" />
+        <attr name="inner_radius" format="dimension" />
+        <attr name="out_radius" format="dimension" />
+        <attr name="circle_text" format="string" />
+        <attr name="circle_text_color" format="color" />
+        <attr name="circle_text_size" format="dimension" />
+        <attr name="circle_out_sweep_width" format="dimension" />
+        <attr name="circle_inner_sweep_width" format="dimension" />
+    </declare-styleable>
+    <!--自定义圆环-->
+    <declare-styleable name="ArcView">
+        <attr name="arc_bg_color" format="color" />
+        <attr name="arc_out_color" format="color" />
+        <attr name="arc_little_color" format="color" />
+        <attr name="arc_out_radius" format="dimension" />
+        <attr name="arc_little_radius" format="dimension" />
+        <attr name="arc_sweep_width" format="dimension" />
+        <attr name="arc_start_angle" format="integer" />
+        <attr name="arc_end_angle" format="integer" />
+        <attr name="arc_text1" format="string" />
+        <attr name="arc_text1_size" format="dimension" />
+        <attr name="arc_text2_size" format="dimension" />
+        <attr name="arc_text2" format="string" />
+        <attr name="arc_text_color" format="color" />
+    </declare-styleable>
+</resources>
