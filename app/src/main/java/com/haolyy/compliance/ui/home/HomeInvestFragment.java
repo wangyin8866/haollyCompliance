@@ -20,7 +20,7 @@ public class HomeInvestFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.home_no_login_main, container, false);
+        view = inflater.inflate(R.layout.home_invest_login_main, container, false);
         return view;
     }
 }

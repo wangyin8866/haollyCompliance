@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
+import com.haolyy.compliance.ui.home.HomeInvestFragment;
+import com.haolyy.compliance.ui.home.HomeNoInvestFragment;
 import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
@@ -55,11 +57,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.id_tab_tv_04)
     TextView idTabTv04;
     private HomeNoLoginFragment homeNoLoginFragment;
+    private HomeNoInvestFragment homeNoInvestFragment;
+    private HomeInvestFragment homeInvestFragment;
     private ProductFragment productFragment;
     private FindFragment findFragment;
     private MyFragment myFragment;
     private List<Fragment> fragments;
     private int currentPage=0;
+    private boolean isLogin;
+    private boolean isInvest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,11 +85,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         //第一次默认选中tab01
+        isLogin = false;
+        isInvest = true;
+        switchStateHome(isLogin,isInvest);
+
+    }
+
+    private void switchStateHome(boolean isLogin, boolean isInvest) {
+        if (isLogin&&isInvest) {//投资登录
+            currentPage = 4;
+        } else if (isLogin) {//未投资登录
+            currentPage = 5;
+        } else{
+            currentPage = 0;
+        }
         setTabSelection(currentPage);
     }
 
+
     private void init() {
         homeNoLoginFragment = new HomeNoLoginFragment();
+        homeInvestFragment = new HomeInvestFragment();
+        homeNoInvestFragment = new HomeNoInvestFragment();
         productFragment = new ProductFragment();
         findFragment = new FindFragment();
         myFragment = new MyFragment();
@@ -92,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragments.add(productFragment);
         fragments.add(findFragment);
         fragments.add(myFragment);
+        fragments.add(homeInvestFragment);
+        fragments.add(homeNoInvestFragment);
+
         idTabLl01.setOnClickListener(this);
         idTabLl02.setOnClickListener(this);
         idTabLl03.setOnClickListener(this);
@@ -102,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_tab_ll_01:
-                currentPage = 0;
-                setTabSelection(currentPage);
+                switchStateHome(isLogin,isInvest);
                 break;
             case R.id.id_tab_ll_02:
                 currentPage = 1;
@@ -124,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //选中前清除状态
         restView();
         switch (currentPage) {
-            case 0:
+            case 0://未登录
                 idTabIv01.setImageResource(R.mipmap.ic_home_checked);
                 idTabTv01.setTextColor(getResources().getColor(R.color.tv_navigate_checked));
                 switchPager(currentPage);
@@ -142,6 +167,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 3:
                 idTabIv04.setImageResource(R.mipmap.ic_my_checked);
                 idTabTv04.setTextColor(getResources().getColor(R.color.tv_navigate_checked));
+                switchPager(currentPage);
+                break;
+            case 4://投资过登录
+                idTabIv01.setImageResource(R.mipmap.ic_home_checked);
+                idTabTv01.setTextColor(getResources().getColor(R.color.tv_navigate_checked));
+                switchPager(currentPage);
+                break;
+            case 5://未投资过登录
+                idTabIv01.setImageResource(R.mipmap.ic_home_checked);
+                idTabTv01.setTextColor(getResources().getColor(R.color.tv_navigate_checked));
                 switchPager(currentPage);
                 break;
         }

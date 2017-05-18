@@ -1,21 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.haolyy.compliance.custom.CircleView
-        android:id="@+id/id_circle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:bg_color="#50fbda61"
-        app:circle_inner_sweep_width="1dp"
-        app:circle_out_sweep_width="30dp"
-        app:circle_text="投资"
-        app:circle_text_color="#50fbda61"
-        app:circle_text_size="12sp"
-        app:inner_color="#dedede"
-        app:inner_radius="22dp"
-        app:out_color="@android:color/black"
-        app:out_radius="100dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@android:color/holo_green_dark"
+                app:canLoop="true" />
+
+            <ImageView
+                android:id="@+id/home_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_regist" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="12dp"
+                android:background="#F5F5F5" />
+
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/banner1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#EC8E49"
+                app:canLoop="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="14dp"
+                android:background="#F5F5F5" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/home_newPager"
+                android:layout_width="match_parent"
+                android:layout_height="134dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_home_pager" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="17dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/banner_point" />
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@+id/iv1"
+                    android:src="@mipmap/banner_point" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv2"
+                    android:src="@mipmap/banner_point" />
+            </RelativeLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/home_activity_Pager"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:layout_marginBottom="23dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_home_pager" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/home_iv_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_home_new" />
+
+                <TextView
+                    android:id="@+id/home_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toEndOf="@+id/home_iv_new"
+                    android:layout_toRightOf="@+id/home_iv_new"
+                    android:text="完成新手任务 多重好礼拿不停"
+                    android:textColor="#FF354A7D"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/home_text"
+                    android:src="@mipmap/ic_home_new" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_cunguan"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_cunguan"/>
+                <LinearLayout
+                    android:layout_toRightOf="@id/iv_cunguan"
+                    android:id="@+id/ll_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="开通存管 "
+                        android:textColor="#FF4A4A4A"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="完成任务一  送加息券 "
+                        android:textColor="#FF7D7D7D"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <Button
+                    android:layout_marginLeft="113dp"
+                    android:layout_toRightOf="@id/ll_text"
+                    android:layout_width="60dp"
+                    android:layout_height="24dp"
+                    android:text="立即开通"
+                    android:textColor="#FFF6A623"
+                    android:background="@drawable/bg_home_button"
+                    />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="12dp"
+                android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="27dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_cunguan1"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_invest"/>
+                <LinearLayout
+                    android:layout_toRightOf="@id/iv_cunguan1"
+                    android:id="@+id/ll_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="投资产品 "
+                        android:textColor="#FF4A4A4A"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="完成任务二  送现金"
+                        android:textColor="#FF7D7D7D"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+                <Button
+                    android:layout_marginLeft="113dp"
+                    android:layout_toRightOf="@id/ll_text1"
+                    android:layout_width="60dp"
+                    android:layout_height="24dp"
+                    android:text="立即开通"
+                    android:textColor="#FFF6A623"
+                    android:background="@drawable/bg_home_button"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="13dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv3"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/home_dunpai"/>
+                <TextView
+                    android:layout_toRightOf="@id/iv3"
+                    android:layout_width="134dp"
+                    android:layout_height="14dp"
+                    android:text="用户资金由上海银行存管"
+                    android:textColor="#FFB9B9B9"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="diameter" format="dimension" />
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="diameter" />
+    </declare-styleable>
+
     <!--自定义圆-->
     <declare-styleable name="CircleView">
         <attr name="bg_color" format="color" />
-        <attr name="inner_color" format="color" />
-        <attr name="out_color" format="color" />
-        <attr name="inner_radius" format="dimension" />
-        <attr name="out_radius" format="dimension" />
+        <attr name="out_color_start" format="color" />
+        <attr name="out_color_end" format="color" />
         <attr name="circle_text" format="string" />
         <attr name="circle_text_color" format="color" />
         <attr name="circle_text_size" format="dimension" />
         <attr name="circle_out_sweep_width" format="dimension" />
-        <attr name="circle_inner_sweep_width" format="dimension" />
+
     </declare-styleable>
     <!--自定义圆环-->
     <declare-styleable name="ArcView">
