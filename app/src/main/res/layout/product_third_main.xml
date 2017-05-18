@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/product_top" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/product_viewPager"
+    <include layout="@layout/product_third_top" />
+    <com.haolyy.compliance.custom.NoScrollViewPager
+        android:id="@+id/product_third_viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

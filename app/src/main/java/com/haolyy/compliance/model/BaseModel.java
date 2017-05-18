@@ -2,6 +2,7 @@ package com.haolyy.compliance.model;
 
 import android.util.Log;
 
+import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.xfqz.xjd.mylibrary.LogInterceptor;
 
@@ -15,6 +16,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -47,7 +49,12 @@ public  class BaseModel {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s);
-
     }
-   
+    //添加线程订阅
+    public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
+        Subscription subscription = observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        lifeSubscription.bindSubscription(subscription);
+    }
 }

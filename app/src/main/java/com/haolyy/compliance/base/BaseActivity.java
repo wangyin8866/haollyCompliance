@@ -1,6 +1,5 @@
 package com.haolyy.compliance.base;
 
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
@@ -10,13 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-
-import com.haolyy.compliance.R;
-import com.haolyy.compliance.utils.SystemBarTintManager;
 
 import java.util.List;
 
@@ -24,6 +18,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * activity 基类
@@ -31,6 +26,7 @@ import rx.schedulers.Schedulers;
 public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCompatActivity {
     private static final String BASE_ACTIVITY = "BaseActivity";
     public String tag = getClass().getSimpleName();
+    private CompositeSubscription mCompositeSubscription;
     /**
      * 记录处于前台的Activityddd
      */
@@ -77,6 +73,16 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
                         handleMessage(s);
                     }
                 });
+
+        mPresenter.setLifeSubscription(new LifeSubscription() {
+            @Override
+            public void bindSubscription(Subscription subscription) {
+                if (mCompositeSubscription == null) {
+                    mCompositeSubscription = new CompositeSubscription();
+                }
+                mCompositeSubscription.add(subscription);
+            }
+        });
     }
 
     protected abstract void handleMessage(Integer s);
@@ -122,6 +128,9 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
         ActivityCollector.removeActivity(this);
         mPresenter.detach();
         super.onDestroy();
+        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
+            this.mCompositeSubscription.unsubscribe();
+        }
     }
 
     /**

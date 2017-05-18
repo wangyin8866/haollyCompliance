@@ -7,8 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:scrollbars="none"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,116 +131,134 @@
                     android:layout_toRightOf="@id/home_text"
                     android:src="@mipmap/ic_home_new" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="48dp">
+
                 <ImageView
                     android:id="@+id/iv_cunguan"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_cunguan"/>
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="17dp"
+                    android:src="@mipmap/ic_cunguan" />
+
                 <LinearLayout
-                    android:layout_toRightOf="@id/iv_cunguan"
                     android:id="@+id/ll_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/iv_cunguan"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="开通存管 "
                         android:textColor="#FF4A4A4A"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="完成任务一  送加息券 "
                         android:textColor="#FF7D7D7D"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
+
                 <Button
-                    android:layout_marginLeft="113dp"
-                    android:layout_toRightOf="@id/ll_text"
                     android:layout_width="60dp"
                     android:layout_height="24dp"
-                    android:text="立即开通"
-                    android:textColor="#FFF6A623"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/bg_home_button"
-                    />
+                    android:text="立即开通"
+                    android:textColor="#FFF6A623" />
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:background="#F5F5F5" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginBottom="27dp"
-                android:layout_height="wrap_content">
+                android:layout_height="48dp"
+                android:layout_marginBottom="27dp">
+
                 <ImageView
                     android:id="@+id/iv_cunguan1"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_invest"/>
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="17dp"
+                    android:src="@mipmap/ic_invest" />
+
                 <LinearLayout
-                    android:layout_toRightOf="@id/iv_cunguan1"
                     android:id="@+id/ll_text1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/iv_cunguan1"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="投资产品 "
                         android:textColor="#FF4A4A4A"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="完成任务二  送现金"
                         android:textColor="#FF7D7D7D"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
+
                 <Button
-                    android:layout_marginLeft="113dp"
-                    android:layout_toRightOf="@id/ll_text1"
                     android:layout_width="60dp"
                     android:layout_height="24dp"
-                    android:text="立即开通"
-                    android:textColor="#FFF6A623"
+                   android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+
                     android:background="@drawable/bg_home_button"
-                    />
+                    android:text="立即开通"
+                    android:textColor="#FFF6A623" />
             </RelativeLayout>
+
             <RelativeLayout
-                android:gravity="center"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="13dp"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/iv3"
-                    android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/home_dunpai"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/home_dunpai" />
+
                 <TextView
-                    android:layout_toRightOf="@id/iv3"
                     android:layout_width="134dp"
                     android:layout_height="14dp"
+                    android:layout_toRightOf="@id/iv3"
                     android:text="用户资金由上海银行存管"
                     android:textColor="#FFB9B9B9"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

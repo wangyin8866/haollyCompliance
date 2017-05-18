@@ -3,11 +3,12 @@ package com.haolyy.compliance.base;
 import android.content.Context;
 import android.util.Log;
 
-
-import com.google.gson.Gson;
-import com.haolyy.compliance.entity.ErrorResponse;
+import com.haolyy.compliance.model.BaseModel;
 
 import java.lang.ref.WeakReference;
+
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by wy on 2016/9/2.
@@ -18,8 +19,14 @@ public abstract class BasePresenter<T> {
     private WeakReference<T> mViewRef;
     protected Context mContext;
     public String tag = this.getClass().getSimpleName();
-
-
+    public LifeSubscription lifeSubscription;
+    public void setLifeSubscription(LifeSubscription lifeSubscription) {
+        Log.e("setLifeSubscription", "setLifeSubscription");
+        this.lifeSubscription = lifeSubscription;
+    }
+    protected <T> void invoke(Observable<T> observable, Subscriber<T> subscriber) {
+        BaseModel.invoke(lifeSubscription, observable, subscriber);
+    }
     public BasePresenter() {
         super();
     }
