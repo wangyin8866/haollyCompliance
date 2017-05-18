@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/public_title_back"
+        />
+
+    <com.haolyy.compliance.custom.VerticalViewPager
+        android:id="@+id/vp_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_product_join"
+        android:layout_below="@+id/titleBar" />
+
+    <TextView
+        android:id="@+id/tv_product_join"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/selector_btn_join"
+        android:gravity="center"
+        android:text="立即加入"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</RelativeLayout>
