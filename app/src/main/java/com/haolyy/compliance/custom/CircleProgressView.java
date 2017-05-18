@@ -1,4 +1,4 @@
-package com.customview.view;
+package com.haolyy.compliance.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,16 +7,19 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 //import android.graphics.Rect;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Paint.Cap;
 import android.graphics.Paint.Style;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.utils.UIUtils;
 
 
 public class CircleProgressView extends View {
@@ -34,10 +37,13 @@ public class CircleProgressView extends View {
     RectF rect;
 
     //颜色（渐变色的4个点）
-    private int[] mColors = {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE};
-    private int[] mColors1 = {Color.parseColor("#cccccc"), Color.parseColor("#cccccc")};
+    private int[] mColors = {Color.parseColor("#cccccc"), Color.parseColor("#cccccc")};
     private int[] mColors2 = {Color.parseColor("#FBDA61"),Color.parseColor("#F76B1C")};
 
+    //文本画笔
+    private TextPaint textPaint;
+    private Rect mTextBound;
+    private String mCircleText;
 
     public CircleProgressView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -65,9 +71,9 @@ public class CircleProgressView extends View {
             int attr = a.getIndex(i);
             switch (attr) {
                 case R.styleable.CircleProgressView_diameter:
-                    // 默认设置为40dp
+                    // 默认设置为240dp
                     mDiameter = a.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_SP, 40, getResources().getDisplayMetrics()));
+                            TypedValue.COMPLEX_UNIT_SP, 240, getResources().getDisplayMetrics()));
                     break;
             }
         }
@@ -76,6 +82,16 @@ public class CircleProgressView extends View {
         mPaint = new Paint();
         rect = new RectF();
         progressValue = 0;
+
+      /*  textPaint = new TextPaint();
+        textPaint.setAntiAlias(true);
+        textPaint.setStyle(Paint.Style.FILL);
+        mTextBound = new Rect();
+        //textPaint = new TextPaint(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        textPaint.setTextSize(UIUtils.dp2px(36,context));
+        textPaint.setColor(UIUtils.getColor(R.color.text_f8676f));
+        textPaint.setTextAlign(Paint.Align.CENTER);*/
+
     }
 
     public void setProgressValue(int progressValue) {
@@ -98,8 +114,8 @@ public class CircleProgressView extends View {
         int height = 0;
 
         //设置直径的最小值
-        if (mDiameter <= 40) {
-            mDiameter = 40;
+        if (mDiameter <= 240) {
+            mDiameter = 240;
         }
         height = mDiameter;
         width = mDiameter;
@@ -116,18 +132,20 @@ public class CircleProgressView extends View {
         int mHeight = getMeasuredHeight();
 
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth((float) mWidth / 10);
+        mPaint.setStrokeWidth((float) mWidth / 30);
         mPaint.setStyle(Style.STROKE);
         mPaint.setStrokeCap(Cap.ROUND);
         mPaint.setColor(Color.TRANSPARENT);
-
+         mPaint.setColor(Color.BLACK);
         rect.set(20, 20, mWidth - 20, mHeight - 20);
-        canvas.drawArc(rect, 0, 360, false, mPaint);
-        mPaint.setColor(Color.BLACK);
+        LinearGradient shader = new LinearGradient(3, 3, mWidth - 3, mHeight - 3, mColors, null,
+                Shader.TileMode.CLAMP);
+        mPaint.setShader(shader);
+        canvas.drawArc(rect, 180, 180, false, mPaint);
         LinearGradient shader1 = new LinearGradient(3, 3, mWidth - 3, mHeight - 3, mColors2, null,
                 Shader.TileMode.CLAMP);
         mPaint.setShader(shader1);
-        canvas.drawArc(rect, 0,  360, false, mPaint);
+        canvas.drawArc(rect, 180,  170, false, mPaint);
     }
 }
 

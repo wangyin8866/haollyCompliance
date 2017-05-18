@@ -217,5 +217,4 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-
 }
