@@ -30,6 +30,7 @@ dependencies {
     compile project(':retrofitlibrary')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.android.support:design:26.0.0-alpha1'
     // banner
     compile 'com.bigkoo:convenientbanner:2.0.5'
 }
