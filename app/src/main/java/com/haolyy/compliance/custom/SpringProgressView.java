@@ -13,9 +13,7 @@ import android.view.View;
 
 /***
  * 自定义进度条
- * @author spring sky
- * Email:vipa1888@163.com
- * 创建时间：2014-1-6下午3:28:51
+ *
  */
 public class SpringProgressView extends View {
 
