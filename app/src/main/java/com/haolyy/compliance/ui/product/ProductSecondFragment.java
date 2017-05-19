@@ -22,8 +22,8 @@ public class ProductSecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.product_second_main, container, false);
         springProgressView = (SpringProgressView) view.findViewById(R.id.progressBar);
-        springProgressView.setCurrentCount(1000);
-        springProgressView.setMaxCount(1000);
+        springProgressView.setCurrentCount(0);
+        springProgressView.setMaxCount(0);
 
         return view;
     }

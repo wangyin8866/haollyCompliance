@@ -14,8 +14,8 @@
     <color name="text_374666">#374666</color>
     <color name="code_bg">#EBEBEB</color>
     <color name="text_2D0000">#2D0000</color>
-
-
+    <color name="bg_line">#F5F5F5</color>
+    <color name="transparent">#ffffff</color>
     <color name="background">#ffffff</color>
     <color name="title_color">#333333</color>
     <color name="bg_margin">#f2f2f2</color>

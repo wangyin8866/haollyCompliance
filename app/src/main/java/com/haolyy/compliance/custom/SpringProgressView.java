@@ -20,9 +20,9 @@ public class SpringProgressView extends View {
     /**分段颜色*/
     private static final int[] SECTION_COLORS = {Color.parseColor("#FBDA61"),Color.parseColor("#f9a040"),Color.parseColor("#F76B1C")};
     /**进度条最大值*/
-    private float maxCount;
+    private float maxCount=1000;
     /**进度条当前值*/
-    private float currentCount;
+    private float currentCount=500;
     /**画笔*/
     private Paint mPaint;
     private int mWidth,mHeight;

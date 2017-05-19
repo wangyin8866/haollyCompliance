@@ -21,7 +21,6 @@ public class ProductFirstAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private Context mContext;
     private List<TestProduct> products;
-
     public ProductFirstAdapter(Context mContext, List<TestProduct> products) {
         this.mContext = mContext;
         this.products = products;
