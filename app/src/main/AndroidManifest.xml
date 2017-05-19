@@ -13,11 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name="com.haolyy.compliance.ui.login.LoginActivity">
-
-        </activity>
-
+        <activity android:name=".ui.login.LoginActivity"></activity>
         <activity
             android:name=".ui.login.RegisterActivity"
             android:exported="false"
@@ -28,20 +24,20 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.product.ProductDetailActivity"
             android:screenOrientation="portrait">
 
         </activity>
-
         <activity
-            android:name=".ui.product.ProductDetailActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.product.SelectQuanActivity" android:screenOrientation="portrait"/>
+            android:name=".ui.product.SelectQuanActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

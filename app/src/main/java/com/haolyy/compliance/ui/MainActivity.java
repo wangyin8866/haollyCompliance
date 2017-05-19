@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import com.haolyy.compliance.ui.home.HomeNoInvestFragment;
 import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
+import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         init();
         idMainViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override

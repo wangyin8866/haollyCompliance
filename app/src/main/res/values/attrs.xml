@@ -34,4 +34,22 @@
         <attr name="arc_text2" format="string" />
         <attr name="arc_text_color" format="color" />
     </declare-styleable>
+    <!--垂直排列的两个textview-->
+    <declare-styleable name="VeticalDoubleTextView">
+        <attr name="textSizeTop" format="dimension" />
+        <attr name="textColorTop" format="color" />
+        <attr name="textTop" format="string" />
+        <attr name="textBottom" format="string" />
+        <attr name="textSizeBottom" format="dimension" />
+        <attr name="textColorBottom" format="color" />
+        <attr name="textmargin" format="dimension" />
+        <attr name="textdrablepadding" format="dimension" />
+        <attr name="ivleft" format="reference" />
+        <attr name="ivright" format="reference" />
+        <attr name="textGravity" format="enum">
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
 </resources>
