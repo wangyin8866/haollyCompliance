@@ -43,7 +43,7 @@ public class HomeNewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         testProduct = products.get(position);
         ViewHolder viewHolder = new ViewHolder();
-        View view = inflate.inflate(R.layout.home_new_pager_item, container, false);
+        View view = inflate.inflate(R.layout.item_home_new_pager, container, false);
         viewHolder.yield1= ((TextView) view.findViewById(R.id.pro_yield1));
         viewHolder.yield2=((TextView) view.findViewById(R.id.pro_yield2));
         viewHolder.pro_deadline=((TextView) view.findViewById(R.id.pro_deadline));

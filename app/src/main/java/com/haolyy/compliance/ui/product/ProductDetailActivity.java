@@ -1,15 +1,10 @@
 package com.haolyy.compliance.ui.product;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,16 +15,14 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
 import com.haolyy.compliance.ui.product.view.ProductDetailView;
-import com.haolyy.compliance.utils.SystemBarTintManager;
 import com.haolyy.compliance.utils.SystemBarUtil;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by niudeyang on 2017/5/17.
@@ -49,6 +42,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
     TextView tvProductJoin;
     @BindView(R.id.vp_product)
     VerticalViewPager vpProduct;
+
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList = new ArrayList<>();
@@ -64,17 +58,24 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(mContext,R.color.white);
+        SystemBarUtil.setSystemBar(mContext, R.color.white);
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
         fragmentList.add(productFragmentTop);
         fragmentList.add(productFragmentBottom);
         vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
         viewLine.setVisibility(View.VISIBLE);
+
     }
+
     @Override
     protected void handleMessage(Integer s) {
 
+    }
+
+    @OnClick(R.id.iv_finish)
+    public void onViewClicked() {
+        finish();
     }
 
 
@@ -96,7 +97,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
 
     }
 
-    public void pull(){
+    public void pull() {
         vpProduct.setCurrentItem(1);
     }
 

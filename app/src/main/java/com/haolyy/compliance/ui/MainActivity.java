@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //第一次默认选中tab01
         isLogin = true;
         switchStateHome(isLogin);
-
+        idMainViewPager.setOffscreenPageLimit(5);
     }
 
     private void switchStateHome(boolean isLogin) {

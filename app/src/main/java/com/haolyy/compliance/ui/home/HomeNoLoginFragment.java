@@ -3,6 +3,7 @@ package com.haolyy.compliance.ui.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +50,15 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_no_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        Log.e("onCreateView", "onCreateView");
+        Log.e("images", images.size()+"aa");
+        if (images.size()==0) {
+
         images.add("http://pic2.ooopic.com/10/56/19/67b1OOOPIC12.jpg");
         images.add("http://pic2.ooopic.com/10/55/95/20b1OOOPICfa.jpg");
         images.add("http://pic2.ooopic.com/12/80/79/89b1OOOPICd2.jpg");
+        }
         banner.startTurning(2000);
 
         banner.setPages(new CBViewHolderCreator() {

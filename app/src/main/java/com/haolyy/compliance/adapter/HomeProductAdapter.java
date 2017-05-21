@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.custom.CircleView;
+import com.haolyy.compliance.custom.SpringProgressView;
 import com.haolyy.compliance.entity.TestProduct;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
  * Created by wangyin on 2017/5/18.
  */
 
-public class ProductFirstAdapter extends BaseAdapter {
+public class HomeProductAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private Context mContext;
     private List<TestProduct> products;
-    public ProductFirstAdapter(Context mContext, List<TestProduct> products) {
+    public HomeProductAdapter(Context mContext, List<TestProduct> products) {
         this.mContext = mContext;
         this.products = products;
         inflater = LayoutInflater.from(mContext);
@@ -47,31 +47,36 @@ public class ProductFirstAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.item_product_first, null);
+            convertView = inflater.inflate(R.layout.item_home_product, parent,false);
             viewHolder.num = (TextView) convertView.findViewById(R.id.tv_num);
-            viewHolder.total = (TextView) convertView.findViewById(R.id.tv_total);
+            viewHolder.tv_borrowType_str = (TextView) convertView.findViewById(R.id.tv_borrowType_str);
             viewHolder.pro_deadline = (TextView) convertView.findViewById(R.id.pro_deadline);
             viewHolder.yield1 = (TextView) convertView.findViewById(R.id.pro_yield1);
-            viewHolder.circleView = (CircleView) convertView.findViewById(R.id.product_circle);
+            viewHolder.pro_amount = (TextView) convertView.findViewById(R.id.pro_amount);
+            viewHolder.springProgressView = (SpringProgressView) convertView.findViewById(R.id.progressBar);
+
             convertView.setTag(viewHolder);
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.num.setText(product.getNum()+"");
-        viewHolder.total.setText(product.getTotal()+"");
+        viewHolder.tv_borrowType_str.setText(product.getTotal()+"");
         viewHolder.yield1.setText(product.getRate()+"");
+        viewHolder.pro_amount.setText(product.getTotal()+"");
         viewHolder.pro_deadline.setText(product.getDeline()+"周");
-        viewHolder.circleView.setData(1000,1000);
-        viewHolder.circleView.setmCircleText((product.getData()/product.getTotal()*100)+"%");
+        viewHolder.springProgressView.setMaxCount(1000);
+        viewHolder.springProgressView.setCurrentCount(500);
+
         return convertView;
     }
 
     private static class ViewHolder {
         TextView num;
-        TextView total;
+        TextView tv_borrowType_str;
         TextView yield1;
         TextView pro_deadline;
-        CircleView circleView;
+        TextView pro_amount;
+        SpringProgressView springProgressView;
     }
 }
