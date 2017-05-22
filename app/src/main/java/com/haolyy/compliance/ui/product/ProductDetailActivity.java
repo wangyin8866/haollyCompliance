@@ -1,5 +1,7 @@
 package com.haolyy.compliance.ui.product;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
 import com.haolyy.compliance.ui.product.view.ProductDetailView;
@@ -47,6 +50,18 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList = new ArrayList<>();
 
+    /**
+     *
+     * @param context
+     * @param type
+     * @return
+     */
+    public static Intent getReturnIntent(Context context, int type) {
+        Intent intent = new Intent(context, ProductDetailActivity.class);
+        intent.putExtra("borrowType", type);
+        return intent;
+    }
+
     @Override
     protected ProductDetailPresenter createPresenter() {
 
@@ -61,11 +76,13 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
         SystemBarUtil.setSystemBar(mContext, R.color.white);
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
+        Bundle bundle=new Bundle();
+        bundle.putBoolean("center",true);
+        productFragmentBottom.setArguments(bundle);
         fragmentList.add(productFragmentTop);
         fragmentList.add(productFragmentBottom);
         vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
         viewLine.setVisibility(View.VISIBLE);
-
     }
 
     @Override

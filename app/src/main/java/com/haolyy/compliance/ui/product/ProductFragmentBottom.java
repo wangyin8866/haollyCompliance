@@ -36,8 +36,9 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
     ViewPager vpJoinRecord;
     Unbinder unbinder;
     private View view;
-    private List<String> titles=new ArrayList<>();
-    private List<Fragment> fragments=new ArrayList<>();
+    private List<String> titles = new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
+
     @Override
     protected ProductBottomPresenter createPresenter() {
         return new ProductBottomPresenter(mContext);
@@ -53,11 +54,18 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
     }
 
     private void initview() {
+        Bundle arguments = getArguments();
         titles.add("产品详情");
         titles.add("加入记录");
-        FragmentBottomLeft fragmentBottomLeft=new FragmentBottomLeft();
-        FragmentBottomRight fragmentBottomRight=new FragmentBottomRight();
+        FragmentBottomLeft fragmentBottomLeft = new FragmentBottomLeft();
+        FragmentBottomRight fragmentBottomRight = new FragmentBottomRight();
         fragments.add(fragmentBottomLeft);
+        //如果有债权信息显示中间的tab
+        if (arguments.getBoolean("center")) {
+            titles.add("债权信息");
+            FragmentBottomCenter fragmentBottomCenter = new FragmentBottomCenter();
+            fragments.add(fragmentBottomCenter);
+        }
         fragments.add(fragmentBottomRight);
         vpJoinRecord.setAdapter(new TabAdapter(getFragmentManager()));
         tablayoutBottom.setupWithViewPager(vpJoinRecord);
@@ -79,6 +87,7 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         super.onDestroyView();
         unbinder.unbind();
     }
+
     public class TabAdapter extends FragmentPagerAdapter {
 
         public TabAdapter(FragmentManager fm) {

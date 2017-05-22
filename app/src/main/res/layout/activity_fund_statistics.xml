@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+>
+
+    <include layout="@layout/public_title_back" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_fund"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:tabIndicatorColor="@color/bg_ff9933"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/bg_ff9933"
+        app:tabTextColor="@color/text_4a4a4a" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_fund"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

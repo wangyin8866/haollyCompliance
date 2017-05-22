@@ -34,12 +34,11 @@
         </activity>
         <activity
             android:name=".ui.product.ProductDetailActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.product.SelectQuanActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.my.FundStatisticsActivity"></activity>
     </application>
 
 </manifest>
