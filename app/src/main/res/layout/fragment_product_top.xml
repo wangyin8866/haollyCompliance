@@ -116,7 +116,12 @@
                 android:text="保障方式《棱镜计划》"
                 android:textColor="@color/text_2D0000"
                 android:textSize="12sp" />
-
+             <com.haolyy.compliance.custom.ViewInvestTimeProgress
+                 android:id="@+id/vt_progress"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="12dp"
+                 />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"

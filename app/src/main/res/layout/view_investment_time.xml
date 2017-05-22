@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
         android:weightSum="4">
 
         <TextView
@@ -67,24 +67,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="11dp"
-            android:text="起售日"
-            android:textColor="@color/text_4b4b4b" />
+            android:text="2017-00-00"
+         />
 
         <TextView
             android:id="@+id/investemnt_step_tv2"
             style="@style/investment_time_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="截止日"
-            android:textColor="@color/text_4b4b4b" />
+            android:text="2017-00-00"
+           />
 
         <TextView
             android:id="@+id/investemnt_step_tv3"
             style="@style/investment_time_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="起息日"
-            android:textColor="@color/text_4b4b4b" />
+            android:text="2017-00-00"
+            />
 
         <TextView
             android:id="@+id/investemnt_step_tv4"
@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="11dp"
-            android:text="预计到期日"
-            android:textColor="@color/text_4b4b4b" />
+            android:text="2017-00-00"
+           />
     </LinearLayout>
 </LinearLayout>

@@ -52,4 +52,13 @@
             <enum name="right" value="2" />
         </attr>
     </declare-styleable>
+     <!--资产统计饼图-->
+    <declare-styleable name="MagnificentChart">
+        <attr name="animation" format="boolean"/>
+        <attr name="round" format="boolean" />
+        <attr name="shadow" format="boolean" />
+        <attr name="showTitle" format="boolean" />
+        <attr name="shadowColor" format="color" />
+        <attr name="backgroundd" format="color" />
+    </declare-styleable>
 </resources>
