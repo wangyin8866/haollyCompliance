@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/titleBar"
     android:layout_width="match_parent"
-    android:layout_height="54dp"
+    android:layout_height="60dp"
     android:background="@color/white">
 
     <ImageView
@@ -58,8 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:textColor="#374666"
-        android:textSize="17sp" />
+        android:text="赢计划A007421期"
+        android:textColor="#FF4A4A4A"
+        android:textSize="16sp" />
     <TextView
         android:layout_below="@+id/tv_title"
         android:id="@+id/tv_joining"
@@ -68,6 +69,7 @@
         android:text="加入中"
         android:layout_centerHorizontal="true"
         android:textColor="#4a4a4a"
+        android:layout_marginBottom="5dp"
         android:textSize="11sp" />
     <View
         android:id="@+id/view_line"

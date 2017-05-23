@@ -6,12 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-//import android.graphics.Rect;
+import android.graphics.Paint.Cap;
+import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.Paint.Cap;
-import android.graphics.Paint.Style;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,11 +18,20 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.utils.UIUtils;
+
+//import android.graphics.Rect;
 
 
 public class CircleProgressView extends View {
-
+    private double value;
+    /**
+     * 百分比
+     */
+    private double percentage;
+    /**
+     * 总值
+     */
+    private double sumValue;
     /**
      * 直径
      */
@@ -145,7 +153,21 @@ public class CircleProgressView extends View {
         LinearGradient shader1 = new LinearGradient(3, 3, mWidth - 3, mHeight - 3, mColors2, null,
                 Shader.TileMode.CLAMP);
         mPaint.setShader(shader1);
-        canvas.drawArc(rect, 180,  170, false, mPaint);
+
+        percentage = value / sumValue;
+        float angle = (float) (percentage * 180);                 // 对应的角度
+        canvas.drawArc(rect, 180,  angle, false, mPaint);
+    }
+    /**
+     * 设置数据
+     *
+     * @param value    已经购买
+     * @param sumValue 总标
+     */
+    public void setData(double value, double sumValue) {
+        this.value = value;
+        this.sumValue = sumValue;
+        invalidate();
     }
 }
 

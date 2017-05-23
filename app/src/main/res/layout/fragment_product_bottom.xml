@@ -17,6 +17,8 @@
         app:tabTextColor="@color/text_4a4a4a"
         app:tabSelectedTextColor="@color/bg_ff9933"
         />
+
+    <include layout="@layout/bg_line" />
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_join_record"
         android:layout_width="match_parent"

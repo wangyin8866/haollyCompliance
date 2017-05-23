@@ -21,6 +21,10 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 /**
  * XListView, it's based on <a href="https://github.com/Maxwin-z/XListView-Android">XListView(Maxwin)</a>
@@ -428,14 +432,20 @@ public class XListView extends ListView implements OnScrollListener {
         if (mEnablePullRefresh && null != mListener) {
             mListener.onRefresh();
         }
+        onLoad();
     }
 
     private void loadMore() {
         if (mEnablePullLoad && null != mListener) {
             mListener.onLoadMore();
         }
+        onLoad();
     }
-
+    private void onLoad(){
+        this.stopRefresh();
+        this.stopLoadMore();
+        this.setRefreshTime(new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()));
+    }
     /**
      * You can listen ListView.OnScrollListener or this one. it will invoke
      * onXScrolling when header/footer scroll back.

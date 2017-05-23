@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class="CreditorBinding">
+
+        <import type="com.haolyy.compliance.entity.CreditorInfo" />
+
+        <variable
+            name="creditor"
+            type="CreditorInfo" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_creditor_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="@{creditor.addresss}"
+                    android:textColor="#FF9B9B9B"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_creditor_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="top|center_horizontal"
+                    android:text="@{creditor.product}"
+                    android:textColor="#FF9B9B9B"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_creditor_money"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{creditor.money}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_creditor_deadline"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{creditor.deadline}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_creditor_rate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{creditor.rate}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

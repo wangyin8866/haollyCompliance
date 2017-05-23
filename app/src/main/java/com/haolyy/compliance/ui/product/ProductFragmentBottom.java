@@ -39,6 +39,12 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
 
+    FragmentBottomProductDetail bottomProductDetail;
+    FragmentBottomInvestLog bottomInvestLog;
+    FragmentBottomCreditorInfo bottomCreditorInfo;
+    FragmentBottomBorrowDetail bottomBorrowDetail;
+    FragmentBottomRepaymentPlan bottomRepaymentPlan;
+
     @Override
     protected ProductBottomPresenter createPresenter() {
         return new ProductBottomPresenter(mContext);
@@ -55,18 +61,41 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
 
     private void initview() {
         Bundle arguments = getArguments();
-        titles.add("产品详情");
-        titles.add("加入记录");
-        FragmentBottomLeft fragmentBottomLeft = new FragmentBottomLeft();
-        FragmentBottomRight fragmentBottomRight = new FragmentBottomRight();
-        fragments.add(fragmentBottomLeft);
-        //如果有债权信息显示中间的tab
-        if (arguments.getBoolean("center")) {
-            titles.add("债权信息");
-            FragmentBottomCenter fragmentBottomCenter = new FragmentBottomCenter();
-            fragments.add(fragmentBottomCenter);
+        bottomProductDetail = new FragmentBottomProductDetail();
+        bottomInvestLog = new FragmentBottomInvestLog();
+        bottomCreditorInfo = new FragmentBottomCreditorInfo();
+        bottomBorrowDetail = new FragmentBottomBorrowDetail();
+        bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
+        int type = 2;
+        switch (type) {
+            case 1://周周赢
+                titles.add("产品详情");
+                fragments.add(bottomProductDetail);
+                //如果有债权信息显示中间的tab
+                if (arguments.getBoolean("center")) {
+                    titles.add("债权信息");
+                    fragments.add(bottomCreditorInfo);
+                }
+                titles.add("投资记录");
+                fragments.add(bottomInvestLog);
+                break;
+            case 2://消费贷
+            case 3://闪车贷
+                titles.add("借款明细");
+                fragments.add(bottomBorrowDetail);
+                titles.add("投资记录");
+                fragments.add(bottomInvestLog);
+                titles.add("还款计划");
+                fragments.add(bottomRepaymentPlan);
+                break;
+            case 4://票据贷
+                titles.add("借款明细");
+                fragments.add(bottomBorrowDetail);
+                titles.add("投资记录");
+                fragments.add(bottomInvestLog);
+                break;
         }
-        fragments.add(fragmentBottomRight);
+
         vpJoinRecord.setAdapter(new TabAdapter(getFragmentManager()));
         tablayoutBottom.setupWithViewPager(vpJoinRecord);
 

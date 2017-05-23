@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class="RepaymentBinding">
+
+        <import type="com.haolyy.compliance.entity.Repayment" />
+
+        <variable
+            name="repayment"
+            type="Repayment" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_repayment_periods"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:text="@{repayment.periods}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_repayment_interest"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{repayment.interest}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_repayment_capital"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{repayment.capital}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_repayment_residue_capital"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{repayment.residueCapital}"
+                android:textColor="#FF9B9B9B"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

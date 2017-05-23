@@ -8,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.entity.Repayment;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.haolyy.compliance.R.id.tv_quan_rate;
 
 /**
  * Created by niudeyang on 2017/5/18.
@@ -19,22 +22,22 @@ import java.util.Map;
 
 public class QuansAdapter extends BaseAdapter {
     private Context mContext;
-    private List<Integer> quans;
+//    private List<Integer> quans;
     private int type;//0可用 1不可用
     private Map<Integer, Boolean> map = new HashMap();
-
-    public QuansAdapter(Context context, List<Integer> list, int type) {
+    private List<Repayment> repayments;
+    public QuansAdapter(Context context,List<Repayment> repayments, int type) {
         this.mContext = context;
-        this.quans = list;
+        this.repayments = repayments;
         this.type = type;
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < repayments.size(); i++) {
             map.put(i, false);
         }
     }
 
     @Override
     public int getCount() {
-        return quans.size();
+        return repayments.size();
     }
 
     @Override
@@ -57,7 +60,7 @@ public class QuansAdapter extends BaseAdapter {
         } else {
             quansHolder = (QuansHolder) convertView.getTag();
         }
-        quansHolder.setData(quans.get(position));
+        quansHolder.setData(repayments.get(position));
         final QuansHolder finalQuansHolder = quansHolder;
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,14 +99,14 @@ public class QuansAdapter extends BaseAdapter {
         public QuansHolder() {
             itemView = View.inflate(mContext, R.layout.item_useful_quan, null);
             mIv_quan_select = (ImageView) itemView.findViewById(R.id.iv_quan_select);
-            mTv_quan_rate = (TextView) itemView.findViewById(R.id.tv_quan_rate);
+            mTv_quan_rate = (TextView) itemView.findViewById(tv_quan_rate);
             mTv_quan_type = (TextView) itemView.findViewById(R.id.tv_quan_type);
             mTv_quan_range = (TextView) itemView.findViewById(R.id.tv_quan_range);
             mTv_quan_time = (TextView) itemView.findViewById(R.id.tv_quan_time);
         }
 
-        public void setData(Integer data) {
-
+        public void setData(Repayment repayment) {
+            mTv_quan_rate.setText(repayment.getPeriods()+"%");
         }
     }
 }

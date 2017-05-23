@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
 import com.haolyy.compliance.ui.product.view.ProductDetailView;
@@ -76,13 +75,29 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
         SystemBarUtil.setSystemBar(mContext, R.color.white);
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
-        Bundle bundle=new Bundle();
-        bundle.putBoolean("center",true);
-        productFragmentBottom.setArguments(bundle);
+
+        tabLayoutState();
+
         fragmentList.add(productFragmentTop);
         fragmentList.add(productFragmentBottom);
         vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
         viewLine.setVisibility(View.VISIBLE);
+
+        tvProductJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProductDetailActivity.this, ProductSureInvest.class));
+            }
+        });
+    }
+
+    /**
+     * 详情页tab显示
+     */
+    private void tabLayoutState() {
+        Bundle bundle=new Bundle();
+        bundle.putBoolean("center",true);
+        productFragmentBottom.setArguments(bundle);
     }
 
     @Override

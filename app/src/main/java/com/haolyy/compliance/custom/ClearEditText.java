@@ -2,17 +2,17 @@ package com.haolyy.compliance.custom;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
-import android.widget.EditText;
 
 import com.haolyy.compliance.R;
 
-public class ClearEditText extends EditText implements
+public class ClearEditText extends AppCompatEditText implements
         OnFocusChangeListener, TextWatcher {
     /**
      * 删除按钮的引用
