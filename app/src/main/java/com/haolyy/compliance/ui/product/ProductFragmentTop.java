@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.custom.CircleProgressView;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.haolyy.compliance.utils.UIUtils;
@@ -40,8 +39,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView tvPull;
     @BindView(R.id.tv_use_quan)
     TextView tvUseQuan;
-    @BindView(R.id.arc_progress_view)
-    CircleProgressView progressArc;
 
     @Override
     protected ProductTopPresenter createPresenter() {
@@ -57,6 +54,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         textSpan.setSpan(new AbsoluteSizeSpan(UIUtils.dip2px(36)), 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(UIUtils.dip2px(14)), 3, 9, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         tvProductRate.setText(textSpan);
+        vtProgress.setDateText("2017-00-00\n开始加入","2017-00-00\n投标结束","2017-00-00\n锁定到期","2017-00-00\n计划到期");
         progressArc.setData(1000, 1000);
         return view;
     }
@@ -78,7 +76,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
 
-    @OnClick({R.id.tv_mirror_plan, R.id.tv_pull, R.id.tv_use_quan})
+    @OnClick({R.id.tv_mirror_plan, R.id.tv_pull,R.id.tv_use_quan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_mirror_plan:
@@ -87,7 +85,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 ((ProductDetailActivity) getActivity()).pull();
                 break;
             case R.id.tv_use_quan:
-                startActivityForResult(new Intent(mContext, SelectQuanActivity.class), 0x00);
+                startActivityForResult(new Intent(mContext,SelectQuanActivity.class),0x00);
                 break;
         }
     }

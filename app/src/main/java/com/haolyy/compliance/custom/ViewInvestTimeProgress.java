@@ -16,10 +16,6 @@ import com.haolyy.compliance.utils.UIUtils;
  */
 public class ViewInvestTimeProgress extends LinearLayout {
     private static final int TIMECOLOR = UIUtils.getColor(R.color.bg_ff9933);
-    TextView mInvestemnt_time_tv1;//起售时间
-    TextView mInvestemnt_time_tv2;//截止日
-    TextView mInvestemnt_time_tv3;//计息日
-    TextView mInvestemnt_time_tv4;//预计到期日
     ImageView mInvestemnt_step_iv1;//圆圈1
     View mInvestemnt_time_v1;//线1
     ImageView mInvestemnt_step_iv2;
@@ -63,24 +59,22 @@ public class ViewInvestTimeProgress extends LinearLayout {
         mInvestemnt_step_tv4 = (TextView) view.findViewById(R.id.investemnt_step_tv4);
     }
    public void setDateText(String t1, String t2, String t3, String t4){
-       mInvestemnt_time_tv1.setText(t1);
-       mInvestemnt_time_tv2.setText(t2);
-       mInvestemnt_time_tv3.setText(t3);
-       mInvestemnt_time_tv4.setText(t4);
+       mInvestemnt_step_tv1.setText(t1);
+       mInvestemnt_step_tv2.setText(t2);
+       mInvestemnt_step_tv3.setText(t3);
+       mInvestemnt_step_tv4.setText(t4);
    }
     public void setTimeProgress(int timeProgress) {
         switch (timeProgress) {
             case 0:
                 mInvestemnt_step_iv1.setImageDrawable(getResources().getDrawable(R.mipmap.time_progress_orange));
-                mInvestemnt_time_tv1.setTextColor(TIMECOLOR);
                 mInvestemnt_step_tv1.setTextColor(TIMECOLOR);
                 break;
             case 1:
                 mInvestemnt_step_iv1.setImageDrawable(getResources().getDrawable(R.mipmap.time_progress_orange));
                 mInvestemnt_step_iv2.setImageDrawable(getResources().getDrawable(R.mipmap.time_progress_orange));
                 mInvestemnt_time_v1.setBackgroundColor(TIMECOLOR);
-                mInvestemnt_time_tv2.setTextColor(TIMECOLOR);
-                mInvestemnt_step_tv2.setTextColor(TIMECOLOR);
+                mInvestemnt_step_tv2.setActivated(true);
              
                 break;
             case 3:
@@ -89,8 +83,7 @@ public class ViewInvestTimeProgress extends LinearLayout {
                 mInvestemnt_step_iv3.setImageDrawable(getResources().getDrawable(R.mipmap.time_progress_orange));
                 mInvestemnt_time_v1.setBackgroundColor(TIMECOLOR);
                 mInvestemnt_time_v2.setBackgroundColor(TIMECOLOR);
-                mInvestemnt_time_tv3.setTextColor(TIMECOLOR);
-                mInvestemnt_step_tv3.setTextColor(TIMECOLOR);
+                mInvestemnt_step_tv3.setActivated(true);
                
                 break;
             case 4:
@@ -101,8 +94,7 @@ public class ViewInvestTimeProgress extends LinearLayout {
                 mInvestemnt_time_v1.setBackgroundColor(TIMECOLOR);
                 mInvestemnt_time_v2.setBackgroundColor(TIMECOLOR);
                 mInvestemnt_time_v3.setBackgroundColor(TIMECOLOR);
-                mInvestemnt_time_tv4.setTextColor(TIMECOLOR);
-                mInvestemnt_step_tv4.setTextColor(TIMECOLOR);
+                mInvestemnt_step_tv4.setActivated(true);
                 break;
 
 
