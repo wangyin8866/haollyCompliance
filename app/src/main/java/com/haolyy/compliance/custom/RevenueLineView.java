@@ -141,7 +141,7 @@ public class RevenueLineView extends View {
         paint.setColor(Color.parseColor("#4a4a4a"));
         paint.setTextSize(dip2px(10));
         Paint paint1 = new Paint();//画折线的paint
-        paint1.setColor(Color.parseColor("#E76A45"));
+        paint1.setColor(Color.parseColor("#5691f5"));
         paint1.setStyle(Paint.Style.STROKE);
         paint1.setAntiAlias(true); // 去锯齿
         paint1.setStrokeWidth(4);
@@ -201,7 +201,7 @@ public class RevenueLineView extends View {
 
         //绘制第七日收益率的背景
         Resources resources = this.getResources();
-        Bitmap dotbmp = BitmapFactory.decodeResource(resources, R.mipmap.point_yellow);
+        Bitmap dotbmp = BitmapFactory.decodeResource(resources, R.mipmap.point_blue);
         Bitmap dot = Bitmap.createBitmap(dotbmp);
         //canvas.drawBitmap(dot, XPoint + 6 * XScale, (float) (YPoint - 3 * YScale - 0.5 * dot.getHeight()), paint4);
         //画第一个点

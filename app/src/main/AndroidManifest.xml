@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.RegisterActivity"
             android:exported="false"
@@ -35,9 +35,7 @@
         </activity>
         <activity
             android:name=".ui.product.ProductDetailActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.product.SelectQuanActivity"
             android:screenOrientation="portrait" />
@@ -56,6 +54,7 @@
         <activity
             android:name=".ui.product.InvestSucceed"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.my.TradeRecordActivity"></activity>
     </application>
 
 </manifest>

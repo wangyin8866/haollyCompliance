@@ -40,6 +40,8 @@ public class FundStatisticsActivity extends AppCompatActivity {
     ImageView ivService;
     @BindView(R.id.titleBar)
     RelativeLayout titleBar;
+    @BindView(R.id.iv_share)
+    ImageView ivShare;
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -56,6 +58,7 @@ public class FundStatisticsActivity extends AppCompatActivity {
     private void initView() {
         tvJoining.setVisibility(View.INVISIBLE);
         tvTitle.setText("资金统计");
+        ivShare.setImageResource(R.mipmap.trade_records);
         titles.add("资产占比");
         titles.add("收益情况");
         AssetsRatioFragment assetsRatioFragment = new AssetsRatioFragment();
@@ -66,13 +69,13 @@ public class FundStatisticsActivity extends AppCompatActivity {
         tabFund.setupWithViewPager(vpFund);
     }
 
-    @OnClick({R.id.iv_finish, R.id.iv_service})
+    @OnClick({R.id.iv_finish, R.id.iv_share})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
                 finish();
                 break;
-            case R.id.iv_service:
+            case R.id.iv_share:
                 break;
         }
     }
