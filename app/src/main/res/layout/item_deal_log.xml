@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_group"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#F5F5F5"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="2017年"
+        android:textColor="#4A4A4A"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="回收本金"
+                android:textColor="#4A4A4A"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_recharge_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-01-13  12:30"
+                android:textColor="#9B9B9B"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_recharge_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="+999.00元"
+                android:textColor="#F8676F"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_recharge_process"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="余额：10,080.00元"
+                android:textColor="#9B9B9B"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:background="#dcdcdc" />
+</LinearLayout>

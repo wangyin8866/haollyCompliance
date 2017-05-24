@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -7,12 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
@@ -20,28 +18,17 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 public class FundStatisticsActivity extends AppCompatActivity {
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_joining)
-    TextView tvJoining;
-    @BindView(R.id.view_line)
-    View viewLine;
+
     @BindView(R.id.tab_fund)
     TabLayout tabFund;
     @BindView(R.id.vp_fund)
     ViewPager vpFund;
-    @BindView(R.id.iv_finish)
-    ImageView ivFinish;
-    @BindView(R.id.iv_service)
-    ImageView ivService;
-    @BindView(R.id.titleBar)
-    RelativeLayout titleBar;
-    @BindView(R.id.iv_share)
-    ImageView ivShare;
+    @BindView(R.id.top_fund)
+    TopBar topFund;
+
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -56,9 +43,7 @@ public class FundStatisticsActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvJoining.setVisibility(View.INVISIBLE);
-        tvTitle.setText("资金统计");
-        ivShare.setImageResource(R.mipmap.trade_records);
+
         titles.add("资产占比");
         titles.add("收益情况");
         AssetsRatioFragment assetsRatioFragment = new AssetsRatioFragment();
@@ -67,18 +52,19 @@ public class FundStatisticsActivity extends AppCompatActivity {
         fragments.add(incomeFragment);
         vpFund.setAdapter(new FundTabAdapter(getSupportFragmentManager()));
         tabFund.setupWithViewPager(vpFund);
+        topFund.setOnItemClickListener(new TopBar.OnItemClickListener() {
+            @Override
+            public void OnLeftButtonClicked() {
+                finish();
+            }
+
+            @Override
+            public void OnRightButtonClicked() {
+                startActivity(new Intent(FundStatisticsActivity.this, DealLogActivity.class));
+            }
+        });
     }
 
-    @OnClick({R.id.iv_finish, R.id.iv_share})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_finish:
-                finish();
-                break;
-            case R.id.iv_share:
-                break;
-        }
-    }
 
     public class FundTabAdapter extends FragmentPagerAdapter {
 

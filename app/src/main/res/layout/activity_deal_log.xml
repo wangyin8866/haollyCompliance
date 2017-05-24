@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.haolyy.compliance.custom.TopBar
+        android:id="@+id/top_fund"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        app:drawableLeft="@mipmap/nav_back"
+        app:drawableLeftVisibility="true"
+        app:drawableRight="@mipmap/icon_filtrate"
+        app:drawableRightVisibility="true"
+        app:title="交易记录"
+        app:titleTextColor="#FF4A4A4A"
+        app:titleTextSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#374666" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+        <com.haolyy.compliance.custom.XListView
+            android:id="@+id/xlv_deal_log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:scrollbars="none"
+            android:transcriptMode="alwaysScroll" />
+
+        <LinearLayout
+            android:id="@+id/ll_deal_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_deal_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_select"
+                        android:gravity="center"
+                        android:text="全部"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tv_deal_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="充值"
+                        android:textColor="#FF9933" />
+
+                    <TextView
+                        android:id="@+id/tv_deal_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="提现"
+                        android:textColor="#FF9933" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_deal_4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="投资"
+                        android:textColor="#FF9933" />
+
+                    <TextView
+                        android:id="@+id/tv_deal_5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="回息"
+                        android:textColor="#FF9933" />
+
+                    <TextView
+                        android:id="@+id/tv_deal_6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="回本"
+                        android:textColor="#FF9933" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_deal_7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="手续费"
+                        android:textColor="#FF9933" />
+
+                    <TextView
+                        android:id="@+id/tv_deal_8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="奖励"
+                        android:textColor="#FF9933" />
+
+                    <TextView
+                        android:id="@+id/tv_deal_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_deal_no_select"
+                        android:gravity="center"
+                        android:text="其他"
+                        android:textColor="#FF9933" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#509B9B9B" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

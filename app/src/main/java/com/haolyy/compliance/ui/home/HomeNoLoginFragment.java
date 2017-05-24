@@ -53,12 +53,10 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
 
         Log.e("onCreateView", "onCreateView");
         Log.e("images", images.size()+"aa");
-        if (images.size()==0) {
 
         images.add("http://pic2.ooopic.com/10/56/19/67b1OOOPIC12.jpg");
         images.add("http://pic2.ooopic.com/10/55/95/20b1OOOPICfa.jpg");
         images.add("http://pic2.ooopic.com/12/80/79/89b1OOOPICd2.jpg");
-        }
         banner.startTurning(2000);
 
         banner.setPages(new CBViewHolderCreator() {
