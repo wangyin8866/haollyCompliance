@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 /**
  * Created by wangyin on 2017/5/19.
+ * 解决滑动嵌套
  */
 
 public class InnerScrollListView extends ListView {

@@ -14,11 +14,8 @@ import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.ui.product.presenter.ProductFirstPresenter;
 import com.haolyy.compliance.ui.product.view.ProductFirstView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by wangyin on 2017/5/18.
@@ -43,7 +40,7 @@ public class ProductFirstFragment extends BaseFragment<ProductFirstPresenter, Pr
             testProducts.add(testProduct);
         }
 
-        firstXlv.setAdapter(new ProductFirstAdapter(getActivity(),testProducts));
+        firstXlv.setAdapter(new ProductFirstAdapter(testProducts,getActivity()));
 
 
         return view;
@@ -62,18 +59,14 @@ public class ProductFirstFragment extends BaseFragment<ProductFirstPresenter, Pr
         @Override
         public void onRefresh() {
 
-            onLoad();
+
         }
 
         @Override
         public void onLoadMore() {
 
-            onLoad();
+
         }
     }
-    private void onLoad() {
-        firstXlv.stopRefresh();
-        firstXlv.stopLoadMore();
-        firstXlv.setRefreshTime(new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()));
-    }
+
 }

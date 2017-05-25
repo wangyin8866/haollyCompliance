@@ -67,8 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+
                 android:orientation="horizontal">
 
                 <TextView
@@ -76,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="可用余额"
+                    android:gravity="center"
                     android:textColor="#FF4A4A4A"
                     android:textSize="12sp" />
 
@@ -92,7 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:text="昨日收益"
                     android:textColor="#FF4A4A4A"
                     android:textSize="12sp" />
@@ -102,8 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+
                 android:orientation="horizontal">
 
                 <TextView
@@ -111,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="0.00"
+                    android:gravity="center"
                     android:textColor="#FFE84B54"
                     android:textSize="14sp" />
 
@@ -125,9 +125,9 @@
 
                 <TextView
                     android:layout_width="0dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
                     android:text="0.00"
                     android:textColor="#FFE84B54"
                     android:textSize="14sp" />
@@ -195,71 +195,117 @@
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent" />
+                    android:background="#1AFF8D3D"
+                    android:gravity="center">
 
-                <ImageView
+                    <ImageView
+                        android:id="@+id/iv_home_icon_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_home_activity" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/iv_home_icon_1"
+                        android:gravity="center"
+                        android:text="活动专区"
+                        android:textColor="#FFF1884F"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent" />
+                    android:background="#1AFD57B4"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/iv_home_icon_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_home_invest" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/iv_home_icon_2"
+                        android:gravity="center"
+                        android:text="邀请好友"
+                        android:textColor="#FFF1884F"
+                        android:textSize="14sp" />
+                </RelativeLayout>
             </LinearLayout>
 
             <include layout="@layout/bg_line" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/home_newPager"
-                android:layout_width="match_parent"
-                android:layout_height="134dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/bg_home_pager" />
-
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/home_ll_visibility"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/iv1"
-                    android:layout_width="wrap_content"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/home_newPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="134dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_home_pager" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/banner_checked" />
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/iv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/iv1"
-                    android:src="@mipmap/banner_point" />
+                    <ImageView
+                        android:id="@+id/iv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/banner_checked" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv2"
-                    android:src="@mipmap/banner_point" />
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/iv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/iv1"
+                        android:src="@mipmap/banner_point" />
 
-            <include layout="@layout/bg_line" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/iv2"
+                        android:src="@mipmap/banner_point" />
+                </RelativeLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/home_activity_pager"
-                android:layout_width="match_parent"
-                android:layout_height="94dp"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/bg_home_pager" />
+                <include layout="@layout/bg_line" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/home_activity_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="94dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_home_pager" />
+            </LinearLayout>
 
             <include layout="@layout/bg_line" />
 
@@ -267,9 +313,9 @@
                 android:id="@+id/home_xlv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="@null"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                android:divider="@null" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

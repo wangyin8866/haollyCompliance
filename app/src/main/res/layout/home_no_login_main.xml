@@ -37,14 +37,34 @@
                 android:layout_marginTop="12dp"
                 android:background="#F5F5F5" />
 
-            <com.bigkoo.convenientbanner.ConvenientBanner
-                android:id="@+id/banner1"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#EC8E49"
-                app:canLoop="true" />
+                android:background="#EC8E49">
+
+                <TextView
+                    android:layout_width="125dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="新手300元红包"
+                    android:layout_marginTop="12dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"
+                    android:background="@drawable/bg_home_regist"
+                    android:text="注册即领"
+                    />
+            </FrameLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -58,8 +78,7 @@
                 android:layout_height="134dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/bg_home_pager"
-               />
+                android:background="@drawable/bg_home_pager" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -231,8 +250,8 @@
                 <Button
                     android:layout_width="60dp"
                     android:layout_height="24dp"
-                   android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
 
                     android:background="@drawable/bg_home_button"

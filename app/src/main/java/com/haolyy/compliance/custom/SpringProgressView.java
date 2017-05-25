@@ -20,9 +20,9 @@ public class SpringProgressView extends View {
     /**分段颜色*/
     private static final int[] SECTION_COLORS = {Color.parseColor("#FBDA61"),Color.parseColor("#f9a040"),Color.parseColor("#F76B1C")};
     /**进度条最大值*/
-    private float maxCount=1000;
+    private float maxCount;
     /**进度条当前值*/
-    private float currentCount=500;
+    private float currentCount;
     /**画笔*/
     private Paint mPaint;
     private int mWidth,mHeight;
@@ -52,13 +52,13 @@ public class SpringProgressView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         int round = mHeight/2;
-        System.out.println("max="+maxCount + "  current="+currentCount);
-        mPaint.setColor(Color.TRANSPARENT);
-        RectF rectBg = new RectF(0, 0, mWidth, mHeight);
-        canvas.drawRoundRect(rectBg, round, round, mPaint);
-        mPaint.setColor(Color.parseColor("#F5F5F5"));
-        RectF rectBlackBg = new RectF(2, 2, mWidth-2, mHeight-2);
-        canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
+//        System.out.println("max="+maxCount + "  current="+currentCount);
+//        mPaint.setColor(Color.TRANSPARENT);
+//        RectF rectBg = new RectF(0, 0, mWidth, mHeight);
+//        canvas.drawRoundRect(rectBg, round, round, mPaint);
+//        mPaint.setColor(Color.parseColor("#F5F5F5"));
+//        RectF rectBlackBg = new RectF(2, 2, mWidth-2, mHeight-2);
+//        canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
 
         float section = currentCount/maxCount;
         RectF rectProgressBg = new RectF(3, 3, (mWidth-3)*section, mHeight-3);
