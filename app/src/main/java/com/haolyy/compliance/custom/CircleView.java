@@ -171,7 +171,7 @@ public class CircleView extends View {
         //圆心平移
         canvas.translate(mWidth / 2, mHeight / 2);
         //文本
-        canvas.drawText(mCircleText, 0, mTextBound.height(), textPaint);
+        canvas.drawText(mCircleText, 0, mTextBound.height()/2, textPaint);
     }
 
 

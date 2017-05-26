@@ -87,7 +87,7 @@ public class DealLogActivity extends AppCompatActivity implements XListView.IXLi
         }
         xlvDealLog.setAdapter(new InvestLogAdapter(investLogs, this));
         xlvDealLog.setXListViewListener(this);
-        xlvDealLog.setPullRefreshEnable(false);
+
     }
 
     @Override

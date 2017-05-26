@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -51,15 +52,19 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     ViewPager homeActivityPager;
     @BindView(R.id.home_xlv)
     InnerScrollListView homeXlv;
+    @BindView(R.id.home_ll_visibility)
+    LinearLayout homeLlVisibility;
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
     private List<TestProduct> testProducts;
+    private boolean isInvest;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_yes_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        initView();
         tvMarquee.setText("5月11日好利网已经全面升级");
 
         images.add("http://pic2.ooopic.com/10/56/19/67b1OOOPIC12.jpg");
@@ -90,8 +95,17 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
         homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
 
-        homeXlv.setAdapter(new HomeProductAdapter(getActivity(),testProducts));
+        homeXlv.setAdapter(new HomeProductAdapter( testProducts,getActivity()));
         return view;
+    }
+
+    private void initView() {
+        isInvest = false;
+        if (isInvest) {
+            homeLlVisibility.setVisibility(View.GONE);
+        } else {
+            homeLlVisibility.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

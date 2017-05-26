@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <include layout="@layout/product_third_top" />
-    <com.haolyy.compliance.custom.NoScrollViewPager
-        android:id="@+id/product_third_viewPager"
+    <com.haolyy.compliance.custom.XListView
+        android:id="@+id/xlv_product_third"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:scrollbars="none"
+        android:layout_height="match_parent"/>
 </LinearLayout>

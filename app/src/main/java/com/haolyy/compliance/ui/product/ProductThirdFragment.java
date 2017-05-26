@@ -4,14 +4,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.custom.NoScrollViewPager;
+import com.haolyy.compliance.adapter.ProductFirstAdapter;
+import com.haolyy.compliance.custom.XListView;
+import com.haolyy.compliance.entity.TestProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +36,15 @@ public class ProductThirdFragment extends Fragment implements View.OnClickListen
     TextView thirdTv4;
     @BindView(R.id.third_tv5)
     TextView thirdTv5;
-    @BindView(R.id.product_third_viewPager)
-    NoScrollViewPager productThirdViewPager;
-    Unbinder unbinder;
-    private View view;
-    private ProductThirdTab1Fragment tab1Fragment;
-    private ProductThirdTab2Fragment tab2Fragment;
-    private ProductThirdTab3Fragment tab3Fragment;
-    private ProductThirdTab4Fragment tab4Fragment;
-    private ProductThirdTab5Fragment tab5Fragment;
-    private List<Fragment> mDatas;
-    private FragmentPagerAdapter mdAdapter;
-    private int currentPage = 0;
 
+    Unbinder unbinder;
+    @BindView(R.id.xlv_product_third)
+    XListView xlvProductThird;
+    private View view;
+
+    private int currentPage = 0;
+    private List<TestProduct> testProducts;
+    private ProductFirstAdapter productFirstAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,35 +56,21 @@ public class ProductThirdFragment extends Fragment implements View.OnClickListen
     }
 
     private void init() {
-        mDatas = new ArrayList<>();
-        tab1Fragment = new ProductThirdTab1Fragment();
-        tab2Fragment = new ProductThirdTab2Fragment();
-        tab3Fragment = new ProductThirdTab3Fragment();
-        tab4Fragment = new ProductThirdTab4Fragment();
-        tab5Fragment = new ProductThirdTab5Fragment();
-        mDatas.add(tab1Fragment);
-        mDatas.add(tab2Fragment);
-        mDatas.add(tab3Fragment);
-        mDatas.add(tab4Fragment);
-        mDatas.add(tab5Fragment);
-        mdAdapter = new FragmentPagerAdapter(getFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return mDatas.get(position);
-            }
 
-            @Override
-            public int getCount() {
-                return mDatas.size();
-            }
-        };
-        productThirdViewPager.setAdapter(mdAdapter);
         thirdTv1.setOnClickListener(this);
         thirdTv2.setOnClickListener(this);
         thirdTv3.setOnClickListener(this);
         thirdTv4.setOnClickListener(this);
         thirdTv5.setOnClickListener(this);
+        xlvProductThird.setXListViewListener(new MyListView());
+        testProducts = new ArrayList<>();
 
+        for (int i=1;i<10;i++) {
+            TestProduct testProduct = new TestProduct(1 + i, 10 + i, i, 100 * i, 1000 * i);
+            testProducts.add(testProduct);
+        }
+        productFirstAdapter=new ProductFirstAdapter(testProducts,getActivity());
+        xlvProductThird.setAdapter(productFirstAdapter);
     }
 
     @Override
@@ -129,35 +112,40 @@ public class ProductThirdFragment extends Fragment implements View.OnClickListen
         switch (currentPage) {
             case 0:
                 thirdTv1.setTextColor(Color.parseColor("#FF9933"));
-                switchPager(currentPage);
                 break;
             case 1:
                 thirdTv2.setTextColor(Color.parseColor("#FF9933"));
-                switchPager(currentPage);
                 break;
             case 2:
                 thirdTv3.setTextColor(Color.parseColor("#FF9933"));
-                switchPager(currentPage);
                 break;
             case 3:
                 thirdTv4.setTextColor(Color.parseColor("#FF9933"));
-                switchPager(currentPage);
                 break;
             case 4:
                 thirdTv5.setTextColor(Color.parseColor("#FF9933"));
-                switchPager(currentPage);
                 break;
         }
     }
 
-    private void switchPager(int currentPage) {
-        productThirdViewPager.setCurrentItem(currentPage, false);
-    }
     private void restView() {
         thirdTv1.setTextColor(Color.parseColor("#4A4A4A"));
         thirdTv2.setTextColor(Color.parseColor("#4A4A4A"));
         thirdTv3.setTextColor(Color.parseColor("#4A4A4A"));
         thirdTv4.setTextColor(Color.parseColor("#4A4A4A"));
         thirdTv5.setTextColor(Color.parseColor("#4A4A4A"));
+    }
+    private class MyListView implements XListView.IXListViewListener {
+        @Override
+        public void onRefresh() {
+            productFirstAdapter.notifyDataSetChanged();
+
+        }
+
+        @Override
+        public void onLoadMore() {
+
+
+        }
     }
 }
