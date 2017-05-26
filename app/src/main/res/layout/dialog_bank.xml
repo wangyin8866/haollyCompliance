@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@mipmap/window_dialog"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_height="276dp">
+    <TextView
+        android:id="@+id/tv_think"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:text="再想想"
+        android:textColor="#FF9933"
+        android:textSize="14sp"
+        android:background="@drawable/shape_yellow_radius"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        />
+    <TextView
+        android:id="@+id/tv_open"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="去开启"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:background="@drawable/shape_yellow_solid"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        />
+</RelativeLayout>

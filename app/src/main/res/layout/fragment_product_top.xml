@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
+    <com.haolyy.compliance.custom.BottomScrollView
+        android:id="@+id/bottom_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -14,14 +15,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:gravity="bottom"
+                 android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/xingye_bank"
+                    android:layout_marginLeft="20dp"
+                    />
+                <android.support.v4.widget.Space
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="协议范本"
+                    android:textColor="@color/text_69acfc"
+                    android:textSize="12sp"
+                    android:layout_marginRight="20dp"
+                    />
+            </LinearLayout>
             <com.haolyy.compliance.custom.CircleProgressView
                 android:id="@+id/arc_progress_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="-198dp"
-                android:layout_marginTop="10dp"
                 app:diameter="240dp" />
 
             <TextView
@@ -144,7 +169,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/tv_mirror_plan1"
                     android:text="《棱镜计划》"
-                    android:textColor="#FF2D0000"
+                    android:textColor="@color/text_69acfc"
                     android:textSize="12sp" />
             </RelativeLayout>
 
@@ -508,5 +533,5 @@
                 android:textColor="@color/text_9b9b9b"
                 android:textSize="12sp" />
         </LinearLayout>
-    </ScrollView>
+    </com.haolyy.compliance.custom.BottomScrollView>
 </LinearLayout>

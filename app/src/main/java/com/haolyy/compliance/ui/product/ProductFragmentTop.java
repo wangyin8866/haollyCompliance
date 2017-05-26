@@ -6,13 +6,17 @@ import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
@@ -29,8 +33,6 @@ import butterknife.Unbinder;
  */
 
 public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, ProductTopView> implements ProductTopView {
-
-
     Unbinder unbinder;
     @BindView(R.id.tv_product_rate)
     TextView tvProductRate;
@@ -42,6 +44,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView tvUseQuan;
     @BindView(R.id.arc_progress_view)
     CircleProgressView arcProgressView;
+    @BindView(R.id.bottom_scroll)
+    BottomScrollView bottomScroll;
 
     @Override
     protected ProductTopPresenter createPresenter() {
@@ -57,7 +61,25 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         textSpan.setSpan(new AbsoluteSizeSpan(UIUtils.dip2px(36)), 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(UIUtils.dip2px(14)), 3, 9, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         tvProductRate.setText(textSpan);
-        arcProgressView.setData(1000,1000);
+        arcProgressView.setData(1000, 1000);
+        bottomScroll.setOnScrollToBottomLintener(new BottomScrollView.OnScrollToBottomListener() {
+           @Override
+           public void onScrollBottomListener(boolean isBottom) {
+               if(isBottom){
+                   bottomScroll.setOnTouchListener(new View.OnTouchListener() {
+                       @Override
+                       public boolean onTouch(View v, MotionEvent event) {
+                           switch (event.getAction()){
+                               case MotionEvent.ACTION_MOVE:
+                                   bottomScroll.getParent().requestDisallowInterceptTouchEvent(false);
+                                   break;
+                           }
+                           return false;
+                       }
+                   });
+               }
+           }
+       });
         return view;
     }
 

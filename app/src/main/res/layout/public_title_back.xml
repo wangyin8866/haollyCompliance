@@ -62,6 +62,7 @@
         android:textColor="#FF4A4A4A"
         android:textSize="16sp" />
     <TextView
+        android:visibility="gone"
         android:layout_below="@+id/tv_title"
         android:id="@+id/tv_joining"
         android:layout_width="wrap_content"
