@@ -26,7 +26,6 @@ public class InvestLogAdapter extends WyBaseAdapter {
         InvestLog investLog = (InvestLog) list.get(position);
         binding = DataBindingUtil.inflate(inflater, R.layout.item_invest_log, parent, false);
         binding.setInvestLog(investLog);
-
         return binding.getRoot();
     }
 }
