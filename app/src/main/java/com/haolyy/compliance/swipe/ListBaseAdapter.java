@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewHolder> {
     protected Context mContext;
     private LayoutInflater mInflater;
-
+    public int mPosition;
     protected List<T> mDataList = new ArrayList<>();
 
     public ListBaseAdapter(Context context) {
@@ -34,6 +34,7 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     @Override
     public void onBindViewHolder(SuperViewHolder holder, int position) {
         onBindItemHolder(holder, position);
+        mPosition = position;
     }
 
     //局部刷新关键：带payload的这个onBindViewHolder方法必须实现
@@ -48,7 +49,6 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     }
 
     public abstract int getLayoutId();
-
     public abstract void onBindItemHolder(SuperViewHolder holder, int position);
 
     public void onBindItemHolder(SuperViewHolder holder, int position, List<Object> payloads){

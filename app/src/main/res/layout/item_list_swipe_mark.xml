@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.haolyy.compliance.swipe.SwipeMenuView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:clickable="true"
+    android:paddingBottom="1dp">
+
+    <LinearLayout
+        android:id="@+id/swipe_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:background="@drawable/selector_white_preferences_item"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/iv_1"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/message_point"/>
+                <TextView
+                    android:id="@+id/message_tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_1"
+                    android:text="优惠券通知"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#FFB9B9B9"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/message_tv_date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="100dp"
+                    android:layout_toRightOf="@+id/message_tv_1"
+                    android:text="2017-06-02"
+                    android:textColor="#FFB9B9B9"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/message_tv_date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/message_tv_date1"
+                    android:text="16:52:38"
+                    android:textColor="#FFB9B9B9"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@mipmap/arrow_right" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_centerVertical="true"
+                    android:text="尊敬的133****2912；您好！您于2017年06月02日获得..."
+                    android:textColor="#FFB9B9B9"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include layout="@layout/bg_line" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="82dp"
+        android:layout_height="match_parent"
+        android:background="#FFFE3824"
+        android:text="删除"
+        android:textSize="18sp"
+        android:textColor="@android:color/white" />
+
+</com.haolyy.compliance.swipe.SwipeMenuView>
+

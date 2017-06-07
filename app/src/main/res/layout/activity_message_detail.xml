@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.haolyy.compliance.custom.TopBar
+        android:id="@+id/top_message_detail"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="20dp"
+        app:drawableLeft="@mipmap/nav_back"
+        app:drawableLeftVisibility="true"
+        app:title="消息详情"
+        app:titleTextColor="#FF4A4A4A"
+        app:titleTextSize="16sp" />
+
+    <include layout="@layout/bg_line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="优惠券通知"
+        android:textColor="#FF4A4A4A"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="2017-06-02  16:52:38"
+        android:textColor="#FF9B9B9B"
+        android:textSize="12sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="尊敬的133****2912；"
+            android:textColor="#FF4A4A4A"
+            android:textSize="14sp" />
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="您好！您于2017年06月02日获得一张0.20%续期加息券，您可以在 我的卡券 内进行查询。"
+        android:textColor="#FF4A4A4A"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="感谢您对我们的关注与支持。"
+        android:textColor="#FF4A4A4A"
+        android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

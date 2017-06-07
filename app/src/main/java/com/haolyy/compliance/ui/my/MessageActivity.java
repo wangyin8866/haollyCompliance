@@ -31,13 +31,19 @@ import java.util.ArrayList;
 public class MessageActivity extends AppCompatActivity {
     private static final String TAG = "lzx";
 
-    /**服务器端一共多少条数据*/
+    /**
+     * 服务器端一共多少条数据
+     */
     private static final int TOTAL_COUNTER = 64;
 
-    /**每一页展示多少条数据*/
+    /**
+     * 每一页展示多少条数据
+     */
     private static final int REQUEST_COUNT = 10;
 
-    /**已经获取到多少条数据了*/
+    /**
+     * 已经获取到多少条数据了
+     */
     private static int mCurrentCounter = 0;
 
     private LRecyclerView mRecyclerView = null;
@@ -48,6 +54,7 @@ public class MessageActivity extends AppCompatActivity {
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
 
     private boolean isRefresh = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,7 @@ public class MessageActivity extends AppCompatActivity {
             ItemModel itemModel = new ItemModel();
             itemModel.title = "item" + i;
             dataList.add(itemModel);
+
             mCurrentCounter += dataList.size();
         }
         mDataAdapter = new SwipeMenuAdapter(this);
@@ -74,29 +82,13 @@ public class MessageActivity extends AppCompatActivity {
                 mDataAdapter.getDataList().remove(pos);
                 mDataAdapter.notifyItemRemoved(pos);//推荐用这个
 
-                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
+                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
                     mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
                 }
                 //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
             }
 
-            @Override
-            public void onTop(int pos) {//置顶功能有bug，后续解决
-                ItemModel itemModel = mDataAdapter.getDataList().get(pos);
 
-                mDataAdapter.getDataList().remove(pos);
-                mDataAdapter.notifyItemRemoved(pos);
-                mDataAdapter.getDataList().add(0, itemModel);
-                mDataAdapter.notifyItemInserted(0);
-
-
-                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略
-                    mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.getDataList().size() - 1,"jdsjlzx");
-                }
-
-                mRecyclerView.scrollToPosition(0);
-
-            }
         });
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mDataAdapter);
         mRecyclerView.setAdapter(mLRecyclerViewAdapter);
@@ -121,14 +113,6 @@ public class MessageActivity extends AppCompatActivity {
 
         mRecyclerView.refresh();
 
-        //侧滑删除请不要使用下面接口，SwipeMenuAdapter内部实现item点击事件
-        /*mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                ItemModel item = mDataAdapter.getDataList().get(position);
-                AppToast.showShortText(SwipeDeleteActivity.this, item.title);
-            }
-        });*/
 
     }
 
@@ -160,7 +144,7 @@ public class MessageActivity extends AppCompatActivity {
             switch (msg.what) {
 
                 case -1:
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.mDataAdapter.clear();
                         mCurrentCounter = 0;
                     }
@@ -226,7 +210,7 @@ public class MessageActivity extends AppCompatActivity {
                 }
 
                 //模拟一下网络请求失败的情况
-                if(NetworkUtils.isNetAvailable(MessageActivity.this)) {
+                if (NetworkUtils.isNetAvailable(MessageActivity.this)) {
                     mHandler.sendEmptyMessage(-1);
                 } else {
                     mHandler.sendEmptyMessage(-3);
@@ -234,7 +218,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         }.start();
     }
-
 
 
 }
