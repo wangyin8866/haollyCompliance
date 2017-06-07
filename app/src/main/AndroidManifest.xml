@@ -16,7 +16,11 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.RegisterActivity"
@@ -72,6 +76,8 @@
         <activity
             android:name=".ui.my.DealDetailWithDraw"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.my.InviteFriendActivity" />
+        <activity android:name=".ui.my.view.InviteRecordActivity"></activity>
         <activity android:name=".ui.my.AccountSecurityActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.my.MessageActivity" android:screenOrientation="portrait"/>
     </application>

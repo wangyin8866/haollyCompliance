@@ -64,7 +64,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
         mSavedInstanceState = savedInstanceState;
         mPresenter = createPresenter();
         mPresenter.attach((V) this);
-        subscription = RxBus.getInstance().toObserverable(Integer.class).subscribeOn(Schedulers.io())
+     /*   subscription = RxBus.getInstance().toObserverable(Integer.class).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
                     @Override
@@ -72,7 +72,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
                         Log.e(tag, "调用抽象方法");
                         handleMessage(s);
                     }
-                });
+                });*/
 
         mPresenter.setLifeSubscription(new LifeSubscription() {
             @Override

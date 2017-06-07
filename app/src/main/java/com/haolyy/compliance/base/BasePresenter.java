@@ -52,6 +52,10 @@ public abstract class BasePresenter<T> {
         return mViewRef.get();
     }
 
+    /**
+     * 用于token失效后的调用（这个版本不一定用）
+     * @param type
+     */
     public void getToken(final int type) {
         Log.e(tag, "发送了了1001");
         RxBus.getInstance().post(1001);

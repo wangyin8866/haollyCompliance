@@ -61,7 +61,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     private void initView() {
         tvTitle.setText("登录");
-
     }
 
     @Override

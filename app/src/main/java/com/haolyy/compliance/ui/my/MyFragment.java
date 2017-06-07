@@ -42,8 +42,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     TextView tvWithdraw;
     @BindView(R.id.tv_recharge)
     TextView tvRecharge;
-    @BindView(R.id.iv_message)
-    ImageView ivMessage;
+    @BindView(R.id.v_invite_friend)
+    View vInviteFriend;
     private View view;
     private DialogBank dialogBank;
 
@@ -62,7 +62,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge,R.id.iv_message})
+    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge,R.id.v_invite_friend})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
@@ -94,8 +94,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             case R.id.tv_recharge:
                 dialogBank.show();
                 break;
-            case R.id.iv_message://消息中心
-                startActivity(new Intent(getActivity(),MessageActivity.class));
+            case R.id.v_invite_friend:
+                startActivity(new Intent(mContext,InviteFriendActivity.class));
                 break;
         }
     }
@@ -104,5 +104,4 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     protected MyFragmentPresenter createPresenter() {
         return new MyFragmentPresenter(mContext);
     }
-
 }
