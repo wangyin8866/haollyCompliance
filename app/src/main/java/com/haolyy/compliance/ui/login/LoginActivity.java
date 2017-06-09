@@ -83,7 +83,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         Intent intent;
         switch (view.getId()) {
             case R.id.tv_login:
-                mPresenter.login("13120775735", "123456", "1");
+                mPresenter.login("13120775735", "123456");
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);

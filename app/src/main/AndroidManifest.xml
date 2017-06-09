@@ -73,10 +73,12 @@
             android:name=".ui.my.DealDetailWithDraw"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.my.InviteFriendActivity" />
-        <activity android:name=".ui.my.view.InviteRecordActivity"></activity>
+        <activity android:name=".ui.my.view.InviteRecordActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.my.AccountSecurityActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.my.MessageActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.my.MessageDetail" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.my.CheckPhone" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.my.UpdatePhone" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
