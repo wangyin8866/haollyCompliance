@@ -23,7 +23,7 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
-    <style name="dialogBank" parent="@android:style/Theme.Dialog">
+    <style name="dialogToast" parent="@android:style/Theme.Dialog">
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -31,6 +31,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
+
     <!-- 投资详情时间进度viewline -->
     <style name="investment_time_view">
         <item name="android:layout_height">1dp</item>

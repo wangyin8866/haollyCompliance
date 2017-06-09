@@ -24,7 +24,7 @@ public class DialogBankSms extends Dialog {
     private TextView tvContent;
 
     public DialogBankSms(Context context) {
-        super(context, R.style.dialogBank);
+        super(context, R.style.dialogToast);
         instance = this;
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.gravity = Gravity.CENTER | Gravity.CENTER_HORIZONTAL;

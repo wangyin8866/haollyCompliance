@@ -1,11 +1,14 @@
 package com.haolyy.compliance.ui.find;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -26,8 +30,15 @@ public class FindFragment extends Fragment {
     @BindView(R.id.find_banner)
     ConvenientBanner findBanner;
     Unbinder unbinder;
+    @BindView(R.id.find_more)
+    TextView findMore;
+    @BindView(R.id.find_iv_weixin)
+    ImageView findIvWeixin;
+    @BindView(R.id.find_iv_call_service)
+    ImageView findIvCallService;
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,5 +63,18 @@ public class FindFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick({R.id.find_more, R.id.find_iv_weixin, R.id.find_iv_call_service})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.find_more:
+                startActivity(new Intent(getActivity(),ShoppingActivity.class));
+                break;
+            case R.id.find_iv_weixin:
+                break;
+            case R.id.find_iv_call_service:
+                break;
+        }
     }
 }

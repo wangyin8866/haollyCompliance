@@ -16,7 +16,7 @@ public class DialogBank extends Dialog {
     private DialogBank instance;
 
     public DialogBank(Context context) {
-        super(context, R.style.dialogBank);
+        super(context, R.style.dialogToast);
         instance = this;
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.gravity = Gravity.CENTER | Gravity.CENTER_HORIZONTAL;

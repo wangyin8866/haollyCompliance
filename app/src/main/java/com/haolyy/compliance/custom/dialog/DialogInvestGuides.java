@@ -2,8 +2,6 @@ package com.haolyy.compliance.custom.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,7 +19,7 @@ public class DialogInvestGuides extends Dialog {
     private DialogInvestGuides instance;
 
     public DialogInvestGuides(Context context) {
-        super(context, R.style.dialogBank);
+        super(context, R.style.dialogToast);
         instance = this;
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.gravity = Gravity.CENTER | Gravity.CENTER_HORIZONTAL;
