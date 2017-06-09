@@ -13,7 +13,9 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
-import com.haolyy.compliance.ui.bank.BankBindActivity;
+import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
+import com.haolyy.compliance.ui.bank.WithDrawActivity;
+import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
 
@@ -50,6 +52,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     ImageView messageCenter;
     private View view;
     private DialogBank dialogBank;
+    private DialogInvestGuides dialogInvestGuides;
 
     @Nullable
     @Override
@@ -57,6 +60,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         view = inflater.inflate(R.layout.my_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         dialogBank = new DialogBank(mContext);
+        dialogInvestGuides = new DialogInvestGuides(mContext);
         return view;
     }
 
@@ -82,7 +86,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(new Intent(getActivity(), FundStatisticsActivity.class));
                 break;
             case R.id.tv_withdraw:
-                dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+               /* dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
                     @Override
                     public void excuteLeft() {
 
@@ -93,10 +97,13 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                         //startActivity(new Intent(mContext, CheckBankActivity.class));
                         startActivity(new Intent(mContext, BankBindActivity.class));
                     }
-                }).show();
+                }).show();*/
+               //dialogInvestGuides.setContent("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").setIcon(R.mipmap.icon_dialog_open).show();
+                startActivity(new Intent(mContext, WithDrawActivity.class));
                 break;
             case R.id.tv_recharge:
-                dialogBank.show();
+               // dialogBank.show();
+                startActivity(new Intent(mContext, RechargeActivity.class));
                 break;
             case R.id.v_invite_friend:
                 startActivity(new Intent(mContext, InviteFriendActivity.class));

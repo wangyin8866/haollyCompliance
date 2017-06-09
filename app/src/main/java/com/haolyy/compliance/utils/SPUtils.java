@@ -10,36 +10,6 @@ public class SPUtils {
     private static final String SP_NAME = "Haolly";
     private static SharedPreferences sp;
 
-    //保存活体检测时间,当天0点的时间
-    public static void saveFaceLong(Context context, String key, long value) {
-        if (sp == null) {
-            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        }
-        sp.edit().putLong(key, value).apply();
-    }
-    //获取活体检测时间
-    public static long getFaceLong(Context context, String key, long defValue) {
-        if (sp == null) {
-            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        }
-        return sp.getLong(key, defValue);
-    }
-    //保存活体检测次数
-    public static void saveFaceInt(Context context, String key, int value) {
-        if (sp == null) {
-            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        }
-        sp.edit().putInt(key, value).apply();
-    }
-    //获取体检测次数
-    public static int getFaceInt(Context context, String key, int defValue) {
-        if (sp == null) {
-            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        }
-        return sp.getInt(key, defValue);
-    }
-
-
     //保存布尔值
     public static void saveBoolean(Context context, String key, boolean value) {
         if (sp == null) {

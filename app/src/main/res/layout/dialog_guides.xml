@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="59dp"
+        android:background="@drawable/shape_white_radius">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_think"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="对您的风险识别能力和风险承担能力进行评估，请您认真作答"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_think"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/shape_yellow_radius"
+            android:gravity="center"
+            android:text="再想想"
+            android:textColor="#FF9933"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_open"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_yellow_solid"
+            android:gravity="center"
+            android:text="去开启"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_head_dialog"
+        android:layout_width="118dp"
+        android:layout_height="118dp"
+        android:src="@mipmap/icon_dialog_test"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

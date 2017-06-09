@@ -2,16 +2,18 @@ package com.haolyy.compliance.ui.product;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
@@ -46,6 +48,26 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     CircleProgressView arcProgressView;
     @BindView(R.id.bottom_scroll)
     BottomScrollView bottomScroll;
+    @BindView(R.id.join_image_circle4)
+    ImageView joinImageCircle4;
+    @BindView(R.id.tv_time1)
+    TextView tvTime1;
+    @BindView(R.id.tv_time_data1)
+    TextView tvTimeData1;
+    @BindView(R.id.tv_time2)
+    TextView tvTime2;
+    @BindView(R.id.tv_time_data2)
+    TextView tvTimeData2;
+    @BindView(R.id.tv_time3)
+    TextView tvTime3;
+    @BindView(R.id.et_invest_account)
+    EditText etInvestAccount;
+    @BindView(R.id.join_image_circle3)
+    ImageView joinImageCircle3;
+    @BindView(R.id.join_line3)
+    View joinLine3;
+    @BindView(R.id.invest_scrollview)
+    ScrollView investScrollview;
 
     @Override
     protected ProductTopPresenter createPresenter() {
@@ -63,24 +85,40 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         tvProductRate.setText(textSpan);
         arcProgressView.setData(1000, 1000);
         bottomScroll.setOnScrollToBottomLintener(new BottomScrollView.OnScrollToBottomListener() {
-           @Override
-           public void onScrollBottomListener(boolean isBottom) {
-               if(isBottom){
-                   bottomScroll.setOnTouchListener(new View.OnTouchListener() {
-                       @Override
-                       public boolean onTouch(View v, MotionEvent event) {
-                           switch (event.getAction()){
-                               case MotionEvent.ACTION_MOVE:
-                                   bottomScroll.getParent().requestDisallowInterceptTouchEvent(false);
-                                   break;
-                           }
-                           return false;
-                       }
-                   });
-               }
-           }
-       });
+            @Override
+            public void onScrollBottomListener(boolean isBottom) {
+                if (isBottom) {
+                    bottomScroll.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            switch (event.getAction()) {
+                                case MotionEvent.ACTION_MOVE:
+                                    bottomScroll.getParent().requestDisallowInterceptTouchEvent(false);
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            }
+        });
+        etInvestAccount.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                changeScrollView();
+                return false;
+            }
+        });
         return view;
+    }
+
+    void changeScrollView() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                investScrollview.scrollTo(0, investScrollview.getHeight());
+            }
+        }, 100);
     }
 
     @Override

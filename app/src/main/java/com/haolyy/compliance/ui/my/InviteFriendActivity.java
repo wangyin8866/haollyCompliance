@@ -19,7 +19,6 @@ import butterknife.OnClick;
 
 
 public class InviteFriendActivity extends AppCompatActivity {
-
     @BindView(R.id.top_invite_friend)
     TopBar topInviteFriend;
     @BindView(R.id.iv_invite_banner)
