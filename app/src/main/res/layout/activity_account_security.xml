@@ -86,7 +86,6 @@
         android:layout_marginLeft="20dp"
         />
     <RelativeLayout
-        android:id="@+id/security_bind_phone"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="@color/white">
