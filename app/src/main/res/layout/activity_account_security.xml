@@ -85,7 +85,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="20dp"
         />
-    <RelativeLayout
+    <RelativeLayout android:id="@+id/security_bind_phone"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="@color/white">
@@ -213,7 +213,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="20dp"
         />
-    <RelativeLayout
+    <RelativeLayout android:id="@+id/gesture_layout"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="@color/white">

@@ -20,6 +20,9 @@ public class AccountSecurityActivity extends AppCompatActivity {
     RelativeLayout securityBindPhone;
     @BindView(R.id.top_account_security)
     TopBar topAccountSecurity;
+    @BindView(R.id.gesture_layout)
+    RelativeLayout gesture_layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,14 @@ public class AccountSecurityActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick(R.id.security_bind_phone)
+    @OnClick({R.id.security_bind_phone,R.id.gesture_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.security_bind_phone:
                 startActivity(new Intent(AccountSecurityActivity.this, CheckPhone.class));
+                break;
+            case R.id.gesture_layout:
+                startActivity(new Intent(AccountSecurityActivity.this, GestureManageActivity.class));
                 break;
         }
     }

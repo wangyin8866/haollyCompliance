@@ -24,12 +24,12 @@
         android:layout_height="1dp"
         android:background="#f5f5f5"/>
 
-    <RelativeLayout
+    <RelativeLayout android:id="@+id/modify_gesture"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="@color/white">
 
-        <TextView android:id="@+id/modify_gesture"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
