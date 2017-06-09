@@ -6,16 +6,7 @@
     android:orientation="vertical">
 
 
-    <com.haolyy.compliance.custom.TopBar
-        android:id="@+id/top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:paddingLeft="20dp"
-        app:drawableLeft="@mipmap/nav_back"
-        app:drawableLeftVisibility="true"
-        app:title="选择优惠券"
-        app:titleTextColor="#FF4A4A4A"
-        app:titleTextSize="16sp" />
+    <include layout="@layout/public_title_back"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout_quan"

@@ -18,7 +18,7 @@
         app:titleTextSize="16sp" />
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout_quan"
+        android:id="@+id/tablayout_card"
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:layout_marginLeft="20dp"
@@ -30,7 +30,7 @@
         app:tabTextColor="@color/text_4a4a4a" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vp_quan"
+        android:id="@+id/vp_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

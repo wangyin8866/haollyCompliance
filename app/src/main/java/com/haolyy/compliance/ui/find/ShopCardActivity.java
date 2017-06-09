@@ -23,17 +23,19 @@ import butterknife.ButterKnife;
  */
 
 public class ShopCardActivity extends AppCompatActivity {
+
     @BindView(R.id.top_bar)
     TopBar topBar;
-    @BindView(R.id.tablayout_quan)
-    TabLayout tablayoutQuan;
-    @BindView(R.id.vp_quan)
-    ViewPager vpQuan;
+    @BindView(R.id.tablayout_card)
+    TabLayout tablayoutCard;
+    @BindView(R.id.vp_card)
+    ViewPager vpCard;
     private FragmentInvalid fragmentInvalid;
     private FragmentUnused fragmentUnused;
     private FragmentUsed fragmentUsed;
-    private List<String> titles ;
-    private List<Fragment> fragments ;
+    private List<String> titles;
+    private List<Fragment> fragments;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +70,8 @@ public class ShopCardActivity extends AppCompatActivity {
         fragments.add(fragmentUsed);
         fragments.add(fragmentInvalid);
 
-        vpQuan.setAdapter(new TabQuanAdapter(getSupportFragmentManager()));
-        tablayoutQuan.setupWithViewPager(vpQuan);
+        vpCard.setAdapter(new TabQuanAdapter(getSupportFragmentManager()));
+        tablayoutCard.setupWithViewPager(vpCard);
     }
 
     public class TabQuanAdapter extends FragmentPagerAdapter {
