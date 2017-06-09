@@ -59,6 +59,9 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     private List<TestProduct> testProducts;
     private boolean isInvest;
 
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
