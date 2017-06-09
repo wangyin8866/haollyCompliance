@@ -12,10 +12,10 @@
         android:paddingRight="10dp"
         app:drawableLeft="@mipmap/nav_back"
         app:drawableLeftVisibility="true"
-        app:title="交易记录"
+        app:title="账户安全"
         app:titleTextColor="@color/text_4a4a4a"
         app:titleTextSize="17sp"
-        android:background="@color/white"
+        app:top_background="@color/white"
         />
     <RelativeLayout
         android:layout_width="match_parent"

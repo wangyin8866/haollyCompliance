@@ -42,6 +42,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     TextView tvWithdraw;
     @BindView(R.id.tv_recharge)
     TextView tvRecharge;
+    @BindView(R.id.account_manage)
+    TextView account_manage;
     @BindView(R.id.v_invite_friend)
     View vInviteFriend;
     @BindView(R.id.message_center)
@@ -64,7 +66,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend,R.id.message_center})
+    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone,R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend,R.id.message_center})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
@@ -101,6 +103,9 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 break;
             case R.id.message_center:
                 startActivity(new Intent(mContext, MessageActivity.class));
+                break;
+            case R.id.account_manage:
+                startActivity(new Intent(mContext, AccountSecurityActivity.class));
                 break;
         }
     }

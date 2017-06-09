@@ -30,7 +30,6 @@ dependencies {
     compile project(':retrofitlibrary')
     // banner
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.bigkoo:convenientbanner:2.0.5'

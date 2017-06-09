@@ -84,7 +84,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
-                <TextView
+                <TextView android:id="@+id/account_manage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
