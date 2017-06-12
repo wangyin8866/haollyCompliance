@@ -23,6 +23,8 @@
             app:titleTextSize="17sp"
             app:top_background="@color/white" />
 
+
+
         <TextView
             android:id="@+id/shopping_use_rule"
             android:layout_width="wrap_content"
