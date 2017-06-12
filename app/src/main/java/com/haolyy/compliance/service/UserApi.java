@@ -7,7 +7,9 @@ import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -19,4 +21,11 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.user_login)
     Observable<String> login(@FieldMap Map<String, String> params);
+
+    //@Query("pageSize") int pageSize,
+   // @Query("curPage") int curPage
+
+    @GET(NetConstantValues.user_login)
+    Observable<String> loginget(@Query("mobile") String mobile,
+     @Query("passWord") String passWord);
 }
