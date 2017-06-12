@@ -48,12 +48,12 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("err", e.getMessage());
+                LogUtils.e("ndyerr", e.getMessage());
             }
 
             @Override
             public void onNext(String s) {
-                LogUtils.e("onNext",s);
+                LogUtils.e("ndyonNext",s);
             }
         });
     }
