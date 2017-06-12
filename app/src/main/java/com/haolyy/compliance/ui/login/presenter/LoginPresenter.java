@@ -23,7 +23,24 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     public void login(String phone, String pwd) {
 //        getToken(LOGIN);
 
-        UserModel.getInstance().login(new Subscriber<String>() {
+//        UserModel.getInstance().login(new Subscriber<String>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                LogUtils.e("err", e.getMessage());
+//            }
+//
+//            @Override
+//            public void onNext(String s) {
+//                LogUtils.e("onNext",s);
+//            }
+//        },"112121","1212121");
+
+        invoke(UserModel.getInstance().getLogin("112121","1212121"),new Subscriber<String>() {
             @Override
             public void onCompleted() {
 
@@ -38,6 +55,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             public void onNext(String s) {
                 LogUtils.e("onNext",s);
             }
-        },"112121","1212121");
+        });
     }
+
+
+
 }

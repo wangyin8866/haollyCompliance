@@ -53,12 +53,12 @@ public class SpringProgressView extends View {
         mPaint.setAntiAlias(true);
         int round = mHeight/2;
 //        System.out.println("max="+maxCount + "  current="+currentCount);
-//        mPaint.setColor(Color.TRANSPARENT);
-//        RectF rectBg = new RectF(0, 0, mWidth, mHeight);
-//        canvas.drawRoundRect(rectBg, round, round, mPaint);
-//        mPaint.setColor(Color.parseColor("#F5F5F5"));
-//        RectF rectBlackBg = new RectF(2, 2, mWidth-2, mHeight-2);
-//        canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
+        mPaint.setColor(Color.TRANSPARENT);
+        RectF rectBg = new RectF(0, 0, mWidth, mHeight);
+        canvas.drawRoundRect(rectBg, round, round, mPaint);
+        mPaint.setColor(Color.parseColor("#F5F5F5"));
+        RectF rectBlackBg = new RectF(2, 2, mWidth-2, mHeight-2);
+        canvas.drawRoundRect(rectBlackBg, round, round, mPaint);
 
         float section = currentCount/maxCount;
         RectF rectProgressBg = new RectF(3, 3, (mWidth-3)*section, mHeight-3);

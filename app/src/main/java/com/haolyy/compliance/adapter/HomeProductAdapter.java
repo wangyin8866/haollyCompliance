@@ -40,7 +40,7 @@ public class HomeProductAdapter extends WyBaseAdapter {
         binding.proAmount.setText(product.getTotal()+"");
         binding.proDeadline.setText(product.getDeline()+"周");
         binding.progressBar.setMaxCount(1000);
-        binding.progressBar.setCurrentCount(800);
+        binding.progressBar.setCurrentCount(500);
 
         return binding.getRoot();
     }

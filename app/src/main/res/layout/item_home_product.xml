@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-<data class="HomeBinding">
 
-    <import type="com.haolyy.compliance.entity.TestProduct" />
+    <data class="HomeBinding">
 
-    <import type="android.view.View" />
-    <variable
-        name="product"
-        type="TestProduct" />
-</data>
+        <import type="com.haolyy.compliance.entity.TestProduct" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="product"
+            type="TestProduct" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +50,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="30dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -64,7 +67,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -135,6 +138,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="left"
+
                         android:orientation="vertical">
 
                         <TextView
@@ -166,20 +170,20 @@
 
                         <TextView
                             android:id="@+id/pro_amount"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="right|center_vertical"
                             android:text='100,0000.00元'
                             android:textColor="#FF000000"
                             android:textSize="14sp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="center"
                             android:text="剩余可投"
+                            android:gravity="right|center_vertical"
                             android:textColor="#FFB9B9B9"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -217,7 +221,6 @@
                         android:layout_toEndOf="@+id/pro_origin"
                         android:layout_toRightOf="@+id/pro_origin"
                         android:text="10000元"
-                        android:textColor="#FFB9B9B9"
                         android:textSize="10sp" />
 
                     <TextView
@@ -228,11 +231,13 @@
                         android:textColor="#FF7D7D7D"
                         android:textSize="10sp" />
                 </RelativeLayout>
-
-                <include layout="@layout/bg_line" />
             </LinearLayout>
-
-
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="#F5F5F5" />
     </LinearLayout>
 </layout>

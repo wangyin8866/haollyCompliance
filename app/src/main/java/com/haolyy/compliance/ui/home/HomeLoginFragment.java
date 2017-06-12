@@ -2,6 +2,8 @@ package com.haolyy.compliance.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -17,9 +19,9 @@ import com.haolyy.compliance.adapter.HomeActivityPagerAdapter;
 import com.haolyy.compliance.adapter.HomeNewPagerAdapter;
 import com.haolyy.compliance.adapter.HomeProductAdapter;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.custom.AutoVerticalScrollTextView;
 import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.LocalImageHolderView;
-import com.haolyy.compliance.custom.MarqueeTextView;
 import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
@@ -39,8 +41,7 @@ import butterknife.Unbinder;
  */
 
 public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLoginView> implements HomeLoginView {
-    @BindView(R.id.tv_marquee)
-    MarqueeTextView tvMarquee;
+
     Unbinder unbinder;
     @BindView(R.id.banner)
     ConvenientBanner banner;
@@ -54,24 +55,22 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     InnerScrollListView homeXlv;
     @BindView(R.id.home_ll_visibility)
     LinearLayout homeLlVisibility;
+    @BindView(R.id.textview_auto_roll)
+    AutoVerticalScrollTextView textviewAutoRoll;
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
     private List<TestProduct> testProducts;
     private boolean isInvest;
+    private String[] auto_roll_strings = {"asdasd","bbbbb","cccccccccc"};
 
-
-
-
-
-
-
+    private boolean isAutoRollRunning = false;
+    private int autoRollIndex;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_yes_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        tvMarquee.setText("5月11日好利网已经全面升级");
 
         images.add("http://pic2.ooopic.com/10/56/19/67b1OOOPIC12.jpg");
         images.add("http://pic2.ooopic.com/10/55/95/20b1OOOPICfa.jpg");
@@ -101,7 +100,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
         homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
 
-        homeXlv.setAdapter(new HomeProductAdapter( testProducts,getActivity()));
+        homeXlv.setAdapter(new HomeProductAdapter(testProducts, getActivity()));
         return view;
     }
 
@@ -112,11 +111,39 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         } else {
             homeLlVisibility.setVisibility(View.VISIBLE);
         }
+        showAutoRollStrings();
     }
+    private void showAutoRollStrings() {
+        textviewAutoRoll.setText(auto_roll_strings[0]);
+        isAutoRollRunning = true;
+        handler.sendEmptyMessage(199);
+//        executor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (isAutoRollRunning){
+//                    SystemClock.sleep(3000);
+//                    handler.sendEmptyMessage(199);
+//                }
+//            }
+//        });
+    }
+
+
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            if (msg.what == 199) {
+                textviewAutoRoll.next();
+                autoRollIndex++;
+                textviewAutoRoll.setText(auto_roll_strings[autoRollIndex%auto_roll_strings.length]);
+                handler.sendEmptyMessageDelayed(199, 3000);
+            }
+        }
+    };
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        handler.removeCallbacksAndMessages(null);
         unbinder.unbind();
     }
 

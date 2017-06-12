@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.find;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,13 +60,14 @@ public class ShopCardActivity extends AppCompatActivity {
     }
 
     private void init() {
+        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         titles = new ArrayList<>();
         fragments = new ArrayList<>();
         titles.add("未使用");
         titles.add("已使用");
         titles.add("已过期");
         fragmentUnused = new FragmentUnused();
-        fragmentUnused = new FragmentUnused();
+        fragmentUsed = new FragmentUsed();
         fragmentInvalid = new FragmentInvalid();
         fragments.add(fragmentUnused);
         fragments.add(fragmentUsed);

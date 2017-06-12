@@ -181,4 +181,10 @@ public class TopBar extends RelativeLayout {
 
         mRightButton.setPadding(0, 0, (int) mPaddingRight, 0);
     }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+
+    }
 }

@@ -32,25 +32,34 @@ public class UserModel extends BaseModel {
 
     /**
      * 获取token的方法
+     *
      * @param userId
      * @param subscriber
      */
-    public void getToken(String userId,Subscriber<TokenResponseBean> subscriber){
-        map.put("userId",userId);
+    public void getToken(String userId, Subscriber<TokenResponseBean> subscriber) {
+        map.put("userId", userId);
         Observable observable = null;
         toSubscribe(observable, subscriber);
     }
+
     /**
-     *  登录
+     * 登录
+     *
      * @param subscriber
      * @param phone_num
      * @param password
      */
     public void login(Subscriber<String> subscriber, String phone_num, String password) {
-        map.put("mobile",phone_num);
-        map.put("password",password);
+        map.put("mobile", phone_num);
+        map.put("password", password);
 
         Observable observable = userApi.login(map);
         toSubscribe(observable, subscriber);
+    }
+
+    public Observable<String> getLogin(String phone_num, String password) {
+        map.put("mobile", phone_num);
+        map.put("password", password);
+        return userApi.login(map);
     }
 }

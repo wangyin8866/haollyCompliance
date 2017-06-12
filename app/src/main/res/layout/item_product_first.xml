@@ -11,13 +11,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:paddingLeft="20dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
             <ImageView
@@ -60,16 +60,14 @@
                 android:textSize="10sp" />
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="22dp"
-            android:background="#F5F5F5" />
+     <com.haolyy.compliance.custom.DashedLine
+         android:layout_width="match_parent"
+         android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
+            android:layout_height="90dp"
+
             android:orientation="horizontal">
 
 
@@ -89,7 +87,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -166,7 +164,7 @@
 
                         <TextView
                             android:id="@+id/pro_deadline"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
@@ -175,7 +173,7 @@
                             android:textSize="20sp" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
@@ -198,10 +196,10 @@
 
                 <com.haolyy.compliance.custom.CircleView
                     android:id="@+id/product_circle"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     app:bg_color="#cccccc"
-                    app:circle_out_sweep_width="5dp"
+                    app:circle_out_sweep_width="3dp"
                     app:circle_text="10%"
                     app:circle_text_color="#FFF6A623"
                     app:circle_text_size="13sp"
@@ -214,7 +212,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="22dp"
             android:background="#F5F5F5" />
     </LinearLayout>
 </layout>

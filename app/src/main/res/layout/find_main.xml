@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="发现"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="13dp"
         android:gravity="center"
         android:textColor="#FF374666"
@@ -102,10 +101,10 @@
                         android:layout_width="150dp"
                         android:layout_height="90dp"
                         android:layout_gravity="center"
-                        android:background="#FAFAFA">
+                       >
 
                         <ImageView
-                            android:layout_width="110dp"
+                            android:layout_width="111dp"
                             android:layout_height="55dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/bg_jiaxiquan" />
@@ -114,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="55dp"
-                            android:layout_marginTop="22dp"
+                            android:layout_marginTop="18dp"
                             android:text="10%"
                             android:textColor="#FFFFFFFF"
                             android:textSize="24sp" />
@@ -123,7 +122,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="59dp"
-                            android:layout_marginTop="55dp"
+                            android:layout_marginTop="52dp"
                             android:text="加息券"
                             android:textColor="#FFFFFFFF"
                             android:textSize="10sp" />
@@ -141,6 +140,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -159,10 +159,10 @@
                         android:layout_width="150dp"
                         android:layout_height="90dp"
                         android:layout_gravity="center"
-                        android:background="#FAFAFA">
+                        >
 
                         <ImageView
-                            android:layout_width="110dp"
+                            android:layout_width="111dp"
                             android:layout_height="55dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/bg_jiaxiquan" />
@@ -171,7 +171,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="55dp"
-                            android:layout_marginTop="22dp"
+                            android:layout_marginTop="18dp"
                             android:text="10%"
                             android:textColor="#FFFFFFFF"
                             android:textSize="24sp" />
@@ -180,10 +180,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="59dp"
-                            android:layout_marginTop="55dp"
+                            android:layout_marginTop="52dp"
                             android:text="加息券"
                             android:textColor="#FFFFFFFF"
                             android:textSize="10sp" />
+
+
                     </FrameLayout>
 
                     <TextView
@@ -196,6 +198,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -221,10 +224,10 @@
                         android:layout_width="150dp"
                         android:layout_height="90dp"
                         android:layout_gravity="center"
-                        android:background="#FAFAFA">
+                        >
 
                         <ImageView
-                            android:layout_width="110dp"
+                            android:layout_width="111dp"
                             android:layout_height="55dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/bg_tixianquan" />
@@ -233,7 +236,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="55dp"
-                            android:layout_marginTop="22dp"
+                            android:layout_marginTop="18dp"
                             android:text="10%"
                             android:textColor="#FFFFFFFF"
                             android:textSize="24sp" />
@@ -242,10 +245,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="59dp"
-                            android:layout_marginTop="55dp"
+                            android:layout_marginTop="52dp"
                             android:text="体现券"
                             android:textColor="#FFFFFFFF"
                             android:textSize="10sp" />
+
+
                     </FrameLayout>
 
                     <TextView
@@ -258,6 +263,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -276,10 +282,10 @@
                         android:layout_width="150dp"
                         android:layout_height="90dp"
                         android:layout_gravity="center"
-                        android:background="#FAFAFA">
+                        >
 
                         <ImageView
-                            android:layout_width="110dp"
+                            android:layout_width="111dp"
                             android:layout_height="55dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/bg_fanxiquan" />
@@ -288,7 +294,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="55dp"
-                            android:layout_marginTop="22dp"
+                            android:layout_marginTop="18dp"
                             android:text="10%"
                             android:textColor="#FFFFFFFF"
                             android:textSize="24sp" />
@@ -297,10 +303,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="59dp"
-                            android:layout_marginTop="55dp"
+                            android:layout_marginTop="52dp"
                             android:text="返现券"
                             android:textColor="#FFFFFFFF"
                             android:textSize="10sp" />
+
+
                     </FrameLayout>
 
                     <TextView
@@ -313,6 +321,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
