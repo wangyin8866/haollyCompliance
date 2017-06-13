@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
     android:orientation="vertical">
 
     <com.haolyy.compliance.custom.TopBar
-        android:id="@+id/top_sure_invest"
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         app:drawableLeft="@mipmap/nav_back"
         app:drawableLeftVisibility="true"
@@ -25,7 +26,6 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/rl_error"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_marginTop="103dp"
@@ -58,7 +58,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_error1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -67,6 +66,7 @@
             android:textColor="#FF4A4A4A"
             android:textSize="14sp" />
         <TextView
+            android:id="@+id/look_invest_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="查看投资记录 >"
@@ -76,6 +76,7 @@
             android:textSize="12sp"
             />
         <Button
+            android:id="@+id/btn_continue"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_gravity="center"

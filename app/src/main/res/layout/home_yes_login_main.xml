@@ -152,13 +152,13 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="13dp"
                     android:src="@mipmap/home_laba" />
+
                 <com.haolyy.compliance.custom.AutoVerticalScrollTextView
                     android:id="@+id/textview_auto_roll"
                     android:layout_width="0dp"
                     android:layout_weight="1"
 
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -188,6 +188,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/rl_activity"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="10dp"
@@ -203,7 +204,6 @@
                         android:src="@mipmap/icon_home_activity" />
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -215,6 +215,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_invite_friend"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -229,6 +230,7 @@
                         android:src="@mipmap/icon_home_invest" />
 
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"

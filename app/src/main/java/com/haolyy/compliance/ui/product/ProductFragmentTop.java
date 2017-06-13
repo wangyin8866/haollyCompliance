@@ -83,7 +83,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         textSpan.setSpan(new AbsoluteSizeSpan(UIUtils.dip2px(36)), 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(UIUtils.dip2px(14)), 3, 9, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         tvProductRate.setText(textSpan);
-        arcProgressView.setData(1000, 1000);
+        arcProgressView.setData(800, 1000);
         bottomScroll.setOnScrollToBottomLintener(new BottomScrollView.OnScrollToBottomListener() {
             @Override
             public void onScrollBottomListener(boolean isBottom) {

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.adapter.QuansAdapter;
+import com.haolyy.compliance.adapter.UseQuansAdapter;
 import com.haolyy.compliance.entity.Repayment;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class FragmentUnused extends Fragment {
             Repayment repayment = new Repayment(i + "期", i * 10 + "元", i * 100 + "元", i * 10 + "元");
             repayments.add(repayment);
         }
-        lvUseful.setAdapter(new QuansAdapter(getContext(),repayments,0));
+        lvUseful.setAdapter(new UseQuansAdapter(getContext(),repayments));
     }
 
     @Override

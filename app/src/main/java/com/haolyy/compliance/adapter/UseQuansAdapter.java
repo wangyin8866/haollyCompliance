@@ -18,18 +18,17 @@ import static com.haolyy.compliance.R.id.tv_quan_rate;
 
 /**
  * Created by niudeyang on 2017/5/18.
+ * 可用卡券
  */
 
-public class QuansAdapter extends BaseAdapter {
+public class UseQuansAdapter extends BaseAdapter {
     private Context mContext;
 //    private List<Integer> quans;
-    private int type;//0可用 1不可用
     private Map<Integer, Boolean> map = new HashMap();
     private List<Repayment> repayments;
-    public QuansAdapter(Context context,List<Repayment> repayments, int type) {
+    public UseQuansAdapter(Context context, List<Repayment> repayments) {
         this.mContext = context;
         this.repayments = repayments;
-        this.type = type;
         for (int i = 0; i < repayments.size(); i++) {
             map.put(i, false);
         }

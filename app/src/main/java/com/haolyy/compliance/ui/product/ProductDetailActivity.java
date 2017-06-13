@@ -7,13 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
 import com.haolyy.compliance.ui.product.view.ProductDetailView;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by niudeyang on 2017/5/17.
@@ -32,25 +30,19 @@ import butterknife.OnClick;
 
 public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, ProductDetailView> {
 
-    @BindView(R.id.iv_finish)
-    ImageView ivFinish;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.view_line)
-    View viewLine;
-    @BindView(R.id.titleBar)
-    RelativeLayout titleBar;
+
     @BindView(R.id.tv_product_join)
     TextView tvProductJoin;
     @BindView(R.id.vp_product)
     VerticalViewPager vpProduct;
+    @BindView(R.id.top_bar)
+    TopBar topBar;
 
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList = new ArrayList<>();
 
     /**
-     *
      * @param context
      * @param type
      * @return
@@ -81,12 +73,22 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
         fragmentList.add(productFragmentTop);
         fragmentList.add(productFragmentBottom);
         vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
-        viewLine.setVisibility(View.VISIBLE);
 
         tvProductJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProductDetailActivity.this, ProductSureInvest.class));
+            }
+        });
+        topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
+            @Override
+            public void OnLeftButtonClicked() {
+                finish();
+            }
+
+            @Override
+            public void OnRightButtonClicked() {
+
             }
         });
     }
@@ -95,8 +97,8 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
      * 详情页tab显示
      */
     private void tabLayoutState() {
-        Bundle bundle=new Bundle();
-        bundle.putBoolean("center",true);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("center", true);
         productFragmentBottom.setArguments(bundle);
     }
 
@@ -105,10 +107,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
 
     }
 
-    @OnClick(R.id.iv_finish)
-    public void onViewClicked() {
-        finish();
-    }
+
 
 
     public class DummyAdapter extends FragmentPagerAdapter {

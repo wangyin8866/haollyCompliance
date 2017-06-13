@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -25,6 +26,7 @@ import com.haolyy.compliance.custom.LocalImageHolderView;
 import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
+import com.haolyy.compliance.ui.my.InviteFriendActivity;
 import com.haolyy.compliance.ui.product.ProductDetailActivity;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -57,14 +60,19 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     LinearLayout homeLlVisibility;
     @BindView(R.id.textview_auto_roll)
     AutoVerticalScrollTextView textviewAutoRoll;
+    @BindView(R.id.rl_activity)
+    RelativeLayout rlActivity;
+    @BindView(R.id.rl_invite_friend)
+    RelativeLayout rlInviteFriend;
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
     private List<TestProduct> testProducts;
     private boolean isInvest;
-    private String[] auto_roll_strings = {"asdasd","bbbbb","cccccccccc"};
+    private String[] auto_roll_strings = {"asdasd", "bbbbb", "cccccccccc"};
 
     private boolean isAutoRollRunning = false;
     private int autoRollIndex;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,13 +92,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
             }
         }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
 
-        ivZhangDan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ProductDetailActivity.class));
 
-            }
-        });
 
         testProducts = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
@@ -113,6 +115,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         }
         showAutoRollStrings();
     }
+
     private void showAutoRollStrings() {
         textviewAutoRoll.setText(auto_roll_strings[0]);
         isAutoRollRunning = true;
@@ -134,7 +137,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
             if (msg.what == 199) {
                 textviewAutoRoll.next();
                 autoRollIndex++;
-                textviewAutoRoll.setText(auto_roll_strings[autoRollIndex%auto_roll_strings.length]);
+                textviewAutoRoll.setText(auto_roll_strings[autoRollIndex % auto_roll_strings.length]);
                 handler.sendEmptyMessageDelayed(199, 3000);
             }
         }
@@ -152,4 +155,17 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         return new HomeLoginPresenter(mContext);
     }
 
+    @OnClick({R.id.rl_activity, R.id.rl_invite_friend,R.id.iv_zhang_dan})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_zhang_dan:
+                startActivity(new Intent(getActivity(), ProductDetailActivity.class));
+                break;
+            case R.id.rl_activity:
+                break;
+            case R.id.rl_invite_friend:
+                startActivity(new Intent(getActivity(), InviteFriendActivity.class));
+                break;
+        }
+    }
 }
