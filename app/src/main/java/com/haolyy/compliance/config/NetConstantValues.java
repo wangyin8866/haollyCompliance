@@ -7,6 +7,6 @@ package com.haolyy.compliance.config;
 public interface NetConstantValues {
    // String HOST_URL = "http://192.168.9.93:8080/chinazy-user-manage/";
     String HOST_URL = "http://192.168.9.229:8080/chinazy-user-manage/";
-    String user="user/";
+    String user="user/" ;
     String user_login=user+"login.html";
 }
