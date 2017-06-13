@@ -38,11 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="总计"
+            android:textStyle="bold"
             android:textColor="@color/text_4a4a4a"
             android:textSize="14sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_alignParentRight="true"
             android:text="10,000.00"
             android:textColor="@color/text_ff7753"

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:paddingBottom="17dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_mission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/vm_register" />
+
+    <TextView
+        android:id="@+id/tv_mission_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:text="完成注册"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_mission_description"
+        android:layout_below="@+id/tv_mission_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_marginTop="8dp"
+        android:layout_marginLeft="60dp"
+        android:text="送8元返现券+30元返现券+100元返现券"
+        android:textColor="@color/text_ec633f"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/mission_btn"
+        android:layout_width="60dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dp"
+        android:background="@mipmap/go_get"
+        android:gravity="center"
+        android:text="去领取"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+</RelativeLayout>

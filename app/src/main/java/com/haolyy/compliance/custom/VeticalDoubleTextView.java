@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -40,6 +41,7 @@ public class VeticalDoubleTextView extends LinearLayout {
     private int textmargin;
 
     private LinearLayout llroot;
+    private int tstyle;
 
     public VeticalDoubleTextView(Context context) {
         super(context);
@@ -78,6 +80,9 @@ public class VeticalDoubleTextView extends LinearLayout {
                 case R.styleable.VeticalDoubleTextView_textGravity:
                     textGravity = a.getInt(attr, 1);
                     break;
+                case R.styleable.VeticalDoubleTextView_tstyle:
+                    tstyle = a.getInt(attr, -1);
+                    break;
                 case R.styleable.VeticalDoubleTextView_textmargin:
                     textmargin = a.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(
                             TypedValue.COMPLEX_UNIT_DIP, 6, getResources().getDisplayMetrics()));
@@ -114,24 +119,27 @@ public class VeticalDoubleTextView extends LinearLayout {
         mTv2.setCompoundDrawablePadding(drablepadding);
         mTv2.setGravity(Gravity.CENTER);
         mTv1.setGravity(Gravity.CENTER);
-       // mTv1.setBackgroundColor(UIUtils.getColor(R.color.white));
-        if(null!=ivRight){
-            Log.e("verticaldouble","ivRight");
-            ivRight.setBounds(0,0,ivRight.getMinimumWidth(), ivRight.getMinimumHeight());
-            mTv1.setCompoundDrawables(null,null,ivRight,null);
+        // mTv1.setBackgroundColor(UIUtils.getColor(R.color.white));
+        if (null != ivRight) {
+            ivRight.setBounds(0, 0, ivRight.getMinimumWidth(), ivRight.getMinimumHeight());
+            mTv1.setCompoundDrawables(null, null, ivRight, null);
         } else if (null != ivLeft) {
-            ivLeft.setBounds(0,0,ivLeft.getMinimumWidth(), ivLeft.getMinimumHeight());
-            mTv2.setCompoundDrawables(ivLeft,null,null,null);
+            ivLeft.setBounds(0, 0, ivLeft.getMinimumWidth(), ivLeft.getMinimumHeight());
+            mTv2.setCompoundDrawables(ivLeft, null, null, null);
         }
         mTv2.setText(textBottom);
         mTv1.setText(textTop);
-
+        if (tstyle == 0) {
+            mTv1.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));//加粗
+        } else if (tstyle == 1) {
+            mTv2.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));//加粗
+        }
         this.setOrientation(VERTICAL);
-        LayoutParams layouttop=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layouttop.bottomMargin=textmargin;
-        LayoutParams layoutbottom=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        addView(mTv1,layouttop);
-        addView(mTv2,layoutbottom);
+        LayoutParams layouttop = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layouttop.bottomMargin = textmargin;
+        LayoutParams layoutbottom = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        addView(mTv1, layouttop);
+        addView(mTv2, layoutbottom);
 
     }
 

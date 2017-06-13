@@ -15,13 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.login.RegisterActivity"
             android:exported="false"
@@ -33,7 +27,11 @@
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.product.ProductDetailActivity"
@@ -73,17 +71,37 @@
             android:name=".ui.my.DealDetailWithDraw"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.my.InviteFriendActivity" />
-        <activity android:name=".ui.my.view.InviteRecordActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.my.AccountSecurityActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.my.MessageActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.my.MessageDetail" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.my.CheckPhone" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.my.UpdatePhone" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.find.ShoppingActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.find.ConvertSuccess" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.find.ConvertError" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.find.ShopCardActivity" android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".ui.my.view.InviteRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.my.AccountSecurityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.my.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.my.MessageDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.my.CheckPhone"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.my.UpdatePhone"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.find.ShoppingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.find.ConvertSuccess"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.find.ConvertError"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.find.ShopCardActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.my.MissionActivity"></activity>
     </application>
 
 </manifest>

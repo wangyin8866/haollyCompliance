@@ -111,6 +111,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:tstyle="bottombold"
                     android:paddingLeft="20dp"
                     app:textBottom="3200000"
                     app:textColorBottom="#ffffff"
@@ -126,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    app:tstyle="bottombold"
                     app:textBottom="932"
                     app:textColorBottom="#ffffff"
                     app:textColorTop="#ffffff"
@@ -140,6 +142,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:tstyle="bottombold"
                     android:gravity="right"
                     android:paddingRight="20dp"
                     app:ivright="@mipmap/bing"
@@ -202,6 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                app:tstyle="topbold"
                 app:ivleft="@mipmap/icon_youhui_quan"
                 app:textBottom="优惠券"
                 app:textColorBottom="@color/text_878787"
@@ -213,10 +217,12 @@
                 app:textmargin="6dp" />
 
             <com.haolyy.compliance.custom.VeticalDoubleTextView
+                android:id="@+id/vd_mission"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                app:tstyle="topbold"
                 app:ivleft="@mipmap/icon_socres"
                 app:textBottom="任务"
                 app:textColorBottom="@color/text_878787"
@@ -232,6 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                app:tstyle="topbold"
                 app:ivleft="@mipmap/icon_misson"
                 app:textBottom="积分"
                 app:textColorBottom="@color/text_878787"
@@ -352,5 +359,16 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@mipmap/banner_invite" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@mipmap/home_dunpai"
+            android:text="用户资金由上海银行存管"
+            android:textColor="@color/text_b9b9b9"
+            android:textSize="12sp"/>
     </LinearLayout>
 </ScrollView>
