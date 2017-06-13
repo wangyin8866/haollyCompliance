@@ -14,7 +14,6 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
-import com.haolyy.compliance.ui.bank.WithDrawActivity;
 import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
@@ -50,6 +49,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     View vInviteFriend;
     @BindView(R.id.message_center)
     ImageView messageCenter;
+    @BindView(R.id.vd_mission)
+    VeticalDoubleTextView vdMission;
     private View view;
     private DialogBank dialogBank;
     private DialogInvestGuides dialogInvestGuides;
@@ -60,7 +61,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         view = inflater.inflate(R.layout.my_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         dialogBank = new DialogBank(mContext);
-        dialogInvestGuides = new DialogInvestGuides(mContext);
         return view;
     }
 
@@ -70,7 +70,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone,R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend,R.id.message_center})
+    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center,R.id.vd_mission})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
@@ -86,7 +86,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(new Intent(getActivity(), FundStatisticsActivity.class));
                 break;
             case R.id.tv_withdraw:
-               /* dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+                dialogInvestGuides = new DialogInvestGuides(mContext, DialogInvestGuides.INTELLIGENCE);
+                dialogInvestGuides.setOnDoubleClickListener(new DialogInvestGuides.OnDoubleClickListener() {
                     @Override
                     public void excuteLeft() {
 
@@ -94,15 +95,13 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
                     @Override
                     public void excuteRight() {
-                        //startActivity(new Intent(mContext, CheckBankActivity.class));
-                        startActivity(new Intent(mContext, BankBindActivity.class));
+
                     }
-                }).show();*/
-               //dialogInvestGuides.setContent("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx").setIcon(R.mipmap.icon_dialog_open).show();
-                startActivity(new Intent(mContext, WithDrawActivity.class));
+                }).show();
+                // startActivity(new Intent(mContext, WithDrawActivity.class));
                 break;
             case R.id.tv_recharge:
-               // dialogBank.show();
+                // dialogBank.show();
                 startActivity(new Intent(mContext, RechargeActivity.class));
                 break;
             case R.id.v_invite_friend:
@@ -113,6 +112,9 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 break;
             case R.id.account_manage:
                 startActivity(new Intent(mContext, AccountSecurityActivity.class));
+                break;
+            case R.id.vd_mission:
+                startActivity(new Intent(mContext,MissionActivity.class));
                 break;
         }
     }

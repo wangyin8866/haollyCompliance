@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.haolyy.compliance.ui.my.MissionActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <include layout="@layout/public_title_back" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@mipmap/mission_banner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:drawableLeft="@mipmap/new_user"
+                android:drawablePadding="8dp"
+                android:drawableRight="@mipmap/new_user"
+                android:text="新手任务 "
+                android:textColor="@color/text_354a7d"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:text="完成全部新手任务可取得100积分"
+                android:textColor="@color/text_9b9b9b"
+                android:textSize="12sp" />
+
+            <com.haolyy.compliance.custom.ViewMission
+                android:id="@+id/vm_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:btn="去领取"
+                app:btn_bg="@mipmap/go_get"
+                app:description_mission="送8元返现券+30元返现券+100元返现券"
+                app:icon_mission="@mipmap/vm_register"
+                app:mission_bg="@drawable/shape_transparent_red"
+                app:title_mission="完成注册" />
+
+            <com.haolyy.compliance.custom.ViewMission
+                android:id="@+id/vm_open"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:btn="去领取"
+                app:btn_bg="@mipmap/go_complete"
+                app:description_mission="送200积分+200元返现券"
+                app:icon_mission="@mipmap/vm_open"
+                app:mission_bg="@drawable/shape_transparent_yellow"
+                app:title_mission="完成开户" />
+
+            <com.haolyy.compliance.custom.ViewMission
+                android:id="@+id/vm_recharge1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:btn="去领取"
+                app:btn_bg="@mipmap/go_complete"
+                app:description_mission="送100积分+1张免费提现券+1%加息券"
+                app:icon_mission="@mipmap/vm_recharge"
+                app:mission_bg="@drawable/shape_transparent_yellow"
+                app:title_mission="首次充值(≥1000元)" />
+
+            <com.haolyy.compliance.custom.ViewMission
+                android:id="@+id/vm_invest1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:btn="已完成"
+                app:btn_bg="@mipmap/go_get"
+                app:description_mission="送100积分+500元返现券"
+                app:icon_mission="@mipmap/vm_invest"
+                app:title_mission="投资新手标" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:drawableLeft="@mipmap/new_user"
+                android:drawablePadding="8dp"
+                android:drawableRight="@mipmap/new_user"
+                android:text="小白进阶"
+                android:textColor="@color/text_354a7d"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:text="完成全部小白进阶任务可取得100积分"
+                android:textColor="@color/text_9b9b9b"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginBottom="10dp">
+
+                <com.haolyy.compliance.custom.ViewMission
+                    android:id="@+id/vm_recharge2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:btn="去完成"
+                    app:btn_bg="@mipmap/go_complete"
+                    app:description_mission="送500积分+1张免费提现券+2.5%加息券"
+                    app:icon_mission="@mipmap/vm_recharge"
+                    app:mission_bg="@drawable/shape_transparent_yellow"
+                    app:title_mission="首次充值(≥10000元)" />
+
+                <TextView
+                    android:id="@+id/tv_lock_recharge1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_transparent_radius"
+                    android:drawableLeft="@mipmap/lock"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="110dp"
+                    android:text="完成新手任务可解锁"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp">
+
+                <com.haolyy.compliance.custom.ViewMission
+                    android:id="@+id/vm_invest2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:btn="去完成"
+                    app:btn_bg="@mipmap/go_complete"
+                    app:description_mission="送200积分+1%加息券"
+                    app:icon_mission="@mipmap/vm_invest"
+                    app:mission_bg="@drawable/shape_transparent_yellow"
+                    app:title_mission="首次投资180天以上产品" />
+
+                <TextView
+                    android:id="@+id/tv_lock_invest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_transparent_radius"
+                    android:drawableLeft="@mipmap/lock"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="110dp"
+                    android:text="完成新手任务可解锁"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/bg_f5f5f5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:drawableLeft="@mipmap/new_user"
+                android:drawablePadding="8dp"
+                android:drawableRight="@mipmap/new_user"
+                android:text="小试牛刀"
+                android:textColor="@color/text_354a7d"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:text="完成全部小试牛刀任务可获得100积分"
+                android:textColor="@color/text_9b9b9b"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginBottom="10dp">
+
+                <com.haolyy.compliance.custom.ViewMission
+                    android:id="@+id/vm_recharge3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:btn="去完成"
+                    app:btn_bg="@mipmap/go_complete"
+                    app:description_mission="送500积分+1张免费提现券+2.5%加息券"
+                    app:icon_mission="@mipmap/vm_recharge"
+                    app:mission_bg="@drawable/shape_transparent_yellow"
+                    app:title_mission="首次充值(≥5000元)"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/tv_lock_recharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_transparent_radius"
+                    android:drawableLeft="@mipmap/lock"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="110dp"
+                    android:text="完成新手任务可解锁"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp">
+
+                <com.haolyy.compliance.custom.ViewMission
+                    android:id="@+id/vm_invite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:btn="去完成"
+                    app:btn_bg="@mipmap/go_complete"
+                    app:description_mission="送200积分+50元返现券"
+                    app:icon_mission="@mipmap/vm_invite"
+                    app:mission_bg="@drawable/shape_transparent_yellow"
+                    app:title_mission="首次邀请好友注册投资" />
+
+                <TextView
+                    android:id="@+id/tv_lock_invite"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_transparent_radius"
+                    android:drawableLeft="@mipmap/lock"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="110dp"
+                    android:text="完成新手任务可解锁"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_mission_dialog"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="248dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/shape_white_radius"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/tv_close"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@mipmap/icon_close"
+                android:paddingTop="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/mission_get_succss" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/mission_dialog_bottom"
+                android:gravity="center_horizontal"
+                android:paddingBottom="8dp"
+                android:text="恭喜您成功领取奖励"
+                android:textColor="#1eaf93"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/mission_dialog_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_horizontal"
+                android:text="请至积分明细和优惠券页面查看"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
