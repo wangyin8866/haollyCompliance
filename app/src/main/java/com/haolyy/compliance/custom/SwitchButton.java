@@ -41,11 +41,11 @@ import com.haolyy.compliance.utils.ColorUtils;
 
 public class SwitchButton extends CompoundButton {
     public static final float DEFAULT_BACK_MEASURE_RATIO = 1.8f;
-    public static final int DEFAULT_THUMB_SIZE_DP = 20;
+    public static final int DEFAULT_THUMB_SIZE_DP = 25;
     public static final int DEFAULT_THUMB_MARGIN_DP = 2;
     public static final int DEFAULT_TEXT_MARGIN_DP = 2;
     public static final int DEFAULT_ANIMATION_DURATION = 250;
-    public static final int DEFAULT_TINT_COLOR = 0x327FC2;
+    public static final int DEFAULT_TINT_COLOR = 0xFF9933;
 
     private static int[] CHECKED_PRESSED_STATE = new int[]{android.R.attr.state_checked, android.R.attr.state_enabled, android.R.attr.state_pressed};
     private static int[] UNCHECKED_PRESSED_STATE = new int[]{-android.R.attr.state_checked, android.R.attr.state_enabled, android.R.attr.state_pressed};

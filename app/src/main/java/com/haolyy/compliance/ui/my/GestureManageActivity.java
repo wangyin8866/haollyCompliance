@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.config.ConstantKey;
+import com.haolyy.compliance.custom.SwitchButton;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.utils.SPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +26,8 @@ public class GestureManageActivity extends AppCompatActivity {
     TopBar top_bar;
     @BindView(R.id.modify_gesture)
     RelativeLayout modify_gesture;
+    @BindView(R.id.gesture_state)
+    SwitchButton gesture_state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,12 @@ public class GestureManageActivity extends AppCompatActivity {
             @Override
             public void OnRightButtonClicked() {
 
+            }
+        });
+        gesture_state.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                SPUtils.saveBoolean(GestureManageActivity.this, ConstantKey.GESTURE_STATE_KEY,b);
             }
         });
     }

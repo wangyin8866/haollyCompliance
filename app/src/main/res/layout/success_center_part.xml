@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/icon_layout"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="103dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_invest_succeed" />
+
+        <TextView android:id="@+id/activon_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:text="修改成功"
+            android:textColor="#FF4A4A4A"
+            android:textSize="24sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_toEndOf="@+id/icon"
+            android:layout_marginStart="13dp" />
+    </RelativeLayout>
+
+    <TextView android:id="@+id/des_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:gravity="center"
+        android:text="恭喜您，您已成功设置手势密码"
+        android:textColor="#FF4A4A4A"
+        android:textSize="14sp" />
+
+    <Button  android:id="@+id/jump_btn"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_error_rest"
+        android:text="去账户安全"
+        android:textColor="#FFFF9933"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.haolyy.compliance.custom.TopBar
         android:id="@+id/top_bar"
@@ -15,44 +16,64 @@
         app:title="修改手势密码"
         app:titleTextColor="@color/text_4a4a4a"
         app:titleTextSize="17sp"
-        app:top_background="@color/white"
-        />
+        app:top_background="@color/white" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#f5f5f5"/>
+        android:background="#f5f5f5" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="为保障您的账户安全\n请设置手势密码"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
-        android:lineSpacingMultiplier="1.2"/>
-
-
-    <TextView android:id="@+id/tips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="rgrgsergweew"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textColor="#FF7753"
-        android:gravity="center_horizontal"
-        android:visibility="gone"/>
-
-    <com.haolyy.compliance.custom.ShapeLocker
-        android:id="@+id/sl"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@color/white"
-        app:color_line="#FF9933">
+        android:layout_height="match_parent">
 
-    </com.haolyy.compliance.custom.ShapeLocker>
+        <LinearLayout android:id="@+id/setting_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.2"
+                android:text="为保障您的账户安全\n请设置手势密码"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:text="rgrgsergweew"
+                android:textColor="#FF7753"
+                android:textSize="15sp"
+                android:visibility="invisible" />
+
+            <com.haolyy.compliance.custom.ShapeLocker
+                android:id="@+id/sl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/white"
+                app:color_line="#FF9933">
+
+            </com.haolyy.compliance.custom.ShapeLocker>
+        </LinearLayout>
+
+       <include  android:id="@+id/success_layout"
+           layout="@layout/success_center_part"
+           android:visibility="gone"/>
+
+
+
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -104,6 +104,8 @@
             android:name=".ui.find.ShopCardActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.my.MissionActivity"></activity>
+        <activity android:name=".ui.my.GestureManageActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.my.GestureSettingActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

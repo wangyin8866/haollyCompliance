@@ -45,9 +45,9 @@ public class ColorUtils {
 		int[] colors = new int[] {
 				tintColor - 0xE1000000,
 				0x10000000,
-				tintColor - 0xD0000000,
+				0xffff9933,
 				0x20000000,
-				tintColor - 0xD0000000,
+				0xffff9933,
 				0x20000000
 		};
 		return new ColorStateList(states, colors);

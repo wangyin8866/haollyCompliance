@@ -46,6 +46,7 @@ public class ShapeLocker extends View {
 
     // TODO: make this common with PhoneWindow
     static final int STATUS_BAR_HEIGHT = 25;
+    private boolean isShowPath = true;
 
     /**
      * How many milliseconds we spend animating each circle of a lock pattern
@@ -142,6 +143,10 @@ public class ShapeLocker extends View {
 
     public void setmBitmapArrowRedUp(Bitmap mBitmapArrowRedUp) {
         this.mBitmapArrowRedUp = mBitmapArrowRedUp;
+    }
+
+    public void setShowPath(boolean showPath) {
+        isShowPath = showPath;
     }
 
     public static Bitmap mBitmapBtnDefault;
@@ -975,11 +980,11 @@ public class ShapeLocker extends View {
 
         final int paddingTop = getPaddingTop();
         final int paddingLeft = getPaddingLeft();
-// TODO: the path should be created and cached every time we hit-detect a cell
+        // TODO: the path should be created and cached every time we hit-detect a cell
         // only the last segment of the path should be computed here
         // draw the path of the pattern (unless the user is in progress, and
         // we are in stealth mode)
-        final boolean drawPath = (!mInStealthMode || mPatternDisplayMode == DisplayMode.Wrong);
+        final boolean drawPath = (!mInStealthMode || mPatternDisplayMode == DisplayMode.Wrong) && isShowPath;
 
         // draw the arrows associated with the path (unless the user is in progress, and
         // we are in stealth mode)
@@ -1105,8 +1110,14 @@ public class ShapeLocker extends View {
             innerCircle = mBitmapBtnDefault;
         } else if (mPatternInProgress) {
             // user is in middle of drawing a pattern
-            outerCircle = mBitmapCircleGreen;
-            innerCircle = mBitmapBtnTouched;
+            if(isShowPath) {
+                innerCircle = mBitmapBtnTouched ;
+                outerCircle = mBitmapCircleGreen;
+            }else {
+                innerCircle = mBitmapBtnDefault ;
+                outerCircle = null;
+            }
+
         } else if (mPatternDisplayMode == DisplayMode.Wrong) {
             // the pattern is wrong
             outerCircle = mBitmapCircleRed;
@@ -1138,7 +1149,7 @@ public class ShapeLocker extends View {
         mCircleMatrix.preScale(sx, sy);
         mCircleMatrix.preTranslate(-mBitmapWidth / 2, -mBitmapHeight / 2);
         canvas.drawBitmap(innerCircle, mCircleMatrix, mPaint);
-        if(outerCircle != null) {
+        if(outerCircle != null ) {
             canvas.drawBitmap(outerCircle, mCircleMatrix, mPaint);
         }
 
