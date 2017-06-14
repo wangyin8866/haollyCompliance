@@ -15,6 +15,7 @@ import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.ui.bank.RechargeActivity;
+import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
 
@@ -51,6 +52,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     ImageView messageCenter;
     @BindView(R.id.vd_mission)
     VeticalDoubleTextView vdMission;
+    @BindView(R.id.score)
+    VeticalDoubleTextView score;
     private View view;
     private DialogBank dialogBank;
     private DialogInvestGuides dialogInvestGuides;
@@ -70,7 +73,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center,R.id.vd_mission})
+    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.score,R.id.iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
@@ -114,7 +117,10 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(new Intent(mContext, AccountSecurityActivity.class));
                 break;
             case R.id.vd_mission:
-                startActivity(new Intent(mContext,MissionActivity.class));
+                startActivity(new Intent(mContext, MissionActivity.class));
+                break;
+            case R.id.score:
+                startActivity(new Intent(mContext, ShoppingActivity.class));
                 break;
         }
     }

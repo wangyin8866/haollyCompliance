@@ -34,6 +34,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     TextView tvTitle;
     @BindView(R.id.view_line)
     View viewLine;
+    @BindView(R.id.tv_register_sms)
+    TextView tvRegisterSms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +69,19 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     }
 
-    @OnClick(R.id.iv_code)
+    @OnClick({R.id.iv_code, R.id.textView3,R.id.tv_register_sms})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
                 Bitmap bitmap = CodeUtils.getInstance().createBitmap();
                 ivCode.setImageBitmap(bitmap);
+                mPresenter.getImageCode();
+                break;
+            case R.id.textView3:
+                mPresenter.register("13821882946", "qwe123");
+                break;
+            case R.id.tv_register_sms:
+              mPresenter.sendSms("13821882946");
                 break;
         }
     }

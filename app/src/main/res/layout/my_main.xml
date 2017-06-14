@@ -234,6 +234,7 @@
                 app:textmargin="6dp" />
 
             <com.haolyy.compliance.custom.VeticalDoubleTextView
+                android:id="@+id/score"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

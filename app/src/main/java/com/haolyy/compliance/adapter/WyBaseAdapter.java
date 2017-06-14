@@ -15,11 +15,12 @@ import java.util.List;
 public class WyBaseAdapter extends BaseAdapter {
     public List list;
     public LayoutInflater inflater;
-
+    protected Context mContext;
 
     public WyBaseAdapter(List list, Context context) {
         this.list = list;
         inflater = LayoutInflater.from(context);
+        this.mContext=context;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 //            }
 //        },"112121","1212121");
 
-        invoke(UserModel.getInstance().getLogin("112121","1212121"),new Subscriber<String>() {
+        invoke(UserModel.getInstance().getLogin("13821882946","qwe123"),new Subscriber<String>() {
             @Override
             public void onCompleted() {
 

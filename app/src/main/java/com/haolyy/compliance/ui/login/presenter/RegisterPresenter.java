@@ -4,7 +4,11 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.RegisterView;
+import com.haolyy.compliance.utils.LogUtils;
+
+import rx.Subscriber;
 
 
 /**
@@ -34,5 +38,50 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             //
             }
         },mContext),phone,pwd,valid_code);*/
+    }
+
+    public void register(String s, String qwe123) {
+        invoke(UserModel.getInstance().register("112121", "1212121"), new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.e(tag, e.getMessage());
+            }
+
+            @Override
+            public void onNext(String s) {
+                LogUtils.e(tag, s);
+            }
+        });
+
+    }
+
+
+    public void sendSms(String s) {
+        invoke(UserModel.getInstance().sendSms(s), new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.e(tag, e.getMessage());
+            }
+
+            @Override
+            public void onNext(String s) {
+                LogUtils.e(tag, s);
+            }
+        });
+    }
+
+    public void getImageCode() {
+
+
     }
 }

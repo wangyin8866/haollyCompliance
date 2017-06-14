@@ -62,4 +62,14 @@ public class UserModel extends BaseModel {
         map.put("password", password);
         return userApi.login(map);
     }
+
+    public Observable<String> register(String phone_num, String password) {
+        map.put("mobile", phone_num);
+        map.put("password", password);
+        return userApi.register(map);
+    }
+    public Observable<String> sendSms(String phone_num) {
+        map.put("mobile", phone_num);
+        return userApi.sendSms(map);
+    }
 }

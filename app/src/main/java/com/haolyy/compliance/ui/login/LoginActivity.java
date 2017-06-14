@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.SystemBarUtil;
@@ -84,6 +85,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         switch (view.getId()) {
             case R.id.tv_login:
                 mPresenter.login("13120775735", "123456");
+                //startActivity(new Intent(mContext, MainActivity.class));
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);

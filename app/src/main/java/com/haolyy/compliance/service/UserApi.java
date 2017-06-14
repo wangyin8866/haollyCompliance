@@ -22,10 +22,18 @@ public interface UserApi {
     @POST(NetConstantValues.user_login)
     Observable<String> login(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST(NetConstantValues.user_register)
+    Observable<String> register(@FieldMap Map<String, String> params);
+
     //@Query("pageSize") int pageSize,
    // @Query("curPage") int curPage
 
     @GET(NetConstantValues.user_login)
     Observable<String> loginget(@Query("mobile") String mobile,
      @Query("passWord") String passWord);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.SMS_SENDSMSCODE)
+    Observable<String> sendSms(@FieldMap Map<String, String> params);
 }

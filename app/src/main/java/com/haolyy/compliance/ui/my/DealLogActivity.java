@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.adapter.DealLogAdapter;
 import com.haolyy.compliance.adapter.InvestLogAdapter;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.XListView;
@@ -85,7 +86,7 @@ public class DealLogActivity extends AppCompatActivity implements XListView.IXLi
             InvestLog investLog = new InvestLog("0000000000" + i, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()), 1000 * i + "元");
             investLogs.add(investLog);
         }
-        xlvDealLog.setAdapter(new InvestLogAdapter(investLogs, this));
+        xlvDealLog.setAdapter(new DealLogAdapter(investLogs, this));
         xlvDealLog.setXListViewListener(this);
 
     }

@@ -6,6 +6,5 @@ package com.haolyy.compliance.entity;
 
 public class BaseResponseBean {
     public String msg;
-    public String code;
-    private String token;
+    public int status;
 }
