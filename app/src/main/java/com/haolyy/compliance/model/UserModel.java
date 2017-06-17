@@ -1,6 +1,5 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
@@ -49,27 +48,28 @@ public class UserModel extends BaseModel {
     /**
      * 登录
      *
-     * @param subscriber
-     * @param phone_num
-     * @param password
+     *
      */
-    public void login(Subscriber<LoginResponseBean> subscriber, String phone_num, String password) {
+
+    public Observable<LoginResponseBean>login(String phone_num, String password,String loginIp,String version,String platform,String client) {
         map.put("mobile", phone_num);
         map.put("password", password);
-
-        Observable observable = userApi.login(map);
-        toSubscribe(observable, subscriber);
-    }
-
-    public Observable<LoginResponseBean> getLogin(String phone_num, String password) {
-        map.put("mobile", phone_num);
-        map.put("password", password);
+        map.put("loginIp", loginIp);
+        map.put("version", version);
+        map.put("platform", platform);
+        map.put("client", client);
         return userApi.login(map);
     }
 
-    public Observable<RegisterBean> register(String phone_num, String password) {
+    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version) {
         map.put("mobile", phone_num);
         map.put("password", password);
+        map.put("smsCode", smsCode);
+        map.put("imageCode", imageCode);
+        map.put("client", client);
+        map.put("platform", platform);
+        map.put("registBd", registBd);
+        map.put("version", version);
         return userApi.register(map);
     }
 

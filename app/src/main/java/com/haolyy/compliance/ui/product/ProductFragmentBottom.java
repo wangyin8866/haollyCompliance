@@ -55,27 +55,22 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_product_bottom, container, false);
         unbinder = ButterKnife.bind(this, view);
-        initview();
+        initView();
         return view;
     }
 
-    private void initview() {
-        Bundle arguments = getArguments();
+    private void initView() {
         bottomProductDetail = new FragmentBottomProductDetail();
         bottomInvestLog = new FragmentBottomInvestLog();
         bottomCreditorInfo = new FragmentBottomCreditorInfo();
         bottomBorrowDetail = new FragmentBottomBorrowDetail();
         bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
-        int type = 2;
+        int type = 5;
         switch (type) {
-            case 1://周周赢
+            case 1: //赢计划,短期赢
                 titles.add("产品详情");
                 fragments.add(bottomProductDetail);
-                //如果有债权信息显示中间的tab
-                if (arguments.getBoolean("center")) {
-                    titles.add("债权信息");
-                    fragments.add(bottomCreditorInfo);
-                }
+
                 titles.add("投资记录");
                 fragments.add(bottomInvestLog);
                 break;
@@ -91,6 +86,14 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
             case 4://票据贷
                 titles.add("借款明细");
                 fragments.add(bottomBorrowDetail);
+                titles.add("投资记录");
+                fragments.add(bottomInvestLog);
+                break;
+            case 5: //周周赢,新手标
+                titles.add("产品详情");
+                fragments.add(bottomProductDetail);
+                titles.add("债权信息");
+                fragments.add(bottomCreditorInfo);
                 titles.add("投资记录");
                 fragments.add(bottomInvestLog);
                 break;

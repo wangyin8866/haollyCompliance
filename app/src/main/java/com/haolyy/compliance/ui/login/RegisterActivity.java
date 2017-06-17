@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.login;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -69,7 +70,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     ClearEditText etRegisterInvite;
     private String phone;
     private String passWord;
-
+    private String imageCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,14 +97,14 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
             }
         });
 
-        etImageCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    mPresenter.checkImageCode(etImageCode.getText().toString());
-                }
-            }
-        });
+//        etImageCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(!hasFocus){
+//                    mPresenter.checkImageCode(etImageCode.getText().toString());
+//                }
+//            }
+//        });
     }
 
 
@@ -122,6 +123,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     }
 
+    @Override
+    public void skip() {
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+    }
+
     @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -131,11 +137,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
             case R.id.textView3:
                 phone = etPhone.getText().toString();
                 passWord = etRegisterPwd.getText().toString();
-                mPresenter.register(phone, passWord);
+//                mPresenter.register(phone, passWord);
                 break;
             case R.id.tv_register_sms:
                 phone = etPhone.getText().toString();
-                mPresenter.sendSms(phone);
+                imageCode = etImageCode.getText().toString();
+                mPresenter.sendSms(phone,imageCode,"regist");
                 break;
         }
     }

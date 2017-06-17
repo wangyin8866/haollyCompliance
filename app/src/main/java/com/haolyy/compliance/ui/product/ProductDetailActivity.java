@@ -68,7 +68,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
 
-        tabLayoutState();
+//        tabLayoutState();
 
         fragmentList.add(productFragmentTop);
         fragmentList.add(productFragmentBottom);

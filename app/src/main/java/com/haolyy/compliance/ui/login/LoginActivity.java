@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             case R.id.tv_login:
                 phone = etAccount.getText().toString();
                 pwd = etPwd.getText().toString();
-                mPresenter.login(phone, pwd);
+                mPresenter.login(phone, pwd,"192.168.7.113","1223","haolyy","android");
                 startActivity(new Intent(mContext, MainActivity.class));
                 break;
             case R.id.tv_register:

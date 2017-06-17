@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.entity.login.SmsBean;
@@ -30,8 +29,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
         getToken(Config.LOGIN);
     }
 
-    public void register(String s, String qwe123) {
-        invoke(UserModel.getInstance().register("112121", "1212121"), new Subscriber<RegisterBean>() {
+    public void register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version) {
+        invoke(UserModel.getInstance().register(phone_num, password,smsCode,imageCode,client,platform,registBd,version), new Subscriber<RegisterBean>() {
             @Override
             public void onCompleted() {
 
@@ -45,14 +44,16 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             @Override
             public void onNext(RegisterBean s) {
                 LogUtils.e(tag, s.toString());
+
+                getView().skip();
             }
         });
 
     }
 
 
-    public void sendSms(String s) {
-        invoke(BigThreeModel.getInstance().sendSms(s), new Subscriber<SmsBean>() {
+    public void sendSms(String phone_num,String imagecode,String systemplate) {
+        invoke(BigThreeModel.getInstance().sendSms(phone_num,imagecode,systemplate), new Subscriber<SmsBean>() {
             @Override
             public void onCompleted() {
 

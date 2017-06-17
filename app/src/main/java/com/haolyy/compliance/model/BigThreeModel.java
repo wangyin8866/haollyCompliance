@@ -1,9 +1,6 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.config.NetConstantValues;
-import com.haolyy.compliance.entity.TokenResponseBean;
-import com.haolyy.compliance.entity.login.LoginResponseBean;
-import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.entity.login.SmsBean;
 import com.haolyy.compliance.service.UserApi;
 
@@ -11,7 +8,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by LL on 2017/1/7.
@@ -27,7 +23,7 @@ public class BigThreeModel extends BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL2)
+                .baseUrl(NetConstantValues.HOST_URL3)
                 .build();
         userApi = retrofit.create(UserApi.class);
     }
@@ -43,8 +39,10 @@ public class BigThreeModel extends BaseModel {
         return userModel;
     }
 
-    public Observable<SmsBean> sendSms(String phone_num) {
+    public Observable<SmsBean> sendSms(String phone_num,String imagecode,String systemplate) {
         map.put("mobile", phone_num);
+        map.put("imagecode", imagecode);
+        map.put("systemplate", systemplate);
         return userApi.sendSms(map);
     }
 

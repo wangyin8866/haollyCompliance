@@ -6,4 +6,6 @@ package com.haolyy.compliance.ui.login.view;
 
 public interface RegisterView {
     void refresh();//刷新ui
+
+    void skip();
 }

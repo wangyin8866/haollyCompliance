@@ -21,27 +21,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         super(context);
     }
 
-    public void login(String phone, String pwd) {
-//        getToken(LOGIN);
+    public void login(String phone_num, String password,String loginIp,String version,String platform,String client) {
 
-//        UserModel.getInstance().login(new Subscriber<String>() {
-//            @Override
-//            public void onCompleted() {
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//                LogUtils.e("err", e.getMessage());
-//            }
-//
-//            @Override
-//            public void onNext(String s) {
-//                LogUtils.e("onNext",s);
-//            }
-//        },"112121","1212121");
-
-        invoke(UserModel.getInstance().getLogin("13821882946", "qwe123"), new Subscriber<LoginResponseBean>() {
+        invoke(UserModel.getInstance().login(phone_num, password,loginIp,version,platform,client), new Subscriber<LoginResponseBean>() {
             @Override
             public void onCompleted() {
 
@@ -58,6 +40,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             }
         });
     }
+
 
 
 }

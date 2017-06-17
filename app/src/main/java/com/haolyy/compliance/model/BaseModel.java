@@ -1,9 +1,8 @@
 package com.haolyy.compliance.model;
 
-import android.util.Log;
-
 import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.LogInterceptor;
 
 import java.util.HashMap;
@@ -29,8 +28,8 @@ public  class BaseModel {
 
     private static final int DEFAULT_TIMEOUT = 10;
     Retrofit retrofit;
-    protected Map<String,String> map=new HashMap<>();
-    protected OkHttpClient.Builder httpClientBuilder;
+    static Map<String,String> map=new HashMap<>();
+    OkHttpClient.Builder httpClientBuilder;
 
     public BaseModel() {
         //手动创建一个OkHttpClient并设置超时时间
@@ -41,12 +40,12 @@ public  class BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL)
+                .baseUrl(NetConstantValues.HOST_URL3)
                 .build();
     }
     //添加线程管理并订阅
     void toSubscribe(Observable o, Subscriber s) {
-        Log.e("params", map.toString());
+
         o.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,6 +53,7 @@ public  class BaseModel {
     }
     //添加线程订阅
     public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
+        LogUtils.e("params", map.toString());
         Subscription subscription = observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
