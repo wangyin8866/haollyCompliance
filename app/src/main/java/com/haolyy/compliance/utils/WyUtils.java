@@ -19,6 +19,49 @@ import java.util.Locale;
  */
 
 public class WyUtils {
+
+    //手机号码正则
+    private static String phoneRex = "^1\\d{10}";
+    //密码正则
+    private static String passRex = "^(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[\\-\\/:;()$&@\"\\.,\\?\\!'\\[\\]#%\\^\\*\\+=_\\\\\\|~<>€£¥•：；（）¥@“”。，、？！【】｛｝—《》\\·]+$)[\\da-zA-Z\\-\\/:;()$&@\"\\.,\\?\\!'\\[\\]#%\\^\\*\\+=_\\\\\\|~<>€£¥•：；（）¥@“”。，、？！【】｛｝—《》\\·]{6,20}$";
+    //身份证正则
+    private static String idRex = "(\\d{14}[0-9a-zA-Z])|(\\d{17}[0-9a-zA-Z])";
+    //银行卡正则
+    private static String cardRex = "^\\d{16,19}$";
+    // 汉字
+    private static String chn_characters = "([\\u4e00-\\u9fa5]{2,10})";
+    // F码
+    private static String fma = "^[a-zA-Z0-9]{6}$";//    /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{2,})$/
+
+
+
+
+
+
+    public static boolean checkPhone(String phone) {
+        return phone.matches(phoneRex);
+    }
+
+    public static boolean checkPass(String password) {
+        return password.matches(passRex);
+    }
+
+    public static boolean checkId(String id) {
+        return id.matches(idRex);
+    }
+
+    public static boolean checkCard(String card) {
+        return card.matches(cardRex);
+    }
+
+    public static boolean checkChnCharacters(String chnCharacters) {
+        return chnCharacters.matches(chn_characters);
+    }
+
+    public static boolean checkFm(String fm) {
+        return fm.matches(fma);
+    }
+
     public static void onLoad(XListView xListView) {
         xListView.stopRefresh();
         xListView.stopLoadMore();
@@ -64,6 +107,5 @@ public class WyUtils {
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric;
     }
-
 
 }

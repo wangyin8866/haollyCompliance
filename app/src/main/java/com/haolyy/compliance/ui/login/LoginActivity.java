@@ -49,6 +49,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
     ClearEditText etAccount;
     @BindView(R.id.et_pwd)
     ClearEditText etPwd;
+    private String phone;
+    private String pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +86,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         Intent intent;
         switch (view.getId()) {
             case R.id.tv_login:
-                mPresenter.login("13120775735", "123456");
-                //startActivity(new Intent(mContext, MainActivity.class));
+                phone = etAccount.getText().toString();
+                pwd = etPwd.getText().toString();
+                mPresenter.login(phone, pwd);
+                startActivity(new Intent(mContext, MainActivity.class));
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);

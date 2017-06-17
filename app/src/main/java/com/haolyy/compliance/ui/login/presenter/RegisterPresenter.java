@@ -4,6 +4,11 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.CheckImageCode;
+import com.haolyy.compliance.entity.login.RegisterBean;
+import com.haolyy.compliance.entity.login.SmsBean;
+import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.RegisterView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -23,25 +28,10 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
     public void login(String phone, String pwd, String valid_code) {
         getToken(Config.LOGIN);
-
-       /* UserModel.getInstance().login(new ProgressSubscriber<UserInfoLogin>(new SubscriberOnNextListener<UserInfoLogin>() {
-            @Override
-            public void onNext(UserInfoLogin userInfoLogin) {
-                //登录成功刷新ui
-                getView().refresh();
-                //如果token失效
-                getToken(LOGIN);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-            //
-            }
-        },mContext),phone,pwd,valid_code);*/
     }
 
     public void register(String s, String qwe123) {
-        invoke(UserModel.getInstance().register("112121", "1212121"), new Subscriber<String>() {
+        invoke(UserModel.getInstance().register("112121", "1212121"), new Subscriber<RegisterBean>() {
             @Override
             public void onCompleted() {
 
@@ -53,8 +43,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
 
             @Override
-            public void onNext(String s) {
-                LogUtils.e(tag, s);
+            public void onNext(RegisterBean s) {
+                LogUtils.e(tag, s.toString());
             }
         });
 
@@ -62,7 +52,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
 
     public void sendSms(String s) {
-        invoke(UserModel.getInstance().sendSms(s), new Subscriber<String>() {
+        invoke(BigThreeModel.getInstance().sendSms(s), new Subscriber<SmsBean>() {
             @Override
             public void onCompleted() {
 
@@ -74,14 +64,29 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
 
             @Override
-            public void onNext(String s) {
-                LogUtils.e(tag, s);
+            public void onNext(SmsBean s) {
+                LogUtils.e(tag, s.toString());
             }
         });
     }
 
-    public void getImageCode() {
+    public void checkImageCode(String image) {
+        invoke(UserModel.getInstance().checkImageCode(image), new Subscriber<CheckImageCode>() {
+            @Override
+            public void onCompleted() {
 
+            }
 
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.e(tag, e.getMessage());
+            }
+
+            @Override
+            public void onNext(CheckImageCode s) {
+                LogUtils.e(tag, s.getData().getMsg() + s.getData().getStatus());
+
+            }
+        });
     }
 }

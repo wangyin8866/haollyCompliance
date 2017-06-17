@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
-            android:id="@+id/et_account"
+            android:id="@+id/et_forget_account"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginRight="15dp"
@@ -45,7 +45,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
-            android:id="@+id/clearEditText"
+            android:id="@+id/et_forget_image"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_alignParentLeft="true"
@@ -78,6 +78,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_forget_sms"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -100,6 +101,7 @@
             android:background="@color/E1E1E1" />
 
         <TextView
+            android:id="@+id/tv_send_sms"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_gravity="center_vertical"
@@ -126,6 +128,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_forget_pwd"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -173,7 +176,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="30dp"
-        android:background="@mipmap/login_button_unsure"
+        android:background="@drawable/selector_login_btn"
         android:gravity="center"
         android:text="注册"
         android:textColor="@color/white"

@@ -2,6 +2,11 @@ package com.haolyy.compliance.service;
 
 
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.CheckImageCode;
+import com.haolyy.compliance.entity.login.LoginResponseBean;
+import com.haolyy.compliance.entity.login.RegisterBean;
+import com.haolyy.compliance.entity.login.SmsBean;
 
 import java.util.Map;
 
@@ -20,14 +25,11 @@ public interface UserApi {
 
     @FormUrlEncoded
     @POST(NetConstantValues.user_login)
-    Observable<String> login(@FieldMap Map<String, String> params);
+    Observable<LoginResponseBean> login(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST(NetConstantValues.user_register)
-    Observable<String> register(@FieldMap Map<String, String> params);
-
-    //@Query("pageSize") int pageSize,
-   // @Query("curPage") int curPage
+    Observable<RegisterBean> register(@FieldMap Map<String, String> params);
 
     @GET(NetConstantValues.user_login)
     Observable<String> loginget(@Query("mobile") String mobile,
@@ -35,5 +37,10 @@ public interface UserApi {
 
     @FormUrlEncoded
     @POST(NetConstantValues.SMS_SENDSMSCODE)
-    Observable<String> sendSms(@FieldMap Map<String, String> params);
+    Observable<SmsBean> sendSms(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.IMAGE_CHECK)
+    Observable<CheckImageCode> checkImage(@FieldMap Map<String, String> params);
+
 }

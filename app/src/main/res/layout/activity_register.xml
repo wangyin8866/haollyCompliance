@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -45,6 +46,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_image_code"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -84,6 +86,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_sms_code"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -133,6 +136,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_register_pwd"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -140,13 +144,13 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="请设置您的登录密码"
-            android:inputType="number"
             android:maxLength="11"
             android:textColor="@color/text_374666"
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="15sp" />
 
         <ImageView
+            android:id="@+id/tv_show_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -188,6 +192,7 @@
             android:textSize="14sp" />
 
         <ImageView
+            android:id="@+id/iv_invite_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -196,6 +201,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_invite_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -203,6 +209,7 @@
         android:orientation="horizontal">
 
         <com.haolyy.compliance.custom.ClearEditText
+            android:id="@+id/et_register_invite"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -234,7 +241,8 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="15dp"
-        android:background="@mipmap/login_button_unsure"
+        android:background="@drawable/selector_login_btn"
+        android:enabled="false"
         android:gravity="center"
         android:text="注册"
         android:textColor="@color/white"
@@ -248,10 +256,12 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <CheckBox
+            android:id="@+id/cb_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/login_unchose" />
+            android:button="@null"
+            android:background="@drawable/selector_chose" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -262,11 +272,12 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_contract_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="《注册协议》"
-            android:textColor="@color/text_2D0000"
+            android:textColor="@color/text_69acfc"
             android:textSize="12sp" />
 
     </LinearLayout>

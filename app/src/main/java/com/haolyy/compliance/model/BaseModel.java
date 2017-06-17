@@ -30,9 +30,11 @@ public  class BaseModel {
     private static final int DEFAULT_TIMEOUT = 10;
     Retrofit retrofit;
     protected Map<String,String> map=new HashMap<>();
+    protected OkHttpClient.Builder httpClientBuilder;
+
     public BaseModel() {
         //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder = new OkHttpClient.Builder();
         httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         new Retrofit.Builder();
         retrofit = new Retrofit.Builder()

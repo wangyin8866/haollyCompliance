@@ -1,6 +1,10 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
+import com.haolyy.compliance.entity.login.CheckImageCode;
+import com.haolyy.compliance.entity.login.LoginResponseBean;
+import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.service.UserApi;
 
 import rx.Observable;
@@ -49,7 +53,7 @@ public class UserModel extends BaseModel {
      * @param phone_num
      * @param password
      */
-    public void login(Subscriber<String> subscriber, String phone_num, String password) {
+    public void login(Subscriber<LoginResponseBean> subscriber, String phone_num, String password) {
         map.put("mobile", phone_num);
         map.put("password", password);
 
@@ -57,19 +61,20 @@ public class UserModel extends BaseModel {
         toSubscribe(observable, subscriber);
     }
 
-    public Observable<String> getLogin(String phone_num, String password) {
+    public Observable<LoginResponseBean> getLogin(String phone_num, String password) {
         map.put("mobile", phone_num);
         map.put("password", password);
         return userApi.login(map);
     }
 
-    public Observable<String> register(String phone_num, String password) {
+    public Observable<RegisterBean> register(String phone_num, String password) {
         map.put("mobile", phone_num);
         map.put("password", password);
         return userApi.register(map);
     }
-    public Observable<String> sendSms(String phone_num) {
-        map.put("mobile", phone_num);
-        return userApi.sendSms(map);
+
+    public Observable<CheckImageCode> checkImageCode(String imagecode) {
+        map.put("imagecode", imagecode);
+        return userApi.checkImage(map);
     }
 }

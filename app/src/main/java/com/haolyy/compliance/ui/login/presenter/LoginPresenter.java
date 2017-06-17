@@ -3,6 +3,7 @@ package com.haolyy.compliance.ui.login.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -40,7 +41,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 //            }
 //        },"112121","1212121");
 
-        invoke(UserModel.getInstance().getLogin("13821882946","qwe123"),new Subscriber<String>() {
+        invoke(UserModel.getInstance().getLogin("13821882946", "qwe123"), new Subscriber<LoginResponseBean>() {
             @Override
             public void onCompleted() {
 
@@ -52,12 +53,11 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             }
 
             @Override
-            public void onNext(String s) {
-                LogUtils.e("ndyonNext",s);
+            public void onNext(LoginResponseBean loginResponseBean) {
+                LogUtils.e("ndyonNext", loginResponseBean.toString());
             }
         });
     }
-
 
 
 }
