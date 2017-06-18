@@ -19,6 +19,12 @@ public class DialogSuccess extends Dialog {
         getWindow().setAttributes(attributes);
         super.setContentView(R.layout.dialog_success);
         tv = (TextView) super.findViewById(R.id.tv_dialog_success);
+        tv.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+              DialogSuccess.this.dismiss();
+            }
+        },2000);
     }
 
     public void setSuccessText(String text) {

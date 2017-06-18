@@ -1,8 +1,12 @@
 package com.haolyy.compliance.ui.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -14,11 +18,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.custom.ClearEditText;
+import com.haolyy.compliance.custom.dialog.DialogSuccess;
 import com.haolyy.compliance.ui.login.presenter.RegisterPresenter;
 import com.haolyy.compliance.ui.login.view.RegisterView;
 import com.haolyy.compliance.utils.CodeUtils;
+import com.haolyy.compliance.utils.UIUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,6 +78,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     private String phone;
     private String passWord;
     private String imageCode;
+    private String smsCode;
+    private String password;
+    private boolean showPwd;
+    private String regsiterCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +92,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     }
 
     public void initView() {
-        Bitmap bitmap = CodeUtils.getInstance().createBitmap();
-        ivCode.setImageBitmap(bitmap);
-
         tvTitle.setText("快速注册");
         viewLine.setVisibility(View.VISIBLE);
 
@@ -96,6 +105,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 }
             }
         });
+
+        mPresenter.getToken();
 
 //        etImageCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override
@@ -125,24 +136,89 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     @Override
     public void skip() {
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        DialogSuccess dialogSuccess = new DialogSuccess(mContext);
+        dialogSuccess.show();
+        dialogSuccess.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                finish();
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+
     }
 
-    @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register})
+    @Override
+    public void getSms() {
+        phone = etPhone.getText().toString();
+        imageCode = etImageCode.getText().toString();
+        if (TextUtils.isEmpty(phone)) {
+            UIUtils.showToastCommon(mContext, "手机号码不能为空");
+            return;
+        } else if (TextUtils.isEmpty(imageCode)) {
+            UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+            return;
+        }
+        mPresenter.sendSms(phone, imageCode, "regist");
+    }
+
+    @Override
+    public void showImageCode() {
+        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+    }
+
+    @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
-                Glide.with(mContext).load(NetConstantValues.HOST_URL+NetConstantValues.IMAGE_GET).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+                Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.textView3:
                 phone = etPhone.getText().toString();
                 passWord = etRegisterPwd.getText().toString();
-//                mPresenter.register(phone, passWord);
+                imageCode = etImageCode.getText().toString();
+                smsCode = etSmsCode.getText().toString();
+                passWord = etRegisterPwd.getText().toString();
+                regsiterCode = etRegisterInvite.getText().toString();
+                if (TextUtils.isEmpty(phone)) {
+                    UIUtils.showToastCommon(mContext, "手机号码不能为空");
+                    return;
+                } else if (TextUtils.isEmpty(imageCode)) {
+                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    return;
+                } else if (TextUtils.isEmpty(smsCode)) {
+                    UIUtils.showToastCommon(mContext, "短信验证码不能为空");
+                    return;
+                } else if (TextUtils.isEmpty(passWord)) {
+                    UIUtils.showToastCommon(mContext, "密码不能为空");
+                    return;
+                } else if (TextUtils.isEmpty(regsiterCode)) {
+                    regsiterCode = "000";
+
+                }
+                mPresenter.register(phone, passWord, smsCode, imageCode, "Android", "haolyy", "1", "1.0", regsiterCode);
                 break;
             case R.id.tv_register_sms:
-                phone = etPhone.getText().toString();
                 imageCode = etImageCode.getText().toString();
-                mPresenter.sendSms(phone,imageCode,"regist");
+                if (TextUtils.isEmpty(imageCode)) {
+                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                } else {
+                    mPresenter.checkImageCode(imageCode);
+                }
+                break;
+            case R.id.iv_finish:
+                finish();
+                break;
+            case R.id.tv_show_pwd:
+                if (showPwd) {
+                    showPwd = false;
+                    tvShowPwd.setImageResource(R.mipmap.login_unshow);
+                    etRegisterPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    showPwd = true;
+                    tvShowPwd.setImageResource(R.mipmap.login_show);
+                    etRegisterPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
                 break;
         }
     }

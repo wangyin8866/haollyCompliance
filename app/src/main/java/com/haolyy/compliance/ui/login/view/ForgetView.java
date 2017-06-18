@@ -6,4 +6,8 @@ package com.haolyy.compliance.ui.login.view;
 
 public interface ForgetView {
     void refresh();//刷新ui
+
+    void showImageCode();
+
+    void getSms();
 }

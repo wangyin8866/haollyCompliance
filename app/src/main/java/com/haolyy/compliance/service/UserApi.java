@@ -2,6 +2,8 @@ package com.haolyy.compliance.service;
 
 
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.entity.login.RegisterBean;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -36,5 +39,12 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.IMAGE_CHECK)
     Observable<CheckImageCode> checkImage(@FieldMap Map<String, String> params);
+
+    @GET(NetConstantValues.GET_TOKEN)
+    Observable<TokenResponseBean> getToken();
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.USER_FORGETPWD)
+    Observable<BaseResponseBean> forgetPassWord(@FieldMap Map<String, String> params);
 
 }

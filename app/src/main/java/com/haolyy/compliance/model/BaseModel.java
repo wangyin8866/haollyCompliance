@@ -40,7 +40,7 @@ public  class BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL3)
+                .baseUrl(NetConstantValues.HOST_URL)
                 .build();
     }
     //添加线程管理并订阅
@@ -53,7 +53,7 @@ public  class BaseModel {
     }
     //添加线程订阅
     public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
-        LogUtils.e("params", map.toString());
+        LogUtils.e("ndy_params", map.toString());
         Subscription subscription = observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

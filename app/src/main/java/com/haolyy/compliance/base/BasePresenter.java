@@ -3,7 +3,9 @@ package com.haolyy.compliance.base;
 import android.content.Context;
 import android.util.Log;
 
+import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.model.BaseModel;
+import com.haolyy.compliance.model.UserModel;
 
 import java.lang.ref.WeakReference;
 
@@ -52,31 +54,4 @@ public abstract class BasePresenter<T> {
         return mViewRef.get();
     }
 
-    /**
-     * 用于token失效后的调用（这个版本不一定用）
-     * @param type
-     */
-    public void getToken(final int type) {
-        Log.e(tag, "发送了了1001");
-        RxBus.getInstance().post(1001);
-      /* UserModel.getInstance().getToken(BaseApplication.userId+"", new Subscriber<TokenResponseBean>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(TokenResponseBean tokenResponseBean) {
-                //失败退出登录
-                //成功通知重新发起请求
-                RxBus.getInstance().post(type);
-            }
-        });*/
-
-    }
 }

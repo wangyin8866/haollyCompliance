@@ -1,5 +1,7 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
@@ -35,14 +37,9 @@ public class UserModel extends BaseModel {
 
     /**
      * 获取token的方法
-     *
-     * @param userId
-     * @param subscriber
      */
-    public void getToken(String userId, Subscriber<TokenResponseBean> subscriber) {
-        map.put("userId", userId);
-        Observable observable = null;
-        toSubscribe(observable, subscriber);
+    public Observable<TokenResponseBean> getToken() {
+       return userApi.getToken();
     }
 
     /**
@@ -61,20 +58,37 @@ public class UserModel extends BaseModel {
         return userApi.login(map);
     }
 
-    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version) {
+    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version,String registerCode) {
+        map.clear();
         map.put("mobile", phone_num);
-        map.put("password", password);
+        map.put("passWord", password);
         map.put("smsCode", smsCode);
         map.put("imageCode", imageCode);
         map.put("client", client);
         map.put("platform", platform);
         map.put("registBd", registBd);
         map.put("version", version);
+        map.put("registIp","192.168.2.223");
+        map.put("registerCode",registerCode);
+        map.put("token",BaseApplication.token);
         return userApi.register(map);
     }
 
     public Observable<CheckImageCode> checkImageCode(String imagecode) {
         map.put("imagecode", imagecode);
+        map.put("token", BaseApplication.token);
         return userApi.checkImage(map);
+    }
+
+    public Observable<BaseResponseBean> forgetPassWord(String phone_num, String password,String smsCode,String imageCode,String client,String platform) {
+        map.clear();
+        map.put("mobile", phone_num);
+        map.put("passWord", password);
+        map.put("smsCode", smsCode);
+        map.put("imageCode", imageCode);
+        map.put("client", client);
+        map.put("platform", platform);
+        map.put("token",BaseApplication.token);
+        return userApi.forgetPassWord(map);
     }
 }
