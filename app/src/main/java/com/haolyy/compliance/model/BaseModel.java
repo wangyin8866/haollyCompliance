@@ -43,14 +43,7 @@ public  class BaseModel {
                 .baseUrl(NetConstantValues.HOST_URL)
                 .build();
     }
-    //添加线程管理并订阅
-    void toSubscribe(Observable o, Subscriber s) {
 
-        o.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s);
-    }
     //添加线程订阅
     public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
         LogUtils.e("ndy_params", map.toString());

@@ -23,6 +23,7 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.AutoVerticalScrollTextView;
 import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.LocalImageHolderView;
+import com.haolyy.compliance.custom.MyPointView;
 import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
@@ -64,6 +65,10 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     RelativeLayout rlActivity;
     @BindView(R.id.rl_invite_friend)
     RelativeLayout rlInviteFriend;
+    @BindView(R.id.point_view1)
+    MyPointView pointView1;
+    @BindView(R.id.point_view2)
+    MyPointView pointView2;
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
     private List<TestProduct> testProducts;
@@ -72,6 +77,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     private boolean isAutoRollRunning = false;
     private int autoRollIndex;
+
 
     @Nullable
     @Override
@@ -93,20 +99,57 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
 
 
-
         testProducts = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             TestProduct testProduct = new TestProduct(1 + i, 10 + i, i, 100 * i, 1000 * i);
             testProducts.add(testProduct);
         }
-        homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
-        homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
 
+
+        pointView1.init(testProducts);
+        pointView2.init(testProducts);
+
+        homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
+        homeNewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pointView1.selectView(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
+        homeActivityPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pointView2.selectView(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         homeXlv.setAdapter(new HomeProductAdapter(testProducts, getActivity()));
         return view;
     }
 
+
     private void initView() {
+
         isInvest = false;
         if (isInvest) {
             homeLlVisibility.setVisibility(View.GONE);
@@ -120,15 +163,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         textviewAutoRoll.setText(auto_roll_strings[0]);
         isAutoRollRunning = true;
         handler.sendEmptyMessage(199);
-//        executor.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (isAutoRollRunning){
-//                    SystemClock.sleep(3000);
-//                    handler.sendEmptyMessage(199);
-//                }
-//            }
-//        });
+
     }
 
 
@@ -155,7 +190,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         return new HomeLoginPresenter(mContext);
     }
 
-    @OnClick({R.id.rl_activity, R.id.rl_invite_friend,R.id.iv_zhang_dan})
+    @OnClick({R.id.rl_activity, R.id.rl_invite_friend, R.id.iv_zhang_dan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_zhang_dan:

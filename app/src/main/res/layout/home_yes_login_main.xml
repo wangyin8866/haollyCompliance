@@ -258,46 +258,28 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/bg_home_pager" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/iv1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/banner_checked" />
-
-                    <ImageView
-                        android:id="@+id/iv2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_toRightOf="@+id/iv1"
-                        android:src="@mipmap/banner_point" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/iv2"
-                        android:src="@mipmap/banner_point" />
-                </RelativeLayout>
-
+               <com.haolyy.compliance.custom.MyPointView
+                   android:id="@+id/point_view1"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp"/>
                 <include layout="@layout/bg_line" />
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/home_activity_pager"
                     android:layout_width="match_parent"
                     android:layout_height="94dp"
-                    android:layout_marginBottom="25dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/bg_home_pager" />
+                <com.haolyy.compliance.custom.MyPointView
+                    android:id="@+id/point_view2"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <include layout="@layout/bg_line" />
