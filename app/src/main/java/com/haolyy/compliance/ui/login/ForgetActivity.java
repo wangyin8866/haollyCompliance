@@ -17,6 +17,7 @@ import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.ui.login.presenter.ForgetPresenter;
 import com.haolyy.compliance.ui.login.view.ForgetView;
+import com.haolyy.compliance.utils.DateUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -106,6 +107,11 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
         phone = etForgetAccount.getText().toString();
         imageCode = etForgetImage.getText().toString();
         mPresenter.sendSms(phone, imageCode, "find_login_psd");
+    }
+
+    @Override
+    public void countDown() {
+        DateUtil.countDown(tvSendSms);
     }
 
     @OnClick({R.id.iv_code, R.id.tv_send_sms, R.id.tv_forget_next, R.id.iv_finish, R.id.iv_show_pwd})

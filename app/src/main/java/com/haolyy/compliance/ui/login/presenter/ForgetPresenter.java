@@ -62,7 +62,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
             @Override
             public void onNext(SmsBean s) {
-                LogUtils.e(tag, s.toString());
+               getView().countDown();
             }
         });
     }

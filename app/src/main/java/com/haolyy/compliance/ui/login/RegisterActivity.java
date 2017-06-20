@@ -2,7 +2,6 @@ package com.haolyy.compliance.ui.login;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -24,7 +23,7 @@ import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogSuccess;
 import com.haolyy.compliance.ui.login.presenter.RegisterPresenter;
 import com.haolyy.compliance.ui.login.view.RegisterView;
-import com.haolyy.compliance.utils.CodeUtils;
+import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
 
 import butterknife.BindView;
@@ -165,6 +164,14 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     @Override
     public void showImageCode() {
         Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+    }
+
+    /**
+     * 短信倒计时
+     */
+    @Override
+    public void countDown() {
+        DateUtil.countDown(tvRegisterSms);
     }
 
     @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish})

@@ -72,7 +72,7 @@ public class DateUtil {
     public static void countDown( final TextView tv) {
         final long[] currentTime = {Config.seconds-1000};
         tv.setText("119s");
-        Observable.interval(1, TimeUnit.SECONDS,AndroidSchedulers.mainThread())
+         Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Long>() {

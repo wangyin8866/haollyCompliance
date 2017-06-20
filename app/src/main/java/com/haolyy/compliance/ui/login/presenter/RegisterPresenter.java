@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
-import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.RegisterBean;
@@ -71,6 +70,9 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
             @Override
             public void onNext(SmsBean s) {
+                if(s.getData().getStatus().equals("200")){
+                    getView().countDown();
+                }
             }
         });
     }

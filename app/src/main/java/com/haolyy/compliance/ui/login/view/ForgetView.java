@@ -10,4 +10,6 @@ public interface ForgetView {
     void showImageCode();
 
     void getSms();
+
+    void countDown();
 }

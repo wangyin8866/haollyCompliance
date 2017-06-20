@@ -12,4 +12,6 @@ public interface RegisterView {
     void getSms();
 
     void showImageCode();
+
+    void countDown();
 }
