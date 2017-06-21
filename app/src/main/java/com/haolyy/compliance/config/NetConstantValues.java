@@ -9,8 +9,8 @@ public interface NetConstantValues {
 
     /* String HOST_URL = "http://192.168.11.104:8080/";
      String HOST_URL2 = "http://192.168.11.104:8081/";*/
-    String HOST_URL = "http://192.168.7.113:8006/";
-    String HOST_URL2 = "http://192.168.7.113:8018/";
+    String HOST_URL = "http://192.168.7.113:8006/";//base
+    String HOST_URL2 = "http://192.168.7.113:8018/";//短信
     String USERMANAGE = "chinazy-user-manage/";
     String BIGTHREE = "chinazy-sms-bigthree/api/";
 
