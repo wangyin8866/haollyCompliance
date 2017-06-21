@@ -35,7 +35,6 @@ public  class BaseModel {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = new OkHttpClient.Builder();
         httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        new Retrofit.Builder();
         retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -48,6 +47,7 @@ public  class BaseModel {
     public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
         LogUtils.e("ndy_params", map.toString());
         Subscription subscription = observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
         lifeSubscription.bindSubscription(subscription);

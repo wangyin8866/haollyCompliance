@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,9 +14,6 @@ import android.widget.EditText;
 import java.util.List;
 
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -37,7 +33,6 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
      */
     protected Context mContext;
     protected Bundle mSavedInstanceState;
-    protected Subscription subscription;
     /**
      * 判断是否是运行在后台
      */
@@ -87,11 +82,6 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
 
     protected abstract void handleMessage(Integer s);
 
-    protected void unsubscribe() {
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -118,7 +108,6 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
     @Override
     public void finish() {
         isInBackground = false;
-        unsubscribe();
         super.finish();
     }
 

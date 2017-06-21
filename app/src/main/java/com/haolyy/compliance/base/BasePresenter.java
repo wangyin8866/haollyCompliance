@@ -1,11 +1,8 @@
 package com.haolyy.compliance.base;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.model.BaseModel;
-import com.haolyy.compliance.model.UserModel;
 
 import java.lang.ref.WeakReference;
 
@@ -23,7 +20,6 @@ public abstract class BasePresenter<T> {
     public String tag = this.getClass().getSimpleName();
     public LifeSubscription lifeSubscription;
     public void setLifeSubscription(LifeSubscription lifeSubscription) {
-        Log.e("setLifeSubscription", "setLifeSubscription");
         this.lifeSubscription = lifeSubscription;
     }
     protected <T> void invoke(Observable<T> observable, Subscriber<T> subscriber) {
