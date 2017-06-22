@@ -2,6 +2,7 @@ package com.haolyy.compliance.base;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -10,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
+import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.List;
 
@@ -53,6 +56,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemBarUtil.setSystemBar(this, Color.WHITE);
         mContext = this;
         isInBackground = false;
         ActivityCollector.addActivity(this);
