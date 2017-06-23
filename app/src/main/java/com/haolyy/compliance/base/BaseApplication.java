@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.squareup.leakcanary.LeakCanary;
 
 
 /**
@@ -57,9 +58,12 @@ public class BaseApplication extends Application {
     public static String Borrow_Amount;
     public static String Borrow_Deline;
     public static String token;
+    public static String BankFrom;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
         context = getApplicationContext();
         mMainThreadId = android.os.Process.myTid();
         mMainThread = Thread.currentThread();

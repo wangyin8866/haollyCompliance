@@ -8,4 +8,9 @@ import com.haolyy.compliance.base.BaseView;
  */
 
 public interface BankBindView extends BaseView {
+    void showSmsDialog(String smsSeq);
+
+    void refreshDialog(String smsSeq);
+
+    void pushActivity(String baseResponseBean);
 }

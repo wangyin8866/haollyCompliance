@@ -56,7 +56,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SystemBarUtil.setSystemBar(this, Color.WHITE);
+        //SystemBarUtil.setSystemBar(this, Color.WHITE);
         mContext = this;
         isInBackground = false;
         ActivityCollector.addActivity(this);

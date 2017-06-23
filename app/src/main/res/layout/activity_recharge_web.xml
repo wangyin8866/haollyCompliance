@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.haolyy.compliance.ui.bank.RechargeWebActivity">
+
+    <include layout="@layout/public_title_back" />
+
+    <WebView
+        android:id="@+id/web_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_recharge_error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_error"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="充值失败"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="银行卡余额不足，请确保银行卡余额充足"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_try_again"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/shape_yellow_radius"
+            android:gravity="center"
+            android:text="再试试"
+            android:textColor="@color/bg_ff9933"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_back_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="返回账户中心 >"
+            android:textColor="#FF69ACFC"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_recharge_success"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_success"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="充值成功"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="您本次充值金额为23,458,562.00元"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_go_invest"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/shape_yellow_radius"
+            android:gravity="center"
+            android:text="去投资"
+            android:textColor="@color/bg_ff9933"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_go_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="去账户中心查看 >"
+            android:textColor="#FF69ACFC"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+</RelativeLayout>

@@ -54,7 +54,8 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="请输入图形验证码"
-            android:maxLength="11"
+            android:maxLength="4"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:textColor="@color/text_374666"
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="15sp" />
@@ -94,7 +95,7 @@
             android:gravity="center_vertical"
             android:hint="请输入验证码"
             android:inputType="number"
-            android:maxLength="11"
+            android:maxLength="6"
             android:textColor="@color/text_374666"
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="15sp" />
@@ -142,7 +143,8 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="请设置您的登录密码"
-            android:maxLength="11"
+            android:maxLength="12"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:textColor="@color/text_374666"
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="15sp" />
@@ -185,7 +187,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/selector_login_btn"
         android:gravity="center"
-        android:text="忘记密码"
+        android:text="确定"
         android:textColor="@color/white"
         android:textSize="16sp" />
 

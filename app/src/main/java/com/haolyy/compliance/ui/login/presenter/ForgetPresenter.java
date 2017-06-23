@@ -1,6 +1,7 @@
 package com.haolyy.compliance.ui.login.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
@@ -11,8 +12,10 @@ import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.SmsBean;
 import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.UserModel;
+import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.login.view.ForgetView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 
 import rx.Subscriber;
 
@@ -40,9 +43,18 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
             @Override
             public void onNext(TokenResponseBean s) {
-                String token = s.getData().getData().getToken();
-                BaseApplication.token = token;
-                getView().showImageCode();
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        String token = s.getData().getData().getToken();
+                        BaseApplication.token = token;
+                        getView().showImageCode();
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
+                }
+
             }
         });
 
@@ -62,7 +74,16 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
             @Override
             public void onNext(SmsBean s) {
-               getView().countDown();
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        getView().countDown();
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
+                }
+
             }
         });
     }
@@ -81,9 +102,17 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
             @Override
             public void onNext(CheckImageCode s) {
-                if (s.getData().getStatus().equals("200")) {
-                    getView().getSms();
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        getView().getSms(true);
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                        getView().getSms(false);
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
                 }
+
             }
         });
     }
@@ -101,8 +130,16 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             }
 
             @Override
-            public void onNext(BaseResponseBean baseResponseBean) {
-
+            public void onNext(BaseResponseBean s) {
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
+                }
             }
         });
     }

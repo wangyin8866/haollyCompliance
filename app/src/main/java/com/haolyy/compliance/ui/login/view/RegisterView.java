@@ -9,7 +9,7 @@ public interface RegisterView {
 
     void skip();
 
-    void getSms();
+    void getSms(boolean b);
 
     void showImageCode();
 

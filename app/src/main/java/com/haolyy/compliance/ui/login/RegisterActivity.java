@@ -25,6 +25,7 @@ import com.haolyy.compliance.ui.login.presenter.RegisterPresenter;
 import com.haolyy.compliance.ui.login.view.RegisterView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WyUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -147,18 +148,27 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     }
 
+    /**
+     * 图形验证码成功之后调用发送短息的接口
+     *
+     * @param isGetSms true 发送验证码 false 让按钮可点击
+     */
     @Override
-    public void getSms() {
-        phone = etPhone.getText().toString();
-        imageCode = etImageCode.getText().toString();
-        if (TextUtils.isEmpty(phone)) {
-            UIUtils.showToastCommon(mContext, "手机号码不能为空");
-            return;
-        } else if (TextUtils.isEmpty(imageCode)) {
-            UIUtils.showToastCommon(mContext, "图形验证码不能为空");
-            return;
+    public void getSms(boolean isGetSms) {
+        if (isGetSms) {
+            phone = etPhone.getText().toString();
+            imageCode = etImageCode.getText().toString();
+            if (TextUtils.isEmpty(phone) || !WyUtils.checkPhone(phone)) {
+                UIUtils.showToastCommon(mContext, "请填写正确的手机号码");
+                return;
+            } else if (TextUtils.isEmpty(imageCode)) {
+                UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                return;
+            }
+            mPresenter.sendSms(phone, imageCode, "regist");
+        } else {
+            tvRegisterSms.setEnabled(true);
         }
-        mPresenter.sendSms(phone, imageCode, "regist");
     }
 
     @Override
@@ -171,7 +181,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
      */
     @Override
     public void countDown() {
-        DateUtil.countDown(tvRegisterSms);
+        DateUtil.countDown(tvRegisterSms, "重新发送");
     }
 
     @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish})
@@ -206,6 +216,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 mPresenter.register(phone, passWord, smsCode, imageCode, "Android", "haolyy", "1", "1.0", regsiterCode);
                 break;
             case R.id.tv_register_sms:
+                tvRegisterSms.setEnabled(false);
                 imageCode = etImageCode.getText().toString();
                 if (TextUtils.isEmpty(imageCode)) {
                     UIUtils.showToastCommon(mContext, "图形验证码不能为空");

@@ -7,6 +7,7 @@ import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 
 import rx.Subscriber;
 
@@ -21,9 +22,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         super(context);
     }
 
-    public void login(String phone_num, String password,String loginIp,String version,String platform,String client) {
+    public void login(String phone_num, String password, String loginIp, String version, String platform, String client) {
 
-        invoke(UserModel.getInstance().login(phone_num, password,loginIp,version,platform,client), new Subscriber<LoginResponseBean>() {
+        invoke(UserModel.getInstance().login(phone_num, password, loginIp, version, platform, client), new Subscriber<LoginResponseBean>() {
             @Override
             public void onCompleted() {
 
@@ -36,11 +37,19 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
             @Override
             public void onNext(LoginResponseBean loginResponseBean) {
-                LogUtils.e("ndyonNext", loginResponseBean.toString());
+                if (loginResponseBean.getStatus().equals("200")) {
+                    if (loginResponseBean.getData().getStatus().equals("200")) {
+                        UIUtils.showToastCommon(mContext, "登陆成功");
+                    } else {
+                        UIUtils.showToastCommon(mContext, loginResponseBean.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, loginResponseBean.getMsg());
+                }
+
             }
         });
     }
-
 
 
 }

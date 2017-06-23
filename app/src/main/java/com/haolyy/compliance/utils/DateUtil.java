@@ -69,10 +69,10 @@ public class DateUtil {
      * 验证码倒计时
      * @param tv
      */
-    public static void countDown( final TextView tv) {
+    public static void countDown(final TextView tv, final String reset) {
         final long[] currentTime = {Config.seconds-1000};
         tv.setText("119s");
-         Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+        Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Long>() {
@@ -91,13 +91,11 @@ public class DateUtil {
                     public void onNext(Long aLong) {
                         currentTime[0] -= 1000;
                         if (currentTime[0] < 0) {
-                            tv.setText("发送验证码");
-
+                            tv.setText(reset);
                             tv.setEnabled(true);
                             unsubscribe();
                         } else {
                             tv.setText(currentTime[0] / 1000 + "s");
-                            tv.setEnabled(false);
                         }
                     }
                 });

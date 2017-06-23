@@ -22,6 +22,7 @@
             android:layout_height="47dp"
             android:background="@color/white"
             android:orientation="horizontal"
+            android:paddingRight="20dp"
             android:paddingLeft="20dp">
 
             <TextView
@@ -35,12 +36,12 @@
 
             <com.haolyy.compliance.custom.ClearEditText
                 android:id="@+id/tv_real_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:drawableRight="@mipmap/login_delete"
+                android:inputType="text"
                 android:gravity="center"
-                android:hint="张三"
                 android:textColor="@color/text_9b9b9b"
                 android:textColorHint="@color/text_9b9b9b"
                 android:textSize="14sp" />
@@ -55,6 +56,7 @@
             android:layout_height="47dp"
             android:background="@color/white"
             android:orientation="horizontal"
+            android:paddingRight="20dp"
             android:paddingLeft="20dp">
 
             <TextView
@@ -68,13 +70,13 @@
 
             <com.haolyy.compliance.custom.ClearEditText
                 android:id="@+id/tv_id_card"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:drawablePadding="10dp"
                 android:drawableRight="@mipmap/login_delete"
                 android:gravity="center"
-                android:hint="32000000000000000000000000000"
+                android:maxLength="18"
                 android:inputType="number"
                 android:paddingRight="10dp"
                 android:textColor="@color/text_9b9b9b"
@@ -100,12 +102,19 @@
                 android:textColor="@color/text_4a4a4a"
                 android:textSize="14sp" />
 
-            <TextView
+            <ImageView
+                android:id="@+id/iv_bank_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="127dp"
-                android:drawableLeft="@mipmap/bank_logo"
-                android:drawablePadding="10dp"
+                android:src="@mipmap/bank_logo" />
+
+            <TextView
+                android:id="@+id/tv_bank_name_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_bank_logo"
                 android:gravity="center"
                 android:text="招商银行"
                 android:textColor="@color/text_4a4a4a"
@@ -125,11 +134,16 @@
                 android:textSize="14sp" />
         </RelativeLayout>
 
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="47dp"
             android:background="@color/white"
             android:orientation="horizontal"
+            android:paddingRight="20dp"
             android:paddingLeft="20dp">
 
             <TextView
@@ -142,11 +156,14 @@
                 android:textSize="14sp" />
 
             <com.haolyy.compliance.custom.ClearEditText
-                android:layout_width="wrap_content"
+                android:id="@+id/et_card_no"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:background="@null"
                 android:drawableRight="@mipmap/login_delete"
                 android:gravity="center"
+                android:maxLength="19"
                 android:hint="请输入银行卡号"
                 android:textColor="@color/text_9b9b9b"
                 android:textColorHint="@color/text_9b9b9b"
@@ -154,18 +171,25 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_limit"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:gravity="right"
             android:paddingRight="20dp"
             android:paddingTop="9dp"
             android:text="招商银行 单笔限额5万元，每日限额5万元"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="47dp"
             android:background="@color/white"
+            android:paddingRight="20dp"
             android:paddingLeft="20dp">
 
             <TextView
@@ -178,9 +202,12 @@
                 android:textSize="14sp" />
 
             <com.haolyy.compliance.custom.ClearEditText
-                android:layout_width="wrap_content"
+                android:id="@+id/et_bank_phone"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
+                android:inputType="number"
+                android:maxLength="11"
                 android:drawableRight="@mipmap/login_delete"
                 android:gravity="center"
                 android:hint="请输入手机号码"
@@ -195,6 +222,7 @@
             android:paddingLeft="20dp">
 
             <CheckBox
+                android:id="@+id/cb_bind_proctor"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="6dp"
@@ -226,7 +254,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/titleBar"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -309,7 +337,7 @@
     <TextView
         android:id="@+id/tv_bank_next"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/bg_ff9933"
         android:gravity="center"

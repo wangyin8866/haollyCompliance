@@ -31,8 +31,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
     }
 
-    public void register(String phone_num, String password, String smsCode, String imageCode, String client, String platform, String registBd, String version,String regsiterCode) {
-        invoke(UserModel.getInstance().register(phone_num, password, smsCode, imageCode, client, platform, registBd, version,regsiterCode), new Subscriber<RegisterBean>() {
+    public void register(String phone_num, String password, String smsCode, String imageCode, String client, String platform, String registBd, String version, String regsiterCode) {
+        invoke(UserModel.getInstance().register(phone_num, password, smsCode, imageCode, client, platform, registBd, version, regsiterCode), new Subscriber<RegisterBean>() {
             @Override
             public void onCompleted() {
 
@@ -45,10 +45,14 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
             @Override
             public void onNext(RegisterBean s) {
-                if (s.getData().getStatus().equals("200")) {
-                    getView().skip();
-                }else {
-                    UIUtils.showToastCommon(mContext,s.getData().getMsg());
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        getView().skip();
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
                 }
             }
         });
@@ -70,8 +74,14 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
             @Override
             public void onNext(SmsBean s) {
-                if(s.getData().getStatus().equals("200")){
-                    getView().countDown();
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        getView().countDown();
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
                 }
             }
         });
@@ -91,9 +101,17 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
             @Override
             public void onNext(CheckImageCode s) {
-                if (s.getData().getStatus().equals("200")) {
-                    getView().getSms();
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        getView().getSms(true);
+                    } else {
+                        UIUtils.showToastCommon(mContext,s.getData().getMsg());
+                        getView().getSms(false);
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
                 }
+
             }
         });
     }
@@ -112,9 +130,18 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
             @Override
             public void onNext(TokenResponseBean s) {
-                String token = s.getData().getData().getToken();
-                BaseApplication.token = token;
-                getView().showImageCode();
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        String token = s.getData().getData().getToken();
+                        BaseApplication.token = token;
+                        getView().showImageCode();
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                    }
+                } else {
+                    UIUtils.showToastCommon(mContext, s.getMsg());
+                }
+
             }
         });
 

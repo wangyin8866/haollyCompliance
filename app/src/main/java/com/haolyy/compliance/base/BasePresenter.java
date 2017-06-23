@@ -50,4 +50,5 @@ public abstract class BasePresenter<T> {
         return mViewRef.get();
     }
 
+
 }

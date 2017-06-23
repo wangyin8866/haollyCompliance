@@ -9,7 +9,7 @@ public interface ForgetView {
 
     void showImageCode();
 
-    void getSms();
+    void getSms(boolean isGetSms);
 
     void countDown();
 }

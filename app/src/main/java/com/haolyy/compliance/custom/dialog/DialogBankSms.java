@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.utils.DateUtil;
 
 public class DialogBankSms extends Dialog {
     private TextView btn1Dialog;
@@ -20,6 +21,11 @@ public class DialogBankSms extends Dialog {
     private OnDoubleClickListener mdouble;
     private DialogBankSms instance;
     private EditText editText;
+    private TextView tips;
+    public TextView getBtn() {
+        return btn;
+    }
+
     private TextView btn;
     private TextView tvContent;
 
@@ -35,12 +41,12 @@ public class DialogBankSms extends Dialog {
         editText = (EditText) super.findViewById(R.id.et_sms);
         btn = (TextView) super.findViewById(R.id.btn_sms);
         tvContent = (TextView) super.findViewById(R.id.tv_sms_content);
-
+        tips=(TextView) super.findViewById(R.id.tv_wrong_tips);
         initListener();
     }
 
     public interface OnDoubleClickListener {
-        void executeSend();
+        void executeSend(String sms);
 
         void executeLeft();
 
@@ -65,6 +71,7 @@ public class DialogBankSms extends Dialog {
             @Override
             public void onClick(View view) {
                 mdouble.executeRight();
+                dismiss();
             }
         });
 
@@ -72,7 +79,7 @@ public class DialogBankSms extends Dialog {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mdouble.executeSend();
+                        mdouble.executeSend(editText.getText().toString());
                     }
                 }
         );
@@ -92,7 +99,12 @@ public class DialogBankSms extends Dialog {
         SpannableStringBuilder style = new SpannableStringBuilder("上海银行\n已给尾号" + text + "的手机发送了验证码");
         style.setSpan(new ForegroundColorSpan(Color.parseColor("#ff9933")), 9, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvContent.setText(style);
-        //tvContent.setText("上海银行\n已给尾号"+text+"的手机发送了验证码");
+        btn.setEnabled(false);
+        DateUtil.countDown(btn, "重发");
         return instance;
+    }
+
+    public void setWrongTips(String text) {
+        tips.setText(text);
     }
 }

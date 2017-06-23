@@ -1,6 +1,7 @@
 package com.haolyy.compliance.ui.login;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.ui.login.presenter.ForgetPresenter;
 import com.haolyy.compliance.ui.login.view.ForgetView;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WyUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -101,9 +104,12 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
     public void showImageCode() {
         Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
     }
-
+    /**
+     * 图形验证码成功之后调用发送短息的接口
+     * @param  isGetSms true 发送验证码 false 让按钮可点击
+     */
     @Override
-    public void getSms() {
+    public void getSms(boolean isGetSms) {
         phone = etForgetAccount.getText().toString();
         imageCode = etForgetImage.getText().toString();
         mPresenter.sendSms(phone, imageCode, "find_login_psd");
@@ -111,7 +117,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
 
     @Override
     public void countDown() {
-        DateUtil.countDown(tvSendSms);
+        DateUtil.countDown(tvSendSms,"重新发送");
     }
 
     @OnClick({R.id.iv_code, R.id.tv_send_sms, R.id.tv_forget_next, R.id.iv_finish, R.id.iv_show_pwd})
@@ -121,7 +127,16 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.tv_send_sms:
+                tvSendSms.setEnabled(false);
+                phone = etForgetAccount.getText().toString();
                 imageCode = etForgetImage.getText().toString();
+                if (TextUtils.isEmpty(phone)||!WyUtils.checkPhone(phone)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确手机号码");
+                    return;
+                } else if (TextUtils.isEmpty(imageCode)) {
+                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    return;
+                }
                 mPresenter.checkImageCode(imageCode);
                 break;
             case R.id.tv_forget_next:
@@ -129,6 +144,19 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 imageCode = etForgetImage.getText().toString();
                 passWord = etForgetPwd.getText().toString();
                 smsCode = etForgetSms.getText().toString();
+                if (TextUtils.isEmpty(phone)||!WyUtils.checkPhone(phone)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确手机号码");
+                    return;
+                } else if (TextUtils.isEmpty(imageCode)) {
+                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    return;
+                } else if (TextUtils.isEmpty(smsCode)) {
+                    UIUtils.showToastCommon(mContext, "短信验证码不能为空");
+                    return;
+                } else if (TextUtils.isEmpty(passWord)||!WyUtils.checkPass(passWord)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确的密码");
+                    return;
+                }
                 mPresenter.forgetPassWord(phone, passWord, smsCode, imageCode, "Android", "haolyy");
                 break;
             case R.id.iv_show_pwd:

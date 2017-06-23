@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="275dp"
+    android:layout_width="280dp"
     android:layout_height="200dp"
     android:background="@drawable/dialog_bg"
     android:orientation="vertical"
@@ -27,18 +27,18 @@
             android:id="@+id/et_sms"
             android:layout_width="114dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="64dp"
+            android:layout_marginRight="54dp"
+            android:background="@null"
             android:hint="请输入短信验证码"
             android:textColor="@color/text_9b9b9b"
-            android:background="@null"
             android:textColorHint="@color/text_9b9b9b"
             android:textSize="14sp" />
 
         <TextView
-            android:enabled="false"
             android:id="@+id/btn_sms"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:padding="6dp"
             android:text="59s"
             android:textColor="@drawable/selector_sms_color"
@@ -49,8 +49,8 @@
         android:id="@+id/tv_wrong_tips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="验证码错误"
         android:textColor="@color/text_ff7753"
         android:textSize="12sp" />
@@ -62,18 +62,20 @@
 
         <TextView
             android:id="@+id/tv_sms_cancel"
-            android:layout_width="28dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="40dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="取消"
             android:textColor="@color/text_4a4a4a"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_sms_sure"
-            android:layout_width="28dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="97dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="确定"
             android:textColor="@color/bg_ff9933"
             android:textSize="14sp" />

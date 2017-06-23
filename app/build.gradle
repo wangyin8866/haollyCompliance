@@ -29,18 +29,21 @@ dependencies {
     })
     compile project(':retrofitlibrary')
     // banner
+    
+
+    // RxBinding
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.github.jdsjlzx:LRecyclerView:1.4.3'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-
-    // RxBinding
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-design:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.3.0'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 }

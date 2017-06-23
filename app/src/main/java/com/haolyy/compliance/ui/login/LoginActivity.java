@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,6 +15,8 @@ import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.SystemBarUtil;
+import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WyUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -88,8 +91,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             case R.id.tv_login:
                 phone = etAccount.getText().toString();
                 pwd = etPwd.getText().toString();
+                if (TextUtils.isEmpty(phone)|| !WyUtils.checkPhone(phone)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确的手机号");
+                    return;
+                } else if (TextUtils.isEmpty(pwd)||!WyUtils.checkPass(pwd)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确的密码");
+                    return;
+                }
                 mPresenter.login(phone, pwd,"192.168.7.113","1223","haolyy","android");
-                startActivity(new Intent(mContext, MainActivity.class));
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);

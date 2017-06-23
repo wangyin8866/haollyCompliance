@@ -2,6 +2,7 @@ package com.haolyy.compliance.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.support.design.widget.TabLayout;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -20,7 +21,7 @@ import java.util.Locale;
 
 public class WyUtils {
 
-    //手机号码正则
+    //手机号码正则0
     private static String phoneRex = "^1\\d{10}";
     //密码正则
     private static String passRex = "^(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[\\-\\/:;()$&@\"\\.,\\?\\!'\\[\\]#%\\^\\*\\+=_\\\\\\|~<>€£¥•：；（）¥@“”。，、？！【】｛｝—《》\\·]+$)[\\da-zA-Z\\-\\/:;()$&@\"\\.,\\?\\!'\\[\\]#%\\^\\*\\+=_\\\\\\|~<>€£¥•：；（）¥@“”。，、？！【】｛｝—《》\\·]{6,20}$";
@@ -32,10 +33,6 @@ public class WyUtils {
     private static String chn_characters = "([\\u4e00-\\u9fa5]{2,10})";
     // F码
     private static String fma = "^[a-zA-Z0-9]{6}$";//    /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{2,})$/
-
-
-
-
 
 
     public static boolean checkPhone(String phone) {
@@ -69,6 +66,19 @@ public class WyUtils {
     }
 
     /**
+     * 2      * 判断当前应用是否是debug状态
+     * 3
+     */
+    public static boolean isApkInDebug(Context context) {
+        try {
+            ApplicationInfo info = context.getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
      * 修改tabLayoutIndicator长度
      */
     public static void setIndicator(Context context, TabLayout tabs, int leftDip, int rightDip) {
@@ -88,8 +98,8 @@ public class WyUtils {
             e.printStackTrace();
         }
 
-        int left = (int) (getDisplayMetrics(context).density * UIUtils.dp2px(leftDip,context));
-        int right = (int) (getDisplayMetrics(context).density *  UIUtils.dp2px(rightDip,context));
+        int left = (int) (getDisplayMetrics(context).density * UIUtils.dp2px(leftDip, context));
+        int right = (int) (getDisplayMetrics(context).density * UIUtils.dp2px(rightDip, context));
 
         for (int i = 0; i < ll_tab.getChildCount(); i++) {
             View child = ll_tab.getChildAt(i);
