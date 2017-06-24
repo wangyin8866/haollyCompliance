@@ -93,6 +93,9 @@
             android:name=".ui.bank.WithDrawWebActivity"
             android:screenOrientation="portrait" />
         >
+        <!--提现-->
+        <activity android:name=".ui.bank.WithDrawActivity"
+            android:screenOrientation="portrait"/>
         <!-- 第二板块交易记录 -->
         <activity
             android:name=".ui.my.DealLogActivity"

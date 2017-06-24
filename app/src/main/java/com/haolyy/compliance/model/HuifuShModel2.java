@@ -4,11 +4,8 @@ import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.service.HuifuShApi;
-import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.LogInterceptor;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -21,6 +18,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.haolyy.compliance.model.BaseModel.map;
+
 /**
  * Created by LL on 2017/1/7.
  */
@@ -30,7 +29,6 @@ public class HuifuShModel2 {
     private static HuifuShModel2 userModel;
     private static final int DEFAULT_TIMEOUT = 10;
     Retrofit retrofit;
-    static Map<String, String> map = new HashMap<>();
     OkHttpClient.Builder httpClientBuilder;
 
     public HuifuShModel2() {
@@ -48,7 +46,6 @@ public class HuifuShModel2 {
 
     //添加线程订阅
     public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
-        LogUtils.e("ndy_params", map.toString());
         Subscription subscription = observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
@@ -68,20 +65,21 @@ public class HuifuShModel2 {
     }
 
     /**
+     * 充值
      *
      * @param from_mobile_  用户手机号
      * @param gate_busi_id_ 支付网关业务代号
-     * @param ret_url_ 返回页面
-     * @param sms_code_ 短信验证码
-     * @param sms_seq_ 短信序号
-     * @param trans_amt_ 充值金额
-     * @param mer_id_ 平台
-     * @param client_ 客户端
-     * @param version_ 版本号
-     * @param juid 用户平台号
+     * @param ret_url_      返回页面
+     * @param sms_code_     短信验证码
+     * @param sms_seq_      短信序号
+     * @param trans_amt_    充值金额
+     * @param mer_id_       平台
+     * @param client_       客户端
+     * @param version_      版本号
+     * @param juid          用户平台号
      * @return
      */
-    public Observable<String> recharge(String from_mobile_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_, String mer_id_,String client_,String version_ ,String juid,String UsrCustId ) {
+    public Observable<String> recharge(String from_mobile_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_, String mer_id_, String client_, String version_, String juid, String UsrCustId, String bank_id_) {
         map.put("from_mobile_", from_mobile_);
         map.put("gate_busi_id_", gate_busi_id_);
         map.put("ret_url_", ret_url_);
@@ -93,6 +91,7 @@ public class HuifuShModel2 {
         map.put("version_", version_);
         map.put("juid", juid);
         map.put("UsrCustId", UsrCustId);
+        map.put("bank_id_", bank_id_);
         return huifuShApi.recharge(map);
     }
 
@@ -174,5 +173,20 @@ public class HuifuShModel2 {
         map.put("user_id_", user_id);
         map.put("client_", client);
         return huifuShApi.register(map);
+    }
+
+    public Observable<String> withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_, String ret_url_, String trans_amt_, String juid,
+                                       String mer_id_, String client_, String version_) {
+        map.put("cash_serv_fee_", cash_serv_fee_);
+        map.put("UsrCustId", UsrCustId);
+        map.put("from_mobile_", from_mobile_);
+        map.put("ret_url_", ret_url_);
+        map.put("trans_amt_", trans_amt_);
+        map.put("juid", juid);
+        map.put("mer_id_", mer_id_);
+        map.put("client_", client_);
+        map.put("version_", version_);
+
+        return huifuShApi.withDraw(map);
     }
 }

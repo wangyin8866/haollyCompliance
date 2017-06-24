@@ -66,7 +66,8 @@ public class RechargeActivity extends BaseActivity<RechargePresenter,RechargeVie
                 finish();
                 break;
             case R.id.btn_recharge:
-                mPresenter.recharge("","B2C","http://www.baidu.com","","","200","2","4","1.0","131227027479539","6000060007060138");
+
+                mPresenter.recharge("","B2C","http://www.baidu.com","","","200","1","4","1.0","131227027479539","6000060007060138","CIB");
 
                 break;
         }

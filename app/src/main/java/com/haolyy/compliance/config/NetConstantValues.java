@@ -36,6 +36,7 @@ public interface NetConstantValues {
     String HUIFU_SMS_HUIFU = HUIFU_SH + "toSendSmsCode";//发送验证码
     String HUIFU_QUIK_BIND = HUIFU_SH + "quickBind";//绑卡
     String HUIFU_RECHARGE = HUIFU_SH + "toNetSave";//充值
+    String HUIFU_WITHDRAW = HUIFU_SH + "toCash";//提现
     String HUIFU_CORP_REGISTER = HUIFU_SH + "toCorpRegister";//企业注册
     String HUIFU_REGISTER = HUIFU_SH + "toRegister";//用户注册
     String HUIFU_ACTIVATE = HUIFU_SH + "toBosAcctActivate";//账户激活
