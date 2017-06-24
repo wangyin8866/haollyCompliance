@@ -56,22 +56,13 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //SystemBarUtil.setSystemBar(this, Color.WHITE);
+        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         mContext = this;
         isInBackground = false;
         ActivityCollector.addActivity(this);
         mSavedInstanceState = savedInstanceState;
         mPresenter = createPresenter();
         mPresenter.attach((V) this);
-     /*   subscription = RxBus.getInstance().toObserverable(Integer.class).subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer s) {
-                        Log.e(tag, "调用抽象方法");
-                        handleMessage(s);
-                    }
-                });*/
 
         mPresenter.setLifeSubscription(new LifeSubscription() {
             @Override

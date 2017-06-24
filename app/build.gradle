@@ -29,9 +29,6 @@ dependencies {
     })
     compile project(':retrofitlibrary')
     // banner
-    
-
-    // RxBinding
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.android.support:design:26.0.0-alpha1'
@@ -46,4 +43,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    //自动填写验证码
+    compile 'tech.michaelx.authcode:authcode:1.0.0'
 }

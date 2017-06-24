@@ -1,20 +1,23 @@
 package com.haolyy.compliance.ui.bank;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.ui.bank.presenter.RechargePresenter;
+import com.haolyy.compliance.ui.bank.view.RechargeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class RechargeActivity extends AppCompatActivity {
+public class RechargeActivity extends BaseActivity<RechargePresenter,RechargeView> implements RechargeView {
 
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
@@ -34,11 +37,21 @@ public class RechargeActivity extends AppCompatActivity {
     TextView btnRecharge;
 
     @Override
+    protected RechargePresenter createPresenter() {
+        return new RechargePresenter(mContext);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge);
         ButterKnife.bind(this);
         initView();
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
+
     }
 
     private void initView() {
@@ -53,7 +66,16 @@ public class RechargeActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.btn_recharge:
+                mPresenter.recharge("","B2C","http://www.baidu.com","","","200","2","4","1.0","131227027479539","6000060007060138");
+
                 break;
         }
+    }
+
+    @Override
+    public void pushActivity(String baseResponseBean) {
+        Intent intent = new Intent(mContext, ShBankWebActivity.class);
+        intent.setAction(baseResponseBean);
+        startActivity(intent);
     }
 }

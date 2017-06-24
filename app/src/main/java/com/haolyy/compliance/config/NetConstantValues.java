@@ -6,11 +6,14 @@ package com.haolyy.compliance.config;
 
 public interface NetConstantValues {
     //本地
-    /* String HOST_URL = "http://192.168.11.104:8080/";
-     String HOST_URL2 = "http://192.168.11.104:8081/";*/
+//     String HOST_URL = "http://192.168.11.104:8080/";
+//     String HOST_URL2 = "http://192.168.11.104:8081/";
     //服务器
-    // String HOST_URL = "http://192.168.7.113:8006/";
-    String HOST_URL2 = "http://192.168.7.113:8018/";
+//    String HOST_URL = "http://192.168.7.113:8006/";
+//    String HOST_URL2 = "http://192.168.7.113:8018/";
+    //杜欣
+    String HOST_URL2 = "http://192.168.13.213:8080/";
+//    String HOST_URL="http://192.168.13.213:8080/";
     //赵建华
     //String HOST_URL = "http://192.168.10.97:8080/";
     //杨全帅

@@ -3,10 +3,10 @@ package com.haolyy.compliance.service;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
-import com.haolyy.compliance.entity.login.LoginResponseBean;
 
 import java.util.Map;
 
+import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -29,7 +29,11 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_REGISTER)
     Observable<String> register(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.HUIFU_REGISTER)
+    Call<String> register2(@FieldMap Map<String, String> params);
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_RECHARGE)
-    Observable<BaseResponseBean> recharge(@FieldMap Map<String, String> params);
+    Observable<String> recharge(@FieldMap Map<String, String> params);
 }

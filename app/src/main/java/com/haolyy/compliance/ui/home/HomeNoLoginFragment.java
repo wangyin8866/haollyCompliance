@@ -51,8 +51,6 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         view = inflater.inflate(R.layout.home_no_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        Log.e("onCreateView", "onCreateView");
-        Log.e("images", images.size()+"aa");
 
         images.add("http://pic2.ooopic.com/10/56/19/67b1OOOPIC12.jpg");
         images.add("http://pic2.ooopic.com/10/55/95/20b1OOOPICfa.jpg");

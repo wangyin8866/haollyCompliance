@@ -1,29 +1,66 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.base.LifeSubscription;
+import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
-import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.service.HuifuShApi;
+import com.haolyy.compliance.utils.LogUtils;
+import com.xfqz.xjd.mylibrary.LogInterceptor;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by LL on 2017/1/7.
  */
 
-public class HuifuShModel extends BaseModel {
+public class HuifuShModel2 {
     private HuifuShApi huifuShApi;
-    private static HuifuShModel userModel;
+    private static HuifuShModel2 userModel;
+    private static final int DEFAULT_TIMEOUT = 10;
+    Retrofit retrofit;
+    static Map<String, String> map = new HashMap<>();
+    OkHttpClient.Builder httpClientBuilder;
 
-    private HuifuShModel() {
-        super();
+    public HuifuShModel2() {
+        //手动创建一个OkHttpClient并设置超时时间
+        httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        retrofit = new Retrofit.Builder()
+                .client(httpClientBuilder.build())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(NetConstantValues.HOST_URL)
+                .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }
 
-    public static HuifuShModel getInstance() {
+    //添加线程订阅
+    public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
+        LogUtils.e("ndy_params", map.toString());
+        Subscription subscription = observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        lifeSubscription.bindSubscription(subscription);
+    }
+
+
+    public static HuifuShModel2 getInstance() {
         if (userModel == null) {
-            synchronized (HuifuShModel.class) {
+            synchronized (HuifuShModel2.class) {
                 if (userModel == null) {
-                    userModel = new HuifuShModel();
+                    userModel = new HuifuShModel2();
                 }
             }
         }
@@ -31,25 +68,31 @@ public class HuifuShModel extends BaseModel {
     }
 
     /**
-     * 充值
      *
      * @param from_mobile_  用户手机号
-     * @param from_user_id_ 来源用户ID
      * @param gate_busi_id_ 支付网关业务代号
-     * @param ret_url_      返回页面
-     * @param sms_code_     短信验证码
-     * @param sms_seq_      短信序号
-     * @param trans_amt_    充值金额
+     * @param ret_url_ 返回页面
+     * @param sms_code_ 短信验证码
+     * @param sms_seq_ 短信序号
+     * @param trans_amt_ 充值金额
+     * @param mer_id_ 平台
+     * @param client_ 客户端
+     * @param version_ 版本号
+     * @param juid 用户平台号
      * @return
      */
-    public Observable<String> recharge(String from_mobile_, String from_user_id_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_) {
+    public Observable<String> recharge(String from_mobile_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_, String mer_id_,String client_,String version_ ,String juid,String UsrCustId ) {
         map.put("from_mobile_", from_mobile_);
-        map.put("from_user_id_", from_user_id_);
         map.put("gate_busi_id_", gate_busi_id_);
         map.put("ret_url_", ret_url_);
         map.put("sms_code_", sms_code_);
         map.put("sms_seq_", sms_seq_);
         map.put("trans_amt_", trans_amt_);
+        map.put("mer_id_", mer_id_);
+        map.put("client_", client_);
+        map.put("version_", version_);
+        map.put("juid", juid);
+        map.put("UsrCustId", UsrCustId);
         return huifuShApi.recharge(map);
     }
 
@@ -78,25 +121,6 @@ public class HuifuShModel extends BaseModel {
         return huifuShApi.quikBind(map);
     }
 
-    /**
-     * @param busi_type_   开户：user_register，充值：recharge，换卡：rebind
-     * @param card_number_ 除了业务类型是recharge以外，都必传
-     * @param user_cust_id_ 用户账户手机号，开户以外必传
-     * @param mer_id_      卓投传1，好利网传2
-     * @param mobile_      银行卡号对应的银行预留手机号
-     * @param sms_type_    O-原手机号发送短信，N-新手机号。只有busi_type_为rebind时才必输
-     * @return
-     */
-    public Observable<HuifuSmsBean> sendSms(String busi_type_, String card_number_, String user_cust_id_, String mer_id_, String mobile_, String sms_type_,String client_) {
-        map.put("busi_type_", busi_type_);
-        map.put("card_number_", card_number_);
-        map.put("user_cust_id", user_cust_id_);
-        map.put("mer_id_", mer_id_);
-        map.put("mobile_", mobile_);
-        map.put("sms_type_", sms_type_);
-        map.put("client_", client_);
-        return huifuShApi.sendSms(map);
-    }
 
     /**
      * @param user_code_  用户号
@@ -132,7 +156,7 @@ public class HuifuShModel extends BaseModel {
      * @param user_id      平台用户号
      * @return
      */
-    public Observable<String> register(String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String user_id,String client) {
+    public Observable<String> register(String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String user_id, String client) {
         map.clear();
         map.put("mer_id_", mer_id_);
         map.put("moblie_", moblie_);
@@ -148,7 +172,7 @@ public class HuifuShModel extends BaseModel {
         map.put("user_type_", user_type_);
         map.put("version_", version_);
         map.put("user_id_", user_id);
-        map.put("client_",client);
+        map.put("client_", client);
         return huifuShApi.register(map);
     }
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.haolyy.compliance.utils.LogUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 
@@ -70,6 +71,10 @@ public class BaseApplication extends Application {
         mMainThreadHandler = new Handler();
         mMainLooper = getMainLooper();
         mInstance = this;
+
+
+        //是否打印日志
+        LogUtils.isDebug = true;
         initUmeng();
 
 
