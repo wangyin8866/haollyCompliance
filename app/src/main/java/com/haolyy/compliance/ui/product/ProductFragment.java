@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.entity.ProductList;
+import com.haolyy.compliance.ui.product.presenter.ProductPresenter;
+import com.haolyy.compliance.ui.product.view.ProductView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ import butterknife.Unbinder;
  * Created by wangyin on 2017/5/16.
  */
 
-public class ProductFragment extends Fragment implements View.OnClickListener {
+public class ProductFragment extends BaseFragment<ProductPresenter,ProductView> implements View.OnClickListener,ProductView {
     @BindView(R.id.id_firstTextVIew)
     TextView idFirstTextVIew;
     @BindView(R.id.id_ll_top)
@@ -52,6 +55,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener {
     private ProductSecondFragment secondFragment;
     private ProductThirdFragment thirdFragment;
     private int lineMargin;
+    private ProductList productList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +66,10 @@ public class ProductFragment extends Fragment implements View.OnClickListener {
         idFirstTextVIew.setOnClickListener(this);
         idSecondTextView.setOnClickListener(this);
         idThirdTextView.setOnClickListener(this);
+        mPresenter.getProductList("DQY","","","","1","1");
+
+//        mPresenter.getBaseDetail("1","12");
+        mPresenter.getDetail("1","12","2","SCD");
         return view;
     }
 
@@ -100,7 +108,6 @@ public class ProductFragment extends Fragment implements View.OnClickListener {
         productViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e("tag", position + "," + positionOffset + "," + positionOffsetPixels + "," + mCurrentPageIndex);
                 //设置tabLine的滑动效果
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) idIvTabLine.getLayoutParams();
                 if (mCurrentPageIndex == 0 && position == 0) {//0->1
@@ -169,5 +176,35 @@ public class ProductFragment extends Fragment implements View.OnClickListener {
                 break;
 
         }
+    }
+
+    @Override
+    protected ProductPresenter createPresenter() {
+        return new ProductPresenter(mContext);
+    }
+
+    @Override
+    public void showData(ProductList productList) {
+        this.productList = productList;
+        idFirstTextVIew.setText(productList.getData().getData().getTitle_list().get(0).getCategory_name());
+        idSecondTextView.setText(productList.getData().getData().getTitle_list().get(1).getCategory_name());
+        idThirdTextView.setText(productList.getData().getData().getTitle_list().get(2).getCategory_name());
+        Bundle bundle=new Bundle();
+        bundle.putString("suanbiao1",productList.getData().getData().getTitle_list().get(3).getCategory_name());
+        bundle.putString("suanbiao2",productList.getData().getData().getTitle_list().get(4).getCategory_name());
+        bundle.putString("suanbiao3",productList.getData().getData().getTitle_list().get(5).getCategory_name());
+        bundle.putString("suanbiao4",productList.getData().getData().getTitle_list().get(6).getCategory_name());
+        thirdFragment.setArguments(bundle);
+
+    }
+
+    @Override
+    public void showSuccessToast(String msg) {
+
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
+
     }
 }

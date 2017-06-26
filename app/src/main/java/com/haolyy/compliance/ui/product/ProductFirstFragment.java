@@ -10,9 +10,11 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.ProductFirstAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.XListView;
+import com.haolyy.compliance.entity.ProductList;
 import com.haolyy.compliance.entity.TestProduct;
-import com.haolyy.compliance.ui.product.presenter.ProductFirstPresenter;
-import com.haolyy.compliance.ui.product.view.ProductFirstView;
+import com.haolyy.compliance.ui.product.presenter.ProductPresenter;
+import com.haolyy.compliance.ui.product.view.ProductView;
+import com.haolyy.compliance.utils.AppToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
  * Created by wangyin on 2017/5/18.
  */
 
-public class ProductFirstFragment extends BaseFragment<ProductFirstPresenter, ProductFirstView> implements ProductFirstView {
+public class ProductFirstFragment extends BaseFragment<ProductPresenter, ProductView> implements ProductView {
     private XListView firstXlv;
     private View view;
     private List<TestProduct> testProducts;
@@ -32,7 +34,6 @@ public class ProductFirstFragment extends BaseFragment<ProductFirstPresenter, Pr
         firstXlv = (XListView) view.findViewById(R.id.first_xlv);
         firstXlv.setPullLoadEnable(true);
         firstXlv.setXListViewListener(new MyListView());
-
 
         testProducts = new ArrayList<>();
         for (int i=1;i<10;i++) {
@@ -47,14 +48,26 @@ public class ProductFirstFragment extends BaseFragment<ProductFirstPresenter, Pr
     }
 
     @Override
-    public void showData() {
+    protected ProductPresenter createPresenter() {
+        return new ProductPresenter(mContext);
+    }
+
+    @Override
+    public void showSuccessToast(String msg) {
 
     }
 
     @Override
-    protected ProductFirstPresenter createPresenter() {
-        return new ProductFirstPresenter(mContext);
+    public void showErrorToast(String msg) {
+        AppToast.showShortText(mContext, msg);
     }
+
+
+    @Override
+    public void showData(ProductList productList) {
+
+    }
+
     private class MyListView implements XListView.IXListViewListener {
         @Override
         public void onRefresh() {

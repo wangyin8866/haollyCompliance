@@ -1,40 +1,26 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.service.HuifuShApi;
-import com.xfqz.xjd.mylibrary.LogInterceptor;
 
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-import static com.haolyy.compliance.model.BaseModel.map;
 
 /**
- * Created by LL on 2017/1/7.
+ * Created by wngyin on 2017/6/24.
+ * 返回的是String
  */
 
-public class HuifuShModel2 {
+public class HuifuShModel2 extends BaseModel {
     private HuifuShApi huifuShApi;
     private static HuifuShModel2 userModel;
-    private static final int DEFAULT_TIMEOUT = 10;
-    Retrofit retrofit;
-    OkHttpClient.Builder httpClientBuilder;
 
     public HuifuShModel2() {
         //手动创建一个OkHttpClient并设置超时时间
-        httpClientBuilder = new OkHttpClient.Builder();
-        httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        super();
         retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -43,16 +29,6 @@ public class HuifuShModel2 {
                 .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }
-
-    //添加线程订阅
-    public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
-        Subscription subscription = observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
-        lifeSubscription.bindSubscription(subscription);
-    }
-
-
     public static HuifuShModel2 getInstance() {
         if (userModel == null) {
             synchronized (HuifuShModel2.class) {

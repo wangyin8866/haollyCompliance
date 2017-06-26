@@ -45,6 +45,7 @@ public class ProductThirdFragment extends Fragment implements View.OnClickListen
     private int currentPage = 0;
     private List<TestProduct> testProducts;
     private ProductFirstAdapter productFirstAdapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,7 +57,11 @@ public class ProductThirdFragment extends Fragment implements View.OnClickListen
     }
 
     private void init() {
-
+        Bundle bundle=getArguments();
+        thirdTv2.setText(bundle.getString("suanbiao1"));
+        thirdTv3.setText(bundle.getString("suanbiao2"));
+        thirdTv4.setText(bundle.getString("suanbiao3"));
+        thirdTv5.setText(bundle.getString("suanbiao4"));
         thirdTv1.setOnClickListener(this);
         thirdTv2.setOnClickListener(this);
         thirdTv3.setOnClickListener(this);
@@ -71,6 +76,9 @@ public class ProductThirdFragment extends Fragment implements View.OnClickListen
         }
         productFirstAdapter=new ProductFirstAdapter(testProducts,getActivity());
         xlvProductThird.setAdapter(productFirstAdapter);
+
+
+
     }
 
     @Override

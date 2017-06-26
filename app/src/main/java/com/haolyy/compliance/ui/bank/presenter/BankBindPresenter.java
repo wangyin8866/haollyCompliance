@@ -67,7 +67,7 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param ordsms_ext_
      */
     public void quikBind(String mer_id_, String user_cust_id_, String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
-        invoke(HuifuShModel.getInstance().quikBind(mer_id_, user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new Subscriber<BaseResponseBean>() {
+        invoke(HuifuShModel2.getInstance().quikBind(mer_id_, user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new Subscriber<BaseResponseBean>() {
             @Override
             public void onCompleted() {
 

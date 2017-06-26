@@ -70,7 +70,6 @@ public class SpringProgressView extends View {
             }
         }else{
             int count = (section <= 1.0f/3.0f*2 ) ? 2 : 3;
-            Log.e("count", count + "");
             int[] colors = new int[count];
             System.arraycopy(SECTION_COLORS, 0, colors, 0, count);
             float[] positions = new float[count];

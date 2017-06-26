@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers;
 
 public class BaseModel {
 
-    private static final int DEFAULT_TIMEOUT = 10;
+    public static final int DEFAULT_TIMEOUT = 10;
     Retrofit retrofit;
     static Map<String, String> map = new HashMap<>();
     OkHttpClient.Builder httpClientBuilder;
@@ -34,8 +34,8 @@ public class BaseModel {
     public BaseModel() {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = new OkHttpClient.Builder();
-            httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-            retrofit = new Retrofit.Builder()
+        httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

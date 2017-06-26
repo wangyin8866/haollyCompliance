@@ -74,8 +74,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     private List<TestProduct> testProducts;
     private boolean isInvest;
     private String[] auto_roll_strings = {"asdasd", "bbbbb", "cccccccccc"};
-
-    private boolean isAutoRollRunning = false;
+    private boolean isAutoRollRunning;
     private int autoRollIndex;
 
 
