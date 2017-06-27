@@ -74,7 +74,7 @@ public class BaseApplication extends Application {
 
 
         //是否打印日志
-        LogUtils.isDebug = false;
+        LogUtils.isDebug = true;
         initUmeng();
 
 

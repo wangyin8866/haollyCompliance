@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.adapter.ProductFirstAdapter;
+import com.haolyy.compliance.adapter.ProductListAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.ProductList;
@@ -41,7 +41,7 @@ public class ProductFirstFragment extends BaseFragment<ProductPresenter, Product
             testProducts.add(testProduct);
         }
 
-        firstXlv.setAdapter(new ProductFirstAdapter(testProducts,getActivity()));
+        firstXlv.setAdapter(new ProductListAdapter(testProducts,getActivity()));
 
 
         return view;

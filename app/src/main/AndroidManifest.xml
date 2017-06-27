@@ -175,6 +175,9 @@
 
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
+        <activity android:name=".ui.test.RadiogroupTest">
+
+        </activity>
     </application>
 
 </manifest>

@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.ui.product.presenter.ProductBottomPresenter;
 import com.haolyy.compliance.ui.product.view.ProductBottomView;
@@ -70,7 +69,6 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
             case 1: //赢计划,短期赢
                 titles.add("产品详情");
                 fragments.add(bottomProductDetail);
-
                 titles.add("投资记录");
                 fragments.add(bottomInvestLog);
                 break;
@@ -99,7 +97,7 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
                 break;
         }
 
-        vpJoinRecord.setAdapter(new TabAdapter(getFragmentManager()));
+        vpJoinRecord.setAdapter(new TabAdapter(getFragmentManager(),fragments,titles));
         tablayoutBottom.setupWithViewPager(vpJoinRecord);
 
     }
@@ -120,28 +118,5 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         unbinder.unbind();
     }
 
-    public class TabAdapter extends FragmentPagerAdapter {
-
-        public TabAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-
-        //配置标题的方法
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titles.get(position);
-        }
-    }
 
 }

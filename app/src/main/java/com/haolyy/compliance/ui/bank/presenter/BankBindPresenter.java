@@ -1,9 +1,7 @@
 package com.haolyy.compliance.ui.bank.presenter;
 
 import android.content.Context;
-import android.text.TextUtils;
 
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
@@ -115,10 +113,7 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("Throwable", e.getMessage());
-                if (!TextUtils.isEmpty(BaseApplication.BankFrom)) {
-                    getView().pushActivity(BaseApplication.BankFrom);
-                }
+
             }
         }, mContext));
     }

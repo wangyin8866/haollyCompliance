@@ -2,11 +2,14 @@
 <layout>
     <data class="ProductFirstBinding">
 
-        <import type="com.haolyy.compliance.entity.TestProduct" />
-
+        <import type="com.haolyy.compliance.entity.ProductList.DataBeanX.DataBean.DataListBean" />
+        <import type="android.view.View" />
         <variable
-            name="productFirst"
-            type="TestProduct" />
+            name="product"
+            type="DataListBean" />
+        <variable
+            name="adapter"
+            type="com.haolyy.compliance.adapter.ProductListAdapter" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -55,7 +58,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
-                android:text="1,000.00万"
+                android:text="aaa"
                 android:textColor="#FF7D7D7D"
                 android:textSize="10sp" />
         </RelativeLayout>
@@ -103,7 +106,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="bottom"
-                                android:text="10"
+                                android:text="@{product.annualized_rate}"
                                 android:textColor="#F8676F"
                                 android:textSize="20sp" />
 
@@ -123,17 +126,17 @@
                                 android:text="+"
                                 android:textColor="#F8676F"
                                 android:textSize="14sp"
-                                android:visibility="gone" />
+                                android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
 
                             <TextView
                                 android:id="@+id/pro_yield2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="bottom"
-                                android:text="2"
+                                android:text="@{product.append_rate}"
                                 android:textColor="#F8676F"
                                 android:textSize="14sp"
-                                android:visibility="gone" />
+                                android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
 
                             <TextView
                                 android:id="@+id/extra_rate_percent"
@@ -143,7 +146,7 @@
                                 android:text="%"
                                 android:textColor="#F8676F"
                                 android:textSize="14sp"
-                                android:visibility="gone" />
+                                android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
                         </LinearLayout>
 
                         <TextView
@@ -168,7 +171,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="3周"
+                            android:text="@{adapter.showDeadline(product.getPeriod_length(),product.getStatus())}"
                             android:textColor="#FF4A4A4A"
                             android:textSize="20sp" />
 

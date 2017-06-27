@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="new_label1" type="id" />
+    <item name="new_label2" type="id" />
+    <item name="new_label3" type="id" />
+    <item name="new_label4" type="id" />
+    <item name="new_label5" type="id" />
+    <item name="new_label6" type="id" />
+</resources>

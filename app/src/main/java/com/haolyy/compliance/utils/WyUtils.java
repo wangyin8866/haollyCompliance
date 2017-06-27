@@ -117,5 +117,26 @@ public class WyUtils {
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric;
     }
+    /**
+     * 投资期限
+     */
+    public static String getInvestDeadline(int num) {
+        String result = "";
+        switch (num) {
+            case 1:
+                result = "天";
+                break;
+            case 2:
+                result = "周";
+                break;
+            case 3:
+                result = "个月";
+                break;
+            case 4:
+                result = "年";
+                break;
+        }
+        return result;
 
+    }
 }

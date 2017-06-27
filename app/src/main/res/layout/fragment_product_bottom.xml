@@ -13,6 +13,7 @@
         android:layout_marginRight="20dp"
         app:tabMode="fixed"
         app:tabIndicatorHeight="3dp"
+
         app:tabIndicatorColor="@color/bg_ff9933"
         app:tabTextColor="@color/text_4a4a4a"
         app:tabSelectedTextColor="@color/bg_ff9933"

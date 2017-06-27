@@ -1,25 +1,21 @@
 package com.haolyy.compliance.ui.product;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.entity.ProductList;
 import com.haolyy.compliance.ui.product.presenter.ProductPresenter;
 import com.haolyy.compliance.ui.product.view.ProductView;
+import com.haolyy.compliance.utils.WyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,127 +28,36 @@ import butterknife.Unbinder;
  * Created by wangyin on 2017/5/16.
  */
 
-public class ProductFragment extends BaseFragment<ProductPresenter,ProductView> implements View.OnClickListener,ProductView {
-    @BindView(R.id.id_firstTextVIew)
-    TextView idFirstTextVIew;
-    @BindView(R.id.id_ll_top)
-    LinearLayout idLlTop;
-    @BindView(R.id.id_secondTextView)
-    TextView idSecondTextView;
-    @BindView(R.id.id_thirdTextView)
-    TextView idThirdTextView;
-    @BindView(R.id.id_iv_tabLine)
-    ImageView idIvTabLine;
-    @BindView(R.id.product_viewPager)
-    ViewPager productViewPager;
+public class ProductFragment extends BaseFragment<ProductPresenter, ProductView> implements ProductView {
+    @BindView(R.id.product_title)
+    TabLayout productTitle;
+    @BindView(R.id.vp_product_list)
+    ViewPager vpProductList;
     Unbinder unbinder;
     private View view;
     private List<Fragment> mDatas;
-    private FragmentPagerAdapter mdAdapter;
-    private int mScreen1_3;
-    private int mCurrentPageIndex;
-    private ProductFirstFragment firstFragment;
-    private ProductSecondFragment secondFragment;
-    private ProductThirdFragment thirdFragment;
-    private int lineMargin;
-    private ProductList productList;
+    private ProductListFragment thirdFragment;
+    private List<String> titles;
+    private ArrayList<String> str;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.product_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        getScreen();
-        idFirstTextVIew.setOnClickListener(this);
-        idSecondTextView.setOnClickListener(this);
-        idThirdTextView.setOnClickListener(this);
-        mPresenter.getProductList("DQY","","","","1","1");
+        mPresenter.getProductList("", "", "", "", "1", "1");
 
 //        mPresenter.getBaseDetail("1","12");
-        mPresenter.getDetail("1","12","2","SCD");
+//        mPresenter.getDetail("1", "12", "2", "SCD");
         return view;
     }
 
-    //获取屏幕尺寸
-    private void getScreen() {
-        Display display = getActivity().getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-        mScreen1_3 = outMetrics.widthPixels / 3;
-        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) idIvTabLine.getLayoutParams();
-        layoutParams.width = mScreen1_3 - layoutParams.leftMargin*2;
-        idIvTabLine.setLayoutParams(layoutParams);
-        lineMargin = layoutParams.leftMargin;
-    }
 
     private void initView() {
         mDatas = new ArrayList<>();
-        firstFragment = new ProductFirstFragment();
-        secondFragment = new ProductSecondFragment();
-        thirdFragment = new ProductThirdFragment();
-        mDatas.add(firstFragment);
-        mDatas.add(secondFragment);
-        mDatas.add(thirdFragment);
-        mdAdapter = new FragmentPagerAdapter(getFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return mDatas.get(position);
-            }
+        titles = new ArrayList<>();
 
-            @Override
-            public int getCount() {
-                return mDatas.size();
-            }
-        };
-        productViewPager.setAdapter(mdAdapter);
-        productViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                //设置tabLine的滑动效果
-                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) idIvTabLine.getLayoutParams();
-                if (mCurrentPageIndex == 0 && position == 0) {//0->1
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + positionOffset * mScreen1_3)+lineMargin;
-                } else if (mCurrentPageIndex == 1 && position == 0) {//1->0
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + (positionOffset - 1) * mScreen1_3+lineMargin);
-                } else if (mCurrentPageIndex == 1 && position == 1) {//1->2
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + positionOffset * mScreen1_3+lineMargin);
-                } else if (mCurrentPageIndex == 2 && position == 1) {//2->1
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + (positionOffset - 1) * mScreen1_3+lineMargin);
-                } else if (mCurrentPageIndex == 2 && position == 2) {//2
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + (positionOffset) * mScreen1_3+lineMargin);
-                }
-                idIvTabLine.setLayoutParams(lp);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                //重置颜色
-                resetTextView();
-                switch (position) {
-                    case 0:
-                        idFirstTextVIew.setTextColor(Color.parseColor("#FF9933"));
-                        break;
-                    case 1:
-                        idSecondTextView.setTextColor(Color.parseColor("#FF9933"));
-                        break;
-                    case 2:
-                        idThirdTextView.setTextColor(Color.parseColor("#FF9933"));
-                        break;
-                }
-                mCurrentPageIndex = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-    }
-
-    private void resetTextView() {
-        idFirstTextVIew.setTextColor(Color.parseColor("#4A4A4A"));
-        idSecondTextView.setTextColor(Color.parseColor("#4A4A4A"));
-        idThirdTextView.setTextColor(Color.parseColor("#4A4A4A"));
     }
 
     @Override
@@ -161,22 +66,6 @@ public class ProductFragment extends BaseFragment<ProductPresenter,ProductView> 
         unbinder.unbind();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.id_firstTextVIew:
-                //设置当前页面的位置
-                productViewPager.setCurrentItem(0, false);
-                break;
-            case R.id.id_secondTextView:
-                productViewPager.setCurrentItem(1, false);
-                break;
-            case R.id.id_thirdTextView:
-                productViewPager.setCurrentItem(2, false);
-                break;
-
-        }
-    }
 
     @Override
     protected ProductPresenter createPresenter() {
@@ -185,16 +74,21 @@ public class ProductFragment extends BaseFragment<ProductPresenter,ProductView> 
 
     @Override
     public void showData(ProductList productList) {
-        this.productList = productList;
-        idFirstTextVIew.setText(productList.getData().getData().getTitle_list().get(0).getCategory_name());
-        idSecondTextView.setText(productList.getData().getData().getTitle_list().get(1).getCategory_name());
-        idThirdTextView.setText(productList.getData().getData().getTitle_list().get(2).getCategory_name());
-        Bundle bundle=new Bundle();
-        bundle.putString("suanbiao1",productList.getData().getData().getTitle_list().get(3).getCategory_name());
-        bundle.putString("suanbiao2",productList.getData().getData().getTitle_list().get(4).getCategory_name());
-        bundle.putString("suanbiao3",productList.getData().getData().getTitle_list().get(5).getCategory_name());
-        bundle.putString("suanbiao4",productList.getData().getData().getTitle_list().get(6).getCategory_name());
-        thirdFragment.setArguments(bundle);
+        for (int i=0;i<productList.getData().getData().getTitle_list().size();i++) {
+            titles.add(productList.getData().getData().getTitle_list().get(i).get(0).getCategory_name());
+            str = new ArrayList<>();
+            for (int j=1;j<productList.getData().getData().getTitle_list().get(i).size() ;j++) {
+
+                str.add(productList.getData().getData().getTitle_list().get(i).get(j).getCategory_name());
+            }
+                thirdFragment = ProductListFragment.newInstance(str,productList.getData().getData().getTitle_list().get(i).get(0).getNode_no());
+            mDatas.add(thirdFragment);
+        }
+        vpProductList.setAdapter(new TabAdapter(getFragmentManager(),mDatas,titles));
+        vpProductList.setOffscreenPageLimit(productList.getData().getData().getTitle_list().size());
+        productTitle.setupWithViewPager(vpProductList);
+
+        WyUtils.setIndicator(mContext, productTitle, 10, 10);
 
     }
 
@@ -207,4 +101,7 @@ public class ProductFragment extends BaseFragment<ProductPresenter,ProductView> 
     public void showErrorToast(String msg) {
 
     }
+
+
+
 }

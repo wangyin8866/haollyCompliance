@@ -24,7 +24,6 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView>{
             public void onNext(String s) {
                 LogUtils.e("withDraw", s);
                 getView().pushActivity(s);
-
             }
 
             @Override

@@ -38,6 +38,7 @@ public class ProductModel extends BaseModel {
     }
 
     public Observable<ProductList> getProductList(String product_category_id, String status, String return_rate, String date_limit, String page_index, String platform) {
+        map.clear();
         map.put("product_category_id", product_category_id);
         map.put("status", status);
         map.put("return_rate", return_rate);
@@ -48,12 +49,14 @@ public class ProductModel extends BaseModel {
     }
 
     public Observable<String> getBaseDetail(String id, String juid) {
+        map.clear();
         map.put("id", id);
         map.put("juid", juid);
         return productApi.getBaseDetail(map);
 
     }
     public Observable<String> getDetail(String id, String juid,String project_type,String product_no) {
+        map.clear();
         map.put("id", id);
         map.put("juid", juid);
         map.put("project_type", project_type);
