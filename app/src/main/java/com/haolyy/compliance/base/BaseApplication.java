@@ -64,7 +64,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LeakCanary.install(this);
+        //LeakCanary.install(this);
         context = getApplicationContext();
         mMainThreadId = android.os.Process.myTid();
         mMainThread = Thread.currentThread();

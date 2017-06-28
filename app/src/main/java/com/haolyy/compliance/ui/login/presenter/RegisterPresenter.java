@@ -61,7 +61,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
 
     public void sendSms(String phone_num, String imagecode, String systemplate) {
-        invoke(BigThreeModel.getInstance().sendSms(phone_num, imagecode, systemplate), new Subscriber<SmsBean>() {
+        invoke(BigThreeModel.getInstance().sendSms(phone_num, imagecode, systemplate,"register"), new Subscriber<SmsBean>() {
             @Override
             public void onCompleted() {
 
@@ -70,18 +70,21 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             @Override
             public void onError(Throwable e) {
                 LogUtils.e(tag, e.getMessage());
+                getView().countDown(false);
             }
 
             @Override
             public void onNext(SmsBean s) {
                 if (s.getStatus().equals("200")) {
                     if (s.getData().getStatus().equals("200")) {
-                        getView().countDown();
+                        getView().countDown(true);
                     } else {
                         UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                        getView().countDown(false);
                     }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
+                    getView().countDown(false);
                 }
             }
         });

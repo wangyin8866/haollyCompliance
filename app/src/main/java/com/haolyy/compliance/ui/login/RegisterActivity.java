@@ -178,10 +178,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     /**
      * 短信倒计时
+     * @param b
      */
     @Override
-    public void countDown() {
+    public void countDown(boolean b) {
+        if(b){
         DateUtil.countDown(tvRegisterSms, "重新发送");
+        }else {
+            tvRegisterSms.setEnabled(true);
+        }
     }
 
     @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish})
@@ -216,11 +221,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 mPresenter.register(phone, passWord, smsCode, imageCode, "Android", "haolyy", "1", "1.0", regsiterCode);
                 break;
             case R.id.tv_register_sms:
-                tvRegisterSms.setEnabled(false);
                 imageCode = etImageCode.getText().toString();
                 if (TextUtils.isEmpty(imageCode)) {
                     UIUtils.showToastCommon(mContext, "图形验证码不能为空");
                 } else {
+                    tvRegisterSms.setEnabled(false);
                     mPresenter.checkImageCode(imageCode);
                 }
                 break;

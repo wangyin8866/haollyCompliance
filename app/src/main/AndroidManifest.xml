@@ -17,7 +17,7 @@
         <!-- 登录 -->
         <activity
             android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
 
         </activity>
 
@@ -175,9 +175,7 @@
 
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
-        <activity android:name=".ui.test.RadiogroupTest">
-
-        </activity>
+        <activity android:name=".ui.bank.RebindBankActivity"></activity>
     </application>
 
 </manifest>

@@ -90,7 +90,7 @@ public class WyTestActivity extends BaseActivity<RegisterPresenter, RegisterView
     }
 
     @Override
-    public void countDown() {
+    public void countDown(boolean b) {
 
     }
 

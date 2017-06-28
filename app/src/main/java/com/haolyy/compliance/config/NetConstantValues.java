@@ -9,15 +9,19 @@ public interface NetConstantValues {
 //     String HOST_URL = "http://192.168.11.104:8080/";
 //     String HOST_URL2 = "http://192.168.11.104:8081/";
     //测试服务器
-    String HOST_URL = "http://192.168.7.113:8010/";
+    //String HOST_URL = "http://192.168.7.113:8010/";
     String HOST_URL2 = "http://192.168.7.113:8018/";
     //杜欣
 //    String HOST_URL2 = "http://192.168.13.213:8080/";
 //    String HOST_URL="http://192.168.13.213:8080/";
     //赵建华
-    //String HOST_URL = "http://192.168.10.97:8080/";
+     String HOST_URL = "http://192.168.10.97:8080/";
     //杨全帅
-//    String HOST_URL="http://192.168.13.63:8080/";
+   // String HOST_URL="http://192.168.11.199:8080/";
+    //骆丹
+    //String HOST_URL2 = "http://192.168.11.179:8080/";
+    //String HOST_URL="http://192.168.11.179:8080/";
+
     String USERMANAGE = "chinazy-user-manage/";
     String BIGTHREE = "chinazy-sms-bigthree/api/";
     String HUIFU_SH = "chinazy-pay-shanghaibank/http/huifush/";

@@ -67,7 +67,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter,WithDrawVie
                 break;
             case R.id.btn_withdraw:
 
-                    mPresenter.withDraw("1","6000060007275120","18305517576","https://www.baidu.com/","1000","131227027479539","1","4","1.0");
+                    mPresenter.withDraw("1","6000060007302724","18305517576","https://www.baidu.com/","1000","131227027479539","1","4","1.0");
                 break;
             case R.id.tv_withdraw_quan:
                   startActivity(new Intent(WithDrawActivity.this,WithDrawQuanActivity.class));

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/public_title_back" />
@@ -114,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="2.5"
+            android:layout_weight="2"
             android:gravity="center"
             android:src="@mipmap/login_delete"
             android:text="获取验证码"

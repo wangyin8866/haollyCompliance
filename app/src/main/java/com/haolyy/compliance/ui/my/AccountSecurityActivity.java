@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
@@ -22,6 +23,8 @@ public class AccountSecurityActivity extends AppCompatActivity {
     TopBar topAccountSecurity;
     @BindView(R.id.gesture_layout)
     RelativeLayout gesture_layout;
+    @BindView(R.id.tv_bind_card)
+    TextView tvBindCard;
 
 
     @Override
@@ -42,7 +45,7 @@ public class AccountSecurityActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.security_bind_phone,R.id.gesture_layout})
+    @OnClick({R.id.security_bind_phone, R.id.gesture_layout,R.id.tv_bind_card})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.security_bind_phone:
@@ -50,6 +53,8 @@ public class AccountSecurityActivity extends AppCompatActivity {
                 break;
             case R.id.gesture_layout:
                 startActivity(new Intent(AccountSecurityActivity.this, GestureManageActivity.class));
+                break;
+            case R.id.tv_bind_card:
                 break;
         }
     }

@@ -14,6 +14,7 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
+import com.haolyy.compliance.ui.bank.BankBindActivity;
 import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.ui.bank.WithDrawActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
@@ -90,20 +91,20 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(new Intent(getActivity(), FundStatisticsActivity.class));
                 break;
             case R.id.tv_withdraw:
-                startActivity(new Intent(mContext, WithDrawActivity.class));
+                //startActivity(new Intent(mContext, WithDrawActivity.class));
                 //开户
-//                dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
-//                    @Override
-//                    public void excuteLeft() {
+               dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+                   @Override
+                   public void excuteLeft() {
 //
-//                    }
+                   }
 //
-//                    @Override
-//                    public void excuteRight() {
-//                       startActivity(new Intent(mContext, BankBindActivity.class));
+                   @Override
+                   public void excuteRight() {
+                      startActivity(new Intent(mContext, BankBindActivity.class));
 //
-//                    }
-//                }).show();
+                   }
+               }).show();
 
               /*  dialogInvestGuides = new DialogInvestGuides(mContext, DialogInvestGuides.INTELLIGENCE);
                 dialogInvestGuides.setOnDoubleClickListener(new DialogInvestGuides.OnDoubleClickListener() {

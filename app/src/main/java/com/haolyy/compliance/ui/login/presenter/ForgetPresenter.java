@@ -61,7 +61,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
     }
 
     public void sendSms(String phone_num, String imagecode, String systemplate) {
-        invoke(BigThreeModel.getInstance().sendSms(phone_num, imagecode, systemplate), new Subscriber<SmsBean>() {
+        invoke(BigThreeModel.getInstance().sendSms(phone_num, imagecode, systemplate,"forget"), new Subscriber<SmsBean>() {
             @Override
             public void onCompleted() {
 

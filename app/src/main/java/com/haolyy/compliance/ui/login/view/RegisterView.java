@@ -13,5 +13,5 @@ public interface RegisterView {
 
     void showImageCode();
 
-    void countDown();
+    void countDown(boolean b);
 }

@@ -2,6 +2,7 @@ package com.haolyy.compliance.service;
 
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 
 import java.util.Map;
@@ -46,7 +47,7 @@ public interface HuifuShApi {
      */
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_REGISTER)
-    Observable<String> register(@FieldMap Map<String, String> params);
+    Observable<ToRegisterBean> register(@FieldMap Map<String, String> params);
 
     /**
      * 测试
@@ -55,7 +56,7 @@ public interface HuifuShApi {
      */
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_REGISTER)
-    Call<String> register2(@FieldMap Map<String, String> params);
+    Observable<String> register2(@FieldMap Map<String, String> params);
 
     /**
      * 充值

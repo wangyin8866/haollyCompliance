@@ -11,31 +11,19 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
-import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
-import com.haolyy.compliance.service.HuifuShApi;
 import com.haolyy.compliance.ui.bank.presenter.BankBindPresenter;
 import com.haolyy.compliance.ui.bank.view.BankBindView;
 import com.haolyy.compliance.utils.DateUtil;
-import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindView> implements BankBindView {
-
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.iv_service)
@@ -82,6 +70,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     ClearEditText etBankPhone;
     @BindView(R.id.et_card_no)
     ClearEditText etCardNo;
+    @BindView(R.id.change_card)
+    TextView changeCard;
     private String realName, idCard, bankName, bankPhone, cardno;
     private DialogBankSms dialogBankSms;
     private String smseq;//短信序列号
@@ -103,26 +93,26 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_select_bank})
+    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_select_bank, R.id.change_card})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
                 finish();
                 break;
             case R.id.tv_bank_next:
-
                 realName = tvRealName.getText().toString();
                 idCard = tvIdCard.getText().toString();
                 bankName = tvBankNameLogo.getText().toString();
                 bankPhone = etBankPhone.getText().toString();
                 cardno = etCardNo.getText().toString();
-
-                mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", 0,"4");
-
-
+                mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", "4", 0);
                 break;
             case R.id.tv_select_bank:
                 startActivityForResult(new Intent(BankBindActivity.this, BankListActivity.class), 0x03);
+                break;
+            case R.id.change_card:
+                Intent intent = new Intent(mContext, ShBankWebActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -161,7 +151,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
         dialogBankSms.setContext("2946").setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
             public void executeSend(String sms) {
-                mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", 1,"4");
+                dialogBankSms.getBtn().setEnabled(false);
+                mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", "4", 1);
             }
 
             @Override
@@ -171,8 +162,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
             @Override
             public void executeRight() {
-//                retroTest();
-                mPresenter.register("2", "13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "ABC", "666666", "AAAAAAAA", "", "http://www.baidu.com", "1", "android1.0", "1059451948592", "2");
+                mPresenter.register2("5", "1", "13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "101", "666666", "AAAAAAAA", "", "http://www.baidu.com", "1", "android1.0", "1059451948592", "2");
             }
         }).show();
     }
@@ -181,11 +171,16 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
      * 重新倒计时
      *
      * @param smsSeq
+     * @param b
      */
     @Override
-    public void refreshDialog(String smsSeq) {
-        smseq = smsSeq;
-        DateUtil.countDown(dialogBankSms.getBtn(), "重发");
+    public void refreshDialog(String smsSeq, boolean b) {
+        if (b) {
+            dialogBankSms.getBtn().setEnabled(true);
+        } else {
+            smseq = smsSeq;
+            DateUtil.countDown(dialogBankSms.getBtn(), "重发");
+        }
     }
 
     /**
@@ -198,38 +193,5 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
         Intent intent = new Intent(mContext, ShBankWebActivity.class);
         intent.setAction(baseResponseBean);
         startActivity(intent);
-    }
-
-    private void retroTest() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(NetConstantValues.HOST_URL).addConverterFactory(ScalarsConverterFactory.create()).build();
-        HuifuShApi requestSerives = retrofit.create(HuifuShApi.class);
-        Map<String, String> map = new HashMap<>();
-        map.put("mer_id_", "2");
-        map.put("moblie_", "13856989634");
-        map.put("from_mobile_",  "13856989634");
-        map.put("id_number_", "141002199203241329");
-        map.put("user_name_", "禄博丹");
-        map.put("card_number_", "6228229339910333");
-        map.put("bank_id_",  "ABC");
-        map.put("sms_code_", "666666");
-        map.put("sms_seq_", "AAAAAAAA");
-        map.put("PageType", "");
-        map.put("ret_url_", "http://www.baidu.com");
-        map.put("user_type_", "1");
-        map.put("version_",  "android1.0");
-        map.put("user_id_", "1059451948592");
-        map.put("client_","2");
-        Call<String> call = requestSerives.register2(map);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                LogUtils.e("retroTest",response.body());
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                LogUtils.e("retroTest",t.toString());
-            }
-        });
     }
 }

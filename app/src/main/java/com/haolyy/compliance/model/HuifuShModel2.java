@@ -83,7 +83,8 @@ public class HuifuShModel2 extends BaseModel {
      * @param ordsms_ext_   原绑定卡预留手机号发送的短信验证码+短信序号
      * @return
      */
-    public Observable<BaseResponseBean> quikBind(String mer_id_, String user_cust_id_, String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
+    public Observable<BaseResponseBean> quikBind(String user_cust_id_, String trade_type_, String bank_code_, String card_number_,
+                                                 String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_,String mer_id_,String client_,String version_) {
         map.put("mer_id_", mer_id_);
         map.put("user_cust_id_", user_cust_id_);
         map.put("trade_type_", trade_type_);
@@ -93,6 +94,8 @@ public class HuifuShModel2 extends BaseModel {
         map.put("sms_code_", sms_code_);
         map.put("sms_seq_", sms_seq_);
         map.put("ordsms_ext_", ordsms_ext_);
+        map.put("client_", client_);
+        map.put("version_", version_);
         return huifuShApi.quikBind(map);
     }
 
@@ -128,10 +131,10 @@ public class HuifuShModel2 extends BaseModel {
      * @param ret_url_     完成开户以后本地需要跳转的页面。
      * @param user_type_   客户类型 1：借款账户  2：理财账户
      * @param version_     版本号
-     * @param user_id      平台用户号
+     * @param juid      平台用户号
      * @return
      */
-    public Observable<String> register(String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String user_id, String client) {
+    public Observable<String> register(String user_id, String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_,String juid,String client) {
         map.clear();
         map.put("mer_id_", mer_id_);
         map.put("moblie_", moblie_);
@@ -148,7 +151,8 @@ public class HuifuShModel2 extends BaseModel {
         map.put("version_", version_);
         map.put("user_id_", user_id);
         map.put("client_", client);
-        return huifuShApi.register(map);
+        map.put("juid",juid);
+        return huifuShApi.register2(map);
     }
 
     public Observable<String> withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_, String ret_url_, String trans_amt_, String juid,

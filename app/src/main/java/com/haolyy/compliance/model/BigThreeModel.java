@@ -40,7 +40,8 @@ public class BigThreeModel extends BaseModel {
         return userModel;
     }
 
-    public Observable<SmsBean> sendSms(String phone_num,String imagecode,String systemplate) {
+    public Observable<SmsBean> sendSms(String phone_num,String imagecode,String systemplate,String type) {
+        map.put("type",type);
         map.put("mobile", phone_num);
         map.put("imagecode", imagecode);
         map.put("systemplate", systemplate);
