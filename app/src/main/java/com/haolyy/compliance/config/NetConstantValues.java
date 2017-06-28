@@ -53,6 +53,8 @@ public interface NetConstantValues {
     String HUIFU_ADDBIDINFO = HUIFU_SH + "addBidInfo";//标的信息录入
     //第二模块接口
     String PRODUCT="chinazy-product-info/product/";
+
+    String PRODUCT_TITLE_LIST = PRODUCT+"productTitleList";//菜单列表
     String PRODUCT_LIST = PRODUCT+"productList";//产品列表
     String PRODUCT_BASE_DETAIL = PRODUCT+"productDetailBase";//产品基础详情信息
     String PRODUCT_DETAIL = PRODUCT+"productDetail";//产品详情信息

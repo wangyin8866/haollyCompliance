@@ -1,4 +1,4 @@
-package com.haolyy.compliance.entity;
+package com.haolyy.compliance.entity.product;
 
 import java.util.List;
 
@@ -82,13 +82,11 @@ public class ProductList {
              * counts : 4096
              * data_list : [{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"40,000.00","id":6887,"period_length":28,"period_unit":2,"product_no":"","project_name":"短期赢D6887","project_no":"HLWL206887","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"30,000.00","id":6886,"period_length":21,"period_unit":2,"product_no":"","project_name":"短期赢C6886","project_no":"HLWL206886","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"20,000.00","id":6885,"period_length":14,"period_unit":2,"product_no":"","project_name":"短期赢B6885","project_no":"HLWL206885","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"10,000.00","id":6884,"period_length":7,"period_unit":2,"product_no":"","project_name":"短期赢A6884","project_no":"HLWL206884","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"10,000.00","id":6883,"period_length":7,"period_unit":2,"product_no":"","project_name":"短期赢A6883","project_no":"HLWL206883","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"10,000.00","id":6882,"period_length":7,"period_unit":2,"product_no":"","project_name":"短期赢A6882","project_no":"HLWL206882","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"10,000.00","id":6881,"period_length":7,"period_unit":2,"product_no":"","project_name":"短期赢A6881","project_no":"HLWL206881","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"10.00","append_rate":"1.00","contract_amount":"10,000.00","id":6880,"period_length":7,"period_unit":2,"product_no":"","project_name":"短期赢A6880","project_no":"HLWL206880","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"40,000.00","id":6879,"period_length":28,"period_unit":2,"product_no":"","project_name":"短期赢D6879","project_no":"HLWL206879","project_type":2,"status":1},{"amount_scale":"100.00","annualized_rate":"11.00","append_rate":"1.00","contract_amount":"30,000.00","id":6878,"period_length":21,"period_unit":2,"product_no":"","project_name":"短期赢C6878","project_no":"HLWL206878","project_type":2,"status":1}]
              * page_size : 10
-             * title_list : [[{"category_name":"短期赢","node_no":"DQY","parent_node_no":"0"},{"category_name":"短期赢D","node_no":"DQYD","parent_node_no":"DQY"},{"category_name":"短期赢C","node_no":"DQYC","parent_node_no":"DQY"},{"category_name":"短期赢B","node_no":"DQYB","parent_node_no":"DQY"},{"category_name":"短期赢A","node_no":"DQYA","parent_node_no":"DQY"}],[{"category_name":"赢计划","node_no":"YJH","parent_node_no":"0"},{"category_name":"赢计划D","node_no":"YJHD","parent_node_no":"YJH"},{"category_name":"赢计划C","node_no":"YJHC","parent_node_no":"YJH"},{"category_name":"赢计划B","node_no":"YJHB","parent_node_no":"YJH"},{"category_name":"赢计划A","node_no":"YJHA","parent_node_no":"YJH"}],[{"category_name":"优选计划","node_no":"YXJH","parent_node_no":"0"},{"category_name":"消费贷","node_no":"XFD","parent_node_no":"YXJH"},{"category_name":"闪车贷","node_no":"SCD","parent_node_no":"YXJH"},{"category_name":"票据贷","node_no":"PJD","parent_node_no":"YXJH"}]]
              */
 
             private int counts;
             private int page_size;
             private List<DataListBean> data_list;
-            private List<List<TitleListBean>> title_list;
 
             public int getCounts() {
                 return counts;
@@ -114,13 +112,7 @@ public class ProductList {
                 this.data_list = data_list;
             }
 
-            public List<List<TitleListBean>> getTitle_list() {
-                return title_list;
-            }
 
-            public void setTitle_list(List<List<TitleListBean>> title_list) {
-                this.title_list = title_list;
-            }
 
             public static class DataListBean {
                 /**
@@ -266,41 +258,6 @@ public class ProductList {
                 }
             }
 
-            public static class TitleListBean {
-                /**
-                 * category_name : 短期赢
-                 * node_no : DQY
-                 * parent_node_no : 0
-                 */
-
-                private String category_name;
-                private String node_no;
-                private String parent_node_no;
-
-                public String getCategory_name() {
-                    return category_name;
-                }
-
-                public void setCategory_name(String category_name) {
-                    this.category_name = category_name;
-                }
-
-                public String getNode_no() {
-                    return node_no;
-                }
-
-                public void setNode_no(String node_no) {
-                    this.node_no = node_no;
-                }
-
-                public String getParent_node_no() {
-                    return parent_node_no;
-                }
-
-                public void setParent_node_no(String parent_node_no) {
-                    this.parent_node_no = parent_node_no;
-                }
-            }
         }
     }
 }

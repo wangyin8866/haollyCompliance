@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.entity.ProductList;
+import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.ui.product.presenter.ProductPresenter;
 import com.haolyy.compliance.ui.product.view.ProductView;
 import com.haolyy.compliance.utils.WyUtils;
@@ -37,8 +37,10 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     private View view;
     private List<Fragment> mDatas;
     private ProductListFragment thirdFragment;
-    private List<String> titles;
-    private ArrayList<String> str;
+    private List<String> parentTitles;//一级菜单的title
+    private String parentNodeNo;//一级菜单的no
+    private ArrayList<String> childTitle;//二级菜单的title
+    private ArrayList<String> childNodeNo;//二级菜单的no
 
     @Nullable
     @Override
@@ -46,9 +48,9 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
         view = inflater.inflate(R.layout.product_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        mPresenter.getProductList("", "", "", "", "1", "1");
+        //获取菜单列表
+        mPresenter.getTitle("1","4");
 
-//        mPresenter.getBaseDetail("1","12");
 //        mPresenter.getDetail("1", "12", "2", "SCD");
         return view;
     }
@@ -56,7 +58,7 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
 
     private void initView() {
         mDatas = new ArrayList<>();
-        titles = new ArrayList<>();
+        parentTitles = new ArrayList<>();
 
     }
 
@@ -73,24 +75,30 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     }
 
     @Override
-    public void showData(ProductList productList) {
-        for (int i=0;i<productList.getData().getData().getTitle_list().size();i++) {
-            titles.add(productList.getData().getData().getTitle_list().get(i).get(0).getCategory_name());
-            str = new ArrayList<>();
-            for (int j=1;j<productList.getData().getData().getTitle_list().get(i).size() ;j++) {
+    public void showData(ProductTitle productList) {
+        for (int i = 0; i < productList.getData().getData().getTitle_list().size(); i++) {
+            parentTitles.add(productList.getData().getData().getTitle_list().get(i).get(0).getCategory_name());
+            parentNodeNo=productList.getData().getData().getTitle_list().get(i).get(0).getNode_no();
+            childTitle = new ArrayList<>();
+            childNodeNo = new ArrayList<>();
+            for (int j = 1; j < productList.getData().getData().getTitle_list().get(i).size(); j++) {
 
-                str.add(productList.getData().getData().getTitle_list().get(i).get(j).getCategory_name());
+                childTitle.add(productList.getData().getData().getTitle_list().get(i).get(j).getCategory_name());
+                childNodeNo.add(productList.getData().getData().getTitle_list().get(i).get(j).getNode_no());
             }
-                thirdFragment = ProductListFragment.newInstance(str,productList.getData().getData().getTitle_list().get(i).get(0).getNode_no());
+            thirdFragment = ProductListFragment.newInstance(childTitle, parentNodeNo, childNodeNo);
             mDatas.add(thirdFragment);
         }
-        vpProductList.setAdapter(new TabAdapter(getFragmentManager(),mDatas,titles));
+        vpProductList.setAdapter(new TabAdapter(getFragmentManager(), mDatas, parentTitles));
         vpProductList.setOffscreenPageLimit(productList.getData().getData().getTitle_list().size());
         productTitle.setupWithViewPager(vpProductList);
 
         WyUtils.setIndicator(mContext, productTitle, 10, 10);
 
     }
+
+
+
 
     @Override
     public void showSuccessToast(String msg) {
@@ -101,7 +109,6 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     public void showErrorToast(String msg) {
 
     }
-
 
 
 }

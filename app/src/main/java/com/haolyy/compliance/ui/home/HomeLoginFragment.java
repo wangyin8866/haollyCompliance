@@ -28,7 +28,6 @@ import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.ui.my.InviteFriendActivity;
-import com.haolyy.compliance.ui.product.ProductDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -193,7 +192,6 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_zhang_dan:
-                startActivity(new Intent(getActivity(), ProductDetailActivity.class));
                 break;
             case R.id.rl_activity:
                 break;

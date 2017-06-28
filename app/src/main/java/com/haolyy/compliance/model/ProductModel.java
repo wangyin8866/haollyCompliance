@@ -1,6 +1,8 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.entity.ProductList;
+import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.entity.product.ProductList;
+import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.service.ProductApi;
 
 import rx.Observable;
@@ -15,13 +17,7 @@ public class ProductModel extends BaseModel {
 
     public ProductModel() {
         super();
-        //手动创建一个OkHttpClient并设置超时时间
-//        retrofit = new Retrofit.Builder()
-//                .client(httpClientBuilder.build())
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .baseUrl(NetConstantValues.HOST_URL)
-//                .build();
+
         productApi = retrofit.create(ProductApi.class);
     }
 
@@ -36,7 +32,12 @@ public class ProductModel extends BaseModel {
         }
         return userModel;
     }
-
+    public Observable<ProductTitle> getTitle(String platform, String client){
+        map.clear();
+        map.put("platform", platform);
+        map.put("client", client);
+        return productApi.getTitleList(map);
+    }
     public Observable<ProductList> getProductList(String product_category_id, String status, String return_rate, String date_limit, String page_index, String platform) {
         map.clear();
         map.put("product_category_id", product_category_id);
@@ -48,7 +49,7 @@ public class ProductModel extends BaseModel {
         return productApi.getProductList(map);
     }
 
-    public Observable<String> getBaseDetail(String id, String juid) {
+    public Observable<ProductBaseDetail> getBaseDetail(String id, String juid) {
         map.clear();
         map.put("id", id);
         map.put("juid", juid);

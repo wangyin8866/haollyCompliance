@@ -15,46 +15,95 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:gravity="bottom"
-                 android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <ImageView
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:src="@mipmap/xingye_bank"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    />
+                    android:src="@mipmap/xingye_bank" />
+
                 <android.support.v4.widget.Space
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    />
+                    android:layout_weight="1" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:text="协议范本"
                     android:textColor="@color/text_69acfc"
-                    android:textSize="12sp"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:textSize="12sp" />
             </LinearLayout>
+
             <com.haolyy.compliance.custom.CircleProgressView
                 android:id="@+id/arc_progress_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="-198dp"
+                android:layout_marginBottom="-180dp"
                 app:diameter="240dp" />
 
-            <TextView
-                android:id="@+id/tv_product_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/text_f8676f" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pro_yield1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="10"
+                    android:textColor="#F8676F"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="%"
+                    android:textColor="#F8676F"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/rate_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="+"
+                    android:textColor="#F8676F"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/pro_yield2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="2"
+                    android:textColor="#F8676F"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/extra_rate_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="%"
+                    android:textColor="#F8676F"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,6 +129,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/amount_wait"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
@@ -108,6 +158,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/interest_end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginRight="16dp"
@@ -120,6 +171,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/invest_deadline"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginRight="16dp"
@@ -132,6 +184,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/lock_period"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginRight="16dp"
@@ -175,9 +228,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="6dp"
                 android:gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -188,9 +243,10 @@
 
                 <View
                     android:id="@+id/join_line1"
-                    android:layout_width="90dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="1dp"
-                    android:background="#D8D8D8" />
+                    android:background="#FF9933" />
 
                 <ImageView
                     android:id="@+id/join_image_circle2"
@@ -200,9 +256,10 @@
 
                 <View
                     android:id="@+id/join_line2"
-                    android:layout_width="90dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="1dp"
-                    android:background="#D8D8D8" />
+                    android:background="#FF9933" />
 
                 <ImageView
                     android:id="@+id/join_image_circle3"
@@ -212,7 +269,8 @@
 
                 <View
                     android:id="@+id/join_line3"
-                    android:layout_width="90dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="1dp"
                     android:background="#D8D8D8" />
 
@@ -274,7 +332,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="开始加入"
+                        android:text="投标结束"
                         android:textColor="#FF4A4A4A"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -299,7 +357,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="开始加入"
+                        android:text="锁定到期"
                         android:textColor="#FF4A4A4A"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -320,12 +378,12 @@
                         android:textSize="10sp" />
 
                     <TextView
+                        android:id="@+id/tv_time_data4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="开始加入"
+                        android:text="计划到期"
                         android:textColor="#FF4A4A4A"
-                        android:id="@+id/tv_time_data4"
                         android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>

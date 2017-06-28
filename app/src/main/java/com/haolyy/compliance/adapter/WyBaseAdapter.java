@@ -21,6 +21,7 @@ public class WyBaseAdapter extends BaseAdapter {
         this.list = list;
         inflater = LayoutInflater.from(context);
         this.mContext=context;
+        notifyDataSetChanged();
     }
 
     @Override

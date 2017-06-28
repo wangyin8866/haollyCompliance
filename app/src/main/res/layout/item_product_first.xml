@@ -2,7 +2,7 @@
 <layout>
     <data class="ProductFirstBinding">
 
-        <import type="com.haolyy.compliance.entity.ProductList.DataBeanX.DataBean.DataListBean" />
+        <import type="com.haolyy.compliance.entity.product.ProductList.DataBeanX.DataBean.DataListBean" />
         <import type="android.view.View" />
         <variable
             name="product"
@@ -58,7 +58,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
-                android:text="aaa"
+                android:text="4,000.00万"
                 android:textColor="#FF7D7D7D"
                 android:textSize="10sp" />
         </RelativeLayout>
@@ -161,6 +161,7 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:paddingLeft="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical">

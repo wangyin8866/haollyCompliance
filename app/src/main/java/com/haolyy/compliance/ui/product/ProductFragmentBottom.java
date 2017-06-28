@@ -118,5 +118,4 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         unbinder.unbind();
     }
 
-
 }

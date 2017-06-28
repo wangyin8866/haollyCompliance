@@ -24,46 +24,6 @@ import rx.schedulers.Schedulers;
 @SuppressLint("SimpleDateFormat")
 //时间类型转换的工具类
 public class DateUtil {
-    /**
-     * 倒计时
-     *
-     * @param millisUntilFinished
-     * @return
-     */
-    public static String[] daojishi(long millisUntilFinished) {
-        long day = millisUntilFinished / (60 * 60 * 1000 * 24);
-        long hour = (millisUntilFinished - day * 60 * 60 * 1000 * 24) / (60 * 60 * 1000);
-        long minute = (millisUntilFinished - day * 60 * 60 * 1000 * 24 - hour * 60 * 60 * 1000) / (60 * 1000);
-        long second = (millisUntilFinished - day * 60 * 60 * 1000 * 24 - hour * 60 * 60 * 1000 - minute * 60 * 1000) / 1000;
-
-        String sh = "";
-        String sm = "";
-        String ss = "";
-        String sd = "";
-        if (day < 10) {
-            sd = "0" + String.valueOf(day);
-        } else {
-            sd = String.valueOf(day);
-        }
-        if (hour < 10) {
-            sh = "0" + String.valueOf(hour);
-        } else {
-            sh = String.valueOf(hour);
-        }
-        if (minute < 10) {
-            sm = "0" + String.valueOf(minute);
-        } else {
-            sm = String.valueOf(minute);
-        }
-        if (second < 10) {
-            ss = "0" + String.valueOf(second);
-        } else {
-            ss = String.valueOf(second);
-        }
-
-        String[] sa = new String[]{sd, sh, sm, ss};
-        return sa;
-    }
 
     /**
      * 验证码倒计时
