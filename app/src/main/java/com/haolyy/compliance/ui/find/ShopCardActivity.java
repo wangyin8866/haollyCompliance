@@ -42,6 +42,7 @@ public class ShopCardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_card);
+        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         ButterKnife.bind(this);
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override

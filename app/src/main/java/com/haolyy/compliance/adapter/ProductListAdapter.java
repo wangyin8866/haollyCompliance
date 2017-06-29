@@ -35,9 +35,27 @@ public class ProductListAdapter extends WyBaseAdapter {
         double scale = Double.valueOf(product.getAmount_scale()) / 100;
         binding.tvNum.setText(product.getProject_name());
         binding.tvAmount.setText(product.getContract_amount()+"万");
+        selectIcon(product.getProject_name());
         binding.productCircle.setData(amount * scale, amount);
         binding.productCircle.setmCircleText(product.getAmount_scale() + "%");
         return binding.getRoot();
+    }
+
+    private void selectIcon(String name) {
+        if (name.contains("短期赢")) {
+            binding.ivDuan.setBackgroundResource(R.mipmap.duan);
+        } else if (name.contains("赢计划")) {
+            binding.ivDuan.setBackgroundResource(R.mipmap.icon_ying);
+        }else if (name.contains("周周赢")) {
+            binding.ivDuan.setBackgroundResource(R.mipmap.icon_zhou);
+        }else if (name.contains("消费贷")) {
+            binding.ivDuan.setBackgroundResource(R.mipmap.icon_xiao);
+        }else if (name.contains("闪车贷")) {
+            binding.ivDuan.setBackgroundResource(R.mipmap.icon_che);
+        }else if (name.contains("票据贷")) {
+            binding.ivDuan.setBackgroundResource(R.mipmap.icon_piao);
+        }
+
     }
 
     /**

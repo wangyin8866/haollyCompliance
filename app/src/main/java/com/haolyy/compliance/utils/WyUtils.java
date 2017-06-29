@@ -2,13 +2,16 @@ package com.haolyy.compliance.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.support.design.widget.TabLayout;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.custom.XListView;
+import com.haolyy.compliance.ui.MainActivity;
 
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
@@ -138,5 +141,17 @@ public class WyUtils {
         }
         return result;
 
+    }
+
+    /**
+     * 跳转到MainActivity
+     * @param activity 当前activity
+     * @param currentPage 对应的page
+     */
+    public static void skipMainActivity(Activity activity,int currentPage) {
+        Intent intent = new Intent(activity,MainActivity.class);
+        intent.putExtra("currentPage", currentPage);
+        activity.startActivity(intent);
+        ActivityCollector.finishAll();
     }
 }

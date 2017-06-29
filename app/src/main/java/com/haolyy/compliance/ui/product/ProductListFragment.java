@@ -1,8 +1,6 @@
 package com.haolyy.compliance.ui.product;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -109,13 +107,23 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         } else {
             //动态创建菜单
             for (int i = 0; i < childTitle.size(); i++) {
-                RadioButton tempButton = new RadioButton(mContext);
-                Bitmap a = null;
-                tempButton.setButtonDrawable(new BitmapDrawable(a));
-                tempButton.setPadding(UIUtils.dip2px(20), 0, 0, 0);                 // 设置文字距离按钮四周的距离
+//                RadioButton tempButton = new RadioButton(mContext);
+
+                RadioButton tempButton = (RadioButton) getActivity().getLayoutInflater().inflate(R.layout.radio_button, null);
+//                Bitmap a = null;
+//                tempButton.setButtonDrawable(new BitmapDrawable(a));
+//                tempButton.setButtonDrawable(getResources().getDrawable(android.R.color.transparent));
+//                tempButton.setPadding(UIUtils.dip2px(20), 0, 0, 0);                 // 设置文字距离按钮四周的距离
                 tempButton.setText(childTitle.get(i));
-                tempButton.setTextColor(getResources().getColorStateList(R.color.color_tv_selector));
+//                tempButton.setTextColor(getResources().getColorStateList(R.color.color_tv_selector));
                 group.addView(tempButton, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+                LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) tempButton.getLayoutParams();
+                layoutParams.leftMargin=UIUtils.dip2px(20);
+                tempButton.setLayoutParams(layoutParams);
+
+
+
             }
             group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 

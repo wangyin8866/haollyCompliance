@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void init() {
+        currentPage = getIntent().getIntExtra("currentPage", 0);
         homeNoLoginFragment = new HomeNoLoginFragment();
         homeInvestFragment = new HomeLoginFragment();
 

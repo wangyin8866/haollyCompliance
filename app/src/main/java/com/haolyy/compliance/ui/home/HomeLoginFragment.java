@@ -155,6 +155,12 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
             homeLlVisibility.setVisibility(View.VISIBLE);
         }
         showAutoRollStrings();
+
+        //拉去数据
+        mPresenter.getBanner("2", "1");
+//        mPresenter.getHomeProduct();
+//        mPresenter.getHomeArticle("1");
+//        mPresenter.getRecommend("4d5g8b5","1");
     }
 
     private void showAutoRollStrings() {

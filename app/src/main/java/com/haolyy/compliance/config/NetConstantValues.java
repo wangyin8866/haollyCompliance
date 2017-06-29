@@ -9,18 +9,22 @@ public interface NetConstantValues {
 //     String HOST_URL = "http://192.168.11.104:8080/";
 //     String HOST_URL2 = "http://192.168.11.104:8081/";
     //测试服务器
-    //String HOST_URL = "http://192.168.7.113:8010/";
+//    String HOST_URL = "http://192.168.7.113:8010/";
     String HOST_URL2 = "http://192.168.7.113:8018/";
     //杜欣
 //    String HOST_URL2 = "http://192.168.13.213:8080/";
 //    String HOST_URL="http://192.168.13.213:8080/";
     //赵建华
-     String HOST_URL = "http://192.168.10.97:8080/";
+//     String HOST_URL = "http://192.168.10.97:8080/";
     //杨全帅
    // String HOST_URL="http://192.168.11.199:8080/";
     //骆丹
     //String HOST_URL2 = "http://192.168.11.179:8080/";
     //String HOST_URL="http://192.168.11.179:8080/";
+    //李佳
+    String HOST_URL = "http://192.168.9.229:8080/";
+
+
 
     String USERMANAGE = "chinazy-user-manage/";
     String BIGTHREE = "chinazy-sms-bigthree/api/";
@@ -51,9 +55,18 @@ public interface NetConstantValues {
     String HUIFU_TRANSDETAIL = HUIFU_SH + "toQueryTransDetail";//交易明细
     String HUIFU_USERINFO = HUIFU_SH + "toQueryUsrInfo";//用户信息查询
     String HUIFU_ADDBIDINFO = HUIFU_SH + "addBidInfo";//标的信息录入
-    //第二模块接口
-    String PRODUCT="chinazy-product-info/product/";
+    /**
+     *   第二模块接口
+     */
 
+    //首页
+    String HOME="chinazy-product-info/home/";
+    String HOME_PRODUCT=HOME+"getHomeProduct";//首页产品展示
+    String HOME_ARTICLE=HOME+"getHomeArticle";//首页新闻
+    String HOME_RECOMMEND = HOME + "getrecommend";//首页活动信息
+    String HOME_BANNER = HOME + "getbanner";//首页轮播图
+    //列表详情页
+    String PRODUCT="chinazy-product-info/product/";
     String PRODUCT_TITLE_LIST = PRODUCT+"productTitleList";//菜单列表
     String PRODUCT_LIST = PRODUCT+"productList";//产品列表
     String PRODUCT_BASE_DETAIL = PRODUCT+"productDetailBase";//产品基础详情信息

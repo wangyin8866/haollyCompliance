@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.utils.SystemBarUtil;
+import com.haolyy.compliance.utils.WyUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +54,7 @@ public class InvestSucceed extends AppCompatActivity {
             case R.id.look_invest_log:
                 break;
             case R.id.btn_continue:
+                WyUtils.skipMainActivity(InvestSucceed.this, 1);
                 break;
         }
     }
