@@ -28,7 +28,16 @@ public interface ProductApi {
     @FormUrlEncoded
     @POST(NetConstantValues.PRODUCT_BASE_DETAIL)
     Observable<ProductBaseDetail> getBaseDetail(@FieldMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST(NetConstantValues.PRODUCT_DETAIL)
     Observable<String > getDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.INVESTMENT_RECORD)
+    Observable<String > getInvestmentRecord(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.PRODUCT_RETURN_PLAN)
+    Observable<String > getProductReturnPlan(@FieldMap Map<String, String> params);
 }

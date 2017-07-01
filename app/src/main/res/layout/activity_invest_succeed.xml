@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -77,13 +78,21 @@
             />
         <Button
             android:id="@+id/btn_continue"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/bg_btn_error_rest"
             android:text="继续投资"
             android:textColor="#FFFF9933"
             android:textSize="14sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="  开启自动续投"
+            android:button="@drawable/selector_chose"
+            />
     </LinearLayout>
 </LinearLayout>

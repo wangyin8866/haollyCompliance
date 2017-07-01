@@ -49,20 +49,39 @@ public class ProductModel extends BaseModel {
         return productApi.getProductList(map);
     }
 
-    public Observable<ProductBaseDetail> getBaseDetail(String id, String juid) {
+    public Observable<ProductBaseDetail> getBaseDetail(String project_no, String juid) {
         map.clear();
-        map.put("id", id);
+        map.put("project_no", project_no);
         map.put("juid", juid);
         return productApi.getBaseDetail(map);
 
     }
     public Observable<String> getDetail(String id, String juid,String project_type,String product_no) {
         map.clear();
-        map.put("id", id);
+        map.put("project_no", id);
         map.put("juid", juid);
         map.put("project_type", project_type);
         map.put("product_no", product_no);
         return productApi.getDetail(map);
+
+    }
+    public Observable<String> getInvestmentRecord(String projectNo, String pageIndex,String platform,String client,String version) {
+        map.clear();
+        map.put("project_no", projectNo);
+        map.put("page_index", pageIndex);
+        map.put("platform", platform);
+        map.put("client", client);
+        map.put("version", version);
+        return productApi.getInvestmentRecord(map);
+
+    }
+    public Observable<String> getProductReturnPlan(String projectNo, String pageIndex,String platform,String client) {
+        map.clear();
+        map.put("project_no", projectNo);
+        map.put("page_index", pageIndex);
+        map.put("platform", platform);
+        map.put("client", client);
+        return productApi.getProductReturnPlan(map);
 
     }
 }

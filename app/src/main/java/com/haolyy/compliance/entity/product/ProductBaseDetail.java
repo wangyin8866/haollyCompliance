@@ -4,10 +4,10 @@ package com.haolyy.compliance.entity.product;
  * Created by wangyin on 2017/6/28.
  */
 
-public class ProductBaseDetail {
+public class ProductBaseDetail  {
 
     /**
-     * data : {"data":{"info":{"account_balance":"100.00","amount_scale":"95.75","amount_wait":"38,300.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1497511119000,"bid_end_date":1499325519000,"contract_amount":"40,000.00","id":6887,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":28,"period_unit":2,"profit_plan":1,"project_type":2,"status":1}},"msg":"业务正常","status":"200"}
+     * data : {"data":{"info":{"account_balance":"100.00","amount_scale":"24.00","amount_wait":"12,000.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1499396700000,"bid_end_date":1501988700000,"contract_amount":"50,000.00","id":672,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":12,"period_unit":3,"profit_plan":1,"project_name":"赢计划D672","project_type":2,"status":1},"now":1498882400372},"msg":"业务正常","status":"200"}
      * msg : 系统正常
      * status : 200
      */
@@ -42,7 +42,7 @@ public class ProductBaseDetail {
 
     public static class DataBeanX {
         /**
-         * data : {"info":{"account_balance":"100.00","amount_scale":"95.75","amount_wait":"38,300.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1497511119000,"bid_end_date":1499325519000,"contract_amount":"40,000.00","id":6887,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":28,"period_unit":2,"profit_plan":1,"project_type":2,"status":1}}
+         * data : {"info":{"account_balance":"100.00","amount_scale":"24.00","amount_wait":"12,000.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1499396700000,"bid_end_date":1501988700000,"contract_amount":"50,000.00","id":672,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":12,"period_unit":3,"profit_plan":1,"project_name":"赢计划D672","project_type":2,"status":1},"now":1498882400372}
          * msg : 业务正常
          * status : 200
          */
@@ -77,10 +77,12 @@ public class ProductBaseDetail {
 
         public static class DataBean {
             /**
-             * info : {"account_balance":"100.00","amount_scale":"95.75","amount_wait":"38,300.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1497511119000,"bid_end_date":1499325519000,"contract_amount":"40,000.00","id":6887,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":28,"period_unit":2,"profit_plan":1,"project_type":2,"status":1}
+             * info : {"account_balance":"100.00","amount_scale":"24.00","amount_wait":"12,000.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1499396700000,"bid_end_date":1501988700000,"contract_amount":"50,000.00","id":672,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":12,"period_unit":3,"profit_plan":1,"project_name":"赢计划D672","project_type":2,"status":1}
+             * now : 1498882400372
              */
 
             private InfoBean info;
+            private long now;
 
             public InfoBean getInfo() {
                 return info;
@@ -90,24 +92,33 @@ public class ProductBaseDetail {
                 this.info = info;
             }
 
+            public long getNow() {
+                return now;
+            }
+
+            public void setNow(long now) {
+                this.now = now;
+            }
+
             public static class InfoBean {
                 /**
                  * account_balance : 100.00
-                 * amount_scale : 95.75
-                 * amount_wait : 38,300.00
+                 * amount_scale : 24.00
+                 * amount_wait : 12,000.00
                  * annualized_rate : 11.00
                  * append_rate : 1.00
-                 * begin_date : 1497511119000
-                 * bid_end_date : 1499325519000
-                 * contract_amount : 40,000.00
-                 * id : 6887
+                 * begin_date : 1499396700000
+                 * bid_end_date : 1501988700000
+                 * contract_amount : 50,000.00
+                 * id : 672
                  * interest_end_date : 1506700800000
                  * interest_start_date : 1504540800000
                  * lock_date : 10144454400000
                  * lock_period : 99999
-                 * period_length : 28
-                 * period_unit : 2
+                 * period_length : 12
+                 * period_unit : 3
                  * profit_plan : 1
+                 * project_name : 赢计划D672
                  * project_type : 2
                  * status : 1
                  */
@@ -128,6 +139,7 @@ public class ProductBaseDetail {
                 private int period_length;
                 private int period_unit;
                 private int profit_plan;
+                private String project_name;
                 private int project_type;
                 private int status;
 
@@ -257,6 +269,14 @@ public class ProductBaseDetail {
 
                 public void setProfit_plan(int profit_plan) {
                     this.profit_plan = profit_plan;
+                }
+
+                public String getProject_name() {
+                    return project_name;
+                }
+
+                public void setProject_name(String project_name) {
+                    this.project_name = project_name;
                 }
 
                 public int getProject_type() {

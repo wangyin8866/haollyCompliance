@@ -18,8 +18,8 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
     public ProductTopPresenter(Context context) {
         super(context);
     }
-    public void getBaseDetail(String id, String juid){
-        invoke(ProductModel.getInstance().getBaseDetail(id,juid),new ProgressSubscriber<ProductBaseDetail>(new SubscriberOnNextListener<ProductBaseDetail>() {
+    public void getBaseDetail(String project_no, String juid){
+        invoke(ProductModel.getInstance().getBaseDetail(project_no,juid),new ProgressSubscriber<ProductBaseDetail>(new SubscriberOnNextListener<ProductBaseDetail>() {
             @Override
             public void onNext(ProductBaseDetail s) {
                 if (s.getStatus().equals("200")) {

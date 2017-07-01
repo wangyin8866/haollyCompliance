@@ -21,22 +21,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by niudeyang on 2017/5/17.
- */
 
-public class ProductDetailActivity extends AppCompatActivity{
+public class ProductDetailActivity extends AppCompatActivity {
     @BindView(R.id.tv_product_join)
     TextView tvProductJoin;
     @BindView(R.id.vp_product)
     VerticalViewPager vpProduct;
     @BindView(R.id.top_bar)
     TopBar topBar;
-
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList = new ArrayList<>();
-
 
 
     @Override
@@ -45,14 +40,7 @@ public class ProductDetailActivity extends AppCompatActivity{
         setContentView(R.layout.activity_product_detail);
         ButterKnife.bind(this);
         SystemBarUtil.setSystemBar(this, R.color.white);
-
-        topBar.setTitle(getIntent().getStringExtra("productName"));
-        productFragmentTop = new ProductFragmentTop();
-        productFragmentBottom = new ProductFragmentBottom();
-        fragmentList.add(productFragmentTop);
-        fragmentList.add(productFragmentBottom);
-        vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
-
+        init();
         tvProductJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +58,15 @@ public class ProductDetailActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    private void init() {
+        productFragmentTop = new ProductFragmentTop();
+        productFragmentBottom = new ProductFragmentBottom();
+        fragmentList.add(productFragmentTop);
+        fragmentList.add(productFragmentBottom);
+        vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
+        topBar.setTitle(getIntent().getStringExtra("productName"));
     }
 
     public class DummyAdapter extends FragmentPagerAdapter {

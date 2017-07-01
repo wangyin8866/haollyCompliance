@@ -23,6 +23,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/left_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -227,164 +228,172 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="6dp"
-                android:gravity="center"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/join_image_circle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_join_circle" />
-
-                <View
-                    android:id="@+id/join_line1"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="1dp"
-                    android:background="#FF9933" />
-
-                <ImageView
-                    android:id="@+id/join_image_circle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_join_circle" />
-
-                <View
-                    android:id="@+id/join_line2"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="1dp"
-                    android:background="#FF9933" />
-
-                <ImageView
-                    android:id="@+id/join_image_circle3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_join_circle" />
-
-                <View
-                    android:id="@+id/join_line3"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="1dp"
-                    android:background="#D8D8D8" />
-
-                <ImageView
-                    android:id="@+id/join_image_circle4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_join_circle" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/join_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_time1"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/join_image_circle1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="2016-12-18"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
+                        android:src="@mipmap/icon_join_circle" />
 
-                    <TextView
-                        android:id="@+id/tv_time_data1"
-                        android:layout_width="match_parent"
+                    <View
+                        android:id="@+id/join_line1"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#FF9933" />
+
+                    <ImageView
+                        android:id="@+id/join_image_circle2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="开始加入"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
+                        android:src="@mipmap/icon_join_circle" />
+
+                    <View
+                        android:id="@+id/join_line2"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#FF9933" />
+
+                    <ImageView
+                        android:id="@+id/join_image_circle3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_join_circle" />
+
+                    <View
+                        android:id="@+id/join_line3"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#D8D8D8" />
+
+                    <ImageView
+                        android:id="@+id/join_image_circle4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_join_circle_gray" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_time2"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="2016-12-18"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_time_data2"
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_time1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="2016-12-18"
+                            android:textColor="#FF4A4A4A"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_time_data1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="开始加入"
+                            android:textColor="#FF4A4A4A"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="投标结束"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
-                </LinearLayout>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_time2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="2016-12-18"
+                            android:textColor="#FF4A4A4A"
+                            android:textSize="10sp" />
 
-                    <TextView
-                        android:id="@+id/tv_time3"
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_time_data2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="投标结束"
+                            android:textColor="#FF4A4A4A"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="2016-12-18"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_time_data3"
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tv_time3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="2016-12-18"
+                            android:textColor="#FF4A4A4A"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_time_data3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="锁定到期"
+                            android:textColor="#FF4A4A4A"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/join_progress4"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="锁定到期"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
-                </LinearLayout>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_time4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="2016-12-18"
+                            android:textColor="#B9B9B9"
+                            android:textSize="10sp" />
 
-                    <TextView
-                        android:id="@+id/tv_time4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="2016-12-18"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/tv_time_data4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="计划到期"
-                        android:textColor="#FF4A4A4A"
-                        android:textSize="10sp" />
+                        <TextView
+                            android:id="@+id/tv_time_data4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="计划到期"
+                            android:textColor="#B9B9B9"
+                            android:textSize="10sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -407,14 +416,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="23dp"
-                    android:text="可用金额"
+                    android:text="可用余额"
                     android:textColor="@color/text_4a4a4a"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100000"
+                    android:text="登录后查看"
                     android:textColor="@color/text_e84b54"
                     android:textSize="14sp" />
 

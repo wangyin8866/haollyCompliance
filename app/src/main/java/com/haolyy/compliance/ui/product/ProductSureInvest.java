@@ -64,7 +64,7 @@ public class ProductSureInvest extends AppCompatActivity implements View.OnClick
                 }
                 break;
             case R.id.tv_invest_sure:
-                startActivity(new Intent(ProductSureInvest.this, InvestErrorRest.class));
+                startActivity(new Intent(ProductSureInvest.this, InvestSucceed.class));
                 break;
         }
     }

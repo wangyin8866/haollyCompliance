@@ -47,11 +47,12 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     private String parentNodeNo;
     private String flag;
     private ProductList productList;
-    private int productId;
+    private String projectNo;
     private String productName;
     private int pageNum = 1;
     private int pageSize;
-
+    private int project_type;// 标的类型
+    private String product_no;// 产品类型
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +80,15 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         xlvProductThird.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                productId = productList.getData().getData().getData_list().get(position - 1).getId();
+                projectNo = productList.getData().getData().getData_list().get(position - 1).getProject_no();
                 productName = productList.getData().getData().getData_list().get(position - 1).getProject_name();
+                project_type = productList.getData().getData().getData_list().get(position - 1).getProject_type();
+                product_no = productList.getData().getData().getData_list().get(position - 1).getProduct_no();
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
-                intent.putExtra("productId", productId);
+                intent.putExtra("projectNo", projectNo);
                 intent.putExtra("productName", productName);
+                intent.putExtra("project_type", project_type);
+                intent.putExtra("product_no", product_no);
                 startActivity(intent);
             }
         });
@@ -121,9 +126,6 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
                 LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) tempButton.getLayoutParams();
                 layoutParams.leftMargin=UIUtils.dip2px(20);
                 tempButton.setLayoutParams(layoutParams);
-
-
-
             }
             group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 

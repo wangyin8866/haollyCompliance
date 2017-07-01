@@ -1,6 +1,7 @@
 package com.haolyy.compliance.ui.product;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -96,7 +98,19 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView investDeadline;
     @BindView(R.id.lock_period)
     TextView lockPeriod;
-    private int productId;
+    @BindView(R.id.join_progress)
+    LinearLayout joinProgress;
+    @BindView(R.id.join_progress4)
+    LinearLayout joinProgress4;
+    @BindView(R.id.left_label)
+    ImageView leftLabel;
+    @BindView(R.id.tv_mirror_plan1)
+    TextView tvMirrorPlan1;
+    private String projectNo;
+    private int project_type;
+    private String product_no;
+    private int progressState;
+    private long currentTime;
 
     @Nullable
     @Override
@@ -140,9 +154,24 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
     private void init() {
-        productId = getActivity().getIntent().getIntExtra("productId", 0);
-
-        mPresenter.getBaseDetail(productId + "", "12");
+        projectNo = getActivity().getIntent().getStringExtra("projectNo");
+        project_type = getActivity().getIntent().getIntExtra("project_type", 0);
+        product_no = getActivity().getIntent().getStringExtra("product_no");
+        //显示进度
+        if (project_type == 1) {//散标
+            joinProgress.setVisibility(View.GONE);
+        } else {
+            if (product_no.equalsIgnoreCase("scd")) {//新手标
+                joinLine3.setVisibility(View.GONE);
+                joinImageCircle4.setVisibility(View.GONE);
+                joinProgress4.setVisibility(View.GONE);
+            }
+        }
+        //显示left label
+        if (!product_no.equalsIgnoreCase("pjd")) {//票据贷
+            leftLabel.setVisibility(View.GONE);
+        }
+        mPresenter.getBaseDetail(projectNo + "", "12");
     }
 
     void changeScrollView() {
@@ -182,7 +211,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
-
+        currentTime = productBaseDetail.getData().getData().getNow();
         ProductBaseDetail.DataBeanX.DataBean.InfoBean infoBean = productBaseDetail.getData().getData().getInfo();
         //利率
         proYield1.setText(infoBean.getAnnualized_rate());
@@ -198,23 +227,145 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         //投资期限
         investDeadline.setText(infoBean.getPeriod_length() + WyUtils.getInvestDeadline(infoBean.getPeriod_unit()));
         //锁定期
-        lockPeriod.setText(infoBean.getLock_period()+"天");
+        lockPeriod.setText(infoBean.getLock_period() + "天");
         //计划金额
         Double amount = Double.valueOf(infoBean.getContract_amount().replace(",", ""));
         double scale = Double.valueOf(infoBean.getAmount_scale()) / 100;
         //剩余可投金额
         Double amount_wait = Double.valueOf(infoBean.getAmount_wait().replace(",", ""));
         arcProgressView.setData(amount * scale, amount);
-
-        //开始加入时间
-        tvTime1.setText(DateUtil.getTimeyyyymmdd(infoBean.getBegin_date()));
-        //投标结束时间
-        tvTime2.setText(DateUtil.getTimeyyyymmdd(infoBean.getBid_end_date()));
-        //锁定到期时间
-        tvTime3.setText(DateUtil.getTimeyyyymmdd(infoBean.getLock_date()));
-        //计划到期时间
-        tvTime4.setText(DateUtil.getTimeyyyymmdd(infoBean.getPeriod_unit()));
+        processProgress(infoBean.getBegin_date(), infoBean.getBid_end_date(), infoBean.getLock_date(), infoBean.getInterest_end_date());
     }
+
+    /**
+     * 处理进度条
+     *
+     * @param begin_date   开始加入时间
+     * @param bid_end_date 投标结束时间
+     * @param lock_date    锁定到期时间
+     * @param period_unit  计划到期时间
+     */
+    private void processProgress(long begin_date, long bid_end_date, long lock_date, long period_unit) {
+        rest();
+        if (begin_date >= currentTime) {
+            switchState(1, begin_date, bid_end_date, lock_date, period_unit);
+        }
+        if (bid_end_date >= currentTime) {
+            switchState(2, begin_date, bid_end_date, lock_date, period_unit);
+        }
+        if (lock_date >= currentTime) {
+            switchState(3, begin_date, bid_end_date, lock_date, period_unit);
+        }
+        if (period_unit >= currentTime) {
+            switchState(4, begin_date, bid_end_date, lock_date, period_unit);
+        }
+
+    }
+
+    /**
+     * @param state 状态码
+     */
+    private void switchState(int state, long begin_date, long bid_end_date, long lock_date, long period_unit) {
+        rest();
+        switch (state) {
+            case 1:
+                setText(begin_date, bid_end_date, lock_date, period_unit);
+                joinImageCircle1.setImageResource(R.mipmap.icon_join_circle);
+                joinLine1.setBackgroundColor(Color.parseColor("#FF9933"));
+                tvTime1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                break;
+            case 2:
+                setText(begin_date, bid_end_date, lock_date, period_unit);
+                joinImageCircle1.setImageResource(R.mipmap.icon_join_circle);
+                joinImageCircle2.setImageResource(R.mipmap.icon_join_circle);
+                joinLine1.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinLine2.setBackgroundColor(Color.parseColor("#FF9933"));
+                tvTime1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTime2.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData2.setTextColor(Color.parseColor("#FF4A4A4A"));
+                break;
+            case 3:
+                setText(begin_date, bid_end_date, lock_date, period_unit);
+                joinLine1.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinLine2.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinLine3.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinImageCircle1.setImageResource(R.mipmap.icon_join_circle);
+                joinImageCircle2.setImageResource(R.mipmap.icon_join_circle);
+                joinImageCircle3.setImageResource(R.mipmap.icon_join_circle);
+                tvTime1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTime2.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTime3.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData2.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData3.setTextColor(Color.parseColor("#FF4A4A4A"));
+                break;
+            case 4:
+                setText(begin_date, bid_end_date, lock_date, period_unit);
+                joinLine1.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinLine2.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinLine3.setBackgroundColor(Color.parseColor("#FF9933"));
+                joinImageCircle1.setImageResource(R.mipmap.icon_join_circle);
+                joinImageCircle2.setImageResource(R.mipmap.icon_join_circle);
+                joinImageCircle3.setImageResource(R.mipmap.icon_join_circle);
+                joinImageCircle4.setImageResource(R.mipmap.icon_join_circle);
+                tvTime1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTime2.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTime3.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTime4.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData1.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData2.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData3.setTextColor(Color.parseColor("#FF4A4A4A"));
+                tvTimeData4.setTextColor(Color.parseColor("#FF4A4A4A"));
+                break;
+        }
+    }
+
+    /**
+     * 设置文本值
+     *
+     * @param begin_date
+     * @param bid_end_date
+     * @param lock_date
+     * @param period_unit
+     */
+    private void setText(long begin_date, long bid_end_date, long lock_date, long period_unit) {
+        if (begin_date != 0) {
+            tvTime1.setText(DateUtil.getTimeyyyymmdd(begin_date));
+        }
+        if (bid_end_date != 0) {
+            tvTime2.setText(DateUtil.getTimeyyyymmdd(bid_end_date));
+        }
+        if (lock_date != 0) {
+            tvTime3.setText(DateUtil.getTimeyyyymmdd(lock_date));
+        }
+        if (period_unit != 0) {
+            tvTime4.setText(DateUtil.getTimeyyyymmdd(period_unit));
+        }
+    }
+    private void rest() {
+        joinLine1.setBackgroundColor(Color.parseColor("#D8D8D8"));
+        joinLine2.setBackgroundColor(Color.parseColor("#D8D8D8"));
+        joinLine3.setBackgroundColor(Color.parseColor("#D8D8D8"));
+        joinImageCircle1.setImageResource(R.mipmap.icon_join_circle_gray);
+        joinImageCircle2.setImageResource(R.mipmap.icon_join_circle_gray);
+        joinImageCircle3.setImageResource(R.mipmap.icon_join_circle_gray);
+        joinImageCircle4.setImageResource(R.mipmap.icon_join_circle_gray);
+        tvTime1.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTime1.setText("- -");
+        tvTime2.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTime2.setText("- -");
+        tvTime3.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTime3.setText("- -");
+        tvTime4.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTime4.setText("- -");
+        tvTimeData1.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTimeData2.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTimeData3.setTextColor(Color.parseColor("#B9B9B9"));
+        tvTimeData4.setTextColor(Color.parseColor("#B9B9B9"));
+    }
+
 
     @Override
     public void showSuccessToast(String msg) {

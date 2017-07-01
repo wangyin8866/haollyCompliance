@@ -22,15 +22,15 @@ public interface NetConstantValues {
     //String HOST_URL2 = "http://192.168.11.179:8080/";
     //String HOST_URL="http://192.168.11.179:8080/";
     //李佳
-    String HOST_URL = "http://192.168.9.229:8080/";
-
+//    String HOST_URL = "http://192.168.9.229:8080/";
+    //贺流
+    String HOST_URL= "http://192.168.10.214:8080/";
 
 
     String USERMANAGE = "chinazy-user-manage/";
     String BIGTHREE = "chinazy-sms-bigthree/api/";
     String HUIFU_SH = "chinazy-pay-shanghaibank/http/huifush/";
-    //productList
-//    String HOST_URL= "http://192.168.10.214:8080/";
+
 
 
     String user_login = USERMANAGE + "user/login.html";
@@ -71,4 +71,6 @@ public interface NetConstantValues {
     String PRODUCT_LIST = PRODUCT+"productList";//产品列表
     String PRODUCT_BASE_DETAIL = PRODUCT+"productDetailBase";//产品基础详情信息
     String PRODUCT_DETAIL = PRODUCT+"productDetail";//产品详情信息
+    String INVESTMENT_RECORD=PRODUCT+"getInvestmentRecord";//投资记录
+    String PRODUCT_RETURN_PLAN = PRODUCT + "productReturnPlan";//还款计划
 }

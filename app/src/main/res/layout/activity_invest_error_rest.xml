@@ -87,10 +87,10 @@
 
         <Button
             android:id="@+id/error_rest"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="200dp"
             android:background="@drawable/bg_btn_error_rest"
             android:text="重新加入"
             android:textColor="#FFFF9933"

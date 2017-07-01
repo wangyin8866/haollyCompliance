@@ -2,15 +2,17 @@ package com.haolyy.compliance.ui.product;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.RepaymentAdapter;
+import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.Repayment;
+import com.haolyy.compliance.ui.product.presenter.RepaymentPlanPresenter;
+import com.haolyy.compliance.ui.product.view.RepaymentPlanView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import butterknife.Unbinder;
  * Created by niudeyang on 2017/5/17.
  */
 
-public class FragmentBottomRepaymentPlan extends Fragment implements XListView.IXListViewListener {
+public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPresenter,RepaymentPlanView> implements XListView.IXListViewListener,RepaymentPlanView {
 
 
     Unbinder unbinder;
@@ -38,6 +40,8 @@ public class FragmentBottomRepaymentPlan extends Fragment implements XListView.I
         View view = inflater.inflate(R.layout.fragment_bottom_repayment_plan, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+
+        mPresenter.getProductReturnPlan("HLWL206878","1","1","1");
         repaymentXlv.setPullRefreshEnable(false);
         repaymentXlv.setXListViewListener(this);
         repayments = new ArrayList<>();
@@ -62,5 +66,15 @@ public class FragmentBottomRepaymentPlan extends Fragment implements XListView.I
 
     @Override
     public void onLoadMore() {
+    }
+
+    @Override
+    public void showData() {
+
+    }
+
+    @Override
+    protected RepaymentPlanPresenter createPresenter() {
+        return new RepaymentPlanPresenter(mContext);
     }
 }

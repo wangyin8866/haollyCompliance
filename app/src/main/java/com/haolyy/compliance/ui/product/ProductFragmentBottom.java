@@ -64,7 +64,7 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         bottomCreditorInfo = new FragmentBottomCreditorInfo();
         bottomBorrowDetail = new FragmentBottomBorrowDetail();
         bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
-        int type = 5;
+        int type = 2;
         switch (type) {
             case 1: //赢计划,短期赢
                 titles.add("产品详情");

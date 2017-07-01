@@ -2,15 +2,17 @@ package com.haolyy.compliance.ui.product;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.InvestLogAdapter;
+import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.InvestLog;
+import com.haolyy.compliance.ui.product.presenter.InvestLogPresenter;
+import com.haolyy.compliance.ui.product.view.InvestLogView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ import butterknife.Unbinder;
  * Created by niudeyang on 2017/5/17.
  */
 
-public class FragmentBottomInvestLog extends Fragment implements XListView.IXListViewListener{
+public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,InvestLogView> implements XListView.IXListViewListener,InvestLogView{
     Unbinder unbinder;
     @BindView(R.id.xl_invest_log)
     XListView xlInvestLog;
@@ -38,6 +40,7 @@ public class FragmentBottomInvestLog extends Fragment implements XListView.IXLis
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bottom_invest_log, container, false);
         unbinder = ButterKnife.bind(this, view);
+//        mPresenter.getInvestmentRecord("HLWL206878","1","1","1","1");
         investLogs = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             InvestLog investLog = new InvestLog("0000000000" + i, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()),  1000 * i+"元");
@@ -65,4 +68,13 @@ public class FragmentBottomInvestLog extends Fragment implements XListView.IXLis
 
     }
 
+    @Override
+    protected InvestLogPresenter createPresenter() {
+        return new InvestLogPresenter(mContext);
+    }
+
+    @Override
+    public void showData() {
+
+    }
 }
