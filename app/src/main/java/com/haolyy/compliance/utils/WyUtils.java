@@ -4,16 +4,23 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.design.widget.TabLayout;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.haolyy.compliance.base.ActivityCollector;
+import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.ui.MainActivity;
+import com.haolyy.compliance.custom.dialog.WithDrawPopupWindow;
 
 import java.lang.reflect.Field;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -141,6 +148,32 @@ public class WyUtils {
         }
         return result;
 
+    }
+
+
+    /**
+     * 保留两位小数 不进行四舍五入
+     */
+    public static String getTwoNumStr(double num) {
+//        DecimalFormat df = new DecimalFormat("######0.00");
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        df.setGroupingSize(0);
+        df.setRoundingMode(RoundingMode.FLOOR);
+        return df.format(num);
+
+    }
+
+    public static String getVersion(Context context)//获取版本号
+    {
+        try {
+            PackageInfo pi=context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return pi.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "1.0";
+        }
     }
 
     /**

@@ -15,6 +15,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -32,13 +33,14 @@ public interface UserApi {
     Observable<RegisterBean> register(@FieldMap Map<String, String> params);
 
 
-    @FormUrlEncoded
-    @POST(NetConstantValues.SMS_SENDSMSCODE)
-    Observable<SmsBean> sendSms(@FieldMap Map<String, String> params);
 
-    @FormUrlEncoded
-    @POST(NetConstantValues.IMAGE_CHECK)
-    Observable<CheckImageCode> checkImage(@FieldMap Map<String, String> params);
+    @GET(NetConstantValues.SMS_SENDSMSCODE)
+    Observable<SmsBean> sendSms(@Query("token") String mobile,@Query("imagecode") String imagecode,@Query("systemplate") String systemplate,@Query("type") String type,@Query("token") String token);
+
+
+    @GET(NetConstantValues.IMAGE_CHECK)
+    Observable<CheckImageCode> checkImage(@Query("token") String token,
+                                          @Query("imagecode") String imagecode);
 
     @GET(NetConstantValues.GET_TOKEN)
     Observable<TokenResponseBean> getToken();

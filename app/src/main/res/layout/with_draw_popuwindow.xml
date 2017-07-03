@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_normal_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="普通提现"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/E1E1E1" />
+
+    <TextView
+        android:id="@+id/tv_fast_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="即时提现"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_withdraw_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -15,6 +15,7 @@ import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.ui.bank.BankBindActivity;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.ui.bank.WithDrawActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
@@ -93,7 +94,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             case R.id.tv_withdraw:
                 //startActivity(new Intent(mContext, WithDrawActivity.class));
                 //开户
-               dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+       /*        dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
                    @Override
                    public void excuteLeft() {
 //
@@ -105,7 +106,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 //
                    }
                }).show();
-
+*/
               /*  dialogInvestGuides = new DialogInvestGuides(mContext, DialogInvestGuides.INTELLIGENCE);
                 dialogInvestGuides.setOnDoubleClickListener(new DialogInvestGuides.OnDoubleClickListener() {
                     @Override
@@ -117,11 +118,11 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                     public void excuteRight() {
 
                     }
-                }).show();
-                startActivity(new Intent(mContext, WithDrawActivity.class));*/
+                }).show();*/
+               // startActivity(new Intent(mContext, WithDrawActivity.class));
+                startActivity(new Intent(mContext, CheckBankActivity.class));
                 break;
             case R.id.tv_recharge:
-                // dialogBank.show();
                 startActivity(new Intent(mContext, RechargeActivity.class));
                 break;
             case R.id.v_invite_friend:

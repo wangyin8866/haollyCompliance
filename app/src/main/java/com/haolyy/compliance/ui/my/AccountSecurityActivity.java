@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.ui.bank.RebindBankActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +56,7 @@ public class AccountSecurityActivity extends AppCompatActivity {
                 startActivity(new Intent(AccountSecurityActivity.this, GestureManageActivity.class));
                 break;
             case R.id.tv_bind_card:
+                startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
                 break;
         }
     }

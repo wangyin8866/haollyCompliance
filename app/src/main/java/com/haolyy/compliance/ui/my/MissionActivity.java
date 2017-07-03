@@ -35,8 +35,6 @@ public class MissionActivity extends AppCompatActivity {
     ViewMission vmInvite;
     @BindView(R.id.tv_lock_invite)
     TextView tvLockInvite;
-    @BindView(R.id.tv_joining)
-    TextView tvJoining;
     @BindView(R.id.view_line)
     View viewLine;
     @BindView(R.id.titleBar)

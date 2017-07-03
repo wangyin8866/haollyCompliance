@@ -1,6 +1,10 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.bank.ActivateBean;
+import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.service.HuifuShApi;
@@ -75,7 +79,7 @@ public class HuifuShModel extends BaseModel {
         map.put("sms_seq_", sms_seq_);
         map.put("ordsms_ext_", ordsms_ext_);
         map.put("client_", client_);
-        map.put("version_", version_);
+        map.put("version_", BaseApplication.version);
         return huifuShApi.quikBind(map);
     }
 
@@ -110,11 +114,106 @@ public class HuifuShModel extends BaseModel {
         map.put("PageType", PageType);
         map.put("ret_url_", ret_url_);
         map.put("user_type_", user_type_);
-        map.put("version_", version_);
+        map.put("version_", BaseApplication.version);
         map.put("user_id_", user_id);
         map.put("client_", client);
         map.put("juid",juid);
         return huifuShApi.register(map);
     }
+
+    public Observable<ActivateBean> activate(String user_id_, String UsrCustId, String PageType, String RetUrl, String mer_id_, String client_, String version_){
+        map.clear();
+        map.put("user_id_",user_id_);
+        map.put("UsrCustId",UsrCustId);
+        map.put("PageType",PageType);
+        map.put("RetUrl",RetUrl);
+        map.put("mer_id_",mer_id_);
+        map.put("client_",client_);
+        map.put("version_",BaseApplication.version);
+        return huifuShApi.activate(map);
+    }
+    /**
+     * 充值
+     *
+     * @param from_mobile_  用户手机号
+     * @param gate_busi_id_ 支付网关业务代号
+     * @param ret_url_      返回页面
+     * @param sms_code_     短信验证码
+     * @param sms_seq_      短信序号
+     * @param trans_amt_    充值金额
+     * @param mer_id_       平台
+     * @param client_       客户端
+     * @param version_      版本号
+     * @param juid          用户平台号
+     * @return
+     */
+    public Observable<RechargeBean> recharge(String from_mobile_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_, String bank_id_, String mer_id_, String client_,
+                                             String version_, String juid, String UsrCustId) {
+        map.clear();
+        map.put("from_mobile_", from_mobile_);
+        map.put("gate_busi_id_", gate_busi_id_);
+        map.put("ret_url_", ret_url_);
+        map.put("sms_code_", sms_code_);
+        map.put("sms_seq_", sms_seq_);
+        map.put("trans_amt_", trans_amt_);
+        map.put("mer_id_", mer_id_);
+        map.put("client_", client_);
+        map.put("version_", BaseApplication.version);
+        map.put("juid", juid);
+        map.put("UsrCustId", UsrCustId);
+        map.put("bank_id_", bank_id_);
+        return huifuShApi.recharge(map);
+    }
+
+    /**
+     * @param cash_serv_fee_ 服务费
+     * @param UsrCustId 汇付客户号
+     * @param from_mobile_ 用户在我们平台注册的手机号
+     * @param ret_url_
+     * @param trans_amt_ 金额
+     * @param method_  提现方式 1:普通取现 2:即时取现 3:快速取现'
+     * @param juid 平台客户号
+     * @param mer_id_ 1：好利网
+     * @param client_ 4
+     * @param version_ 版本号
+     * @return
+     */
+    public Observable<String> withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_, String ret_url_, String trans_amt_,String method_, String juid,
+                                       String mer_id_, String client_, String version_) {
+        map.clear();
+        map.put("cash_serv_fee_", cash_serv_fee_);
+        map.put("UsrCustId", UsrCustId);
+        map.put("from_mobile_", from_mobile_);
+        map.put("ret_url_", ret_url_);
+        map.put("trans_amt_", trans_amt_);
+        map.put("juid", juid);
+        map.put("mer_id_", mer_id_);
+        map.put("client_", client_);
+        map.put("version_", BaseApplication.version);
+        map.put("method_",method_);
+
+        return huifuShApi.withDraw(map);
+    }
+
+    /**
+     * 判断是否激活
+     * @param user_id
+     * @param idno
+     * @param realname
+     * @param user_type
+     * @param mer_id_
+     * @param client_
+     * @return
+     */
+    public Observable<IsActivateBean> isBosAcctActivate(String user_id, String idno, String realname, String user_type, String mer_id_, String client_){
+    map.clear();
+    map.put("user_id",user_id);
+    map.put("idno",idno);
+    map.put("realname",realname);
+    map.put("user_type",user_type);
+    map.put("mer_id_",mer_id_);
+    map.put("client_",client_);
+    return huifuShApi.isBosAcctActivate(map);
+}
 
 }

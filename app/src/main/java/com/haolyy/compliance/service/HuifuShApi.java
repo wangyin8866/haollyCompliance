@@ -2,6 +2,9 @@ package com.haolyy.compliance.service;
 
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.bank.ActivateBean;
+import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 
@@ -48,7 +51,14 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_REGISTER)
     Observable<ToRegisterBean> register(@FieldMap Map<String, String> params);
-
+    /**
+     * 激活
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.HUIFU_ACTIVATE)
+    Observable<ActivateBean> activate(@FieldMap Map<String, String> params);
     /**
      * 测试
      * @param params
@@ -65,7 +75,7 @@ public interface HuifuShApi {
      */
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_RECHARGE)
-    Observable<String> recharge(@FieldMap Map<String, String> params);
+    Observable<RechargeBean> recharge(@FieldMap Map<String, String> params);
     /**
      * 提现
      * @param params
@@ -74,4 +84,13 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_WITHDRAW)
     Observable<String> withDraw(@FieldMap Map<String, String> params);
+
+    /**
+     * 判断是否激活
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.P2P_ISBOSACCTACTIVATE)
+    Observable<IsActivateBean> isBosAcctActivate(@FieldMap Map<String, String> params);
 }

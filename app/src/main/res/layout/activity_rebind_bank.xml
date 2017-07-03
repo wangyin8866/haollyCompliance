@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_f5f5f5"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.haolyy.compliance.ui.bank.RebindBankActivity">
 
@@ -20,7 +21,7 @@
         android:layout_marginTop="12dp"
         android:background="@mipmap/bankcard_bg"
         android:paddingTop="25dp"
-        android:visibility="gone">
+       >
 
         <ImageView
             android:layout_width="25dp"
@@ -70,6 +71,7 @@
 
     <LinearLayout
         android:id="@+id/ll_rebind"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"

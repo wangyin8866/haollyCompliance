@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -19,6 +20,7 @@ import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 import com.haolyy.compliance.utils.SystemBarUtil;
+import com.haolyy.compliance.utils.WyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void init() {
-        currentPage = getIntent().getIntExtra("currentPage", 0);
+        BaseApplication.version=WyUtils.getVersion(getApplicationContext());
         homeNoLoginFragment = new HomeNoLoginFragment();
         homeInvestFragment = new HomeLoginFragment();
 

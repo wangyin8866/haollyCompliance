@@ -3,9 +3,11 @@ package com.haolyy.compliance.ui.bank.presenter;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.model.HuifuShModel;
@@ -109,13 +111,15 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param version_
      * @param user_id
      */
-    public void register(String user_id, String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_, String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String juid, String client) {
+    public void register(String user_id, String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_,
+                         String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String juid, String client) {
 
-        invoke(HuifuShModel.getInstance().register(user_id, mer_id_, moblie_, from_mobile_, id_number_, user_name_, card_number_, bank_id_, sms_code_, sms_seq_, PageType, ret_url_, user_type_, version_, juid, client), new ProgressSubscriber<ToRegisterBean>(new SubscriberOnNextListener<ToRegisterBean>() {
+        invoke(HuifuShModel.getInstance().register(user_id, mer_id_, moblie_, from_mobile_, id_number_, user_name_, card_number_, bank_id_, sms_code_, sms_seq_,
+                PageType, ret_url_, user_type_, version_, juid, client), new ProgressSubscriber<ToRegisterBean>(new SubscriberOnNextListener<ToRegisterBean>() {
             @Override
             public void onNext(ToRegisterBean baseResponseBean) {
                 if (baseResponseBean.getStatus().equals("200")) {
-                    //getView().pushActivity(baseResponseBean);
+                    getView().pushActivity(new Gson().toJson(baseResponseBean));
                 } else {
                     UIUtils.showToastCommon(mContext, baseResponseBean.getMsg());
                 }
@@ -128,9 +132,13 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
         }, mContext));
     }
 
-    public void register2(String user_id, String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_, String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String juid, String client) {
 
-        invoke(HuifuShModel2.getInstance().register(user_id, mer_id_, moblie_, from_mobile_, id_number_, user_name_, card_number_, bank_id_, sms_code_, sms_seq_, PageType, ret_url_, user_type_, version_, juid, client), new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+
+    public void register2(String user_id, String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_,
+                          String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String version_, String juid, String client) {
+
+        invoke(HuifuShModel2.getInstance().register(user_id, mer_id_, moblie_, from_mobile_, id_number_, user_name_, card_number_, bank_id_, sms_code_, sms_seq_,
+                PageType, ret_url_, user_type_, version_, juid, client), new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String baseResponseBean) {
                getView().pushActivity(baseResponseBean);

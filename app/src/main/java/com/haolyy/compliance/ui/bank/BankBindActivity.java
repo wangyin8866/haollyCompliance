@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.bank;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -34,8 +35,6 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     ImageView ivShare;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_joining)
-    TextView tvJoining;
     @BindView(R.id.view_line)
     View viewLine;
     @BindView(R.id.titleBar)
@@ -46,14 +45,6 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     ClearEditText tvIdCard;
     @BindView(R.id.ll_input_info)
     LinearLayout llInputInfo;
-    @BindView(R.id.tv_bank_name)
-    TextView tvBankName;
-    @BindView(R.id.tv_card_type)
-    TextView tvCardType;
-    @BindView(R.id.tv_card_no)
-    TextView tvCardNo;
-    @BindView(R.id.ll_show_card)
-    LinearLayout llShowCard;
     @BindView(R.id.tv_bank_next)
     TextView tvBankNext;
     @BindView(R.id.tv_select_bank)
@@ -70,8 +61,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     ClearEditText etBankPhone;
     @BindView(R.id.et_card_no)
     ClearEditText etCardNo;
-    @BindView(R.id.change_card)
-    TextView changeCard;
+
     private String realName, idCard, bankName, bankPhone, cardno;
     private DialogBankSms dialogBankSms;
     private String smseq;//短信序列号
@@ -93,7 +83,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_select_bank, R.id.change_card})
+    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_select_bank})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -105,14 +95,22 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 bankName = tvBankNameLogo.getText().toString();
                 bankPhone = etBankPhone.getText().toString();
                 cardno = etCardNo.getText().toString();
-                mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", "4", 0);
+               /* if(TextUtils.isEmpty(bankName)){
+                    UIUtils.showToastCommon(mContext,"请选择银行");
+                    return;
+                }
+                else if(TextUtils.isEmpty(bankPhone)){
+                    UIUtils.showToastCommon(mContext,"请填写手机号码");
+                    return;
+                }
+                else if(TextUtils.isEmpty(cardno)){
+                    UIUtils.showToastCommon(mContext,"请填写银行卡号");
+                    return;
+                }*/
+               // mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", "4", 0);
                 break;
             case R.id.tv_select_bank:
                 startActivityForResult(new Intent(BankBindActivity.this, BankListActivity.class), 0x03);
-                break;
-            case R.id.change_card:
-                Intent intent = new Intent(mContext, ShBankWebActivity.class);
-                startActivity(intent);
                 break;
         }
     }
@@ -162,7 +160,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
             @Override
             public void executeRight() {
-                mPresenter.register2("5", "1", "13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "101", "666666", "AAAAAAAA", "", "http://www.baidu.com", "1", "android1.0", "1059451948592", "2");
+                mPresenter.register("5", "1", "13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "101", "666666", "AAAAAAAA", "", "http://www.chinazyjr.com", "1", "android1.0", "1059451948592", "2");
             }
         }).show();
     }

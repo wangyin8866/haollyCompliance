@@ -50,34 +50,32 @@ public class UserModel extends BaseModel {
 
     public Observable<LoginResponseBean>login(String phone_num, String password,String loginIp,String version,String platform,String client) {
         map.put("mobile", phone_num);
-        map.put("password", password);
+        map.put("passWord", password);
         map.put("loginIp", loginIp);
-        map.put("version", version);
+        map.put("version", BaseApplication.version);
         map.put("platform", platform);
         map.put("client", client);
         return userApi.login(map);
     }
 
-    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version,String registerCode) {
+    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version,String channel,String inviteCode) {
         map.clear();
         map.put("mobile", phone_num);
-        map.put("passWord", password);
+        map.put("password", password);
         map.put("smsCode", smsCode);
         map.put("imageCode", imageCode);
         map.put("client", client);
         map.put("platform", platform);
         map.put("registBd", registBd);
-        map.put("version", version);
-        map.put("registIp","192.168.2.223");
-        map.put("registerCode",registerCode);
+        map.put("version", BaseApplication.version);
+        map.put("channel",channel);
+        map.put("inviteCode",inviteCode);
         map.put("token",BaseApplication.token);
         return userApi.register(map);
     }
 
     public Observable<CheckImageCode> checkImageCode(String imagecode) {
-        map.put("imagecode", imagecode);
-        map.put("token", BaseApplication.token);
-        return userApi.checkImage(map);
+        return userApi.checkImage(BaseApplication.token,imagecode);
     }
 
     public Observable<BaseResponseBean> forgetPassWord(String phone_num, String password,String smsCode,String imageCode,String client,String platform) {

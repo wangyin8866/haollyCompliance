@@ -5,13 +5,13 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.utils.LogUtils;
@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class ShBankWebActivity extends AppCompatActivity {
@@ -28,24 +29,29 @@ public class ShBankWebActivity extends AppCompatActivity {
     @BindView(R.id.web_sh_register)
     WebView webviewRecharge;
     String urldata;
+    @BindView(R.id.iv_finish)
+    ImageView ivFinish;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sh_bank_web);
         ButterKnife.bind(this);
+        tvTitle.setText("上海银行页面");
         urldata = getIntent().getAction();
-        LogUtils.e("shwebActivity",urldata);
+        LogUtils.e("shwebActivity", urldata);
         WebViewClient webViewClient = new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 LogUtils.e("ndyGoUrl", url);
-                if (url.equals("https://www.baidu.com/")) {
+                if (url.equals("http://www.chinazyjr.com")) {
                     finish();
                     UIUtils.showToastCommon(getApplication(), "成功");
                 }
-                webviewRecharge.loadData(urldata, "text/html; charset=UTF-8", null);
+               // webviewRecharge.loadData(urldata, "text/html; charset=UTF-8", null);
 
                 return true;
             }
@@ -66,10 +72,14 @@ public class ShBankWebActivity extends AppCompatActivity {
         webviewRecharge.getSettings().setSupportZoom(true);
         webviewRecharge.setWebViewClient(webViewClient);
         webviewRecharge.setWebChromeClient(new WebChromeClient());
-        //webviewRecharge.loadData(urldata, "text/html; charset=UTF-8", null);
         webviewRecharge.loadUrl("file:///android_asset/register.html");
         webviewRecharge.addJavascriptInterface(new JavaScriptInterface(ShBankWebActivity.this), "Android");//MyBrowserAPI:自定义的js函数名
 
+    }
+
+    @OnClick(R.id.iv_finish)
+    public void onViewClicked() {
+        finish();
     }
 
     public class JavaScriptInterface {
@@ -79,8 +89,10 @@ public class ShBankWebActivity extends AppCompatActivity {
             mContext = c;
         }
 
-        /**采用此方法
+        /**
+         * 采用此方法
          * 传递字符串网页里解析成对象
+         *
          * @param message
          * @return
          */
@@ -92,6 +104,7 @@ public class ShBankWebActivity extends AppCompatActivity {
 
         /**
          * 直接传json网页上里解析不成功
+         *
          * @return
          */
         @JavascriptInterface

@@ -218,7 +218,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                     regsiterCode = "000";
 
                 }
-                mPresenter.register(phone, passWord, smsCode, imageCode, "Android", "haolyy", "1", "1.0", regsiterCode);
+                mPresenter.register(phone, passWord, smsCode, imageCode, "Android", "haolyy", "1", "1.0","", regsiterCode);
                 break;
             case R.id.tv_register_sms:
                 imageCode = etImageCode.getText().toString();

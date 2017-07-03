@@ -8,6 +8,6 @@ public interface Config {
     int LOGIN = 1001;
     int GETUSERSTATUS = 1002;
 
-    int seconds=120000;//倒计时时间
+    int seconds=60000;//倒计时时间
 
 }

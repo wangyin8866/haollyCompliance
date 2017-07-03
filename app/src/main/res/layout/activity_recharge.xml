@@ -1,225 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_f5f5f5"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
-
+    android:fitsSystemWindows="true">
     <include layout="@layout/public_title_back" />
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_recharge"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="12dp"
-        android:background="@mipmap/bankcard_bg"
-        android:paddingTop="25dp">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="25dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/bank_logo" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:src="@mipmap/fast_pay" />
+            android:layout_marginTop="12dp"
+            android:background="@mipmap/bankcard_bg"
+            android:paddingTop="25dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="25dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/bank_logo" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/fast_pay" />
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:text="招商银行"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_card_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_bank_name"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="5dp"
+                android:text="储蓄卡"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_card_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="55dp"
+                android:layout_marginLeft="54dp"
+                android:text="**** **** **** 3409"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:text="账户余额"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-.--"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:text="充值金额"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_recharge_tmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:background="@null"
+                android:hint="请输入充值金额"
+                android:textColor="@color/text_4a4a4a"
+                android:textColorHint="@color/text_b9b9b9"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_bank_name"
+            android:id="@+id/tv_limit_account"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:text="招商银行"
+            android:layout_height="14sp"
+            android:layout_gravity="right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="招商银行 单笔限额5万元，每日限额5万元"
+            android:textColor="@color/text_b9b9b9"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:background="@color/white"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="22dp"
+                android:gravity="center"
+                android:text="银行预留手机"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_recharge_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="请输入11位手机号码"
+                android:gravity="center_vertical"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="@color/text_4a4a4a"
+                android:textColorHint="@color/text_9b9b9b"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="63dp"
+                android:gravity="center"
+                android:text="验证码"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_recharge_sms"
+               android:layout_marginRight="6dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入6位验证码"
+                android:gravity="center_vertical"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/text_4a4a4a"
+                android:textColorHint="@color/text_9b9b9b"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_recharge_sms"
+                android:layout_width="80dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/shape_yellow_radius"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/bg_ff9933"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btn_recharge"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/shape_gradient"
+            android:gravity="center"
+            android:text="充值"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_card_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_bank_name"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="5dp"
-            android:text="储蓄卡"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_recharge_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:visibility="gone"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_card_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="55dp"
-            android:layout_marginLeft="54dp"
-            android:text="**** **** **** 3409"
-            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_error"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="充值失败"
+            android:textColor="@color/text_4a4a4a"
             android:textSize="24sp" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
-            android:text="账户余额"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-.--"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:layout_marginRight="50dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
-            android:text="充值金额"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="14sp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="请输入充值金额"
-            android:textColor="@color/text_4a4a4a"
-            android:textColorHint="@color/text_b9b9b9"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_limit_account"
-        android:layout_width="wrap_content"
-        android:layout_height="14sp"
-        android:layout_gravity="right"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:text="招商银行 单笔限额5万元，每日限额5万元"
-        android:textColor="@color/text_b9b9b9"
-        android:textSize="12sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:background="@color/white"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="22dp"
-            android:gravity="center"
-            android:text="银行预留手机"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="14sp" />
-
-        <com.haolyy.compliance.custom.ClearEditText
-            android:id="@+id/et_recharge_phone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:drawableRight="@mipmap/login_delete"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:hint="请输入11位手机号码"
-            android:inputType="number"
-            android:maxLength="11"
-            android:textColor="@color/text_9b9b9b"
-            android:textColorHint="@color/text_9b9b9b"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="63dp"
-            android:gravity="center"
-            android:text="验证码"
+            android:text="银行卡余额不足，请确保银行卡余额充足"
             android:textColor="@color/text_4a4a4a"
             android:textSize="14sp" />
 
-        <com.haolyy.compliance.custom.ClearEditText
-            android:id="@+id/et_recharge_sms"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:drawableRight="@mipmap/login_delete"
-            android:gravity="center"
-            android:hint="请输入6位验证码"
-            android:inputType="number"
-            android:maxLength="11"
-            android:textColor="@color/text_9b9b9b"
-            android:textColorHint="@color/text_9b9b9b"
-            android:textSize="14sp" />
-
         <TextView
-            android:id="@+id/tv_recharge_sms"
-            android:layout_width="80dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
+            android:id="@+id/tv_try_again"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="68dp"
             android:background="@drawable/shape_yellow_radius"
             android:gravity="center"
-            android:text="获取验证码"
+            android:text="再试试"
             android:textColor="@color/bg_ff9933"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_back_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="返回账户中心 >"
+            android:textColor="#FF69ACFC"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_recharge_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_success"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="充值成功"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="您本次充值金额为23,458,562.00元"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_go_invest"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/shape_yellow_radius"
+            android:gravity="center"
+            android:text="去投资"
+            android:textColor="@color/bg_ff9933"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_go_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="去账户中心查看 >"
+            android:textColor="#FF69ACFC"
+            android:textSize="12sp"
+            />
     </LinearLayout>
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/btn_recharge"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:background="@drawable/shape_gradient"
-        android:gravity="center"
-        android:text="充值"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
-
-</LinearLayout>
+</RelativeLayout>

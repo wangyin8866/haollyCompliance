@@ -66,6 +66,7 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
         invoke(HuifuShModel.getInstance().quikBind(user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_,mer_id_,client,version),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
             @Override
             public void onNext(BaseResponseBean baseResponseBean) {
+
             }
 
             @Override

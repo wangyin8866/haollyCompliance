@@ -75,11 +75,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             @Override
             public void onNext(SmsBean s) {
                 if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
                         getView().countDown();
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                    }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }

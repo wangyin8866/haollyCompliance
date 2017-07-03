@@ -40,13 +40,16 @@ public class BigThreeModel extends BaseModel {
         return userModel;
     }
 
+    /**
+     *
+     * @param phone_num
+     * @param imagecode
+     * @param systemplate
+     * @param type register forget
+     * @return
+     */
     public Observable<SmsBean> sendSms(String phone_num,String imagecode,String systemplate,String type) {
-        map.put("type",type);
-        map.put("mobile", phone_num);
-        map.put("imagecode", imagecode);
-        map.put("systemplate", systemplate);
-        map.put("token", BaseApplication.token);
-        return userApi.sendSms(map);
+        return userApi.sendSms(phone_num,imagecode,systemplate,type,BaseApplication.token);
     }
 
 }

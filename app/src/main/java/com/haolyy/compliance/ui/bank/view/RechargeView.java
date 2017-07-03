@@ -6,4 +6,8 @@ package com.haolyy.compliance.ui.bank.view;
 
 public interface RechargeView {
     void pushActivity(String baseResponseBean);
+
+    void countDown(String smsSeq, boolean b);
+
+    void showSucess();
 }

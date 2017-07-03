@@ -91,11 +91,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             case R.id.tv_login:
                 phone = etAccount.getText().toString();
                 pwd = etPwd.getText().toString();
-                if (TextUtils.isEmpty(phone)|| !WyUtils.checkPhone(phone)) {
-                    UIUtils.showToastCommon(mContext, "请填写正确的手机号");
-                    return;
-                } else if (TextUtils.isEmpty(pwd)||!WyUtils.checkPass(pwd)) {
-                    UIUtils.showToastCommon(mContext, "请填写正确的密码");
+                if (TextUtils.isEmpty(phone)|| !WyUtils.checkPhone(phone)||TextUtils.isEmpty(pwd)||!WyUtils.checkPass(pwd)) {
+                    UIUtils.showToastCommon(mContext, "您输入的账号或密码有误请重新输入");
                     return;
                 }
                 mPresenter.login(phone, pwd,"192.168.7.113","1223","haolyy","android");

@@ -41,37 +41,6 @@ public class HuifuShModel2 extends BaseModel {
     }
 
     /**
-     * 充值
-     *
-     * @param from_mobile_  用户手机号
-     * @param gate_busi_id_ 支付网关业务代号
-     * @param ret_url_      返回页面
-     * @param sms_code_     短信验证码
-     * @param sms_seq_      短信序号
-     * @param trans_amt_    充值金额
-     * @param mer_id_       平台
-     * @param client_       客户端
-     * @param version_      版本号
-     * @param juid          用户平台号
-     * @return
-     */
-    public Observable<String> recharge(String from_mobile_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_, String mer_id_, String client_, String version_, String juid, String UsrCustId, String bank_id_) {
-        map.put("from_mobile_", from_mobile_);
-        map.put("gate_busi_id_", gate_busi_id_);
-        map.put("ret_url_", ret_url_);
-        map.put("sms_code_", sms_code_);
-        map.put("sms_seq_", sms_seq_);
-        map.put("trans_amt_", trans_amt_);
-        map.put("mer_id_", mer_id_);
-        map.put("client_", client_);
-        map.put("version_", version_);
-        map.put("juid", juid);
-        map.put("UsrCustId", UsrCustId);
-        map.put("bank_id_", bank_id_);
-        return huifuShApi.recharge(map);
-    }
-
-    /**
      * @param mer_id_       商户ID
      * @param user_cust_id_ 用户客户号
      * @param trade_type_   交易类型

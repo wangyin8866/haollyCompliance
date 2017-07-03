@@ -18,7 +18,11 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- 注册 -->
@@ -33,11 +37,7 @@
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- 产品详情 -->
         <activity
@@ -79,7 +79,8 @@
         <!-- 绑定银行卡 -->
         <activity
             android:name=".ui.bank.BankBindActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <!--银行卡列表-->
         <activity
             android:name=".ui.bank.BankListActivity"
@@ -98,6 +99,9 @@
         >
         <!--提现-->
         <activity android:name=".ui.bank.WithDrawActivity"
+            android:screenOrientation="portrait"/>
+        <!--提现券-->
+        <activity android:name=".ui.bank.WithDrawQuanActivity"
             android:screenOrientation="portrait"/>
         <!-- 第二板块交易记录 -->
         <activity

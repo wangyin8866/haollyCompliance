@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -29,10 +30,10 @@ public class DateUtil {
      * 验证码倒计时
      * @param tv
      */
-    public static void countDown(final TextView tv, final String reset) {
+    public static Subscription countDown(final TextView tv, final String reset) {
         final long[] currentTime = {Config.seconds-1000};
         tv.setText("119s");
-        Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+        Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Long>() {
@@ -59,6 +60,7 @@ public class DateUtil {
                         }
                     }
                 });
+        return subscribe;
     }
 
     /**

@@ -60,6 +60,7 @@ public class BaseApplication extends Application {
     public static String Borrow_Deline;
     public static String token;
     public static String BankFrom;
+    public static String version="";//版本号
 
     @Override
     public void onCreate() {

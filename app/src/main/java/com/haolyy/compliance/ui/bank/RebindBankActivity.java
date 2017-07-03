@@ -20,8 +20,11 @@ import com.haolyy.compliance.utils.UIUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscription;
 
-
+/**
+ * 解绑与换绑共享页面
+ */
 public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankReBindView> implements BankReBindView {
 
     @BindView(R.id.iv_finish)
@@ -34,8 +37,6 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     ImageView ivShare;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_joining)
-    TextView tvJoining;
     @BindView(R.id.view_line)
     View viewLine;
     @BindView(R.id.titleBar)
@@ -69,6 +70,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     private boolean isNew = false;
     private String smsSqOld, smsOald, smsNew, smsSqnew;
     private String rebindPhone;
+    private Subscription subscriptionCount;
 
     @Override
     protected RebindBankPresenter createPresenter() {
@@ -103,9 +105,9 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                     return;
                 }
                 if (isNew) {
-                    mPresenter.sendSms("rebind", "6225801240710010", "6000060007303359", "2", "13821882946", "N", "4");
+                    mPresenter.sendSms("rebind", "6225801240710012", "6000060007303359", "2", "13821882946", "N", "4");
                 } else {
-                    mPresenter.sendSms("rebind", "6225801240710007", "6000060007303359", "2", "13611689070", "O", "4");
+                    mPresenter.sendSms("rebind", "6225801240710011", "6000060007303359", "2", "13821882946", "O", "4");
                 }
                 tvRebindSms.setEnabled(false);//发短信按钮不可点击
                 break;
@@ -123,14 +125,20 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                 if (isNew) {
                     //换绑页面
                     smsNew = sms;
-                    mPresenter.quikBind("6000060007303359","REBIND","CMB","6225801240710010","13821882946","666666","AAAAAAAA","666666AAAAAAAA","1","4","1.0");
+                    mPresenter.quikBind("6000060007303359","REBIND","CMB","6225801240710012","13821882946","666666","AAAAAAAA","666666AAAAAAAA","1","4","1.0");
                 } else {
                     //解绑页面
                     smsOald = sms;
+                    etRebindSms.getText().clear();
+                    etRebindPhone.getText().clear();
+                    subscriptionCount.unsubscribe();
+                    tvRebindSms.setEnabled(true);
+                    tvRebindSms.setText("发送验证码");
                     rlRebind.setVisibility(View.GONE);
                     llRebind.setVisibility(View.VISIBLE);
                     btnRebind.setText("完成");
                     tvTitle.setText("绑定新的银行卡");
+                    isNew=true;
                 }
                 break;
         }
@@ -163,7 +171,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
             tvRebindSms.setEnabled(true);
         } else {
             //发送成功开始倒计时
-            DateUtil.countDown(tvRebindSms, "重新发送验证码");
+            subscriptionCount = DateUtil.countDown(tvRebindSms, "重新发送");
             if (isNew) {
                 smsSqnew = smsSeq;
             } else {

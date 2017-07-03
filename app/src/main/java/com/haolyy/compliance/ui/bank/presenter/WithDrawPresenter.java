@@ -3,6 +3,7 @@ package com.haolyy.compliance.ui.bank.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.model.HuifuShModel2;
 import com.haolyy.compliance.ui.bank.view.WithDrawView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -17,9 +18,9 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView>{
     public WithDrawPresenter(Context context) {
         super(context);
     }
-    public void withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_, String ret_url_, String trans_amt_, String juid,
+    public void withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_, String ret_url_, String trans_amt_, String method,String juid,
                          String mer_id_, String client_, String version_){
-        invoke( HuifuShModel2.getInstance().withDraw(cash_serv_fee_,UsrCustId,from_mobile_, ret_url_,trans_amt_, juid, mer_id_,client_,version_),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+        invoke( HuifuShModel.getInstance().withDraw(cash_serv_fee_,UsrCustId,from_mobile_, ret_url_,trans_amt_, method,juid, mer_id_,client_,version_),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String s) {
                 LogUtils.e("withDraw", s);

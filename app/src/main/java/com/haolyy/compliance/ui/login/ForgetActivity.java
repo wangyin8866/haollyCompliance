@@ -56,8 +56,6 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
     TextView tvMenu;
     @BindView(R.id.iv_share)
     ImageView ivShare;
-    @BindView(R.id.tv_joining)
-    TextView tvJoining;
     @BindView(R.id.iv_code)
     ImageView ivCode;
     @BindView(R.id.tv_forget_next)
