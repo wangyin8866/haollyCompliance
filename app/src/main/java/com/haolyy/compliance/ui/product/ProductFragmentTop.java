@@ -172,7 +172,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             leftLabel.setVisibility(View.GONE);
         }
         mPresenter.getBaseDetail(projectNo + "", "12");
-        mPresenter.selectUserState("18565321959", "1");
+        mPresenter.selectUserState();
     }
 
     void changeScrollView() {

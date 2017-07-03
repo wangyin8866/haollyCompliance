@@ -1,6 +1,7 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
@@ -8,6 +9,9 @@ import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.service.UserApi;
 
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 /**
@@ -20,6 +24,12 @@ public class UserModel extends BaseModel {
 
     private UserModel() {
         super();
+        retrofit=new Retrofit.Builder()
+                .client(httpClientBuilder.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(NetConstantValues.HOST_URL3)
+                .build();
         userApi = retrofit.create(UserApi.class);
     }
 
@@ -95,7 +105,7 @@ public class UserModel extends BaseModel {
      */
     public Observable<BaseResponseBean> findUserStatus() {
         map.clear();
-        map.put("mobile", BaseApplication.mUserName);
+        map.put("mobile", "18565321959");
         map.put("platform", "1");
         return userApi.findStatus(map);
     }

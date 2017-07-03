@@ -20,7 +20,6 @@
             android:id="@+id/rg_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="horizontal">
 
             <RadioButton
@@ -33,41 +32,7 @@
                 android:textColor="@color/color_tv_selector"
                 android:textSize="14sp" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:button="@null"
-                android:text="全部"
-                android:textColor="@color/color_tv_selector"
-                android:textSize="14sp" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:button="@null"
-                android:text="全部"
-                android:textColor="@color/color_tv_selector"
-                android:textSize="14sp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:button="@null"
-                android:text="全部"
-                android:textColor="@color/color_tv_selector"
-                android:textSize="14sp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:button="@null"
-                android:text="全部"
-                android:textColor="@color/color_tv_selector"
-                android:textSize="14sp" />
         </RadioGroup>
     </HorizontalScrollView>
 

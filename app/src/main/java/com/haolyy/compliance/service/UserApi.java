@@ -48,9 +48,7 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FORGETPWD)
     Observable<BaseResponseBean> forgetPassWord(@FieldMap Map<String, String> params);
-
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FINDSTATUS)
-    Observable<BaseResponseBean> findStatus(@FieldMap Map<String, String> params);
-
+    Observable<BaseResponseBean> findStatus(@FieldMap Map<String, String> map);
 }

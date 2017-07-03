@@ -158,9 +158,9 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
         //拉去数据
         mPresenter.getBanner("2", "1");
-//        mPresenter.getHomeProduct();
-//        mPresenter.getHomeArticle("1");
-//        mPresenter.getRecommend("4d5g8b5","1");
+//        mPresenter.getHomeProduct();//首页产品
+//        mPresenter.getHomeArticle("1");//首页新闻
+//        mPresenter.getRecommend("4d5g8b5","1");//首页活动
     }
 
     private void showAutoRollStrings() {

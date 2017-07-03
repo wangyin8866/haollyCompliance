@@ -2,6 +2,7 @@ package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.service.ProductApi;
+import com.haolyy.compliance.service.UserApi;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -14,6 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class StringTestModel extends BaseModel {
     private ProductApi productApi;
+    private UserApi userApi;
     private static StringTestModel userModel;
 
     public StringTestModel() {
@@ -27,6 +29,7 @@ public class StringTestModel extends BaseModel {
                 .build();
 
         productApi = retrofit.create(ProductApi.class);
+        userApi = retrofit.create(UserApi.class);
     }
 
     public static StringTestModel getInstance() {

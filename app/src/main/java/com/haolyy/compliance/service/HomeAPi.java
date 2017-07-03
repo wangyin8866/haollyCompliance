@@ -6,7 +6,9 @@ import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -14,9 +16,8 @@ import rx.Observable;
  */
 
 public interface HomeAPi {
-    @FormUrlEncoded
-    @POST(NetConstantValues.HOME_BANNER)
-    Observable<String> getBanner(@FieldMap Map<String, String> params);
+    @GET(NetConstantValues.HOME_BANNER)
+    Observable<String> getBanner(@QueryMap Map<String,String> params);
     @FormUrlEncoded
     @POST(NetConstantValues.HOME_PRODUCT)
     Observable<String> getProduct(@FieldMap Map<String, String> params);

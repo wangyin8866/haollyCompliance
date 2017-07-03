@@ -25,7 +25,7 @@ public class HuifuShModel2 extends BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL)
+                .baseUrl(NetConstantValues.HOST_URL4)
                 .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }

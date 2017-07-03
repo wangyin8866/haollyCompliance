@@ -135,7 +135,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-
+                    pageNum = 1;
                     RadioButton tempButton = (RadioButton) group.findViewById(checkedId); // 通过RadioGroup的findViewById方法，找到ID为checkedID的RadioButton
                     // 以下就可以对这个RadioButton进行处理了
                     if (tempButton.getText().toString().equals("全部")) {
