@@ -7,8 +7,9 @@ package com.haolyy.compliance.entity.login;
 
 public class LoginResponseBean{
 
+
     /**
-     * data : {"data":{"lastLoginIp":"192.168.1.1","lastLoginTime":"2017-06-14 00:50:12","mobile":"13700000000","platform":1,"registTime":"2017-06-10 10:08:57","registerCode":" ","status":1,"userCode":"e2230ccf"},"msg":"业务正常","status":"200"}
+     * data : {"data":{"lastLoginIp":"192.168.11.236","lastLoginTime":"2017-07-03 10:49:30","mobile":"13821882946","platform":1,"registTime":"2017-06-20 17:11:40","registerCode":"1236555","status":1,"userCode":"09755328","userId":65},"msg":"业务正常","status":"200"}
      * msg : 系统正常
      * status : 200
      */
@@ -43,7 +44,7 @@ public class LoginResponseBean{
 
     public static class DataBeanX {
         /**
-         * data : {"lastLoginIp":"192.168.1.1","lastLoginTime":"2017-06-14 00:50:12","mobile":"13700000000","platform":1,"registTime":"2017-06-10 10:08:57","registerCode":" ","status":1,"userCode":"e2230ccf"}
+         * data : {"lastLoginIp":"192.168.11.236","lastLoginTime":"2017-07-03 10:49:30","mobile":"13821882946","platform":1,"registTime":"2017-06-20 17:11:40","registerCode":"1236555","status":1,"userCode":"09755328","userId":65}
          * msg : 业务正常
          * status : 200
          */
@@ -78,14 +79,15 @@ public class LoginResponseBean{
 
         public static class DataBean {
             /**
-             * lastLoginIp : 192.168.1.1
-             * lastLoginTime : 2017-06-14 00:50:12
-             * mobile : 13700000000
+             * lastLoginIp : 192.168.11.236
+             * lastLoginTime : 2017-07-03 10:49:30
+             * mobile : 13821882946
              * platform : 1
-             * registTime : 2017-06-10 10:08:57
-             * registerCode :
+             * registTime : 2017-06-20 17:11:40
+             * registerCode : 1236555
              * status : 1
-             * userCode : e2230ccf
+             * userCode : 09755328
+             * userId : 65
              */
 
             private String lastLoginIp;
@@ -96,6 +98,7 @@ public class LoginResponseBean{
             private String registerCode;
             private int status;
             private String userCode;
+            private int userId;
 
             public String getLastLoginIp() {
                 return lastLoginIp;
@@ -159,6 +162,14 @@ public class LoginResponseBean{
 
             public void setUserCode(String userCode) {
                 this.userCode = userCode;
+            }
+
+            public int getUserId() {
+                return userId;
+            }
+
+            public void setUserId(int userId) {
+                this.userId = userId;
             }
         }
     }

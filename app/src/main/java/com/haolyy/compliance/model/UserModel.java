@@ -89,4 +89,15 @@ public class UserModel extends BaseModel {
         map.put("token",BaseApplication.token);
         return userApi.forgetPassWord(map);
     }
+
+    /**
+     * 查询用户状态
+     * @return
+     */
+    public Observable<BaseResponseBean> findUserStatus() {
+        map.clear();
+        map.put("mobile", BaseApplication.mUserName);
+        map.put("platform", "1");
+        return userApi.findStatus(map);
+    }
 }

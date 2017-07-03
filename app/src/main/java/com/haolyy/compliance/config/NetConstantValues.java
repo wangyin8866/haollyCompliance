@@ -10,21 +10,21 @@ public interface NetConstantValues {
 //     String HOST_URL2 = "http://192.168.11.104:8081/";
     //测试服务器
     //String HOST_URL = "http://192.168.7.113:8010/";
-    String HOST_URL2 = "http://192.168.7.113:8018/";
+    //String HOST_URL2 = "http://192.168.7.113:8018/";
     //杜欣
-//    String HOST_URL2 = "http://192.168.13.213:8080/";
-//    String HOST_URL="http://192.168.13.213:8080/";
+    String HOST_URL2 = "http://192.168.13.213:8080/";
+    String HOST_URL="http://192.168.13.213:8080/";
     //赵建华
      //String HOST_URL = "http://192.168.10.97:8080/";
     //杨全帅
-   // String HOST_URL="http://192.168.11.199:8080/";
+    String HOST_URLY="http://192.168.13.63:8080/";
     //骆丹
     //String HOST_URL2 = "http://192.168.11.179:8080/";
     //String HOST_URL="http://192.168.11.179:8080/";
     //李佳
 //    String HOST_URL = "http://192.168.9.229:8080/";
     //贺流
-    String HOST_URL= "http://192.168.10.214:8080/";
+   // String HOST_URL= "http://192.168.10.214:8080/";
 
 
     String USERMANAGE = "chinazy-user-manage/";
@@ -38,6 +38,7 @@ public interface NetConstantValues {
     String user_login = USERMANAGE + "user/login";//登录
     String user_register = USERMANAGE + "user/register";//注册
     String USER_FORGETPWD = USERMANAGE + "user/forgetpassword";//忘记密码
+    String USER_FINDSTATUS="userAccount/findUserstatus";
     String IMAGE_CHECK = USERMANAGE + "image/checkcode";//检查图形验证
     String IMAGE_GET = USERMANAGE + "image/getcode";//获取图形验证码
     String GET_TOKEN = USERMANAGE + "common/getToken";//获取token

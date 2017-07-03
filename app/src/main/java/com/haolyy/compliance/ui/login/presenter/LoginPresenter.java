@@ -3,6 +3,7 @@ package com.haolyy.compliance.ui.login.presenter;
 import android.content.Context;
 import android.content.Intent;
 
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.model.UserModel;
@@ -42,6 +43,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 if (loginResponseBean.getStatus().equals("200")) {
                     if (loginResponseBean.getData().getStatus().equals("200")) {
                         UIUtils.showToastCommon(mContext, "登陆成功");
+                        BaseApplication.mLoginState=true;
+                        BaseApplication.userId=loginResponseBean.getData().getData().getUserId();
+                        BaseApplication.mUserName=loginResponseBean.getData().getData().getMobile();
                         mContext.startActivity(new Intent(mContext, MainActivity.class));
                     } else {
                         UIUtils.showToastCommon(mContext, loginResponseBean.getData().getMsg());

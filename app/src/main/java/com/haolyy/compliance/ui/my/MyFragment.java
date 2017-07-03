@@ -120,7 +120,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                     }
                 }).show();*/
                // startActivity(new Intent(mContext, WithDrawActivity.class));
-                startActivity(new Intent(mContext, CheckBankActivity.class));
+                //startActivity(new Intent(mContext, CheckBankActivity.class));
+                mPresenter.findUserStatus();
                 break;
             case R.id.tv_recharge:
                 startActivity(new Intent(mContext, RechargeActivity.class));
