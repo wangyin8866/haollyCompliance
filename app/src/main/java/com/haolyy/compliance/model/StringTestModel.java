@@ -6,7 +6,6 @@ import com.haolyy.compliance.service.ProductApi;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-import rx.Observable;
 
 /**
  * Created by wngyin on 2017/6/24.
@@ -41,23 +40,5 @@ public class StringTestModel extends BaseModel {
         return userModel;
     }
 
-    /**
-     * 还款计划
-     *
-     * @param projectNo
-     * @param pageIndex
-     * @param platform
-     * @param client
-     * @return
-     */
-    public Observable<String> getProductReturnPlan(String projectNo, String pageIndex, String platform, String client) {
-        map.clear();
-        map.put("project_no", projectNo);
-        map.put("page_index", pageIndex);
-        map.put("platform", platform);
-        map.put("client", client);
-        return productApi.getProductReturnPlan(map);
-
-    }
 
 }

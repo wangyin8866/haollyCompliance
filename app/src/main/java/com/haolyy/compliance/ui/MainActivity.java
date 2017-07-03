@@ -20,7 +20,7 @@ import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 import com.haolyy.compliance.utils.SystemBarUtil;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void init() {
-        BaseApplication.version=WyUtils.getVersion(getApplicationContext());
+        BaseApplication.version= WYUtils.getVersion(getApplicationContext());
         homeNoLoginFragment = new HomeNoLoginFragment();
         homeInvestFragment = new HomeLoginFragment();
 

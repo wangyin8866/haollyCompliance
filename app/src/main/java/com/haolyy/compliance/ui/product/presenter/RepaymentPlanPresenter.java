@@ -3,7 +3,8 @@ package com.haolyy.compliance.ui.product.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
-import com.haolyy.compliance.model.StringTestModel;
+import com.haolyy.compliance.entity.product.RepaymentPlan;
+import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.ui.product.view.RepaymentPlanView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
@@ -17,11 +18,24 @@ public class RepaymentPlanPresenter extends BasePresenter<RepaymentPlanView>{
     public RepaymentPlanPresenter(Context context) {
         super(context);
     }
-    public void getProductReturnPlan(String projectNo, String pageIndex,String platform,String client){
-        invoke(StringTestModel.getInstance().getProductReturnPlan(projectNo,pageIndex,platform,client),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void getProductReturnPlan(final boolean isLoadMore,String projectNo, String pageIndex,String platform,String client){
+        invoke(ProductModel.getInstance().getProductReturnPlan(projectNo,pageIndex,platform,client),new ProgressSubscriber<RepaymentPlan>(new SubscriberOnNextListener<RepaymentPlan>() {
             @Override
-            public void onNext(String s) {
+            public void onNext(RepaymentPlan s) {
+                if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
+                        if (isLoadMore) {
+                            getView().showGetMoreData(s);
+                        } else {
+                            getView().showData(s);
+                        }
 
+                    } else {
+                        getView().showErrorToast(s.getData().getMsg());
+                    }
+                } else {
+                    getView().showErrorToast(s.getMsg());
+                }
             }
 
             @Override

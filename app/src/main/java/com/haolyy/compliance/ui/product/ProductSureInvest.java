@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,15 +14,17 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.utils.SystemBarUtil;
+import com.jakewharton.rxbinding.widget.RxCompoundButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action1;
 
 /**
  * Created by wangyin on 2017/5/23.
  */
 
-public class ProductSureInvest extends AppCompatActivity implements View.OnClickListener{
+public class ProductSureInvest extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.top_sure_invest)
     TopBar topSureInvest;
     @BindView(R.id.iv_referral_code)
@@ -30,6 +33,8 @@ public class ProductSureInvest extends AppCompatActivity implements View.OnClick
     EditText edReferralCode;
     @BindView(R.id.tv_invest_sure)
     TextView tvInvestSure;
+    @BindView(R.id.cb_sure_check)
+    CheckBox cbSureCheck;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +53,17 @@ public class ProductSureInvest extends AppCompatActivity implements View.OnClick
 
             }
         });
+        RxCompoundButton.checkedChanges(cbSureCheck).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
 
+                if (aBoolean) {
+                    tvInvestSure.setEnabled(true);
+                } else {
+                    tvInvestSure.setEnabled(false);
+                }
+            }
+        });
         ivReferralCode.setOnClickListener(this);
         tvInvestSure.setOnClickListener(this);
     }

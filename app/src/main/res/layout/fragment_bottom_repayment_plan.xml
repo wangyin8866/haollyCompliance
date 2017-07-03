@@ -45,13 +45,24 @@
             android:textColor="#FF9B9B9B"
             android:textSize="12sp" />
     </LinearLayout>
-
-    <com.haolyy.compliance.custom.XListView
-        android:id="@+id/repayment_xlv"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:scrollbars="none" />
+        android:layout_height="match_parent">
+        <com.haolyy.compliance.custom.XListView
+            android:id="@+id/repayment_xlv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:scrollbars="none" />
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/no_record_recharge"
+            />
+    </RelativeLayout>
+
 </LinearLayout>

@@ -6,17 +6,23 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.http.SslError;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.haolyy.compliance.base.ActivityCollector;
-import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.ui.MainActivity;
-import com.haolyy.compliance.custom.dialog.WithDrawPopupWindow;
 
 import java.lang.reflect.Field;
 import java.math.RoundingMode;
@@ -29,7 +35,7 @@ import java.util.Locale;
  * Created by wangyin on 2017/5/23.
  */
 
-public class WyUtils {
+public class WYUtils {
 
     //手机号码正则0
     private static String phoneRex = "^1\\d{10}";
@@ -186,5 +192,69 @@ public class WyUtils {
         intent.putExtra("currentPage", currentPage);
         activity.startActivity(intent);
         ActivityCollector.finishAll();
+    }
+    /**
+     * webView加载
+     */
+    public static void loadHtml(final String url, final WebView mWebView, final ProgressBar mProgressBar) {
+        WebSettings settings = mWebView.getSettings();
+        /**
+         * setAllowFileAccess 启用或禁止WebView访问文件数据 setBlockNetworkImage 是否显示网络图像
+         * setBuiltInZoomControls 设置是否支持缩放 setCacheMode 设置缓冲的模式
+         * setDefaultFontSize 设置默认的字体大小 setDefaultTextEncodingName 设置在解码时使用的默认编码
+         * setFixedFontFamily 设置固定使用的字体 setJavaSciptEnabled 设置是否支持Javascript
+         * setLayoutAlgorithm 设置布局方式 setLightTouchEnabled 设置用鼠标激活被选项
+         * setSupportZoom 设置是否支持变焦
+         * */
+
+        //webview在安卓5.0之前默认允许其加载混合网络协议内容
+        // 在安卓5.0之后，默认不允许加载http与https混合内容，需要设置webview允许其加载混合网络协议内容
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
+        }
+        mWebView.setDrawingCacheEnabled(true);
+        settings.setJavaScriptEnabled(true);
+        // 取消滚动条
+        mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        // 触摸焦点起作用
+        mWebView.requestFocus();
+        settings.setSavePassword(false);// 不弹窗浏览器是否保存密码
+        settings.setDefaultTextEncodingName("utf-8");
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        // 自动适应屏幕尺寸
+        settings.setLoadWithOverviewMode(true);
+        settings.setUseWideViewPort(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        mWebView.loadUrl(url);
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress == 100) {
+                    mProgressBar.setVisibility(View.GONE);
+                } else {
+                    mProgressBar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(url);
+                return true;
+
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                //注意：super句话一定要删除，或者注释掉，否则又走handler.cancel()默认的不支持https的了。
+                //super.onReceivedSslError(view, handler, error);
+                //handler.cancel(); // Android默认的处理方式
+                //handler.handleMessage(Message msg); // 进行其他处理
+
+                handler.proceed(); // 接受所有网站的证书
+            }
+        });
     }
 }

@@ -3,6 +3,7 @@ package com.haolyy.compliance.model;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
+import com.haolyy.compliance.entity.product.RepaymentPlan;
 import com.haolyy.compliance.service.ProductApi;
 
 import rx.Observable;
@@ -75,7 +76,7 @@ public class ProductModel extends BaseModel {
         return productApi.getInvestmentRecord(map);
 
     }
-    public Observable<String> getProductReturnPlan(String projectNo, String pageIndex,String platform,String client) {
+    public Observable<RepaymentPlan> getProductReturnPlan(String projectNo, String pageIndex, String platform, String client) {
         map.clear();
         map.put("project_no", projectNo);
         map.put("page_index", pageIndex);

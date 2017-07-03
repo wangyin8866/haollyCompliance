@@ -20,7 +20,7 @@ import com.haolyy.compliance.ui.login.presenter.ForgetPresenter;
 import com.haolyy.compliance.ui.login.view.ForgetView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -133,7 +133,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
             case R.id.tv_send_sms:
                 phone = etForgetAccount.getText().toString();
                 imageCode = etForgetImage.getText().toString();
-                if (TextUtils.isEmpty(phone) || !WyUtils.checkPhone(phone)) {
+                if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
                     UIUtils.showToastCommon(mContext, "请填写正确手机号码");
                     return;
                 } else if (TextUtils.isEmpty(imageCode)) {
@@ -148,7 +148,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 imageCode = etForgetImage.getText().toString();
                 passWord = etForgetPwd.getText().toString();
                 smsCode = etForgetSms.getText().toString();
-                if (TextUtils.isEmpty(phone) || !WyUtils.checkPhone(phone)) {
+                if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
                     UIUtils.showToastCommon(mContext, "请填写正确手机号码");
                     return;
                 } else if (TextUtils.isEmpty(imageCode)) {
@@ -157,7 +157,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 } else if (TextUtils.isEmpty(smsCode)) {
                     UIUtils.showToastCommon(mContext, "短信验证码不能为空");
                     return;
-                } else if (TextUtils.isEmpty(passWord) || !WyUtils.checkPass(passWord)) {
+                } else if (TextUtils.isEmpty(passWord) || !WYUtils.checkPass(passWord)) {
                     UIUtils.showToastCommon(mContext, "请填写正确的密码");
                     return;
                 }

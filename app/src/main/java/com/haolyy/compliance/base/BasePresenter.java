@@ -2,11 +2,7 @@ package com.haolyy.compliance.base;
 
 import android.content.Context;
 
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.model.BaseModel;
-import com.haolyy.compliance.model.UserModel;
-import com.xfqz.xjd.mylibrary.ProgressSubscriber;
-import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
 import java.lang.ref.WeakReference;
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.ProductFirstBinding;
 import com.haolyy.compliance.entity.product.ProductList;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.List;
 
@@ -67,7 +67,7 @@ public class ProductListAdapter extends WyBaseAdapter {
      */
     public String showDeadline(int terTime, int timeType) {
 
-        return terTime + WyUtils.getInvestDeadline(timeType);
+        return terTime + WYUtils.getInvestDeadline(timeType);
     }
 
 }

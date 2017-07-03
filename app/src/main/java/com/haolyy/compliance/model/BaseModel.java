@@ -4,7 +4,7 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.utils.LogUtils;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 import com.xfqz.xjd.mylibrary.LogInterceptor;
 
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class BaseModel {
     public BaseModel() {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = new OkHttpClient.Builder();
-        if(WyUtils.isApkInDebug(BaseApplication.getContext())){
+        if(WYUtils.isApkInDebug(BaseApplication.getContext())){
             httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         }else {
             httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);

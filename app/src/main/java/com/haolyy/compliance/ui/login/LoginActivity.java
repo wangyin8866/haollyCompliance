@@ -11,12 +11,11 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
-import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.SystemBarUtil;
 import com.haolyy.compliance.utils.UIUtils;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,7 +90,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             case R.id.tv_login:
                 phone = etAccount.getText().toString();
                 pwd = etPwd.getText().toString();
-                if (TextUtils.isEmpty(phone)|| !WyUtils.checkPhone(phone)||TextUtils.isEmpty(pwd)||!WyUtils.checkPass(pwd)) {
+                if (TextUtils.isEmpty(phone)|| !WYUtils.checkPhone(phone)||TextUtils.isEmpty(pwd)||!WYUtils.checkPass(pwd)) {
                     UIUtils.showToastCommon(mContext, "您输入的账号或密码有误请重新输入");
                     return;
                 }

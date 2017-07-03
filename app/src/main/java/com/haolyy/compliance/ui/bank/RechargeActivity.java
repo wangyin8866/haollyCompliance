@@ -18,7 +18,7 @@ import com.haolyy.compliance.ui.bank.presenter.RechargePresenter;
 import com.haolyy.compliance.ui.bank.view.RechargeView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,7 +125,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     String trim = etRechargeTmt.getText().toString().trim();
                     if (!TextUtils.isEmpty(trim)) {
                         double inputNum = Double.parseDouble(trim);
-                        String content = WyUtils.getTwoNumStr(inputNum);
+                        String content = WYUtils.getTwoNumStr(inputNum);
                         etRechargeTmt.setText(content);
                         etRechargeTmt.setSelection(content.length());
                     }

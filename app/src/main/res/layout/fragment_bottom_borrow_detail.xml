@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/agreement_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="借款详情"
-        android:textColor="#FF7D7D7D"
-        android:gravity="center"
-        />
-</LinearLayout>
+        android:scrollbars="none" />
+
+    <ProgressBar
+        android:id="@+id/agreement_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

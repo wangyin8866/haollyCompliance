@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.utils.SystemBarUtil;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +55,7 @@ public class InvestErrorRest extends AppCompatActivity {
             case R.id.tv_call_service:
                 break;
             case R.id.error_rest:
-                WyUtils.skipMainActivity(InvestErrorRest.this,1);
+                WYUtils.skipMainActivity(InvestErrorRest.this,1);
                 break;
         }
     }

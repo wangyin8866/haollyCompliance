@@ -391,29 +391,31 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp">
 
-                <ImageView
-                    android:id="@+id/iv_sure_check"
+                <CheckBox
+                    android:id="@+id/cb_sure_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_sure_checked" />
+                    android:checked="true"
+                    android:button="@drawable/selector_chose"
+                     />
 
                 <TextView
                     android:id="@+id/sure_tv2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/iv_sure_check"
+                    android:layout_toRightOf="@+id/cb_sure_check"
                     android:text="我已阅读并同意"
                     android:textColor="#FF4A4A4A"
                     android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/sure_tv2"
                     android:text="《预约标服务协议》"
-                    android:textColor="#FF2D0000"
+                    android:textColor="#FF69ACFC"
                     android:textSize="12sp" />
             </RelativeLayout>
 

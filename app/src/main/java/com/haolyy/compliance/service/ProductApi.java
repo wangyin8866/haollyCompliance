@@ -4,6 +4,7 @@ import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
+import com.haolyy.compliance.entity.product.RepaymentPlan;
 
 import java.util.Map;
 
@@ -39,5 +40,5 @@ public interface ProductApi {
 
     @FormUrlEncoded
     @POST(NetConstantValues.PRODUCT_RETURN_PLAN)
-    Observable<String > getProductReturnPlan(@FieldMap Map<String, String> params);
+    Observable<RepaymentPlan> getProductReturnPlan(@FieldMap Map<String, String> params);
 }

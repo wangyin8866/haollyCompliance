@@ -82,11 +82,11 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
             case R.id.tv_bank_next:
                 realname = tvRealName.getText().toString();
                 idCard = tvIdCard.getText().toString().replaceAll(" ", "");
-               /* if(TextUtils.isEmpty(realname)|| !WyUtils.checkChnCharacters(realname)){
+               /* if(TextUtils.isEmpty(realname)|| !WYUtils.checkChnCharacters(realname)){
                     UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的姓名");
                     return;
                 }
-               if(TextUtils.isEmpty(idCard)|| !WyUtils.checkId(idCard)){
+               if(TextUtils.isEmpty(idCard)|| !WYUtils.checkId(idCard)){
                     UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的身份证号");
                     return;
                 }*/

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -41,6 +42,8 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     RadioButton rbAll;
     @BindView(R.id.pro_list_top)
     LinearLayout proListTop;
+    @BindView(R.id.iv_empty)
+    ImageView ivEmpty;
     private View view;
     private ArrayList<String> childTitle;
     private ArrayList<String> childNodeNo;//二级菜单的no
@@ -53,6 +56,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     private int pageSize;
     private int project_type;// 标的类型
     private String product_no;// 产品类型
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,8 +127,8 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 //                tempButton.setTextColor(getResources().getColorStateList(R.color.color_tv_selector));
                 group.addView(tempButton, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-                LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) tempButton.getLayoutParams();
-                layoutParams.leftMargin=UIUtils.dip2px(20);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tempButton.getLayoutParams();
+                layoutParams.leftMargin = UIUtils.dip2px(20);
                 tempButton.setLayoutParams(layoutParams);
             }
             group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -177,15 +181,22 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 
     @Override
     public void showData(ProductList productList) {
+
         pageSize = productList.getData().getData().getData_list().size();
+        LogUtils.e("pageSize111", pageSize + "");
         this.productList = productList;
         if (productList.getData().getData().getData_list().size() == 0) {
             xlvProductThird.setPullLoadEnable(false);
+            ivEmpty.setVisibility(View.VISIBLE);
+
         } else {
-            if (pageSize <= 10) {
+            if (pageSize < 10) {
+                LogUtils.e("pageSize222", pageSize + "");
                 xlvProductThird.setPullLoadEnable(false);
+            } else {
+                xlvProductThird.setPullLoadEnable(true);
             }
-            xlvProductThird.setPullLoadEnable(true);
+            ivEmpty.setVisibility(View.GONE);
         }
         xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getData().getData().getData_list(), getActivity()));
     }
@@ -194,6 +205,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     public void showGetMoreData(ProductList productList) {
         this.productList.getData().getData().getData_list().addAll(productList.getData().getData().getData_list());
         if (productList.getData().getData().getData_list().size() == 0) {
+            pageNum = 1;
             UIUtils.showToastCommon(mContext, "没有更多数据了！");
             xlvProductThird.setPullLoadEnable(false);
         } else {

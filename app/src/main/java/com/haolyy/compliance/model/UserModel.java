@@ -9,7 +9,6 @@ import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.service.UserApi;
 
 import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by LL on 2017/1/7.

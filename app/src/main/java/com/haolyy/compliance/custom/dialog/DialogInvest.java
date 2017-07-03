@@ -17,7 +17,7 @@ import butterknife.OnClick;
  * Created by William on 2017/1/8
  */
 
-public class DialogConversionIntegralTips extends Dialog {
+public class DialogInvest extends Dialog {
 
     @BindView(R.id.tv_content)
     TextView tvContent;
@@ -25,18 +25,21 @@ public class DialogConversionIntegralTips extends Dialog {
     TextView tvLeft;
     @BindView(R.id.tv_right)
     TextView tvRight;
+    @BindView(R.id.tv_content2)
+    TextView tvContent2;
     private ConversionIntegral converIntegral;
-    private DialogConversionIntegralTips instance;
+    private DialogInvest instance;
+
     public void setConverIntegral(ConversionIntegral converIntegral) {
         this.converIntegral = converIntegral;
     }
 
-    public DialogConversionIntegralTips(Context context) {
+    public DialogInvest(Context context) {
         super(context, R.style.dialogToast);
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.gravity = Gravity.CENTER;
         getWindow().setAttributes(attributes);
-        super.setContentView(R.layout.dialog_conversion_integral);
+        super.setContentView(R.layout.dialog_invest);
         ButterKnife.bind(this);
         instance = this;
     }
@@ -45,27 +48,36 @@ public class DialogConversionIntegralTips extends Dialog {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_left:
-                dismiss();
+                converIntegral.leftClick();
                 break;
             case R.id.tv_right:
-                converIntegral.conversion();
+                converIntegral.rightClick();
                 break;
         }
     }
-    public DialogConversionIntegralTips setContent(String content){
+
+    public DialogInvest setContent1(String content) {
         tvContent.setText(content);
         return instance;
 
     }
-    public DialogConversionIntegralTips setLeftText(String left){
+    public DialogInvest setContent2(String content) {
+        tvContent2.setText(content);
+        return instance;
+
+    }
+    public DialogInvest setLeftText(String left) {
         tvLeft.setText(left);
         return instance;
     }
-    public DialogConversionIntegralTips setRightText(String rightText){
+
+    public DialogInvest setRightText(String rightText) {
         tvRight.setText(rightText);
         return instance;
     }
-    public interface ConversionIntegral{
-        void conversion();
+
+    public interface ConversionIntegral {
+        void leftClick();
+        void rightClick();
     }
 }

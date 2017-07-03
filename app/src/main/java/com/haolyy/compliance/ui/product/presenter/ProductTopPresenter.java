@@ -5,6 +5,7 @@ import android.content.Context;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
+import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
@@ -33,6 +34,22 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
                 }
             }
 
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
+    }
+
+    /**
+     * 查询用户状态
+     */
+    public void selectUserState(String mobile,String platform){
+        invoke(UserModel.getInstance().selectUserState(mobile,platform),new ProgressSubscriber<String >(new SubscriberOnNextListener<String>() {
+            @Override
+            public void onNext(String s) {
+
+            }
             @Override
             public void onError(Throwable e) {
 

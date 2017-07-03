@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data class="RepaymentBinding">
 
-        <import type="com.haolyy.compliance.entity.Repayment" />
+        <import type="com.haolyy.compliance.entity.product.RepaymentPlan.DataBeanX.DataBean.DataListBean" />
 
         <variable
             name="repayment"
-            type="Repayment" />
+            type="DataListBean" />
 
     </data>
     <LinearLayout
@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:gravity="center"
-                android:text="@{repayment.periods}"
+                android:text="1期"
                 android:textColor="#FF9B9B9B"
                 android:textSize="12sp" />
 
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@{repayment.interest}"
+                android:text="@{repayment.should_interest}"
                 android:textColor="#FF9B9B9B"
                 android:textSize="12sp" />
 
@@ -51,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@{repayment.capital}"
+                android:text="@{repayment.should_amount}"
                 android:textColor="#FF9B9B9B"
                 android:textSize="12sp" />
 
@@ -61,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@{repayment.residueCapital}"
+                android:text="@{repayment.remain_amount}"
                 android:textColor="#FF9B9B9B"
                 android:textSize="12sp" />
         </LinearLayout>

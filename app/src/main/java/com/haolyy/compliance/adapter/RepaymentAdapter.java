@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.RepaymentBinding;
-import com.haolyy.compliance.entity.Repayment;
+import com.haolyy.compliance.entity.product.RepaymentPlan;
 
 import java.util.List;
 
@@ -22,9 +22,10 @@ public class RepaymentAdapter extends WyBaseAdapter {
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Repayment repayment = (Repayment) list.get(position);
+        RepaymentPlan.DataBeanX.DataBean.DataListBean repayment = ( RepaymentPlan.DataBeanX.DataBean.DataListBean) list.get(position);
         binding = DataBindingUtil.inflate(inflater, R.layout.item_repayment_plan, parent, false);
         binding.setRepayment(repayment);
+        binding.tvRepaymentPeriods.setText(repayment.getPeriod_no()+"期");
         return binding.getRoot();
     }
 }

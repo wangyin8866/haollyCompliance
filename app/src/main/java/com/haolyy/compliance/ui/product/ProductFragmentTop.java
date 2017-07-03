@@ -23,7 +23,7 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.haolyy.compliance.utils.DateUtil;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -172,6 +172,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             leftLabel.setVisibility(View.GONE);
         }
         mPresenter.getBaseDetail(projectNo + "", "12");
+        mPresenter.selectUserState("18565321959", "1");
     }
 
     void changeScrollView() {
@@ -225,7 +226,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         //退出日期
         interestEndDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterest_end_date()) + "到期");
         //投资期限
-        investDeadline.setText(infoBean.getPeriod_length() + WyUtils.getInvestDeadline(infoBean.getPeriod_unit()));
+        investDeadline.setText(infoBean.getPeriod_length() + WYUtils.getInvestDeadline(infoBean.getPeriod_unit()));
         //锁定期
         lockPeriod.setText(infoBean.getLock_period() + "天");
         //计划金额

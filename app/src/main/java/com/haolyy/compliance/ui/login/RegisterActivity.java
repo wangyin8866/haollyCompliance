@@ -25,7 +25,7 @@ import com.haolyy.compliance.ui.login.presenter.RegisterPresenter;
 import com.haolyy.compliance.ui.login.view.RegisterView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
-import com.haolyy.compliance.utils.WyUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -158,7 +158,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
         if (isGetSms) {
             phone = etPhone.getText().toString();
             imageCode = etImageCode.getText().toString();
-            if (TextUtils.isEmpty(phone) || !WyUtils.checkPhone(phone)) {
+            if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
                 UIUtils.showToastCommon(mContext, "请填写正确的手机号码");
                 return;
             } else if (TextUtils.isEmpty(imageCode)) {
