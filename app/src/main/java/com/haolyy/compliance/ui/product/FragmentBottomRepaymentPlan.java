@@ -15,6 +15,7 @@ import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.product.RepaymentPlan;
 import com.haolyy.compliance.ui.product.presenter.RepaymentPlanPresenter;
 import com.haolyy.compliance.ui.product.view.RepaymentPlanView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
 import butterknife.BindView;
@@ -44,7 +45,7 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
         unbinder = ButterKnife.bind(this, view);
 
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
-        mPresenter.getProductReturnPlan(false, projectNo, pageNum+"", "1", "1");
+        mPresenter.getProductReturnPlan(false, projectNo, pageNum+"");
         repaymentXlv.setPullRefreshEnable(false);
         repaymentXlv.setXListViewListener(this);
 
@@ -61,13 +62,13 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
     @Override
     public void onRefresh() {
         pageNum = 1;
-        mPresenter.getProductReturnPlan(false, projectNo, pageNum+"", "1", "1");
+        mPresenter.getProductReturnPlan(false, projectNo, pageNum+"");
     }
 
     @Override
     public void onLoadMore() {
         pageNum += 1;
-        mPresenter.getProductReturnPlan(true, projectNo, pageNum+"", "1", "1");
+        mPresenter.getProductReturnPlan(true, projectNo, pageNum+"");
     }
 
 
@@ -89,7 +90,8 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
     @Override
     public void showData(RepaymentPlan repaymentPlan) {
         this.repaymentPlan = repaymentPlan;
-        if (repaymentPlan.getData().getData().getData_list().size() ==0) {
+        LogUtils.e("repaymentPlan",repaymentPlan.getData().getData().getData_list().size()+"");
+        if (repaymentPlan.getData().getData().getData_list()==null) {
             repaymentXlv.setPullLoadEnable(false);
             ivEmpty.setVisibility(View.VISIBLE);
         } else {
@@ -99,18 +101,19 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
                 repaymentXlv.setPullLoadEnable(true);
             }
             ivEmpty.setVisibility(View.GONE);
-        }
         repaymentXlv.setAdapter(new RepaymentAdapter(repaymentPlan.getData().getData().getData_list(), getActivity()));
+        }
     }
 
     @Override
     public void showGetMoreData(RepaymentPlan repaymentPlan) {
-        this.repaymentPlan.getData().getData().getData_list().addAll(repaymentPlan.getData().getData().getData_list());
-        if (repaymentPlan.getData().getData().getData_list().size() == 0) {
+
+        if (repaymentPlan.getData().getData().getData_list()== null) {
             pageNum = 1;
             UIUtils.showToastCommon(mContext, "没有更多数据了！");
             repaymentXlv.setPullLoadEnable(false);
         } else {
+            this.repaymentPlan.getData().getData().getData_list().addAll(repaymentPlan.getData().getData().getData_list());
             repaymentXlv.setPullLoadEnable(true);
             repaymentXlv.setAdapter(new ProductListAdapter(this.repaymentPlan.getData().getData().getData_list(), getActivity()));
             repaymentXlv.setSelection(this.repaymentPlan.getData().getData().getData_list().size() - repaymentPlan.getData().getData().getData_list().size());//定位

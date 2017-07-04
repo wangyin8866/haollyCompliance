@@ -6,7 +6,6 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.model.HuifuShModel;
-import com.haolyy.compliance.model.HuifuShModel2;
 import com.haolyy.compliance.ui.bank.view.RechargeView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
@@ -22,8 +21,8 @@ public class RechargePresenter extends BasePresenter<RechargeView>{
         super(context);
     }
     public void recharge(String from_mobile_, String gate_busi_id_, String ret_url_, String sms_code_, String sms_seq_, String trans_amt_, String bank_id_,String mer_id_,
-                         String client_,String version_ ,String juid,String UsrCustId){
-            invoke(HuifuShModel.getInstance().recharge(from_mobile_,gate_busi_id_,ret_url_,sms_code_,sms_seq_,trans_amt_,bank_id_,mer_id_,client_,version_ ,juid,UsrCustId),new ProgressSubscriber<RechargeBean>(new SubscriberOnNextListener<RechargeBean>() {
+                         String juid,String UsrCustId){
+            invoke(HuifuShModel.getInstance().recharge(from_mobile_,gate_busi_id_,ret_url_,sms_code_,sms_seq_,trans_amt_,bank_id_,mer_id_,juid,UsrCustId),new ProgressSubscriber<RechargeBean>(new SubscriberOnNextListener<RechargeBean>() {
                 @Override
                 public void onNext(RechargeBean s) {
                     if(s.getStatus().equals("200")){
@@ -40,8 +39,8 @@ public class RechargePresenter extends BasePresenter<RechargeView>{
             },mContext));
     }
 
-    public void sendSms(String busi_type_, String card_number_, String user_cust_id_, String mer_id_, String mobile_, String sms_type_,String client_) {
-       invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, user_cust_id_, mer_id_, mobile_, sms_type_,client_),new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
+    public void sendSms(String busi_type_, String card_number_, String user_cust_id_, String mer_id_, String mobile_, String sms_type_) {
+       invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, user_cust_id_, mer_id_, mobile_, sms_type_),new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
            @Override
            public void onNext(HuifuSmsBean s) {
                if (s.getStatus().equals("200")) {

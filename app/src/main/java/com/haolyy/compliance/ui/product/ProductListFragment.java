@@ -183,7 +183,6 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     public void showData(ProductList productList) {
 
         pageSize = productList.getData().getData().getData_list().size();
-        LogUtils.e("pageSize111", pageSize + "");
         this.productList = productList;
         if (productList.getData().getData().getData_list().size() == 0) {
             xlvProductThird.setPullLoadEnable(false);
@@ -191,24 +190,23 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 
         } else {
             if (pageSize < 10) {
-                LogUtils.e("pageSize222", pageSize + "");
                 xlvProductThird.setPullLoadEnable(false);
             } else {
                 xlvProductThird.setPullLoadEnable(true);
             }
             ivEmpty.setVisibility(View.GONE);
-        }
         xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getData().getData().getData_list(), getActivity()));
+        }
     }
 
     @Override
     public void showGetMoreData(ProductList productList) {
-        this.productList.getData().getData().getData_list().addAll(productList.getData().getData().getData_list());
         if (productList.getData().getData().getData_list().size() == 0) {
             pageNum = 1;
             UIUtils.showToastCommon(mContext, "没有更多数据了！");
             xlvProductThird.setPullLoadEnable(false);
         } else {
+            this.productList.getData().getData().getData_list().addAll(productList.getData().getData().getData_list());
             xlvProductThird.setPullLoadEnable(true);
             xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getData().getData().getData_list(), getActivity()));
             xlvProductThird.setSelection(this.productList.getData().getData().getData_list().size() - productList.getData().getData().getData_list().size());//定位

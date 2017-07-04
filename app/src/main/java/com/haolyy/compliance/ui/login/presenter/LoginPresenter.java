@@ -25,9 +25,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         super(context);
     }
 
-    public void login(String phone_num, String password, String loginIp, String version, String platform, String client) {
+    public void login(String phone_num, String password, String loginIp) {
 
-        invoke(UserModel.getInstance().login(phone_num, password, loginIp, version, platform, client), new Subscriber<LoginResponseBean>() {
+        invoke(UserModel.getInstance().login(phone_num, password, loginIp), new Subscriber<LoginResponseBean>() {
             @Override
             public void onCompleted() {
 

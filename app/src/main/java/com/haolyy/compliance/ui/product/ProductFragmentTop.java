@@ -19,10 +19,12 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
+import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
@@ -155,8 +157,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     private void init() {
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
+        LogUtils.e("projectNo",projectNo);
         project_type = getActivity().getIntent().getIntExtra("project_type", 0);
+        LogUtils.e("project_type",project_type+"");
         product_no = getActivity().getIntent().getStringExtra("product_no");
+        LogUtils.e("product_no",product_no+"");
         //显示进度
         if (project_type == 1) {//散标
             joinProgress.setVisibility(View.GONE);
@@ -172,7 +177,10 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             leftLabel.setVisibility(View.GONE);
         }
         mPresenter.getBaseDetail(projectNo + "", "12");
-        mPresenter.selectUserState();
+
+
+//        mPresenter.selectUserState();
+
     }
 
     void changeScrollView() {
@@ -237,6 +245,12 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         arcProgressView.setData(amount * scale, amount);
         processProgress(infoBean.getBegin_date(), infoBean.getBid_end_date(), infoBean.getLock_date(), infoBean.getInterest_end_date());
     }
+
+    @Override
+    public void getUserState(BaseResponseBean baseResponseBean) {
+
+    }
+
 
     /**
      * 处理进度条
@@ -342,6 +356,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             tvTime3.setText(DateUtil.getTimeyyyymmdd(lock_date));
         }
         if (period_unit != 0) {
+
             tvTime4.setText(DateUtil.getTimeyyyymmdd(period_unit));
         }
     }

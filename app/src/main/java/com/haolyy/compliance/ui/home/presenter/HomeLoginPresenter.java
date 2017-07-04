@@ -17,8 +17,8 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
     public HomeLoginPresenter(Context context) {
         super(context);
     }
-    public void getBanner(String type,String platform){
-        invoke(HomeModel.getInstance().getBanner(type,platform),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void getBanner(String type){
+        invoke(HomeModel.getInstance().getBanner(type),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String s) {
                 LogUtils.e("getBanner",s);
@@ -45,8 +45,8 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
         },mContext));
 
     }
-    public void getHomeArticle(String platform){
-        invoke(HomeModel.getInstance().getHomeArticle(platform),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void getHomeArticle(){
+        invoke(HomeModel.getInstance().getHomeArticle(),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String s) {
                 LogUtils.e("getHomeArticle",s);
@@ -59,8 +59,8 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
         },mContext));
 
     }
-    public void getRecommend(String userId,String client){
-        invoke(HomeModel.getInstance().getRecommend(userId,client),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void getRecommend(String userId){
+        invoke(HomeModel.getInstance().getRecommend(userId),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String s) {
                 LogUtils.e("getRecommend",s);

@@ -94,7 +94,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
                     UIUtils.showToastCommon(mContext, "您输入的账号或密码有误请重新输入");
                     return;
                 }
-                mPresenter.login(phone, pwd,"192.168.7.113","1223","haolyy","android");
+                mPresenter.login(phone, pwd,"192.168.7.113");
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);

@@ -49,7 +49,7 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
         unbinder = ButterKnife.bind(this, view);
         initView();
         //获取菜单列表
-        mPresenter.getTitle("1","4");
+        mPresenter.getTitle();
 
 //        mPresenter.getDetail("1", "12", "2", "SCD");
         return view;

@@ -9,5 +9,6 @@ public interface Config {
     int GETUSERSTATUS = 1002;
 
     int seconds=60000;//倒计时时间
-
+    String platform="1";//好利网
+    String client = "android";
 }

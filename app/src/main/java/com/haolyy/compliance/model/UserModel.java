@@ -14,6 +14,10 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
+import static com.haolyy.compliance.base.BaseApplication.version;
+import static com.haolyy.compliance.config.Config.client;
+import static com.haolyy.compliance.config.Config.platform;
+
 /**
  * Created by LL on 2017/1/7.
  */
@@ -57,17 +61,17 @@ public class UserModel extends BaseModel {
      *
      */
 
-    public Observable<LoginResponseBean>login(String phone_num, String password,String loginIp,String version,String platform,String client) {
+    public Observable<LoginResponseBean>login(String phone_num, String password,String loginIp) {
         map.put("mobile", phone_num);
         map.put("passWord", password);
         map.put("loginIp", loginIp);
-        map.put("version", BaseApplication.version);
+        map.put("version", version);
         map.put("platform", platform);
         map.put("client", client);
         return userApi.login(map);
     }
 
-    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String client,String platform,String registBd,String version,String channel,String inviteCode) {
+    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String registBd,String channel,String inviteCode) {
         map.clear();
         map.put("mobile", phone_num);
         map.put("password", password);
@@ -76,7 +80,7 @@ public class UserModel extends BaseModel {
         map.put("client", client);
         map.put("platform", platform);
         map.put("registBd", registBd);
-        map.put("version", BaseApplication.version);
+        map.put("version", version);
         map.put("channel",channel);
         map.put("inviteCode",inviteCode);
         map.put("token",BaseApplication.token);
@@ -87,7 +91,7 @@ public class UserModel extends BaseModel {
         return userApi.checkImage(BaseApplication.token,imagecode);
     }
 
-    public Observable<BaseResponseBean> forgetPassWord(String phone_num, String password,String smsCode,String imageCode,String client,String platform) {
+    public Observable<BaseResponseBean> forgetPassWord(String phone_num, String password,String smsCode,String imageCode) {
         map.clear();
         map.put("mobile", phone_num);
         map.put("passWord", password);

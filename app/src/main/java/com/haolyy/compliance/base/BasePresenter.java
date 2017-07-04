@@ -2,7 +2,12 @@ package com.haolyy.compliance.base;
 
 import android.content.Context;
 
+import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.model.BaseModel;
+import com.haolyy.compliance.model.UserModel;
+import com.haolyy.compliance.utils.LogUtils;
+import com.xfqz.xjd.mylibrary.ProgressSubscriber;
+import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
 import java.lang.ref.WeakReference;
 
@@ -50,4 +55,28 @@ public abstract class BasePresenter<T> {
         return mViewRef.get();
     }
 
+
+
+    /**
+     * 查询用户状态
+     */
+    public void selectUserState(){
+
+        invoke(UserModel.getInstance().findUserStatus(),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
+            @Override
+            public void onNext(BaseResponseBean baseResponseBean) {
+                LogUtils.e("selectUserState", baseResponseBean.toString());
+                overwriteSelectUserState(baseResponseBean);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.e("selectUserState", e.getMessage());
+            }
+        },mContext));
+    }
+
+    public void overwriteSelectUserState(BaseResponseBean baseResponseBean){
+
+    }
 }

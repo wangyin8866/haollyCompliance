@@ -18,12 +18,13 @@ public class RepaymentPlanPresenter extends BasePresenter<RepaymentPlanView>{
     public RepaymentPlanPresenter(Context context) {
         super(context);
     }
-    public void getProductReturnPlan(final boolean isLoadMore,String projectNo, String pageIndex,String platform,String client){
-        invoke(ProductModel.getInstance().getProductReturnPlan(projectNo,pageIndex,platform,client),new ProgressSubscriber<RepaymentPlan>(new SubscriberOnNextListener<RepaymentPlan>() {
+    public void getProductReturnPlan(final boolean isLoadMore,String projectNo, String pageIndex){
+        invoke(ProductModel.getInstance().getProductReturnPlan(projectNo,pageIndex),new ProgressSubscriber<RepaymentPlan>(new SubscriberOnNextListener<RepaymentPlan>() {
             @Override
             public void onNext(RepaymentPlan s) {
                 if (s.getStatus().equals("200")) {
                     if (s.getData().getStatus().equals("200")) {
+
                         if (isLoadMore) {
                             getView().showGetMoreData(s);
                         } else {

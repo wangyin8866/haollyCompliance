@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.haolyy.compliance.utils.LogUtils;
-import com.squareup.leakcanary.LeakCanary;
+import com.haolyy.compliance.utils.WYUtils;
 
 
 /**
@@ -72,7 +72,8 @@ public class BaseApplication extends Application {
         mMainThreadHandler = new Handler();
         mMainLooper = getMainLooper();
         mInstance = this;
-
+        //获取版本号
+        BaseApplication.version= WYUtils.getVersion(getApplicationContext());
 
         //是否打印日志
         LogUtils.isDebug = true;

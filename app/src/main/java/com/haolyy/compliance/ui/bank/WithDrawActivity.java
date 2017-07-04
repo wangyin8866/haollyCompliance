@@ -7,7 +7,6 @@ import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
@@ -74,7 +73,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
                 finish();
                 break;
             case R.id.btn_withdraw:
-                mPresenter.withDraw("1", "6000060007303359", "13821882946", "https://www.baidu.com/", "1000","1" ,"131227027479539", "1", "4", "1.0");
+                mPresenter.withDraw("1", "6000060007303359", "13821882946", "https://www.baidu.com/", "1000","1" ,"131227027479539", "1");
                 break;
             case R.id.tv_withdraw_quan:
                 startActivity(new Intent(WithDrawActivity.this, WithDrawQuanActivity.class));

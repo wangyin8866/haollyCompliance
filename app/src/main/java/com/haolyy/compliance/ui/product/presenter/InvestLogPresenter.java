@@ -16,8 +16,8 @@ public class InvestLogPresenter extends BasePresenter<InvestLogView>{
     public InvestLogPresenter(Context context) {
         super(context);
     }
-    public void getInvestmentRecord(String projectNo, String pageIndex,String platform,String client,String version){
-        invoke(ProductModel.getInstance().getInvestmentRecord(projectNo,pageIndex,platform,client,version),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void getInvestmentRecord(String projectNo, String pageIndex){
+        invoke(ProductModel.getInstance().getInvestmentRecord(projectNo,pageIndex),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String s) {
 

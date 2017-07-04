@@ -101,4 +101,13 @@ public class BaseResponseBean {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "BaseResponseBean{" +
+                "data=" + data +
+                ", msg='" + msg + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

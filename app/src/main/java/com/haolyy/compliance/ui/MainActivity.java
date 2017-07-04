@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void init() {
-        BaseApplication.version= WYUtils.getVersion(getApplicationContext());
+
         homeNoLoginFragment = new HomeNoLoginFragment();
         homeInvestFragment = new HomeLoginFragment();
 

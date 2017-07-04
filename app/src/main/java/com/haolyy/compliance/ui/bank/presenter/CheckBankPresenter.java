@@ -14,8 +14,6 @@ import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
-import rx.Observable;
-
 /**
  * Created by niudeyang on 2017/6/30.
  */
@@ -25,8 +23,8 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
         super(context);
     }
 
-    public void isBosAcctActivate(final String user_id, String idno, String realname, String user_type, final String mer_id_, String client_) {
-        invoke(HuifuShModel.getInstance().isBosAcctActivate(user_id, idno, realname, user_type, mer_id_, client_),
+    public void isBosAcctActivate(final String user_id, String idno, String realname, String user_type, final String mer_id_) {
+        invoke(HuifuShModel.getInstance().isBosAcctActivate(user_id, idno, realname, user_type, mer_id_),
                 new ProgressSubscriber<IsActivateBean>(new SubscriberOnNextListener<IsActivateBean>() {
                     @Override
                     public void onNext(IsActivateBean s) {

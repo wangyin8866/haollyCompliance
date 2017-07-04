@@ -12,6 +12,10 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
+import static com.haolyy.compliance.base.BaseApplication.version;
+import static com.haolyy.compliance.config.Config.client;
+import static com.haolyy.compliance.config.Config.platform;
+
 /**
  * Created by LL on 2017/1/7.
  */
@@ -42,13 +46,13 @@ public class ProductModel extends BaseModel {
         }
         return userModel;
     }
-    public Observable<ProductTitle> getTitle(String platform, String client){
+    public Observable<ProductTitle> getTitle(){
         map.clear();
         map.put("platform", platform);
         map.put("client", client);
         return productApi.getTitleList(map);
     }
-    public Observable<ProductList> getProductList(String product_category_id, String status, String return_rate, String date_limit, String page_index, String platform) {
+    public Observable<ProductList> getProductList(String product_category_id, String status, String return_rate, String date_limit, String page_index) {
         map.clear();
         map.put("product_category_id", product_category_id);
         map.put("status", status);
@@ -75,7 +79,7 @@ public class ProductModel extends BaseModel {
         return productApi.getDetail(map);
 
     }
-    public Observable<String> getInvestmentRecord(String projectNo, String pageIndex,String platform,String client,String version) {
+    public Observable<String> getInvestmentRecord(String projectNo, String pageIndex) {
         map.clear();
         map.put("project_no", projectNo);
         map.put("page_index", pageIndex);
@@ -85,7 +89,7 @@ public class ProductModel extends BaseModel {
         return productApi.getInvestmentRecord(map);
 
     }
-    public Observable<RepaymentPlan> getProductReturnPlan(String projectNo, String pageIndex, String platform, String client) {
+    public Observable<RepaymentPlan> getProductReturnPlan(String projectNo, String pageIndex) {
         map.clear();
         map.put("project_no", projectNo);
         map.put("page_index", pageIndex);

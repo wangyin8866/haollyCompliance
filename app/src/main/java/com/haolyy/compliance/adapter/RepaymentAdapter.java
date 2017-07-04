@@ -25,7 +25,7 @@ public class RepaymentAdapter extends WyBaseAdapter {
         RepaymentPlan.DataBeanX.DataBean.DataListBean repayment = ( RepaymentPlan.DataBeanX.DataBean.DataListBean) list.get(position);
         binding = DataBindingUtil.inflate(inflater, R.layout.item_repayment_plan, parent, false);
         binding.setRepayment(repayment);
-        binding.tvRepaymentPeriods.setText(repayment.getPeriod_no()+"期");
+        binding.tvRepaymentPeriods.setText(String.valueOf(repayment.getPeriod_no())+"期");
         return binding.getRoot();
     }
 }

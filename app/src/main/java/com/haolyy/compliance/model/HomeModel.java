@@ -8,6 +8,9 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Observable;
 
+import static com.haolyy.compliance.config.Config.client;
+import static com.haolyy.compliance.config.Config.platform;
+
 /**
  * Created by wangyin on 2017/6/29.
  */
@@ -34,7 +37,7 @@ public class HomeModel extends BaseModel {
         return SingletonHolder.homeModel;
     }
 
-    public Observable<String> getBanner(String type, String platform) {
+    public Observable<String> getBanner(String type) {
         map.clear();
         map.put("type", type);
         map.put("platform", platform);
@@ -44,12 +47,12 @@ public class HomeModel extends BaseModel {
         map.clear();
         return homeAPi.getProduct(map);
     }
-    public Observable<String> getHomeArticle(String platform) {
+    public Observable<String> getHomeArticle() {
         map.clear();
         map.put("platform", platform);
         return homeAPi.getArticle(map);
     }
-    public Observable<String> getRecommend(String userId,String client) {
+    public Observable<String> getRecommend(String userId) {
         map.clear();
         map.put("userId", userId);
         map.put("client", client);

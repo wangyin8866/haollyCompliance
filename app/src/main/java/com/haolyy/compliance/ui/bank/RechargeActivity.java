@@ -150,7 +150,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     UIUtils.showToastCommon(mContext, "电话号码不能为空");
                     return;
                 }
-                mPresenter.sendSms("recharge", "6225801240710011", "6000060007303359", "2", "13821882946", "", "4");
+                mPresenter.sendSms("recharge", "6225801240710011", "6000060007303359", "2", "13821882946", "");
                 tvRechargeSms.setEnabled(false);
                 break;
             case R.id.btn_recharge:
@@ -165,7 +165,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     UIUtils.showToastCommon(mContext, "短信验证码不能为空");
                     return;
                 }
-                mPresenter.recharge("13821882946", "QP", "http://www.baidu.com", "666666", "AAAAAAAA", "100", "", "1", "4", "1.0", "131227027479539", "6000060007303359");
+                mPresenter.recharge("13821882946", "QP", "http://www.baidu.com", "666666", "AAAAAAAA", "100", "", "1",  "131227027479539", "6000060007303359");
                 break;
         }
     }

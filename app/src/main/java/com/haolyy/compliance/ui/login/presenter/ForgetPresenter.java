@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
-import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
@@ -113,8 +112,8 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
         });
     }
 
-    public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode, String client, String platform) {
-        invoke(UserModel.getInstance().forgetPassWord(phone_num, password, smsCode, imageCode, client, platform), new Subscriber<BaseResponseBean>() {
+    public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode) {
+        invoke(UserModel.getInstance().forgetPassWord(phone_num, password, smsCode, imageCode), new Subscriber<BaseResponseBean>() {
             @Override
             public void onCompleted() {
 

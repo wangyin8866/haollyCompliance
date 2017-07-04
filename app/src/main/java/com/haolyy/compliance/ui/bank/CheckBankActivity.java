@@ -90,7 +90,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
                     UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的身份证号");
                     return;
                 }*/
-                mPresenter.isBosAcctActivate("1324567980", "411501199310288663", "平淩", "2", "1", "4");
+                mPresenter.isBosAcctActivate("1324567980", "411501199310288663", "平淩", "2",  "4");
                 //返回的type"type":"1,2"正常开户 3 发短息 4 掉激活接口
                 break;
         }

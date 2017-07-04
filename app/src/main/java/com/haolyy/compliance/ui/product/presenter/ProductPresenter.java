@@ -21,11 +21,9 @@ public class ProductPresenter extends BasePresenter<ProductView> {
 
     /**
      * 获取菜单信息
-     * @param platform
-     * @param client
      */
-    public void getTitle(String platform, String client) {
-        invoke(ProductModel.getInstance().getTitle(platform,client),new ProgressSubscriber<ProductTitle>(new SubscriberOnNextListener<ProductTitle>() {
+    public void getTitle() {
+        invoke(ProductModel.getInstance().getTitle(),new ProgressSubscriber<ProductTitle>(new SubscriberOnNextListener<ProductTitle>() {
             @Override
             public void onNext(ProductTitle o) {
                 if (o.getStatus().equals("200")) {
@@ -46,7 +44,7 @@ public class ProductPresenter extends BasePresenter<ProductView> {
         },mContext));
     }
     public void getProductList(final boolean isLoadMore, String product_category_id, String pageNum) {
-        invoke(ProductModel.getInstance().getProductList(product_category_id, "", "", "", pageNum, "1"), new ProgressSubscriber<ProductList>(new SubscriberOnNextListener<ProductList>() {
+        invoke(ProductModel.getInstance().getProductList(product_category_id, "", "", "", pageNum), new ProgressSubscriber<ProductList>(new SubscriberOnNextListener<ProductList>() {
             @Override
             public void onNext(ProductList o) {
                 if (o.getStatus().equals("200")) {

@@ -6,9 +6,7 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
-import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
-import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -43,20 +41,8 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
         },mContext));
     }
 
-    /**
-     * 查询用户状态
-     */
-    public void selectUserState(){
-        invoke(UserModel.getInstance().findUserStatus(),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
-            @Override
-            public void onNext(BaseResponseBean baseResponseBean) {
-                LogUtils.e("selectUserState", baseResponseBean.toString());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e("selectUserState", e.getMessage());
-            }
-        },mContext));
+    @Override
+    public void overwriteSelectUserState(BaseResponseBean baseResponseBean) {
+        getView().getUserState(baseResponseBean);
     }
 }
