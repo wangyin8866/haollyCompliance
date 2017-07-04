@@ -14,6 +14,7 @@ import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.ui.product.presenter.ProductBottomPresenter;
 import com.haolyy.compliance.ui.product.view.ProductBottomView;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
     FragmentBottomCreditorInfo bottomCreditorInfo;
     FragmentBottomBorrowDetail bottomBorrowDetail;
     FragmentBottomRepaymentPlan bottomRepaymentPlan;
-
+    private String product_no;
     @Override
     protected ProductBottomPresenter createPresenter() {
         return new ProductBottomPresenter(mContext);
@@ -64,39 +65,33 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         bottomCreditorInfo = new FragmentBottomCreditorInfo();
         bottomBorrowDetail = new FragmentBottomBorrowDetail();
         bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
-        int type = 2;
-        switch (type) {
-            case 1: //赢计划,短期赢
-                titles.add("产品详情");
-                fragments.add(bottomProductDetail);
-                titles.add("投资记录");
-                fragments.add(bottomInvestLog);
-                break;
-            case 2://消费贷
-            case 3://闪车贷
-                titles.add("借款明细");
-                fragments.add(bottomBorrowDetail);
-                titles.add("投资记录");
-                fragments.add(bottomInvestLog);
-                titles.add("还款计划");
-                fragments.add(bottomRepaymentPlan);
-                break;
-            case 4://票据贷
-                titles.add("借款明细");
-                fragments.add(bottomBorrowDetail);
-                titles.add("投资记录");
-                fragments.add(bottomInvestLog);
-                break;
-            case 5: //周周赢,新手标
-                titles.add("产品详情");
-                fragments.add(bottomProductDetail);
-                titles.add("债权信息");
-                fragments.add(bottomCreditorInfo);
-                titles.add("投资记录");
-                fragments.add(bottomInvestLog);
-                break;
+        product_no = getActivity().getIntent().getStringExtra("product_no");
+        LogUtils.e("ProductFragmentBottom_product_no", product_no);
+        if (product_no.contains("YJH")||product_no.contains("DQY")||product_no.contains("XSB")) {//赢计划,短期赢,新手标
+            titles.add("产品详情");
+            fragments.add(bottomProductDetail);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
+        } else if (product_no.contains("XFD")||product_no.contains("SCD")) {//消费贷,闪车贷
+            titles.add("借款明细");
+            fragments.add(bottomBorrowDetail);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
+            titles.add("还款计划");
+            fragments.add(bottomRepaymentPlan);
+        } else if (product_no.contains("PJD")) {//票据贷
+            titles.add("借款明细");
+            fragments.add(bottomBorrowDetail);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
+        } else if (product_no.contains("ZZY")) {//周周赢
+            titles.add("产品详情");
+            fragments.add(bottomProductDetail);
+            titles.add("债权信息");
+            fragments.add(bottomCreditorInfo);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
         }
-
         vpJoinRecord.setAdapter(new TabAdapter(getFragmentManager(),fragments,titles));
         vpJoinRecord.setOffscreenPageLimit(3);
 

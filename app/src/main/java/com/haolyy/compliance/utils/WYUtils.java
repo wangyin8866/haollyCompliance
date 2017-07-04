@@ -17,9 +17,11 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.ui.MainActivity;
@@ -256,5 +258,27 @@ public class WYUtils {
                 handler.proceed(); // 接受所有网站的证书
             }
         });
+    }
+
+    /**
+     *
+     * @param name  标的名
+     * @param imageView iv
+     */
+    public static void selectIcon(String name, ImageView imageView) {
+        if (name.contains("短期赢")) {
+            imageView.setBackgroundResource(R.mipmap.duan);
+        } else if (name.contains("赢计划")) {
+            imageView.setBackgroundResource(R.mipmap.icon_ying);
+        }else if (name.contains("周周赢")) {
+            imageView.setBackgroundResource(R.mipmap.icon_zhou);
+        }else if (name.contains("消费贷")) {
+            imageView.setBackgroundResource(R.mipmap.icon_xiao);
+        }else if (name.contains("闪车贷")) {
+            imageView.setBackgroundResource(R.mipmap.icon_che);
+        }else if (name.contains("票据贷")) {
+            imageView.setBackgroundResource(R.mipmap.icon_piao);
+        }
+
     }
 }

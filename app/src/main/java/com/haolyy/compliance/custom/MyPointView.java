@@ -50,7 +50,7 @@ public class MyPointView extends LinearLayout {
             for (int i = 0; i < imageCount; i++) {
                 mImageView = new ImageView(mContext);
                 int imageParams = (int) (mScale * 8 + 0.5f);
-                int imagePadding = (int) (mScale * 2 + 0.5f);
+                int imagePadding = (int) (mScale * 4 + 0.5f);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(imageParams, imageParams);
                 params.bottomMargin = imagePadding;
                 params.topMargin = imagePadding;

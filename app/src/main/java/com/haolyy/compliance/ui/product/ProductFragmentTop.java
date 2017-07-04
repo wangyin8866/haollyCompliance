@@ -157,11 +157,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     private void init() {
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
-        LogUtils.e("projectNo",projectNo);
+        LogUtils.e("ProductFragmentTop_projectNo",projectNo);
         project_type = getActivity().getIntent().getIntExtra("project_type", 0);
-        LogUtils.e("project_type",project_type+"");
+        LogUtils.e("ProductFragmentTop_project_type",project_type+"");
         product_no = getActivity().getIntent().getStringExtra("product_no");
-        LogUtils.e("product_no",product_no+"");
+        LogUtils.e("ProductFragmentTop_product_no",product_no+"");
         //显示进度
         if (project_type == 1) {//散标
             joinProgress.setVisibility(View.GONE);

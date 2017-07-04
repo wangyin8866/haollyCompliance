@@ -91,7 +91,7 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
     public void showData(RepaymentPlan repaymentPlan) {
         this.repaymentPlan = repaymentPlan;
         LogUtils.e("repaymentPlan",repaymentPlan.getData().getData().getData_list().size()+"");
-        if (repaymentPlan.getData().getData().getData_list()==null) {
+        if (repaymentPlan.getData().getData().getData_list().get(0)==null) {
             repaymentXlv.setPullLoadEnable(false);
             ivEmpty.setVisibility(View.VISIBLE);
         } else {

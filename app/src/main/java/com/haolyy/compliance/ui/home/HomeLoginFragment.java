@@ -28,6 +28,7 @@ import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.ui.my.InviteFriendActivity;
+import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +67,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     RelativeLayout rlInviteFriend;
     @BindView(R.id.point_view1)
     MyPointView pointView1;
-    @BindView(R.id.point_view2)
-    MyPointView pointView2;
+
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
     private List<TestProduct> testProducts;
@@ -105,7 +105,6 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
 
         pointView1.init(testProducts);
-        pointView2.init(testProducts);
 
         homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
         homeNewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -124,6 +123,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
             }
         });
+        homeNewPager.setPageMargin(UIUtils.dip2px(20));
         homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
         homeActivityPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -133,7 +133,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
             @Override
             public void onPageSelected(int position) {
-                pointView2.selectView(position);
+
             }
 
             @Override
@@ -141,6 +141,8 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
             }
         });
+        homeActivityPager.setPageMargin(UIUtils.dip2px(10));
+        homeActivityPager.setOffscreenPageLimit(3);
         homeXlv.setAdapter(new HomeProductAdapter(testProducts, getActivity()));
         return view;
     }

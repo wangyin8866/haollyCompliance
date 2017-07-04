@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.HomeBinding;
 import com.haolyy.compliance.entity.TestProduct;
+import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.List;
 
@@ -23,12 +24,6 @@ public class HomeProductAdapter extends WyBaseAdapter {
         super(list, context);
     }
 
-
-
-
-
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TestProduct product = (TestProduct) list.get(position);
@@ -41,9 +36,8 @@ public class HomeProductAdapter extends WyBaseAdapter {
         binding.proDeadline.setText(product.getDeline()+"周");
         binding.progressBar.setMaxCount(1000);
         binding.progressBar.setCurrentCount(500);
-
+        WYUtils.selectIcon(product.getNum()+"",binding.ivDuan);
         return binding.getRoot();
     }
-
 
 }

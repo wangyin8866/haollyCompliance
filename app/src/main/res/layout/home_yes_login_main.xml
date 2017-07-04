@@ -176,6 +176,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/holo_green_dark"
+
                 app:canLoop="true" />
 
             <LinearLayout
@@ -247,6 +248,7 @@
                 android:id="@+id/home_ll_visibility"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
                 android:orientation="vertical">
 
                 <android.support.v4.view.ViewPager
@@ -256,7 +258,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/bg_home_pager" />
+
+                     />
 
                <com.haolyy.compliance.custom.MyPointView
                    android:id="@+id/point_view1"
@@ -273,13 +276,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/bg_home_pager" />
-                <com.haolyy.compliance.custom.MyPointView
-                    android:id="@+id/point_view2"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginBottom="23dp"
+                    android:clipChildren="false"
+                     />
+
             </LinearLayout>
 
             <include layout="@layout/bg_line" />
@@ -288,7 +288,6 @@
                 android:id="@+id/home_xlv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:divider="@null" />
         </LinearLayout>
     </ScrollView>
