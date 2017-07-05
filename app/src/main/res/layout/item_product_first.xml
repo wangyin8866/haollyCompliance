@@ -1,221 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data class="ProductFirstBinding">
 
         <import type="com.haolyy.compliance.entity.product.ProductList.DataBeanX.DataBean.DataListBean" />
+
         <import type="android.view.View" />
+
         <variable
             name="product"
             type="DataListBean" />
+
         <variable
             name="adapter"
             type="com.haolyy.compliance.adapter.ProductListAdapter" />
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:paddingLeft="20dp"
         android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_marginRight="20dp">
-
-            <ImageView
-                android:id="@+id/iv_duan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                />
-
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/iv_duan"
-                android:gravity="center"
-                android:text="短期赢007421期"
-                android:textColor="#FF4A4A4A"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_total"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/tv_amount"
-                android:gravity="center"
-                android:text="计划总额"
-                android:textColor="#FF7D7D7D"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/tv_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
-                android:text="4,000.00万"
-                android:textColor="#FF7D7D7D"
-                android:textSize="10sp" />
-        </RelativeLayout>
-
-     <com.haolyy.compliance.custom.DashedLine
-         android:layout_width="match_parent"
-         android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp">
 
-            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginRight="20dp">
 
+                <ImageView
+                    android:id="@+id/iv_duan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_duan"
+                    android:gravity="center"
+                    android:text="短期赢007421期"
+                    android:textColor="#FF4A4A4A"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/tv_amount"
+                    android:gravity="center"
+                    android:text="计划总额"
+                    android:textColor="#FF7D7D7D"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="4,000.00万"
+                    android:textColor="#FF7D7D7D"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <com.haolyy.compliance.custom.DashedLine
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+
+                android:orientation="horizontal">
+
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="left|center_horizontal"
-                            android:orientation="horizontal">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="left|center_horizontal"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/pro_yield1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="bottom"
+                                    android:text="@{product.annualized_rate}"
+                                    android:textColor="#F8676F"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="bottom"
+                                    android:text="%"
+                                    android:textColor="#F8676F"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/rate_add"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="bottom"
+                                    android:text="+"
+                                    android:textColor="#F8676F"
+                                    android:textSize="14sp"
+                                    android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+
+                                <TextView
+                                    android:id="@+id/pro_yield2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="bottom"
+                                    android:text="@{product.append_rate}"
+                                    android:textColor="#F8676F"
+                                    android:textSize="14sp"
+                                    android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+
+                                <TextView
+                                    android:id="@+id/extra_rate_percent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="bottom"
+                                    android:text="%"
+                                    android:textColor="#F8676F"
+                                    android:textSize="14sp"
+                                    android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/pro_yield1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:text="历史年化收益"
+                                android:textColor="#FFB9B9B9"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingLeft="20dp">
+
+                            <TextView
+                                android:id="@+id/pro_deadline"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="bottom"
-                                android:text="@{product.annualized_rate}"
-                                android:textColor="#F8676F"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@{adapter.showDeadline(product.getPeriod_length(),product.getStatus())}"
+                                android:textColor="#FF4A4A4A"
                                 android:textSize="20sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="bottom"
-                                android:text="%"
-                                android:textColor="#F8676F"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/rate_add"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="bottom"
-                                android:text="+"
-                                android:textColor="#F8676F"
-                                android:textSize="14sp"
-                                android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
-
-                            <TextView
-                                android:id="@+id/pro_yield2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="bottom"
-                                android:text="@{product.append_rate}"
-                                android:textColor="#F8676F"
-                                android:textSize="14sp"
-                                android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
-
-                            <TextView
-                                android:id="@+id/extra_rate_percent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="bottom"
-                                android:text="%"
-                                android:textColor="#F8676F"
-                                android:textSize="14sp"
-                                android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="投资期限"
+                                android:textColor="#FFB9B9B9"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="历史年化收益"
-                            android:textColor="#FFB9B9B9"
-                            android:textSize="12sp" />
+
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:paddingLeft="20dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/pro_deadline"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@{adapter.showDeadline(product.getPeriod_length(),product.getStatus())}"
-                            android:textColor="#FF4A4A4A"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="投资期限"
-                            android:textColor="#FFB9B9B9"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="30dp">
+
+                    <com.haolyy.compliance.custom.CircleView
+                        android:id="@+id/product_circle"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:bg_color="#cccccc"
+                        app:circle_out_sweep_width="3dp"
+                        app:circle_text="10%"
+                        app:circle_text_color="#FFF6A623"
+                        app:circle_text_size="13sp"
+                        app:out_color_end="#F76B1C"
+                        app:out_color_start="#FBDA61" />
+
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:gravity="right|center_vertical"
-                android:paddingRight="30dp">
-
-                <com.haolyy.compliance.custom.CircleView
-                    android:id="@+id/product_circle"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:bg_color="#cccccc"
-                    app:circle_out_sweep_width="3dp"
-                    app:circle_text="10%"
-                    app:circle_text_color="#FFF6A623"
-                    app:circle_text_size="13sp"
-                    app:out_color_end="#F76B1C"
-                    app:out_color_start="#FBDA61" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="5dp"
             android:background="#F5F5F5" />
     </LinearLayout>
 </layout>

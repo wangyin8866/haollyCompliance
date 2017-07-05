@@ -19,10 +19,11 @@
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- 注册 -->
         <activity
@@ -78,8 +79,9 @@
         <!-- 绑定银行卡 -->
         <activity
             android:name=".ui.bank.BankBindActivity"
-            android:screenOrientation="portrait"></activity>
-        <!-- 银行卡列表 -->
+            android:screenOrientation="portrait" >
+        </activity>
+        <!--银行卡列表-->
         <activity
             android:name=".ui.bank.BankListActivity"
             android:screenOrientation="portrait" />
@@ -87,105 +89,101 @@
         <activity
             android:name=".ui.bank.RechargeWebActivity"
             android:screenOrientation="portrait" />
-        <!-- 充值 -->
-        <activity
-            android:name=".ui.bank.RechargeActivity"
+        <!--充值-->
+        <activity android:name=".ui.bank.RechargeActivity"
             android:screenOrientation="portrait" />
         <!-- 银行提现页面 -->
         <activity
             android:name=".ui.bank.WithDrawWebActivity"
             android:screenOrientation="portrait" />
         >
-        <!-- 提现 -->
-        <activity
-            android:name=".ui.bank.WithDrawActivity"
-            android:screenOrientation="portrait" />
-        <!-- 提现券 -->
-        <activity
-            android:name=".ui.bank.WithDrawQuanActivity"
-            android:screenOrientation="portrait" />
+        <!--提现-->
+        <activity android:name=".ui.bank.WithDrawActivity"
+            android:screenOrientation="portrait"/>
+        <!--提现券-->
+        <activity android:name=".ui.bank.WithDrawQuanActivity"
+            android:screenOrientation="portrait"/>
         <!-- 第二板块交易记录 -->
         <activity
             android:name=".ui.my.DealLogActivity"
             android:screenOrientation="portrait" />
-        <!-- 第二板块交易详情 -->
+        <!--第二板块交易详情-->
         <activity
             android:name=".ui.my.DealDetailRecycle"
             android:screenOrientation="portrait" />
-        <!-- 第二板块交易详情体现 -->
+        <!--第二板块交易详情体现-->
         <activity
             android:name=".ui.my.DealDetailWithDraw"
             android:screenOrientation="portrait" />
-        <!-- 邀请记录 -->
+        <!--邀请记录-->
         <activity
             android:name=".ui.my.InviteFriendActivity"
             android:screenOrientation="portrait" />
-        <!-- 邀请好友 -->
+        <!--邀请好友-->
         <activity
             android:name=".ui.my.view.InviteRecordActivity"
             android:screenOrientation="portrait" />
-        <!-- 账户安全 -->
+        <!--账户安全-->
         <activity
             android:name=".ui.my.AccountSecurityActivity"
             android:screenOrientation="portrait" />
-        <!-- 消息中心 -->
+        <!--消息中心-->
         <activity
             android:name=".ui.my.MessageActivity"
             android:screenOrientation="portrait" />
-        <!-- 消息详情 -->
+        <!--消息详情-->
         <activity
             android:name=".ui.my.MessageDetail"
             android:screenOrientation="portrait" />
-        <!-- 第四模块验证手机 -->
+        <!--第四模块验证手机-->
         <activity
             android:name=".ui.my.CheckPhone"
             android:screenOrientation="portrait" />
-        <!-- 第四模块更新手机 -->
+        <!--第四模块更新手机-->
         <activity
             android:name=".ui.my.UpdatePhone"
             android:screenOrientation="portrait" />
-        <!-- 积分商城 -->
+        <!--积分商城-->
         <activity
             android:name=".ui.find.ShoppingActivity"
             android:screenOrientation="portrait" />
-        <!-- 积分兑换成功 -->
+        <!--积分兑换成功-->
         <activity
             android:name=".ui.find.ConvertSuccess"
             android:screenOrientation="portrait" />
-        <!-- 积分兑换失败 -->
+        <!--积分兑换失败-->
         <activity
             android:name=".ui.find.ConvertError"
             android:screenOrientation="portrait" />
-        <!-- 积分卡券 -->
+        <!--积分卡券-->
         <activity
             android:name=".ui.find.ShopCardActivity"
             android:screenOrientation="portrait" />
-        <!-- 新手任务 -->
+        <!--新手任务-->
         <activity
             android:name=".ui.my.MissionActivity"
             android:screenOrientation="portrait" />
-        <!-- 手势密码 -->
+        <!--手势密码-->
         <activity
             android:name=".ui.my.GestureManageActivity"
             android:screenOrientation="portrait" />
-        <!-- 设置手势密码 -->
+        <!--设置手势密码-->
         <activity
             android:name=".ui.my.GestureSettingActivity"
             android:screenOrientation="portrait" />
-        <!-- 银行卡开户 -->
+        <!--银行卡开户-->
         <activity
             android:name=".ui.bank.ShBankWebActivity"
             android:screenOrientation="portrait" />
         <!-- 会员中心-->
         <activity
             android:name=".ui.my.MemberActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"/>
 
-        </activity>
+
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
-        <activity android:name=".ui.bank.RebindBankActivity" />
-
+        <activity android:name=".ui.bank.RebindBankActivity"/>
     </application>
 
 </manifest>

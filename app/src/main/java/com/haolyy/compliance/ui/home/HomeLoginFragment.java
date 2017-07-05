@@ -25,9 +25,14 @@ import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.LocalImageHolderView;
 import com.haolyy.compliance.custom.MyPointView;
 import com.haolyy.compliance.entity.TestProduct;
+import com.haolyy.compliance.entity.home.Banner;
+import com.haolyy.compliance.entity.home.HomeActivity;
+import com.haolyy.compliance.entity.home.HomeArticle;
+import com.haolyy.compliance.entity.home.HomeProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.ui.my.InviteFriendActivity;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -75,7 +80,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     private String[] auto_roll_strings = {"asdasd", "bbbbb", "cccccccccc"};
     private boolean isAutoRollRunning;
     private int autoRollIndex;
-
+    private List<Banner.DataBeanX.DataBean.CmsCarouselFigureListBean> carouselFigureListBeen;
 
     @Nullable
     @Override
@@ -84,17 +89,6 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         unbinder = ButterKnife.bind(this, view);
         initView();
 
-        images.add("http://pic2.ooopic.com/10/56/19/67b1OOOPIC12.jpg");
-        images.add("http://pic2.ooopic.com/10/55/95/20b1OOOPICfa.jpg");
-        images.add("http://pic2.ooopic.com/12/80/79/89b1OOOPICd2.jpg");
-        banner.startTurning(2000);
-
-        banner.setPages(new CBViewHolderCreator() {
-            @Override
-            public Object createHolder() {
-                return new LocalImageHolderView();
-            }
-        }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
 
 
         testProducts = new ArrayList<>();
@@ -160,9 +154,9 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
         //拉去数据
         mPresenter.getBanner("2");
-//        mPresenter.getHomeProduct();//首页产品
-//        mPresenter.getHomeArticle("1");//首页新闻
-//        mPresenter.getRecommend("4d5g8b5","1");//首页活动
+        mPresenter.getHomeProduct();//首页产品
+        mPresenter.getHomeArticle();//首页新闻
+        mPresenter.getRecommend("4d5g8b5");//首页活动
     }
 
     private void showAutoRollStrings() {
@@ -207,5 +201,38 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
                 startActivity(new Intent(getActivity(), InviteFriendActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void showBannerData(Banner banner) {
+        carouselFigureListBeen = banner.getData().getData().getCmsCarouselFigureList();
+        LogUtils.e("carouselFigureListBeen", carouselFigureListBeen.size() + "");
+        for (int i=0;i<carouselFigureListBeen.size();i++) {
+            images.add(carouselFigureListBeen.get(i).getImageUrl());
+        }
+
+        this.banner.setPages(new CBViewHolderCreator() {
+            @Override
+            public Object createHolder() {
+                return new LocalImageHolderView();
+            }
+        }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
+        this.banner.startTurning(2000);
+
+    }
+
+    @Override
+    public void showHomeActivityData(HomeActivity homeActivity) {
+
+    }
+
+    @Override
+    public void showHomeArticleData(HomeArticle homeArticle) {
+
+    }
+
+    @Override
+    public void showHomeProductData(HomeProduct homeProduct) {
+
     }
 }

@@ -1,14 +1,17 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.entity.home.Banner;
+import com.haolyy.compliance.entity.home.HomeActivity;
+import com.haolyy.compliance.entity.home.HomeArticle;
+import com.haolyy.compliance.entity.home.HomeProduct;
 import com.haolyy.compliance.service.HomeAPi;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
-import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.platform;
 
 /**
@@ -22,7 +25,7 @@ public class HomeModel extends BaseModel {
         super();
         retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
-                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(NetConstantValues.HOST_URL)
                 .build();
@@ -37,25 +40,23 @@ public class HomeModel extends BaseModel {
         return SingletonHolder.homeModel;
     }
 
-    public Observable<String> getBanner(String type) {
+    public Observable<Banner> getBanner(String type) {
         map.clear();
         map.put("type", type);
         map.put("platform", platform);
         return homeAPi.getBanner(map);
     }
-    public Observable<String> getHomeProduct() {
-        map.clear();
-        return homeAPi.getProduct(map);
+    public Observable<HomeProduct> getHomeProduct() {
+        return homeAPi.getProduct();
     }
-    public Observable<String> getHomeArticle() {
-        map.clear();
-        map.put("platform", platform);
-        return homeAPi.getArticle(map);
+    public Observable<HomeArticle> getHomeArticle() {
+
+        return homeAPi.getArticle(platform);
     }
-    public Observable<String> getRecommend(String userId) {
+    public Observable<HomeActivity> getRecommend(String userId) {
         map.clear();
         map.put("userId", userId);
-        map.put("client", client);
+        map.put("client", "1");
         return homeAPi.getRecommend(map);
     }
 }

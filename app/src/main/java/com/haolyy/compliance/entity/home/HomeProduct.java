@@ -4,12 +4,13 @@ import java.util.List;
 
 /**
  * Created by wangyin on 2017/6/29.
+ * 首页产品
  */
 
 public class HomeProduct {
 
     /**
-     * data : {"data":{"productlist":[{"amount":49200,"amount_scale":1,"annualized_rate":11,"investMinAmount":1000,"period_length":3,"period_unit":3,"product_name":"赢计划A514"},{"amount":49000,"amount_scale":1,"annualized_rate":10,"investMinAmount":1000,"period_length":6,"period_unit":3,"product_name":"赢计划B438"},{"amount":49600,"amount_scale":1,"annualized_rate":11,"investMinAmount":1000,"period_length":12,"period_unit":3,"product_name":"赢计划D362"},null]},"msg":"业务正常","status":"200"}
+     * data : {"data":{"productlist":[{"amount":"2.00","amount_scale":"0.00","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":1000,"period_length":3,"period_unit":3,"product_name":"www"},{"amount":"3.00","amount_scale":"0.01","annualized_rate":"10.00","append_rate":"1.00","investMinAmount":1000,"period_length":6,"period_unit":3,"product_name":"表弟222"},{"amount":"1.00","amount_scale":"0.01","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":10000,"period_length":12,"period_unit":3,"product_name":"票据贷0000067"},null]},"msg":"业务正常","status":"200"}
      * msg : 业务异常
      * status : 301
      */
@@ -44,7 +45,7 @@ public class HomeProduct {
 
     public static class DataBeanX {
         /**
-         * data : {"productlist":[{"amount":49200,"amount_scale":1,"annualized_rate":11,"investMinAmount":1000,"period_length":3,"period_unit":3,"product_name":"赢计划A514"},{"amount":49000,"amount_scale":1,"annualized_rate":10,"investMinAmount":1000,"period_length":6,"period_unit":3,"product_name":"赢计划B438"},{"amount":49600,"amount_scale":1,"annualized_rate":11,"investMinAmount":1000,"period_length":12,"period_unit":3,"product_name":"赢计划D362"},null]}
+         * data : {"productlist":[{"amount":"2.00","amount_scale":"0.00","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":1000,"period_length":3,"period_unit":3,"product_name":"www"},{"amount":"3.00","amount_scale":"0.01","annualized_rate":"10.00","append_rate":"1.00","investMinAmount":1000,"period_length":6,"period_unit":3,"product_name":"表弟222"},{"amount":"1.00","amount_scale":"0.01","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":10000,"period_length":12,"period_unit":3,"product_name":"票据贷0000067"},null]}
          * msg : 业务正常
          * status : 200
          */
@@ -90,45 +91,55 @@ public class HomeProduct {
 
             public static class ProductlistBean {
                 /**
-                 * amount : 49200.0
-                 * amount_scale : 1.0
-                 * annualized_rate : 11.0
+                 * amount : 2.00
+                 * amount_scale : 0.00
+                 * annualized_rate : 11.00
+                 * append_rate : 1.00
                  * investMinAmount : 1000.0
                  * period_length : 3
                  * period_unit : 3
-                 * product_name : 赢计划A514
+                 * product_name : www
                  */
 
-                private double amount;
-                private double amount_scale;
-                private double annualized_rate;
+                private String amount;
+                private String amount_scale;
+                private String annualized_rate;
+                private String append_rate;
                 private double investMinAmount;
                 private int period_length;
                 private int period_unit;
                 private String product_name;
 
-                public double getAmount() {
+                public String getAmount() {
                     return amount;
                 }
 
-                public void setAmount(double amount) {
+                public void setAmount(String amount) {
                     this.amount = amount;
                 }
 
-                public double getAmount_scale() {
+                public String getAmount_scale() {
                     return amount_scale;
                 }
 
-                public void setAmount_scale(double amount_scale) {
+                public void setAmount_scale(String amount_scale) {
                     this.amount_scale = amount_scale;
                 }
 
-                public double getAnnualized_rate() {
+                public String getAnnualized_rate() {
                     return annualized_rate;
                 }
 
-                public void setAnnualized_rate(double annualized_rate) {
+                public void setAnnualized_rate(String annualized_rate) {
                     this.annualized_rate = annualized_rate;
+                }
+
+                public String getAppend_rate() {
+                    return append_rate;
+                }
+
+                public void setAppend_rate(String append_rate) {
+                    this.append_rate = append_rate;
                 }
 
                 public double getInvestMinAmount() {

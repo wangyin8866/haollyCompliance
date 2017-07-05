@@ -3,7 +3,6 @@ package com.haolyy.compliance.ui.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import android.view.ViewGroup;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.adapter.HomeActivityPagerAdapter;
-import com.haolyy.compliance.adapter.HomeNewPagerAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.LocalImageHolderView;
 import com.haolyy.compliance.entity.TestProduct;
@@ -70,8 +67,8 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
             TestProduct testProduct = new TestProduct(1 + i, 10 + i, i, 100 * i, 1000 * i);
             testProducts.add(testProduct);
         }
-        homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
-        homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
+//        homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
+//        homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
         return view;
     }
 
