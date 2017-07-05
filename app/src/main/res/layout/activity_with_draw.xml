@@ -9,15 +9,12 @@
     android:fitsSystemWindows="true"
     android:background="@color/bg_f5f5f5">
 
-    <include layout="@layout/public_title_back"
-        android:id="@+id/include" />
+    <include layout="@layout/public_title_back" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/include"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/titleBar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,6 +119,7 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/et_with_draw"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -200,6 +198,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_cash_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"

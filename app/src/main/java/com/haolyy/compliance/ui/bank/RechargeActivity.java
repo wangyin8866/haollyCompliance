@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.ui.bank.presenter.RechargePresenter;
 import com.haolyy.compliance.ui.bank.view.RechargeView;
 import com.haolyy.compliance.utils.DateUtil;
@@ -67,6 +68,9 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     private String phone;
     private String sms;
     private String amt;
+    private String cardno;
+    private String user_cust_id;
+    private String bankId;
 
     @Override
     protected RechargePresenter createPresenter() {
@@ -88,6 +92,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
 
     private void initView() {
         tvTitle.setText("充值");
+        mPresenter.selectUserState(-1);
         tvLimitAccount.setText(Html.fromHtml("<font color='#b9b9b9'>招商银行 单笔限额</font><font color='#ff9933'>5万元</font><font color='#b9b9b9'>每日限额</font><font color='#ff9933'>5万元</font>"));
         etRechargeTmt.addTextChangedListener(new TextWatcher() {
             String contents;
@@ -150,7 +155,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     UIUtils.showToastCommon(mContext, "电话号码不能为空");
                     return;
                 }
-                mPresenter.sendSms("recharge", "6225801240710011", "6000060007303359","13821882946", "");
+                mPresenter.sendSms("recharge", cardno, user_cust_id, phone, "");
                 tvRechargeSms.setEnabled(false);
                 break;
             case R.id.btn_recharge:
@@ -165,7 +170,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     UIUtils.showToastCommon(mContext, "短信验证码不能为空");
                     return;
                 }
-                mPresenter.recharge("13821882946", "QP","666666", "AAAAAAAA", "100","","6000060007303359");
+                mPresenter.recharge(phone, "QP", "666666", "AAAAAAAA", amt, bankId, user_cust_id);
                 break;
         }
     }
@@ -195,5 +200,17 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         llRecharge.setVisibility(View.GONE);
         llRechargeError.setVisibility(View.GONE);
         llRechargeSuccess.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 展示银行卡
+     *
+     * @param fb
+     */
+    @Override
+    public void showCard(FindUserStatusBean fb) {
+        bankId = fb.getData().getData().getBank_no();
+        cardno = fb.getData().getData().getBank_card_no();
+        user_cust_id = fb.getData().getData().getThird_user_id();
     }
 }

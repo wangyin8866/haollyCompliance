@@ -1,12 +1,19 @@
 package com.haolyy.compliance.ui.my.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.UserModel;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
+import com.haolyy.compliance.ui.bank.RechargeActivity;
+import com.haolyy.compliance.ui.bank.WithDrawActivity;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -20,13 +27,31 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
     }
 
     @Override
-    public void selectUserState() {
-        super.selectUserState();
+    public void selectUserState(int flag) {
+        super.selectUserState(flag);
     }
 
     @Override
-    public void overwriteSelectUserState(BaseResponseBean baseResponseBean) {
-        super.overwriteSelectUserState(baseResponseBean);
-        LogUtils.e(tag,"调用复写的方法");
+    public void overwriteSelectUserState(FindUserStatusBean f,int flag) {
+        super.overwriteSelectUserState(f,flag);
+        if (f.getStatus().equals("200")) {
+            if (f.getData().getStatus().equals("200")) {
+                if (f.getData().getData().getOpen_account_flag() == 1) {
+                     //开过户
+                    if(flag== Config.status_with_draw){
+                        mContext.startActivity(new Intent(mContext, WithDrawActivity.class));
+                    }else if(flag==Config.staus_recharge){
+                        mContext.startActivity(new Intent(mContext, RechargeActivity.class));
+                    }
+                } else {
+                   //没开户
+                     mContext.startActivity(new Intent(mContext, CheckBankActivity.class));
+                }
+            }else {
+                UIUtils.showToastCommon(mContext, f.getData().getMsg());
+            }
+        } else {
+            UIUtils.showToastCommon(mContext, f.getMsg());
+        }
     }
 }

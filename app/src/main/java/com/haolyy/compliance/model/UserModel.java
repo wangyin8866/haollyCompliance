@@ -5,6 +5,7 @@ import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.service.UserApi;
@@ -16,7 +17,6 @@ import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.version;
 import static com.haolyy.compliance.config.Config.client;
-import static com.haolyy.compliance.config.Config.platform;
 import static com.haolyy.compliance.config.Config.platformhaolyy;
 
 /**
@@ -108,7 +108,7 @@ public class UserModel extends BaseModel {
      * 查询用户状态
      * @return
      */
-    public Observable<BaseResponseBean> findUserStatus() {
+    public Observable<FindUserStatusBean> findUserStatus() {
         map.clear();
         map.put("mobile",BaseApplication.mUserName);
         map.put("platform", "1");

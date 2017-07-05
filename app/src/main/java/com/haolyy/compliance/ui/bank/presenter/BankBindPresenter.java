@@ -58,8 +58,6 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
 
     /**
      * 换绑定银行卡
-     *
-     * @param mer_id_
      * @param user_cust_id_
      * @param trade_type_
      * @param bank_code_

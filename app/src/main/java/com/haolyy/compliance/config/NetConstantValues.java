@@ -64,6 +64,7 @@ public interface NetConstantValues {
     String HUIFU_QUIK_BIND = HUIFU_SH + "quickBind";//绑卡
     String HUIFU_RECHARGE = HUIFU_SH + "toNetSave";//充值
     String HUIFU_WITHDRAW = HUIFU_SH + "toCash";//提现
+
     String HUIFU_CORP_REGISTER = HUIFU_SH + "toCorpRegister";//企业注册
     String HUIFU_REGISTER = HUIFU_SH + "toRegister";//用户注册
     String HUIFU_ACTIVATE = HUIFU_SH + "toBosAcctActivate";//账户激活
@@ -92,5 +93,6 @@ public interface NetConstantValues {
 
     //p2p
     String P2P_ISBOSACCTACTIVATE = P2P + "isBosAcctActivate";//判断是否是激活用户
+    String P2P_CALCULATEFEEAMOUNT=P2P+"/calculateFeeAmount";//计算手续费
 
 }

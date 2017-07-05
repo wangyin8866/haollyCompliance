@@ -20,6 +20,7 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
@@ -247,7 +248,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
     @Override
-    public void getUserState(BaseResponseBean baseResponseBean) {
+    public void getUserState(FindUserStatusBean baseResponseBean) {
 
     }
 

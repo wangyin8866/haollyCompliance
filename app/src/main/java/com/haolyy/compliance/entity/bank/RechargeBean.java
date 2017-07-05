@@ -6,25 +6,31 @@ package com.haolyy.compliance.entity.bank;
 
 public class RechargeBean {
 
+
     /**
-     * data : {"message":"成功","status":"1"}
-     * status : 1
+     * data : {"amount_":"1000.00","code":"1","msg":"成功"}
+     * msg : 系统正常
+     * status : 200
      */
 
     private DataBean data;
+    private String msg;
     private String status;
 
-    public String getMessage() {
-        return message;
-    }
-
-    private String message;
     public DataBean getData() {
         return data;
     }
 
     public void setData(DataBean data) {
         this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public String getStatus() {
@@ -37,27 +43,37 @@ public class RechargeBean {
 
     public static class DataBean {
         /**
-         * message : 成功
-         * status : 1
+         * amount_ : 1000.00
+         * code : 1
+         * msg : 成功
          */
 
-        private String message;
-        private String status;
+        private String amount_;
+        private String code;
+        private String msg;
 
-        public String getMessage() {
-            return message;
+        public String getAmount_() {
+            return amount_;
         }
 
-        public void setMessage(String message) {
-            this.message = message;
+        public void setAmount_(String amount_) {
+            this.amount_ = amount_;
         }
 
-        public String getStatus() {
-            return status;
+        public String getCode() {
+            return code;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
@@ -42,7 +43,7 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
     }
 
     @Override
-    public void overwriteSelectUserState(BaseResponseBean baseResponseBean) {
+    public void overwriteSelectUserState(FindUserStatusBean baseResponseBean,int flag) {
         getView().getUserState(baseResponseBean);
     }
 }

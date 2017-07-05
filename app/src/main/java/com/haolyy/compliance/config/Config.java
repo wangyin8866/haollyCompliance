@@ -18,4 +18,7 @@ public interface Config {
     String platformhaolyy="haolyy";
     String client = "Android";
     String returl="http://www.chinazyjr.com";
+
+    int status_with_draw=9001;
+    int staus_recharge=9002;
 }

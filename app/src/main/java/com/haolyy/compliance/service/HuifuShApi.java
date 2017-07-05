@@ -6,6 +6,7 @@ import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
+import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 
 import java.util.Map;
@@ -93,4 +94,12 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.P2P_ISBOSACCTACTIVATE)
     Observable<IsActivateBean> isBosAcctActivate(@FieldMap Map<String, String> params);
+
+    /**计算提现手续费
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.P2P_CALCULATEFEEAMOUNT)
+    Observable<WithDrawFee> calculatefeeamount(@FieldMap Map<String, String> params);
 }

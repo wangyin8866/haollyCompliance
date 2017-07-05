@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.bank;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
 import com.haolyy.compliance.ui.bank.presenter.BankBindPresenter;
@@ -94,7 +96,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 bankName = tvBankNameLogo.getText().toString();
                 bankPhone = etBankPhone.getText().toString();
                 cardno = etCardNo.getText().toString();
-               /* if(TextUtils.isEmpty(bankName)){
+                if(TextUtils.isEmpty(bankName)){
                     UIUtils.showToastCommon(mContext,"请选择银行");
                     return;
                 }
@@ -105,8 +107,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 else if(TextUtils.isEmpty(cardno)){
                     UIUtils.showToastCommon(mContext,"请填写银行卡号");
                     return;
-                }*/
-               // mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", "4", 0);
+                }
+                mPresenter.sendSms("user_register", cardno, "",bankPhone,"", 0);
                 break;
             case R.id.tv_select_bank:
                 startActivityForResult(new Intent(BankBindActivity.this, BankListActivity.class), 0x03);
@@ -141,15 +143,15 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
      * @param smsSeq
      */
     @Override
-    public void showSmsDialog(String smsSeq) {
+    public void showSmsDialog(final String smsSeq) {
         smseq = smsSeq;
         dialogBankSms = new DialogBankSms(BankBindActivity.this);
         //bankPhone.substring(bankPhone.length() - 4, bankPhone.length())
         dialogBankSms.setContext("2946").setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
-            public void executeSend(String sms) {
+            public void executeSend() {
                 dialogBankSms.getBtn().setEnabled(false);
-                mPresenter.sendSms("user_register", "6228229339910333", "","13856989634","",1);
+                mPresenter.sendSms("user_register", cardno, "",bankPhone,"",1);
             }
 
             @Override
@@ -158,8 +160,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             }
 
             @Override
-            public void executeRight() {
-                mPresenter.register("13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "101", "666666", "AAAAAAAA", "", "2");
+            public void executeRight(String sms) {
+                mPresenter.register(bankPhone, BaseApplication.mUserName, idCard, realName, cardno, "101", "666666", "AAAAAAAA", "", "2");
             }
         }).show();
     }

@@ -3,6 +3,7 @@ package com.haolyy.compliance.base;
 import android.content.Context;
 
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.BaseModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.utils.LogUtils;
@@ -60,13 +61,13 @@ public abstract class BasePresenter<T> {
     /**
      * 查询用户状态
      */
-    public void selectUserState(){
+    public void selectUserState(final int flag){
 
-        invoke(UserModel.getInstance().findUserStatus(),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
+        invoke(UserModel.getInstance().findUserStatus(),new ProgressSubscriber<FindUserStatusBean>(new SubscriberOnNextListener<FindUserStatusBean>() {
             @Override
-            public void onNext(BaseResponseBean baseResponseBean) {
-                LogUtils.e("selectUserState", baseResponseBean.toString());
-                overwriteSelectUserState(baseResponseBean);
+            public void onNext(FindUserStatusBean s) {
+                LogUtils.e("selectUserState", s.toString());
+                overwriteSelectUserState(s,flag);
             }
 
             @Override
@@ -76,7 +77,7 @@ public abstract class BasePresenter<T> {
         },mContext));
     }
 
-    public void overwriteSelectUserState(BaseResponseBean baseResponseBean){
+    public void overwriteSelectUserState(FindUserStatusBean fb,int flag){
 
     }
 }

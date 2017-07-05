@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
@@ -93,7 +94,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(new Intent(getActivity(), FundStatisticsActivity.class));
                 break;
             case R.id.tv_withdraw:
-                //startActivity(new Intent(mContext, WithDrawActivity.class));
+                mPresenter.selectUserState(Config.status_with_draw);
                 //开户
               /* dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
                    @Override
@@ -123,7 +124,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 //mPresenter.findUserStatus();
                 break;
             case R.id.tv_recharge:
-                startActivity(new Intent(mContext, RechargeActivity.class));
+                mPresenter.selectUserState(Config.staus_recharge);
+                //startActivity(new Intent(mContext, RechargeActivity.class));
                 break;
             case R.id.v_invite_friend:
                 startActivity(new Intent(mContext, InviteFriendActivity.class));

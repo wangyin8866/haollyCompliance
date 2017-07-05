@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
@@ -41,18 +42,15 @@ public class ShBankWebActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         tvTitle.setText("上海银行页面");
         urldata = getIntent().getAction();
-        LogUtils.e("shwebActivity", urldata);
         WebViewClient webViewClient = new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 LogUtils.e("ndyGoUrl", url);
-                if (url.equals("http://www.chinazyjr.com")) {
+                if (url.equals(Config.returl)) {
                     finish();
                     UIUtils.showToastCommon(getApplication(), "成功");
                 }
-               // webviewRecharge.loadData(urldata, "text/html; charset=UTF-8", null);
-
                 return true;
             }
 

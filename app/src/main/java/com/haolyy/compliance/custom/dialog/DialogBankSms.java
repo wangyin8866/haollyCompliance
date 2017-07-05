@@ -46,11 +46,11 @@ public class DialogBankSms extends Dialog {
     }
 
     public interface OnDoubleClickListener {
-        void executeSend(String sms);
+        void executeSend();
 
         void executeLeft();
 
-        void executeRight();
+        void executeRight(String sms);
     }
 
     public DialogBankSms setOnDoubleClickListener(OnDoubleClickListener doubl) {
@@ -70,7 +70,7 @@ public class DialogBankSms extends Dialog {
         btn2Dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mdouble.executeRight();
+                mdouble.executeRight(editText.getText().toString());
                 dismiss();
             }
         });
@@ -79,7 +79,7 @@ public class DialogBankSms extends Dialog {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mdouble.executeSend(editText.getText().toString());
+                        mdouble.executeSend();
                     }
                 }
         );

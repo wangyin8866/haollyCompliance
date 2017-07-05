@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.product.view;
 
 import com.haolyy.compliance.base.BaseView;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 
 /**
@@ -10,5 +11,5 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 
 public interface ProductTopView extends BaseView{
     void showData(ProductBaseDetail productBaseDetail);
-    void getUserState(BaseResponseBean baseResponseBean);
+    void getUserState(FindUserStatusBean baseResponseBean);
 }

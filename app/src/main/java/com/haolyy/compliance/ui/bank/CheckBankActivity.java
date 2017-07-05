@@ -24,7 +24,6 @@ import butterknife.OnClick;
 
 
 public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBankView> implements CheckBankView {
-
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.view_line)
@@ -90,20 +89,20 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
                     UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的身份证号");
                     return;
                 }*/
-                mPresenter.isBosAcctActivate("411501199310288663", "平淩", "2");
+                mPresenter.isBosAcctActivate(idCard, realname, "2");
                 //返回的type"type":"1,2"正常开户 3 发短息 4 掉激活接口
                 break;
         }
     }
 
-    @Override
+/*    @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
         return super.onTouchEvent(event);
-    }
+    }*/
 
     @Override
     public void showSuccessToast(String msg) {
@@ -111,7 +110,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
        msg.substring(msg.length() - 4, msg.length());
         dialogBankSms.setContext("2946").setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
-            public void executeSend(String sms) {
+            public void executeSend() {
 
 
             }
@@ -122,7 +121,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
             }
 
             @Override
-            public void executeRight() {
+            public void executeRight(String sms) {
                //获取银行卡信息展示银行卡界面
             }
         }).show();
