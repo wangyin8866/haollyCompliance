@@ -76,10 +76,10 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             @Override
             public void onNext(SmsBean s) {
                 if (s.getStatus().equals("200")) {
-                    if (s.getStatus().equals("200")) {
+                    if (s.getData().getStatus().equals("200")) {
                         getView().countDown(true);
                     } else {
-                        UIUtils.showToastCommon(mContext, s.getMsg());
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
                         getView().countDown(false);
                     }
                 } else {
@@ -107,12 +107,17 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
                 if (s.getStatus().equals("200")) {
                     if (s.getData().getStatus().equals("200")) {
                         getView().getSms(true);
-                    } else {
+                    }  else if(s.getData().getStatus().equals("10102")){
+                        UIUtils.showToastCommon(mContext,s.getData().getMsg());
+                        getView().modifyImageCode();
+                        getView().getSms(false);
+                    }else {
                         UIUtils.showToastCommon(mContext,s.getData().getMsg());
                         getView().getSms(false);
                     }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
+                    getView().getSms(false);
                 }
 
             }

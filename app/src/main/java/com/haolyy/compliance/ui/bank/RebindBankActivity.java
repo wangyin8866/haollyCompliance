@@ -105,9 +105,9 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                     return;
                 }
                 if (isNew) {
-                    mPresenter.sendSms("rebind", "6225801240710012", "6000060007303359", "2", "13821882946", "N");
+                    mPresenter.sendSms("rebind", "6225801240710012", "6000060007303359","13821882946", "N");
                 } else {
-                    mPresenter.sendSms("rebind", "6225801240710011", "6000060007303359", "2", "13821882946", "O");
+                    mPresenter.sendSms("rebind", "6225801240710011", "6000060007303359","13821882946", "O");
                 }
                 tvRebindSms.setEnabled(false);//发短信按钮不可点击
                 break;
@@ -125,7 +125,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                 if (isNew) {
                     //换绑页面
                     smsNew = sms;
-                    mPresenter.quikBind("6000060007303359","REBIND","CMB","6225801240710012","13821882946","666666","AAAAAAAA","666666AAAAAAAA","1");
+                    mPresenter.quikBind("6000060007303359","REBIND","CMB","6225801240710012","13821882946","666666","AAAAAAAA","666666AAAAAAAA");
                 } else {
                     //解绑页面
                     smsOald = sms;

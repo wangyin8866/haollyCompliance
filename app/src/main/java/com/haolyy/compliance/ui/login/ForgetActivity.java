@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.ui.login.presenter.ForgetPresenter;
@@ -100,7 +101,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
 
     @Override
     public void showImageCode() {
-        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
     }
 
     /**
@@ -120,24 +121,38 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
     }
 
     @Override
-    public void countDown() {
-        DateUtil.countDown(tvSendSms, "重新发送");
+    public void countDown(boolean b) {
+        if (b) {
+            DateUtil.countDown(tvSendSms, "重新发送");
+        } else {
+           tvSendSms.setEnabled(true);
+        }
+    }
+
+    /**
+     * 图形验证码获取焦点刷新
+     */
+    @Override
+    public void modifyImageCode() {
+        etForgetImage.requestFocus();
+        etForgetImage.getText().clear();
+        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
     }
 
     @OnClick({R.id.iv_code, R.id.tv_send_sms, R.id.tv_forget_next, R.id.iv_finish, R.id.iv_show_pwd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
-                Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+                Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.tv_send_sms:
                 phone = etForgetAccount.getText().toString();
                 imageCode = etForgetImage.getText().toString();
                 if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
-                    UIUtils.showToastCommon(mContext, "请填写正确手机号码");
+                    UIUtils.showToastCommon(mContext, Config.TIP_MOBILE);
                     return;
                 } else if (TextUtils.isEmpty(imageCode)) {
-                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
                     return;
                 }
                 tvSendSms.setEnabled(false);
@@ -149,16 +164,16 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 passWord = etForgetPwd.getText().toString();
                 smsCode = etForgetSms.getText().toString();
                 if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
-                    UIUtils.showToastCommon(mContext, "请填写正确手机号码");
+                    UIUtils.showToastCommon(mContext, Config.TIP_MOBILE);
                     return;
                 } else if (TextUtils.isEmpty(imageCode)) {
-                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
                     return;
                 } else if (TextUtils.isEmpty(smsCode)) {
-                    UIUtils.showToastCommon(mContext, "短信验证码不能为空");
+                    UIUtils.showToastCommon(mContext, Config.TIP_SMS);
                     return;
                 } else if (TextUtils.isEmpty(passWord) || !WYUtils.checkPass(passWord)) {
-                    UIUtils.showToastCommon(mContext, "请填写正确的密码");
+                    UIUtils.showToastCommon(mContext, Config.TIP_PASSS);
                     return;
                 }
                 mPresenter.forgetPassWord(phone, passWord, smsCode, imageCode);

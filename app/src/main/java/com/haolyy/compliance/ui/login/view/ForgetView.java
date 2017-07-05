@@ -11,5 +11,7 @@ public interface ForgetView {
 
     void getSms(boolean isGetSms);
 
-    void countDown();
+    void countDown(boolean b);
+
+    void modifyImageCode();
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,12 +19,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogSuccess;
 import com.haolyy.compliance.ui.login.presenter.RegisterPresenter;
 import com.haolyy.compliance.ui.login.view.RegisterView;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
@@ -75,12 +78,14 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     ClearEditText etRegisterPwd;
     @BindView(R.id.et_register_invite)
     ClearEditText etRegisterInvite;
+    @BindView(R.id.ll_invite_code)
+    LinearLayout llInviteCode;
     private String phone;
     private String passWord;
     private String imageCode;
     private String smsCode;
     private String password;
-    private boolean showPwd;
+    private boolean showPwd,closeInvite;
     private String regsiterCode;
 
     @Override
@@ -158,13 +163,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
         if (isGetSms) {
             phone = etPhone.getText().toString();
             imageCode = etImageCode.getText().toString();
-            if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
-                UIUtils.showToastCommon(mContext, "请填写正确的手机号码");
-                return;
-            } else if (TextUtils.isEmpty(imageCode)) {
-                UIUtils.showToastCommon(mContext, "图形验证码不能为空");
-                return;
-            }
             mPresenter.sendSms(phone, imageCode, "regist");
         } else {
             tvRegisterSms.setEnabled(true);
@@ -173,27 +171,39 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     @Override
     public void showImageCode() {
-        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        LogUtils.e(tag, NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token);
     }
 
     /**
      * 短信倒计时
+     *
      * @param b
      */
     @Override
     public void countDown(boolean b) {
-        if(b){
-        DateUtil.countDown(tvRegisterSms, "重新发送");
-        }else {
+        if (b) {
+            DateUtil.countDown(tvRegisterSms, "重新发送");
+        } else {
             tvRegisterSms.setEnabled(true);
         }
     }
 
-    @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish})
+    /**
+     * 图形验证码刷新 获取焦点
+     */
+    @Override
+    public void modifyImageCode() {
+        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        etImageCode.requestFocus();
+        etImageCode.getText().clear();
+    }
+
+    @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish,R.id.ll_invite_code})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
-                Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+                Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.textView3:
                 phone = etPhone.getText().toString();
@@ -202,28 +212,25 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 smsCode = etSmsCode.getText().toString();
                 passWord = etRegisterPwd.getText().toString();
                 regsiterCode = etRegisterInvite.getText().toString();
-                if (TextUtils.isEmpty(phone)) {
-                    UIUtils.showToastCommon(mContext, "手机号码不能为空");
+                if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
+                    UIUtils.showToastCommon(mContext, Config.TIP_MOBILE);
                     return;
                 } else if (TextUtils.isEmpty(imageCode)) {
-                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
                     return;
                 } else if (TextUtils.isEmpty(smsCode)) {
-                    UIUtils.showToastCommon(mContext, "短信验证码不能为空");
+                    UIUtils.showToastCommon(mContext, Config.TIP_SMS);
                     return;
-                } else if (TextUtils.isEmpty(passWord)) {
-                    UIUtils.showToastCommon(mContext, "密码不能为空");
+                } else if (TextUtils.isEmpty(passWord) || !WYUtils.checkPass(passWord)) {
+                    UIUtils.showToastCommon(mContext, Config.TIP_PASSS);
                     return;
-                } else if (TextUtils.isEmpty(regsiterCode)) {
-                    regsiterCode = "000";
-
                 }
-                mPresenter.register(phone, passWord, smsCode, imageCode, "1","", regsiterCode);
+                mPresenter.register(phone, passWord, smsCode, imageCode, "1", "", regsiterCode);
                 break;
             case R.id.tv_register_sms:
                 imageCode = etImageCode.getText().toString();
                 if (TextUtils.isEmpty(imageCode)) {
-                    UIUtils.showToastCommon(mContext, "图形验证码不能为空");
+                    UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
                 } else {
                     tvRegisterSms.setEnabled(false);
                     mPresenter.checkImageCode(imageCode);
@@ -241,6 +248,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                     showPwd = true;
                     tvShowPwd.setImageResource(R.mipmap.login_show);
                     etRegisterPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+                break;
+            case R.id.ll_invite_code:
+                if(closeInvite){
+                    closeInvite=false;
+                    etRegisterInvite.setVisibility(View.VISIBLE);
+                }else {
+                    closeInvite=true;
+                    etRegisterInvite.setVisibility(View.GONE);
                 }
                 break;
         }

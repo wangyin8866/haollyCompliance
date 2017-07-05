@@ -74,9 +74,15 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             @Override
             public void onNext(SmsBean s) {
                 if (s.getStatus().equals("200")) {
-                        getView().countDown();
+                    if (s.getData().getStatus().equals("200")) {
+                        getView().countDown(true);
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                        getView().countDown(false);
+                    }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
+                    getView().countDown(false);
                 }
 
             }
@@ -100,12 +106,18 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
                 if (s.getStatus().equals("200")) {
                     if (s.getData().getStatus().equals("200")) {
                         getView().getSms(true);
+                    } else if(s.getData().getStatus().equals("10102")){
+                        //图形验证码错误
+                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                        getView().modifyImageCode();
+                        getView().getSms(false);
                     } else {
                         UIUtils.showToastCommon(mContext, s.getData().getMsg());
                         getView().getSms(false);
                     }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
+                    getView().getSms(false);
                 }
 
             }

@@ -25,8 +25,8 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
         super(context);
     }
 
-    public void sendSms(String busi_type_, String card_number_, String user_cust_id, final String mer_id_, String mobile_, String sms_type_, final int useType) {
-        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, user_cust_id, mer_id_, mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
+    public void sendSms(String busi_type_, String card_number_, String user_cust_id, String mobile_, String sms_type_, final int useType) {
+        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, user_cust_id,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
                 if (s.getStatus().equals("200")) {
@@ -69,8 +69,8 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param sms_seq_
      * @param ordsms_ext_
      */
-    public void quikBind(String user_cust_id_, String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_, String mer_id_) {
-        invoke(HuifuShModel.getInstance().quikBind(user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_, mer_id_), new Subscriber<BaseResponseBean>() {
+    public void quikBind(String user_cust_id_, String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
+        invoke(HuifuShModel.getInstance().quikBind(user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new Subscriber<BaseResponseBean>() {
             @Override
             public void onCompleted() {
 
@@ -104,14 +104,12 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param PageType
      * @param ret_url_
      * @param user_type_
-     * @param version_
-     * @param user_id
      */
-    public void register(String user_id, String mer_id_, String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_,
-                         String sms_code_, String sms_seq_, String PageType, String ret_url_, String user_type_, String juid) {
+    public void register(String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_,
+                         String sms_code_, String sms_seq_, String PageType,String user_type_) {
 
-        invoke(HuifuShModel.getInstance().register(user_id, mer_id_, moblie_, from_mobile_, id_number_, user_name_, card_number_, bank_id_, sms_code_, sms_seq_,
-                PageType, ret_url_, user_type_, juid), new ProgressSubscriber<ToRegisterBean>(new SubscriberOnNextListener<ToRegisterBean>() {
+        invoke(HuifuShModel.getInstance().register(moblie_, from_mobile_, id_number_, user_name_, card_number_, bank_id_, sms_code_, sms_seq_,
+                PageType, user_type_), new ProgressSubscriber<ToRegisterBean>(new SubscriberOnNextListener<ToRegisterBean>() {
             @Override
             public void onNext(ToRegisterBean baseResponseBean) {
                 if (baseResponseBean.getStatus().equals("200")) {

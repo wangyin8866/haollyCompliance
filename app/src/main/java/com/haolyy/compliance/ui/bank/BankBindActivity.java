@@ -149,7 +149,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             @Override
             public void executeSend(String sms) {
                 dialogBankSms.getBtn().setEnabled(false);
-                mPresenter.sendSms("user_register", "6228229339910333", "", "2", "13856989634", "", 1);
+                mPresenter.sendSms("user_register", "6228229339910333", "","13856989634","",1);
             }
 
             @Override
@@ -159,7 +159,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
             @Override
             public void executeRight() {
-                mPresenter.register("5", "1", "13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "101", "666666", "AAAAAAAA", "", "http://www.chinazyjr.com", "1059451948592", "2");
+                mPresenter.register("13856989634", "13856989634", "141002199203241329", "禄博丹", "6228229339910333", "101", "666666", "AAAAAAAA", "", "2");
             }
         }).show();
     }

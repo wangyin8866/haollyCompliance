@@ -6,6 +6,7 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -18,17 +19,14 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
         super(context);
     }
 
-    public void findUserStatus(){
-        invoke(UserModel.getInstance().findUserStatus(),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
-            @Override
-            public void onNext(BaseResponseBean baseResponseBean) {
+    @Override
+    public void selectUserState() {
+        super.selectUserState();
+    }
 
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-        },mContext));
+    @Override
+    public void overwriteSelectUserState(BaseResponseBean baseResponseBean) {
+        super.overwriteSelectUserState(baseResponseBean);
+        LogUtils.e(tag,"调用复写的方法");
     }
 }

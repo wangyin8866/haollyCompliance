@@ -23,8 +23,8 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
         super(context);
     }
 
-    public void isBosAcctActivate(final String user_id, String idno, String realname, String user_type, final String mer_id_) {
-        invoke(HuifuShModel.getInstance().isBosAcctActivate(user_id, idno, realname, user_type, mer_id_),
+    public void isBosAcctActivate(String idno, String realname, String user_type) {
+        invoke(HuifuShModel.getInstance().isBosAcctActivate(idno, realname, user_type),
                 new ProgressSubscriber<IsActivateBean>(new SubscriberOnNextListener<IsActivateBean>() {
                     @Override
                     public void onNext(IsActivateBean s) {
@@ -37,7 +37,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
                             } else if (type.equals("3")) {
                                 //调取发送验证码接口
                             } else if (type.equals("4")) {
-                                 activate(user_id,"","1","http://www.chinazyjr.com",mer_id_,"Android","1.0");
+                                 activate("","");
                             }
                         } else {
                             UIUtils.showToastCommon(mContext, s.getMsg());
@@ -54,16 +54,11 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
     /**
      * 激活接口
      *
-     * @param user_id_
      * @param UsrCustId
      * @param PageType
-     * @param RetUrl
-     * @param mer_id_
-     * @param client_
-     * @param version_
      */
-    public void activate(String user_id_, String UsrCustId, String PageType, String RetUrl, String mer_id_, String client_, String version_) {
-        invoke(HuifuShModel.getInstance().activate(user_id_, UsrCustId, PageType, RetUrl, mer_id_, client_, version_), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
+    public void activate(String UsrCustId, String PageType) {
+        invoke(HuifuShModel.getInstance().activate( UsrCustId, PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
             @Override
             public void onNext(ActivateBean s) {
                 if (s.getStatus().equals("200")) {

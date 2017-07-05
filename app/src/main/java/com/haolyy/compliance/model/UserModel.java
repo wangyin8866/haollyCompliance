@@ -17,6 +17,7 @@ import rx.Observable;
 import static com.haolyy.compliance.base.BaseApplication.version;
 import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.platform;
+import static com.haolyy.compliance.config.Config.platformhaolyy;
 
 /**
  * Created by LL on 2017/1/7.
@@ -66,7 +67,7 @@ public class UserModel extends BaseModel {
         map.put("passWord", password);
         map.put("loginIp", loginIp);
         map.put("version", version);
-        map.put("platform", platform);
+        map.put("platform", platformhaolyy);
         map.put("client", client);
         return userApi.login(map);
     }
@@ -78,7 +79,7 @@ public class UserModel extends BaseModel {
         map.put("smsCode", smsCode);
         map.put("imageCode", imageCode);
         map.put("client", client);
-        map.put("platform", platform);
+        map.put("platform", platformhaolyy);
         map.put("registBd", registBd);
         map.put("version", version);
         map.put("channel",channel);
@@ -94,11 +95,11 @@ public class UserModel extends BaseModel {
     public Observable<BaseResponseBean> forgetPassWord(String phone_num, String password,String smsCode,String imageCode) {
         map.clear();
         map.put("mobile", phone_num);
-        map.put("passWord", password);
+        map.put("password", password);
         map.put("smsCode", smsCode);
         map.put("imageCode", imageCode);
         map.put("client", client);
-        map.put("platform", platform);
+        map.put("platform", platformhaolyy);
         map.put("token",BaseApplication.token);
         return userApi.forgetPassWord(map);
     }
@@ -109,7 +110,7 @@ public class UserModel extends BaseModel {
      */
     public Observable<BaseResponseBean> findUserStatus() {
         map.clear();
-        map.put("mobile", "18565321959");
+        map.put("mobile",BaseApplication.mUserName);
         map.put("platform", "1");
         return userApi.findStatus(map);
     }

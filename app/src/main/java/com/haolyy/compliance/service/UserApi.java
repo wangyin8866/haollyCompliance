@@ -35,7 +35,7 @@ public interface UserApi {
 
 
     @GET(NetConstantValues.SMS_SENDSMSCODE)
-    Observable<SmsBean> sendSms(@Query("token") String mobile,@Query("imagecode") String imagecode,@Query("systemplate") String systemplate,@Query("type") String type,@Query("token") String token);
+    Observable<SmsBean> sendSms(@Query("mobile") String mobile,@Query("imagecode") String imagecode,@Query("systemplate") String systemplate,@Query("type") String type,@Query("token") String token);
 
 
     @GET(NetConstantValues.IMAGE_CHECK)
@@ -48,6 +48,7 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FORGETPWD)
     Observable<BaseResponseBean> forgetPassWord(@FieldMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FINDSTATUS)
     Observable<BaseResponseBean> findStatus(@FieldMap Map<String, String> map);

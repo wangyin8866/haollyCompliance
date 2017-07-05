@@ -84,6 +84,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             case R.id.iv_head_icon:
                 break;
             case R.id.iv_gold:
+                startActivity(new Intent(mContext,MemberActivity.class));
                 break;
             case R.id.tv_gold_phone:
                 break;
@@ -94,19 +95,17 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             case R.id.tv_withdraw:
                 //startActivity(new Intent(mContext, WithDrawActivity.class));
                 //开户
-       /*        dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+              /* dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
                    @Override
                    public void excuteLeft() {
-//
+
                    }
-//
+
                    @Override
                    public void excuteRight() {
-                      startActivity(new Intent(mContext, BankBindActivity.class));
-//
+                      startActivity(new Intent(mContext,CheckBankActivity.class));
                    }
-               }).show();
-*/
+               }).show();*/
               /*  dialogInvestGuides = new DialogInvestGuides(mContext, DialogInvestGuides.INTELLIGENCE);
                 dialogInvestGuides.setOnDoubleClickListener(new DialogInvestGuides.OnDoubleClickListener() {
                     @Override
@@ -121,7 +120,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 }).show();*/
                // startActivity(new Intent(mContext, WithDrawActivity.class));
                 //startActivity(new Intent(mContext, CheckBankActivity.class));
-                mPresenter.findUserStatus();
+                //mPresenter.findUserStatus();
                 break;
             case R.id.tv_recharge:
                 startActivity(new Intent(mContext, RechargeActivity.class));

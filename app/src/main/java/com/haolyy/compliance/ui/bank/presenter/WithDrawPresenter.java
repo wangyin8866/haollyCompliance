@@ -17,9 +17,9 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView>{
     public WithDrawPresenter(Context context) {
         super(context);
     }
-    public void withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_, String ret_url_, String trans_amt_, String method,String juid,
-                         String mer_id_){
-        invoke( HuifuShModel.getInstance().withDraw(cash_serv_fee_,UsrCustId,from_mobile_, ret_url_,trans_amt_, method,juid, mer_id_),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void withDraw(String cash_serv_fee_, String UsrCustId, String from_mobile_,String trans_amt_, String method
+                         ){
+        invoke( HuifuShModel.getInstance().withDraw(cash_serv_fee_,UsrCustId,from_mobile_,trans_amt_, method),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
             @Override
             public void onNext(String s) {
                 LogUtils.e("withDraw", s);

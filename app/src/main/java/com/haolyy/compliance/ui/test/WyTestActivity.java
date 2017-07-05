@@ -94,4 +94,9 @@ public class WyTestActivity extends BaseActivity<RegisterPresenter, RegisterView
 
     }
 
+    @Override
+    public void modifyImageCode() {
+
+    }
+
 }

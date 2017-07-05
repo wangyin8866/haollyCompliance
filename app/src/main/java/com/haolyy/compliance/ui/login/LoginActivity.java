@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.ui.login.presenter.LoginPresenter;
 import com.haolyy.compliance.ui.login.view.LoginView;
@@ -91,7 +92,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
                 phone = etAccount.getText().toString();
                 pwd = etPwd.getText().toString();
                 if (TextUtils.isEmpty(phone)|| !WYUtils.checkPhone(phone)||TextUtils.isEmpty(pwd)||!WYUtils.checkPass(pwd)) {
-                    UIUtils.showToastCommon(mContext, "您输入的账号或密码有误请重新输入");
+                    UIUtils.showToastCommon(mContext, Config.TIP_ALL);
                     return;
                 }
                 mPresenter.login(phone, pwd,"192.168.7.113");

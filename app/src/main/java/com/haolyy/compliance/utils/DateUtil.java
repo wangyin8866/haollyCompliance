@@ -32,7 +32,7 @@ public class DateUtil {
      */
     public static Subscription countDown(final TextView tv, final String reset) {
         final long[] currentTime = {Config.seconds-1000};
-        tv.setText("119s");
+        tv.setText((Config.seconds-1000)/1000+"s");
         Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
