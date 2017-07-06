@@ -176,6 +176,9 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                     UIUtils.showToastCommon(mContext, Config.TIP_PASSS);
                     return;
                 }
+
+
+
                 mPresenter.forgetPassWord(phone, passWord, smsCode, imageCode);
                 break;
             case R.id.iv_show_pwd:
