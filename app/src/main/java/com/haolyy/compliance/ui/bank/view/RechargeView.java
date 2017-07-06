@@ -14,4 +14,6 @@ public interface RechargeView {
     void showSucess();
 
     void showCard(FindUserStatusBean fb);
+
+    void showFail();
 }

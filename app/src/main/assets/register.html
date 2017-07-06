@@ -11,10 +11,10 @@ function jsonchange(data) {
 	var dataObjiect
 	if(typeof(data) == "object" && Object.prototype.toString.call(data).toLowerCase() == "[object object]" && !data.length) {
 		dataObjiect = data;
-		 alert("对象"+dataObjiect)
+		 <!--alert("对象"+dataObjiect)-->
 	} else {
 		dataObjiect = jQuery.parseJSON(data);
-		 alert("字符串"+dataObjiect)
+		 <!--alert("字符串"+dataObjiect)-->
 	}
 	return dataObjiect;
 }
@@ -31,7 +31,12 @@ $(document).ready(function() {
         $('#subForm').attr('action', obj.data.data.huifu_url);
         var msgParamDto = obj.data.data;
         $.each(msgParamDto, function(key, value) {
-            var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
+            if(key=="ReqExt"){
+               var ctc='<textarea rows="1" cols="500" style="display: none" name="ReqExt">'+ value +'</textarea>';
+            }else{
+               var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
+            }
+
             $("#subForm").append(ctc)
         });
         $("#subForm").submit();

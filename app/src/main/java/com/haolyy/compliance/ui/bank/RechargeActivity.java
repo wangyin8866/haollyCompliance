@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.RechargePresenter;
 import com.haolyy.compliance.ui.bank.view.RechargeView;
 import com.haolyy.compliance.utils.DateUtil;
@@ -64,6 +65,8 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     EditText etRechargePhone;
     @BindView(R.id.et_recharge_sms)
     EditText etRechargeSms;
+    @BindView(R.id.tv_success_amount)
+    TextView tvSuccessAmount;
     private String smsQue;
     private String phone;
     private String sms;
@@ -139,7 +142,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         });
     }
 
-    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms})
+    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms,R.id.tv_go_invest,R.id.tv_go_account,R.id.tv_try_again})
     public void onViewClicked(View view) {
         amt = etRechargeTmt.getText().toString();
         phone = etRechargePhone.getText().toString();
@@ -155,7 +158,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     UIUtils.showToastCommon(mContext, "电话号码不能为空");
                     return;
                 }
-                mPresenter.sendSms("recharge", cardno, user_cust_id, phone, "");
+                mPresenter.sendSms("recharge", cardno, phone, "");
                 tvRechargeSms.setEnabled(false);
                 break;
             case R.id.btn_recharge:
@@ -170,7 +173,19 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                     UIUtils.showToastCommon(mContext, "短信验证码不能为空");
                     return;
                 }
-                mPresenter.recharge(phone, "QP", "666666", "AAAAAAAA", amt, bankId, user_cust_id);
+                mPresenter.recharge(phone, "QP", "666666", "AAAAAAAA", amt, bankId);
+                break;
+            case R.id.tv_go_invest:
+                //去投资
+                startActivity(new Intent(mContext, MainActivity.class));
+                break;
+            case R.id.tv_go_account:
+                //去账户中心
+                startActivity(new Intent(mContext, MainActivity.class));
+                break;
+            case R.id.tv_try_again:
+                //再试试
+                mPresenter.recharge(phone, "QP", "666666", "AAAAAAAA", amt, bankId);
                 break;
         }
     }
@@ -197,11 +212,21 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
      */
     @Override
     public void showSucess() {
+         tvSuccessAmount.setText("您本次充值金额为"+amt+"元");
         llRecharge.setVisibility(View.GONE);
         llRechargeError.setVisibility(View.GONE);
         llRechargeSuccess.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * 展示失败页面
+     */
+    @Override
+    public void showFail() {
+        llRecharge.setVisibility(View.GONE);
+        llRechargeError.setVisibility(View.VISIBLE);
+        llRechargeSuccess.setVisibility(View.GONE);
+    }
     /**
      * 展示银行卡
      *
@@ -213,4 +238,6 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         cardno = fb.getData().getData().getBank_card_no();
         user_cust_id = fb.getData().getData().getThird_user_id();
     }
+
+
 }

@@ -25,8 +25,8 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
         super(context);
     }
 
-    public void sendSms(String busi_type_, String card_number_, String user_cust_id, String mobile_, String sms_type_, final int useType) {
-        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, user_cust_id,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
+    public void sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_, final int useType) {
+        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
                 if (s.getStatus().equals("200")) {
@@ -67,8 +67,8 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param sms_seq_
      * @param ordsms_ext_
      */
-    public void quikBind(String user_cust_id_, String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
-        invoke(HuifuShModel.getInstance().quikBind(user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new Subscriber<BaseResponseBean>() {
+    public void quikBind(String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
+        invoke(HuifuShModel.getInstance().quikBind(trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new Subscriber<BaseResponseBean>() {
             @Override
             public void onCompleted() {
 
@@ -89,8 +89,6 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
 
     /**
      * 开户借口
-     *
-     * @param mer_id_
      * @param moblie_
      * @param from_mobile_
      * @param id_number_
@@ -100,7 +98,6 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param sms_code_
      * @param sms_seq_
      * @param PageType
-     * @param ret_url_
      * @param user_type_
      */
     public void register(String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, final String bank_id_,

@@ -25,6 +25,7 @@ public interface NetConstantValues {
      * //支付接口
      */
     String HOST_URL4 = "http://192.168.7.113:8014/";
+
     //杜欣
 //    String HOST_URL2 = "http://192.168.13.213:8080/";
 //    String HOST_URL="http://192.168.13.213:8080/";

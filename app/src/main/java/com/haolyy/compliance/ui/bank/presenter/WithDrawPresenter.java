@@ -2,8 +2,10 @@ package com.haolyy.compliance.ui.bank.presenter;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.WithDrawBean;
 import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.HuifuShModel;
@@ -23,13 +25,13 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView> {
         super(context);
     }
 
-    public void withDraw(String cash_serv_fee_, String UsrCustId, String trans_amt_, String method
+    public void withDraw(String cash_serv_fee_,String trans_amt_, String method
     ) {
-        invoke(HuifuShModel.getInstance().withDraw(cash_serv_fee_, UsrCustId, trans_amt_, method), new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+        invoke(HuifuShModel.getInstance().withDraw(cash_serv_fee_,trans_amt_, method), new ProgressSubscriber<WithDrawBean>(new SubscriberOnNextListener<WithDrawBean>() {
             @Override
-            public void onNext(String s) {
-                LogUtils.e("withDraw", s);
-                getView().pushActivity(s);
+            public void onNext(WithDrawBean s) {
+
+                getView().pushActivity(new Gson().toJson(s));
             }
 
             @Override

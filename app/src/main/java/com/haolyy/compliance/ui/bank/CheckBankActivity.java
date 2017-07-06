@@ -1,10 +1,8 @@
 package com.haolyy.compliance.ui.bank;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -14,7 +12,8 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
-import com.haolyy.compliance.inteface.EditTextChangeIdCardListener;
+import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.CheckBankPresenter;
 import com.haolyy.compliance.ui.bank.view.CheckBankView;
 
@@ -46,10 +45,10 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
     TextView tvCardType;
     @BindView(R.id.tv_card_no)
     TextView tvCardNo;
-    @BindView(R.id.change_card)
-    TextView changeCard;
     @BindView(R.id.ll_show_card)
     LinearLayout llShowCard;
+    @BindView(R.id.tv_go_account)
+    TextView tvGoAccount;
     private String realname;
     private String idCard;
 
@@ -64,7 +63,6 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
         setContentView(R.layout.content_check_bank);
         ButterKnife.bind(this);
         tvTitle.setText("开通上海银行存管账户");
-        tvIdCard.addTextChangedListener(new EditTextChangeIdCardListener(tvIdCard));
     }
 
     @Override
@@ -72,7 +70,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_bank_next})
+    @OnClick({R.id.iv_finish, R.id.tv_bank_next,R.id.tv_go_account})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -92,6 +90,9 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
                 mPresenter.isBosAcctActivate(idCard, realname, "2");
                 //返回的type"type":"1,2"正常开户 3 发短息 4 掉激活接口
                 break;
+            case R.id.tv_go_account:
+                startActivity(new Intent(mContext, MainActivity.class));
+                break;
         }
     }
 
@@ -106,8 +107,8 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
     @Override
     public void showSuccessToast(String msg) {
-     DialogBankSms   dialogBankSms = new DialogBankSms(mContext);
-       msg.substring(msg.length() - 4, msg.length());
+        DialogBankSms dialogBankSms = new DialogBankSms(mContext);
+        msg.substring(msg.length() - 4, msg.length());
         dialogBankSms.setContext("2946").setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
             public void executeSend() {
@@ -122,7 +123,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
             @Override
             public void executeRight(String sms) {
-               //获取银行卡信息展示银行卡界面
+                //获取银行卡信息展示银行卡界面
             }
         }).show();
     }
@@ -135,5 +136,18 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
     @Override
     public void pushActivity(String s) {
 
+    }
+
+    /**
+     * 展示在别的频台绑定的银行卡
+     *
+     * @param s
+     */
+    @Override
+    public void showCard(IsActivateBean s) {
+        llCheck.setVisibility(View.GONE);
+        llShowCard.setVisibility(View.VISIBLE);
+        tvBankName.setText(s.getData().getBank_name());
+        tvCardNo.setText(s.getData().getBank_card_no());
     }
 }

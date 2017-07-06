@@ -274,10 +274,19 @@
 估时间，具体以实际到账时间为准)"
                 android:textColor="@color/text_b9b9b9"
                 android:textSize="12sp" />
+            <TextView
+                android:id="@+id/btn_withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/shape_gradient"
+                android:gravity="center"
+                android:text="提现"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/btn_withdraw"
         android:layout_width="match_parent"
         android:layout_height="49dp"
@@ -286,5 +295,5 @@
         android:gravity="center"
         android:text="提现"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp" />-->
 </RelativeLayout>

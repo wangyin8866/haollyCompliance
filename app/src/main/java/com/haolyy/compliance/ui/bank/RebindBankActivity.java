@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.ui.bank.presenter.RebindBankPresenter;
 import com.haolyy.compliance.ui.bank.view.BankReBindView;
 import com.haolyy.compliance.utils.DateUtil;
@@ -71,6 +72,9 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     private String smsSqOld, smsOald, smsNew, smsSqnew;
     private String rebindPhone;
     private Subscription subscriptionCount;
+    private String mobile;
+    private String bank_card_no;
+    private String newCardNo;
 
     @Override
     protected RebindBankPresenter createPresenter() {
@@ -82,6 +86,12 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rebind_bank);
         ButterKnife.bind(this);
+        initView();
+    }
+
+    private void initView() {
+        tvTitle.setText("解绑银行卡");
+        mPresenter.selectUserState(-1);
     }
 
     @Override
@@ -99,15 +109,19 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                 startActivityForResult(new Intent(mContext, BankListActivity.class), 0x03);
                 break;
             case R.id.tv_rebind_sms:
-                rebindPhone = etRebindPhone.getText().toString();
-                if (TextUtils.isEmpty(rebindPhone)) {
-                    UIUtils.showToastCommon(mContext, "手机号不能为空");
-                    return;
-                }
                 if (isNew) {
-                    mPresenter.sendSms("rebind", "6225801240710012", "6000060007303359","13821882946", "N");
+                    rebindPhone = etRebindPhone.getText().toString();
+                    newCardNo = etCardNo.getText().toString();
+                    if (TextUtils.isEmpty(rebindPhone)) {
+                        UIUtils.showToastCommon(mContext, "手机号不能为空");
+                        return;
+                    } if (TextUtils.isEmpty(newCardNo)) {
+                        UIUtils.showToastCommon(mContext, "银行卡号不能为空");
+                        return;
+                    }
+                    mPresenter.sendSms("rebind", newCardNo, rebindPhone, "N");
                 } else {
-                    mPresenter.sendSms("rebind", "6225801240710011", "6000060007303359","13821882946", "O");
+                    mPresenter.sendSms("rebind", bank_card_no,mobile, "O");
                 }
                 tvRebindSms.setEnabled(false);//发短信按钮不可点击
                 break;
@@ -125,7 +139,12 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                 if (isNew) {
                     //换绑页面
                     smsNew = sms;
-                    mPresenter.quikBind("6000060007303359","REBIND","CMB","6225801240710012","13821882946","666666","AAAAAAAA","666666AAAAAAAA");
+                    newCardNo = etCardNo.getText().toString();
+                   if(TextUtils.isEmpty(newCardNo)) {
+                        UIUtils.showToastCommon(mContext, "银行卡号不能为空");
+                        return;
+                    }
+                    mPresenter.quikBind("REBIND","ABC",newCardNo,rebindPhone,"666666","AAAAAAAA","666666AAAAAAAA");
                 } else {
                     //解绑页面
                     smsOald = sms;
@@ -178,5 +197,16 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                 smsSqOld = smsSeq;
             }
         }
+    }
+
+    /**
+     *卡号 老的手机号
+     * @param fb
+     */
+    @Override
+    public void setCardInfo(FindUserStatusBean fb) {
+        mobile = fb.getData().getData().getMobile();
+        bank_card_no = fb.getData().getData().getBank_card_no();
+        etRebindPhone.setText(mobile);
     }
 }

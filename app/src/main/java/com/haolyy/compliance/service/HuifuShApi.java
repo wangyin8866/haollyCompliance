@@ -6,6 +6,7 @@ import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
+import com.haolyy.compliance.entity.bank.WithDrawBean;
 import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 
@@ -84,7 +85,7 @@ public interface HuifuShApi {
      */
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_WITHDRAW)
-    Observable<String> withDraw(@FieldMap Map<String, String> params);
+    Observable<WithDrawBean> withDraw(@FieldMap Map<String, String> params);
 
     /**
      * 判断是否激活

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.view.BankReBindView;
@@ -21,9 +22,14 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
         super(context);
     }
 
+    @Override
+    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
+        super.overwriteSelectUserState(fb, flag);
+        getView().setCardInfo(fb);
+    }
 
-    public void sendSms(String busi_type_, String card_number_, String user_cust_id,String mobile_, String sms_type_) {
-        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, user_cust_id,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
+    public void sendSms(String busi_type_, String card_number_, String mobile_, String sms_type_) {
+        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
                 if (s.getStatus().equals("200")) {
@@ -49,9 +55,6 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
 
     /**
      * 换绑定银行卡
-     *
-     * @param mer_id_
-     * @param user_cust_id_
      * @param trade_type_
      * @param bank_code_
      * @param card_number_
@@ -60,8 +63,8 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
      * @param sms_seq_
      * @param ordsms_ext_
      */
-    public void quikBind( String user_cust_id_, String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
-        invoke(HuifuShModel.getInstance().quikBind(user_cust_id_, trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
+    public void quikBind(String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
+        invoke(HuifuShModel.getInstance().quikBind(trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_),new ProgressSubscriber<BaseResponseBean>(new SubscriberOnNextListener<BaseResponseBean>() {
             @Override
             public void onNext(BaseResponseBean baseResponseBean) {
 

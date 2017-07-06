@@ -62,6 +62,7 @@ public class BaseApplication extends Application {
     public static String BankFrom;
     public static String version="";//版本号
     public static String juid;//平台客户号
+    public static String userCustId;
 
     @Override
     public void onCreate() {

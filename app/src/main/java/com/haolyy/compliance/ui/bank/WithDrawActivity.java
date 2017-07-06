@@ -98,7 +98,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
                 break;
             case R.id.btn_withdraw:
                 amt = etWithDraw.getText().toString();
-                mPresenter.withDraw(cashfee + "", user_cust_id, amt, method);
+                mPresenter.withDraw(cashfee + "",amt,method);
                 break;
             case R.id.tv_withdraw_quan:
                 startActivity(new Intent(WithDrawActivity.this, WithDrawQuanActivity.class));

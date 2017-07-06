@@ -84,9 +84,6 @@
             android:name=".ui.bank.BankListActivity"
             android:screenOrientation="portrait" />
         <!-- 银行充值页面 -->
-        <activity
-            android:name=".ui.bank.RechargeWebActivity"
-            android:screenOrientation="portrait" />
         <!-- 充值 -->
         <activity
             android:name=".ui.bank.RechargeActivity"

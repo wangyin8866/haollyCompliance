@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.google.gson.Gson;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.BankBindActivity;
 import com.haolyy.compliance.ui.bank.view.CheckBankView;
@@ -31,13 +33,14 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
                         //"type":"1,2"正常开户 3 发短息 4 掉激活接口
                         if (s.getStatus().equals("200")) {
                             String type = s.getData().getType();
-
                             if (type.equals("1") || type.equals("2")) {
                                  mContext.startActivity(new Intent(mContext, BankBindActivity.class));
                             } else if (type.equals("3")) {
-                                //调取发送验证码接口
+                                //直接展示卡
+                                getView().showCard(s);
+
                             } else if (type.equals("4")) {
-                                 activate("","");
+                               activate("");
                             }
                         } else {
                             UIUtils.showToastCommon(mContext, s.getMsg());
@@ -54,11 +57,10 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
     /**
      * 激活接口
      *
-     * @param UsrCustId
      * @param PageType
      */
-    public void activate(String UsrCustId, String PageType) {
-        invoke(HuifuShModel.getInstance().activate( UsrCustId, PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
+    public void activate( String PageType) {
+        invoke(HuifuShModel.getInstance().activate(PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
             @Override
             public void onNext(ActivateBean s) {
                 if (s.getStatus().equals("200")) {
@@ -74,6 +76,4 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
             }
         }, mContext));
     }
-
-
 }

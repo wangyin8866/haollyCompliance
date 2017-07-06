@@ -108,7 +108,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                     UIUtils.showToastCommon(mContext,"请填写银行卡号");
                     return;
                 }
-                mPresenter.sendSms("user_register", cardno, "",bankPhone,"", 0);
+                mPresenter.sendSms("user_register", cardno,bankPhone,"", 0);
                 break;
             case R.id.tv_select_bank:
                 startActivityForResult(new Intent(BankBindActivity.this, BankListActivity.class), 0x03);
@@ -151,7 +151,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             @Override
             public void executeSend() {
                 dialogBankSms.getBtn().setEnabled(false);
-                mPresenter.sendSms("user_register", cardno, "",bankPhone,"",1);
+                mPresenter.sendSms("user_register", cardno,bankPhone,"",1);
             }
 
             @Override
