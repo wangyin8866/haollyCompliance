@@ -240,6 +240,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/bg_line" />
+        <include layout="@layout/bg_line_thick" />
     </LinearLayout>
 </layout>

@@ -3,9 +3,12 @@ package com.haolyy.compliance.ui.home.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.entity.home.Banner;
+import com.haolyy.compliance.entity.home.HomeActivity;
+import com.haolyy.compliance.entity.home.HomeArticle;
+import com.haolyy.compliance.entity.home.HomeProduct;
 import com.haolyy.compliance.model.HomeModel;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
-import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -18,10 +21,10 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
         super(context);
     }
     public void getBanner(String type){
-        invoke(HomeModel.getInstance().getBanner(type),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+        invoke(HomeModel.getInstance().getBanner(type),new ProgressSubscriber<Banner>(new SubscriberOnNextListener<Banner>() {
             @Override
-            public void onNext(String s) {
-                LogUtils.e("getBanner",s);
+            public void onNext(Banner s) {
+                getView().showBannerData(s);
             }
 
             @Override
@@ -32,10 +35,10 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
 
     }
     public void getHomeProduct(){
-        invoke(HomeModel.getInstance().getHomeProduct(),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+        invoke(HomeModel.getInstance().getHomeProduct(),new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
             @Override
-            public void onNext(String s) {
-                LogUtils.e("getHomeProduct",s);
+            public void onNext(HomeProduct s) {
+                getView().showHomeProductData(s);
             }
 
             @Override
@@ -46,10 +49,10 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
 
     }
     public void getHomeArticle(){
-        invoke(HomeModel.getInstance().getHomeArticle(),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+        invoke(HomeModel.getInstance().getHomeArticle(),new ProgressSubscriber<HomeArticle>(new SubscriberOnNextListener<HomeArticle>() {
             @Override
-            public void onNext(String s) {
-                LogUtils.e("getHomeArticle",s);
+            public void onNext(HomeArticle s) {
+                getView().showHomeArticleData(s);
             }
 
             @Override
@@ -60,12 +63,11 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
 
     }
     public void getRecommend(String userId){
-        invoke(HomeModel.getInstance().getRecommend(userId),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+        invoke(HomeModel.getInstance().getRecommend(userId),new ProgressSubscriber<HomeActivity>(new SubscriberOnNextListener<HomeActivity>() {
             @Override
-            public void onNext(String s) {
-                LogUtils.e("getRecommend",s);
+            public void onNext(HomeActivity s) {
+                getView().showHomeActivityData(s);
             }
-
             @Override
             public void onError(Throwable e) {
 

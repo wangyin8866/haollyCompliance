@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.ClearEditText;
@@ -100,6 +101,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);
                 startActivity(intent);
+                ActivityCollector.finishAll();
                 break;
             case R.id.tv_forget:
                 intent = new Intent(mContext, ForgetActivity.class);

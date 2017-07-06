@@ -52,7 +52,7 @@ public class ProductPresenter extends BasePresenter<ProductView> {
                         if (isLoadMore) {
 //                            getView().showGetMoreData(o);
                         } else {
-//                            getView().showData(o);
+//                            getView().showBannerData(o);
                         }
 
                     } else {
