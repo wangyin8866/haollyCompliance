@@ -27,12 +27,12 @@ public interface NetConstantValues {
     String HOST_URL4 = "http://192.168.7.113:8014/";
 
     //杜欣
-//    String HOST_URL2 = "http://192.168.13.213:8080/";
-//    String HOST_URL="http://192.168.13.213:8080/";
+   //String HOST_URL2 = "http://192.168.13.213:8080/";
+   //String HOST_URL="http://192.168.13.213:8080/";
     //赵建华
      //String HOST_URL = "http://192.168.10.97:8080/";
     //杨全帅
-    String HOST_URLY="http://192.168.13.63:8080/";
+     String HOST_URLY="http://192.168.13.63:8080/";
     //骆丹
     //String HOST_URL2 = "http://192.168.11.179:8080/";
     //String HOST_URL="http://192.168.11.179:8080/";

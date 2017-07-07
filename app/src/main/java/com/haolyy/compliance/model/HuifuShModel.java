@@ -19,7 +19,6 @@ import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
 import static com.haolyy.compliance.base.BaseApplication.version;
-import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.mer_id;
 import static com.haolyy.compliance.config.Config.platform;
 import static com.haolyy.compliance.config.Config.returl;
@@ -38,7 +37,7 @@ public class HuifuShModel extends BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URLY)
+                .baseUrl(NetConstantValues.HOST_URL4)
                 .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }
@@ -59,7 +58,6 @@ public class HuifuShModel extends BaseModel {
      * @param card_number_  除了业务类型是recharge以外，都必传
      * @param mobile_       银行卡号对应的银行预留手机号
      * @param sms_type_     O-原手机号发送短信，N-新手机号。只有busi_type_为rebind时才必输
-     * @return
      */
     public Observable<HuifuSmsBean> sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_) {
         map.clear();
@@ -194,7 +192,6 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", "4");
         map.put("version_", version);
         map.put("method_", method_);
-
         return huifuShApi.withDraw(map);
     }
 

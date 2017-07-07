@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.google.gson.Gson;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.bank.ActivateBean;
@@ -11,6 +12,7 @@ import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.BankBindActivity;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.bank.view.CheckBankView;
 import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
@@ -35,11 +37,12 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
                             String type = s.getData().getType();
                             if (type.equals("1") || type.equals("2")) {
                                  mContext.startActivity(new Intent(mContext, BankBindActivity.class));
+                                ActivityCollector.finishActivity(CheckBankActivity.class);
                             } else if (type.equals("3")) {
                                 //直接展示卡
                                 getView().showCard(s);
-
                             } else if (type.equals("4")) {
+                                //激活
                                activate("");
                             }
                         } else {
@@ -65,6 +68,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
             public void onNext(ActivateBean s) {
                 if (s.getStatus().equals("200")) {
                     getView().pushActivity(new Gson().toJson(s));
+                    ActivityCollector.finishActivity(CheckBankActivity.class);
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }

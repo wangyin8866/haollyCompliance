@@ -74,8 +74,8 @@
         <!-- 检查存管 -->
         <activity
             android:name=".ui.bank.CheckBankActivity"
-            android:label="@string/title_activity_check_bank"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait"
+            />
         <!-- 绑定银行卡 -->
         <activity
             android:name=".ui.bank.BankBindActivity"
@@ -86,9 +86,6 @@
             android:name=".ui.bank.BankListActivity"
             android:screenOrientation="portrait" />
         <!-- 银行充值页面 -->
-        <activity
-            android:name=".ui.bank.RechargeWebActivity"
-            android:screenOrientation="portrait" />
         <!--充值-->
         <activity android:name=".ui.bank.RechargeActivity"
             android:screenOrientation="portrait" />
