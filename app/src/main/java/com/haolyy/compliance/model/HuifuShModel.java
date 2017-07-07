@@ -1,7 +1,6 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
-import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
@@ -12,9 +11,6 @@ import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.service.HuifuShApi;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
@@ -33,12 +29,6 @@ public class HuifuShModel extends BaseModel {
 
     private HuifuShModel() {
         super();
-        retrofit = new Retrofit.Builder()
-                .client(httpClientBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL4)
-                .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }
 

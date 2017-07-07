@@ -20,12 +20,7 @@ public class BigThreeModel extends BaseModel {
 
     private BigThreeModel() {
         super();
-        retrofit=new Retrofit.Builder()
-                .client(httpClientBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL2)
-                .build();
+
         userApi = retrofit.create(UserApi.class);
     }
 

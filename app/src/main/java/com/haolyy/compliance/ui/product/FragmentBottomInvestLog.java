@@ -35,6 +35,7 @@ public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,Inv
     XListView xlInvestLog;
     private List<InvestLog> investLogs;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

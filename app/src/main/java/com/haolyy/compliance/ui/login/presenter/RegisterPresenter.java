@@ -128,12 +128,10 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
         invoke(UserModel.getInstance().getToken(), new Subscriber<TokenResponseBean>() {
             @Override
             public void onCompleted() {
-
             }
 
             @Override
             public void onError(Throwable e) {
-
             }
 
             @Override

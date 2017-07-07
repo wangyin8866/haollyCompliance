@@ -1,15 +1,11 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.home.Banner;
 import com.haolyy.compliance.entity.home.HomeActivity;
 import com.haolyy.compliance.entity.home.HomeArticle;
 import com.haolyy.compliance.entity.home.HomeProduct;
 import com.haolyy.compliance.service.HomeAPi;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 import static com.haolyy.compliance.config.Config.platform;
@@ -23,12 +19,6 @@ public class HomeModel extends BaseModel {
 
     private HomeModel() {
         super();
-        retrofit = new Retrofit.Builder()
-                .client(httpClientBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL)
-                .build();
         homeAPi = retrofit.create(HomeAPi.class);
     }
 
