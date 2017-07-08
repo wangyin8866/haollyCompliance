@@ -58,7 +58,7 @@ public class BaseApplication extends Application {
     public static int huoti_count;
     public static String Borrow_Amount;
     public static String Borrow_Deline;
-    public static String token;
+    public static String token = "";
     public static String BankFrom;
     public static String version="";//版本号
     public static String juid;//平台客户号

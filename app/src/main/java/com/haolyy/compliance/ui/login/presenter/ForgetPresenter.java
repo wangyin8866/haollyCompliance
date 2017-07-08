@@ -1,10 +1,13 @@
 package com.haolyy.compliance.ui.login.presenter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
@@ -42,14 +45,11 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
             @Override
             public void onNext(TokenResponseBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        String token = s.getData().getData().getToken();
-                        BaseApplication.token = token;
-                        getView().showImageCode();
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                    }
+                if (s.getCode().equals("200")) {
+                    String token = s.getModel().getToken();
+                    BaseApplication.token = token;
+                    getView().showImageCode();
+
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }
@@ -59,8 +59,8 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
     }
 
-    public void sendSms(String phone_num, String imagecode, String systemplate) {
-        invoke(BigThreeModel.getInstance().sendSms(phone_num, imagecode, systemplate,"forget"), new Subscriber<SmsBean>() {
+    public void requestValidateCode(String phone_num, String imagecode, String sms_template_code) {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode, sms_template_code, Config.SMS_OPERATION_TYPE_FOR), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 
@@ -72,14 +72,9 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             }
 
             @Override
-            public void onNext(SmsBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        getView().countDown(true);
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                        getView().countDown(false);
-                    }
+            public void onNext(BaseBean s) {
+                if (s.getCode().equals("200")) {
+                    getView().countDown(true);
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                     getView().countDown(false);
@@ -89,8 +84,8 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
         });
     }
 
-    public void checkImageCode(String image) {
-        invoke(UserModel.getInstance().checkImageCode(image), new Subscriber<CheckImageCode>() {
+    public void checkImageCode(String phone_num) {
+        invoke(UserModel.getInstance().sendTextSms(phone_num), new Subscriber<CheckImageCode>() {
             @Override
             public void onCompleted() {
 
@@ -125,7 +120,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
     }
 
     public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode) {
-        invoke(UserModel.getInstance().forgetPassWord(phone_num, password, smsCode, imageCode), new Subscriber<BaseResponseBean>() {
+        invoke(UserModel.getInstance().forgetPassWord(phone_num, password, smsCode, imageCode), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 
@@ -137,13 +132,10 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             }
 
             @Override
-            public void onNext(BaseResponseBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                    }
+            public void onNext(BaseBean s) {
+                if (s.getCode().equals("200")) {
+                    mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                    ((Activity)mContext).finish();
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }

@@ -20,7 +20,7 @@ public interface NetConstantValues {
     /**
      * //用户接口
      */
-    String HOST_URL3 = "http://192.168.7.113:8006/";
+    String HOST_URL3 = "http://192.168.6.59:8010/";
     /**
      * //支付接口
      */
@@ -32,7 +32,7 @@ public interface NetConstantValues {
     //赵建华
      //String HOST_URL = "http://192.168.10.97:8080/";
     //杨全帅
-    String HOST_URLY="http://192.168.13.63:8080/";
+    String HOST_URLY ="http://192.168.13.63:8080/";
     //骆丹
     //String HOST_URL2 = "http://192.168.11.179:8080/";
     //String HOST_URL="http://192.168.11.179:8080/";
@@ -42,7 +42,7 @@ public interface NetConstantValues {
    // String HOST_URL= "http://192.168.10.214:8080/";
 
 
-    String USERMANAGE = "chinazy-user-manage/";
+    String USERMANAGE = "zhongying/v1/api/";
     String BIGTHREE = "chinazy-sms-bigthree/api/";
     String HUIFU_SH = "chinazy-pay-shanghaibank/http/huifush/";
     String P2P = "chinazy-pay-shanghaibank/http/p2p/";
@@ -51,14 +51,16 @@ public interface NetConstantValues {
 
     String user_login = USERMANAGE + "user/login";//登录
     String user_register = USERMANAGE + "user/register";//注册
-    String USER_FORGETPWD = USERMANAGE + "user/forgetpassword";//忘记密码
+    String USER_FORGETPWD = USERMANAGE + "user/resetPassword";//忘记密码
     String USER_FINDSTATUS=USERMANAGE+"userAccount/findUserstatus";
     String IMAGE_CHECK = USERMANAGE + "image/checkcode";//检查图形验证
-    String IMAGE_GET = USERMANAGE + "image/getcode";//获取图形验证码
-    String GET_TOKEN = USERMANAGE + "common/getToken";//获取token
+    String IMAGE_GET = USERMANAGE + "kaptcha";//获取图形验证码
+    String GET_TOKEN = USERMANAGE + "getToken";//获取token
 
     //短信
-    String SMS_SENDSMSCODE = BIGTHREE + "sms/sendSmsCode";
+    String REQUEST_VALIDATE_CODE = USERMANAGE + "sms/requestValidateCode";
+    String SMS_SENDSMSCODE = USERMANAGE + "sms/sendSmsCode";
+
 
     //汇付接口
     String HUIFU_SMS_HUIFU = HUIFU_SH + "toSendSmsCode";//发送验证码

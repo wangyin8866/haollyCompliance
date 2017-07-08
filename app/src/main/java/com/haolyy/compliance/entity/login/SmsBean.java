@@ -1,10 +1,12 @@
 package com.haolyy.compliance.entity.login;
 
+import com.haolyy.compliance.base.BaseBean;
+
 /**
  * Created by niudeyang on 2017/6/15.
  */
 
-public class SmsBean {
+public class SmsBean extends BaseBean{
 
     /**
      * data : {"data":{"mobile":"13821882945","smsCode":"482821"},"msg":"业务正常","status":"200"}

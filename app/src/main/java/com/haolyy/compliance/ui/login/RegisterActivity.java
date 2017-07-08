@@ -161,9 +161,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     @Override
     public void getSms(boolean isGetSms) {
         if (isGetSms) {
-            phone = etPhone.getText().toString();
-            imageCode = etImageCode.getText().toString();
-            mPresenter.sendSms(phone, imageCode, "regist");
+//            phone = etPhone.getText().toString();
+//            imageCode = etImageCode.getText().toString();
+//            mPresenter.requestValidateCode(phone, imageCode, "regist");
         } else {
             tvRegisterSms.setEnabled(true);
         }
@@ -172,7 +172,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     @Override
     public void showImageCode() {
         Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
-        LogUtils.e(tag, NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token);
+        LogUtils.e(tag, NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token);
     }
 
     /**
@@ -225,15 +225,20 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                     UIUtils.showToastCommon(mContext, Config.TIP_PASSS);
                     return;
                 }
-                mPresenter.register(phone, passWord, smsCode, imageCode, "1", "", regsiterCode);
+                mPresenter.register(phone, passWord, smsCode, imageCode, "1", regsiterCode);
                 break;
             case R.id.tv_register_sms:
+                phone = etPhone.getText().toString();
                 imageCode = etImageCode.getText().toString();
-                if (TextUtils.isEmpty(imageCode)) {
+                if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
+                    UIUtils.showToastCommon(mContext, Config.TIP_MOBILE);
+                    return;
+                } else if (TextUtils.isEmpty(imageCode)) {
                     UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
+                    return;
                 } else {
                     tvRegisterSms.setEnabled(false);
-                    mPresenter.checkImageCode(imageCode);
+                    mPresenter.requestValidateCode(phone, imageCode, Config.SMS_TEMPLATE_CODE_HOLYY);
                 }
                 break;
             case R.id.iv_finish:

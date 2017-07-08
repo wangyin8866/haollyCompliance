@@ -16,9 +16,20 @@ public interface Config {
     String platform="1";//好利网
     String mer_id="1";//平台号 好利网
     String platformhaolyy="haolyy";
-    String client = "Android";
+    String client = "4";
     String returl="http://www.chinazyjr.com/";
 
     int status_with_draw=9001;
     int staus_recharge=9002;
+
+    /**
+     * 获取短信验证码 operationType 短信验证码用途:1注册(register) 2修改密码(forget) 3充值(recharge) 4投资(investment) 5修改用户名(changeUserName) image_code 图形验证码
+     */
+    String SMS_OPERATION_TYPE_REG = "1";//
+    String SMS_OPERATION_TYPE_FOR = "2";
+    String SMS_OPERATION_TYPE_REC = "3";
+    String SMS_OPERATION_TYPE_INV = "4";
+    String SMS_OPERATION_TYPE_MOD = "5";
+
+    String SMS_TEMPLATE_CODE_HOLYY = "100";//好利网100
 }

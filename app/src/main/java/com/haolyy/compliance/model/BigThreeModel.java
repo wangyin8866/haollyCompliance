@@ -1,14 +1,21 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.login.SmsBean;
 import com.haolyy.compliance.service.UserApi;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+
+import static com.haolyy.compliance.config.Config.client;
+import static com.haolyy.compliance.config.Config.platformhaolyy;
 
 /**
  * Created by LL on 2017/1/7.
@@ -17,6 +24,7 @@ import rx.Observable;
 public class BigThreeModel extends BaseModel {
     private UserApi userApi;
     private static BigThreeModel userModel;
+    private  Map<String, String> map = new HashMap<>();
 
     private BigThreeModel() {
         super();
@@ -24,7 +32,7 @@ public class BigThreeModel extends BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL2)
+                .baseUrl(NetConstantValues.HOST_URL3)
                 .build();
         userApi = retrofit.create(UserApi.class);
     }
@@ -44,12 +52,18 @@ public class BigThreeModel extends BaseModel {
      *
      * @param phone_num
      * @param imagecode
-     * @param systemplate
-     * @param type register forget
+     * @param sms_template_code
+     * @param operationType register forget
      * @return
      */
-    public Observable<SmsBean> sendSms(String phone_num,String imagecode,String systemplate,String type) {
-        return userApi.sendSms(phone_num,imagecode,systemplate,type,BaseApplication.token);
+    public Observable<BaseBean> requestValidateCode(String phone_num, String imagecode, String sms_template_code, String operationType) {
+        map.clear();
+        map.put("phone_num", phone_num);
+        map.put("token",BaseApplication.token );
+        map.put("operationType", operationType);
+        map.put("image_code", imagecode);
+        map.put("sms_template_code", sms_template_code);
+        return userApi.requestValidateCode(map);
     }
 
 }

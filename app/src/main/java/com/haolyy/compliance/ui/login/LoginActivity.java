@@ -96,7 +96,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
                     UIUtils.showToastCommon(mContext, Config.TIP_ALL);
                     return;
                 }
-                mPresenter.login(phone, pwd,"192.168.7.113");
+                mPresenter.login(phone, pwd);
                 break;
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);

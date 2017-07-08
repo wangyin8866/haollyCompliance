@@ -1,7 +1,10 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.BaseBean;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.custom.wheelview.adapter.BaseWheelAdapter;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
@@ -56,31 +59,28 @@ public class UserModel extends BaseModel {
        return userApi.getToken();
     }
 
+
     /**
      * 登录
      *
      *
      */
 
-    public Observable<LoginResponseBean>login(String phone_num, String password,String loginIp) {
-        map.put("mobile", phone_num);
-        map.put("passWord", password);
-        map.put("loginIp", loginIp);
-        map.put("version", version);
-        map.put("platform", platformhaolyy);
-        map.put("client", client);
+    public Observable<LoginResponseBean>login(String phone_num, String password) {
+        map.put("phone_num", phone_num);
+        map.put("password", password);
+//        map.put("token", BaseApplication.token);
         return userApi.login(map);
     }
 
-    public Observable<RegisterBean> register(String phone_num, String password,String smsCode,String imageCode,String registBd,String channel,String inviteCode) {
+    public Observable<BaseBean> register(String phone_num, String password, String smsCode, String imageCode, String channel, String inviteCode) {
         map.clear();
-        map.put("mobile", phone_num);
+        map.put("phone_num", phone_num);
         map.put("password", password);
         map.put("smsCode", smsCode);
-        map.put("imageCode", imageCode);
-        map.put("client", client);
-        map.put("platform", platformhaolyy);
-        map.put("registBd", registBd);
+        map.put("validate_code", imageCode);
+        map.put("client", Config.client);
+        map.put("platform", Config.platform);
         map.put("version", version);
         map.put("channel",channel);
         map.put("inviteCode",inviteCode);
@@ -88,18 +88,18 @@ public class UserModel extends BaseModel {
         return userApi.register(map);
     }
 
-    public Observable<CheckImageCode> checkImageCode(String imagecode) {
-        return userApi.checkImage(BaseApplication.token,imagecode);
+    public Observable<CheckImageCode> sendTextSms(String phone_num) {
+        return userApi.sendTextSms(phone_num);
     }
 
-    public Observable<BaseResponseBean> forgetPassWord(String phone_num, String password,String smsCode,String imageCode) {
+    public Observable<BaseBean> forgetPassWord(String phone_num, String password, String smsCode, String imageCode) {
         map.clear();
-        map.put("mobile", phone_num);
+        map.put("phone_num", phone_num);
         map.put("password", password);
         map.put("smsCode", smsCode);
-        map.put("imageCode", imageCode);
-        map.put("client", client);
-        map.put("platform", platformhaolyy);
+        map.put("validate_code", imageCode);
+//        map.put("client", client);
+//        map.put("platform", platformhaolyy);
         map.put("token",BaseApplication.token);
         return userApi.forgetPassWord(map);
     }

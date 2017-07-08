@@ -26,9 +26,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         super(context);
     }
 
-    public void login(String phone_num, String password, String loginIp) {
+    public void login(String phone_num, String password) {
 
-        invoke(UserModel.getInstance().login(phone_num, password, loginIp), new Subscriber<LoginResponseBean>() {
+        invoke(UserModel.getInstance().login(phone_num, password), new Subscriber<LoginResponseBean>() {
             @Override
             public void onCompleted() {
 
@@ -41,17 +41,13 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
             @Override
             public void onNext(LoginResponseBean loginResponseBean) {
-                if (loginResponseBean.getStatus().equals("200")) {
-                    if (loginResponseBean.getData().getStatus().equals("200")) {
-                        BaseApplication.mLoginState=true;
-                        BaseApplication.userId=loginResponseBean.getData().getData().getUserId();
-                        BaseApplication.mUserName=loginResponseBean.getData().getData().getMobile();
-                        BaseApplication.juid=loginResponseBean.getData().getData().getUserCode();
-                        mContext.startActivity(new Intent(mContext, MainActivity.class));
-                        ((LoginActivity)mContext).finish();
-                    } else {
-                        UIUtils.showToastCommon(mContext, loginResponseBean.getData().getMsg());
-                    }
+                if (loginResponseBean.getCode().equals("200")) {
+                    BaseApplication.mLoginState = true;
+                    BaseApplication.userId = loginResponseBean.getModel().getId();
+//                    BaseApplication.mUserName = loginResponseBean.getData().getData().getMobile();
+//                    BaseApplication.juid = loginResponseBean.getData().getData().getUserCode();
+                    mContext.startActivity(new Intent(mContext, MainActivity.class));
+                    ((LoginActivity)mContext).finish();
                 } else {
                     UIUtils.showToastCommon(mContext, loginResponseBean.getMsg());
                 }

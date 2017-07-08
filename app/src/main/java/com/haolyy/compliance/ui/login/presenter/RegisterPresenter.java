@@ -3,7 +3,9 @@ package com.haolyy.compliance.ui.login.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.RegisterBean;
@@ -31,8 +33,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
     }
 
-    public void register(String phone_num, String password, String smsCode, String imageCode, String registBd,String chnnel, String regsiterCode) {
-        invoke(UserModel.getInstance().register(phone_num, password, smsCode, imageCode, registBd,chnnel, regsiterCode), new Subscriber<RegisterBean>() {
+    public void register(String phone_num, String password, String smsCode, String imageCode, String chnnel, String regsiterCode) {
+        invoke(UserModel.getInstance().register(phone_num, password, smsCode, imageCode,chnnel, regsiterCode), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 
@@ -44,13 +46,10 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
 
             @Override
-            public void onNext(RegisterBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        getView().skip();
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                    }
+            public void onNext(BaseBean s) {
+                if (s.getCode().equals("200")) {
+                    getView().skip();
+
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }
@@ -60,8 +59,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
     }
 
 
-    public void sendSms(String phone_num, String imagecode, String systemplate) {
-        invoke(BigThreeModel.getInstance().sendSms(phone_num, imagecode, systemplate,"register"), new Subscriber<SmsBean>() {
+    public void requestValidateCode(String phone_num, String imagecode, String sms_template_code) {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode, sms_template_code, Config.SMS_OPERATION_TYPE_REG), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 
@@ -74,14 +73,9 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
 
             @Override
-            public void onNext(SmsBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        getView().countDown(true);
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                        getView().countDown(false);
-                    }
+            public void onNext(BaseBean s) {
+                if (s.getCode().equals("200")) {
+                    getView().countDown(true);
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                     getView().countDown(false);
@@ -90,8 +84,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
         });
     }
 
-    public void checkImageCode(String image) {
-        invoke(UserModel.getInstance().checkImageCode(image), new Subscriber<CheckImageCode>() {
+    public void sendTextSms(String phone_num) {
+        invoke(UserModel.getInstance().sendTextSms(phone_num), new Subscriber<CheckImageCode>() {
             @Override
             public void onCompleted() {
 
@@ -138,14 +132,11 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
             @Override
             public void onNext(TokenResponseBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        String token = s.getData().getData().getToken();
-                        BaseApplication.token = token;
-                        getView().showImageCode();
-                    } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
-                    }
+                if (s.getCode().equals("200")) {
+                    String token = s.getModel().getToken();
+                    BaseApplication.token = token;
+                    getView().showImageCode();
+
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }

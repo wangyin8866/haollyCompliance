@@ -1,6 +1,7 @@
 package com.haolyy.compliance.service;
 
 
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
@@ -31,24 +32,26 @@ public interface UserApi {
 
     @FormUrlEncoded
     @POST(NetConstantValues.user_register)
-    Observable<RegisterBean> register(@FieldMap Map<String, String> params);
+    Observable<BaseBean> register(@FieldMap Map<String, String> params);
 
 
-
-    @GET(NetConstantValues.SMS_SENDSMSCODE)
-    Observable<SmsBean> sendSms(@Query("mobile") String mobile,@Query("imagecode") String imagecode,@Query("systemplate") String systemplate,@Query("type") String type,@Query("token") String token);
+    @FormUrlEncoded
+    @POST(NetConstantValues.REQUEST_VALIDATE_CODE)
+    Observable<BaseBean> requestValidateCode(@FieldMap Map<String, String> params);
 
 
     @GET(NetConstantValues.IMAGE_CHECK)
-    Observable<CheckImageCode> checkImage(@Query("token") String token,
-                                          @Query("imagecode") String imagecode);
+    Observable<CheckImageCode> sendTextSms(@Query("phone_num") String phone_num);
 
-    @GET(NetConstantValues.GET_TOKEN)
+    @POST(NetConstantValues.GET_TOKEN)
     Observable<TokenResponseBean> getToken();
+
+
+
 
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FORGETPWD)
-    Observable<BaseResponseBean> forgetPassWord(@FieldMap Map<String, String> params);
+    Observable<BaseBean> forgetPassWord(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FINDSTATUS)

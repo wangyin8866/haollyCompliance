@@ -112,9 +112,9 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
     @Override
     public void getSms(boolean isGetSms) {
         if (isGetSms) {
-            phone = etForgetAccount.getText().toString();
-            imageCode = etForgetImage.getText().toString();
-            mPresenter.sendSms(phone, imageCode, "find_login_psd");
+//            phone = etForgetAccount.getText().toString();
+//            imageCode = etForgetImage.getText().toString();
+//            mPresenter.sendSms(phone, imageCode, "find_login_psd");
         } else {
             tvSendSms.setEnabled(true);
         }
@@ -156,7 +156,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                     return;
                 }
                 tvSendSms.setEnabled(false);
-                mPresenter.checkImageCode(imageCode);
+                mPresenter.requestValidateCode(phone,imageCode,Config.SMS_TEMPLATE_CODE_HOLYY);
                 break;
             case R.id.tv_forget_next:
                 phone = etForgetAccount.getText().toString();
