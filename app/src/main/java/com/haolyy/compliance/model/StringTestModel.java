@@ -1,12 +1,7 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.service.ProductApi;
 import com.haolyy.compliance.service.UserApi;
-
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by wngyin on 2017/6/24.
@@ -21,12 +16,6 @@ public class StringTestModel extends BaseModel {
     public StringTestModel() {
         //手动创建一个OkHttpClient并设置超时时间
         super();
-        retrofit = new Retrofit.Builder()
-                .client(httpClientBuilder.build())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL)
-                .build();
 
         productApi = retrofit.create(ProductApi.class);
         userApi = retrofit.create(UserApi.class);
