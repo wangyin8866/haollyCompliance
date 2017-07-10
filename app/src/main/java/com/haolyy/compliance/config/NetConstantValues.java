@@ -5,41 +5,12 @@ package com.haolyy.compliance.config;
  */
 
 public interface NetConstantValues {
-    //本地
-//     String HOST_URL = "http://192.168.11.104:8080/";
-//     String HOST_URL2 = "http://192.168.11.104:8081/";
-    //测试服务器
     /**
-     * //产品接口
+     * 测试服务器
      */
-    String HOST_URL = "http://192.168.7.113:8010/";
-    /**
-     * //短信接口
-     */
-    String HOST_URL2 = "http://192.168.7.113:8018/";
-    /**
-     * //用户接口
-     */
-    String HOST_URL3 = "http://192.168.6.59:8010/";
-    /**
-     * //支付接口
-     */
-    String HOST_URL4 = "http://192.168.7.113:8014/";
+    String HOST_URL = "http://192.168.6.59:8010/";
 
-    //杜欣
-//    String HOST_URL2 = "http://192.168.13.213:8080/";
-//    String HOST_URL="http://192.168.13.213:8080/";
-    //赵建华
-     //String HOST_URL = "http://192.168.10.97:8080/";
-    //杨全帅
-    String HOST_URLY ="http://192.168.13.63:8080/";
-    //骆丹
-    //String HOST_URL2 = "http://192.168.11.179:8080/";
-    //String HOST_URL="http://192.168.11.179:8080/";
-    //李佳
-//    String HOST_URL = "http://192.168.9.229:8080/";
-    //贺流
-   // String HOST_URL= "http://192.168.10.214:8080/";
+
 
 
     String USERMANAGE = "zhongying/v1/api/";

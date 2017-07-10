@@ -2,20 +2,12 @@ package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
-import com.haolyy.compliance.config.NetConstantValues;
-import com.haolyy.compliance.entity.login.SmsBean;
 import com.haolyy.compliance.service.UserApi;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-
-import static com.haolyy.compliance.config.Config.client;
-import static com.haolyy.compliance.config.Config.platformhaolyy;
 
 /**
  * Created by LL on 2017/1/7.
@@ -28,12 +20,7 @@ public class BigThreeModel extends BaseModel {
 
     private BigThreeModel() {
         super();
-        retrofit=new Retrofit.Builder()
-                .client(httpClientBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URL3)
-                .build();
+
         userApi = retrofit.create(UserApi.class);
     }
 
