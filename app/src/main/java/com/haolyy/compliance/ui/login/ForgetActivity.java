@@ -101,7 +101,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
 
     @Override
     public void showImageCode() {
-        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
     }
 
     /**
@@ -136,14 +136,14 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
     public void modifyImageCode() {
         etForgetImage.requestFocus();
         etForgetImage.getText().clear();
-        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
     }
 
     @OnClick({R.id.iv_code, R.id.tv_send_sms, R.id.tv_forget_next, R.id.iv_finish, R.id.iv_show_pwd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
-                Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+                Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.tv_send_sms:
                 phone = etForgetAccount.getText().toString();

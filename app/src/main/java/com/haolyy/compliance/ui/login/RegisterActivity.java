@@ -171,8 +171,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     @Override
     public void showImageCode() {
-        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
-        LogUtils.e(tag, NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token);
+        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        LogUtils.e(tag, NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token);
     }
 
     /**
@@ -194,7 +194,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
      */
     @Override
     public void modifyImageCode() {
-        Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
         etImageCode.requestFocus();
         etImageCode.getText().clear();
     }
@@ -203,7 +203,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
-                Glide.with(mContext).load(NetConstantValues.HOST_URL3 + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+                Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.textView3:
                 phone = etPhone.getText().toString();
