@@ -23,19 +23,14 @@ public class ProductListPresenter extends BasePresenter<ProductListView> {
         invoke(ProductModel.getInstance().getProductList(product_category_id, "", "", "", pageNum), new ProgressSubscriber<ProductList>(new SubscriberOnNextListener<ProductList>() {
             @Override
             public void onNext(ProductList o) {
-                if (o.getStatus().equals("200")) {
-                    if (o.getData().getStatus().equals("200")) {
+                if (o.getCode().equals("200")) {
+                    if (o.getModel().getCode().equals("200")) {
                         if (isLoadMore) {
                             getView().showGetMoreData(o);
                         } else {
                             getView().showData(o);
                         }
-
-                    } else {
-                        getView().showErrorToast(o.getData().getMsg());
                     }
-                } else {
-                    getView().showErrorToast(o.getMsg());
                 }
             }
 

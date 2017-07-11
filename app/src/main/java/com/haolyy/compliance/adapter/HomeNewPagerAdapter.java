@@ -6,7 +6,8 @@ import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.HomeNewBinding;
-import com.haolyy.compliance.entity.TestProduct;
+import com.haolyy.compliance.entity.home.HomeActivity;
+import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class HomeNewPagerAdapter extends WyBasePagerAdapter {
 
-    private TestProduct testProduct;
+    private HomeActivity.ModelBeanX.ModelBean.RecommendNewBean recommendNewBean;
     private HomeNewBinding binding;
 
     public HomeNewPagerAdapter(List list, Context mContext) {
@@ -24,26 +25,22 @@ public class HomeNewPagerAdapter extends WyBasePagerAdapter {
     }
 
 
-
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        testProduct = (TestProduct) list.get(position);
+        recommendNewBean = (HomeActivity.ModelBeanX.ModelBean.RecommendNewBean) list.get(position);
         binding = DataBindingUtil.inflate(inflate, R.layout.item_home_new_pager, container, false);
-        binding.setHomeNew(testProduct);
-
-
-        binding.proYield1.setText(testProduct.getRate() + "");
-        binding.proYield2.setText(testProduct.getRate() + "");
-        binding.proDeadline.setText(testProduct.getDeline() + "天");
-        binding.tvBorrowTypeStr.setText(testProduct.getTotal() + "元");
-        binding.progressBar.setCurrentCount(500);
-        binding.progressBar.setMaxCount(800);
-
+        binding.setHomeNew(recommendNewBean);
+        binding.proYield1.setText(recommendNewBean.getAnnualizedRate() + "");
+        WYUtils.setVisibility(binding.rateAdd, binding.proYield2, binding.extraRatePercent, recommendNewBean.getAppendRate());
+        binding.proYield2.setText(recommendNewBean.getAppendRate() + "");
+        binding.proDeadline.setText(recommendNewBean.getPeriodLength() + WYUtils.getInvestDeadline(recommendNewBean.getPeriodUnit()));
+        binding.tvBorrowTypeStr.setText(recommendNewBean.getAmountWait() + "元");
+        binding.progressBar.setMaxCount(WYUtils.processAmount(recommendNewBean.getAmountWait()) + WYUtils.processAmount(recommendNewBean.getAmountYes()));
+        binding.progressBar.setCurrentCount((WYUtils.processAmount(recommendNewBean.getAmountWait()) + WYUtils.processAmount(recommendNewBean.getAmountYes())) * WYUtils.processAmount(recommendNewBean.getAmountScale()) / 100);
+        binding.tvProgress.setText(recommendNewBean.getAmountScale() + "%");
         container.addView(binding.getRoot());
         return binding.getRoot();
     }
-
-
 
 
 }

@@ -4,11 +4,11 @@
 
     <data class="HomeNewBinding">
 
-        <import type="com.haolyy.compliance.entity.TestProduct" />
+        <import type="com.haolyy.compliance.entity.home.HomeActivity.ModelBeanX.ModelBean.RecommendNewBean" />
 
         <variable
             name="homeNew"
-            type="TestProduct" />
+            type="RecommendNewBean" />
     </data>
 
     <LinearLayout
@@ -177,7 +177,8 @@
                         android:textSize="10sp" />
 
                     <TextView
-                        android:layout_width="23dp"
+                        android:id="@+id/tv_progress"
+                        android:layout_width="wrap_content"
                         android:layout_height="12dp"
                         android:layout_alignParentRight="true"
                         android:text="63%"

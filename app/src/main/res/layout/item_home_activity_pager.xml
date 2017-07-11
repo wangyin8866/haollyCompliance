@@ -3,11 +3,11 @@
 
     <data class="HomeActivityBinding">
 
-        <import type="com.haolyy.compliance.entity.TestProduct" />
+        <import type="com.haolyy.compliance.entity.home.HomeActivity.ModelBeanX.ModelBean.RecommendBean" />
 
         <variable
             name="homeActivity"
-            type="TestProduct" />
+            type="RecommendBean" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

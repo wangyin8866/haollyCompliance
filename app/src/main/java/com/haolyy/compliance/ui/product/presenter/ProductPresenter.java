@@ -3,7 +3,6 @@ package com.haolyy.compliance.ui.product.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
-import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.ui.product.view.ProductView;
@@ -26,14 +25,10 @@ public class ProductPresenter extends BasePresenter<ProductView> {
         invoke(ProductModel.getInstance().getTitle(),new ProgressSubscriber<ProductTitle>(new SubscriberOnNextListener<ProductTitle>() {
             @Override
             public void onNext(ProductTitle o) {
-                if (o.getStatus().equals("200")) {
-                    if (o.getData().getStatus().equals("200")) {
+                if (o.getCode().equals("200")) {
+                    if (o.getModel().getCode().equals("200")) {
                        getView().showData(o);
-                    } else {
-                        getView().showErrorToast(o.getData().getMsg());
                     }
-                } else {
-                    getView().showErrorToast(o.getMsg());
                 }
             }
 
@@ -43,32 +38,7 @@ public class ProductPresenter extends BasePresenter<ProductView> {
             }
         },mContext));
     }
-    public void getProductList(final boolean isLoadMore, String product_category_id, String pageNum) {
-        invoke(ProductModel.getInstance().getProductList(product_category_id, "", "", "", pageNum), new ProgressSubscriber<ProductList>(new SubscriberOnNextListener<ProductList>() {
-            @Override
-            public void onNext(ProductList o) {
-                if (o.getStatus().equals("200")) {
-                    if (o.getData().getStatus().equals("200")) {
-                        if (isLoadMore) {
-//                            getView().showGetMoreData(o);
-                        } else {
-//                            getView().showBannerData(o);
-                        }
 
-                    } else {
-                        getView().showErrorToast(o.getData().getMsg());
-                    }
-                } else {
-                    getView().showErrorToast(o.getMsg());
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-        }, mContext));
-    }
 
     public void getDetail(String id, String juid,String project_type,String product_no){
         invoke(ProductModel.getInstance().getDetail(id,juid,project_type,product_no),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {

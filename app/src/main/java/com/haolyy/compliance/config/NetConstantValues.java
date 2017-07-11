@@ -51,13 +51,13 @@ public interface NetConstantValues {
      */
 
     //首页
-    String HOME="chinazy-product-info/home/";
+    String HOME="zhongying/v1/api/product/";
     String HOME_PRODUCT=HOME+"getHomeProduct";//首页产品展示
     String HOME_ARTICLE=HOME+"getHomeArticle";//首页新闻
     String HOME_RECOMMEND = HOME + "getrecommend";//首页活动信息
     String HOME_BANNER = HOME + "getbanner";//首页轮播图
     //列表详情页
-    String PRODUCT="chinazy-product-info/product/";
+    String PRODUCT="zhongying/v1/api/product/";
     String PRODUCT_TITLE_LIST = PRODUCT+"productTitleList";//菜单列表
     String PRODUCT_LIST = PRODUCT+"productList";//产品列表
     String PRODUCT_BASE_DETAIL = PRODUCT+"productDetailBase";//产品基础详情信息

@@ -7,23 +7,22 @@ import java.util.List;
  */
 
 public class ProductTitle {
-
     /**
-     * data : {"data":{"title_list":[[{"category_name":"短期赢","node_no":"DQY","parent_node_no":"0"},{"category_name":"短期赢D","node_no":"DQYD","parent_node_no":"DQY"},{"category_name":"短期赢C","node_no":"DQYC","parent_node_no":"DQY"},{"category_name":"短期赢B","node_no":"DQYB","parent_node_no":"DQY"},{"category_name":"短期赢A","node_no":"DQYA","parent_node_no":"DQY"}],[{"category_name":"赢计划","node_no":"YJH","parent_node_no":"0"},{"category_name":"赢计划D","node_no":"YJHD","parent_node_no":"YJH"},{"category_name":"赢计划C","node_no":"YJHC","parent_node_no":"YJH"},{"category_name":"赢计划B","node_no":"YJHB","parent_node_no":"YJH"},{"category_name":"赢计划A","node_no":"YJHA","parent_node_no":"YJH"}],[{"category_name":"优选计划","node_no":"YXJH","parent_node_no":"0"},{"category_name":"消费贷","node_no":"XFD","parent_node_no":"YXJH"},{"category_name":"闪车贷","node_no":"SCD","parent_node_no":"YXJH"},{"category_name":"票据贷","node_no":"PJD","parent_node_no":"YXJH"}]]},"msg":"业务正常","status":"200"}
-     * msg : 系统正常
-     * status : 200
+     * code : 200
+     * msg : 成功
+     * model : {"code":"200","msg":"成功","model":{"title_list":[[{"node_no":"DQY","category_name":"短期赢","parent_node_no":"0"},{"node_no":"DQYD","category_name":"短期赢D","parent_node_no":"DQY"},{"node_no":"DQYC","category_name":"短期赢C","parent_node_no":"DQY"},{"node_no":"DQYB","category_name":"短期赢B","parent_node_no":"DQY"},{"node_no":"DQYA","category_name":"短期赢A","parent_node_no":"DQY"}],[{"node_no":"YJH","category_name":"赢计划","parent_node_no":"0"},{"node_no":"YJHD","category_name":"赢计划D","parent_node_no":"YJH"},{"node_no":"YJHC","category_name":"赢计划C","parent_node_no":"YJH"},{"node_no":"YJHB","category_name":"赢计划B","parent_node_no":"YJH"},{"node_no":"YJHA","category_name":"赢计划A","parent_node_no":"YJH"}],[{"node_no":"YXJH","category_name":"优选计划","parent_node_no":"0"},{"node_no":"ZZJ","category_name":"周周赢","parent_node_no":"YXJH"},{"node_no":"XFD","category_name":"消费贷","parent_node_no":"YXJH"},{"node_no":"SCD","category_name":"闪车贷","parent_node_no":"YXJH"},{"node_no":"PJD","category_name":"票据贷","parent_node_no":"YXJH"}]]}}
      */
 
-    private DataBeanX data;
+    private String code;
     private String msg;
-    private String status;
+    private ModelBeanX model;
 
-    public DataBeanX getData() {
-        return data;
+    public String getCode() {
+        return code;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -34,31 +33,31 @@ public class ProductTitle {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public ModelBeanX getModel() {
+        return model;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setModel(ModelBeanX model) {
+        this.model = model;
     }
 
-    public static class DataBeanX {
+    public static class ModelBeanX {
         /**
-         * data : {"title_list":[[{"category_name":"短期赢","node_no":"DQY","parent_node_no":"0"},{"category_name":"短期赢D","node_no":"DQYD","parent_node_no":"DQY"},{"category_name":"短期赢C","node_no":"DQYC","parent_node_no":"DQY"},{"category_name":"短期赢B","node_no":"DQYB","parent_node_no":"DQY"},{"category_name":"短期赢A","node_no":"DQYA","parent_node_no":"DQY"}],[{"category_name":"赢计划","node_no":"YJH","parent_node_no":"0"},{"category_name":"赢计划D","node_no":"YJHD","parent_node_no":"YJH"},{"category_name":"赢计划C","node_no":"YJHC","parent_node_no":"YJH"},{"category_name":"赢计划B","node_no":"YJHB","parent_node_no":"YJH"},{"category_name":"赢计划A","node_no":"YJHA","parent_node_no":"YJH"}],[{"category_name":"优选计划","node_no":"YXJH","parent_node_no":"0"},{"category_name":"消费贷","node_no":"XFD","parent_node_no":"YXJH"},{"category_name":"闪车贷","node_no":"SCD","parent_node_no":"YXJH"},{"category_name":"票据贷","node_no":"PJD","parent_node_no":"YXJH"}]]}
-         * msg : 业务正常
-         * status : 200
+         * code : 200
+         * msg : 成功
+         * model : {"title_list":[[{"node_no":"DQY","category_name":"短期赢","parent_node_no":"0"},{"node_no":"DQYD","category_name":"短期赢D","parent_node_no":"DQY"},{"node_no":"DQYC","category_name":"短期赢C","parent_node_no":"DQY"},{"node_no":"DQYB","category_name":"短期赢B","parent_node_no":"DQY"},{"node_no":"DQYA","category_name":"短期赢A","parent_node_no":"DQY"}],[{"node_no":"YJH","category_name":"赢计划","parent_node_no":"0"},{"node_no":"YJHD","category_name":"赢计划D","parent_node_no":"YJH"},{"node_no":"YJHC","category_name":"赢计划C","parent_node_no":"YJH"},{"node_no":"YJHB","category_name":"赢计划B","parent_node_no":"YJH"},{"node_no":"YJHA","category_name":"赢计划A","parent_node_no":"YJH"}],[{"node_no":"YXJH","category_name":"优选计划","parent_node_no":"0"},{"node_no":"ZZJ","category_name":"周周赢","parent_node_no":"YXJH"},{"node_no":"XFD","category_name":"消费贷","parent_node_no":"YXJH"},{"node_no":"SCD","category_name":"闪车贷","parent_node_no":"YXJH"},{"node_no":"PJD","category_name":"票据贷","parent_node_no":"YXJH"}]]}
          */
 
-        private DataBean data;
+        private String code;
         private String msg;
-        private String status;
+        private ModelBean model;
 
-        public DataBean getData() {
-            return data;
+        public String getCode() {
+            return code;
         }
 
-        public void setData(DataBean data) {
-            this.data = data;
+        public void setCode(String code) {
+            this.code = code;
         }
 
         public String getMsg() {
@@ -69,15 +68,15 @@ public class ProductTitle {
             this.msg = msg;
         }
 
-        public String getStatus() {
-            return status;
+        public ModelBean getModel() {
+            return model;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setModel(ModelBean model) {
+            this.model = model;
         }
 
-        public static class DataBean {
+        public static class ModelBean {
             private List<List<TitleListBean>> title_list;
 
             public List<List<TitleListBean>> getTitle_list() {
@@ -90,22 +89,14 @@ public class ProductTitle {
 
             public static class TitleListBean {
                 /**
-                 * category_name : 短期赢
                  * node_no : DQY
+                 * category_name : 短期赢
                  * parent_node_no : 0
                  */
 
-                private String category_name;
                 private String node_no;
+                private String category_name;
                 private String parent_node_no;
-
-                public String getCategory_name() {
-                    return category_name;
-                }
-
-                public void setCategory_name(String category_name) {
-                    this.category_name = category_name;
-                }
 
                 public String getNode_no() {
                     return node_no;
@@ -113,6 +104,14 @@ public class ProductTitle {
 
                 public void setNode_no(String node_no) {
                     this.node_no = node_no;
+                }
+
+                public String getCategory_name() {
+                    return category_name;
+                }
+
+                public void setCategory_name(String category_name) {
+                    this.category_name = category_name;
                 }
 
                 public String getParent_node_no() {

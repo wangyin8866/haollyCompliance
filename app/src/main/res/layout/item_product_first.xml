@@ -3,7 +3,7 @@
 
     <data class="ProductFirstBinding">
 
-        <import type="com.haolyy.compliance.entity.product.ProductList.DataBeanX.DataBean.DataListBean" />
+        <import type="com.haolyy.compliance.entity.product.ProductList.ModelBeanX.ModelBean.DataListBean" />
 
         <import type="android.view.View" />
 

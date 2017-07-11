@@ -85,10 +85,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     }
 
-    @OnClick({R.id.tv_login, R.id.tv_register, R.id.tv_forget})
+    @OnClick({R.id.iv_finish,R.id.tv_login, R.id.tv_register, R.id.tv_forget})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.iv_finish:
+                finish();
+                break;
             case R.id.tv_login:
                 phone = etAccount.getText().toString();
                 pwd = etPwd.getText().toString();

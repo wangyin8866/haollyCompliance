@@ -8,9 +8,9 @@ import com.haolyy.compliance.entity.home.HomeProduct;
 
 import java.util.Map;
 
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
 import rx.Observable;
 
 /**
@@ -18,15 +18,16 @@ import rx.Observable;
  */
 
 public interface HomeAPi {
-    @GET(NetConstantValues.HOME_BANNER)
-    Observable<Banner> getBanner(@QueryMap Map<String,String> params);
-
-    @GET(NetConstantValues.HOME_PRODUCT)
-    Observable<HomeProduct> getProduct();
-
-    @GET(NetConstantValues.HOME_ARTICLE)
-    Observable<HomeArticle> getArticle(@Query("platform") String platform);
-
-    @GET(NetConstantValues.HOME_RECOMMEND)
-    Observable<HomeActivity> getRecommend(@QueryMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST(NetConstantValues.HOME_BANNER)
+    Observable<Banner> getBanner(@FieldMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST(NetConstantValues.HOME_PRODUCT)
+    Observable<HomeProduct> getProduct(@FieldMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST(NetConstantValues.HOME_ARTICLE)
+    Observable<HomeArticle> getArticle(@FieldMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST(NetConstantValues.HOME_RECOMMEND)
+    Observable<HomeActivity> getRecommend(@FieldMap Map<String, String> params);
 }

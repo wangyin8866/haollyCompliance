@@ -50,6 +50,7 @@ public class ProductModel extends BaseModel {
         map.put("date_limit", date_limit);
         map.put("page_index", page_index);
         map.put("platform", platform);
+        map.put("client", client);
         return productApi.getProductList(map);
     }
 

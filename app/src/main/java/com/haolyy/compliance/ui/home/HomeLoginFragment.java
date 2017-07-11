@@ -24,7 +24,6 @@ import com.haolyy.compliance.custom.AutoVerticalScrollTextView;
 import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.LocalImageHolderView;
 import com.haolyy.compliance.custom.MyPointView;
-import com.haolyy.compliance.entity.TestProduct;
 import com.haolyy.compliance.entity.home.Banner;
 import com.haolyy.compliance.entity.home.HomeActivity;
 import com.haolyy.compliance.entity.home.HomeArticle;
@@ -32,7 +31,6 @@ import com.haolyy.compliance.entity.home.HomeProduct;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.ui.my.InviteFriendActivity;
-import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -75,12 +73,11 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
-    private List<TestProduct> testProducts;
     private boolean isInvest;
-    private String[] auto_roll_strings = {"asdasd", "bbbbb", "cccccccccc"};
+    private List<String> auto_roll_strings;
     private boolean isAutoRollRunning;
     private int autoRollIndex;
-    private List<Banner.DataBeanX.DataBean.CmsCarouselFigureListBean> carouselFigureListBeen;
+    private List<Banner.ModelBeanX.ModelBean> modelBeen;
 
     @Nullable
     @Override
@@ -90,54 +87,6 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         initView();
 
 
-
-        testProducts = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            TestProduct testProduct = new TestProduct(1 + i, 10 + i, i, 100 * i, 1000 * i);
-            testProducts.add(testProduct);
-        }
-
-
-        pointView1.init(testProducts);
-
-        homeNewPager.setAdapter(new HomeNewPagerAdapter(testProducts, mContext));
-        homeNewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                pointView1.selectView(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        homeNewPager.setPageMargin(UIUtils.dip2px(20));
-        homeActivityPager.setAdapter(new HomeActivityPagerAdapter(testProducts, mContext));
-        homeActivityPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        homeActivityPager.setPageMargin(UIUtils.dip2px(10));
-        homeActivityPager.setOffscreenPageLimit(3);
-        homeXlv.setAdapter(new HomeProductAdapter(testProducts, getActivity()));
         return view;
     }
 
@@ -150,17 +99,16 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         } else {
             homeLlVisibility.setVisibility(View.VISIBLE);
         }
-        showAutoRollStrings();
 
-        //拉去数据
+
+        //拉去数据  1
         mPresenter.getBanner("2");
-        mPresenter.getHomeProduct();//首页产品
-        mPresenter.getHomeArticle();//首页新闻
-        mPresenter.getRecommend("4d5g8b5");//首页活动
+
+
     }
 
     private void showAutoRollStrings() {
-        textviewAutoRoll.setText(auto_roll_strings[0]);
+        textviewAutoRoll.setText(auto_roll_strings.get(0));
         isAutoRollRunning = true;
         handler.sendEmptyMessage(199);
 
@@ -172,7 +120,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
             if (msg.what == 199) {
                 textviewAutoRoll.next();
                 autoRollIndex++;
-                textviewAutoRoll.setText(auto_roll_strings[autoRollIndex % auto_roll_strings.length]);
+                textviewAutoRoll.setText(auto_roll_strings.get(autoRollIndex % auto_roll_strings.size()));
                 handler.sendEmptyMessageDelayed(199, 3000);
             }
         }
@@ -205,10 +153,11 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     @Override
     public void showBannerData(Banner banner) {
-        carouselFigureListBeen = banner.getData().getData().getCmsCarouselFigureList();
-        LogUtils.e("carouselFigureListBeen", carouselFigureListBeen.size() + "");
-        for (int i=0;i<carouselFigureListBeen.size();i++) {
-            images.add(carouselFigureListBeen.get(i).getImageUrl());
+
+        mPresenter.getHomeArticle();//首页新闻 2
+        modelBeen = banner.getModel().getModel();
+        for (int i = 0; i < modelBeen.size(); i++) {
+            images.add(modelBeen.get(i).getImageUrl());
         }
 
         this.banner.setPages(new CBViewHolderCreator() {
@@ -223,16 +172,49 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     @Override
     public void showHomeActivityData(HomeActivity homeActivity) {
+        mPresenter.getHomeProduct();//首页产品 4
 
+        //新手标
+        pointView1.init(homeActivity.getModel().getModel().getRecommendNew());
+        homeNewPager.setAdapter(new HomeNewPagerAdapter(homeActivity.getModel().getModel().getRecommendNew(), mContext));
+        homeNewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pointView1.selectView(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        homeNewPager.setPageMargin(UIUtils.dip2px(20));
+
+        //活动标
+        homeActivityPager.setAdapter(new HomeActivityPagerAdapter(homeActivity.getModel().getModel().getRecommend(), mContext));
+
+        homeActivityPager.setPageMargin(UIUtils.dip2px(10));
+        homeActivityPager.setOffscreenPageLimit(3);
     }
 
     @Override
     public void showHomeArticleData(HomeArticle homeArticle) {
 
+        mPresenter.getRecommend("1");//首页活动 3
+        auto_roll_strings = new ArrayList<>();
+        for (int i = 0; i < homeArticle.getModel().getModel().getAnnouncementList().size(); i++) {
+            auto_roll_strings.add(homeArticle.getModel().getModel().getAnnouncementList().get(i).getDescription());
+        }
+        showAutoRollStrings();
     }
 
     @Override
     public void showHomeProductData(HomeProduct homeProduct) {
-
+        homeXlv.setAdapter(new HomeProductAdapter(homeProduct.getModel().getModel(), getActivity()));
     }
 }

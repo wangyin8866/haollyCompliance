@@ -3,7 +3,6 @@ package com.haolyy.compliance.ui.product.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
@@ -24,14 +23,10 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
         invoke(ProductModel.getInstance().getBaseDetail(project_no,juid),new ProgressSubscriber<ProductBaseDetail>(new SubscriberOnNextListener<ProductBaseDetail>() {
             @Override
             public void onNext(ProductBaseDetail s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getCode().equals("200")) {
                             getView().showData(s);
-                    } else {
-                        getView().showErrorToast(s.getData().getMsg());
                     }
-                } else {
-                    getView().showErrorToast(s.getMsg());
                 }
             }
 

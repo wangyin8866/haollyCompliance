@@ -76,21 +76,21 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
 
     @Override
     public void showData(ProductTitle productList) {
-        for (int i = 0; i < productList.getData().getData().getTitle_list().size(); i++) {
-            parentTitles.add(productList.getData().getData().getTitle_list().get(i).get(0).getCategory_name());
-            parentNodeNo=productList.getData().getData().getTitle_list().get(i).get(0).getNode_no();
+        for (int i = 0; i < productList.getModel().getModel().getTitle_list().size(); i++) {
+            parentTitles.add(productList.getModel().getModel().getTitle_list().get(i).get(0).getCategory_name());
+            parentNodeNo=productList.getModel().getModel().getTitle_list().get(i).get(0).getNode_no();
             childTitle = new ArrayList<>();
             childNodeNo = new ArrayList<>();
-            for (int j = 1; j < productList.getData().getData().getTitle_list().get(i).size(); j++) {
+            for (int j = 1; j < productList.getModel().getModel().getTitle_list().get(i).size(); j++) {
 
-                childTitle.add(productList.getData().getData().getTitle_list().get(i).get(j).getCategory_name());
-                childNodeNo.add(productList.getData().getData().getTitle_list().get(i).get(j).getNode_no());
+                childTitle.add(productList.getModel().getModel().getTitle_list().get(i).get(j).getCategory_name());
+                childNodeNo.add(productList.getModel().getModel().getTitle_list().get(i).get(j).getNode_no());
             }
             thirdFragment = ProductListFragment.newInstance(childTitle, parentNodeNo, childNodeNo);
             mDatas.add(thirdFragment);
         }
         vpProductList.setAdapter(new TabAdapter(getFragmentManager(), mDatas, parentTitles));
-        vpProductList.setOffscreenPageLimit(productList.getData().getData().getTitle_list().size());
+        vpProductList.setOffscreenPageLimit(productList.getModel().getModel().getTitle_list().size());
         productTitle.setupWithViewPager(vpProductList);
 
         WYUtils.setIndicator(mContext, productTitle, 10, 10);

@@ -20,6 +20,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
@@ -84,6 +85,15 @@ public class WYUtils {
     }
 
     /**
+     * 把金额字符串转化为数字
+     * @param string
+     * @return
+     */
+    public static float processAmount(String string) {
+        return Float.valueOf(string.replace(",", ""));
+    }
+
+    /**
      * 2      * 判断当前应用是否是debug状态
      * 3
      */
@@ -135,6 +145,7 @@ public class WYUtils {
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric;
     }
+
     /**
      * 投资期限
      */
@@ -175,7 +186,7 @@ public class WYUtils {
     public static String getVersion(Context context)//获取版本号
     {
         try {
-            PackageInfo pi=context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return pi.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             // TODO Auto-generated catch block
@@ -186,15 +197,17 @@ public class WYUtils {
 
     /**
      * 跳转到MainActivity
-     * @param activity 当前activity
+     *
+     * @param activity    当前activity
      * @param currentPage 对应的page
      */
-    public static void skipMainActivity(Activity activity,int currentPage) {
-        Intent intent = new Intent(activity,MainActivity.class);
+    public static void skipMainActivity(Activity activity, int currentPage) {
+        Intent intent = new Intent(activity, MainActivity.class);
         intent.putExtra("currentPage", currentPage);
         activity.startActivity(intent);
         ActivityCollector.finishAll();
     }
+
     /**
      * webView加载
      */
@@ -261,8 +274,7 @@ public class WYUtils {
     }
 
     /**
-     *
-     * @param name  标的名
+     * @param name      标的名
      * @param imageView iv
      */
     public static void selectIcon(String name, ImageView imageView) {
@@ -270,15 +282,31 @@ public class WYUtils {
             imageView.setBackgroundResource(R.mipmap.duan);
         } else if (name.contains("赢计划")) {
             imageView.setBackgroundResource(R.mipmap.icon_ying);
-        }else if (name.contains("周周赢")) {
+        } else if (name.contains("周周赢")) {
             imageView.setBackgroundResource(R.mipmap.icon_zhou);
-        }else if (name.contains("消费贷")) {
+        } else if (name.contains("消费贷")) {
             imageView.setBackgroundResource(R.mipmap.icon_xiao);
-        }else if (name.contains("闪车贷")) {
+        } else if (name.contains("闪车贷")) {
             imageView.setBackgroundResource(R.mipmap.icon_che);
-        }else if (name.contains("票据贷")) {
+        } else if (name.contains("票据贷")) {
             imageView.setBackgroundResource(R.mipmap.icon_piao);
+        } else {
+            imageView.setBackgroundResource(R.mipmap.duan);
         }
 
     }
+
+    /**
+     * 设置利率的隐藏和显示
+     * @param textView1
+     * @param textView2
+     * @param textView3
+     * @param str
+     */
+    public static void setVisibility(TextView textView1, TextView textView2, TextView textView3, String str) {
+        textView1.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
+        textView2.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
+        textView3.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
+    }
+
 }

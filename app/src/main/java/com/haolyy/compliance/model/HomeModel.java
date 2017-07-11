@@ -34,19 +34,24 @@ public class HomeModel extends BaseModel {
         map.clear();
         map.put("type", type);
         map.put("platform", platform);
+        map.put("client", "PC");
         return homeAPi.getBanner(map);
     }
     public Observable<HomeProduct> getHomeProduct() {
-        return homeAPi.getProduct();
+        map.clear();
+        return homeAPi.getProduct(map);
     }
     public Observable<HomeArticle> getHomeArticle() {
-
-        return homeAPi.getArticle(platform);
+        map.clear();
+        map.put("platform", platform);
+        map.put("client", "PC");
+        return homeAPi.getArticle(map);
     }
     public Observable<HomeActivity> getRecommend(String userId) {
         map.clear();
         map.put("userId", userId);
-        map.put("client", "1");
+        map.put("platform", platform);
+        map.put("client", "PC");
         return homeAPi.getRecommend(map);
     }
 }

@@ -45,7 +45,10 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
         unbinder = ButterKnife.bind(this, view);
 
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
+        LogUtils.e("FragmentBottomRepaymentPlan projectNo", projectNo);
         mPresenter.getProductReturnPlan(false, projectNo, pageNum+"");
+
+
         repaymentXlv.setPullRefreshEnable(false);
         repaymentXlv.setXListViewListener(this);
 

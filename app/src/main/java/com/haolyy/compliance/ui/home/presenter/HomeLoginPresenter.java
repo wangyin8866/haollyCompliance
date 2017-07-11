@@ -9,6 +9,7 @@ import com.haolyy.compliance.entity.home.HomeArticle;
 import com.haolyy.compliance.entity.home.HomeProduct;
 import com.haolyy.compliance.model.HomeModel;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -16,63 +17,101 @@ import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
  * Created by wangyin on 2017/5/17.
  */
 
-public class HomeLoginPresenter extends BasePresenter<HomeLoginView>{
+public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
     public HomeLoginPresenter(Context context) {
         super(context);
     }
-    public void getBanner(String type){
-        invoke(HomeModel.getInstance().getBanner(type),new ProgressSubscriber<Banner>(new SubscriberOnNextListener<Banner>() {
+
+    /**
+     * 首页轮播图
+     *
+     * @param type
+     */
+    public void getBanner(String type) {
+        invoke(HomeModel.getInstance().getBanner(type), new ProgressSubscriber<Banner>(new SubscriberOnNextListener<Banner>() {
             @Override
             public void onNext(Banner s) {
-                getView().showBannerData(s);
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getCode().equals("200")) {
+                        getView().showBannerData(s);
+                    }
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-
+                LogUtils.e("getBanner", e.getMessage());
             }
-        },mContext));
+        }, mContext));
 
     }
-    public void getHomeProduct(){
-        invoke(HomeModel.getInstance().getHomeProduct(),new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
+
+    /**
+     * 首页产品
+     */
+    public void getHomeProduct() {
+        invoke(HomeModel.getInstance().getHomeProduct(), new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
             @Override
             public void onNext(HomeProduct s) {
-                getView().showHomeProductData(s);
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getCode().equals("200")) {
+                        getView().showHomeProductData(s);
+
+                    }
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-
+                LogUtils.e("getHomeProduct", e.getMessage());
             }
-        },mContext));
+        }, mContext));
 
     }
-    public void getHomeArticle(){
-        invoke(HomeModel.getInstance().getHomeArticle(),new ProgressSubscriber<HomeArticle>(new SubscriberOnNextListener<HomeArticle>() {
+
+    /**
+     * 首页新闻
+     */
+    public void getHomeArticle() {
+        invoke(HomeModel.getInstance().getHomeArticle(), new ProgressSubscriber<HomeArticle>(new SubscriberOnNextListener<HomeArticle>() {
             @Override
             public void onNext(HomeArticle s) {
-                getView().showHomeArticleData(s);
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getCode().equals("200")) {
+                        getView().showHomeArticleData(s);
+                    }
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-
+                LogUtils.e("getHomeArticle", e.getMessage());
             }
-        },mContext));
+        }, mContext));
 
     }
-    public void getRecommend(String userId){
-        invoke(HomeModel.getInstance().getRecommend(userId),new ProgressSubscriber<HomeActivity>(new SubscriberOnNextListener<HomeActivity>() {
+
+    /**
+     * 首页活动信息
+     *
+     * @param userId
+     */
+    public void getRecommend(String userId) {
+        invoke(HomeModel.getInstance().getRecommend(userId), new ProgressSubscriber<HomeActivity>(new SubscriberOnNextListener<HomeActivity>() {
             @Override
             public void onNext(HomeActivity s) {
-                getView().showHomeActivityData(s);
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getCode().equals("200")) {
+                        getView().showHomeActivityData(s);
+                    }
+                }
             }
+
             @Override
             public void onError(Throwable e) {
-
+                LogUtils.e("getRecommend", e.getMessage());
             }
-        },mContext));
+        }, mContext));
 
     }
 }

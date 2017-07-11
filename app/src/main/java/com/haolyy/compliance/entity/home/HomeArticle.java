@@ -8,23 +8,22 @@ import java.util.List;
  */
 
 public class HomeArticle {
-
     /**
-     * data : {"data":{"announcementList":[{"category":1,"client":1,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":44,"platform":1,"remark":"得分","title":"vdfg","url":"二分法"},{"category":1,"client":2,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":44,"platform":1,"remark":"得分","title":"vdfg","url":"二分法"},{"category":1,"client":3,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":44,"platform":1,"remark":"得分","title":"vdfg","url":"二分法"}],"eventList":[{"category":2,"client":1,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":2,"platform":1,"remark":"得分","title":"飞飞飞","url":"二分法"},{"category":2,"client":2,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":2,"platform":1,"remark":"得分","title":"飞飞飞","url":"二分法"}]},"msg":"业务正常","status":"200"}
-     * msg : 业务异常
-     * status : 301
+     * code : 200
+     * msg : 成功
+     * model : {"code":"200","msg":"成功","model":{"announcementList":[{"id":2,"title":"vdfg","url":"二分法","description":"发的多个","imageCoverUrl":null,"homePageCoverUrl":null,"content":"冯小刚","createTime":"2017-06-23 17:23:15"},{"id":14,"title":"改编法国和","url":"让他和别人发给","description":"法国华人","imageCoverUrl":null,"homePageCoverUrl":null,"content":"通过不通过和","createTime":"2017-06-26 18:31:28"}],"eventList":[{"id":13,"title":"如同一天b","url":"苟富贵","description":"染头发通过","imageCoverUrl":null,"homePageCoverUrl":null,"content":"让他改变","createTime":"2017-06-26 18:31:08"},{"id":17,"title":"发的帖规划","url":"发给花花提议","description":"突然很不同意","imageCoverUrl":null,"homePageCoverUrl":null,"content":"氧化钙很鳄鱼湖","createTime":"2017-06-26 19:21:38"}]}}
      */
 
-    private DataBeanX data;
+    private String code;
     private String msg;
-    private String status;
+    private ModelBeanX model;
 
-    public DataBeanX getData() {
-        return data;
+    public String getCode() {
+        return code;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -35,31 +34,31 @@ public class HomeArticle {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public ModelBeanX getModel() {
+        return model;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setModel(ModelBeanX model) {
+        this.model = model;
     }
 
-    public static class DataBeanX {
+    public static class ModelBeanX {
         /**
-         * data : {"announcementList":[{"category":1,"client":1,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":44,"platform":1,"remark":"得分","title":"vdfg","url":"二分法"},{"category":1,"client":2,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":44,"platform":1,"remark":"得分","title":"vdfg","url":"二分法"},{"category":1,"client":3,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":44,"platform":1,"remark":"得分","title":"vdfg","url":"二分法"}],"eventList":[{"category":2,"client":1,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":2,"platform":1,"remark":"得分","title":"飞飞飞","url":"二分法"},{"category":2,"client":2,"createTime":1498147200000,"description":"发的多个","modifyTime":1498147200000,"orderId":2,"platform":1,"remark":"得分","title":"飞飞飞","url":"二分法"}]}
-         * msg : 业务正常
-         * status : 200
+         * code : 200
+         * msg : 成功
+         * model : {"announcementList":[{"id":2,"title":"vdfg","url":"二分法","description":"发的多个","imageCoverUrl":null,"homePageCoverUrl":null,"content":"冯小刚","createTime":"2017-06-23 17:23:15"},{"id":14,"title":"改编法国和","url":"让他和别人发给","description":"法国华人","imageCoverUrl":null,"homePageCoverUrl":null,"content":"通过不通过和","createTime":"2017-06-26 18:31:28"}],"eventList":[{"id":13,"title":"如同一天b","url":"苟富贵","description":"染头发通过","imageCoverUrl":null,"homePageCoverUrl":null,"content":"让他改变","createTime":"2017-06-26 18:31:08"},{"id":17,"title":"发的帖规划","url":"发给花花提议","description":"突然很不同意","imageCoverUrl":null,"homePageCoverUrl":null,"content":"氧化钙很鳄鱼湖","createTime":"2017-06-26 19:21:38"}]}
          */
 
-        private DataBean data;
+        private String code;
         private String msg;
-        private String status;
+        private ModelBean model;
 
-        public DataBean getData() {
-            return data;
+        public String getCode() {
+            return code;
         }
 
-        public void setData(DataBean data) {
-            this.data = data;
+        public void setCode(String code) {
+            this.code = code;
         }
 
         public String getMsg() {
@@ -70,15 +69,15 @@ public class HomeArticle {
             this.msg = msg;
         }
 
-        public String getStatus() {
-            return status;
+        public ModelBean getModel() {
+            return model;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setModel(ModelBean model) {
+            this.model = model;
         }
 
-        public static class DataBean {
+        public static class ModelBean {
             private List<AnnouncementListBean> announcementList;
             private List<EventListBean> eventList;
 
@@ -100,91 +99,31 @@ public class HomeArticle {
 
             public static class AnnouncementListBean {
                 /**
-                 * category : 1
-                 * client : 1
-                 * createTime : 1498147200000
-                 * description : 发的多个
-                 * modifyTime : 1498147200000
-                 * orderId : 44
-                 * platform : 1
-                 * remark : 得分
+                 * id : 2
                  * title : vdfg
                  * url : 二分法
+                 * description : 发的多个
+                 * imageCoverUrl : null
+                 * homePageCoverUrl : null
+                 * content : 冯小刚
+                 * createTime : 2017-06-23 17:23:15
                  */
 
-                private int category;
-                private int client;
-                private long createTime;
-                private String description;
-                private long modifyTime;
-                private int orderId;
-                private int platform;
-                private String remark;
+                private int id;
                 private String title;
                 private String url;
+                private String description;
+                private String imageCoverUrl;
+                private String homePageCoverUrl;
+                private String content;
+                private String createTime;
 
-                public int getCategory() {
-                    return category;
+                public int getId() {
+                    return id;
                 }
 
-                public void setCategory(int category) {
-                    this.category = category;
-                }
-
-                public int getClient() {
-                    return client;
-                }
-
-                public void setClient(int client) {
-                    this.client = client;
-                }
-
-                public long getCreateTime() {
-                    return createTime;
-                }
-
-                public void setCreateTime(long createTime) {
-                    this.createTime = createTime;
-                }
-
-                public String getDescription() {
-                    return description;
-                }
-
-                public void setDescription(String description) {
-                    this.description = description;
-                }
-
-                public long getModifyTime() {
-                    return modifyTime;
-                }
-
-                public void setModifyTime(long modifyTime) {
-                    this.modifyTime = modifyTime;
-                }
-
-                public int getOrderId() {
-                    return orderId;
-                }
-
-                public void setOrderId(int orderId) {
-                    this.orderId = orderId;
-                }
-
-                public int getPlatform() {
-                    return platform;
-                }
-
-                public void setPlatform(int platform) {
-                    this.platform = platform;
-                }
-
-                public String getRemark() {
-                    return remark;
-                }
-
-                public void setRemark(String remark) {
-                    this.remark = remark;
+                public void setId(int id) {
+                    this.id = id;
                 }
 
                 public String getTitle() {
@@ -201,96 +140,76 @@ public class HomeArticle {
 
                 public void setUrl(String url) {
                     this.url = url;
+                }
+
+                public String getDescription() {
+                    return description;
+                }
+
+                public void setDescription(String description) {
+                    this.description = description;
+                }
+
+                public String getImageCoverUrl() {
+                    return imageCoverUrl;
+                }
+
+                public void setImageCoverUrl(String imageCoverUrl) {
+                    this.imageCoverUrl = imageCoverUrl;
+                }
+
+                public String getHomePageCoverUrl() {
+                    return homePageCoverUrl;
+                }
+
+                public void setHomePageCoverUrl(String homePageCoverUrl) {
+                    this.homePageCoverUrl = homePageCoverUrl;
+                }
+
+                public String getContent() {
+                    return content;
+                }
+
+                public void setContent(String content) {
+                    this.content = content;
+                }
+
+                public String getCreateTime() {
+                    return createTime;
+                }
+
+                public void setCreateTime(String createTime) {
+                    this.createTime = createTime;
                 }
             }
 
             public static class EventListBean {
                 /**
-                 * category : 2
-                 * client : 1
-                 * createTime : 1498147200000
-                 * description : 发的多个
-                 * modifyTime : 1498147200000
-                 * orderId : 2
-                 * platform : 1
-                 * remark : 得分
-                 * title : 飞飞飞
-                 * url : 二分法
+                 * id : 13
+                 * title : 如同一天b
+                 * url : 苟富贵
+                 * description : 染头发通过
+                 * imageCoverUrl : null
+                 * homePageCoverUrl : null
+                 * content : 让他改变
+                 * createTime : 2017-06-26 18:31:08
                  */
 
-                private int category;
-                private int client;
-                private long createTime;
-                private String description;
-                private long modifyTime;
-                private int orderId;
-                private int platform;
-                private String remark;
+                private int id;
                 private String title;
                 private String url;
+                private String description;
+                private String imageCoverUrl;
+                private String homePageCoverUrl;
+                private String content;
+                private String createTime;
 
-                public int getCategory() {
-                    return category;
+                public int getId() {
+                    return id;
                 }
 
-                public void setCategory(int category) {
-                    this.category = category;
-                }
-
-                public int getClient() {
-                    return client;
-                }
-
-                public void setClient(int client) {
-                    this.client = client;
-                }
-
-                public long getCreateTime() {
-                    return createTime;
-                }
-
-                public void setCreateTime(long createTime) {
-                    this.createTime = createTime;
-                }
-
-                public String getDescription() {
-                    return description;
-                }
-
-                public void setDescription(String description) {
-                    this.description = description;
-                }
-
-                public long getModifyTime() {
-                    return modifyTime;
-                }
-
-                public void setModifyTime(long modifyTime) {
-                    this.modifyTime = modifyTime;
-                }
-
-                public int getOrderId() {
-                    return orderId;
-                }
-
-                public void setOrderId(int orderId) {
-                    this.orderId = orderId;
-                }
-
-                public int getPlatform() {
-                    return platform;
-                }
-
-                public void setPlatform(int platform) {
-                    this.platform = platform;
-                }
-
-                public String getRemark() {
-                    return remark;
-                }
-
-                public void setRemark(String remark) {
-                    this.remark = remark;
+                public void setId(int id) {
+                    this.id = id;
                 }
 
                 public String getTitle() {
@@ -307,6 +226,46 @@ public class HomeArticle {
 
                 public void setUrl(String url) {
                     this.url = url;
+                }
+
+                public String getDescription() {
+                    return description;
+                }
+
+                public void setDescription(String description) {
+                    this.description = description;
+                }
+
+                public String getImageCoverUrl() {
+                    return imageCoverUrl;
+                }
+
+                public void setImageCoverUrl(String imageCoverUrl) {
+                    this.imageCoverUrl = imageCoverUrl;
+                }
+
+                public String getHomePageCoverUrl() {
+                    return homePageCoverUrl;
+                }
+
+                public void setHomePageCoverUrl(String homePageCoverUrl) {
+                    this.homePageCoverUrl = homePageCoverUrl;
+                }
+
+                public String getContent() {
+                    return content;
+                }
+
+                public void setContent(String content) {
+                    this.content = content;
+                }
+
+                public String getCreateTime() {
+                    return createTime;
+                }
+
+                public void setCreateTime(String createTime) {
+                    this.createTime = createTime;
                 }
             }
         }

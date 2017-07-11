@@ -19,7 +19,6 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
@@ -112,7 +111,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     private String projectNo;
     private int project_type;
     private String product_no;
-    private int progressState;
     private long currentTime;
 
     @Nullable
@@ -221,8 +219,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
-        currentTime = productBaseDetail.getData().getData().getNow();
-        ProductBaseDetail.DataBeanX.DataBean.InfoBean infoBean = productBaseDetail.getData().getData().getInfo();
+        currentTime = productBaseDetail.getModel().getModel().getNow();
+        ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean = productBaseDetail.getModel().getModel().getInfo();
         //利率
         proYield1.setText(infoBean.getAnnualized_rate());
         //额外利率

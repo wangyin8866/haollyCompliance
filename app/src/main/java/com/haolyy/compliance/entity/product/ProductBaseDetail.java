@@ -5,23 +5,22 @@ package com.haolyy.compliance.entity.product;
  */
 
 public class ProductBaseDetail  {
-
     /**
-     * data : {"data":{"info":{"account_balance":"100.00","amount_scale":"24.00","amount_wait":"12,000.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1499396700000,"bid_end_date":1501988700000,"contract_amount":"50,000.00","id":672,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":12,"period_unit":3,"profit_plan":1,"project_name":"赢计划D672","project_type":2,"status":1},"now":1498882400372},"msg":"业务正常","status":"200"}
-     * msg : 系统正常
-     * status : 200
+     * code : 200
+     * msg : 成功
+     * model : {"code":"200","msg":"成功","model":{"now":1499757263129,"info":{"id":9929,"project_name":"票据贷0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_wait":"1.00","amount_scale":"0.01","interest_start_date":1501948800000,"interest_end_date":1506700800000,"status":1,"profit_plan":1,"project_type":1,"account_balance":"100.00","begin_date":1496851200000,"bid_end_date":1502035200000,"lock_date":1502208000000,"lock_period":3}}}
      */
 
-    private DataBeanX data;
+    private String code;
     private String msg;
-    private String status;
+    private ModelBeanX model;
 
-    public DataBeanX getData() {
-        return data;
+    public String getCode() {
+        return code;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -32,31 +31,31 @@ public class ProductBaseDetail  {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public ModelBeanX getModel() {
+        return model;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setModel(ModelBeanX model) {
+        this.model = model;
     }
 
-    public static class DataBeanX {
+    public static class ModelBeanX {
         /**
-         * data : {"info":{"account_balance":"100.00","amount_scale":"24.00","amount_wait":"12,000.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1499396700000,"bid_end_date":1501988700000,"contract_amount":"50,000.00","id":672,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":12,"period_unit":3,"profit_plan":1,"project_name":"赢计划D672","project_type":2,"status":1},"now":1498882400372}
-         * msg : 业务正常
-         * status : 200
+         * code : 200
+         * msg : 成功
+         * model : {"now":1499757263129,"info":{"id":9929,"project_name":"票据贷0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_wait":"1.00","amount_scale":"0.01","interest_start_date":1501948800000,"interest_end_date":1506700800000,"status":1,"profit_plan":1,"project_type":1,"account_balance":"100.00","begin_date":1496851200000,"bid_end_date":1502035200000,"lock_date":1502208000000,"lock_period":3}}
          */
 
-        private DataBean data;
+        private String code;
         private String msg;
-        private String status;
+        private ModelBean model;
 
-        public DataBean getData() {
-            return data;
+        public String getCode() {
+            return code;
         }
 
-        public void setData(DataBean data) {
-            this.data = data;
+        public void setCode(String code) {
+            this.code = code;
         }
 
         public String getMsg() {
@@ -67,30 +66,22 @@ public class ProductBaseDetail  {
             this.msg = msg;
         }
 
-        public String getStatus() {
-            return status;
+        public ModelBean getModel() {
+            return model;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setModel(ModelBean model) {
+            this.model = model;
         }
 
-        public static class DataBean {
+        public static class ModelBean {
             /**
-             * info : {"account_balance":"100.00","amount_scale":"24.00","amount_wait":"12,000.00","annualized_rate":"11.00","append_rate":"1.00","begin_date":1499396700000,"bid_end_date":1501988700000,"contract_amount":"50,000.00","id":672,"interest_end_date":1506700800000,"interest_start_date":1504540800000,"lock_date":10144454400000,"lock_period":99999,"period_length":12,"period_unit":3,"profit_plan":1,"project_name":"赢计划D672","project_type":2,"status":1}
-             * now : 1498882400372
+             * now : 1499757263129
+             * info : {"id":9929,"project_name":"票据贷0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_wait":"1.00","amount_scale":"0.01","interest_start_date":1501948800000,"interest_end_date":1506700800000,"status":1,"profit_plan":1,"project_type":1,"account_balance":"100.00","begin_date":1496851200000,"bid_end_date":1502035200000,"lock_date":1502208000000,"lock_period":3}
              */
 
-            private InfoBean info;
             private long now;
-
-            public InfoBean getInfo() {
-                return info;
-            }
-
-            public void setInfo(InfoBean info) {
-                this.info = info;
-            }
+            private InfoBean info;
 
             public long getNow() {
                 return now;
@@ -100,71 +91,71 @@ public class ProductBaseDetail  {
                 this.now = now;
             }
 
+            public InfoBean getInfo() {
+                return info;
+            }
+
+            public void setInfo(InfoBean info) {
+                this.info = info;
+            }
+
             public static class InfoBean {
                 /**
-                 * account_balance : 100.00
-                 * amount_scale : 24.00
-                 * amount_wait : 12,000.00
+                 * id : 9929
+                 * project_name : 票据贷0000099
                  * annualized_rate : 11.00
                  * append_rate : 1.00
-                 * begin_date : 1499396700000
-                 * bid_end_date : 1501988700000
-                 * contract_amount : 50,000.00
-                 * id : 672
-                 * interest_end_date : 1506700800000
-                 * interest_start_date : 1504540800000
-                 * lock_date : 10144454400000
-                 * lock_period : 99999
-                 * period_length : 12
                  * period_unit : 3
-                 * profit_plan : 1
-                 * project_name : 赢计划D672
-                 * project_type : 2
+                 * period_length : 12
+                 * contract_amount : 10,000.00
+                 * amount_wait : 1.00
+                 * amount_scale : 0.01
+                 * interest_start_date : 1501948800000
+                 * interest_end_date : 1506700800000
                  * status : 1
+                 * profit_plan : 1
+                 * project_type : 1
+                 * account_balance : 100.00
+                 * begin_date : 1496851200000
+                 * bid_end_date : 1502035200000
+                 * lock_date : 1502208000000
+                 * lock_period : 3
                  */
 
-                private String account_balance;
-                private String amount_scale;
-                private String amount_wait;
+                private int id;
+                private String project_name;
                 private String annualized_rate;
                 private String append_rate;
+                private int period_unit;
+                private int period_length;
+                private String contract_amount;
+                private String amount_wait;
+                private String amount_scale;
+                private long interest_start_date;
+                private long interest_end_date;
+                private int status;
+                private int profit_plan;
+                private int project_type;
+                private String account_balance;
                 private long begin_date;
                 private long bid_end_date;
-                private String contract_amount;
-                private int id;
-                private long interest_end_date;
-                private long interest_start_date;
                 private long lock_date;
                 private int lock_period;
-                private int period_length;
-                private int period_unit;
-                private int profit_plan;
-                private String project_name;
-                private int project_type;
-                private int status;
 
-                public String getAccount_balance() {
-                    return account_balance;
+                public int getId() {
+                    return id;
                 }
 
-                public void setAccount_balance(String account_balance) {
-                    this.account_balance = account_balance;
+                public void setId(int id) {
+                    this.id = id;
                 }
 
-                public String getAmount_scale() {
-                    return amount_scale;
+                public String getProject_name() {
+                    return project_name;
                 }
 
-                public void setAmount_scale(String amount_scale) {
-                    this.amount_scale = amount_scale;
-                }
-
-                public String getAmount_wait() {
-                    return amount_wait;
-                }
-
-                public void setAmount_wait(String amount_wait) {
-                    this.amount_wait = amount_wait;
+                public void setProject_name(String project_name) {
+                    this.project_name = project_name;
                 }
 
                 public String getAnnualized_rate() {
@@ -183,6 +174,94 @@ public class ProductBaseDetail  {
                     this.append_rate = append_rate;
                 }
 
+                public int getPeriod_unit() {
+                    return period_unit;
+                }
+
+                public void setPeriod_unit(int period_unit) {
+                    this.period_unit = period_unit;
+                }
+
+                public int getPeriod_length() {
+                    return period_length;
+                }
+
+                public void setPeriod_length(int period_length) {
+                    this.period_length = period_length;
+                }
+
+                public String getContract_amount() {
+                    return contract_amount;
+                }
+
+                public void setContract_amount(String contract_amount) {
+                    this.contract_amount = contract_amount;
+                }
+
+                public String getAmount_wait() {
+                    return amount_wait;
+                }
+
+                public void setAmount_wait(String amount_wait) {
+                    this.amount_wait = amount_wait;
+                }
+
+                public String getAmount_scale() {
+                    return amount_scale;
+                }
+
+                public void setAmount_scale(String amount_scale) {
+                    this.amount_scale = amount_scale;
+                }
+
+                public long getInterest_start_date() {
+                    return interest_start_date;
+                }
+
+                public void setInterest_start_date(long interest_start_date) {
+                    this.interest_start_date = interest_start_date;
+                }
+
+                public long getInterest_end_date() {
+                    return interest_end_date;
+                }
+
+                public void setInterest_end_date(long interest_end_date) {
+                    this.interest_end_date = interest_end_date;
+                }
+
+                public int getStatus() {
+                    return status;
+                }
+
+                public void setStatus(int status) {
+                    this.status = status;
+                }
+
+                public int getProfit_plan() {
+                    return profit_plan;
+                }
+
+                public void setProfit_plan(int profit_plan) {
+                    this.profit_plan = profit_plan;
+                }
+
+                public int getProject_type() {
+                    return project_type;
+                }
+
+                public void setProject_type(int project_type) {
+                    this.project_type = project_type;
+                }
+
+                public String getAccount_balance() {
+                    return account_balance;
+                }
+
+                public void setAccount_balance(String account_balance) {
+                    this.account_balance = account_balance;
+                }
+
                 public long getBegin_date() {
                     return begin_date;
                 }
@@ -199,38 +278,6 @@ public class ProductBaseDetail  {
                     this.bid_end_date = bid_end_date;
                 }
 
-                public String getContract_amount() {
-                    return contract_amount;
-                }
-
-                public void setContract_amount(String contract_amount) {
-                    this.contract_amount = contract_amount;
-                }
-
-                public int getId() {
-                    return id;
-                }
-
-                public void setId(int id) {
-                    this.id = id;
-                }
-
-                public long getInterest_end_date() {
-                    return interest_end_date;
-                }
-
-                public void setInterest_end_date(long interest_end_date) {
-                    this.interest_end_date = interest_end_date;
-                }
-
-                public long getInterest_start_date() {
-                    return interest_start_date;
-                }
-
-                public void setInterest_start_date(long interest_start_date) {
-                    this.interest_start_date = interest_start_date;
-                }
-
                 public long getLock_date() {
                     return lock_date;
                 }
@@ -245,54 +292,6 @@ public class ProductBaseDetail  {
 
                 public void setLock_period(int lock_period) {
                     this.lock_period = lock_period;
-                }
-
-                public int getPeriod_length() {
-                    return period_length;
-                }
-
-                public void setPeriod_length(int period_length) {
-                    this.period_length = period_length;
-                }
-
-                public int getPeriod_unit() {
-                    return period_unit;
-                }
-
-                public void setPeriod_unit(int period_unit) {
-                    this.period_unit = period_unit;
-                }
-
-                public int getProfit_plan() {
-                    return profit_plan;
-                }
-
-                public void setProfit_plan(int profit_plan) {
-                    this.profit_plan = profit_plan;
-                }
-
-                public String getProject_name() {
-                    return project_name;
-                }
-
-                public void setProject_name(String project_name) {
-                    this.project_name = project_name;
-                }
-
-                public int getProject_type() {
-                    return project_type;
-                }
-
-                public void setProject_type(int project_type) {
-                    this.project_type = project_type;
-                }
-
-                public int getStatus() {
-                    return status;
-                }
-
-                public void setStatus(int status) {
-                    this.status = status;
                 }
             }
         }

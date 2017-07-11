@@ -8,23 +8,22 @@ import java.util.List;
  */
 
 public class HomeProduct {
-
     /**
-     * data : {"data":{"productlist":[{"amount":"2.00","amount_scale":"0.00","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":1000,"period_length":3,"period_unit":3,"product_name":"www"},{"amount":"3.00","amount_scale":"0.01","annualized_rate":"10.00","append_rate":"1.00","investMinAmount":1000,"period_length":6,"period_unit":3,"product_name":"表弟222"},{"amount":"1.00","amount_scale":"0.01","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":10000,"period_length":12,"period_unit":3,"product_name":"票据贷0000067"},null]},"msg":"业务正常","status":"200"}
-     * msg : 业务异常
-     * status : 301
+     * code : 200
+     * msg : 成功
+     * model : {"code":"200","msg":"成功","model":[{"appendRate":"1.00","amountScale":"0.00","investMinAmount":1000,"amount":"2.00","annualizedRate":"11.00","contractAmount":"50,000.00","periodLength":3,"periodUnit":3,"productName":"www"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":1000,"amount":"3.00","annualizedRate":"10.00","contractAmount":"50,000.00","periodLength":6,"periodUnit":3,"productName":"表弟222"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":10000,"amount":"1.00","annualizedRate":"11.00","contractAmount":"10,000.00","periodLength":12,"periodUnit":3,"productName":"短期赢0000030"}]}
      */
 
-    private DataBeanX data;
+    private String code;
     private String msg;
-    private String status;
+    private ModelBeanX model;
 
-    public DataBeanX getData() {
-        return data;
+    public String getCode() {
+        return code;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -35,31 +34,31 @@ public class HomeProduct {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public ModelBeanX getModel() {
+        return model;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setModel(ModelBeanX model) {
+        this.model = model;
     }
 
-    public static class DataBeanX {
+    public static class ModelBeanX {
         /**
-         * data : {"productlist":[{"amount":"2.00","amount_scale":"0.00","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":1000,"period_length":3,"period_unit":3,"product_name":"www"},{"amount":"3.00","amount_scale":"0.01","annualized_rate":"10.00","append_rate":"1.00","investMinAmount":1000,"period_length":6,"period_unit":3,"product_name":"表弟222"},{"amount":"1.00","amount_scale":"0.01","annualized_rate":"11.00","append_rate":"1.00","investMinAmount":10000,"period_length":12,"period_unit":3,"product_name":"票据贷0000067"},null]}
-         * msg : 业务正常
-         * status : 200
+         * code : 200
+         * msg : 成功
+         * model : [{"appendRate":"1.00","amountScale":"0.00","investMinAmount":1000,"amount":"2.00","annualizedRate":"11.00","contractAmount":"50,000.00","periodLength":3,"periodUnit":3,"productName":"www"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":1000,"amount":"3.00","annualizedRate":"10.00","contractAmount":"50,000.00","periodLength":6,"periodUnit":3,"productName":"表弟222"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":10000,"amount":"1.00","annualizedRate":"11.00","contractAmount":"10,000.00","periodLength":12,"periodUnit":3,"productName":"短期赢0000030"}]
          */
 
-        private DataBean data;
+        private String code;
         private String msg;
-        private String status;
+        private List<ModelBean> model;
 
-        public DataBean getData() {
-            return data;
+        public String getCode() {
+            return code;
         }
 
-        public void setData(DataBean data) {
-            this.data = data;
+        public void setCode(String code) {
+            this.code = code;
         }
 
         public String getMsg() {
@@ -70,109 +69,107 @@ public class HomeProduct {
             this.msg = msg;
         }
 
-        public String getStatus() {
-            return status;
+        public List<ModelBean> getModel() {
+            return model;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setModel(List<ModelBean> model) {
+            this.model = model;
         }
 
-        public static class DataBean {
-            private List<ProductlistBean> productlist;
+        public static class ModelBean {
+            /**
+             * appendRate : 1.00
+             * amountScale : 0.00
+             * investMinAmount : 1000.0
+             * amount : 2.00
+             * annualizedRate : 11.00
+             * contractAmount : 50,000.00
+             * periodLength : 3
+             * periodUnit : 3
+             * productName : www
+             */
 
-            public List<ProductlistBean> getProductlist() {
-                return productlist;
+            private String appendRate;
+            private String amountScale;
+            private double investMinAmount;
+            private String amount;
+            private String annualizedRate;
+            private String contractAmount;
+            private int periodLength;
+            private int periodUnit;
+            private String productName;
+
+            public String getAppendRate() {
+                return appendRate;
             }
 
-            public void setProductlist(List<ProductlistBean> productlist) {
-                this.productlist = productlist;
+            public void setAppendRate(String appendRate) {
+                this.appendRate = appendRate;
             }
 
-            public static class ProductlistBean {
-                /**
-                 * amount : 2.00
-                 * amount_scale : 0.00
-                 * annualized_rate : 11.00
-                 * append_rate : 1.00
-                 * investMinAmount : 1000.0
-                 * period_length : 3
-                 * period_unit : 3
-                 * product_name : www
-                 */
+            public String getAmountScale() {
+                return amountScale;
+            }
 
-                private String amount;
-                private String amount_scale;
-                private String annualized_rate;
-                private String append_rate;
-                private double investMinAmount;
-                private int period_length;
-                private int period_unit;
-                private String product_name;
+            public void setAmountScale(String amountScale) {
+                this.amountScale = amountScale;
+            }
 
-                public String getAmount() {
-                    return amount;
-                }
+            public double getInvestMinAmount() {
+                return investMinAmount;
+            }
 
-                public void setAmount(String amount) {
-                    this.amount = amount;
-                }
+            public void setInvestMinAmount(double investMinAmount) {
+                this.investMinAmount = investMinAmount;
+            }
 
-                public String getAmount_scale() {
-                    return amount_scale;
-                }
+            public String getAmount() {
+                return amount;
+            }
 
-                public void setAmount_scale(String amount_scale) {
-                    this.amount_scale = amount_scale;
-                }
+            public void setAmount(String amount) {
+                this.amount = amount;
+            }
 
-                public String getAnnualized_rate() {
-                    return annualized_rate;
-                }
+            public String getAnnualizedRate() {
+                return annualizedRate;
+            }
 
-                public void setAnnualized_rate(String annualized_rate) {
-                    this.annualized_rate = annualized_rate;
-                }
+            public void setAnnualizedRate(String annualizedRate) {
+                this.annualizedRate = annualizedRate;
+            }
 
-                public String getAppend_rate() {
-                    return append_rate;
-                }
+            public String getContractAmount() {
+                return contractAmount;
+            }
 
-                public void setAppend_rate(String append_rate) {
-                    this.append_rate = append_rate;
-                }
+            public void setContractAmount(String contractAmount) {
+                this.contractAmount = contractAmount;
+            }
 
-                public double getInvestMinAmount() {
-                    return investMinAmount;
-                }
+            public int getPeriodLength() {
+                return periodLength;
+            }
 
-                public void setInvestMinAmount(double investMinAmount) {
-                    this.investMinAmount = investMinAmount;
-                }
+            public void setPeriodLength(int periodLength) {
+                this.periodLength = periodLength;
+            }
 
-                public int getPeriod_length() {
-                    return period_length;
-                }
+            public int getPeriodUnit() {
+                return periodUnit;
+            }
 
-                public void setPeriod_length(int period_length) {
-                    this.period_length = period_length;
-                }
+            public void setPeriodUnit(int periodUnit) {
+                this.periodUnit = periodUnit;
+            }
 
-                public int getPeriod_unit() {
-                    return period_unit;
-                }
+            public String getProductName() {
+                return productName;
+            }
 
-                public void setPeriod_unit(int period_unit) {
-                    this.period_unit = period_unit;
-                }
-
-                public String getProduct_name() {
-                    return product_name;
-                }
-
-                public void setProduct_name(String product_name) {
-                    this.product_name = product_name;
-                }
+            public void setProductName(String productName) {
+                this.productName = productName;
             }
         }
     }

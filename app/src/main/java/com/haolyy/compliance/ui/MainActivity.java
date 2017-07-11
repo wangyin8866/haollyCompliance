@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -20,13 +19,14 @@ import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 import com.haolyy.compliance.utils.SystemBarUtil;
-import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
 /**
  * Created by wangyin on 2017/5/16.
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyFragment myFragment;
     private List<Fragment> fragments;
     private int currentPage=0;
-    private boolean isLogin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,8 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         //第一次默认选中tab01
-        isLogin = true;
-        switchStateHome(isLogin);
+
+        switchStateHome(mLoginState);
         idMainViewPager.setOffscreenPageLimit(5);
     }
 
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_tab_ll_01:
-                switchStateHome(isLogin);
+                switchStateHome(mLoginState);
                 break;
             case R.id.id_tab_ll_02:
                 currentPage = 1;

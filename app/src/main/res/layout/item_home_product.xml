@@ -3,13 +3,13 @@
 
     <data class="HomeBinding">
 
-        <import type="com.haolyy.compliance.entity.TestProduct" />
+        <import type="com.haolyy.compliance.entity.home.HomeProduct.ModelBeanX.ModelBean" />
 
         <import type="android.view.View" />
 
         <variable
             name="product"
-            type="TestProduct" />
+            type="ModelBean" />
     </data>
 
     <LinearLayout
@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/icon_zhou" />
+                    />
 
                 <TextView
                     android:id="@+id/tv_num"
@@ -230,7 +230,8 @@
                             android:textSize="10sp" />
 
                         <TextView
-                            android:layout_width="23dp"
+                            android:id="@+id/tv_progress"
+                            android:layout_width="wrap_content"
                             android:layout_height="12dp"
                             android:layout_alignParentRight="true"
                             android:text="63%"

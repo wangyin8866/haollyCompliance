@@ -36,7 +36,7 @@ public class BaseApplication extends Application {
      */
     private static Looper mMainLooper;
 
-    public static boolean mLoginState;
+    public static boolean mLoginState;//是否登录
     public static int userId = -1;
     public static String mUserName;
 
@@ -68,6 +68,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //LeakCanary.install(this);
+
+
         context = getApplicationContext();
         mMainThreadId = android.os.Process.myTid();
         mMainThread = Thread.currentThread();

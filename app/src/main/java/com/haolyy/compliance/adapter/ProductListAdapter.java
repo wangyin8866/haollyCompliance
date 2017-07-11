@@ -21,22 +21,21 @@ public class ProductListAdapter extends WyBaseAdapter {
 
     public ProductListAdapter(List list, Context context) {
         super(list, context);
-
     }
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ProductList.DataBeanX.DataBean.DataListBean product = (ProductList.DataBeanX.DataBean.DataListBean) list.get(position);
+        ProductList.ModelBeanX.ModelBean.DataListBean product = (ProductList.ModelBeanX.ModelBean.DataListBean) list.get(position);
         binding = DataBindingUtil.inflate(inflater, R.layout.item_product_first, parent, false);
         binding.setProduct(product);
         binding.setAdapter(this);
-        Double amount = Double.valueOf(product.getContract_amount().replace(",", ""));
+
         double scale = Double.valueOf(product.getAmount_scale()) / 100;
         binding.tvNum.setText(product.getProject_name());
         binding.tvAmount.setText(product.getContract_amount()+"万");
         WYUtils.selectIcon(product.getProject_name(),binding.ivDuan);
-        binding.productCircle.setData(amount * scale, amount);
+        binding.productCircle.setData(WYUtils.processAmount(product.getContract_amount()) * scale, WYUtils.processAmount(product.getContract_amount()));
         binding.productCircle.setmCircleText(product.getAmount_scale() + "%");
         return binding.getRoot();
     }

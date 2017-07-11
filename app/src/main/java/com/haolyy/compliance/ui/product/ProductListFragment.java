@@ -84,10 +84,10 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         xlvProductThird.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                projectNo = productList.getData().getData().getData_list().get(position - 1).getProject_no();
-                productName = productList.getData().getData().getData_list().get(position - 1).getProject_name();
-                project_type = productList.getData().getData().getData_list().get(position - 1).getProject_type();
-                product_no = productList.getData().getData().getData_list().get(position - 1).getProduct_no();
+                projectNo = productList.getModel().getModel().getData_list().get(position - 1).getProject_no();
+                productName = productList.getModel().getModel().getData_list().get(position - 1).getProject_name();
+                project_type = productList.getModel().getModel().getData_list().get(position - 1).getProject_type();
+                product_no = productList.getModel().getModel().getData_list().get(position - 1).getProduct_no();
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
                 intent.putExtra("projectNo", projectNo);
                 intent.putExtra("productName", productName);
@@ -182,12 +182,14 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     @Override
     public void showData(ProductList productList) {
 
-        pageSize = productList.getData().getData().getData_list().size();
+        pageSize = productList.getModel().getModel().getData_list().size();
+
+        LogUtils.e("pageSize",pageSize+"");
         this.productList = productList;
-        if (productList.getData().getData().getData_list().size() == 0) {
+        if (pageSize == 0) {
             xlvProductThird.setPullLoadEnable(false);
             ivEmpty.setVisibility(View.VISIBLE);
-
+            xlvProductThird.setVisibility(View.GONE);
         } else {
             if (pageSize < 10) {
                 xlvProductThird.setPullLoadEnable(false);
@@ -195,21 +197,22 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
                 xlvProductThird.setPullLoadEnable(true);
             }
             ivEmpty.setVisibility(View.GONE);
-        xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getData().getData().getData_list(), getActivity()));
+            xlvProductThird.setVisibility(View.VISIBLE);
+        xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getData_list(), getActivity()));
         }
     }
 
     @Override
     public void showGetMoreData(ProductList productList) {
-        if (productList.getData().getData().getData_list().size() == 0) {
+        if (productList.getModel().getModel().getData_list().size() == 0) {
             pageNum = 1;
             UIUtils.showToastCommon(mContext, "没有更多数据了！");
             xlvProductThird.setPullLoadEnable(false);
         } else {
-            this.productList.getData().getData().getData_list().addAll(productList.getData().getData().getData_list());
+            this.productList.getModel().getModel().getData_list().addAll(productList.getModel().getModel().getData_list());
             xlvProductThird.setPullLoadEnable(true);
-            xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getData().getData().getData_list(), getActivity()));
-            xlvProductThird.setSelection(this.productList.getData().getData().getData_list().size() - productList.getData().getData().getData_list().size());//定位
+            xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getData_list(), getActivity()));
+            xlvProductThird.setSelection(this.productList.getModel().getModel().getData_list().size() - productList.getModel().getModel().getData_list().size());//定位
         }
     }
 
@@ -225,7 +228,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         public void onLoadMore() {
             pageNum += 1;
             mPresenter.getProductList(true, flag, pageNum + "");
-            LogUtils.e("pageNum", productList.getData().getData().getData_list().size() + "");
+            LogUtils.e("pageNum", productList.getModel().getModel().getData_list().size() + "");
 
         }
     }
