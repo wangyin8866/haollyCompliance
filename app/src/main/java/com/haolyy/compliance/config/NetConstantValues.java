@@ -31,6 +31,8 @@ public interface NetConstantValues {
     //我的页面
     String USER_INFO = USERMANAGE + "account/accountInfoDetail";//账户中心首页展示，会员信息，可用余额，冻结余额，收益等
     String USER_PRODUCT_INFO = USERMANAGE +"account/userHoldProductRecord";//用户持有产品记录，资金占比展示
+    String ACCOUNT_SECURITY_INFO = USERMANAGE +"account/accountSecurity";//账户安全页面展示
+    String ACCOUNT_INCOME_INFO = USERMANAGE +"account/userIncome";//用户收益
 
     //短信
     String REQUEST_VALIDATE_CODE = USERMANAGE + "sms/requestValidateCode";

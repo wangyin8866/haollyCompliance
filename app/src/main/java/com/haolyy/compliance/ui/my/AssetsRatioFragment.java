@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.MagnificentChart;
 import com.haolyy.compliance.custom.MagnificentChartItem;
+import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
+import com.haolyy.compliance.ui.my.view.FundStatictisView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,7 @@ import butterknife.Unbinder;
  * Created by wangyin on 2017/5/16.
  */
 
-public class AssetsRatioFragment extends Fragment {
+public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter,FundStatictisView> implements FundStatictisView {
     @BindView(R.id.magnificentChart)
     MagnificentChart magnificentChart;
     Unbinder unbinder;
@@ -61,6 +64,21 @@ public class AssetsRatioFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+
+    }
+
+    @Override
+    protected FundStatisticsPresenter createPresenter() {
+        return new FundStatisticsPresenter(mContext);
+    }
+
+    @Override
+    public void showSuccessToast(String msg) {
+
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
 
     }
 }

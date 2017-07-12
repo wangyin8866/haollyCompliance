@@ -4,6 +4,8 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.TokenResponseBean;
+import com.haolyy.compliance.entity.home.AccountSecurityBean;
+import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
@@ -123,6 +125,21 @@ public class UserModel extends BaseModel {
         map.put("platform", platform);
         return userApi.getUserProductInfo(map);
     }
+
+    public Observable<AccountSecurityBean> getUserSecurityInfo(String platform,String user_id) {
+        map.clear();
+        map.put("user_id",user_id);
+        map.put("platform", platform);
+        return userApi.getUserSecurityInfo(map);
+    }
+
+    public Observable<FundStatictisIncomeBean> getUserIncomInfo(String platform, String user_id) {
+        map.clear();
+        map.put("userId",user_id);
+        map.put("platform", platform);
+        return userApi.getUserIncomeInfo(map);
+    }
+
 
 
 
