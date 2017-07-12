@@ -88,9 +88,17 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         view = inflater.inflate(R.layout.my_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         dialogBank = new DialogBank(mContext);
-        mPresenter.requestUserInfoDetail("HLW","2");
-        mPresenter.requestUserProductInfo("HLW","2");
+
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mPresenter.requestUserInfoDetail("HLW","2");
+            mPresenter.requestUserProductInfo("HLW","2");
+        }
     }
 
     @Override
@@ -158,9 +166,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(new Intent(mContext, MessageActivity.class));
                 break;
             case R.id.account_manage:
-                 bundle = new Bundle();
-                bundle.putSerializable(ConstantKey.USER_INFO_KEY,userInfoBean);
-                startActivity(new Intent(mContext, AccountSecurityActivity.class).putExtras(bundle));
+                startActivity(new Intent(mContext, AccountSecurityActivity.class));
                 break;
             case R.id.vd_mission:
                 startActivity(new Intent(mContext, MissionActivity.class));

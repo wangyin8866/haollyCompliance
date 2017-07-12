@@ -3,25 +3,30 @@ package com.haolyy.compliance.ui.my;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.ui.bank.RebindBankActivity;
 import com.haolyy.compliance.ui.my.presenter.AccountSecurityPresenter;
 import com.haolyy.compliance.ui.my.view.AccountSecurityView;
+import com.haolyy.compliance.utils.CommonUtils;
+import com.haolyy.compliance.utils.SPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresenter,AccountSecurityView> {
+public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresenter,AccountSecurityView> implements AccountSecurityView {
 
     @BindView(R.id.security_bind_phone)
     RelativeLayout securityBindPhone;
@@ -53,7 +58,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
 
     @Override
     protected AccountSecurityPresenter createPresenter() {
-        return null;
+        return new AccountSecurityPresenter(this);
     }
 
     @Override
@@ -61,14 +66,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_security);
         ButterKnife.bind(this);
-        Bundle  bundle = getIntent().getExtras();
-        if(bundle != null) {
-            userInfoBean = (UserInfoBean) bundle.getSerializable(ConstantKey.USER_INFO_KEY);
-        }
-
-        if(userInfoBean != null) {
-            showData();
-        }
+        mPresenter.getAccountInfo(Config.platform,"2");
 
         topAccountSecurity.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
@@ -98,7 +96,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
                 startActivity(new Intent(AccountSecurityActivity.this, CheckPhone.class));
                 break;
             case R.id.gesture_layout:
-                startActivity(new Intent(AccountSecurityActivity.this, GestureManageActivity.class));
+                startActivityForResult(new Intent(AccountSecurityActivity.this, GestureManageActivity.class),100);
                 break;
             case R.id.tv_bind_card:
                 startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
@@ -106,17 +104,65 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100) {
+            gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
+        }
+    }
 
-    private void showData(){
-//        real_name_status.setText(userInfoBean.getModel().getModel().get);
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
 
     }
 
+    @Override
+    public void showData(AccountSecurityBean accountSecurityBean) {
+        real_name_status.setText(TextUtils.isEmpty(accountSecurityBean.getModel().getModel().getTo_acc_name()) ? "未认证" : accountSecurityBean.getModel().getModel().getTo_acc_name());
+        tvBindCard.setText(accountSecurityBean.getModel().getModel().getBind_bank_card_flag().equals("1") ? "已认证" : "未认证");
+        mobile.setText(accountSecurityBean.getModel().getModel().getMobile());
+        int riskLevel = accountSecurityBean.getModel().getModel().getRisk_level();
+        String level = "未设置";
+        switch (riskLevel) {
+            case 0:
+                level = "未设置";
+                break;
+            case 1:
+                level = "低分险";
+                break;
+            case 2:
+                level = "中低风险";
+                break;
+            case 3:
+                level = "中风险";
+                break;
+            case 4:
+                level = "中高风险";
+                break;
+            case 5:
+                level = "高风险";
+                break;
+        }
+        risk_assessment.setText(level);
+        transaction_pwd_status.setText(accountSecurityBean.getModel().getModel().getIs_password()==1 ? "已设置" : "未设置");
+        login_pwd_status.setText(accountSecurityBean.getModel().getModel().getSet_login_password_flag().equals("1") ?"已设置" : "未设置");
+        auto_invest.setText(accountSecurityBean.getModel().getModel().getIs_auto_tender() == 1? "已开启":"未开启");
+        gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
 
+    }
 
+    @Override
+    public void showSuccessToast(String msg) {
 
+    }
 
+    @Override
+    public void showErrorToast(String msg) {
+
+    }
 }
 
 

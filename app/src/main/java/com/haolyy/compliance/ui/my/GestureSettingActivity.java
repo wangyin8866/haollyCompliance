@@ -1,8 +1,10 @@
 package com.haolyy.compliance.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by User on 2017/6/9.
@@ -31,6 +34,10 @@ public class GestureSettingActivity extends AppCompatActivity {
     TopBar top_bar;
     @BindView(R.id.setting_layout)
     LinearLayout setting_layout;
+
+    @BindView(R.id.jump_btn)
+    Button jump_btn;
+
 
     @BindView(R.id.success_layout)
     View success_layout;
@@ -48,6 +55,7 @@ public class GestureSettingActivity extends AppCompatActivity {
             @Override
             public void OnLeftButtonClicked() {
                 finish();
+                setResult(101);
             }
 
             @Override
@@ -105,13 +113,21 @@ public class GestureSettingActivity extends AppCompatActivity {
 
 
 
+    @OnClick({R.id.jump_btn})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.jump_btn:
+                Intent intent = new Intent(this,AccountSecurityActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+        }
+    }
 
-
-
-
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        setResult(101);
+    }
 }

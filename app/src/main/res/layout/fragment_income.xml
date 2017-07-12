@@ -59,10 +59,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="短期赢"
+            android:text="赢计划"
             android:textColor="@color/text_4b4b4b"
             android:textSize="14sp" />
-        <TextView
+        <TextView android:id="@+id/win_plan_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -84,10 +84,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="短期赢"
+            android:text="周周赢"
             android:textColor="@color/text_4b4b4b"
             android:textSize="14sp" />
-        <TextView
+        <TextView android:id="@+id/win_plan_week_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -109,10 +109,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="短期赢"
+            android:text="消费贷"
             android:textColor="@color/text_4b4b4b"
             android:textSize="14sp" />
-        <TextView
+        <TextView android:id="@+id/consumer_credit_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -134,10 +134,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="短期赢"
+            android:text="票据贷"
             android:textColor="@color/text_4b4b4b"
             android:textSize="14sp" />
-        <TextView
+        <TextView android:id="@+id/bill_loan_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

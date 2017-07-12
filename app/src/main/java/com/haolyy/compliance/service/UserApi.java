@@ -5,6 +5,8 @@ import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
+import com.haolyy.compliance.entity.home.AccountSecurityBean;
+import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
@@ -67,5 +69,13 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.USER_PRODUCT_INFO)
     Observable<UserProductBean>  getUserProductInfo(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.ACCOUNT_SECURITY_INFO)
+    Observable<AccountSecurityBean>  getUserSecurityInfo(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.ACCOUNT_INCOME_INFO)
+    Observable<FundStatictisIncomeBean>  getUserIncomeInfo(@FieldMap Map<String, String> map);
 
 }
