@@ -104,6 +104,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         Bundle bundle = null;
         switch (view.getId()) {
             case R.id.iv_setting:
+                startActivity(new Intent(mContext,SettingActivity.class));
                 break;
             case R.id.iv_head_icon:
                 break;

@@ -5,7 +5,7 @@ package com.haolyy.compliance.config;
  */
 
 public interface Config {
-    String TIP_ALL="你所输入的账号或密码有误，请重新输入";
+    String TIP_ALL="您所输入的账号或密码有误，请重新输入";
     String TIP_MOBILE="手机号码错误";
     String TIP_IMAGE="图片验证码错误";
     String TIP_SMS="短信验证码错误";

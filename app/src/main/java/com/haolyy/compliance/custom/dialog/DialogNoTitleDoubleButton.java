@@ -45,6 +45,7 @@ public class DialogNoTitleDoubleButton extends Dialog {
         btn1Dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dismiss();
                 mdouble.excuteLeft();
             }
         });
