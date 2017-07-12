@@ -76,7 +76,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.product_list_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         init();
@@ -93,6 +93,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
                 intent.putExtra("productName", productName);
                 intent.putExtra("project_type", project_type);
                 intent.putExtra("product_no", product_no);
+                intent.putExtra("flag", "product");
                 startActivity(intent);
             }
         });

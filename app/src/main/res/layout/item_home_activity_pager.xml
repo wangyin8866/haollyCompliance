@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data class="HomeActivityBinding">
 
@@ -10,7 +10,8 @@
             type="RecommendBean" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/ll_all"
         android:layout_width="match_parent"
         android:layout_height="134dp"
         android:background="@drawable/bg_home_pager"

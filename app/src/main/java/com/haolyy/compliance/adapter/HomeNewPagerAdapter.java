@@ -1,12 +1,15 @@
 package com.haolyy.compliance.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.HomeNewBinding;
 import com.haolyy.compliance.entity.home.HomeActivity;
+import com.haolyy.compliance.ui.product.ProductDetailActivity;
 import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.List;
@@ -26,7 +29,7 @@ public class HomeNewPagerAdapter extends WyBasePagerAdapter {
 
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         recommendNewBean = (HomeActivity.ModelBeanX.ModelBean.RecommendNewBean) list.get(position);
         binding = DataBindingUtil.inflate(inflate, R.layout.item_home_new_pager, container, false);
         binding.setHomeNew(recommendNewBean);
@@ -38,6 +41,20 @@ public class HomeNewPagerAdapter extends WyBasePagerAdapter {
         binding.progressBar.setMaxCount(WYUtils.processAmount(recommendNewBean.getAmountWait()) + WYUtils.processAmount(recommendNewBean.getAmountYes()));
         binding.progressBar.setCurrentCount((WYUtils.processAmount(recommendNewBean.getAmountWait()) + WYUtils.processAmount(recommendNewBean.getAmountYes())) * WYUtils.processAmount(recommendNewBean.getAmountScale()) / 100);
         binding.tvProgress.setText(recommendNewBean.getAmountScale() + "%");
+        binding.llAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                intent.putExtra("projectNo", recommendNewBean.getProjectNo());
+                intent.putExtra("productName", recommendNewBean.getProjectTitle());
+                intent.putExtra("project_type", recommendNewBean.getProjectType());
+                intent.putExtra("product_no", recommendNewBean.getProductNo());
+                intent.putExtra("flag", "home");
+                mContext.startActivity(intent);
+            }
+        });
+
+
         container.addView(binding.getRoot());
         return binding.getRoot();
     }

@@ -41,17 +41,4 @@ public class ProductListPresenter extends BasePresenter<ProductListView> {
         }, mContext));
     }
 
-    public void getDetail(String id, String juid,String project_type,String product_no){
-        invoke(ProductModel.getInstance().getDetail(id,juid,project_type,product_no),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
-            @Override
-            public void onNext(String s) {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-        },mContext));
-    }
 }

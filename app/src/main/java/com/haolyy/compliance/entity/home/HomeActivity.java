@@ -11,7 +11,7 @@ public class HomeActivity {
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"recommendNew":[{"projectNo":null,"projectMarketType":1,"projectTitle":"新手标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}],"recommend":[{"projectNo":null,"projectMarketType":2,"projectTitle":"活动标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}]}}
+     * model : {"code":"200","msg":"成功","model":{"recommendNew":[{"id":"0","projectNo":"HLWL2017061500000011","productNo":"DQYA","projectType":2,"projectMarketType":1,"projectTitle":"新手标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}],"recommend":[{"id":"0","projectNo":"HLWL2017061500000012","productNo":"DQHA","projectType":2,"projectMarketType":2,"projectTitle":"活动标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}]}}
      */
 
     private String code;
@@ -46,7 +46,7 @@ public class HomeActivity {
         /**
          * code : 200
          * msg : 成功
-         * model : {"recommendNew":[{"projectNo":null,"projectMarketType":1,"projectTitle":"新手标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}],"recommend":[{"projectNo":null,"projectMarketType":2,"projectTitle":"活动标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}]}
+         * model : {"recommendNew":[{"id":"0","projectNo":"HLWL2017061500000011","productNo":"DQYA","projectType":2,"projectMarketType":1,"projectTitle":"新手标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}],"recommend":[{"id":"0","projectNo":"HLWL2017061500000012","productNo":"DQHA","projectType":2,"projectMarketType":2,"projectTitle":"活动标","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":28,"amountWait":"2,000.00","amountScale":"80.00","amountYes":"8,000.00"}]}
          */
 
         private String code;
@@ -99,7 +99,10 @@ public class HomeActivity {
 
             public static class RecommendNewBean {
                 /**
-                 * projectNo : null
+                 * id : 0
+                 * projectNo : HLWL2017061500000011
+                 * productNo : DQYA
+                 * projectType : 2
                  * projectMarketType : 1
                  * projectTitle : 新手标
                  * annualizedRate : 11.00
@@ -111,7 +114,10 @@ public class HomeActivity {
                  * amountYes : 8,000.00
                  */
 
+                private String id;
                 private String projectNo;
+                private String productNo;
+                private int projectType;
                 private int projectMarketType;
                 private String projectTitle;
                 private String annualizedRate;
@@ -122,12 +128,36 @@ public class HomeActivity {
                 private String amountScale;
                 private String amountYes;
 
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
                 public String getProjectNo() {
                     return projectNo;
                 }
 
                 public void setProjectNo(String projectNo) {
                     this.projectNo = projectNo;
+                }
+
+                public String getProductNo() {
+                    return productNo;
+                }
+
+                public void setProductNo(String productNo) {
+                    this.productNo = productNo;
+                }
+
+                public int getProjectType() {
+                    return projectType;
+                }
+
+                public void setProjectType(int projectType) {
+                    this.projectType = projectType;
                 }
 
                 public int getProjectMarketType() {
@@ -205,7 +235,10 @@ public class HomeActivity {
 
             public static class RecommendBean {
                 /**
-                 * projectNo : null
+                 * id : 0
+                 * projectNo : HLWL2017061500000012
+                 * productNo : DQHA
+                 * projectType : 2
                  * projectMarketType : 2
                  * projectTitle : 活动标
                  * annualizedRate : 11.00
@@ -217,7 +250,10 @@ public class HomeActivity {
                  * amountYes : 8,000.00
                  */
 
+                private String id;
                 private String projectNo;
+                private String productNo;
+                private int projectType;
                 private int projectMarketType;
                 private String projectTitle;
                 private String annualizedRate;
@@ -228,12 +264,36 @@ public class HomeActivity {
                 private String amountScale;
                 private String amountYes;
 
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
                 public String getProjectNo() {
                     return projectNo;
                 }
 
                 public void setProjectNo(String projectNo) {
                     this.projectNo = projectNo;
+                }
+
+                public String getProductNo() {
+                    return productNo;
+                }
+
+                public void setProductNo(String productNo) {
+                    this.productNo = productNo;
+                }
+
+                public int getProjectType() {
+                    return projectType;
+                }
+
+                public void setProjectType(int projectType) {
+                    this.projectType = projectType;
                 }
 
                 public int getProjectMarketType() {

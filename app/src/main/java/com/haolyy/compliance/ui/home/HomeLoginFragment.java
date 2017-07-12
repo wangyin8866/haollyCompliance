@@ -41,6 +41,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.haolyy.compliance.base.BaseApplication.userId;
+
 /**
  * Created by wangyin on 2017/5/16.
  * <p>
@@ -70,11 +72,14 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     RelativeLayout rlInviteFriend;
     @BindView(R.id.point_view1)
     MyPointView pointView1;
+    @BindView(R.id.tv_data_auto_roll)
+    AutoVerticalScrollTextView tvDataAutoRoll;
 
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
     private boolean isInvest;
     private List<String> auto_roll_strings;
+    private List<String> auto_roll_data;
     private boolean isAutoRollRunning;
     private int autoRollIndex;
     private List<Banner.ModelBeanX.ModelBean> modelBeen;
@@ -109,6 +114,8 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     private void showAutoRollStrings() {
         textviewAutoRoll.setText(auto_roll_strings.get(0));
+        tvDataAutoRoll.setTText(auto_roll_data.get(0));
+
         isAutoRollRunning = true;
         handler.sendEmptyMessage(199);
 
@@ -119,8 +126,10 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         public void handleMessage(Message msg) {
             if (msg.what == 199) {
                 textviewAutoRoll.next();
+                tvDataAutoRoll.next();
                 autoRollIndex++;
                 textviewAutoRoll.setText(auto_roll_strings.get(autoRollIndex % auto_roll_strings.size()));
+                tvDataAutoRoll.setTText(auto_roll_data.get(autoRollIndex % auto_roll_data.size()));
                 handler.sendEmptyMessageDelayed(199, 3000);
             }
         }
@@ -205,10 +214,12 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     @Override
     public void showHomeArticleData(HomeArticle homeArticle) {
 
-        mPresenter.getRecommend("1");//首页活动 3
+        mPresenter.getRecommend(userId+"");//首页活动 3
         auto_roll_strings = new ArrayList<>();
+        auto_roll_data = new ArrayList<>();
         for (int i = 0; i < homeArticle.getModel().getModel().getAnnouncementList().size(); i++) {
             auto_roll_strings.add(homeArticle.getModel().getModel().getAnnouncementList().get(i).getDescription());
+            auto_roll_data.add(homeArticle.getModel().getModel().getAnnouncementList().get(i).getCreateTime().substring(0,10));
         }
         showAutoRollStrings();
     }

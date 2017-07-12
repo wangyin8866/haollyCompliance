@@ -11,7 +11,7 @@ public class HomeProduct {
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":[{"appendRate":"1.00","amountScale":"0.00","investMinAmount":1000,"amount":"2.00","annualizedRate":"11.00","contractAmount":"50,000.00","periodLength":3,"periodUnit":3,"productName":"www"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":1000,"amount":"3.00","annualizedRate":"10.00","contractAmount":"50,000.00","periodLength":6,"periodUnit":3,"productName":"表弟222"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":10000,"amount":"1.00","annualizedRate":"11.00","contractAmount":"10,000.00","periodLength":12,"periodUnit":3,"productName":"短期赢0000030"}]}
+     * model : {"code":"200","msg":"成功","model":[{"appendRate":"1.00","amount":"2.00","amountYes":"2.00","projectType":2,"periodUnit":3,"productName":"www","amountScale":"0.00","investMinAmount":1000,"projectNo":"HLWL2017061500000002","annualizedRate":"11.00","contractAmount":"50,000.00","periodLength":3,"id":0,"productNo":"","amountWait":"2.00"},{"appendRate":"1.00","amount":"3.00","amountYes":"3.00","projectType":2,"periodUnit":3,"productName":"表弟222","amountScale":"0.01","investMinAmount":1000,"projectNo":"HLWL2017061500000003","annualizedRate":"10.00","contractAmount":"50,000.00","periodLength":6,"id":0,"productNo":"","amountWait":"3.00"},{"appendRate":"1.00","amount":"1.00","amountYes":"1.00","projectType":2,"periodUnit":3,"productName":"短期赢0000018","amountScale":"0.01","investMinAmount":10000,"projectNo":"DQY0000018","annualizedRate":"11.00","contractAmount":"10,000.00","periodLength":12,"id":0,"productNo":"DQYA","amountWait":"1.00"}]}
      */
 
     private String code;
@@ -46,7 +46,7 @@ public class HomeProduct {
         /**
          * code : 200
          * msg : 成功
-         * model : [{"appendRate":"1.00","amountScale":"0.00","investMinAmount":1000,"amount":"2.00","annualizedRate":"11.00","contractAmount":"50,000.00","periodLength":3,"periodUnit":3,"productName":"www"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":1000,"amount":"3.00","annualizedRate":"10.00","contractAmount":"50,000.00","periodLength":6,"periodUnit":3,"productName":"表弟222"},{"appendRate":"1.00","amountScale":"0.01","investMinAmount":10000,"amount":"1.00","annualizedRate":"11.00","contractAmount":"10,000.00","periodLength":12,"periodUnit":3,"productName":"短期赢0000030"}]
+         * model : [{"appendRate":"1.00","amount":"2.00","amountYes":"2.00","projectType":2,"periodUnit":3,"productName":"www","amountScale":"0.00","investMinAmount":1000,"projectNo":"HLWL2017061500000002","annualizedRate":"11.00","contractAmount":"50,000.00","periodLength":3,"id":0,"productNo":"","amountWait":"2.00"},{"appendRate":"1.00","amount":"3.00","amountYes":"3.00","projectType":2,"periodUnit":3,"productName":"表弟222","amountScale":"0.01","investMinAmount":1000,"projectNo":"HLWL2017061500000003","annualizedRate":"10.00","contractAmount":"50,000.00","periodLength":6,"id":0,"productNo":"","amountWait":"3.00"},{"appendRate":"1.00","amount":"1.00","amountYes":"1.00","projectType":2,"periodUnit":3,"productName":"短期赢0000018","amountScale":"0.01","investMinAmount":10000,"projectNo":"DQY0000018","annualizedRate":"11.00","contractAmount":"10,000.00","periodLength":12,"id":0,"productNo":"DQYA","amountWait":"1.00"}]
          */
 
         private String code;
@@ -80,25 +80,37 @@ public class HomeProduct {
         public static class ModelBean {
             /**
              * appendRate : 1.00
+             * amount : 2.00
+             * amountYes : 2.00
+             * projectType : 2
+             * periodUnit : 3
+             * productName : www
              * amountScale : 0.00
              * investMinAmount : 1000.0
-             * amount : 2.00
+             * projectNo : HLWL2017061500000002
              * annualizedRate : 11.00
              * contractAmount : 50,000.00
              * periodLength : 3
-             * periodUnit : 3
-             * productName : www
+             * id : 0
+             * productNo :
+             * amountWait : 2.00
              */
 
             private String appendRate;
+            private String amount;
+            private String amountYes;
+            private int projectType;
+            private int periodUnit;
+            private String productName;
             private String amountScale;
             private double investMinAmount;
-            private String amount;
+            private String projectNo;
             private String annualizedRate;
             private String contractAmount;
             private int periodLength;
-            private int periodUnit;
-            private String productName;
+            private int id;
+            private String productNo;
+            private String amountWait;
 
             public String getAppendRate() {
                 return appendRate;
@@ -106,6 +118,46 @@ public class HomeProduct {
 
             public void setAppendRate(String appendRate) {
                 this.appendRate = appendRate;
+            }
+
+            public String getAmount() {
+                return amount;
+            }
+
+            public void setAmount(String amount) {
+                this.amount = amount;
+            }
+
+            public String getAmountYes() {
+                return amountYes;
+            }
+
+            public void setAmountYes(String amountYes) {
+                this.amountYes = amountYes;
+            }
+
+            public int getProjectType() {
+                return projectType;
+            }
+
+            public void setProjectType(int projectType) {
+                this.projectType = projectType;
+            }
+
+            public int getPeriodUnit() {
+                return periodUnit;
+            }
+
+            public void setPeriodUnit(int periodUnit) {
+                this.periodUnit = periodUnit;
+            }
+
+            public String getProductName() {
+                return productName;
+            }
+
+            public void setProductName(String productName) {
+                this.productName = productName;
             }
 
             public String getAmountScale() {
@@ -124,12 +176,12 @@ public class HomeProduct {
                 this.investMinAmount = investMinAmount;
             }
 
-            public String getAmount() {
-                return amount;
+            public String getProjectNo() {
+                return projectNo;
             }
 
-            public void setAmount(String amount) {
-                this.amount = amount;
+            public void setProjectNo(String projectNo) {
+                this.projectNo = projectNo;
             }
 
             public String getAnnualizedRate() {
@@ -156,20 +208,28 @@ public class HomeProduct {
                 this.periodLength = periodLength;
             }
 
-            public int getPeriodUnit() {
-                return periodUnit;
+            public int getId() {
+                return id;
             }
 
-            public void setPeriodUnit(int periodUnit) {
-                this.periodUnit = periodUnit;
+            public void setId(int id) {
+                this.id = id;
             }
 
-            public String getProductName() {
-                return productName;
+            public String getProductNo() {
+                return productNo;
             }
 
-            public void setProductName(String productName) {
-                this.productName = productName;
+            public void setProductNo(String productNo) {
+                this.productNo = productNo;
+            }
+
+            public String getAmountWait() {
+                return amountWait;
+            }
+
+            public void setAmountWait(String amountWait) {
+                this.amountWait = amountWait;
             }
         }
     }

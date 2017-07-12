@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -24,6 +25,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
@@ -64,15 +69,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FindFragment findFragment;
     private MyFragment myFragment;
     private List<Fragment> fragments;
-    private int currentPage=0;
-
+    private int currentPage;
+    private Subscription s;
+    private int state;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
-        //
+        s = RxBus.getInstance().toObserverable(String.class).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        if ("product".equals(s)) {
+                            state = 1;
+                        } else if ("home".equals(s)) {
+                            state = 0;
+                        }
+                    }
+                });
+        idMainViewPager.setOffscreenPageLimit(5);
         idMainViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -90,18 +108,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-
-        //第一次默认选中tab01
-        LogUtils.e("mLoginState", mLoginState + "");
         switchStateHome(mLoginState);
-        idMainViewPager.setOffscreenPageLimit(5);
+
+
     }
 
+    /**
+     * 判断是否登录
+     *
+     * @param isLogin
+     */
     private void switchStateHome(boolean isLogin) {
-        if (isLogin) {//投资登录
-            currentPage = 4;
-        }else{
-            currentPage = 0;
+        if (isLogin) {//是否登录
+            switch (state) {
+                case 0:
+                    currentPage = 4;
+                    break;
+                case 1:
+                    currentPage = 1;
+                    break;
+            }
+
+        } else {
+            switch (state) {
+                case 0:
+                    currentPage = 0;
+                    break;
+                case 1:
+                    currentPage = 1;
+                    break;
+            }
+
         }
         setTabSelection(currentPage);
     }
@@ -126,6 +163,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         idTabLl02.setOnClickListener(this);
         idTabLl03.setOnClickListener(this);
         idTabLl04.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -150,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setTabSelection(int currentPage) {
+        LogUtils.e("currentPage", currentPage + "");
         //选中前清除状态
         restView();
         switch (currentPage) {
@@ -183,8 +223,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void switchPager(int currentPage) {
-        idMainViewPager.setCurrentItem(currentPage,false);
+        idMainViewPager.setCurrentItem(currentPage, false);
+        state = 0;
     }
+
     /**
      * 重置所有状态
      */
@@ -198,5 +240,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         idTabTv02.setTextColor(getResources().getColor(R.color.tv_navigate));
         idTabTv03.setTextColor(getResources().getColor(R.color.tv_navigate));
         idTabTv04.setTextColor(getResources().getColor(R.color.tv_navigate));
+    }
+
+    @Override
+    protected void onDestroy() {
+        s.unsubscribe();
+        super.onDestroy();
+
     }
 }

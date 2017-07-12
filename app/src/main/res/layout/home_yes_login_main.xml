@@ -140,7 +140,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/transprent_bg"
                 android:gravity="center"
@@ -157,18 +156,14 @@
                 <com.haolyy.compliance.custom.AutoVerticalScrollTextView
                     android:id="@+id/textview_auto_roll"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-
+                    android:layout_weight="2.5"
                     android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:gravity="center"
-                    android:text="05-11"
-                    android:textColor="#FFB9B9B9"
-                    android:textSize="12sp" />
+                <com.haolyy.compliance.custom.AutoVerticalScrollTextView
+                    android:id="@+id/tv_data_auto_roll"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
 
             <com.bigkoo.convenientbanner.ConvenientBanner

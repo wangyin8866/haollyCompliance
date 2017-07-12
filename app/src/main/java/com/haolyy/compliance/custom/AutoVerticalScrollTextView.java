@@ -51,7 +51,16 @@ public class AutoVerticalScrollTextView extends TextSwitcher implements ViewSwit
 
     }
 
-    private Rotate3dAnimation createAnim( boolean turnIn, boolean turnUp){
+
+
+    public void setTText(CharSequence text){
+        final TextView t = (TextView) getNextView();
+        t.setText(text);
+        t.setTextColor(Color.parseColor("#B9B9B9"));
+        showNext();
+    }
+
+    private Rotate3dAnimation createAnim(boolean turnIn, boolean turnUp){
 
         Rotate3dAnimation rotation = new Rotate3dAnimation(turnIn, turnUp);
         rotation.setDuration(1200);//执行动画的时间

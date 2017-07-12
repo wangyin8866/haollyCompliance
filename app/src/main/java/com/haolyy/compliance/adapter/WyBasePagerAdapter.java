@@ -16,9 +16,10 @@ public class WyBasePagerAdapter extends PagerAdapter {
 
     public List list;
     public LayoutInflater inflate;
-
+    public Context mContext;
     public WyBasePagerAdapter(List list, Context mContext) {
         this.list = list;
+        this.mContext = mContext;
         inflate = LayoutInflater.from(mContext);
     }
 

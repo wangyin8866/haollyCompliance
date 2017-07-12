@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.haolyy.compliance.base.BaseApplication.juid;
+
 /**
  * 产品详情顶部页面
  * Created by wangyin on 2017/5/16.
@@ -156,11 +158,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     private void init() {
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
-        LogUtils.e("ProductFragmentTop_projectNo",projectNo);
+        LogUtils.e("ProductFragmentTop_projectNo", projectNo);
         project_type = getActivity().getIntent().getIntExtra("project_type", 0);
-        LogUtils.e("ProductFragmentTop_project_type",project_type+"");
+        LogUtils.e("ProductFragmentTop_project_type", project_type + "");
         product_no = getActivity().getIntent().getStringExtra("product_no");
-        LogUtils.e("ProductFragmentTop_product_no",product_no+"");
+        LogUtils.e("ProductFragmentTop_product_no", product_no + "");
         //显示进度
         if (project_type == 1) {//散标
             joinProgress.setVisibility(View.GONE);
@@ -175,7 +177,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         if (!product_no.equalsIgnoreCase("pjd")) {//票据贷
             leftLabel.setVisibility(View.GONE);
         }
-        mPresenter.getBaseDetail(projectNo + "", "12");
+        mPresenter.getBaseDetail(projectNo + "", juid);
 
 
 //        mPresenter.selectUserState();
@@ -359,6 +361,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             tvTime4.setText(DateUtil.getTimeyyyymmdd(period_unit));
         }
     }
+
     private void rest() {
         joinLine1.setBackgroundColor(Color.parseColor("#D8D8D8"));
         joinLine2.setBackgroundColor(Color.parseColor("#D8D8D8"));

@@ -57,17 +57,9 @@ public class ProductModel extends BaseModel {
     public Observable<ProductBaseDetail> getBaseDetail(String project_no, String juid) {
         map.clear();
         map.put("project_no", project_no);
+        map.put("platform", platform);
         map.put("juid", juid);
         return productApi.getBaseDetail(map);
-
-    }
-    public Observable<String> getDetail(String id, String juid,String project_type,String product_no) {
-        map.clear();
-        map.put("project_no", id);
-        map.put("juid", juid);
-        map.put("project_type", project_type);
-        map.put("product_no", product_no);
-        return productApi.getDetail(map);
 
     }
     public Observable<String> getInvestmentRecord(String projectNo, String pageIndex) {
