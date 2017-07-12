@@ -13,10 +13,9 @@ public interface Config {
     String TIP_INVITE="邀请码格式错误";
 
     int seconds=60000;//倒计时时间
-    String platform="1";//好利网
+    String platform="HLW";//好利网
     String mer_id="1";//平台号 好利网
-    String platformhaolyy="haolyy";
-    String client = "1";
+    String client = "PC";
     String returl="http://www.chinazyjr.com/";
 
     int status_with_draw=9001;

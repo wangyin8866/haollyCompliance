@@ -8,6 +8,7 @@ import com.haolyy.compliance.service.HomeAPi;
 
 import rx.Observable;
 
+import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.platform;
 
 /**
@@ -34,7 +35,7 @@ public class HomeModel extends BaseModel {
         map.clear();
         map.put("type", type);
         map.put("platform", platform);
-        map.put("client", "PC");
+        map.put("client", client);
         return homeAPi.getBanner(map);
     }
     public Observable<HomeProduct> getHomeProduct() {
@@ -44,14 +45,14 @@ public class HomeModel extends BaseModel {
     public Observable<HomeArticle> getHomeArticle() {
         map.clear();
         map.put("platform", platform);
-        map.put("client", "PC");
+        map.put("client", client);
         return homeAPi.getArticle(map);
     }
     public Observable<HomeActivity> getRecommend(String userId) {
         map.clear();
         map.put("userId", userId);
         map.put("platform", platform);
-        map.put("client", "PC");
+        map.put("client", client);
         return homeAPi.getRecommend(map);
     }
 }
