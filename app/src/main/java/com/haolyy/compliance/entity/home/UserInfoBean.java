@@ -8,11 +8,10 @@ import java.io.Serializable;
 
 public class UserInfoBean  implements Serializable{
     private static final long serialVersionUID = 7247714666080613254L;
-
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"cumulative_income":"2,000.00","user_head_photo":"","coupon":"3","mobile":"176****0704","is_password":0,"message":0,"set_hand_password_flag":"0","is_auto_tender":1,"set_login_password_flag":"1","point":"520","cumulative_award":"1,500.00","bind_mobile_flag":"1","yesterday_income":"200.00","risk_level":0,"bind_bank_card_flag":"1","frozen_amount":"0.00","task":"5","total_amount":"0.00","vip_level":"3","available_credit":"0.00","status":"0"}}
+     * model : {"code":"200","msg":"成功","model":{"cumulative_income":"313.00","user_head_photo":"http://img1.skqkw.cn:888/2014/11/26/08/o5u1t2j2m3a-73633.jpg","coupon":"3","invest_status":"1","mobile":"185****2339","is_password":1,"message":0,"set_hand_password_flag":"0","is_auto_tender":0,"set_login_password_flag":"1","point":"520","cumulative_award":"500.00","bind_mobile_flag":"1","yesterday_income":"0","risk_level":0,"bind_bank_card_flag":"1","frozen_amount":"13,000.00","task":"5","total_amount":"28,000.00","vip_level":"3","available_credit":"15,000.00","status":"0"}}
      */
 
     private String code;
@@ -47,7 +46,7 @@ public class UserInfoBean  implements Serializable{
         /**
          * code : 200
          * msg : 成功
-         * model : {"cumulative_income":"2,000.00","user_head_photo":"","coupon":"3","mobile":"176****0704","is_password":0,"message":0,"set_hand_password_flag":"0","is_auto_tender":1,"set_login_password_flag":"1","point":"520","cumulative_award":"1,500.00","bind_mobile_flag":"1","yesterday_income":"200.00","risk_level":0,"bind_bank_card_flag":"1","frozen_amount":"0.00","task":"5","total_amount":"0.00","vip_level":"3","available_credit":"0.00","status":"0"}
+         * model : {"cumulative_income":"313.00","user_head_photo":"http://img1.skqkw.cn:888/2014/11/26/08/o5u1t2j2m3a-73633.jpg","coupon":"3","invest_status":"1","mobile":"185****2339","is_password":1,"message":0,"set_hand_password_flag":"0","is_auto_tender":0,"set_login_password_flag":"1","point":"520","cumulative_award":"500.00","bind_mobile_flag":"1","yesterday_income":"0","risk_level":0,"bind_bank_card_flag":"1","frozen_amount":"13,000.00","task":"5","total_amount":"28,000.00","vip_level":"3","available_credit":"15,000.00","status":"0"}
          */
 
         private String code;
@@ -80,32 +79,34 @@ public class UserInfoBean  implements Serializable{
 
         public static class ModelBean {
             /**
-             * cumulative_income : 2,000.00
-             * user_head_photo :
+             * cumulative_income : 313.00
+             * user_head_photo : http://img1.skqkw.cn:888/2014/11/26/08/o5u1t2j2m3a-73633.jpg
              * coupon : 3
-             * mobile : 176****0704
-             * is_password : 0
+             * invest_status : 1
+             * mobile : 185****2339
+             * is_password : 1
              * message : 0
              * set_hand_password_flag : 0
-             * is_auto_tender : 1
+             * is_auto_tender : 0
              * set_login_password_flag : 1
              * point : 520
-             * cumulative_award : 1,500.00
+             * cumulative_award : 500.00
              * bind_mobile_flag : 1
-             * yesterday_income : 200.00
+             * yesterday_income : 0
              * risk_level : 0
              * bind_bank_card_flag : 1
-             * frozen_amount : 0.00
+             * frozen_amount : 13,000.00
              * task : 5
-             * total_amount : 0.00
+             * total_amount : 28,000.00
              * vip_level : 3
-             * available_credit : 0.00
+             * available_credit : 15,000.00
              * status : 0
              */
 
             private String cumulative_income;
             private String user_head_photo;
             private String coupon;
+            private String invest_status;
             private String mobile;
             private int is_password;
             private int message;
@@ -147,6 +148,14 @@ public class UserInfoBean  implements Serializable{
 
             public void setCoupon(String coupon) {
                 this.coupon = coupon;
+            }
+
+            public String getInvest_status() {
+                return invest_status;
+            }
+
+            public void setInvest_status(String invest_status) {
+                this.invest_status = invest_status;
             }
 
             public String getMobile() {
@@ -292,51 +301,6 @@ public class UserInfoBean  implements Serializable{
             public void setStatus(String status) {
                 this.status = status;
             }
-
-            @Override
-            public String toString() {
-                return "ModelBean{" +
-                        "cumulative_income='" + cumulative_income + '\'' +
-                        ", user_head_photo='" + user_head_photo + '\'' +
-                        ", coupon='" + coupon + '\'' +
-                        ", mobile='" + mobile + '\'' +
-                        ", is_password=" + is_password +
-                        ", message=" + message +
-                        ", set_hand_password_flag='" + set_hand_password_flag + '\'' +
-                        ", is_auto_tender=" + is_auto_tender +
-                        ", set_login_password_flag='" + set_login_password_flag + '\'' +
-                        ", point='" + point + '\'' +
-                        ", cumulative_award='" + cumulative_award + '\'' +
-                        ", bind_mobile_flag='" + bind_mobile_flag + '\'' +
-                        ", yesterday_income='" + yesterday_income + '\'' +
-                        ", risk_level=" + risk_level +
-                        ", bind_bank_card_flag='" + bind_bank_card_flag + '\'' +
-                        ", frozen_amount='" + frozen_amount + '\'' +
-                        ", task='" + task + '\'' +
-                        ", total_amount='" + total_amount + '\'' +
-                        ", vip_level='" + vip_level + '\'' +
-                        ", available_credit='" + available_credit + '\'' +
-                        ", status='" + status + '\'' +
-                        '}';
-            }
         }
-
-        @Override
-        public String toString() {
-            return "ModelBeanX{" +
-                    "code='" + code + '\'' +
-                    ", msg='" + msg + '\'' +
-                    ", model=" + model +
-                    '}';
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfoBean{" +
-                "code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
-                ", model=" + model +
-                '}';
     }
 }

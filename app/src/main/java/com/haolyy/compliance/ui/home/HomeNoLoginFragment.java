@@ -85,7 +85,8 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_no_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        //拉去数据  1
+        mPresenter.getBanner("2");
         return view;
     }
 
@@ -105,8 +106,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            //拉去数据  1
-            mPresenter.getBanner("2");
+
         }
     }
 
