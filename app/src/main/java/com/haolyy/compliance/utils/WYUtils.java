@@ -1,14 +1,18 @@
 package com.haolyy.compliance.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.webkit.SslErrorHandler;
@@ -308,5 +312,36 @@ public class WYUtils {
         textView2.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
         textView3.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
     }
+    /**
+     * 拨打客服电话
+     * @param context
+     */
+    public static void serviceTel(Context context) {
+        Uri uri;
+            uri = Uri.parse("tel:4009996780");
+        Intent intent = new Intent(Intent.ACTION_CALL, uri);
+        //此处不判断就会报错
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            context.startActivity(intent);
+        }
+    }
 
+    /**
+     *  6.0以上拨打客服电话判断权限
+     * @param context
+     * @param i
+     */
+    public static void CallPhone(Context context,int i) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            //判断有没有拨打电话权限
+            if (PermissionChecker.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                //请求拨打电话权限
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE}, i);
+            } else {
+                serviceTel(context);
+            }
+        } else {
+            serviceTel(context);
+        }
+    }
 }
