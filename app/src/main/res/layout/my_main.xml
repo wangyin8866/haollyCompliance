@@ -67,11 +67,11 @@
 
                 <ImageView
                     android:id="@+id/iv_gold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="72dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@+id/iv_head_icon"
-                    android:src="@mipmap/gold_member" />
+                    android:src="@mipmap/account_set_vip_level0" />
 
                 <TextView
                     android:id="@+id/tv_gold_phone"
@@ -108,27 +108,30 @@
                 android:orientation="horizontal">
 
                 <com.haolyy.compliance.custom.VeticalDoubleTextView
+                    android:id="@+id/available_amount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:tstyle="bottombold"
                     android:paddingLeft="20dp"
-                    app:textBottom="3200000"
+                    app:textBottom=""
                     app:textColorBottom="#ffffff"
                     app:textColorTop="#ffffff"
                     app:textSizeBottom="16sp"
                     app:textSizeTop="12sp"
+                    android:gravity="center"
                     app:textTop="可用余额(元)"
                     app:textdrablepadding="8dp"
                     app:textmargin="6dp" />
 
                 <com.haolyy.compliance.custom.VeticalDoubleTextView
+                    android:id="@+id/frezon_amount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     app:tstyle="bottombold"
-                    app:textBottom="932"
+                    app:textBottom=""
                     app:textColorBottom="#ffffff"
                     app:textColorTop="#ffffff"
                     app:textSizeBottom="16sp"
@@ -143,10 +146,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:tstyle="bottombold"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:paddingRight="20dp"
                     app:ivright="@mipmap/bing"
-                    app:textBottom="3200000.0"
+                    app:textBottom=""
                     app:textColorBottom="#ffffff"
                     app:textColorTop="#ffffff"
                     app:textSizeBottom="16sp"
@@ -201,6 +204,7 @@
             android:orientation="horizontal">
 
             <com.haolyy.compliance.custom.VeticalDoubleTextView
+                android:id="@+id/coupon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -212,7 +216,7 @@
                 app:textColorTop="@color/text_4a4a4a"
                 app:textSizeBottom="12sp"
                 app:textSizeTop="18sp"
-                app:textTop="0"
+                app:textTop=""
                 app:textdrablepadding="6dp"
                 app:textmargin="6dp" />
 
@@ -222,16 +226,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                app:tstyle="topbold"
                 app:ivleft="@mipmap/icon_socres"
                 app:textBottom="任务"
                 app:textColorBottom="@color/text_878787"
                 app:textColorTop="@color/text_4a4a4a"
                 app:textSizeBottom="12sp"
                 app:textSizeTop="18sp"
-                app:textTop="0"
+                app:textTop=""
                 app:textdrablepadding="6dp"
-                app:textmargin="6dp" />
+                app:textmargin="6dp"
+                app:tstyle="topbold" />
 
             <com.haolyy.compliance.custom.VeticalDoubleTextView
                 android:id="@+id/score"
@@ -246,7 +250,7 @@
                 app:textColorTop="@color/text_4a4a4a"
                 app:textSizeBottom="12sp"
                 app:textSizeTop="18sp"
-                app:textTop="0"
+                app:textTop=""
                 app:textdrablepadding="6dp"
                 app:textmargin="6dp" />
         </LinearLayout>
@@ -272,7 +276,7 @@
                 android:textColor="@color/text_4b4b4b"
                 android:textSize="14sp" />
 
-            <TextView
+            <TextView android:id="@+id/short_win_plan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -303,17 +307,20 @@
                 android:drawablePadding="9dp"
                 android:text="赢计划"
                 android:textColor="@color/text_4b4b4b"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:id="@+id/textView4" />
 
-            <TextView
+            <TextView android:id="@+id/win_plan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:drawablePadding="9dp"
                 android:drawableRight="@mipmap/arrow_right"
                 android:text="10,000.00"
                 android:textColor="@color/text_9b9b9b"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_alignTop="@+id/textView4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
 
         <View
@@ -338,7 +345,7 @@
                 android:textColor="@color/text_4b4b4b"
                 android:textSize="14sp" />
 
-            <TextView
+            <TextView android:id="@+id/optimize_win_plan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

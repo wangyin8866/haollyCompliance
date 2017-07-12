@@ -5,6 +5,8 @@ import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
+import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
@@ -56,4 +58,14 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FINDSTATUS)
     Observable<FindUserStatusBean> findStatus(@FieldMap Map<String, String> map);
+
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.USER_INFO)
+    Observable<UserInfoBean> getUserInfo(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.USER_PRODUCT_INFO)
+    Observable<UserProductBean>  getUserProductInfo(@FieldMap Map<String, String> map);
+
 }

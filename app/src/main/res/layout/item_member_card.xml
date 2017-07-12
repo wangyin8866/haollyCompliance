@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/iv_member_icon"
-            android:src="@mipmap/gold_member" />
+            android:src="@mipmap/account_set_vip_level0" />
 
         <TextView
             android:id="@+id/tv_member_phone"

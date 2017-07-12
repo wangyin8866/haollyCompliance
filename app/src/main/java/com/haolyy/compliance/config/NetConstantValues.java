@@ -28,6 +28,10 @@ public interface NetConstantValues {
     String IMAGE_GET = USERMANAGE + "kaptcha";//获取图形验证码
     String GET_TOKEN = USERMANAGE + "getToken";//获取token
 
+    //我的页面
+    String USER_INFO = USERMANAGE + "account/accountInfoDetail";//账户中心首页展示，会员信息，可用余额，冻结余额，收益等
+    String USER_PRODUCT_INFO = USERMANAGE +"account/userHoldProductRecord";//用户持有产品记录，资金占比展示
+
     //短信
     String REQUEST_VALIDATE_CODE = USERMANAGE + "sms/requestValidateCode";
     String SMS_SENDSMSCODE = USERMANAGE + "sms/sendSmsCode";
@@ -68,5 +72,9 @@ public interface NetConstantValues {
     //p2p
     String P2P_ISBOSACCTACTIVATE = P2P + "isBosAcctActivate";//判断是否是激活用户
     String P2P_CALCULATEFEEAMOUNT=P2P+"/calculateFeeAmount";//计算手续费
+
+
+
+
 
 }

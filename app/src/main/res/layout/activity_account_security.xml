@@ -33,7 +33,7 @@
             android:textSize="14sp"
            />
 
-        <TextView
+        <TextView android:id="@+id/real_name_status"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="18dp"
@@ -46,7 +46,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp" />
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
@@ -101,7 +102,7 @@
             android:textSize="14sp"
             />
 
-        <TextView
+        <TextView android:id="@+id/mobile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -133,7 +134,7 @@
             android:textSize="14sp"
             />
 
-        <TextView
+        <TextView android:id="@+id/risk_assessment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -165,7 +166,7 @@
             android:textSize="14sp"
             />
 
-        <TextView
+        <TextView android:id="@+id/transaction_pwd_status"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -197,7 +198,7 @@
             android:textSize="14sp"
             />
 
-        <TextView
+        <TextView android:id="@+id/login_pwd_status"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -229,7 +230,7 @@
             android:textSize="14sp"
             />
 
-        <TextView
+        <TextView android:id="@+id/gesture_pwd_status"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -261,7 +262,7 @@
             android:textSize="14sp"
             />
 
-        <TextView
+        <TextView android:id="@+id/auto_invest"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

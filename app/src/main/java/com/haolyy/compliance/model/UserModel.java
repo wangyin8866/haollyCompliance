@@ -4,6 +4,8 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.TokenResponseBean;
+import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
@@ -100,4 +102,22 @@ public class UserModel extends BaseModel {
         map.put("platform", "1");
         return userApi.findStatus(map);
     }
+
+   public Observable<UserInfoBean> getUserInfo(String platform,String user_id ){
+       map.clear();
+       map.put("user_id",user_id);
+       map.put("platform", platform);
+       return userApi.getUserInfo(map);
+    }
+
+
+    public Observable<UserProductBean> getUserProductInfo(String platform,String user_id){
+        map.clear();
+        map.put("user_id",user_id);
+        map.put("platform", platform);
+        return userApi.getUserProductInfo(map);
+    }
+
+
+
 }
