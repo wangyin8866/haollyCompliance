@@ -292,6 +292,51 @@ public class UserInfoBean  implements Serializable{
             public void setStatus(String status) {
                 this.status = status;
             }
+
+            @Override
+            public String toString() {
+                return "ModelBean{" +
+                        "cumulative_income='" + cumulative_income + '\'' +
+                        ", user_head_photo='" + user_head_photo + '\'' +
+                        ", coupon='" + coupon + '\'' +
+                        ", mobile='" + mobile + '\'' +
+                        ", is_password=" + is_password +
+                        ", message=" + message +
+                        ", set_hand_password_flag='" + set_hand_password_flag + '\'' +
+                        ", is_auto_tender=" + is_auto_tender +
+                        ", set_login_password_flag='" + set_login_password_flag + '\'' +
+                        ", point='" + point + '\'' +
+                        ", cumulative_award='" + cumulative_award + '\'' +
+                        ", bind_mobile_flag='" + bind_mobile_flag + '\'' +
+                        ", yesterday_income='" + yesterday_income + '\'' +
+                        ", risk_level=" + risk_level +
+                        ", bind_bank_card_flag='" + bind_bank_card_flag + '\'' +
+                        ", frozen_amount='" + frozen_amount + '\'' +
+                        ", task='" + task + '\'' +
+                        ", total_amount='" + total_amount + '\'' +
+                        ", vip_level='" + vip_level + '\'' +
+                        ", available_credit='" + available_credit + '\'' +
+                        ", status='" + status + '\'' +
+                        '}';
+            }
         }
+
+        @Override
+        public String toString() {
+            return "ModelBeanX{" +
+                    "code='" + code + '\'' +
+                    ", msg='" + msg + '\'' +
+                    ", model=" + model +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfoBean{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", model=" + model +
+                '}';
     }
 }

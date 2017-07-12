@@ -38,7 +38,6 @@ public class HomeNoLoginPresenter extends BasePresenter<HomeNoLoginView>{
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("getBanner", e.getMessage());
             }
         }, mContext));
 

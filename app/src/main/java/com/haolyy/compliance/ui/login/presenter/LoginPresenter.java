@@ -1,13 +1,11 @@
 package com.haolyy.compliance.ui.login.presenter;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.model.UserModel;
-import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -48,7 +46,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     BaseApplication.userId = loginResponseBean.getModel().getId();
 //                    BaseApplication.mUserName = loginResponseBean.getData().getData().getMobile();
 //                    BaseApplication.juid = loginResponseBean.getData().getData().getUserCode();
-                    mContext.startActivity(new Intent(mContext, MainActivity.class));
+
                     ((LoginActivity)mContext).finish();
                 } else {
                     UIUtils.showToastCommon(mContext, loginResponseBean.getMsg());

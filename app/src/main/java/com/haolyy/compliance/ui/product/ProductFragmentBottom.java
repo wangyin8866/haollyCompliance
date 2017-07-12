@@ -58,7 +58,6 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         initView();
         return view;
     }
-
     private void initView() {
         bottomProductDetail = new FragmentBottomProductDetail();
         bottomInvestLog = new FragmentBottomInvestLog();

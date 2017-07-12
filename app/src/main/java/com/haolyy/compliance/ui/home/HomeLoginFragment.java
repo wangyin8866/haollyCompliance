@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -28,6 +29,7 @@ import com.haolyy.compliance.entity.home.Banner;
 import com.haolyy.compliance.entity.home.HomeActivity;
 import com.haolyy.compliance.entity.home.HomeArticle;
 import com.haolyy.compliance.entity.home.HomeProduct;
+import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.ui.my.InviteFriendActivity;
@@ -41,7 +43,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.haolyy.compliance.R.id.home_iv_eye;
 import static com.haolyy.compliance.base.BaseApplication.userId;
+import static com.haolyy.compliance.config.Config.platform;
 
 /**
  * Created by wangyin on 2017/5/16.
@@ -74,6 +78,20 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     MyPointView pointView1;
     @BindView(R.id.tv_data_auto_roll)
     AutoVerticalScrollTextView tvDataAutoRoll;
+    @BindView(R.id.tv_total_amount)
+    TextView tvTotalAmount;
+    @BindView(R.id.tv_available_credit)
+    TextView tvAvailableCredit;
+    @BindView(R.id.tv_cumulative_income)
+    TextView tvCumulativeIncome;
+    @BindView(R.id.tv_yesterday_income)
+    TextView tvYesterdayIncome;
+    @BindView(home_iv_eye)
+    ImageView homeIvEye;
+    @BindView(R.id.iv_home_icon_1)
+    ImageView ivHomeIcon1;
+    @BindView(R.id.iv_home_icon_2)
+    ImageView ivHomeIcon2;
 
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
@@ -83,7 +101,8 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     private boolean isAutoRollRunning;
     private int autoRollIndex;
     private List<Banner.ModelBeanX.ModelBean> modelBeen;
-
+    private boolean isShowMoney;
+    private String totalAmount;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,17 +116,14 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
 
     private void initView() {
-
+        //查询用户信息
+        mPresenter.getUserInfo(platform, "2");
         isInvest = false;
         if (isInvest) {
             homeLlVisibility.setVisibility(View.GONE);
         } else {
             homeLlVisibility.setVisibility(View.VISIBLE);
         }
-
-
-        //拉去数据  1
-        mPresenter.getBanner("2");
 
 
     }
@@ -147,7 +163,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         return new HomeLoginPresenter(mContext);
     }
 
-    @OnClick({R.id.rl_activity, R.id.rl_invite_friend, R.id.iv_zhang_dan})
+    @OnClick({R.id.rl_activity, R.id.rl_invite_friend, R.id.iv_zhang_dan,R.id.home_iv_eye})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_zhang_dan:
@@ -157,12 +173,26 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
             case R.id.rl_invite_friend:
                 startActivity(new Intent(getActivity(), InviteFriendActivity.class));
                 break;
+            case R.id.home_iv_eye:
+                if (isShowMoney) {
+                    homeIvEye.setImageResource(R.mipmap.home_yanjing);
+                    tvTotalAmount.setText(totalAmount);
+                    isShowMoney = false;
+                } else {
+                    homeIvEye.setImageResource(R.mipmap.home_yanjing2);
+                    tvTotalAmount.setText("******");
+                    isShowMoney = true;
+                }
+                break;
         }
     }
 
     @Override
     public void showBannerData(Banner banner) {
 
+        if (images != null) {
+            images.clear();
+        }
         mPresenter.getHomeArticle();//首页新闻 2
         modelBeen = banner.getModel().getModel();
         for (int i = 0; i < modelBeen.size(); i++) {
@@ -214,12 +244,12 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     @Override
     public void showHomeArticleData(HomeArticle homeArticle) {
 
-        mPresenter.getRecommend(userId+"");//首页活动 3
+        mPresenter.getRecommend(userId + "");//首页活动 3
         auto_roll_strings = new ArrayList<>();
         auto_roll_data = new ArrayList<>();
         for (int i = 0; i < homeArticle.getModel().getModel().getAnnouncementList().size(); i++) {
             auto_roll_strings.add(homeArticle.getModel().getModel().getAnnouncementList().get(i).getDescription());
-            auto_roll_data.add(homeArticle.getModel().getModel().getAnnouncementList().get(i).getCreateTime().substring(0,10));
+            auto_roll_data.add(homeArticle.getModel().getModel().getAnnouncementList().get(i).getCreateTime().substring(0, 10));
         }
         showAutoRollStrings();
     }
@@ -227,5 +257,20 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     @Override
     public void showHomeProductData(HomeProduct homeProduct) {
         homeXlv.setAdapter(new HomeProductAdapter(homeProduct.getModel().getModel(), getActivity()));
+    }
+
+    @Override
+    public void showUserInfoData(UserInfoBean userInfoBean) {
+        //拉去数据  1
+        mPresenter.getBanner("2");
+
+        UserInfoBean.ModelBeanX.ModelBean modelBean = userInfoBean.getModel().getModel();
+
+        totalAmount = modelBean.getTotal_amount();
+
+        tvTotalAmount.setText(totalAmount);
+        tvAvailableCredit.setText(modelBean.getAvailable_credit());
+        tvCumulativeIncome.setText(modelBean.getCumulative_income());
+        tvYesterdayIncome.setText(modelBean.getYesterday_income());
     }
 }

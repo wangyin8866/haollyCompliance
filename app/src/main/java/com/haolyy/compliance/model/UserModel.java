@@ -103,6 +103,12 @@ public class UserModel extends BaseModel {
         return userApi.findStatus(map);
     }
 
+    /**
+     * 查询用户信息
+     * @param platform
+     * @param user_id
+     * @return
+     */
    public Observable<UserInfoBean> getUserInfo(String platform,String user_id ){
        map.clear();
        map.put("user_id",user_id);

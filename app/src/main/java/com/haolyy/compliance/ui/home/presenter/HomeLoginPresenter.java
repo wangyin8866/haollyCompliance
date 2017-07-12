@@ -7,7 +7,9 @@ import com.haolyy.compliance.entity.home.Banner;
 import com.haolyy.compliance.entity.home.HomeActivity;
 import com.haolyy.compliance.entity.home.HomeArticle;
 import com.haolyy.compliance.entity.home.HomeProduct;
+import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.model.HomeModel;
+import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
@@ -113,5 +115,24 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
             }
         }, mContext));
 
+    }
+    public void getUserInfo(String platform,String user_id){
+        invoke(UserModel.getInstance().getUserInfo(platform,user_id),new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
+            @Override
+            public void onNext(UserInfoBean userInfoBean) {
+                if (userInfoBean.getCode().equals("200")) {
+                    if (userInfoBean.getModel().getCode().equals("200")) {
+                        LogUtils.e("userInfoBean",userInfoBean.toString());
+                        getView().showUserInfoData(userInfoBean);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.e("userInfoBean",e.getMessage());
+            }
+        },mContext));
     }
 }

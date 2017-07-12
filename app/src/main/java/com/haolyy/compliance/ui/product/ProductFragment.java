@@ -51,7 +51,6 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
         //获取菜单列表
         mPresenter.getTitle();
 
-//        mPresenter.getDetail("1", "12", "2", "SCD");
         return view;
     }
 
