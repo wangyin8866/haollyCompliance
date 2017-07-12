@@ -108,25 +108,26 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_yes_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
-        initView();
 
 
         return view;
     }
 
-
-    private void initView() {
-        //查询用户信息
-        mPresenter.getUserInfo(platform, "2");
-        isInvest = false;
-        if (isInvest) {
-            homeLlVisibility.setVisibility(View.GONE);
-        } else {
-            homeLlVisibility.setVisibility(View.VISIBLE);
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //查询用户信息
+            mPresenter.getUserInfo(platform, "2");
+            isInvest = false;
+            if (isInvest) {
+                homeLlVisibility.setVisibility(View.GONE);
+            } else {
+                homeLlVisibility.setVisibility(View.VISIBLE);
+            }
         }
-
-
     }
+
 
     private void showAutoRollStrings() {
         textviewAutoRoll.setText(auto_roll_strings.get(0));

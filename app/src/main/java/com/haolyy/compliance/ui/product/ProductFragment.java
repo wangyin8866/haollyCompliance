@@ -47,18 +47,20 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.product_main, container, false);
         unbinder = ButterKnife.bind(this, view);
-        initView();
-        //获取菜单列表
-        mPresenter.getTitle();
+
 
         return view;
     }
 
 
-    private void initView() {
-        mDatas = new ArrayList<>();
-        parentTitles = new ArrayList<>();
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //获取菜单列表
+            mPresenter.getTitle();
+        }
     }
 
     @Override
@@ -75,6 +77,8 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
 
     @Override
     public void showData(ProductTitle productList) {
+        mDatas = new ArrayList<>();
+        parentTitles = new ArrayList<>();
         for (int i = 0; i < productList.getModel().getModel().getTitle_list().size(); i++) {
             parentTitles.add(productList.getModel().getModel().getTitle_list().get(i).get(0).getCategory_name());
             parentNodeNo=productList.getModel().getModel().getTitle_list().get(i).get(0).getNode_no();

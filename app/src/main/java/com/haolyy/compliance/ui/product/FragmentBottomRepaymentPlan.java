@@ -46,7 +46,6 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
 
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
         LogUtils.e("FragmentBottomRepaymentPlan projectNo", projectNo);
-        mPresenter.getProductReturnPlan(false, projectNo, pageNum+"");
 
 
         repaymentXlv.setPullRefreshEnable(false);
@@ -54,6 +53,14 @@ public class FragmentBottomRepaymentPlan extends BaseFragment<RepaymentPlanPrese
 
 
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mPresenter.getProductReturnPlan(false, projectNo, pageNum+"");
+        }
     }
 
     @Override

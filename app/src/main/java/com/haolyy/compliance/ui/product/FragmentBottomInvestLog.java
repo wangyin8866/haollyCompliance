@@ -41,7 +41,7 @@ public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,Inv
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bottom_invest_log, container, false);
         unbinder = ButterKnife.bind(this, view);
-//        mPresenter.getInvestmentRecord("HLWL206878","1","1","1","1");
+
         investLogs = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             InvestLog investLog = new InvestLog("0000000000" + i, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()),  1000 * i+"元");
@@ -51,6 +51,14 @@ public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,Inv
         xlInvestLog.setXListViewListener(this);
         xlInvestLog.setPullRefreshEnable(false);
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //    mPresenter.getInvestmentRecord("HLWL206878","1","1","1","1");
+        }
     }
 
     @Override
