@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/public_title_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/white"
+        android:paddingLeft="17dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="消息推送"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <com.haolyy.compliance.custom.SwitchButton
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_f5f5f5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/white"
+        android:paddingLeft="17dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="清理缓存"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_clear_cache"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="2.00M"
+            android:textColor="@color/text_b9b9b9" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_f5f5f5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/white"
+        android:paddingLeft="17dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="版本号"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="V1.0"
+            android:textColor="@color/text_b9b9b9" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_f5f5f5" />
+
+    <TextView
+        android:id="@+id/tv_about"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@mipmap/arrow_right"
+        android:gravity="center_vertical"
+        android:paddingLeft="17dp"
+        android:paddingRight="20dp"
+        android:text="关于好利"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_f5f5f5" />
+
+    <TextView
+        android:id="@+id/tv_contact_us"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@mipmap/arrow_right"
+        android:gravity="center_vertical"
+        android:paddingLeft="17dp"
+        android:paddingRight="20dp"
+        android:text="联系我们"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_f5f5f5" />
+
+    <TextView
+        android:id="@+id/tv_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@mipmap/arrow_right"
+        android:gravity="center_vertical"
+        android:paddingLeft="17dp"
+        android:paddingRight="20dp"
+        android:text="意见反馈"
+        android:textColor="@color/text_4a4a4a"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_f5f5f5" />
+</LinearLayout>
