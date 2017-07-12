@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui.product;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.dialog.DialogInvest;
-import com.haolyy.compliance.utils.SystemBarUtil;
 import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
@@ -38,7 +36,6 @@ public class InvestSucceed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invest_succeed);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {

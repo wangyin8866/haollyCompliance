@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui.product;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,7 +15,6 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.ui.product.presenter.SelectQuanPresenter;
 import com.haolyy.compliance.ui.product.view.SelectQuanView;
-import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +53,6 @@ public class SelectQuanActivity extends BaseActivity<SelectQuanPresenter, Select
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_quan);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         titles.add("可用卡券");
         titles.add("不可用卡券");
         FragmentUsefulQuan fragmentUsefulQuan = new FragmentUsefulQuan();

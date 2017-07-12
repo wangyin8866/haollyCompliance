@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui.product;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
-import com.haolyy.compliance.utils.SystemBarUtil;
 import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
@@ -33,7 +31,6 @@ public class InvestErrorRest extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invest_error_rest);
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
 
         ButterKnife.bind(this);
         topSureInvest.setOnItemClickListener(new TopBar.OnItemClickListener() {

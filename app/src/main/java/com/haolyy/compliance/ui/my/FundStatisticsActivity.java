@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
-import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,6 @@ public class FundStatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fund_statistics);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this, R.color.white);
         initView();
 
     }

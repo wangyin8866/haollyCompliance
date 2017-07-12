@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui.find;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
-import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +40,6 @@ public class ShopCardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_card);
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         ButterKnife.bind(this);
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
@@ -61,7 +58,6 @@ public class ShopCardActivity extends AppCompatActivity {
     }
 
     private void init() {
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         titles = new ArrayList<>();
         fragments = new ArrayList<>();
         titles.add("未使用");

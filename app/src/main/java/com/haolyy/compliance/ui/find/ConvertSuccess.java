@@ -1,7 +1,6 @@
 package com.haolyy.compliance.ui.find;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
-import com.haolyy.compliance.utils.SystemBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +32,6 @@ public class ConvertSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.convert_success);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {

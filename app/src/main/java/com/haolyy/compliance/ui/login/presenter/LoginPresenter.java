@@ -41,7 +41,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
             @Override
             public void onNext(LoginResponseBean loginResponseBean) {
+
                 if (loginResponseBean.getCode().equals("200")) {
+                    LogUtils.e("getCode",loginResponseBean.getCode());
                     BaseApplication.mLoginState = true;
                     BaseApplication.userId = loginResponseBean.getModel().getId();
 //                    BaseApplication.mUserName = loginResponseBean.getData().getData().getMobile();

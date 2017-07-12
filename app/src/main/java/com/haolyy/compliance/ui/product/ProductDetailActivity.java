@@ -13,7 +13,6 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
-import com.haolyy.compliance.utils.SystemBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this, R.color.white);
         init();
         tvProductJoin.setOnClickListener(new View.OnClickListener() {
             @Override

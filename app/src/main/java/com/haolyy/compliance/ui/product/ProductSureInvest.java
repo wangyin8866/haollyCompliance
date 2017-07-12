@@ -1,7 +1,6 @@
 package com.haolyy.compliance.ui.product;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
-import com.haolyy.compliance.utils.SystemBarUtil;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 
 import butterknife.BindView;
@@ -41,7 +39,6 @@ public class ProductSureInvest extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sure_invest);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this, Color.TRANSPARENT);
         topSureInvest.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {

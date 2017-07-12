@@ -11,9 +11,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.haolyy.compliance.R;
-import com.haolyy.compliance.utils.SystemBarUtil;
-
 import java.util.List;
 
 import rx.Subscription;
@@ -56,7 +53,6 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V> extends AppCom
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SystemBarUtil.setSystemBar(this, R.color.transparent);
         mContext = this;
         isInBackground = false;
         ActivityCollector.addActivity(this);

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.ui.my.view.InviteRecordActivity;
-import com.haolyy.compliance.utils.SystemBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +40,6 @@ public class InviteFriendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite_friend);
         ButterKnife.bind(this);
-        SystemBarUtil.setSystemBar(this);
         initView();
     }
 
