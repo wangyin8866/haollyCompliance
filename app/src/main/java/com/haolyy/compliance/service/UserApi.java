@@ -14,6 +14,7 @@ import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.entity.login.SmsBean;
+import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 
 import java.util.Map;
 
@@ -77,5 +78,12 @@ public interface UserApi {
     @FormUrlEncoded
     @POST(NetConstantValues.ACCOUNT_INCOME_INFO)
     Observable<FundStatictisIncomeBean>  getUserIncomeInfo(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.DEAL_RECORD_INFO)
+    Observable<DealRecordBean>  getDealRecord(@FieldMap Map<String, String> map);
+
+
+
 
 }

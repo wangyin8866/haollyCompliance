@@ -1,5 +1,8 @@
 package com.haolyy.compliance.entity.home;
 
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -98,7 +101,7 @@ public class FundStatictisIncomeBean {
                 this.income_list_30 = income_list_30;
             }
 
-            public static class IncomeList7Bean {
+            public static class IncomeList7Bean implements Comparable<IncomeList7Bean>{
                 /**
                  * YXJH : 0.00
                  * incomeSum : 20.00
@@ -172,6 +175,13 @@ public class FundStatictisIncomeBean {
                 public void setDQY(String DQY) {
                     this.DQY = DQY;
                 }
+
+                @Override
+                public int compareTo(@NonNull IncomeList7Bean incomeList7Bean) {
+                    return  Double.compare(Double.parseDouble(getIncomeSum()), Double.parseDouble(incomeList7Bean.getIncomeSum())) ;
+                }
+
+
             }
 
             public static class IncomeList30Bean {

@@ -11,9 +11,13 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.DealLogAdapter;
 import com.haolyy.compliance.adapter.InvestLogAdapter;
+import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.InvestLog;
+import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
+import com.haolyy.compliance.ui.my.presenter.DealRecordPresenter;
+import com.haolyy.compliance.ui.my.view.DealRecordView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ import butterknife.OnClick;
  * Created by wangyin on 2017/5/24.
  */
 
-public class DealLogActivity extends AppCompatActivity implements XListView.IXListViewListener {
+public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecordView> implements XListView.IXListViewListener,DealRecordView {
     @BindView(R.id.top_fund)
     TopBar topFund;
     @BindView(R.id.xlv_deal_log)
@@ -54,8 +58,12 @@ public class DealLogActivity extends AppCompatActivity implements XListView.IXLi
     TextView tvDeal8;
     @BindView(R.id.tv_deal_9)
     TextView tvDeal9;
-    private List<InvestLog> investLogs;
+//    private List<InvestLog> investLogs;
     private boolean doubleClick;
+
+//    private String[] capitalTypes = {"2001","2001","","","",""}
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,15 +87,36 @@ public class DealLogActivity extends AppCompatActivity implements XListView.IXLi
                 }
             }
         });
+        mPresenter.requestDealRecord("2001","1","1","0");
 
 
-        investLogs = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            InvestLog investLog = new InvestLog("0000000000" + i, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()), 1000 * i + "元");
-            investLogs.add(investLog);
-        }
-        xlvDealLog.setAdapter(new DealLogAdapter(investLogs, this));
+
+    }
+
+    @Override
+    public void showData(DealRecordBean dealRecordBean) {
+        if(dealRecordBean.getModel().getModel().getFundsRecordList() == null) return;
+        xlvDealLog.setAdapter(new DealLogAdapter(dealRecordBean.getModel().getModel().getFundsRecordList() , this));
         xlvDealLog.setXListViewListener(this);
+    }
+
+    @Override
+    protected DealRecordPresenter createPresenter() {
+        return new DealRecordPresenter(this);
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
+
+    }
+
+    @Override
+    public void showSuccessToast(String msg) {
+
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
 
     }
 
@@ -149,6 +178,11 @@ public class DealLogActivity extends AppCompatActivity implements XListView.IXLi
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         llDealTab.setVisibility(View.GONE);
         doubleClick = !doubleClick;
+    }
+
+
+    private void refreshView(String capitalType) {
+        mPresenter.requestDealRecord("2001","1","1","0");
     }
 
     private void reset() {

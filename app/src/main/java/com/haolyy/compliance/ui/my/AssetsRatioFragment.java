@@ -12,6 +12,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.MagnificentChart;
 import com.haolyy.compliance.custom.MagnificentChartItem;
+import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
 import com.haolyy.compliance.ui.my.view.FundStatictisView;
 
@@ -79,6 +80,12 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter,Fu
 
     @Override
     public void showErrorToast(String msg) {
+
+    }
+
+
+    @Override
+    public void showData(FundStatictisIncomeBean fundStatictisIncomeBean) {
 
     }
 }

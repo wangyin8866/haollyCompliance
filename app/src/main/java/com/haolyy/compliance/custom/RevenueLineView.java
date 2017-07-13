@@ -32,9 +32,10 @@ public class RevenueLineView extends View {
     private int YLENTH = dip2px(160);
     private static Context mContext;
     //这些像素值在通过dp转换
-    private int XPoint = dip2px(60);
+
     private int YPoint = YLENTH;
     private int XScale = XLENTH / 7; // 刻度长度
+    private int XPoint = dip2px(60) ;
     private int YScale = YLENTH / 4;
     private int XLength = XLENTH;
     private int YLength = YLENTH;
@@ -68,8 +69,8 @@ public class RevenueLineView extends View {
 
     private List<Double> data = new ArrayList<Double>();
 
-    private String[] YLabel = new String[4];
-    private String[] XLabel = new String[7];
+    private String[] YLabel ;
+    private String[] XLabel ;
 
     /* private Handler handler = new Handler() {
          public void handleMessage(Message msg) {
@@ -90,41 +91,53 @@ public class RevenueLineView extends View {
         this.mContext = context;
         this.XLength = XL;
         this.YLength = YL;
-        for (int i = 0; i <= YLabel.length; i++) {
-            YLabel[i] = (1000) + "元";
-        }
-        for (int i = 0; i < XLabel.length; i++) {
-            XLabel[i] = "07-" + (i + 1);
-        }
-        for (int i = 0; i < XLabel.length; i++) {
-            if (i < 3) {
-                data.add(i + 0.5);
-            } else {
-                data.add(i - 0.5);
-            }
-        }
+//        for (int i = 0; i <= YLabel.length; i++) {
+//            YLabel[i] = (1000) + "元";
+//        }
+//        for (int i = 0; i < XLabel.length; i++) {
+//            XLabel[i] = "07-" + (i + 1);
+//        }
+//        for (int i = 0; i < XLabel.length; i++) {
+//            if (i < 3) {
+//                data.add(i + 0.5);
+//            } else {
+//                data.add(i - 0.5);
+//            }
+//        }
 
     }
 
     public RevenueLineView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
-        for (int i = 0; i < YLabel.length; i++) {
-            YLabel[i] = (i * 1000) + "";
-        }
-        for (int i = 0; i < XLabel.length; i++) {
-            XLabel[i] = "07-" + (i + 1);
-        }
+//        for (int i = 0; i < YLabel.length; i++) {
+//            YLabel[i] = (i * 1000) + "元";
+//        }
+//        for (int i = 0; i < XLabel.length; i++) {
+//            XLabel[i] = "07-" + (i + 1);
+//        }
 
-        data.add(0.0);
-        data.add(1.0);
-        data.add(2.0);
-        data.add(3.0);
-        data.add(2.0);
-        data.add(1.0);
-        data.add(3.0);
+//        data.add(0.0);
+//        data.add(1.0);
+//        data.add(2.0);
+//        data.add(3.0);
+//        data.add(2.0);
+//        data.add(1.0);
+//        data.add(3.0);
 
 
+    }
+
+    public void setYLabel(String[] YLabel) {
+        this.YLabel = YLabel;
+    }
+
+    public void setXLabel(String[] XLabel) {
+        this.XLabel = XLabel;
+    }
+
+    public void setData(List<Double> data) {
+        this.data = data;
     }
 
     @Override
@@ -159,11 +172,11 @@ public class RevenueLineView extends View {
         paint4.setColor(Color.parseColor("#000000"));
         paint4.setTextSize(36);
 
-
+         if(YLabel == null || XLabel == null) return;
         // 添加刻度和文字
         for (int i = 0; i <= 3; i++) {
             Log.e("ndy", YLabel[i]);
-            canvas.drawText(YLabel[i], XPoint - dip2px(40), YPoint - (i) * YScale + 24, paint);// 文字
+            canvas.drawText(YLabel[i], XPoint - dip2px(40), YPoint - (i) * YScale + 4, paint);// 文字
             //canvas.drawLine((float) (XPoint + 0.5 * XScale), YPoint - (i + 1) * YScale, XPoint + XLENTH, YPoint - (i + 1) * YScale, paintDash); // 刻度
             if (i < 3) {
                 DashPathEffect pathEffect = new DashPathEffect(new float[]{10, 10, 10, 10}, 1);
@@ -190,9 +203,9 @@ public class RevenueLineView extends View {
             Path path = new Path();//折线
             for (int i = 0; i < data.size(); i++) {
                 if (i == 0) {
-                    path.moveTo(XPoint, (float) (YPoint - 0.5 * XScale));//起点
+                    path.moveTo(XPoint+ (float)(XScale/2.8) , (float) (YPoint - data.get(i) * YScale));//起点
                 } else {
-                    path.lineTo(XPoint + i * XScale, (float) (YPoint - data.get(i) * YScale));//终点
+                    path.lineTo(XPoint + (float)(XScale/2.8) + i * XScale, (float) (YPoint - data.get(i) * YScale));//终点
                 }
             }
             //path.lineTo(XPoint + (data.size() - 1) * XScale, YPoint);
@@ -205,9 +218,9 @@ public class RevenueLineView extends View {
         Bitmap dot = Bitmap.createBitmap(dotbmp);
         //canvas.drawBitmap(dot, XPoint + 6 * XScale, (float) (YPoint - 3 * YScale - 0.5 * dot.getHeight()), paint4);
         //画第一个点
-        canvas.drawBitmap(dot, (float) (XPoint -0.5*dot.getWidth()), (float) (YPoint - 0.5 * XScale- 0.5 * dot.getHeight()), paint4);
-        for (int j = 1; j < 7; j++) {
-            canvas.drawBitmap(dot, (float) (XPoint + j * XScale-0.5*dot.getWidth()), (float) (YPoint - data.get(j) * YScale- 0.5 * dot.getHeight()), paint4);
+//        canvas.drawBitmap(dot, (float) (XPoint+ (float)(XScale/2.5) -0.5*dot.getWidth()), (float) (YPoint - 0.5 * XScale- 0.5 * dot.getHeight()), paint4);
+        for (int j = 0; j < 7; j++) {
+            canvas.drawBitmap(dot, (float) (XPoint+ (float)(XScale/2.8) + j * XScale-0.5*dot.getWidth()), (float) (YPoint - data.get(j) * YScale- 0.5 * dot.getHeight()), paint4);
 
         }
     }

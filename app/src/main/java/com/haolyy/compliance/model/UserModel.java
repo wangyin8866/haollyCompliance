@@ -12,6 +12,7 @@ import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.service.UserApi;
+import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 
 import rx.Observable;
 
@@ -140,7 +141,14 @@ public class UserModel extends BaseModel {
         return userApi.getUserIncomeInfo(map);
     }
 
-
+    public Observable<DealRecordBean> getDealRecord(String capitalType, String user_id, String pageIndex, String dateFlag) {
+        map.clear();
+        map.put("userId",user_id);
+        map.put("capitalType", capitalType);
+        map.put("pageIndex", pageIndex);
+        map.put("dateFlag", dateFlag);
+        return userApi.getDealRecord(map);
+    }
 
 
 }
