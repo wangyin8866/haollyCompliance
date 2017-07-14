@@ -22,8 +22,8 @@ public class AccountSecurityPresenter extends BasePresenter<AccountSecurityView>
     }
 
 
-    public void getAccountInfo(String platform,String user_id) {
-        invoke(UserModel.getInstance().getUserSecurityInfo(platform, user_id), new ProgressSubscriber<AccountSecurityBean>(new SubscriberOnNextListener<AccountSecurityBean>() {
+    public void getAccountInfo() {
+        invoke(UserModel.getInstance().getUserSecurityInfo(), new ProgressSubscriber<AccountSecurityBean>(new SubscriberOnNextListener<AccountSecurityBean>() {
             @Override
             public void onNext(AccountSecurityBean s) {
                 if(s.getCode().equals("200")) {

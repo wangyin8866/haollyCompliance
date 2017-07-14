@@ -9,12 +9,15 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.List;
 
@@ -48,7 +51,7 @@ public class MagnificentChart extends View {
     private float animationSpeed = 6.5f;
 
     private float globalCurrentAngle = 0.0f;
-
+    private String totalAmount;//总金额
 
 
 // #MARK - Constructors
@@ -178,6 +181,14 @@ public class MagnificentChart extends View {
         invalidate();
     }
 
+    /**
+     * 设置总金额
+     * @param totalAmount
+     */
+    public void setText(String totalAmount){
+        this.totalAmount=totalAmount;
+        invalidate();
+    }
     public void setAnimationSpeed(float animationSpeed){ // use just value ANIMATION_SPEED_... from current class
         if(animationSpeed == ANIMATION_SPEED_DEFAULT || animationSpeed == ANIMATION_SPEED_SLOW || animationSpeed == ANIMATION_SPEED_FAST || animationSpeed == ANIMATION_SPEED_NORMAL){
             this.animationSpeed = animationSpeed;
@@ -264,6 +275,7 @@ public class MagnificentChart extends View {
     }
 
     private void animatedDraw(Canvas canvas){
+        drawsText();
         Paint insideShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         insideShadowPaint.setColor(shadowBackgroundColor);
         Paint insideChartPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -305,6 +317,19 @@ public class MagnificentChart extends View {
                 return;
             }
             invalidate();
+        }
+
+    }
+
+    /**
+     * 绘制文字
+     */
+    private void drawsText() {
+        if(!TextUtils.isEmpty(totalAmount)){
+            TextPaint textPaint=new TextPaint(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            //textPaint.setTextSize(UIUtils.sp2px(14,);
+            //textPaint.getTextBounds(mTextStr1, 0, mTextStr1.length(), mTextBound1);
+
         }
     }
 

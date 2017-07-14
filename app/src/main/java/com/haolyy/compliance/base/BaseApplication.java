@@ -37,7 +37,7 @@ public class BaseApplication extends Application {
     private static Looper mMainLooper;
 
     public static boolean mLoginState;//是否登录
-    public static int userId = -1;
+    public static int userId = 1;
     public static String mUserName;
 
     public static String mInviteCode;//用户邀请码

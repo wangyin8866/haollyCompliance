@@ -5,7 +5,6 @@
     android:paddingRight="20dp"
     android:layout_height="match_parent">
 
-
 <com.haolyy.compliance.custom.RevenueLineView
     android:id="@+id/income_line_view"
     android:layout_width="match_parent"

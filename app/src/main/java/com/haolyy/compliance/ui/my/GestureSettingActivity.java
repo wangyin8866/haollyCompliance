@@ -104,11 +104,7 @@ public class GestureSettingActivity extends AppCompatActivity {
                     }
                 }
             }
-
-
         });
-
-
     }
 
 

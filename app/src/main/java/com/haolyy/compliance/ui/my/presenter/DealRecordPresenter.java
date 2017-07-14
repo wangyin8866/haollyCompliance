@@ -20,8 +20,8 @@ public class DealRecordPresenter  extends BasePresenter<DealRecordView>{
     }
 
 
-    public void requestDealRecord(String capitalType,String user_id,String pageIndex,String dateFlag) {
-        invoke(UserModel.getInstance().getDealRecord(capitalType, user_id,pageIndex,dateFlag), new ProgressSubscriber<DealRecordBean>(new SubscriberOnNextListener<DealRecordBean>() {
+    public void requestDealRecord(String capitalType,String pageIndex,String dateFlag) {
+        invoke(UserModel.getInstance().getDealRecord(capitalType,pageIndex,dateFlag), new ProgressSubscriber<DealRecordBean>(new SubscriberOnNextListener<DealRecordBean>() {
             @Override
             public void onNext(DealRecordBean s) {
                 if(s.getCode().equals("200")) {

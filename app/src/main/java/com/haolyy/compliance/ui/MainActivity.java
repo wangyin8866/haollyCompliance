@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 判断是否登录
-     *
      * @param isLogin
      */
     private void switchStateHome(boolean isLogin) {

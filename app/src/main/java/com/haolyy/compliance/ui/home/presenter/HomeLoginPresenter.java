@@ -116,8 +116,8 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
         }, mContext));
 
     }
-    public void getUserInfo(String platform,String user_id){
-        invoke(UserModel.getInstance().getUserInfo(platform,user_id),new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
+    public void getUserInfo(){
+        invoke(UserModel.getInstance().getUserInfo(),new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
             @Override
             public void onNext(UserInfoBean userInfoBean) {
                 if (userInfoBean.getCode().equals("200")) {

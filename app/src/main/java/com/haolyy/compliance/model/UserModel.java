@@ -3,10 +3,12 @@ package com.haolyy.compliance.model;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.entity.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
@@ -15,7 +17,9 @@ import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 
 import rx.Observable;
 
+import static com.haolyy.compliance.base.BaseApplication.userId;
 import static com.haolyy.compliance.base.BaseApplication.version;
+import static com.haolyy.compliance.config.Config.platform;
 
 /**
  * Created by LL on 2017/1/7.
@@ -70,7 +74,7 @@ public class UserModel extends BaseModel {
         map.put("smsCode", smsCode);
         map.put("validate_code", imageCode);
         map.put("client", Config.client);
-        map.put("platform", Config.platform);
+        map.put("platform", platform);
         map.put("version", version);
         map.put("channel",channel);
         map.put("inviteCode",inviteCode);
@@ -101,43 +105,46 @@ public class UserModel extends BaseModel {
     public Observable<FindUserStatusBean> findUserStatus() {
         map.clear();
         map.put("mobile",BaseApplication.mUserName);
-        map.put("platform", "1");
+        map.put("platform", platform);
         return userApi.findStatus(map);
     }
 
     /**
      * 查询用户信息
-     * @param platform
-     * @param user_id
      * @return
      */
-   public Observable<UserInfoBean> getUserInfo(String platform,String user_id ){
+   public Observable<UserInfoBean> getUserInfo(){
        map.clear();
-       map.put("user_id",user_id);
+       map.put("user_id",userId+"");
        map.put("platform", platform);
        return userApi.getUserInfo(map);
     }
 
 
-
-
-    public Observable<AccountSecurityBean> getUserSecurityInfo(String platform,String user_id) {
+    public Observable<ProductRatioBean> getUserProductInfo(){
         map.clear();
-        map.put("user_id",user_id);
+        map.put("user_id",userId+"");
+        map.put("platform", platform);
+        return userApi.getUserProductInfo(map);
+    }
+
+    public Observable<AccountSecurityBean> getUserSecurityInfo() {
+        map.clear();
+        map.put("user_id",userId+"");
         map.put("platform", platform);
         return userApi.getUserSecurityInfo(map);
     }
 
-    public Observable<FundStatictisIncomeBean> getUserIncomInfo(String platform, String user_id) {
+    public Observable<FundStatictisIncomeBean> getUserIncomInfo() {
         map.clear();
-        map.put("userId",user_id);
+        map.put("userId",userId+"");
         map.put("platform", platform);
         return userApi.getUserIncomeInfo(map);
     }
 
-    public Observable<DealRecordBean> getDealRecord(String capitalType, String user_id, String pageIndex, String dateFlag) {
+    public Observable<DealRecordBean> getDealRecord(String capitalType,String pageIndex, String dateFlag) {
         map.clear();
-        map.put("userId",user_id);
+        map.put("userId",userId+"");
         map.put("capitalType", capitalType);
         map.put("pageIndex", pageIndex);
         map.put("dateFlag", dateFlag);

@@ -6,16 +6,18 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.adapter.RatioAdapter;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.MagnificentChart;
 import com.haolyy.compliance.custom.MagnificentChartItem;
-import com.haolyy.compliance.ui.my.Bean.AssetRatioBean;
-import com.haolyy.compliance.ui.my.presenter.AssetsRatioPresenter;
-import com.haolyy.compliance.ui.my.view.AssetsRatioView;
+import com.haolyy.compliance.entity.ProductRatioBean;
+import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
+import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
+import com.haolyy.compliance.ui.my.view.FundStatictisView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,129 +25,40 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * Created by wangyin on 2017/5/16.
  */
 
-public class AssetsRatioFragment extends BaseFragment<AssetsRatioPresenter,AssetsRatioView> implements AssetsRatioView {
+public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, FundStatictisView> implements FundStatictisView {
     @BindView(R.id.magnificentChart)
     MagnificentChart magnificentChart;
-
-    @BindView(R.id.short_win_plan_num)
-    TextView short_win_plan_num;
-    @BindView(R.id.short_win_plan)
-    TextView short_win_plan;
-    @BindView(R.id.win_plan_num)
-    TextView win_plan_num;
-    @BindView(R.id.win_plan)
-    TextView win_plan;
-    @BindView(R.id.week_win_plan_num)
-    TextView week_win_plan_num;
-    @BindView(R.id.week_win_plan)
-    TextView week_win_plan;
-    @BindView(R.id.consumer_credit_num)
-    TextView consumer_credit_num;
-    @BindView(R.id.consumer_credit_value)
-    TextView consumer_credit_value;
-    @BindView(R.id.bill_loan_num)
-    TextView bill_loan_num;
-    @BindView(R.id.bill_loan)
-    TextView bill_loan;
-    @BindView(R.id.available_amount)
-    TextView available_amount;
-    @BindView(R.id.frozen_loan)
-    TextView frozen_loan;
-    @BindView(R.id.fast_car_loan_num)
-    TextView fast_car_loan_num;
-    @BindView(R.id.fast_car_loan)
-    TextView fast_car_loan;
-
     Unbinder unbinder;
+    @BindView(R.id.lv_ratio_item)
+    ListView lvRatioItem;
+    @BindView(R.id.tv_ratio_avaible)
+    TextView tvRatioAvaible;
+    @BindView(R.id.tv_ratio_frozen)
+    TextView tvRatioFrozen;
     private View view;
+    private MagnificentChartItem firstItem, secondItem, thirdItem, fourthItem, fifthItem, sixthItem, sevenItem, eightItem;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_assets_ratio, container, false);
         unbinder = ButterKnife.bind(this, view);
-        mPresenter.requestUserProductInfo(Config.platform,"2");
-
+        mPresenter.userHoldProductRecord();
         return view;
     }
 
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-
-    }
-
-    @Override
-    protected AssetsRatioPresenter createPresenter() {
-        return new AssetsRatioPresenter(mContext);
-    }
-
-    @Override
-    public void showSuccessToast(String msg) {
-
-    }
-
-    @Override
-    public void showErrorToast(String msg) {
-
-    }
-
-
-    @Override
-    public void showData(AssetRatioBean assetRatioBean) {
-        available_amount.setText(assetRatioBean.getModel().getModel().getAvailable_balance());
-        frozen_loan.setText(assetRatioBean.getModel().getModel().getFrozen_balance());
-        int short_win_plan_per = 0,bill_loan_per = 0,consumer_credit_per = 0,win_plan_per = 0,week_win_plan_per = 0,fast_loan_per = 0;
-        for(AssetRatioBean.ModelBeanX.ModelBean.HoldProductListBean bean : assetRatioBean.getModel().getModel().getHoldProductList()) {
-            int id = Integer.parseInt(bean.getId());
-            switch (id) {
-                case 1:
-                    short_win_plan_num.setText(bean.getHold_count());
-                    short_win_plan.setText(bean.getHold_amount());
-                    short_win_plan_per = Integer.parseInt(bean.getProportion());
-                break;
-                case 6:
-                    bill_loan_num.setText(bean.getHold_count());
-                    bill_loan.setText(bean.getHold_amount());
-                    bill_loan_per = Integer.parseInt(bean.getProportion());
-                    break;
-                case 4:
-                    consumer_credit_num.setText(bean.getHold_count());
-                    consumer_credit_value.setText(bean.getHold_amount());
-                    consumer_credit_per = Integer.parseInt(bean.getProportion());
-                    break;
-                case 2:
-                    win_plan_num.setText(bean.getHold_count());
-                    win_plan.setText(bean.getHold_amount());
-                    win_plan_per = Integer.parseInt(bean.getProportion());
-                    break;
-                case 3:
-                    week_win_plan_num.setText(bean.getHold_count());
-                    week_win_plan.setText(bean.getHold_amount());
-                    week_win_plan_per = Integer.parseInt(bean.getProportion());
-                    break;
-                case 5:
-                    fast_car_loan_num.setText(bean.getHold_count());
-                    fast_car_loan.setText(bean.getHold_amount());
-                    fast_loan_per = Integer.parseInt(bean.getProportion());
-                    break;
-
-            }
-        }
-
-        MagnificentChartItem firstItem = new MagnificentChartItem("first", short_win_plan_per, Color.parseColor("#FF7753"));
-        MagnificentChartItem secondItem = new MagnificentChartItem("second",win_plan_per , Color.parseColor("#FDD000"));
-        MagnificentChartItem thirdItem = new MagnificentChartItem("third", week_win_plan_per, Color.parseColor("#7ED321"));
-        MagnificentChartItem fourthItem = new MagnificentChartItem("fourth", consumer_credit_per, Color.parseColor("#5A96FA"));
-        MagnificentChartItem fifthItem = new MagnificentChartItem("fifth", fast_loan_per, Color.parseColor("#CA98F6"));
-        MagnificentChartItem sixthItem = new MagnificentChartItem("sixth", bill_loan_per, Color.parseColor("#FBB2CD"));
+    /**
+     * 依次为
+     * 短期赢 鹰计划 周周赢 消费贷 闪车袋 票据袋 可用金额 冻结金额
+     */
+    private void initRatio() {
         List<MagnificentChartItem> chartItemsList = new ArrayList<MagnificentChartItem>();
         chartItemsList.add(firstItem);
         chartItemsList.add(secondItem);
@@ -157,6 +70,69 @@ public class AssetsRatioFragment extends BaseFragment<AssetsRatioPresenter,Asset
         magnificentChart.setMaxValue(100);
         magnificentChart.setShadowShowingState(false);
         magnificentChart.setAnimationState(true);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+
+    }
+
+    @Override
+    protected FundStatisticsPresenter createPresenter() {
+        return new FundStatisticsPresenter(mContext);
+    }
+
+    /**
+     * 不用
+     *
+     * @param incomeBean
+     */
+    @Override
+    public void showData(FundStatictisIncomeBean incomeBean) {
+
+    }
+
+    @Override
+    public void showRatio(ProductRatioBean.ModelBeanX.ModelBean productRatioBean) {
+        productRatioBean.getAllHoldAmount();
+        tvRatioAvaible.setText(productRatioBean.getAvailable_balance());
+        tvRatioFrozen.setText(productRatioBean.getFrozen_balance());
+        List<ProductRatioBean.ModelBeanX.ModelBean.HoldProductListBean> holdProductList = productRatioBean.getHoldProductList();
+        Observable.from(holdProductList)
+                .subscribe(new Action1<ProductRatioBean.ModelBeanX.ModelBean.HoldProductListBean>() {
+                    @Override
+                    public void call(ProductRatioBean.ModelBeanX.ModelBean.HoldProductListBean u) {
+                        switch (u.getId()) {
+                            case "1":
+                                firstItem = new MagnificentChartItem("first", Integer.parseInt(u.getProportion()), Color.parseColor("#FF7753"));
+
+                                break;
+                            case "2":
+                                secondItem = new MagnificentChartItem("second", Integer.parseInt(u.getProportion()), Color.parseColor("#FDD000"));
+
+                                break;
+                            case "3":
+                                thirdItem = new MagnificentChartItem("third", Integer.parseInt(u.getProportion()), Color.parseColor("#7ED321"));
+
+                                break;
+                            case "4":
+                                fourthItem = new MagnificentChartItem("fourth", Integer.parseInt(u.getProportion()), Color.parseColor("#70a5ff"));
+
+                                break;
+                            case "5":
+                                fifthItem = new MagnificentChartItem("fifth", Integer.parseInt(u.getProportion()), Color.parseColor("#CA98F6"));
+
+                                break;
+                            case "6":
+                                sixthItem = new MagnificentChartItem("sixth", Integer.parseInt(u.getProportion()), Color.parseColor("#FBB2CD"));
+                                break;
+                        }
+                    }
+                });
+        initRatio();
+        RatioAdapter ratioAdapter = new RatioAdapter(holdProductList, mContext);
+        lvRatioItem.setAdapter(ratioAdapter);
     }
 }

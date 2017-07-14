@@ -66,7 +66,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_security);
         ButterKnife.bind(this);
-        mPresenter.getAccountInfo(Config.platform,"2");
+        mPresenter.getAccountInfo();
 
         topAccountSecurity.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
@@ -116,7 +116,6 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
-
     }
 
     @Override

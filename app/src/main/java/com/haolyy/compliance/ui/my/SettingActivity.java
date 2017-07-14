@@ -68,6 +68,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        tvTitle.setText("设置");
         try {
             totalCacheSize = CacheManager.getTotalCacheSize(getApplicationContext());
             tvClearCache.setText(totalCacheSize);

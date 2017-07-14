@@ -9,14 +9,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.home.UserProductBean;
+import com.haolyy.compliance.ui.bank.BankBindActivity;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
+import com.haolyy.compliance.ui.bank.RechargeActivity;
+import com.haolyy.compliance.ui.bank.WithDrawActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
@@ -25,7 +30,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by wangyin on 2017/5/16.
@@ -92,9 +96,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            if (mPresenter != null) {
-            mPresenter.requestUserInfoDetail("HLW","2");
-            }
+            mPresenter.requestUserInfoDetail();
         }
     }
 
@@ -183,7 +185,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     @Override
     public void showData(UserInfoBean userInfoBean) {
         this.userInfoBean = userInfoBean;
-        Glide.with(mContext).load(userInfoBean.getModel().getModel().getUser_head_photo()).bitmapTransform(new CropCircleTransformation(mContext)).crossFade(1000).into(ivHeadIcon);
         available_amount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
         frezon_amount.setTextBottom(userInfoBean.getModel().getModel().getFrozen_amount());
         vdTotalAsset.setTextBottom(userInfoBean.getModel().getModel().getTotal_amount());
@@ -202,9 +203,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             iv_gold.setVisibility(View.INVISIBLE);
         }
     }
-
-
-
     @Override
     public void showSuccessToast(String msg) {
 

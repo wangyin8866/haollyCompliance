@@ -154,6 +154,7 @@ public class RevenueLineView extends View {
         paint.setAntiAlias(true); // 去锯齿
         paint.setColor(Color.parseColor("#4a4a4a"));
         paint.setTextSize(dip2px(10));
+
         Paint paint1 = new Paint();//画折线的paint
         paint1.setColor(Color.parseColor("#ff9933"));
         paint1.setStyle(Paint.Style.STROKE);

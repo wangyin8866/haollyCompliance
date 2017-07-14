@@ -15,7 +15,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        app:showTitle="false"
+        app:showTitle="true"
         app:animation="false"
         app:round="false"
         app:shadow="true"
@@ -53,189 +53,12 @@
             android:textColor="@color/text_9b9b9b"
             android:textSize="14sp" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="21dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/point_short_win"
-            android:drawablePadding="9dp"
-            android:text="短期赢"
-            android:textColor="@color/text_4b4b4b"
-            android:textSize="14sp" />
-        <TextView android:id="@+id/short_win_plan_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-             android:layout_marginLeft="180dp"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-        <TextView android:id="@+id/short_win_plan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="0"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="21dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/point_yellow"
-            android:drawablePadding="9dp"
-            android:text="赢计划"
-            android:textColor="@color/text_4b4b4b"
-            android:textSize="14sp" />
-        <TextView android:id="@+id/win_plan_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginLeft="180dp"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-        <TextView android:id="@+id/win_plan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="0"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="21dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/point_green"
-            android:drawablePadding="9dp"
-            android:text="周周赢"
-            android:textColor="@color/text_4b4b4b"
-            android:textSize="14sp" />
-        <TextView android:id="@+id/week_win_plan_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginLeft="180dp"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-        <TextView android:id="@+id/week_win_plan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="0"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="21dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/point_blue"
-            android:drawablePadding="9dp"
-            android:text="消费贷"
-            android:textColor="@color/text_4b4b4b"
-            android:textSize="14sp" />
-        <TextView android:id="@+id/consumer_credit_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginLeft="180dp"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-        <TextView android:id="@+id/consumer_credit_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="0"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="21dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/point_purple"
-            android:drawablePadding="9dp"
-            android:text="闪车贷"
-            android:textColor="@color/text_4b4b4b"
-            android:textSize="14sp" />
-        <TextView android:id="@+id/fast_car_loan_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginLeft="180dp"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-        <TextView android:id="@+id/fast_car_loan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="0"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="21dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/point_pink"
-            android:drawablePadding="9dp"
-            android:text="票据贷"
-            android:textColor="@color/text_4b4b4b"
-            android:textSize="14sp" />
-        <TextView android:id="@+id/bill_loan_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginLeft="180dp"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp" />
-        <TextView android:id="@+id/bill_loan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/text_9b9b9b"
-            android:textSize="12sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+     <com.haolyy.compliance.custom.ListViewForScrollView
+         android:id="@+id/lv_ratio_item"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:divider="#00000000"
+         />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -254,15 +77,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
             android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
-        <TextView android:id="@+id/available_amount"
+        <TextView
+            android:id="@+id/tv_ratio_avaible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="0"
+            android:text="--.--"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -287,15 +110,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
             android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
-        <TextView android:id="@+id/frozen_loan"
+        <TextView
+            android:id="@+id/tv_ratio_frozen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="0"
+            android:text="--.--"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
