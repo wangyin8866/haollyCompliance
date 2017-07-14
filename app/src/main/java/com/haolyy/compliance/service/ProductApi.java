@@ -5,6 +5,7 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.entity.product.RepaymentPlan;
+import com.haolyy.compliance.ui.my.Bean.AssetRatioBean;
 
 import java.util.Map;
 
@@ -41,4 +42,9 @@ public interface ProductApi {
     @FormUrlEncoded
     @POST(NetConstantValues.PRODUCT_RETURN_PLAN)
     Observable<RepaymentPlan> getProductReturnPlan(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.USER_PRODUCT_INFO)
+    Observable<AssetRatioBean>  getUserProductInfo(@FieldMap Map<String, String> map);
+
 }

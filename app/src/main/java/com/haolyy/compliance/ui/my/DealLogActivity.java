@@ -3,27 +3,18 @@ package com.haolyy.compliance.ui.my;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.DealLogAdapter;
-import com.haolyy.compliance.adapter.InvestLogAdapter;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.XListView;
-import com.haolyy.compliance.entity.InvestLog;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 import com.haolyy.compliance.ui.my.presenter.DealRecordPresenter;
 import com.haolyy.compliance.ui.my.view.DealRecordView;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +52,8 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
 //    private List<InvestLog> investLogs;
     private boolean doubleClick;
 
-//    private String[] capitalTypes = {"2001","2001","","","",""}
+    private String[] capitalTypes = {"0","1","2","3","4","5","6","7","8"};
+    private int capitalIndex = 0;
 
 
     @Override
@@ -87,7 +79,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
                 }
             }
         });
-        mPresenter.requestDealRecord("2001","1","1","0");
+        mPresenter.requestDealRecord("","1","1","0");
 
 
 

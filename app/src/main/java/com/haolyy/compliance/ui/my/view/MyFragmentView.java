@@ -3,7 +3,6 @@ package com.haolyy.compliance.ui.my.view;
 
 import com.haolyy.compliance.base.BaseView;
 import com.haolyy.compliance.entity.home.UserInfoBean;
-import com.haolyy.compliance.entity.home.UserProductBean;
 
 /**
  * Created by niudeyang on 2017/5/24.
@@ -12,6 +11,6 @@ import com.haolyy.compliance.entity.home.UserProductBean;
 public interface MyFragmentView extends BaseView {
 
     void showData(UserInfoBean userInfoBean);
-    void showProductData(UserProductBean userProductBean);
+
 
 }

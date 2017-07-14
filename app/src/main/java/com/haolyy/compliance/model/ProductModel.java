@@ -5,6 +5,7 @@ import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.entity.product.RepaymentPlan;
 import com.haolyy.compliance.service.ProductApi;
+import com.haolyy.compliance.ui.my.Bean.AssetRatioBean;
 
 import rx.Observable;
 
@@ -80,5 +81,12 @@ public class ProductModel extends BaseModel {
         map.put("client", client);
         return productApi.getProductReturnPlan(map);
 
+    }
+
+    public Observable<AssetRatioBean> getUserProductInfo(String platform, String user_id){
+        map.clear();
+        map.put("user_id",user_id);
+        map.put("platform", platform);
+        return productApi.getUserProductInfo(map);
     }
 }

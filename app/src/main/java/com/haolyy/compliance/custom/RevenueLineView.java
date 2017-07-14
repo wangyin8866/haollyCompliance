@@ -29,7 +29,7 @@ import java.util.List;
 
 public class RevenueLineView extends View {
     private final int XLENTH = dip2px(260);
-    private int YLENTH = dip2px(160);
+    private int YLENTH = dip2px(180);
     private static Context mContext;
     //这些像素值在通过dp转换
 
@@ -134,6 +134,7 @@ public class RevenueLineView extends View {
 
     public void setXLabel(String[] XLabel) {
         this.XLabel = XLabel;
+        XScale = XLENTH / XLabel.length;
     }
 
     public void setData(List<Double> data) {
@@ -193,7 +194,7 @@ public class RevenueLineView extends View {
         // 添加文字
         for (int i = 0; i * XScale <= XLength; i++) {
 
-            if (i < 7) {
+            if (i < XLabel.length) {
                 canvas.drawText(XLabel[i], XPoint + i * XScale, YPoint + dip2px(20), paint);// 文字
             }
         }
@@ -219,7 +220,7 @@ public class RevenueLineView extends View {
         //canvas.drawBitmap(dot, XPoint + 6 * XScale, (float) (YPoint - 3 * YScale - 0.5 * dot.getHeight()), paint4);
         //画第一个点
 //        canvas.drawBitmap(dot, (float) (XPoint+ (float)(XScale/2.5) -0.5*dot.getWidth()), (float) (YPoint - 0.5 * XScale- 0.5 * dot.getHeight()), paint4);
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < XLabel.length; j++) {
             canvas.drawBitmap(dot, (float) (XPoint+ (float)(XScale/2.8) + j * XScale-0.5*dot.getWidth()), (float) (YPoint - data.get(j) * YScale- 0.5 * dot.getHeight()), paint4);
 
         }

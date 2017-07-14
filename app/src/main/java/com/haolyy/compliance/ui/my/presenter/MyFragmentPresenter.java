@@ -5,12 +5,8 @@ import android.content.Intent;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
-import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
-import com.haolyy.compliance.entity.login.HuifuSmsBean;
-import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.bank.RechargeActivity;
@@ -82,27 +78,7 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
 
     }
 
-    public void requestUserProductInfo(String platform,String user_id) {
-        invoke(UserModel.getInstance().getUserProductInfo(platform, user_id), new ProgressSubscriber<UserProductBean>(new SubscriberOnNextListener<UserProductBean>() {
-            @Override
-            public void onNext(UserProductBean s) {
-                if(s.getCode().equals("200")) {
-                    getView().showProductData(s);
-                }else {
-//                    getView().showErrorToast(s.getMsg());
-                }
 
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e(e.getMessage());
-
-            }
-        }, mContext));
-
-
-    }
 
 
 
