@@ -13,15 +13,10 @@ import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.entity.home.UserInfoBean;
-import com.haolyy.compliance.ui.bank.BankBindActivity;
-import com.haolyy.compliance.ui.bank.CheckBankActivity;
-import com.haolyy.compliance.ui.bank.RechargeActivity;
-import com.haolyy.compliance.ui.bank.WithDrawActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
@@ -97,7 +92,9 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+            if (mPresenter != null) {
             mPresenter.requestUserInfoDetail("HLW","2");
+            }
         }
     }
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,14 +102,6 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-
-        }
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -125,7 +116,6 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     public void showBannerData(Banner banner) {
         if (images != null) {
             images.clear();
-            Log.e("imgStrs", "clear");
         }
         mPresenter.getRecommend("1");//首页新闻 2
         modelBeen = banner.getModel().getModel();

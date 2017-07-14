@@ -245,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         s.unsubscribe();
+        LogUtils.e("onDestroy","onDestroy");
         super.onDestroy();
 
     }

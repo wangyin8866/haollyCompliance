@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -33,6 +34,9 @@ import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.ui.home.presenter.HomeLoginPresenter;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.ui.my.InviteFriendActivity;
+import com.haolyy.compliance.ui.product.ProductDetailActivity;
+import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.SPUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -95,38 +99,28 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     private View view;
     private ArrayList<String> images = new ArrayList<String>();
-    private boolean isInvest;
     private List<String> auto_roll_strings;
     private List<String> auto_roll_data;
     private boolean isAutoRollRunning;
     private int autoRollIndex;
     private List<Banner.ModelBeanX.ModelBean> modelBeen;
     private boolean isShowMoney;
+    private String availableCredit;
+    private String cumulativeIncome;
     private String totalAmount;
+    private String yesterdayIncome;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_yes_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        mPresenter.getUserInfo(platform, "2");
 
         return view;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            //查询用户信息
-            mPresenter.getUserInfo(platform, "2");
-            isInvest = false;
-            if (isInvest) {
-                homeLlVisibility.setVisibility(View.GONE);
-            } else {
-                homeLlVisibility.setVisibility(View.VISIBLE);
-            }
-        }
-    }
+
 
 
     private void showAutoRollStrings() {
@@ -164,7 +158,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         return new HomeLoginPresenter(mContext);
     }
 
-    @OnClick({R.id.rl_activity, R.id.rl_invite_friend, R.id.iv_zhang_dan,R.id.home_iv_eye})
+    @OnClick({R.id.rl_activity, R.id.rl_invite_friend, R.id.iv_zhang_dan, R.id.home_iv_eye})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_zhang_dan:
@@ -175,16 +169,33 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
                 startActivity(new Intent(getActivity(), InviteFriendActivity.class));
                 break;
             case R.id.home_iv_eye:
-                if (isShowMoney) {
-                    homeIvEye.setImageResource(R.mipmap.home_yanjing);
-                    tvTotalAmount.setText(totalAmount);
-                    isShowMoney = false;
-                } else {
-                    homeIvEye.setImageResource(R.mipmap.home_yanjing2);
-                    tvTotalAmount.setText("******");
-                    isShowMoney = true;
-                }
+                LogUtils.e("isShowMoney", isShowMoney + "");
+                isShowMoney = !isShowMoney;
+                moneyIsVisibility(isShowMoney);
+                SPUtils.saveBoolean(mContext, "isShowMoney", isShowMoney);
                 break;
+        }
+    }
+
+    /**
+     * 账户显示隐藏
+     *
+     * @param isShowMoney
+     */
+    private void moneyIsVisibility(boolean isShowMoney) {
+        LogUtils.e("isShowMoney2", isShowMoney + "");
+        if (isShowMoney) {
+            homeIvEye.setImageResource(R.mipmap.home_yanjing);
+            tvAvailableCredit.setText(availableCredit);
+            tvCumulativeIncome.setText(cumulativeIncome);
+            tvTotalAmount.setText(totalAmount);
+            tvYesterdayIncome.setText(yesterdayIncome);
+        } else {
+            homeIvEye.setImageResource(R.mipmap.home_yanjing2);
+            tvAvailableCredit.setText("****");
+            tvCumulativeIncome.setText("****");
+            tvTotalAmount.setText("****");
+            tvYesterdayIncome.setText("****");
         }
     }
 
@@ -257,21 +268,39 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
 
     @Override
     public void showHomeProductData(HomeProduct homeProduct) {
-        homeXlv.setAdapter(new HomeProductAdapter(homeProduct.getModel().getModel(), getActivity()));
+        final List<HomeProduct.ModelBeanX.ModelBean> list= homeProduct.getModel().getModel();
+        homeXlv.setAdapter(new HomeProductAdapter(list, getActivity()));
+        homeXlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                intent.putExtra("projectNo", list.get(position).getProjectNo());
+                intent.putExtra("productName", list.get(position).getProductName());
+                intent.putExtra("project_type", list.get(position).getProjectType());
+                intent.putExtra("product_no", list.get(position).getProductNo());
+                intent.putExtra("flag", "home");
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void showUserInfoData(UserInfoBean userInfoBean) {
         //拉去数据  1
         mPresenter.getBanner("2");
-
         UserInfoBean.ModelBeanX.ModelBean modelBean = userInfoBean.getModel().getModel();
-
         totalAmount = modelBean.getTotal_amount();
+        availableCredit = modelBean.getAvailable_credit();
+        cumulativeIncome = modelBean.getCumulative_income();
+        yesterdayIncome = modelBean.getYesterday_income();
 
-        tvTotalAmount.setText(totalAmount);
-        tvAvailableCredit.setText(modelBean.getAvailable_credit());
-        tvCumulativeIncome.setText(modelBean.getCumulative_income());
-        tvYesterdayIncome.setText(modelBean.getYesterday_income());
+        isShowMoney = SPUtils.getBoolean(mContext, "isShowMoney", true);
+        LogUtils.e("isShowMoney1", isShowMoney + "");
+        moneyIsVisibility(isShowMoney);
+        if (modelBean.getInvest_status().equals("1")) {//投资
+            homeLlVisibility.setVisibility(View.GONE);
+        } else {
+            homeLlVisibility.setVisibility(View.VISIBLE);
+        }
     }
 }

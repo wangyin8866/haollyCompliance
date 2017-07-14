@@ -72,7 +72,7 @@
         <TextView android:id="@+id/short_win_plan_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="0"
              android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -102,7 +102,7 @@
         <TextView android:id="@+id/win_plan_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="0"
             android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -132,7 +132,7 @@
         <TextView android:id="@+id/week_win_plan_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="0"
             android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
@@ -140,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -170,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -200,7 +200,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -229,7 +229,7 @@
         <TextView android:id="@+id/bill_loan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp"
             android:layout_alignParentTop="true"
@@ -254,7 +254,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="0"
             android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
@@ -262,7 +262,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -287,7 +287,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="0"
             android:layout_marginLeft="180dp"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
@@ -295,7 +295,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="0"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>

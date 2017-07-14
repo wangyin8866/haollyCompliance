@@ -10,8 +10,8 @@ import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.login.view.LoginView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
-
-import rx.Subscriber;
+import com.xfqz.xjd.mylibrary.ProgressSubscriber;
+import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
 
 /**
@@ -26,20 +26,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     public void login(String phone_num, String password) {
 
-        invoke(UserModel.getInstance().login(phone_num, password), new Subscriber<LoginResponseBean>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e("ndyerr", e.getMessage());
-            }
-
+        invoke(UserModel.getInstance().login(phone_num, password), new ProgressSubscriber<LoginResponseBean>(new SubscriberOnNextListener<LoginResponseBean>() {
             @Override
             public void onNext(LoginResponseBean loginResponseBean) {
-
                 if (loginResponseBean.getCode().equals("200")) {
                     LogUtils.e("getCode",loginResponseBean.getCode());
                     BaseApplication.mLoginState = true;
@@ -51,9 +40,13 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 } else {
                     UIUtils.showToastCommon(mContext, loginResponseBean.getMsg());
                 }
+            }
+
+            @Override
+            public void onError(Throwable e) {
 
             }
-        });
+        },mContext));
     }
 
 
