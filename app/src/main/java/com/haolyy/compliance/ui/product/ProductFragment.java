@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,21 +82,21 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     public void showData(ProductTitle productList) {
         mDatas = new ArrayList<>();
         parentTitles = new ArrayList<>();
-        for (int i = 0; i < productList.getModel().getModel().getTitle_list().size(); i++) {
-            parentTitles.add(productList.getModel().getModel().getTitle_list().get(i).get(0).getCategory_name());
-            parentNodeNo=productList.getModel().getModel().getTitle_list().get(i).get(0).getNode_no();
+        for (int i = 0; i < productList.getModel().getModel().getTitleList().size(); i++) {
+            parentTitles.add(productList.getModel().getModel().getTitleList().get(i).get(0).getCategoryName());
+            parentNodeNo=productList.getModel().getModel().getTitleList().get(i).get(0).getNodeNo();
             childTitle = new ArrayList<>();
             childNodeNo = new ArrayList<>();
-            for (int j = 1; j < productList.getModel().getModel().getTitle_list().get(i).size(); j++) {
+            for (int j = 1; j < productList.getModel().getModel().getTitleList().get(i).size(); j++) {
 
-                childTitle.add(productList.getModel().getModel().getTitle_list().get(i).get(j).getCategory_name());
-                childNodeNo.add(productList.getModel().getModel().getTitle_list().get(i).get(j).getNode_no());
+                childTitle.add(productList.getModel().getModel().getTitleList().get(i).get(j).getCategoryName());
+                childNodeNo.add(productList.getModel().getModel().getTitleList().get(i).get(j).getNodeNo());
             }
             thirdFragment = ProductListFragment.newInstance(childTitle, parentNodeNo, childNodeNo);
             mDatas.add(thirdFragment);
         }
         vpProductList.setAdapter(new TabAdapter(getFragmentManager(), mDatas, parentTitles));
-        vpProductList.setOffscreenPageLimit(productList.getModel().getModel().getTitle_list().size());
+        vpProductList.setOffscreenPageLimit(productList.getModel().getModel().getTitleList().size());
         productTitle.setupWithViewPager(vpProductList);
 
         WYUtils.setIndicator(mContext, productTitle, 10, 10);

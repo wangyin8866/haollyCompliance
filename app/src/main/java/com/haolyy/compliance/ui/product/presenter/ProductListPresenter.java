@@ -20,7 +20,7 @@ public class ProductListPresenter extends BasePresenter<ProductListView> {
 
 
     public void getProductList(final boolean isLoadMore, String product_category_id, String pageNum) {
-        invoke(ProductModel.getInstance().getProductList(product_category_id, "", "", "", pageNum), new ProgressSubscriber<ProductList>(new SubscriberOnNextListener<ProductList>() {
+        invoke(ProductModel.getInstance().getProductList(product_category_id,pageNum), new ProgressSubscriber<ProductList>(new SubscriberOnNextListener<ProductList>() {
             @Override
             public void onNext(ProductList o) {
                 if (o.getCode().equals("200")) {

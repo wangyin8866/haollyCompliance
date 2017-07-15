@@ -3,18 +3,14 @@ package com.haolyy.compliance.service;
 
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
-import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
-import com.haolyy.compliance.entity.login.RegisterBean;
-import com.haolyy.compliance.entity.login.SmsBean;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 
 import java.util.Map;

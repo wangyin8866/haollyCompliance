@@ -10,7 +10,7 @@ public class ProductList {
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"data_list":[{"id":9829,"project_no":"DQY0000099","product_no":"DQYA","project_type":2,"project_name":"短期赢0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9828,"project_no":"DQY0000098","product_no":"DQYA","project_type":2,"project_name":"短期赢0000098","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9827,"project_no":"DQY0000097","product_no":"DQYA","project_type":2,"project_name":"短期赢0000097","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9826,"project_no":"DQY0000096","product_no":"DQYA","project_type":2,"project_name":"短期赢0000096","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9825,"project_no":"DQY0000095","product_no":"DQYA","project_type":2,"project_name":"短期赢0000095","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9824,"project_no":"DQY0000094","product_no":"DQYA","project_type":2,"project_name":"短期赢0000094","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9823,"project_no":"DQY0000093","product_no":"DQYA","project_type":2,"project_name":"短期赢0000093","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9822,"project_no":"DQY0000092","product_no":"DQYA","project_type":2,"project_name":"短期赢0000092","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9821,"project_no":"DQY0000091","product_no":"DQYA","project_type":2,"project_name":"短期赢0000091","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9820,"project_no":"DQY0000090","product_no":"DQYA","project_type":2,"project_name":"短期赢0000090","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1}],"counts":4195,"page_size":10}}
+     * model : {"code":"200","msg":"成功","model":{"counts":555,"dataList":[{"id":10031,"projectNo":"yyb149691176052","productNo":"PJD","projectType":1,"projectName":"票据贷A2252","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":7,"contractAmount":"10,000.00","amountScale":"0.00","status":1},{"id":9929,"projectNo":"PJD0000099","productNo":"PJD","projectType":1,"projectName":"票据贷0000099","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9928,"projectNo":"PJD0000098","productNo":"PJD","projectType":1,"projectName":"票据贷0000098","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9927,"projectNo":"PJD0000097","productNo":"PJD","projectType":1,"projectName":"票据贷0000097","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9926,"projectNo":"PJD0000096","productNo":"PJD","projectType":1,"projectName":"票据贷0000096","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9925,"projectNo":"PJD0000095","productNo":"PJD","projectType":1,"projectName":"票据贷0000095","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9924,"projectNo":"PJD0000094","productNo":"PJD","projectType":1,"projectName":"票据贷0000094","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9923,"projectNo":"PJD0000093","productNo":"PJD","projectType":1,"projectName":"票据贷0000093","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9922,"projectNo":"PJD0000092","productNo":"PJD","projectType":1,"projectName":"票据贷0000092","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9921,"projectNo":"PJD0000091","productNo":"PJD","projectType":1,"projectName":"票据贷0000091","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1}],"pageSize":10}}
      */
 
     private String code;
@@ -45,7 +45,7 @@ public class ProductList {
         /**
          * code : 200
          * msg : 成功
-         * model : {"data_list":[{"id":9829,"project_no":"DQY0000099","product_no":"DQYA","project_type":2,"project_name":"短期赢0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9828,"project_no":"DQY0000098","product_no":"DQYA","project_type":2,"project_name":"短期赢0000098","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9827,"project_no":"DQY0000097","product_no":"DQYA","project_type":2,"project_name":"短期赢0000097","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9826,"project_no":"DQY0000096","product_no":"DQYA","project_type":2,"project_name":"短期赢0000096","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9825,"project_no":"DQY0000095","product_no":"DQYA","project_type":2,"project_name":"短期赢0000095","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9824,"project_no":"DQY0000094","product_no":"DQYA","project_type":2,"project_name":"短期赢0000094","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9823,"project_no":"DQY0000093","product_no":"DQYA","project_type":2,"project_name":"短期赢0000093","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9822,"project_no":"DQY0000092","product_no":"DQYA","project_type":2,"project_name":"短期赢0000092","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9821,"project_no":"DQY0000091","product_no":"DQYA","project_type":2,"project_name":"短期赢0000091","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9820,"project_no":"DQY0000090","product_no":"DQYA","project_type":2,"project_name":"短期赢0000090","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1}],"counts":4195,"page_size":10}
+         * model : {"counts":555,"dataList":[{"id":10031,"projectNo":"yyb149691176052","productNo":"PJD","projectType":1,"projectName":"票据贷A2252","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":7,"contractAmount":"10,000.00","amountScale":"0.00","status":1},{"id":9929,"projectNo":"PJD0000099","productNo":"PJD","projectType":1,"projectName":"票据贷0000099","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9928,"projectNo":"PJD0000098","productNo":"PJD","projectType":1,"projectName":"票据贷0000098","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9927,"projectNo":"PJD0000097","productNo":"PJD","projectType":1,"projectName":"票据贷0000097","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9926,"projectNo":"PJD0000096","productNo":"PJD","projectType":1,"projectName":"票据贷0000096","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9925,"projectNo":"PJD0000095","productNo":"PJD","projectType":1,"projectName":"票据贷0000095","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9924,"projectNo":"PJD0000094","productNo":"PJD","projectType":1,"projectName":"票据贷0000094","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9923,"projectNo":"PJD0000093","productNo":"PJD","projectType":1,"projectName":"票据贷0000093","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9922,"projectNo":"PJD0000092","productNo":"PJD","projectType":1,"projectName":"票据贷0000092","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9921,"projectNo":"PJD0000091","productNo":"PJD","projectType":1,"projectName":"票据贷0000091","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1}],"pageSize":10}
          */
 
         private String code;
@@ -78,14 +78,14 @@ public class ProductList {
 
         public static class ModelBean {
             /**
-             * data_list : [{"id":9829,"project_no":"DQY0000099","product_no":"DQYA","project_type":2,"project_name":"短期赢0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9828,"project_no":"DQY0000098","product_no":"DQYA","project_type":2,"project_name":"短期赢0000098","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9827,"project_no":"DQY0000097","product_no":"DQYA","project_type":2,"project_name":"短期赢0000097","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9826,"project_no":"DQY0000096","product_no":"DQYA","project_type":2,"project_name":"短期赢0000096","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9825,"project_no":"DQY0000095","product_no":"DQYA","project_type":2,"project_name":"短期赢0000095","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9824,"project_no":"DQY0000094","product_no":"DQYA","project_type":2,"project_name":"短期赢0000094","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9823,"project_no":"DQY0000093","product_no":"DQYA","project_type":2,"project_name":"短期赢0000093","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9822,"project_no":"DQY0000092","product_no":"DQYA","project_type":2,"project_name":"短期赢0000092","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9821,"project_no":"DQY0000091","product_no":"DQYA","project_type":2,"project_name":"短期赢0000091","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1},{"id":9820,"project_no":"DQY0000090","product_no":"DQYA","project_type":2,"project_name":"短期赢0000090","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_scale":"0.01","status":1}]
-             * counts : 4195
-             * page_size : 10
+             * counts : 555
+             * dataList : [{"id":10031,"projectNo":"yyb149691176052","productNo":"PJD","projectType":1,"projectName":"票据贷A2252","annualizedRate":"11.00","appendRate":"1.00","periodUnit":2,"periodLength":7,"contractAmount":"10,000.00","amountScale":"0.00","status":1},{"id":9929,"projectNo":"PJD0000099","productNo":"PJD","projectType":1,"projectName":"票据贷0000099","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9928,"projectNo":"PJD0000098","productNo":"PJD","projectType":1,"projectName":"票据贷0000098","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9927,"projectNo":"PJD0000097","productNo":"PJD","projectType":1,"projectName":"票据贷0000097","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9926,"projectNo":"PJD0000096","productNo":"PJD","projectType":1,"projectName":"票据贷0000096","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9925,"projectNo":"PJD0000095","productNo":"PJD","projectType":1,"projectName":"票据贷0000095","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9924,"projectNo":"PJD0000094","productNo":"PJD","projectType":1,"projectName":"票据贷0000094","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9923,"projectNo":"PJD0000093","productNo":"PJD","projectType":1,"projectName":"票据贷0000093","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9922,"projectNo":"PJD0000092","productNo":"PJD","projectType":1,"projectName":"票据贷0000092","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1},{"id":9921,"projectNo":"PJD0000091","productNo":"PJD","projectType":1,"projectName":"票据贷0000091","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountScale":"0.01","status":1}]
+             * pageSize : 10
              */
 
             private int counts;
-            private int page_size;
-            private List<DataListBean> data_list;
+            private int pageSize;
+            private List<DataListBean> dataList;
 
             public int getCounts() {
                 return counts;
@@ -95,49 +95,49 @@ public class ProductList {
                 this.counts = counts;
             }
 
-            public int getPage_size() {
-                return page_size;
+            public int getPageSize() {
+                return pageSize;
             }
 
-            public void setPage_size(int page_size) {
-                this.page_size = page_size;
+            public void setPageSize(int pageSize) {
+                this.pageSize = pageSize;
             }
 
-            public List<DataListBean> getData_list() {
-                return data_list;
+            public List<DataListBean> getDataList() {
+                return dataList;
             }
 
-            public void setData_list(List<DataListBean> data_list) {
-                this.data_list = data_list;
+            public void setDataList(List<DataListBean> dataList) {
+                this.dataList = dataList;
             }
 
             public static class DataListBean {
                 /**
-                 * id : 9829
-                 * project_no : DQY0000099
-                 * product_no : DQYA
-                 * project_type : 2
-                 * project_name : 短期赢0000099
-                 * annualized_rate : 11.00
-                 * append_rate : 1.00
-                 * period_unit : 3
-                 * period_length : 12
-                 * contract_amount : 10,000.00
-                 * amount_scale : 0.01
+                 * id : 10031
+                 * projectNo : yyb149691176052
+                 * productNo : PJD
+                 * projectType : 1
+                 * projectName : 票据贷A2252
+                 * annualizedRate : 11.00
+                 * appendRate : 1.00
+                 * periodUnit : 2
+                 * periodLength : 7
+                 * contractAmount : 10,000.00
+                 * amountScale : 0.00
                  * status : 1
                  */
 
                 private int id;
-                private String project_no;
-                private String product_no;
-                private int project_type;
-                private String project_name;
-                private String annualized_rate;
-                private String append_rate;
-                private int period_unit;
-                private int period_length;
-                private String contract_amount;
-                private String amount_scale;
+                private String projectNo;
+                private String productNo;
+                private int projectType;
+                private String projectName;
+                private String annualizedRate;
+                private String appendRate;
+                private int periodUnit;
+                private int periodLength;
+                private String contractAmount;
+                private String amountScale;
                 private int status;
 
                 public int getId() {
@@ -148,84 +148,84 @@ public class ProductList {
                     this.id = id;
                 }
 
-                public String getProject_no() {
-                    return project_no;
+                public String getProjectNo() {
+                    return projectNo;
                 }
 
-                public void setProject_no(String project_no) {
-                    this.project_no = project_no;
+                public void setProjectNo(String projectNo) {
+                    this.projectNo = projectNo;
                 }
 
-                public String getProduct_no() {
-                    return product_no;
+                public String getProductNo() {
+                    return productNo;
                 }
 
-                public void setProduct_no(String product_no) {
-                    this.product_no = product_no;
+                public void setProductNo(String productNo) {
+                    this.productNo = productNo;
                 }
 
-                public int getProject_type() {
-                    return project_type;
+                public int getProjectType() {
+                    return projectType;
                 }
 
-                public void setProject_type(int project_type) {
-                    this.project_type = project_type;
+                public void setProjectType(int projectType) {
+                    this.projectType = projectType;
                 }
 
-                public String getProject_name() {
-                    return project_name;
+                public String getProjectName() {
+                    return projectName;
                 }
 
-                public void setProject_name(String project_name) {
-                    this.project_name = project_name;
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
                 }
 
-                public String getAnnualized_rate() {
-                    return annualized_rate;
+                public String getAnnualizedRate() {
+                    return annualizedRate;
                 }
 
-                public void setAnnualized_rate(String annualized_rate) {
-                    this.annualized_rate = annualized_rate;
+                public void setAnnualizedRate(String annualizedRate) {
+                    this.annualizedRate = annualizedRate;
                 }
 
-                public String getAppend_rate() {
-                    return append_rate;
+                public String getAppendRate() {
+                    return appendRate;
                 }
 
-                public void setAppend_rate(String append_rate) {
-                    this.append_rate = append_rate;
+                public void setAppendRate(String appendRate) {
+                    this.appendRate = appendRate;
                 }
 
-                public int getPeriod_unit() {
-                    return period_unit;
+                public int getPeriodUnit() {
+                    return periodUnit;
                 }
 
-                public void setPeriod_unit(int period_unit) {
-                    this.period_unit = period_unit;
+                public void setPeriodUnit(int periodUnit) {
+                    this.periodUnit = periodUnit;
                 }
 
-                public int getPeriod_length() {
-                    return period_length;
+                public int getPeriodLength() {
+                    return periodLength;
                 }
 
-                public void setPeriod_length(int period_length) {
-                    this.period_length = period_length;
+                public void setPeriodLength(int periodLength) {
+                    this.periodLength = periodLength;
                 }
 
-                public String getContract_amount() {
-                    return contract_amount;
+                public String getContractAmount() {
+                    return contractAmount;
                 }
 
-                public void setContract_amount(String contract_amount) {
-                    this.contract_amount = contract_amount;
+                public void setContractAmount(String contractAmount) {
+                    this.contractAmount = contractAmount;
                 }
 
-                public String getAmount_scale() {
-                    return amount_scale;
+                public String getAmountScale() {
+                    return amountScale;
                 }
 
-                public void setAmount_scale(String amount_scale) {
-                    this.amount_scale = amount_scale;
+                public void setAmountScale(String amountScale) {
+                    this.amountScale = amountScale;
                 }
 
                 public int getStatus() {

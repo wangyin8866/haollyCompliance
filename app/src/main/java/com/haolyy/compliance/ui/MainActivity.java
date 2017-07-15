@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int currentPage;
     private Subscription s;
     private int state;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             state = 1;
                         } else if ("home".equals(s)) {
                             state = 0;
+                        } else if("find".equals("s")){
+                            state = 2;
+                        }else if ("my".equals("s")) {
+                            state = 3;
                         }
                     }
                 });
@@ -110,11 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         switchStateHome(mLoginState);
 
-
     }
 
     /**
      * 判断是否登录
+     *
      * @param isLogin
      */
     private void switchStateHome(boolean isLogin) {
@@ -126,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case 1:
                     currentPage = 1;
                     break;
+                case 2:
+                    currentPage = 2;
+                case 3:
+                    currentPage = 3;
             }
 
         } else {
@@ -136,10 +145,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case 1:
                     currentPage = 1;
                     break;
+                case 2:
+                    currentPage = 2;
+                case 3:
+                    currentPage = 3;
             }
 
         }
         setTabSelection(currentPage);
+
     }
 
 
@@ -244,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         s.unsubscribe();
-        LogUtils.e("onDestroy","onDestroy");
+        LogUtils.e("onDestroy");
         super.onDestroy();
 
     }

@@ -84,10 +84,10 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         xlvProductThird.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                projectNo = productList.getModel().getModel().getData_list().get(position - 1).getProject_no();
-                productName = productList.getModel().getModel().getData_list().get(position - 1).getProject_name();
-                project_type = productList.getModel().getModel().getData_list().get(position - 1).getProject_type();
-                product_no = productList.getModel().getModel().getData_list().get(position - 1).getProduct_no();
+                projectNo = productList.getModel().getModel().getDataList().get(position - 1).getProjectNo();
+                productName = productList.getModel().getModel().getDataList().get(position - 1).getProjectName();
+                project_type = productList.getModel().getModel().getDataList().get(position - 1).getProjectType();
+                product_no = productList.getModel().getModel().getDataList().get(position - 1).getProductNo();
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
                 intent.putExtra("projectNo", projectNo);
                 intent.putExtra("productName", productName);
@@ -183,7 +183,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     @Override
     public void showData(ProductList productList) {
 
-        pageSize = productList.getModel().getModel().getData_list().size();
+        pageSize = productList.getModel().getModel().getDataList().size();
 
         LogUtils.e("pageSize",pageSize+"");
         this.productList = productList;
@@ -199,21 +199,21 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
             }
             ivEmpty.setVisibility(View.GONE);
             xlvProductThird.setVisibility(View.VISIBLE);
-        xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getData_list(), getActivity()));
+        xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getDataList(), getActivity()));
         }
     }
 
     @Override
     public void showGetMoreData(ProductList productList) {
-        if (productList.getModel().getModel().getData_list().size() == 0) {
+        if (productList.getModel().getModel().getDataList().size() == 0) {
             pageNum = 1;
             UIUtils.showToastCommon(mContext, "没有更多数据了！");
             xlvProductThird.setPullLoadEnable(false);
         } else {
-            this.productList.getModel().getModel().getData_list().addAll(productList.getModel().getModel().getData_list());
+            this.productList.getModel().getModel().getDataList().addAll(productList.getModel().getModel().getDataList());
             xlvProductThird.setPullLoadEnable(true);
-            xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getData_list(), getActivity()));
-            xlvProductThird.setSelection(this.productList.getModel().getModel().getData_list().size() - productList.getModel().getModel().getData_list().size());//定位
+            xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getDataList(), getActivity()));
+            xlvProductThird.setSelection(this.productList.getModel().getModel().getDataList().size() - productList.getModel().getModel().getDataList().size());//定位
         }
     }
 
@@ -229,7 +229,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         public void onLoadMore() {
             pageNum += 1;
             mPresenter.getProductList(true, flag, pageNum + "");
-            LogUtils.e("pageNum", productList.getModel().getModel().getData_list().size() + "");
+            LogUtils.e("pageNum", productList.getModel().getModel().getDataList().size() + "");
 
         }
     }

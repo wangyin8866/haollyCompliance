@@ -8,7 +8,6 @@ import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
-import com.haolyy.compliance.entity.home.UserProductBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;

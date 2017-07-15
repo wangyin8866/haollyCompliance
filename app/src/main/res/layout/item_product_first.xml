@@ -116,7 +116,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="bottom"
-                                    android:text="@{product.annualized_rate}"
+                                    android:text="@{product.annualizedRate}"
                                     android:textColor="#F8676F"
                                     android:textSize="20sp" />
 
@@ -136,17 +136,17 @@
                                     android:text="+"
                                     android:textColor="#F8676F"
                                     android:textSize="14sp"
-                                    android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+                                    android:visibility="@{Double.valueOf(product.appendRate)==0?View.GONE:View.VISIBLE}" />
 
                                 <TextView
                                     android:id="@+id/pro_yield2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="bottom"
-                                    android:text="@{product.append_rate}"
+                                    android:text="@{product.appendRate}"
                                     android:textColor="#F8676F"
                                     android:textSize="14sp"
-                                    android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+                                    android:visibility="@{Double.valueOf(product.appendRate)==0?View.GONE:View.VISIBLE}" />
 
                                 <TextView
                                     android:id="@+id/extra_rate_percent"
@@ -156,7 +156,7 @@
                                     android:text="%"
                                     android:textColor="#F8676F"
                                     android:textSize="14sp"
-                                    android:visibility="@{Double.valueOf(product.append_rate)==0?View.GONE:View.VISIBLE}" />
+                                    android:visibility="@{Double.valueOf(product.appendRate)==0?View.GONE:View.VISIBLE}" />
                             </LinearLayout>
 
                             <TextView
@@ -182,7 +182,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="@{adapter.showDeadline(product.getPeriod_length(),product.getStatus())}"
+                                android:text="@{adapter.showDeadline(product.periodLength,product.periodUnit)}"
                                 android:textColor="#FF4A4A4A"
                                 android:textSize="20sp" />
 

@@ -79,7 +79,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
                 }
             }
         });
-        mPresenter.requestDealRecord("","1","1","0");
+        mPresenter.requestDealRecord("","1","1");
 
 
 
@@ -174,7 +174,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
 
 
     private void refreshView(String capitalType) {
-        mPresenter.requestDealRecord("2001","1","1","0");
+        mPresenter.requestDealRecord("2001","1","1");
     }
 
     private void reset() {

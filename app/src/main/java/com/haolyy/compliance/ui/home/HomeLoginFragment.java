@@ -49,7 +49,6 @@ import butterknife.Unbinder;
 
 import static com.haolyy.compliance.R.id.home_iv_eye;
 import static com.haolyy.compliance.base.BaseApplication.userId;
-import static com.haolyy.compliance.config.Config.platform;
 
 /**
  * Created by wangyin on 2017/5/16.
@@ -115,7 +114,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_yes_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
-        mPresenter.getUserInfo(platform, "2");
+        mPresenter.getUserInfo();
 
         return view;
     }

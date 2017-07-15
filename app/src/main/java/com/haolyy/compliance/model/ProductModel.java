@@ -43,12 +43,9 @@ public class ProductModel extends BaseModel {
         map.put("client", client);
         return productApi.getTitleList(map);
     }
-    public Observable<ProductList> getProductList(String product_category_id, String status, String return_rate, String date_limit, String page_index) {
+    public Observable<ProductList> getProductList(String product_category_id, String page_index) {
         map.clear();
         map.put("product_category_id", product_category_id);
-        map.put("status", status);
-        map.put("return_rate", return_rate);
-        map.put("date_limit", date_limit);
         map.put("page_index", page_index);
         map.put("platform", platform);
         map.put("client", client);

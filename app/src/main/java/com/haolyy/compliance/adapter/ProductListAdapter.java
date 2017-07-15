@@ -31,12 +31,12 @@ public class ProductListAdapter extends WyBaseAdapter {
         binding.setProduct(product);
         binding.setAdapter(this);
 
-        double scale = Double.valueOf(product.getAmount_scale()) / 100;
-        binding.tvNum.setText(product.getProject_name());
-        binding.tvAmount.setText(product.getContract_amount()+"万");
-        WYUtils.selectIcon(product.getProject_name(),binding.ivDuan);
-        binding.productCircle.setData(WYUtils.processAmount(product.getContract_amount()) * scale, WYUtils.processAmount(product.getContract_amount()));
-        binding.productCircle.setmCircleText(product.getAmount_scale() + "%");
+        double scale = Double.valueOf(product.getAmountScale()) / 100;
+        binding.tvNum.setText(product.getProjectName());
+        binding.tvAmount.setText(product.getContractAmount()+"万");
+        WYUtils.selectIcon(product.getProjectName(),binding.ivDuan);
+        binding.productCircle.setData(WYUtils.processAmount(product.getContractAmount()) * scale, WYUtils.processAmount(product.getContractAmount()));
+        binding.productCircle.setmCircleText(product.getAmountScale() + "%");
         return binding.getRoot();
     }
 
