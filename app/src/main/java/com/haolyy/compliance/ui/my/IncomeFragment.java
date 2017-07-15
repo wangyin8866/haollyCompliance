@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.RevenueLineView;
-import com.haolyy.compliance.entity.ProductRatioBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
 import com.haolyy.compliance.ui.my.view.FundStatictisView;

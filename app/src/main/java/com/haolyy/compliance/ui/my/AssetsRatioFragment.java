@@ -14,7 +14,7 @@ import com.haolyy.compliance.adapter.RatioAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.MagnificentChart;
 import com.haolyy.compliance.custom.MagnificentChartItem;
-import com.haolyy.compliance.entity.ProductRatioBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
 import com.haolyy.compliance.ui.my.view.FundStatictisView;

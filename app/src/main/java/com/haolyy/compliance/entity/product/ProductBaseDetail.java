@@ -8,7 +8,7 @@ public class ProductBaseDetail  {
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"now":1499757263129,"info":{"id":9929,"project_name":"票据贷0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_wait":"1.00","amount_scale":"0.01","interest_start_date":1501948800000,"interest_end_date":1506700800000,"status":1,"profit_plan":1,"project_type":1,"account_balance":"100.00","begin_date":1496851200000,"bid_end_date":1502035200000,"lock_date":1502208000000,"lock_period":3}}}
+     * model : {"code":"200","msg":"成功","model":{"now":1500095036007,"info":{"id":9193,"projectType":3,"projectName":"周周赢00000100","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountWait":"1.00","amountScale":"0.01","interestStartDate":1501948800000,"interestEndDate":1506700800000,"status":1,"profitPlan":1,"lockPeriod":3,"beginDate":1496851200000,"bidEndDate":1502035200000,"lockDate":1502208000000,"accountBalance":null}}}
      */
 
     private String code;
@@ -43,7 +43,7 @@ public class ProductBaseDetail  {
         /**
          * code : 200
          * msg : 成功
-         * model : {"now":1499757263129,"info":{"id":9929,"project_name":"票据贷0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_wait":"1.00","amount_scale":"0.01","interest_start_date":1501948800000,"interest_end_date":1506700800000,"status":1,"profit_plan":1,"project_type":1,"account_balance":"100.00","begin_date":1496851200000,"bid_end_date":1502035200000,"lock_date":1502208000000,"lock_period":3}}
+         * model : {"now":1500095036007,"info":{"id":9193,"projectType":3,"projectName":"周周赢00000100","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountWait":"1.00","amountScale":"0.01","interestStartDate":1501948800000,"interestEndDate":1506700800000,"status":1,"profitPlan":1,"lockPeriod":3,"beginDate":1496851200000,"bidEndDate":1502035200000,"lockDate":1502208000000,"accountBalance":null}}
          */
 
         private String code;
@@ -76,8 +76,8 @@ public class ProductBaseDetail  {
 
         public static class ModelBean {
             /**
-             * now : 1499757263129
-             * info : {"id":9929,"project_name":"票据贷0000099","annualized_rate":"11.00","append_rate":"1.00","period_unit":3,"period_length":12,"contract_amount":"10,000.00","amount_wait":"1.00","amount_scale":"0.01","interest_start_date":1501948800000,"interest_end_date":1506700800000,"status":1,"profit_plan":1,"project_type":1,"account_balance":"100.00","begin_date":1496851200000,"bid_end_date":1502035200000,"lock_date":1502208000000,"lock_period":3}
+             * now : 1500095036007
+             * info : {"id":9193,"projectType":3,"projectName":"周周赢00000100","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountWait":"1.00","amountScale":"0.01","interestStartDate":1501948800000,"interestEndDate":1506700800000,"status":1,"profitPlan":1,"lockPeriod":3,"beginDate":1496851200000,"bidEndDate":1502035200000,"lockDate":1502208000000,"accountBalance":null}
              */
 
             private long now;
@@ -101,46 +101,46 @@ public class ProductBaseDetail  {
 
             public static class InfoBean {
                 /**
-                 * id : 9929
-                 * project_name : 票据贷0000099
-                 * annualized_rate : 11.00
-                 * append_rate : 1.00
-                 * period_unit : 3
-                 * period_length : 12
-                 * contract_amount : 10,000.00
-                 * amount_wait : 1.00
-                 * amount_scale : 0.01
-                 * interest_start_date : 1501948800000
-                 * interest_end_date : 1506700800000
+                 * id : 9193
+                 * projectType : 3
+                 * projectName : 周周赢00000100
+                 * annualizedRate : 11.00
+                 * appendRate : 1.00
+                 * periodUnit : 3
+                 * periodLength : 12
+                 * contractAmount : 10,000.00
+                 * amountWait : 1.00
+                 * amountScale : 0.01
+                 * interestStartDate : 1501948800000
+                 * interestEndDate : 1506700800000
                  * status : 1
-                 * profit_plan : 1
-                 * project_type : 1
-                 * account_balance : 100.00
-                 * begin_date : 1496851200000
-                 * bid_end_date : 1502035200000
-                 * lock_date : 1502208000000
-                 * lock_period : 3
+                 * profitPlan : 1
+                 * lockPeriod : 3
+                 * beginDate : 1496851200000
+                 * bidEndDate : 1502035200000
+                 * lockDate : 1502208000000
+                 * accountBalance : null
                  */
 
                 private int id;
-                private String project_name;
-                private String annualized_rate;
-                private String append_rate;
-                private int period_unit;
-                private int period_length;
-                private String contract_amount;
-                private String amount_wait;
-                private String amount_scale;
-                private long interest_start_date;
-                private long interest_end_date;
+                private int projectType;
+                private String projectName;
+                private String annualizedRate;
+                private String appendRate;
+                private int periodUnit;
+                private int periodLength;
+                private String contractAmount;
+                private String amountWait;
+                private String amountScale;
+                private long interestStartDate;
+                private long interestEndDate;
                 private int status;
-                private int profit_plan;
-                private int project_type;
-                private String account_balance;
-                private long begin_date;
-                private long bid_end_date;
-                private long lock_date;
-                private int lock_period;
+                private int profitPlan;
+                private int lockPeriod;
+                private long beginDate;
+                private long bidEndDate;
+                private long lockDate;
+                private String accountBalance;
 
                 public int getId() {
                     return id;
@@ -150,84 +150,92 @@ public class ProductBaseDetail  {
                     this.id = id;
                 }
 
-                public String getProject_name() {
-                    return project_name;
+                public int getProjectType() {
+                    return projectType;
                 }
 
-                public void setProject_name(String project_name) {
-                    this.project_name = project_name;
+                public void setProjectType(int projectType) {
+                    this.projectType = projectType;
                 }
 
-                public String getAnnualized_rate() {
-                    return annualized_rate;
+                public String getProjectName() {
+                    return projectName;
                 }
 
-                public void setAnnualized_rate(String annualized_rate) {
-                    this.annualized_rate = annualized_rate;
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
                 }
 
-                public String getAppend_rate() {
-                    return append_rate;
+                public String getAnnualizedRate() {
+                    return annualizedRate;
                 }
 
-                public void setAppend_rate(String append_rate) {
-                    this.append_rate = append_rate;
+                public void setAnnualizedRate(String annualizedRate) {
+                    this.annualizedRate = annualizedRate;
                 }
 
-                public int getPeriod_unit() {
-                    return period_unit;
+                public String getAppendRate() {
+                    return appendRate;
                 }
 
-                public void setPeriod_unit(int period_unit) {
-                    this.period_unit = period_unit;
+                public void setAppendRate(String appendRate) {
+                    this.appendRate = appendRate;
                 }
 
-                public int getPeriod_length() {
-                    return period_length;
+                public int getPeriodUnit() {
+                    return periodUnit;
                 }
 
-                public void setPeriod_length(int period_length) {
-                    this.period_length = period_length;
+                public void setPeriodUnit(int periodUnit) {
+                    this.periodUnit = periodUnit;
                 }
 
-                public String getContract_amount() {
-                    return contract_amount;
+                public int getPeriodLength() {
+                    return periodLength;
                 }
 
-                public void setContract_amount(String contract_amount) {
-                    this.contract_amount = contract_amount;
+                public void setPeriodLength(int periodLength) {
+                    this.periodLength = periodLength;
                 }
 
-                public String getAmount_wait() {
-                    return amount_wait;
+                public String getContractAmount() {
+                    return contractAmount;
                 }
 
-                public void setAmount_wait(String amount_wait) {
-                    this.amount_wait = amount_wait;
+                public void setContractAmount(String contractAmount) {
+                    this.contractAmount = contractAmount;
                 }
 
-                public String getAmount_scale() {
-                    return amount_scale;
+                public String getAmountWait() {
+                    return amountWait;
                 }
 
-                public void setAmount_scale(String amount_scale) {
-                    this.amount_scale = amount_scale;
+                public void setAmountWait(String amountWait) {
+                    this.amountWait = amountWait;
                 }
 
-                public long getInterest_start_date() {
-                    return interest_start_date;
+                public String getAmountScale() {
+                    return amountScale;
                 }
 
-                public void setInterest_start_date(long interest_start_date) {
-                    this.interest_start_date = interest_start_date;
+                public void setAmountScale(String amountScale) {
+                    this.amountScale = amountScale;
                 }
 
-                public long getInterest_end_date() {
-                    return interest_end_date;
+                public long getInterestStartDate() {
+                    return interestStartDate;
                 }
 
-                public void setInterest_end_date(long interest_end_date) {
-                    this.interest_end_date = interest_end_date;
+                public void setInterestStartDate(long interestStartDate) {
+                    this.interestStartDate = interestStartDate;
+                }
+
+                public long getInterestEndDate() {
+                    return interestEndDate;
+                }
+
+                public void setInterestEndDate(long interestEndDate) {
+                    this.interestEndDate = interestEndDate;
                 }
 
                 public int getStatus() {
@@ -238,60 +246,52 @@ public class ProductBaseDetail  {
                     this.status = status;
                 }
 
-                public int getProfit_plan() {
-                    return profit_plan;
+                public int getProfitPlan() {
+                    return profitPlan;
                 }
 
-                public void setProfit_plan(int profit_plan) {
-                    this.profit_plan = profit_plan;
+                public void setProfitPlan(int profitPlan) {
+                    this.profitPlan = profitPlan;
                 }
 
-                public int getProject_type() {
-                    return project_type;
+                public int getLockPeriod() {
+                    return lockPeriod;
                 }
 
-                public void setProject_type(int project_type) {
-                    this.project_type = project_type;
+                public void setLockPeriod(int lockPeriod) {
+                    this.lockPeriod = lockPeriod;
                 }
 
-                public String getAccount_balance() {
-                    return account_balance;
+                public long getBeginDate() {
+                    return beginDate;
                 }
 
-                public void setAccount_balance(String account_balance) {
-                    this.account_balance = account_balance;
+                public void setBeginDate(long beginDate) {
+                    this.beginDate = beginDate;
                 }
 
-                public long getBegin_date() {
-                    return begin_date;
+                public long getBidEndDate() {
+                    return bidEndDate;
                 }
 
-                public void setBegin_date(long begin_date) {
-                    this.begin_date = begin_date;
+                public void setBidEndDate(long bidEndDate) {
+                    this.bidEndDate = bidEndDate;
                 }
 
-                public long getBid_end_date() {
-                    return bid_end_date;
+                public long getLockDate() {
+                    return lockDate;
                 }
 
-                public void setBid_end_date(long bid_end_date) {
-                    this.bid_end_date = bid_end_date;
+                public void setLockDate(long lockDate) {
+                    this.lockDate = lockDate;
                 }
 
-                public long getLock_date() {
-                    return lock_date;
+                public String getAccountBalance() {
+                    return accountBalance;
                 }
 
-                public void setLock_date(long lock_date) {
-                    this.lock_date = lock_date;
-                }
-
-                public int getLock_period() {
-                    return lock_period;
-                }
-
-                public void setLock_period(int lock_period) {
-                    this.lock_period = lock_period;
+                public void setAccountBalance(String accountBalance) {
+                    this.accountBalance = accountBalance;
                 }
             }
         }

@@ -3,10 +3,8 @@ package com.haolyy.compliance.ui.my.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
-import com.haolyy.compliance.entity.ProductRatioBean;
-import com.haolyy.compliance.entity.home.AccountSecurityBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
-import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.my.view.FundStatictisView;
 import com.haolyy.compliance.utils.LogUtils;

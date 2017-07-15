@@ -6,16 +6,20 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.adapter.MyProductFundAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.my.ProductFund;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
@@ -25,57 +29,52 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.haolyy.compliance.R.id.iv_gold;
+
 /**
  * Created by wangyin on 2017/5/16.
  */
 
 public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView> implements MyFragmentView {
+    Unbinder unbinder;
+    @BindView(R.id.message_center)
+    ImageView messageCenter;
     @BindView(R.id.iv_setting)
     ImageView ivSetting;
-    @BindView(R.id.iv_gold)
-    ImageView iv_gold;
     @BindView(R.id.iv_head_icon)
     ImageView ivHeadIcon;
+    @BindView(R.id.iv_gold)
+    ImageView ivGold;
     @BindView(R.id.tv_gold_phone)
     TextView tvGoldPhone;
+    @BindView(R.id.account_manage)
+    TextView accountManage;
+    @BindView(R.id.available_amount)
+    VeticalDoubleTextView availableAmount;
+    @BindView(R.id.frezon_amount)
+    VeticalDoubleTextView frezonAmount;
     @BindView(R.id.vd_total_asset)
     VeticalDoubleTextView vdTotalAsset;
-    Unbinder unbinder;
     @BindView(R.id.tv_withdraw)
     TextView tvWithdraw;
     @BindView(R.id.tv_recharge)
     TextView tvRecharge;
-    @BindView(R.id.account_manage)
-    TextView account_manage;
-    @BindView(R.id.v_invite_friend)
-    View vInviteFriend;
-    @BindView(R.id.message_center)
-    ImageView messageCenter;
     @BindView(R.id.coupon)
     VeticalDoubleTextView coupon;
     @BindView(R.id.vd_mission)
     VeticalDoubleTextView vdMission;
     @BindView(R.id.score)
     VeticalDoubleTextView score;
-
-    @BindView(R.id.available_amount)
-    VeticalDoubleTextView available_amount;
-    @BindView(R.id.frezon_amount)
-    VeticalDoubleTextView frezon_amount;
-
-    @BindView(R.id.short_win_plan)
-    TextView short_win_plan;
-    @BindView(R.id.win_plan)
-    TextView win_plan;
-    @BindView(R.id.optimize_win_plan)
-    TextView optimize_win_plan;
-
+    @BindView(R.id.isl_product_fund)
+    InnerScrollListView islProductFund;
+    @BindView(R.id.v_invite_friend)
+    View vInviteFriend;
 
     private View view;
     private DialogBank dialogBank;
     private DialogInvestGuides dialogInvestGuides;
     private UserInfoBean userInfoBean;
-
+    private ProductFund productFund;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,6 +82,15 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder = ButterKnife.bind(this, view);
         dialogBank = new DialogBank(mContext);
 
+
+        islProductFund.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ProductFundListActivity.class);
+                intent.putExtra("productName", productFund.getModel().getModel().getProductFunds().get(position).getProjectName());
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -91,6 +99,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             mPresenter.requestUserInfoDetail();
+            mPresenter.getProductFunds(Config.platform, "2");
         }
     }
 
@@ -100,17 +109,17 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.score,R.id.iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
+    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.score, iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
     public void onViewClicked(View view) {
         Bundle bundle = null;
         switch (view.getId()) {
             case R.id.iv_setting:
-                startActivity(new Intent(mContext,SettingActivity.class));
+                startActivity(new Intent(mContext, SettingActivity.class));
                 break;
             case R.id.iv_head_icon:
                 break;
-            case R.id.iv_gold:
-                startActivity(new Intent(mContext,MemberActivity.class));
+            case iv_gold:
+                startActivity(new Intent(mContext, MemberActivity.class));
                 break;
             case R.id.tv_gold_phone:
                 break;
@@ -144,7 +153,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
                     }
                 }).show();*/
-               // startActivity(new Intent(mContext, WithDrawActivity.class));
+                // startActivity(new Intent(mContext, WithDrawActivity.class));
                 //startActivity(new Intent(mContext, CheckBankActivity.class));
                 //mPresenter.findUserStatus();
                 break;
@@ -179,24 +188,31 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     @Override
     public void showData(UserInfoBean userInfoBean) {
         this.userInfoBean = userInfoBean;
-        available_amount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
-        frezon_amount.setTextBottom(userInfoBean.getModel().getModel().getFrozen_amount());
+        availableAmount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
+        frezonAmount.setTextBottom(userInfoBean.getModel().getModel().getFrozen_amount());
         vdTotalAsset.setTextBottom(userInfoBean.getModel().getModel().getTotal_amount());
         coupon.setTextTop(userInfoBean.getModel().getModel().getCoupon());
         vdMission.setTextTop(userInfoBean.getModel().getModel().getTask());
         score.setTextTop(userInfoBean.getModel().getModel().getPoint());
         if ("0".equals(userInfoBean.getModel().getModel().getVip_level())) {
-            iv_gold.setImageResource(R.mipmap.account_set_vip_level0);
+            ivGold.setImageResource(R.mipmap.account_set_vip_level0);
         } else if ("1".equals(userInfoBean.getModel().getModel().getVip_level())) {
-            iv_gold.setImageResource(R.mipmap.account_set_vip_level1);
+            ivGold.setImageResource(R.mipmap.account_set_vip_level1);
         } else if ("2".equals(userInfoBean.getModel().getModel().getVip_level())) {
-            iv_gold.setImageResource(R.mipmap.account_set_vip_level2);
+            ivGold.setImageResource(R.mipmap.account_set_vip_level2);
         } else if ("3".equals(userInfoBean.getModel().getModel().getVip_level())) {
-            iv_gold.setImageResource(R.mipmap.account_set_vip_level3);
+            ivGold.setImageResource(R.mipmap.account_set_vip_level3);
         } else {
-            iv_gold.setVisibility(View.INVISIBLE);
+            ivGold.setVisibility(View.INVISIBLE);
         }
     }
+
+    @Override
+    public void getProductFunds(ProductFund productFund) {
+        this.productFund = productFund;
+        islProductFund.setAdapter(new MyProductFundAdapter(productFund.getModel().getModel().getProductFunds(),mContext));
+    }
+
     @Override
     public void showSuccessToast(String msg) {
 

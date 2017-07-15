@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.entity.ProductRatioBean;
-import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.List;

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data class="ProductFundBinding">
+
+    <import type="com.haolyy.compliance.entity.my.ProductFund.ModelBeanX.ModelBean.ProductFundsBean" />
+
+    <variable
+        name="productFund"
+        type="ProductFundsBean" />
+</data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/point_pink"
+                android:drawablePadding="9dp"
+                android:text="@{productFund.projectName}"
+                android:textColor="@color/text_4b4b4b"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/short_win_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="9dp"
+                android:drawableRight="@mipmap/arrow_right"
+                android:text="@{productFund.holdAmount}"
+                android:textColor="@color/text_9b9b9b"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19dp"
+            android:background="@color/bg_f5f5f5" />
+    </LinearLayout>
+</layout>

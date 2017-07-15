@@ -47,7 +47,6 @@ public class HomeActivityPagerAdapter extends WyBasePagerAdapter {
                 intent.putExtra("productName", recommendBean.getProjectTitle());
                 intent.putExtra("project_type", recommendBean.getProjectType());
                 intent.putExtra("product_no", recommendBean.getProductNo());
-                intent.putExtra("flag", "home");
                 mContext.startActivity(intent);
             }
         });

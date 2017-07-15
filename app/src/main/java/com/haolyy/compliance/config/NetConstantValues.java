@@ -34,6 +34,7 @@ public interface NetConstantValues {
     String ACCOUNT_SECURITY_INFO = USERMANAGE +"account/accountSecurity";//账户安全页面展示
     String ACCOUNT_INCOME_INFO = USERMANAGE +"account/userIncome";//用户收益
     String DEAL_RECORD_INFO = USERMANAGE +"account/findFundsDetailList";//交易记录
+    String PRODUCT_FUNDS = USERMANAGE +"account/productFunds";//持有产品分类总额
 
 
     //短信

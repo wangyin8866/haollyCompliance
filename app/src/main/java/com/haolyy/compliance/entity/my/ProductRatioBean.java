@@ -1,4 +1,4 @@
-package com.haolyy.compliance.entity;
+package com.haolyy.compliance.entity.my;
 
 import java.util.List;
 

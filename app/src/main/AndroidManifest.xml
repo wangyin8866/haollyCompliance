@@ -17,8 +17,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".base.BaseApplication"
@@ -190,7 +190,10 @@
         <activity
             android:name=".ui.my.MemberActivity"
             android:screenOrientation="portrait" />
-
+        <!--用户资产列表-->
+        <activity android:name=".ui.my.ProductFundListActivity"
+            android:screenOrientation="portrait"
+            />
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
         <activity android:name=".ui.bank.RebindBankActivity" />

@@ -1,7 +1,6 @@
 package com.haolyy.compliance.ui.my.view;
 
-import com.haolyy.compliance.base.BaseView;
-import com.haolyy.compliance.entity.ProductRatioBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 
 /**

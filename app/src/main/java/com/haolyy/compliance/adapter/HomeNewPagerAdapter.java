@@ -49,7 +49,6 @@ public class HomeNewPagerAdapter extends WyBasePagerAdapter {
                 intent.putExtra("productName", recommendNewBean.getProjectTitle());
                 intent.putExtra("project_type", recommendNewBean.getProjectType());
                 intent.putExtra("product_no", recommendNewBean.getProductNo());
-                intent.putExtra("flag", "home");
                 mContext.startActivity(intent);
             }
         });

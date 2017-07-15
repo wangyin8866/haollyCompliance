@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -25,10 +24,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
@@ -70,8 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyFragment myFragment;
     private List<Fragment> fragments;
     private int currentPage;
-    private Subscription s;
-    private int state;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,22 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
-        s = RxBus.getInstance().toObserverable(String.class).subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        if ("product".equals(s)) {
-                            state = 1;
-                        } else if ("home".equals(s)) {
-                            state = 0;
-                        } else if("find".equals("s")){
-                            state = 2;
-                        }else if ("my".equals("s")) {
-                            state = 3;
-                        }
-                    }
-                });
         idMainViewPager.setOffscreenPageLimit(5);
         idMainViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -109,54 +87,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         switchStateHome(mLoginState);
 
     }
-
     /**
      * 判断是否登录
      *
      * @param isLogin
      */
     private void switchStateHome(boolean isLogin) {
-        if (isLogin) {//是否登录
-            switch (state) {
-                case 0:
-                    currentPage = 4;
-                    break;
-                case 1:
-                    currentPage = 1;
-                    break;
-                case 2:
-                    currentPage = 2;
-                case 3:
-                    currentPage = 3;
+        if (isLogin) {
+            if (currentPage == 0) {
+                currentPage = 4;
             }
-
-        } else {
-            switch (state) {
-                case 0:
-                    currentPage = 0;
-                    break;
-                case 1:
-                    currentPage = 1;
-                    break;
-                case 2:
-                    currentPage = 2;
-                case 3:
-                    currentPage = 3;
-            }
-
         }
         setTabSelection(currentPage);
-
     }
-
-
+    private void switchClickStateHome(boolean mLoginState) {
+        if (mLoginState) {
+            currentPage = 4;
+        } else {
+            currentPage = 0;
+        }
+        setTabSelection(currentPage);
+    }
     private void init() {
 
         homeNoLoginFragment = new HomeNoLoginFragment();
@@ -184,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_tab_ll_01:
-                switchStateHome(mLoginState);
+                switchClickStateHome(mLoginState);
                 break;
             case R.id.id_tab_ll_02:
                 currentPage = 1;
@@ -201,8 +158,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+
     private void setTabSelection(int currentPage) {
-        LogUtils.e("currentPage", currentPage + "");
+
         //选中前清除状态
         restView();
         switch (currentPage) {
@@ -236,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void switchPager(int currentPage) {
+        LogUtils.e("currentPage", currentPage + "");
         idMainViewPager.setCurrentItem(currentPage, false);
-        state = 0;
     }
 
     /**
@@ -253,13 +212,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         idTabTv02.setTextColor(getResources().getColor(R.color.tv_navigate));
         idTabTv03.setTextColor(getResources().getColor(R.color.tv_navigate));
         idTabTv04.setTextColor(getResources().getColor(R.color.tv_navigate));
+
     }
-
     @Override
-    protected void onDestroy() {
-        s.unsubscribe();
-        LogUtils.e("onDestroy");
-        super.onDestroy();
-
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(TAG, currentPage);
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        currentPage = savedInstanceState.getInt(TAG);
     }
 }

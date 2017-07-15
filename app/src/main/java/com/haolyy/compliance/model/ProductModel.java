@@ -45,8 +45,8 @@ public class ProductModel extends BaseModel {
     }
     public Observable<ProductList> getProductList(String product_category_id, String page_index) {
         map.clear();
-        map.put("product_category_id", product_category_id);
-        map.put("page_index", page_index);
+        map.put("productCategoryId", product_category_id);
+        map.put("pageIndex", page_index);
         map.put("platform", platform);
         map.put("client", client);
         return productApi.getProductList(map);
@@ -54,7 +54,7 @@ public class ProductModel extends BaseModel {
 
     public Observable<ProductBaseDetail> getBaseDetail(String project_no, String juid) {
         map.clear();
-        map.put("project_no", project_no);
+        map.put("projectNo", project_no);
         map.put("platform", platform);
         map.put("juid", juid);
         return productApi.getBaseDetail(map);

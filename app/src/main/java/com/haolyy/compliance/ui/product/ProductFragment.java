@@ -93,6 +93,8 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
                 childNodeNo.add(productList.getModel().getModel().getTitleList().get(i).get(j).getNodeNo());
             }
             thirdFragment = ProductListFragment.newInstance(childTitle, parentNodeNo, childNodeNo);
+
+
             mDatas.add(thirdFragment);
         }
         vpProductList.setAdapter(new TabAdapter(getFragmentManager(), mDatas, parentTitles));

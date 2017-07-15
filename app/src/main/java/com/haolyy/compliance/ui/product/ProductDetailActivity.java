@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
 
@@ -32,7 +31,6 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList = new ArrayList<>();
-    private String flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +47,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {
-                if (flag.equals("product")) {
-                RxBus.getInstance().post("product");
-                } else if (flag.equals("home")) {
-                    RxBus.getInstance().post("home");
-                }
                 finish();
             }
 
@@ -71,7 +64,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         fragmentList.add(productFragmentBottom);
         vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
         topBar.setTitle(getIntent().getStringExtra("productName"));
-        flag = getIntent().getStringExtra("flag");
     }
 
     public class DummyAdapter extends FragmentPagerAdapter {

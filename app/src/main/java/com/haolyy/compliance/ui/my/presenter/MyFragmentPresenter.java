@@ -7,6 +7,8 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.my.ProductFund;
+import com.haolyy.compliance.model.MyModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.bank.RechargeActivity;
@@ -76,5 +78,19 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
         }, mContext));
 
 
+    }
+
+    public void getProductFunds(String platform,String user_id){
+        invoke(MyModel.getInstance().getProductFunds(platform,user_id),new ProgressSubscriber<ProductFund>(new SubscriberOnNextListener<ProductFund>() {
+            @Override
+            public void onNext(ProductFund productFund) {
+                getView().getProductFunds(productFund);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
     }
 }

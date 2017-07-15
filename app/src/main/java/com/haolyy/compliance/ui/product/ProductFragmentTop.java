@@ -224,27 +224,26 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         currentTime = productBaseDetail.getModel().getModel().getNow();
         ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean = productBaseDetail.getModel().getModel().getInfo();
         //利率
-        proYield1.setText(infoBean.getAnnualized_rate());
+        proYield1.setText(infoBean.getAnnualizedRate());
         //额外利率
-        proYield2.setText(infoBean.getAppend_rate());
-        rateAdd.setVisibility(Double.valueOf(infoBean.getAppend_rate()) == 0 ? View.GONE : View.VISIBLE);
-        proYield2.setVisibility(Double.valueOf(infoBean.getAppend_rate()) == 0 ? View.GONE : View.VISIBLE);
-        extraRatePercent.setVisibility(Double.valueOf(infoBean.getAppend_rate()) == 0 ? View.GONE : View.VISIBLE);
+        proYield2.setText(infoBean.getAppendRate());
+
+        WYUtils.setVisibility(rateAdd,proYield2,extraRatePercent,infoBean.getAppendRate());
         //剩余可投金额
-        amountWait.setText(infoBean.getAmount_wait() + "元");
+        amountWait.setText(infoBean.getAmountWait() + "元");
         //退出日期
-        interestEndDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterest_end_date()) + "到期");
+        interestEndDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterestEndDate()) + "到期");
         //投资期限
-        investDeadline.setText(infoBean.getPeriod_length() + WYUtils.getInvestDeadline(infoBean.getPeriod_unit()));
+        investDeadline.setText(infoBean.getPeriodLength() + WYUtils.getInvestDeadline(infoBean.getPeriodUnit()));
         //锁定期
-        lockPeriod.setText(infoBean.getLock_period() + "天");
+        lockPeriod.setText(infoBean.getLockPeriod()+ "天");
         //计划金额
-        Double amount = Double.valueOf(infoBean.getContract_amount().replace(",", ""));
-        double scale = Double.valueOf(infoBean.getAmount_scale()) / 100;
+        Double amount = Double.valueOf(infoBean.getContractAmount().replace(",", ""));
+        double scale = Double.valueOf(infoBean.getAmountScale()) / 100;
         //剩余可投金额
-        Double amount_wait = Double.valueOf(infoBean.getAmount_wait().replace(",", ""));
+        Double amount_wait = Double.valueOf(infoBean.getAmountWait().replace(",", ""));
         arcProgressView.setData(amount * scale, amount);
-        processProgress(infoBean.getBegin_date(), infoBean.getBid_end_date(), infoBean.getLock_date(), infoBean.getInterest_end_date());
+        processProgress(infoBean.getBeginDate(), infoBean.getBidEndDate(), infoBean.getLockDate(), infoBean.getInterestEndDate());
     }
 
     @Override
