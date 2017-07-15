@@ -191,7 +191,7 @@
             android:name=".ui.my.MemberActivity"
             android:screenOrientation="portrait" />
         <!--用户资产列表-->
-        <activity android:name=".ui.my.ProductFundListActivity"
+        <activity android:name=".ui.my.ProductFundActivity"
             android:screenOrientation="portrait"
             />
         <!-- 汪银测试 -->

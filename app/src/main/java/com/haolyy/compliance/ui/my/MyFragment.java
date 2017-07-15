@@ -24,6 +24,8 @@ import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -75,6 +77,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     private DialogInvestGuides dialogInvestGuides;
     private UserInfoBean userInfoBean;
     private ProductFund productFund;
+    private ArrayList<String> parentTitle;
+    private ArrayList<String> parentNodeNo;//二级菜单的no
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,8 +90,20 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         islProductFund.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ProductFundListActivity.class);
+                Intent intent = new Intent(getActivity(), ProductFundActivity.class);
                 intent.putExtra("productName", productFund.getModel().getModel().getProductFunds().get(position).getProjectName());
+                parentTitle = new ArrayList<String>();
+                parentNodeNo = new ArrayList<String>();
+                parentTitle.add("周周赢");
+                parentTitle.add("消费贷");
+                parentTitle.add("闪车贷");
+                parentTitle.add("票据贷");
+                parentNodeNo.add("ZZJ");
+                parentNodeNo.add("XFD");
+                parentNodeNo.add("SCD");
+                parentNodeNo.add("PJD");
+                intent.putStringArrayListExtra("parentTitle",parentTitle);
+                intent.putStringArrayListExtra("parentNodeNo",parentNodeNo);
                 startActivity(intent);
             }
         });
