@@ -24,14 +24,14 @@ import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
  */
 
 public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
-    public MyFragmentPresenter(Context context) {
-        super(context);
-    }
+        public MyFragmentPresenter(Context context) {
+            super(context);
+        }
 
-    @Override
-    public void selectUserState(int flag) {
-        super.selectUserState(flag);
-    }
+        @Override
+        public void selectUserState(int flag) {
+            super.selectUserState(flag);
+        }
 
     @Override
     public void overwriteSelectUserState(FindUserStatusBean f,int flag) {
@@ -57,40 +57,49 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
         }
     }
 
+    /**
+     * 账户中心首页信息
+     */
 
-    public void requestUserInfoDetail() {
-        invoke(UserModel.getInstance().getUserInfo(), new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
-            @Override
-            public void onNext(UserInfoBean s) {
-               if(s.getCode().equals("200")) {
-                   getView().showData(s);
-               }else {
-                   getView().showErrorToast(s.getMsg());
-               }
+        public void requestUserInfoDetail() {
+            invoke(UserModel.getInstance().getUserInfo(), new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
+                @Override
+                public void onNext(UserInfoBean s) {
+                   if(s.getCode().equals("200")) {
+                       getView().showData(s);
+                   }else {
+                       getView().showErrorToast(s.getMsg());
+                   }
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e(e.getMessage());
+                @Override
+                public void onError(Throwable e) {
+                    LogUtils.e(e.getMessage());
 
-            }
-        }, mContext));
+                }
+            }, mContext));
 
 
-    }
+        }
 
-    public void getProductFunds(String platform,String user_id){
-        invoke(MyModel.getInstance().getProductFunds(platform,user_id),new ProgressSubscriber<ProductFund>(new SubscriberOnNextListener<ProductFund>() {
-            @Override
-            public void onNext(ProductFund productFund) {
-                getView().getProductFunds(productFund);
-            }
+        /**
+         * 持有产品分类总额
+         * @param platform
+         * @param user_id
+         */
+        public void getProductFunds(String platform,String user_id){
+            invoke(MyModel.getInstance().getProductFunds(platform,user_id),new ProgressSubscriber<ProductFund>(new SubscriberOnNextListener<ProductFund>() {
+                @Override
+                public void onNext(ProductFund productFund) {
+                    getView().getProductFunds(productFund);
+                }
 
-            @Override
-            public void onError(Throwable e) {
+                @Override
+                public void onError(Throwable e) {
 
-            }
-        },mContext));
-    }
+                }
+            },mContext));
+        }
+
 }

@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui.my;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,13 +12,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.adapter.ProductFundListAdapter;
 import com.haolyy.compliance.adapter.ProductListAdapter;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.XListView;
-import com.haolyy.compliance.entity.product.ProductList;
-import com.haolyy.compliance.ui.product.ProductDetailActivity;
-import com.haolyy.compliance.ui.product.presenter.ProductListPresenter;
-import com.haolyy.compliance.ui.product.view.ProductListView;
+import com.haolyy.compliance.entity.my.ProductFundList;
+import com.haolyy.compliance.entity.product.ProductTitle;
+import com.haolyy.compliance.ui.my.presenter.ProductFundPresenter;
+import com.haolyy.compliance.ui.my.view.ProductFundView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
@@ -33,7 +35,7 @@ import butterknife.Unbinder;
  * Created by wangyin on 2017/5/18.
  */
 
-public class ProductFundListFragment extends BaseFragment<ProductListPresenter, ProductListView> implements ProductListView {
+public class ProductFundListFragment extends BaseFragment<ProductFundPresenter, ProductFundView> implements ProductFundView {
     @BindView(R.id.rg_title)
     RadioGroup group;
     Unbinder unbinder;
@@ -45,33 +47,34 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
     @BindView(R.id.iv_empty)
     ImageView ivEmpty;
     private View view;
-    private ArrayList<String> childTitle;
-    private ArrayList<String> childNodeNo;//二级菜单的no
-    private String parentNodeNo;
-    private String flag;
-    private ProductList productList;
+    private ArrayList<String> thirdTitle;
+    private ArrayList<String> orderStatus;
+    private String secondCategoryId;
+    private String firstCategoryId;
+    private ProductFundList productFundList;
     private String projectNo;
     private String productName;
     private int pageNum = 1;
     private int pageSize;
     private int project_type;// 标的类型
     private String product_no;// 产品类型
-
+    private String state;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         savedInstanceState = getArguments();
-        childTitle = savedInstanceState.getStringArrayList("childTitle");
-        childNodeNo = savedInstanceState.getStringArrayList("childNodeNo");
-        parentNodeNo = savedInstanceState.getString("parentNodeNo");
-        LogUtils.e("childTitle", childTitle.toString());
-        LogUtils.e("childNodeNo", childNodeNo.toString());
-        LogUtils.e("parentNodeNo", parentNodeNo);
+        thirdTitle = savedInstanceState.getStringArrayList("thirdTitle");
+        orderStatus = savedInstanceState.getStringArrayList("orderStatus");
+        secondCategoryId = savedInstanceState.getString("secondCategoryId");
+        firstCategoryId = savedInstanceState.getString("firstCategoryId");
+        LogUtils.e("thirdTitle", thirdTitle.toString());
+        LogUtils.e("orderStatus", orderStatus.toString());
+        LogUtils.e("secondCategoryId", secondCategoryId);
     }
 
     @Override
-    protected ProductListPresenter createPresenter() {
-        return new ProductListPresenter(mContext);
+    protected ProductFundPresenter createPresenter() {
+        return new ProductFundPresenter(mContext);
     }
 
     @Nullable
@@ -84,39 +87,40 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
         xlvProductThird.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                projectNo = productList.getModel().getModel().getDataList().get(position - 1).getProjectNo();
-                productName = productList.getModel().getModel().getDataList().get(position - 1).getProjectName();
-                project_type = productList.getModel().getModel().getDataList().get(position - 1).getProjectType();
-                product_no = productList.getModel().getModel().getDataList().get(position - 1).getProductNo();
-                Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
-                intent.putExtra("projectNo", projectNo);
-                intent.putExtra("productName", productName);
-                intent.putExtra("project_type", project_type);
-                intent.putExtra("product_no", product_no);
-                intent.putExtra("flag", "product");
-                startActivity(intent);
+//                projectNo = productList.getModel().getModel().getDataList().get(position - 1).getProjectNo();
+//                productName = productList.getModel().getModel().getDataList().get(position - 1).getProjectName();
+//                project_type = productList.getModel().getModel().getDataList().get(position - 1).getProjectType();
+//                product_no = productList.getModel().getModel().getDataList().get(position - 1).getProductNo();
+//                Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+//                intent.putExtra("projectNo", projectNo);
+//                intent.putExtra("productName", productName);
+//                intent.putExtra("project_type", project_type);
+//                intent.putExtra("product_no", product_no);
+//                intent.putExtra("flag", "product");
+//                startActivity(intent);
             }
         });
         return view;
     }
 
 
-    public static ProductFundListFragment newInstance(ArrayList<String> childTitle, String node_no, ArrayList<String> childNodeNo) {
+    public static ProductFundListFragment newInstance(ArrayList<String> thirdTitle, String firstCategoryId,String secondCategoryId, ArrayList<String> orderStatus) {
         ProductFundListFragment contentFragment = new ProductFundListFragment();
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("childTitle", childTitle);
-        bundle.putString("parentNodeNo", node_no);
-        bundle.putStringArrayList("childNodeNo", childNodeNo);
+        bundle.putStringArrayList("thirdTitle", thirdTitle);
+        bundle.putString("firstCategoryId", firstCategoryId);
+        bundle.putString("secondCategoryId", secondCategoryId);
+        bundle.putStringArrayList("orderStatus", orderStatus);
         contentFragment.setArguments(bundle);
         return contentFragment;
     }
 
     private void init() {
-        if (childTitle.size() == 0) {
+        if (thirdTitle.size() == 0) {
             proListTop.setVisibility(View.GONE);
         } else {
             //动态创建菜单
-            for (int i = 0; i < childTitle.size(); i++) {
+            for (int i = 0; i < thirdTitle.size(); i++) {
 //                RadioButton tempButton = new RadioButton(mContext);
 
                 RadioButton tempButton = (RadioButton) getActivity().getLayoutInflater().inflate(R.layout.radio_button, null);
@@ -124,8 +128,8 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
 //                tempButton.setButtonDrawable(new BitmapDrawable(a));
 //                tempButton.setButtonDrawable(getResources().getDrawable(android.R.color.transparent));
 //                tempButton.setPadding(UIUtils.dip2px(20), 0, 0, 0);                 // 设置文字距离按钮四周的距离
-                tempButton.setText(childTitle.get(i));
-//                tempButton.setTextColor(getResources().getColorStateList(R.color.color_tv_selector));
+                tempButton.setText(thirdTitle.get(i));
+                tempButton.setTextColor(getResources().getColorStateList(R.color.color_tv_selector_fund));
                 group.addView(tempButton, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tempButton.getLayoutParams();
@@ -140,10 +144,10 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
                     RadioButton tempButton = (RadioButton) group.findViewById(checkedId); // 通过RadioGroup的findViewById方法，找到ID为checkedID的RadioButton
                     // 以下就可以对这个RadioButton进行处理了
 
-                    for (int i = 0; i < childTitle.size(); i++) {
-                        if (tempButton.getText().toString().equals(childTitle.get(i))) {
-                            flag = childNodeNo.get(i);
-                            mPresenter.getProductList(false, flag, pageNum + "");
+                    for (int i = 0; i < thirdTitle.size(); i++) {
+                        if (tempButton.getText().toString().equals(thirdTitle.get(i))) {
+                            state = orderStatus.get(i);
+                            mPresenter.getAssetManagementList(false, BaseApplication.userId+"", Config.platform,Config.client,firstCategoryId,secondCategoryId,pageNum+"",state);
                         }
                     }
 
@@ -154,8 +158,7 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
         }
         xlvProductThird.setXListViewListener(new MyListView());
         //获取一级菜单的数据
-        flag = parentNodeNo;
-        mPresenter.getProductList(false, flag, pageNum + "");
+        mPresenter.getAssetManagementList(false, BaseApplication.userId+"", Config.platform,Config.client,firstCategoryId,secondCategoryId,pageNum+"","0");
 
 
     }
@@ -167,23 +170,33 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
     }
 
 
+
+
     @Override
-    public void showSuccessToast(String msg) {
+    public void showGetMoreData(ProductFundList productFundList) {
+        if (productFundList.getModel().getModel().getAssetManagementList().size() == 0) {
+            pageNum = 1;
+            UIUtils.showToastCommon(mContext, "没有更多数据了！");
+            xlvProductThird.setPullLoadEnable(false);
+        } else {
+            this.productFundList.getModel().getModel().getAssetManagementList().addAll(productFundList.getModel().getModel().getAssetManagementList());
+            xlvProductThird.setPullLoadEnable(true);
+            xlvProductThird.setAdapter(new ProductListAdapter(this.productFundList.getModel().getModel().getAssetManagementList(), getActivity()));
+            xlvProductThird.setSelection(this.productFundList.getModel().getModel().getAssetManagementList().size() - productFundList.getModel().getModel().getAssetManagementList().size());//定位
+        }
+    }
+
+    @Override
+    public void getTitle(ProductTitle productTitle) {
 
     }
 
     @Override
-    public void showErrorToast(String msg) {
-
-    }
-
-    @Override
-    public void showData(ProductList productList) {
-
-        pageSize = productList.getModel().getModel().getDataList().size();
+    public void showData(ProductFundList productFundList) {
+        pageSize = productFundList.getModel().getModel().getAssetManagementList().size();
 
         LogUtils.e("pageSize",pageSize+"");
-        this.productList = productList;
+        this.productFundList = productFundList;
         if (pageSize == 0) {
             xlvProductThird.setPullLoadEnable(false);
             ivEmpty.setVisibility(View.VISIBLE);
@@ -196,38 +209,21 @@ public class ProductFundListFragment extends BaseFragment<ProductListPresenter, 
             }
             ivEmpty.setVisibility(View.GONE);
             xlvProductThird.setVisibility(View.VISIBLE);
-        xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getDataList(), getActivity()));
-        }
-    }
-
-    @Override
-    public void showGetMoreData(ProductList productList) {
-        if (productList.getModel().getModel().getDataList().size() == 0) {
-            pageNum = 1;
-            UIUtils.showToastCommon(mContext, "没有更多数据了！");
-            xlvProductThird.setPullLoadEnable(false);
-        } else {
-            this.productList.getModel().getModel().getDataList().addAll(productList.getModel().getModel().getDataList());
-            xlvProductThird.setPullLoadEnable(true);
-            xlvProductThird.setAdapter(new ProductListAdapter(this.productList.getModel().getModel().getDataList(), getActivity()));
-            xlvProductThird.setSelection(this.productList.getModel().getModel().getDataList().size() - productList.getModel().getModel().getDataList().size());//定位
+            xlvProductThird.setAdapter(new ProductFundListAdapter(this.productFundList.getModel().getModel().getAssetManagementList(), getActivity()));
         }
     }
 
     private class MyListView implements XListView.IXListViewListener {
         @Override
         public void onRefresh() {
-            LogUtils.e("flag", flag);
             pageNum = 1;
-            mPresenter.getProductList(false, flag, pageNum + "");
+            mPresenter.getAssetManagementList(false, BaseApplication.userId+"", Config.platform,Config.client,firstCategoryId,secondCategoryId,pageNum+"",state);
         }
 
         @Override
         public void onLoadMore() {
             pageNum += 1;
-            mPresenter.getProductList(true, flag, pageNum + "");
-            LogUtils.e("pageNum", productList.getModel().getModel().getDataList().size() + "");
-
+            mPresenter.getAssetManagementList(true, BaseApplication.userId+"", Config.platform,Config.client,firstCategoryId,secondCategoryId,pageNum+"",state);
         }
     }
 }

@@ -29,12 +29,16 @@ public interface NetConstantValues {
 
     //我的页面
     String USER_FINDSTATUS=USERMANAGE+"account/findUserstatus";//查询用户状态
+    /**
+     * 第5模块
+     */
     String USER_INFO = USERMANAGE + "account/accountInfoDetail";//账户中心首页展示，会员信息，可用余额，冻结余额，收益等
     String USER_PRODUCT_INFO = USERMANAGE +"account/userHoldProductRecord";//用户持有产品记录，资金占比展示
     String ACCOUNT_SECURITY_INFO = USERMANAGE +"account/accountSecurity";//账户安全页面展示
     String ACCOUNT_INCOME_INFO = USERMANAGE +"account/userIncome";//用户收益
     String DEAL_RECORD_INFO = USERMANAGE +"account/findFundsDetailList";//交易记录
     String PRODUCT_FUNDS = USERMANAGE +"account/productFunds";//持有产品分类总额
+    String ASSET_MANAGMENT_LIST = USERMANAGE +"account/assetManagementList";//持有产品分类总额
 
 
     //短信

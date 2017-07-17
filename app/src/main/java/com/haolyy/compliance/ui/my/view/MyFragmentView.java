@@ -13,4 +13,6 @@ public interface MyFragmentView extends BaseView {
 
     void showData(UserInfoBean userInfoBean);
     void getProductFunds(ProductFund productFund);
+
+
 }

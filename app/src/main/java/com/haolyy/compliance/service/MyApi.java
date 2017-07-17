@@ -2,6 +2,7 @@ package com.haolyy.compliance.service;
 
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.my.ProductFund;
+import com.haolyy.compliance.entity.my.ProductFundList;
 
 import java.util.Map;
 
@@ -18,4 +19,7 @@ public interface MyApi {
     @FormUrlEncoded
     @POST(NetConstantValues.PRODUCT_FUNDS)
     Observable<ProductFund> getProductFunds(@FieldMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST(NetConstantValues.ASSET_MANAGMENT_LIST)
+    Observable<ProductFundList> assetManagementList(@FieldMap Map<String, String> params);
 }

@@ -92,18 +92,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ProductFundActivity.class);
                 intent.putExtra("productName", productFund.getModel().getModel().getProductFunds().get(position).getProjectName());
-                parentTitle = new ArrayList<String>();
-                parentNodeNo = new ArrayList<String>();
-                parentTitle.add("周周赢");
-                parentTitle.add("消费贷");
-                parentTitle.add("闪车贷");
-                parentTitle.add("票据贷");
-                parentNodeNo.add("ZZJ");
-                parentNodeNo.add("XFD");
-                parentNodeNo.add("SCD");
-                parentNodeNo.add("PJD");
-                intent.putStringArrayListExtra("parentTitle",parentTitle);
-                intent.putStringArrayListExtra("parentNodeNo",parentNodeNo);
+                intent.putExtra("firstCategory", productFund.getModel().getModel().getProductFunds().get(position).getFirstCategory());
+                intent.putExtra("position", position+1);
                 startActivity(intent);
             }
         });
@@ -228,7 +218,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         this.productFund = productFund;
         islProductFund.setAdapter(new MyProductFundAdapter(productFund.getModel().getModel().getProductFunds(),mContext));
     }
-
     @Override
     public void showSuccessToast(String msg) {
 
