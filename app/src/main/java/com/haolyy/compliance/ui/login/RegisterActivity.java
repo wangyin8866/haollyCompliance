@@ -238,7 +238,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                     return;
                 } else {
                     tvRegisterSms.setEnabled(false);
-                    mPresenter.requestValidateCode(phone, imageCode, Config.SMS_TEMPLATE_CODE_HOLYY);
+                    mPresenter.requestValidateCode(phone, imageCode);
                 }
                 break;
             case R.id.iv_finish:

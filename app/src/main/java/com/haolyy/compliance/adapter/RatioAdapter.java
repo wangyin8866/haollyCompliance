@@ -77,6 +77,18 @@ public class RatioAdapter extends WyBaseAdapter {
                 drawable6.setBounds(0, 0, drawable6.getMinimumWidth(), drawable6.getMinimumHeight());
                 ratioHolder.tv_left.setCompoundDrawables(drawable6, null, null, null);
                 break;
+            case "7":
+                ratioHolder.tv_left.setText("可用金额");
+                Drawable drawable7 = UIUtils.getDrawable(R.mipmap.point_unuseful);
+                drawable7.setBounds(0, 0, drawable7.getMinimumWidth(), drawable7.getMinimumHeight());
+                ratioHolder.tv_left.setCompoundDrawables(drawable7, null, null, null);
+                break;
+            case "8":
+                ratioHolder.tv_left.setText("冻结金额");
+                Drawable drawable8 = UIUtils.getDrawable(R.mipmap.point_useful);
+                drawable8.setBounds(0, 0, drawable8.getMinimumWidth(), drawable8.getMinimumHeight());
+                ratioHolder.tv_left.setCompoundDrawables(drawable8, null, null, null);
+                break;
         }
         list.get(position);
 

@@ -156,7 +156,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                     return;
                 }
                 tvSendSms.setEnabled(false);
-                mPresenter.requestValidateCode(phone,imageCode,Config.SMS_TEMPLATE_CODE_HOLYY);
+                mPresenter.requestValidateCode(phone,imageCode);
                 break;
             case R.id.tv_forget_next:
                 phone = etForgetAccount.getText().toString();

@@ -59,7 +59,7 @@
          android:layout_height="wrap_content"
          android:divider="#00000000"
          />
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="--.--"
+            android:text="&#45;&#45;.&#45;&#45;"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -118,9 +118,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="--.--"
+            android:text="&#45;&#45;.&#45;&#45;"
             android:textColor="@color/text_9b9b9b"
             android:textSize="12sp" />
-    </RelativeLayout>
+    </RelativeLayout>-->
     </LinearLayout>
 </ScrollView>

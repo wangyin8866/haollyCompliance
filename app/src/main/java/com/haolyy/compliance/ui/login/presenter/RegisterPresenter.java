@@ -59,8 +59,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
     }
 
 
-    public void requestValidateCode(String phone_num, String imagecode, String sms_template_code) {
-        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode, sms_template_code, Config.SMS_OPERATION_TYPE_REG), new Subscriber<BaseBean>() {
+    public void requestValidateCode(String phone_num, String imagecode) {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode,Config.SMS_OPERATION_TYPE_REG), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 

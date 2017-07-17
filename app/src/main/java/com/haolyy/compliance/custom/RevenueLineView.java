@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -177,7 +178,7 @@ public class RevenueLineView extends View {
          if(YLabel == null || XLabel == null) return;
         // 添加刻度和文字
         for (int i = 0; i <= 3; i++) {
-            Log.e("ndy", YLabel[i]);
+            LogUtils.e("ndy", YLabel[i]);
             canvas.drawText(YLabel[i], XPoint - dip2px(40), YPoint - (i) * YScale + 4, paint);// 文字
             //canvas.drawLine((float) (XPoint + 0.5 * XScale), YPoint - (i + 1) * YScale, XPoint + XLENTH, YPoint - (i + 1) * YScale, paintDash); // 刻度
             if (i < 3) {

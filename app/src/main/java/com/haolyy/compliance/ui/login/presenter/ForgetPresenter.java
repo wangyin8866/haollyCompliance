@@ -59,8 +59,8 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
 
     }
 
-    public void requestValidateCode(String phone_num, String imagecode, String sms_template_code) {
-        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode, sms_template_code, Config.SMS_OPERATION_TYPE_FOR), new Subscriber<BaseBean>() {
+    public void requestValidateCode(String phone_num, String imagecode) {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode,Config.SMS_OPERATION_TYPE_FOR), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 

@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.my;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
 import com.haolyy.compliance.ui.my.view.FundStatictisView;
+import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,6 +49,9 @@ public class IncomeFragment extends BaseFragment<FundStatisticsPresenter, FundSt
     TextView consumer_credit_value;
     @BindView(R.id.bill_loan_value)
     TextView bill_loan_value;
+    private int inter;
+    private String[] yLabel;
+    private String[] xLabel;
 
     @Nullable
     @Override
@@ -69,47 +75,71 @@ public class IncomeFragment extends BaseFragment<FundStatisticsPresenter, FundSt
 
     @Override
     public void showData(FundStatictisIncomeBean fundStatictisIncomeBean) {
+
         List<Double> data = new ArrayList<Double>();
+        if ( fundStatictisIncomeBean.getModel().getModel().getIncomeList7()==null) {
+            xLabel = new String[]{" ", " ", " ", " ", " ", " ", " " };
+            yLabel = new String[]{"0元", "0元", "0元", "0元" };
+            for (int i = 0; i < 7; i++) {
+                data.set(i, 0.0);
+            }
+        } else {
+            xLabel = new String[fundStatictisIncomeBean.getModel().getModel().getIncomeList7().size()];
 
-        String[] XLabel = new String[fundStatictisIncomeBean.getModel().getModel().getIncome_list_7().size()];
-        for (int i = 0; i < fundStatictisIncomeBean.getModel().getModel().getIncome_list_7().size(); i++) {
-            XLabel[i] = fundStatictisIncomeBean.getModel().getModel().getIncome_list_7().get(i).getIncomeDate().substring(5);
-        }
+            for (int i = 0; i < fundStatictisIncomeBean.getModel().getModel().getIncomeList7().size(); i++) {
+                xLabel[i] = DateUtil.getTimeyyyymmdd(fundStatictisIncomeBean.getModel().getModel().getIncomeList7().get(i).getIncomeDate());
+            }
+            List<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean> income_list_7 = new ArrayList<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean>();
+            income_list_7.addAll(fundStatictisIncomeBean.getModel().getModel().getIncomeList7());
+            for (int i = 0; i < income_list_7.size(); i++) {
+                data.add(income_list_7.get(i).getIncomeSum());
+            }
+            //与折线图无关数据
+            total_amount.setText(income_list_7.get(income_list_7.size() - 1).getIncomeSum()+"");
+            date.setText(DateUtil.getTimeyyyymmdd(income_list_7.get(income_list_7.size() - 1).getIncomeDate()));
+            win_plan_value.setText(income_list_7.get(income_list_7.size() - 1).getXSB()+"");
+            win_plan_week_value.setText(income_list_7.get(income_list_7.size() - 1).getDQY()+"");
+            consumer_credit_value.setText(income_list_7.get(income_list_7.size() - 1).getYJH()+"");
+            bill_loan_value.setText(income_list_7.get(income_list_7.size() - 1).getYXJH()+"");
+            //--------------------------------------------------------------------------------------
 
-        List<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean> income_list_7 = new ArrayList<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean>();
-        income_list_7.addAll(fundStatictisIncomeBean.getModel().getModel().getIncome_list_7());
-        for (int i = 0; i < income_list_7.size(); i++) {
-            data.add(Double.parseDouble(income_list_7.get(i).getIncomeSum()));
-        }
-        total_amount.setText(income_list_7.get(income_list_7.size() - 1).getIncomeSum());
-        date.setText(income_list_7.get(income_list_7.size() - 1).getIncomeDate());
-        win_plan_value.setText(income_list_7.get(income_list_7.size() - 1).getXSB());
-        win_plan_week_value.setText(income_list_7.get(income_list_7.size() - 1).getDQY());
-        consumer_credit_value.setText(income_list_7.get(income_list_7.size() - 1).getYJH());
-        bill_loan_value.setText(income_list_7.get(income_list_7.size() - 1).getYXJH());
-        Collections.sort(income_list_7, new Comparator<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean>() {
-                    @Override
-                    public int compare(FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean incomeList7Bean, FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean t1) {
-                        return (int) (Double.parseDouble(t1.getIncomeSum()) - Double.parseDouble(incomeList7Bean.getIncomeSum()));
+            Collections.sort(income_list_7, new Comparator<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean>() {
+                        @Override
+                        public int compare(FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean incomeList7Bean, FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean t1) {
+                            return (int) (t1.getIncomeSum() - incomeList7Bean.getIncomeSum());
 
+                        }
                     }
+            );
+            double max = income_list_7.get(0).getIncomeSum();
+            double min = income_list_7.get(income_list_7.size() - 1).getIncomeSum();
+            yLabel = new String[fundStatictisIncomeBean.getModel().getModel().getIncomeList7().size()];
+            inter = Math.round(Math.round((max - min) / 3));
+            if (max == 0) {
+                //全为0
+                for (int i = 0; i < income_list_7.size(); i++) {
+                    yLabel[i] = "0元";
                 }
-        );
-        double max = Double.parseDouble(income_list_7.get(0).getIncomeSum());
-        double min = Double.parseDouble(income_list_7.get(income_list_7.size() - 1).getIncomeSum());
-        int inter = Math.round(Math.round((max - min) / 3));
-        String[] YLabel = new String[fundStatictisIncomeBean.getModel().getModel().getIncome_list_7().size()];
-        for (int i = 0; i < income_list_7.size(); i++) {
-            YLabel[i] = ((int) (i * inter + min)) + "元";
-        }
+            } else if (max == min) {
+                //全相等
+                for (int i = 0; i < income_list_7.size(); i++) {
+                    yLabel[i] = ((int) (i * Math.round(max/3) + min)) + "元";
+                }
+            } else {
+                for (int i = 0; i < income_list_7.size(); i++) {
+                    yLabel[i] = ((int) (i * inter + min)) + "元";
+                }
 
-        double temp = 0.0;
-        for (int i = 0; i < data.size(); i++) {
-            temp = (data.get(i) - min) / inter;
-            data.set(i, temp);
+                double temp = 0.0;
+                for (int i = 0; i < data.size(); i++) {
+                    temp = (data.get(i) - min) / inter;
+                    data.set(i, temp);
+                }
+            }
+
         }
-        incomeLineView.setXLabel(XLabel);
-        incomeLineView.setYLabel(YLabel);
+        incomeLineView.setXLabel(xLabel);
+        incomeLineView.setYLabel(yLabel);
         incomeLineView.setData(data);
 
 

@@ -76,6 +76,7 @@ public interface NetConstantValues {
 
     //p2p
     String P2P_ISBOSACCTACTIVATE = P2P + "isBosAcctActivate";//判断是否是激活用户
+    String P2P_VALIDATEOLDUSER=P2P+"validateOldUser";//短信验证其他平台已开户，进行当前平台登陆用户数据复制
     String P2P_CALCULATEFEEAMOUNT=P2P+"/calculateFeeAmount";//计算手续费
 
 

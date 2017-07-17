@@ -95,6 +95,14 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.P2P_ISBOSACCTACTIVATE)
     Observable<IsActivateBean> isBosAcctActivate(@FieldMap Map<String, String> params);
+    /**
+     * 其他品台开户，好利load数据
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.P2P_VALIDATEOLDUSER)
+    Observable<IsActivateBean> validateolduser(@FieldMap Map<String, String> params);
 
     /**计算提现手续费
      * @param params

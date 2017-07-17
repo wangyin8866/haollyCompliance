@@ -63,6 +63,24 @@ public class IsActivateBean {
         private String realname;
         private String type;
 
+        public String getAccount_platform_no() {
+            return account_platform_no;
+        }
+
+        public void setAccount_platform_no(String account_platform_no) {
+            this.account_platform_no = account_platform_no;
+        }
+
+        private String account_platform_no;
+        public String getUsrCustId() {
+            return UsrCustId;
+        }
+
+        public void setUsrCustId(String usrCustId) {
+            UsrCustId = usrCustId;
+        }
+
+        private String UsrCustId;
         public String getBank_name() {
             return bank_name;
         }

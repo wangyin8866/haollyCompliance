@@ -38,10 +38,6 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
     Unbinder unbinder;
     @BindView(R.id.lv_ratio_item)
     ListView lvRatioItem;
-    @BindView(R.id.tv_ratio_avaible)
-    TextView tvRatioAvaible;
-    @BindView(R.id.tv_ratio_frozen)
-    TextView tvRatioFrozen;
     private View view;
     private MagnificentChartItem firstItem, secondItem, thirdItem, fourthItem, fifthItem, sixthItem, sevenItem, eightItem;
     private String allHoldAmount;
@@ -67,6 +63,8 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
         chartItemsList.add(fourthItem);
         chartItemsList.add(fifthItem);
         chartItemsList.add(sixthItem);
+        chartItemsList.add(sevenItem);
+        chartItemsList.add(eightItem);
         magnificentChart.setChartItemsList(chartItemsList);
         magnificentChart.setMaxValue(100);
         magnificentChart.setShadowShowingState(false);
@@ -99,8 +97,9 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
     @Override
     public void showRatio(ProductRatioBean.ModelBeanX.ModelBean productRatioBean) {
         allHoldAmount = productRatioBean.getAllHoldAmount();
+        /*
         tvRatioAvaible.setText(productRatioBean.getAvailable_balance());
-        tvRatioFrozen.setText(productRatioBean.getFrozen_balance());
+        tvRatioFrozen.setText(productRatioBean.getFrozen_balance());*/
         List<ProductRatioBean.ModelBeanX.ModelBean.HoldProductListBean> holdProductList = productRatioBean.getHoldProductList();
         Observable.from(holdProductList)
                 .subscribe(new Action1<ProductRatioBean.ModelBeanX.ModelBean.HoldProductListBean>() {
@@ -129,6 +128,12 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
                                 break;
                             case "6":
                                 sixthItem = new MagnificentChartItem("sixth", Integer.parseInt(u.getProportion()), Color.parseColor("#FBB2CD"));
+                                break;
+                            case "7":
+                                sevenItem = new MagnificentChartItem("seven", Integer.parseInt(u.getProportion()), Color.parseColor("#FF9F86"));
+                                break;
+                            case "8":
+                                eightItem = new MagnificentChartItem("eight", Integer.parseInt(u.getProportion()), Color.parseColor("#CF9F92"));
                                 break;
                         }
                     }

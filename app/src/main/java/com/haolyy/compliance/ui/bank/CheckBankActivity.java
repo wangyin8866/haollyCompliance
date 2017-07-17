@@ -106,10 +106,10 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
     }*/
 
     @Override
-    public void showSuccessToast(String msg) {
+    public void showSuccessToast(final String msg) {
         DialogBankSms dialogBankSms = new DialogBankSms(mContext);
-        msg.substring(msg.length() - 4, msg.length());
-        dialogBankSms.setContext("2946").setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
+
+        dialogBankSms.setContext( msg.substring(msg.length() - 4, msg.length())).setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
             public void executeSend() {
 
@@ -124,6 +124,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
             @Override
             public void executeRight(String sms) {
                 //获取银行卡信息展示银行卡界面
+                mPresenter.validateOldUser(msg,sms);
             }
         }).show();
     }
@@ -135,7 +136,10 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
     @Override
     public void pushActivity(String s) {
-
+        Intent intent = new Intent(mContext, ShBankWebActivity.class);
+        intent.setAction(s);
+        startActivity(intent);
+        finish();
     }
 
     /**

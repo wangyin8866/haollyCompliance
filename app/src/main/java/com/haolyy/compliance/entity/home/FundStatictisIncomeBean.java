@@ -1,8 +1,5 @@
 package com.haolyy.compliance.entity.home;
 
-import android.support.annotation.NonNull;
-
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -10,13 +7,6 @@ import java.util.List;
  */
 
 public class FundStatictisIncomeBean {
-
-
-    /**
-     * code : 200
-     * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"income_list_7":[{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-06","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-07","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-08","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-09","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-10","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-07-11","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-12","userId":1,"DQY":"20.00"}],"income_list_30":[{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-12","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-13","userId":1,"DQY":"20.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-14","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-15","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-06-16","userId":1,"DQY":"0.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-17","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-18","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-19","userId":1,"DQY":"20.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-20","userId":1,"DQY":"0.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-21","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-22","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-23","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-06-24","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-26","userId":1,"DQY":"0.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-30","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-01","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"20.00","YJH":"20.00","incomeDate":"2017-07-03","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-04","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-05","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-06","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-07","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-08","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-09","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-10","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-07-11","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-12","userId":1,"DQY":"20.00"}]}}
-     */
 
     private String code;
     private String msg;
@@ -47,11 +37,6 @@ public class FundStatictisIncomeBean {
     }
 
     public static class ModelBeanX {
-        /**
-         * code : 200
-         * msg : 成功
-         * model : {"income_list_7":[{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-06","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-07","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-08","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-09","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-10","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-07-11","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-12","userId":1,"DQY":"20.00"}],"income_list_30":[{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-12","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-13","userId":1,"DQY":"20.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-14","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-15","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-06-16","userId":1,"DQY":"0.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-17","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-18","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-19","userId":1,"DQY":"20.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-20","userId":1,"DQY":"0.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-21","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-22","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-23","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-06-24","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-06-26","userId":1,"DQY":"0.00"},{"YXJH":"20.00","incomeSum":"20.00","XSB":"0.00","YJH":"0.00","incomeDate":"2017-06-30","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-01","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"20.00","YJH":"20.00","incomeDate":"2017-07-03","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-04","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-05","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-06","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-07","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-08","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-09","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"20.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-10","userId":1,"DQY":"0.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"0.00","YJH":"20.00","incomeDate":"2017-07-11","userId":1,"DQY":"20.00"},{"YXJH":"0.00","incomeSum":"40.00","XSB":"20.00","YJH":"0.00","incomeDate":"2017-07-12","userId":1,"DQY":"20.00"}]}
-         */
 
         private String code;
         private String msg;
@@ -82,164 +67,81 @@ public class FundStatictisIncomeBean {
         }
 
         public static class ModelBean {
-            private List<IncomeList7Bean> income_list_7;
-            private List<IncomeList30Bean> income_list_30;
+            private List<IncomeList30Bean> incomeList30;
+            private List<IncomeList7Bean> incomeList7;
 
-            public List<IncomeList7Bean> getIncome_list_7() {
-                return income_list_7;
+            public List<IncomeList30Bean> getIncomeList30() {
+                return incomeList30;
             }
 
-            public void setIncome_list_7(List<IncomeList7Bean> income_list_7) {
-                this.income_list_7 = income_list_7;
+            public void setIncomeList30(List<IncomeList30Bean> incomeList30) {
+                this.incomeList30 = incomeList30;
             }
 
-            public List<IncomeList30Bean> getIncome_list_30() {
-                return income_list_30;
+            public List<IncomeList7Bean> getIncomeList7() {
+                return incomeList7;
             }
 
-            public void setIncome_list_30(List<IncomeList30Bean> income_list_30) {
-                this.income_list_30 = income_list_30;
-            }
-
-            public static class IncomeList7Bean implements Comparable<IncomeList7Bean>{
-                /**
-                 * YXJH : 0.00
-                 * incomeSum : 20.00
-                 * XSB : 20.00
-                 * YJH : 0.00
-                 * incomeDate : 2017-07-06
-                 * userId : 1
-                 * DQY : 0.00
-                 */
-
-                private String YXJH;
-                private String incomeSum;
-                private String XSB;
-                private String YJH;
-                private String incomeDate;
-                private int userId;
-                private String DQY;
-
-                public String getYXJH() {
-                    return YXJH;
-                }
-
-                public void setYXJH(String YXJH) {
-                    this.YXJH = YXJH;
-                }
-
-                public String getIncomeSum() {
-                    return incomeSum;
-                }
-
-                public void setIncomeSum(String incomeSum) {
-                    this.incomeSum = incomeSum;
-                }
-
-                public String getXSB() {
-                    return XSB;
-                }
-
-                public void setXSB(String XSB) {
-                    this.XSB = XSB;
-                }
-
-                public String getYJH() {
-                    return YJH;
-                }
-
-                public void setYJH(String YJH) {
-                    this.YJH = YJH;
-                }
-
-                public String getIncomeDate() {
-                    return incomeDate;
-                }
-
-                public void setIncomeDate(String incomeDate) {
-                    this.incomeDate = incomeDate;
-                }
-
-                public int getUserId() {
-                    return userId;
-                }
-
-                public void setUserId(int userId) {
-                    this.userId = userId;
-                }
-
-                public String getDQY() {
-                    return DQY;
-                }
-
-                public void setDQY(String DQY) {
-                    this.DQY = DQY;
-                }
-
-                @Override
-                public int compareTo(@NonNull IncomeList7Bean incomeList7Bean) {
-                    return  Double.compare(Double.parseDouble(getIncomeSum()), Double.parseDouble(incomeList7Bean.getIncomeSum())) ;
-                }
-
-
+            public void setIncomeList7(List<IncomeList7Bean> incomeList7) {
+                this.incomeList7 = incomeList7;
             }
 
             public static class IncomeList30Bean {
                 /**
-                 * YXJH : 0.00
-                 * incomeSum : 20.00
-                 * XSB : 0.00
-                 * YJH : 20.00
-                 * incomeDate : 2017-06-12
-                 * userId : 1
-                 * DQY : 0.00
+                 * YXJH : 0
+                 * incomeSum : 0
+                 * XSB : 0
+                 * YJH : 0
+                 * incomeDate : 1498320000
+                 * userId : 0
+                 * DQY : 0
                  */
 
-                private String YXJH;
-                private String incomeSum;
-                private String XSB;
-                private String YJH;
-                private String incomeDate;
+                private int YXJH;
+                private int incomeSum;
+                private int XSB;
+                private int YJH;
+                private int incomeDate;
                 private int userId;
-                private String DQY;
+                private int DQY;
 
-                public String getYXJH() {
+                public int getYXJH() {
                     return YXJH;
                 }
 
-                public void setYXJH(String YXJH) {
+                public void setYXJH(int YXJH) {
                     this.YXJH = YXJH;
                 }
 
-                public String getIncomeSum() {
+                public int getIncomeSum() {
                     return incomeSum;
                 }
 
-                public void setIncomeSum(String incomeSum) {
+                public void setIncomeSum(int incomeSum) {
                     this.incomeSum = incomeSum;
                 }
 
-                public String getXSB() {
+                public int getXSB() {
                     return XSB;
                 }
 
-                public void setXSB(String XSB) {
+                public void setXSB(int XSB) {
                     this.XSB = XSB;
                 }
 
-                public String getYJH() {
+                public int getYJH() {
                     return YJH;
                 }
 
-                public void setYJH(String YJH) {
+                public void setYJH(int YJH) {
                     this.YJH = YJH;
                 }
 
-                public String getIncomeDate() {
+                public int getIncomeDate() {
                     return incomeDate;
                 }
 
-                public void setIncomeDate(String incomeDate) {
+                public void setIncomeDate(int incomeDate) {
                     this.incomeDate = incomeDate;
                 }
 
@@ -251,11 +153,87 @@ public class FundStatictisIncomeBean {
                     this.userId = userId;
                 }
 
-                public String getDQY() {
+                public int getDQY() {
                     return DQY;
                 }
 
-                public void setDQY(String DQY) {
+                public void setDQY(int DQY) {
+                    this.DQY = DQY;
+                }
+            }
+
+            public static class IncomeList7Bean {
+                /**
+                 * YXJH : 0
+                 * incomeSum : 0
+                 * XSB : 0
+                 * YJH : 0
+                 * incomeDate : 1499961600
+                 * userId : 0
+                 * DQY : 0
+                 */
+
+                private int YXJH;
+                private double incomeSum;
+                private int XSB;
+                private int YJH;
+                private int incomeDate;
+                private int userId;
+                private int DQY;
+
+                public int getYXJH() {
+                    return YXJH;
+                }
+
+                public void setYXJH(int YXJH) {
+                    this.YXJH = YXJH;
+                }
+
+                public double getIncomeSum() {
+                    return incomeSum;
+                }
+
+                public void setIncomeSum(double incomeSum) {
+                    this.incomeSum = incomeSum;
+                }
+
+                public int getXSB() {
+                    return XSB;
+                }
+
+                public void setXSB(int XSB) {
+                    this.XSB = XSB;
+                }
+
+                public int getYJH() {
+                    return YJH;
+                }
+
+                public void setYJH(int YJH) {
+                    this.YJH = YJH;
+                }
+
+                public int getIncomeDate() {
+                    return incomeDate;
+                }
+
+                public void setIncomeDate(int incomeDate) {
+                    this.incomeDate = incomeDate;
+                }
+
+                public int getUserId() {
+                    return userId;
+                }
+
+                public void setUserId(int userId) {
+                    this.userId = userId;
+                }
+
+                public int getDQY() {
+                    return DQY;
+                }
+
+                public void setDQY(int DQY) {
                     this.DQY = DQY;
                 }
             }

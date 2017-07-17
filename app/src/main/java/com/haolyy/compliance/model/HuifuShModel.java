@@ -214,7 +214,19 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         return huifuShApi.isBosAcctActivate(map);
     }
-
+    /**
+     * 进行当前平台登陆用户数据复制
+     *
+     */
+    public Observable<IsActivateBean> validateOldUser(String mobile,String account_platform_no_,String smsCode) {
+        map.clear();
+        map.put("user_id_", BaseApplication.userId + "");
+        map.put("mobile_", mobile);
+        map.put("account_platform_no_", account_platform_no_);
+        map.put("smsCode_", smsCode);
+        map.put("client_", client);
+        return huifuShApi.validateolduser(map);
+    }
     public Observable<WithDrawFee> calculatefeeamount(String type, String amount) {
         map.clear();
         map.put("type_", type);
@@ -223,4 +235,6 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         return huifuShApi.calculatefeeamount(map);
     }
+
+
 }
