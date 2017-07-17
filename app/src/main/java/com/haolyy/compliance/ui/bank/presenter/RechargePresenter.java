@@ -28,12 +28,12 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
             @Override
             public void onNext(RechargeBean s) {
                 if (s.getStatus().equals("200")) {
-                    if (s.getData().getCode().equals("1")) {
+                    if (s.getModel().getCode().equals("1")) {
                         getView().showSucess();
                     }else {
                         //充值失败
                         getView().showFail();
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                        UIUtils.showToastCommon(mContext, s.getModel().getMsg());
                     }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
@@ -51,9 +51,9 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
         invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("000")) {
-                        getView().countDown(s.getData().getData().getSmsSeq(), false);
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getRespCode().equals("000")) {
+                        getView().countDown(s.getModel().getSmsSeq(), false);
                     } else {
                         UIUtils.showToastCommon(mContext, s.getMsg());
                         getView().countDown("", true);

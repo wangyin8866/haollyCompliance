@@ -151,9 +151,9 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
 
     @Override
     public void showCard(FindUserStatusBean fb) {
-        bankId = fb.getData().getData().getBank_no();
-        cardno = fb.getData().getData().getBank_card_no();
-        user_cust_id = fb.getData().getData().getThird_user_id();
+        bankId = fb.getModel().getModel().getBank_no();
+        cardno = fb.getModel().getModel().getBank_card_no();
+        user_cust_id = fb.getModel().getModel().getThird_user_id();
     }
 
     @Override

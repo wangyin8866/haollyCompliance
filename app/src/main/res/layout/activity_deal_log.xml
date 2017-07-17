@@ -73,7 +73,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="18dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="充值"
                         android:textColor="#FF9933" />
@@ -83,7 +83,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="提现"
                         android:textColor="#FF9933" />
@@ -102,7 +102,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="18dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="投资"
                         android:textColor="#FF9933" />
@@ -113,7 +113,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="18dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="回息"
                         android:textColor="#FF9933" />
@@ -123,7 +123,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="回本"
                         android:textColor="#FF9933" />
@@ -140,7 +140,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="18dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="手续费"
                         android:textColor="#FF9933" />
@@ -151,7 +151,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="18dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="奖励"
                         android:textColor="#FF9933" />
@@ -161,7 +161,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_deal_no_select"
+                        android:background="@drawable/shape_yellow_radius"
                         android:gravity="center"
                         android:text="其他"
                         android:textColor="#FF9933" />

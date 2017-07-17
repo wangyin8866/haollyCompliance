@@ -9,26 +9,26 @@ public interface NetConstantValues {
      * 测试服务器
      */
     String HOST_URL = "http://192.168.6.59:8010/";
-
+    String HOST_URLY="http://192.168.13.63:9093/";
 
 
 
     String USERMANAGE = "zhongying/v1/api/";
     String BIGTHREE = "chinazy-sms-bigthree/api/";
-    String HUIFU_SH = "chinazy-pay-shanghaibank/http/huifush/";
-    String P2P = "chinazy-pay-shanghaibank/http/p2p/";
+    String HUIFU_SH = "pay/http/huifush/";
+    String P2P = "pay/http/p2p/";
 
 
 
     String user_login = USERMANAGE + "user/login";//登录
     String user_register = USERMANAGE + "user/register";//注册
     String USER_FORGETPWD = USERMANAGE + "user/resetPassword";//忘记密码
-    String USER_FINDSTATUS=USERMANAGE+"userAccount/findUserstatus";
     String IMAGE_CHECK = USERMANAGE + "image/checkcode";//检查图形验证
     String IMAGE_GET = USERMANAGE + "kaptcha";//获取图形验证码
     String GET_TOKEN = USERMANAGE + "getToken";//获取token
 
     //我的页面
+    String USER_FINDSTATUS=USERMANAGE+"account/findUserstatus";//查询用户状态
     String USER_INFO = USERMANAGE + "account/accountInfoDetail";//账户中心首页展示，会员信息，可用余额，冻结余额，收益等
     String USER_PRODUCT_INFO = USERMANAGE +"account/userHoldProductRecord";//用户持有产品记录，资金占比展示
     String ACCOUNT_SECURITY_INFO = USERMANAGE +"account/accountSecurity";//账户安全页面展示

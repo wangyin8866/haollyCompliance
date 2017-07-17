@@ -147,7 +147,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
     public void showCard(IsActivateBean s) {
         llCheck.setVisibility(View.GONE);
         llShowCard.setVisibility(View.VISIBLE);
-        tvBankName.setText(s.getData().getBank_name());
-        tvCardNo.setText(s.getData().getBank_card_no());
+        tvBankName.setText(s.getModel().getBank_name());
+        tvCardNo.setText(s.getModel().getBank_card_no());
     }
 }

@@ -12,16 +12,24 @@ public class ActivateBean {
      * status : 200
      */
 
-    private DataBeanX data;
+    private DataBeanX model;
     private String msg;
-    private String status;
+    private String code;
 
-    public DataBeanX getData() {
-        return data;
+    public DataBeanX getModel() {
+        return model;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setModel(DataBeanX model) {
+        this.model = model;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -30,14 +38,6 @@ public class ActivateBean {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public static class DataBeanX {

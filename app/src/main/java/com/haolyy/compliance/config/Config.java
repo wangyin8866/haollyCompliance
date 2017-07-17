@@ -14,7 +14,7 @@ public interface Config {
 
     int seconds=60000;//倒计时时间
     String platform="HLW";//好利网
-    String mer_id="1";//平台号 好利网
+    String mer_id="HLW";//平台号 好利网
     String client = "PC";
     String returl="http://www.chinazyjr.com/";
 
@@ -24,8 +24,8 @@ public interface Config {
     /**
      * 获取短信验证码 operationType 短信验证码用途:1注册(register) 2修改密码(forget) 3充值(recharge) 4投资(investment) 5修改用户名(changeUserName) image_code 图形验证码
      */
-    String SMS_OPERATION_TYPE_REG = "1";//
-    String SMS_OPERATION_TYPE_FOR = "2";
+    String SMS_OPERATION_TYPE_REG = "register";//
+    String SMS_OPERATION_TYPE_FOR = "forget";
     String SMS_OPERATION_TYPE_REC = "3";
     String SMS_OPERATION_TYPE_INV = "4";
     String SMS_OPERATION_TYPE_MOD = "5";

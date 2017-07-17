@@ -78,7 +78,7 @@
                 android:drawableRight="@mipmap/login_delete"
                 android:gravity="center"
                 android:maxLength="18"
-                android:inputType="number"
+                android:digits="0123456789xX"
                 android:paddingRight="10dp"
                 android:textColor="@color/text_9b9b9b"
                 android:textColorHint="@color/text_9b9b9b"

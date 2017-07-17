@@ -12,17 +12,24 @@ public class IsActivateBean {
      * msg : 系统正常
      * status : 200
      */
-
-    private DataBean data;
+    private DataBean model;
     private String msg;
-    private String status;
+    private String code;
 
-    public DataBean getData() {
-        return data;
+    public DataBean getModel() {
+        return model;
     }
 
-    public void setData(DataBean data) {
-        this.data = data;
+    public void setModel(DataBean model) {
+        this.model = model;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -33,13 +40,7 @@ public class IsActivateBean {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public static class DataBean {
         /**

@@ -29,14 +29,14 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
         invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("000")) {
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getRespCode().equals("000")) {
                         if (useType == 0) {
                             //验证码弹框
-                            getView().showSmsDialog(s.getData().getData().getSmsSeq());
+                            getView().showSmsDialog(s.getModel().getSmsSeq());
                         } else {
                             //验证码重发
-                            getView().refreshDialog(s.getData().getData().getSmsSeq(), false);
+                            getView().refreshDialog(s.getModel().getSmsSeq(), false);
                         }
                     } else {
                         UIUtils.showToastCommon(mContext, s.getMsg());
@@ -58,7 +58,6 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
 
     /**
      * 换绑定银行卡
-     * @param user_cust_id_
      * @param trade_type_
      * @param bank_code_
      * @param card_number_
@@ -107,7 +106,7 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
                 PageType, user_type_), new ProgressSubscriber<ToRegisterBean>(new SubscriberOnNextListener<ToRegisterBean>() {
             @Override
             public void onNext(ToRegisterBean baseResponseBean) {
-                if (baseResponseBean.getStatus().equals("200")) {
+                if (baseResponseBean.getCode().equals("200")) {
                     getView().pushActivity(new Gson().toJson(baseResponseBean));
                 } else {
                     UIUtils.showToastCommon(mContext, baseResponseBean.getMsg());

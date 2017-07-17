@@ -27,7 +27,6 @@ import rx.Subscription;
  * 解绑与换绑共享页面
  */
 public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankReBindView> implements BankReBindView {
-
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.iv_service)
@@ -205,8 +204,8 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
      */
     @Override
     public void setCardInfo(FindUserStatusBean fb) {
-        mobile = fb.getData().getData().getMobile();
-        bank_card_no = fb.getData().getData().getBank_card_no();
+        mobile = fb.getModel().getModel().getMobile();
+        bank_card_no = fb.getModel().getModel().getBank_card_no();
         etRebindPhone.setText(mobile);
     }
 }

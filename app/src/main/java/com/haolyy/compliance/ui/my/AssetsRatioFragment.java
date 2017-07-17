@@ -44,6 +44,7 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
     TextView tvRatioFrozen;
     private View view;
     private MagnificentChartItem firstItem, secondItem, thirdItem, fourthItem, fifthItem, sixthItem, sevenItem, eightItem;
+    private String allHoldAmount;
 
     @Nullable
     @Override
@@ -70,6 +71,7 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
         magnificentChart.setMaxValue(100);
         magnificentChart.setShadowShowingState(false);
         magnificentChart.setAnimationState(true);
+        magnificentChart.setText(allHoldAmount);
     }
 
     @Override
@@ -96,7 +98,7 @@ public class AssetsRatioFragment extends BaseFragment<FundStatisticsPresenter, F
 
     @Override
     public void showRatio(ProductRatioBean.ModelBeanX.ModelBean productRatioBean) {
-        productRatioBean.getAllHoldAmount();
+        allHoldAmount = productRatioBean.getAllHoldAmount();
         tvRatioAvaible.setText(productRatioBean.getAvailable_balance());
         tvRatioFrozen.setText(productRatioBean.getFrozen_balance());
         List<ProductRatioBean.ModelBeanX.ModelBean.HoldProductListBean> holdProductList = productRatioBean.getHoldProductList();

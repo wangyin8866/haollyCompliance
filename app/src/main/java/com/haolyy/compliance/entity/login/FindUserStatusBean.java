@@ -8,21 +8,21 @@ public class FindUserStatusBean {
 
 
     /**
-     * data : {"data":{"bank_card_no":"6228223211212310079","bank_name":"农业银行","bank_no":"101","bind_bank_card_flag":1,"bind_mobile_flag":2,"limit_day":500000,"limit_single":500000,"mobile":"15001230070","open_account_flag":1,"realname":"雷琦琥","risk_rating_flag":2,"set_auto_buy_bid_flag":2,"set_hand_password_flag":2,"set_login_password_flag":1,"set_password_flag":2,"third_user_id":"6000060007335137","user_code":"e730ca08","user_id":"177"},"msg":"业务正常","status":"200"}
-     * msg : 系统正常
-     * status : 200
+     * code : 200
+     * msg : 成功
+     * model : {"code":"200","msg":"成功","model":{"risk_level":0,"is_open_account":0,"pass_word":"200820e3227815ed1756a6b531e7e0d2","mobile":"15001230086","is_password":0,"is_auto_tender":0,"userId":"159","status":1}}
      */
 
-    private DataBeanX data;
+    private String code;
     private String msg;
-    private String status;
+    private ModelBeanX model;
 
-    public DataBeanX getData() {
-        return data;
+    public String getCode() {
+        return code;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -33,31 +33,31 @@ public class FindUserStatusBean {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public ModelBeanX getModel() {
+        return model;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setModel(ModelBeanX model) {
+        this.model = model;
     }
 
-    public static class DataBeanX {
+    public static class ModelBeanX {
         /**
-         * data : {"bank_card_no":"6228223211212310079","bank_name":"农业银行","bank_no":"101","bind_bank_card_flag":1,"bind_mobile_flag":2,"limit_day":500000,"limit_single":500000,"mobile":"15001230070","open_account_flag":1,"realname":"雷琦琥","risk_rating_flag":2,"set_auto_buy_bid_flag":2,"set_hand_password_flag":2,"set_login_password_flag":1,"set_password_flag":2,"third_user_id":"6000060007335137","user_code":"e730ca08","user_id":"177"}
-         * msg : 业务正常
-         * status : 200
+         * code : 200
+         * msg : 成功
+         * model : {"risk_level":0,"is_open_account":0,"pass_word":"200820e3227815ed1756a6b531e7e0d2","mobile":"15001230086","is_password":0,"is_auto_tender":0,"userId":"159","status":1}
          */
 
-        private DataBean data;
+        private String code;
         private String msg;
-        private String status;
+        private ModelBean model;
 
-        public DataBean getData() {
-            return data;
+        public String getCode() {
+            return code;
         }
 
-        public void setData(DataBean data) {
-            this.data = data;
+        public void setCode(String code) {
+            this.code = code;
         }
 
         public String getMsg() {
@@ -68,71 +68,36 @@ public class FindUserStatusBean {
             this.msg = msg;
         }
 
-        public String getStatus() {
-            return status;
+        public ModelBean getModel() {
+            return model;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setModel(ModelBean model) {
+            this.model = model;
         }
 
-        public static class DataBean {
+        public static class ModelBean {
             /**
-             * bank_card_no : 6228223211212310079
-             * bank_name : 农业银行
-             * bank_no : 101
-             * bind_bank_card_flag : 1
-             * bind_mobile_flag : 2
-             * limit_day : 500000.0
-             * limit_single : 500000.0
-             * mobile : 15001230070
-             * open_account_flag : 1
-             * realname : 雷琦琥
-             * risk_rating_flag : 2
-             * set_auto_buy_bid_flag : 2
-             * set_hand_password_flag : 2
-             * set_login_password_flag : 1
-             * set_password_flag : 2
-             * third_user_id : 6000060007335137
-             * user_code : e730ca08
-             * user_id : 177
+             * risk_level : 0
+             * is_open_account : 0
+             * pass_word : 200820e3227815ed1756a6b531e7e0d2
+             * mobile : 15001230086
+             * is_password : 0
+             * is_auto_tender : 0
+             * userId : 159
+             * status : 1
              */
 
-            private String bank_card_no;
-            private String bank_name;
-            private String bank_no;
-            private int bind_bank_card_flag;
-            private int bind_mobile_flag;
-            private double limit_day;
-            private double limit_single;
+            private int risk_level;
+            private String pass_word;
             private String mobile;
-            private int open_account_flag;
-            private String realname;
-            private int risk_rating_flag;
-            private int set_auto_buy_bid_flag;
-            private int set_hand_password_flag;
-            private int set_login_password_flag;
-            private int set_password_flag;
-            private String third_user_id;
-            private String user_code;
-            private String user_id;
+            private int is_password;
+            private int is_auto_tender;
+            private String userId;
+            private int status;
 
-            public String getBank_card_no() {
-                return bank_card_no;
-            }
 
-            public void setBank_card_no(String bank_card_no) {
-                this.bank_card_no = bank_card_no;
-            }
-
-            public String getBank_name() {
-                return bank_name;
-            }
-
-            public void setBank_name(String bank_name) {
-                this.bank_name = bank_name;
-            }
-
+            private int is_open_account;
             public String getBank_no() {
                 return bank_no;
             }
@@ -141,36 +106,47 @@ public class FindUserStatusBean {
                 this.bank_no = bank_no;
             }
 
-            public int getBind_bank_card_flag() {
-                return bind_bank_card_flag;
+            private String bank_no;
+            public String getBank_card_no() {
+                return bank_card_no;
             }
 
-            public void setBind_bank_card_flag(int bind_bank_card_flag) {
-                this.bind_bank_card_flag = bind_bank_card_flag;
+            public void setBank_card_no(String bank_card_no) {
+                this.bank_card_no = bank_card_no;
             }
 
-            public int getBind_mobile_flag() {
-                return bind_mobile_flag;
+            private String bank_card_no;
+            public String getThird_user_id() {
+                return third_user_id;
             }
 
-            public void setBind_mobile_flag(int bind_mobile_flag) {
-                this.bind_mobile_flag = bind_mobile_flag;
+            public void setThird_user_id(String third_user_id) {
+                this.third_user_id = third_user_id;
             }
 
-            public double getLimit_day() {
-                return limit_day;
+            private String third_user_id;
+            public int getRisk_level() {
+                return risk_level;
             }
 
-            public void setLimit_day(double limit_day) {
-                this.limit_day = limit_day;
+            public void setRisk_level(int risk_level) {
+                this.risk_level = risk_level;
             }
 
-            public double getLimit_single() {
-                return limit_single;
+            public int getIs_open_account() {
+                return is_open_account;
             }
 
-            public void setLimit_single(double limit_single) {
-                this.limit_single = limit_single;
+            public void setIs_open_account(int is_open_account) {
+                this.is_open_account = is_open_account;
+            }
+
+            public String getPass_word() {
+                return pass_word;
+            }
+
+            public void setPass_word(String pass_word) {
+                this.pass_word = pass_word;
             }
 
             public String getMobile() {
@@ -181,84 +157,36 @@ public class FindUserStatusBean {
                 this.mobile = mobile;
             }
 
-            public int getOpen_account_flag() {
-                return open_account_flag;
+            public int getIs_password() {
+                return is_password;
             }
 
-            public void setOpen_account_flag(int open_account_flag) {
-                this.open_account_flag = open_account_flag;
+            public void setIs_password(int is_password) {
+                this.is_password = is_password;
             }
 
-            public String getRealname() {
-                return realname;
+            public int getIs_auto_tender() {
+                return is_auto_tender;
             }
 
-            public void setRealname(String realname) {
-                this.realname = realname;
+            public void setIs_auto_tender(int is_auto_tender) {
+                this.is_auto_tender = is_auto_tender;
             }
 
-            public int getRisk_rating_flag() {
-                return risk_rating_flag;
+            public String getUserId() {
+                return userId;
             }
 
-            public void setRisk_rating_flag(int risk_rating_flag) {
-                this.risk_rating_flag = risk_rating_flag;
+            public void setUserId(String userId) {
+                this.userId = userId;
             }
 
-            public int getSet_auto_buy_bid_flag() {
-                return set_auto_buy_bid_flag;
+            public int getStatus() {
+                return status;
             }
 
-            public void setSet_auto_buy_bid_flag(int set_auto_buy_bid_flag) {
-                this.set_auto_buy_bid_flag = set_auto_buy_bid_flag;
-            }
-
-            public int getSet_hand_password_flag() {
-                return set_hand_password_flag;
-            }
-
-            public void setSet_hand_password_flag(int set_hand_password_flag) {
-                this.set_hand_password_flag = set_hand_password_flag;
-            }
-
-            public int getSet_login_password_flag() {
-                return set_login_password_flag;
-            }
-
-            public void setSet_login_password_flag(int set_login_password_flag) {
-                this.set_login_password_flag = set_login_password_flag;
-            }
-
-            public int getSet_password_flag() {
-                return set_password_flag;
-            }
-
-            public void setSet_password_flag(int set_password_flag) {
-                this.set_password_flag = set_password_flag;
-            }
-
-            public String getThird_user_id() {
-                return third_user_id;
-            }
-
-            public void setThird_user_id(String third_user_id) {
-                this.third_user_id = third_user_id;
-            }
-
-            public String getUser_code() {
-                return user_code;
-            }
-
-            public void setUser_code(String user_code) {
-                this.user_code = user_code;
-            }
-
-            public String getUser_id() {
-                return user_id;
-            }
-
-            public void setUser_id(String user_id) {
-                this.user_id = user_id;
+            public void setStatus(int status) {
+                this.status = status;
             }
         }
     }

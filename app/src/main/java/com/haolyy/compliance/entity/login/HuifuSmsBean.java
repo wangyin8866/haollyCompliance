@@ -10,19 +10,27 @@ public class HuifuSmsBean {
     /**
      * data : {"data":{"RespCode":"000","RespDesc":"??","SmsSeq":"i4721K7E"},"msg":"??","status":"000"}
      * msg : ????
-     * status : 200
+     * code : 200
      */
 
-    private DataBeanX data;
+    private DataBeanX model;
     private String msg;
-    private String status;
+    private String code;
 
-    public DataBeanX getData() {
-        return data;
+    public DataBeanX getModel() {
+        return model;
     }
 
-    public void setData(DataBeanX data) {
-        this.data = data;
+    public void setModel(DataBeanX model) {
+        this.model = model;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -33,55 +41,8 @@ public class HuifuSmsBean {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public static class DataBeanX {
-        /**
-         * data : {"RespCode":"000","RespDesc":"??","SmsSeq":"i4721K7E"}
-         * msg : ??
-         * status : 000
-         */
-
-        private DataBean data;
-        private String msg;
-        private String status;
-
-        public DataBean getData() {
-            return data;
-        }
-
-        public void setData(DataBean data) {
-            this.data = data;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public static class DataBean {
-            /**
-             * RespCode : 000
-             * RespDesc : ??
-             * SmsSeq : i4721K7E
-             */
 
             private String RespCode;
             private String RespDesc;
@@ -112,4 +73,4 @@ public class HuifuSmsBean {
             }
         }
     }
-}
+

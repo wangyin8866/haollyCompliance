@@ -192,5 +192,6 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
         Intent intent = new Intent(mContext, ShBankWebActivity.class);
         intent.setAction(baseResponseBean);
         startActivity(intent);
+        finish();
     }
 }

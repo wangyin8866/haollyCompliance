@@ -32,16 +32,17 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
                 new ProgressSubscriber<IsActivateBean>(new SubscriberOnNextListener<IsActivateBean>() {
                     @Override
                     public void onNext(IsActivateBean s) {
-                        //"type":"1,2"正常开户 3 发短息 4 掉激活接口
-                        if (s.getStatus().equals("200")) {
-                            String type = s.getData().getType();
+                        //"type":"1,2"正常开户 3 待激活  5发短息
+                        if (s.getCode().equals("200")) {
+                            String type = s.getModel().getType();
                             if (type.equals("1") || type.equals("2")) {
                                  mContext.startActivity(new Intent(mContext, BankBindActivity.class));
-                                ActivityCollector.finishActivity(CheckBankActivity.class);
-                            } else if (type.equals("3")) {
+                                 ActivityCollector.finishActivity(CheckBankActivity.class);
+                            } else if (type.equals("5")) {
                                 //直接展示卡
                                 getView().showCard(s);
-                            } else if (type.equals("4")) {
+                                getView().showSuccessToast("");
+                            } else if (type.equals("3")) {
                                 //激活
                                activate("");
                             }
@@ -66,7 +67,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
         invoke(HuifuShModel.getInstance().activate(PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
             @Override
             public void onNext(ActivateBean s) {
-                if (s.getStatus().equals("200")) {
+                if (s.getCode().equals("200")) {
                     getView().pushActivity(new Gson().toJson(s));
                     ActivityCollector.finishActivity(CheckBankActivity.class);
                 } else {

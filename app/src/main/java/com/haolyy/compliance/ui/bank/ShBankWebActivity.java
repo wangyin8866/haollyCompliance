@@ -42,6 +42,7 @@ public class ShBankWebActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         tvTitle.setText("上海银行页面");
         urldata = getIntent().getAction();
+        LogUtils.e("shbank",urldata);
         WebViewClient webViewClient = new WebViewClient() {
 
             @Override

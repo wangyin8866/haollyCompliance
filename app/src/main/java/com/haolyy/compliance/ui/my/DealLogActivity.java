@@ -79,7 +79,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
                 }
             }
         });
-        mPresenter.requestDealRecord("","1","1");
+        mPresenter.requestDealRecord("0","1","1");
 
 
 
@@ -178,23 +178,23 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
     }
 
     private void reset() {
-        tvDeal1.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal1.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal1.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal2.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal2.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal2.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal3.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal3.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal3.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal4.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal4.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal4.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal5.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal5.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal5.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal6.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal6.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal6.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal7.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal7.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal7.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal8.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal8.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal8.setTextColor(Color.parseColor("#FF9933"));
-        tvDeal9.setBackground(getResources().getDrawable(R.drawable.bg_deal_no_select));
+        tvDeal9.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal9.setTextColor(Color.parseColor("#FF9933"));
     }
 }

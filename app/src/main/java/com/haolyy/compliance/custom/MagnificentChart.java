@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.TextPaint;
@@ -52,7 +53,7 @@ public class MagnificentChart extends View {
 
     private float globalCurrentAngle = 0.0f;
     private String totalAmount;//总金额
-
+    private String description="总金额（元）";
 
 // #MARK - Constructors
 
@@ -73,7 +74,7 @@ public class MagnificentChart extends View {
 
     public MagnificentChart(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        this.context=context;
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MagnificentChart, 0, 0);
         try {
             boolean isAnimated = typedArray.getBoolean(R.styleable.MagnificentChart_animation, false);
@@ -275,7 +276,6 @@ public class MagnificentChart extends View {
     }
 
     private void animatedDraw(Canvas canvas){
-        drawsText();
         Paint insideShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         insideShadowPaint.setColor(shadowBackgroundColor);
         Paint insideChartPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -284,10 +284,8 @@ public class MagnificentChart extends View {
         rect.set(10, 10, width - 10, height - 10);
         drawMainCircle(canvas, insideShadowPaint, insideChartPaint, rect);
         canvas.rotate(-90f, rect.centerX(), rect.centerY());
-
         if(chartItemsList != null && maxValue > 0){
             drawItems(canvas, rect);
-
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
             paint.setColor(chartBackgroundColor);
             RectF oval = new RectF();
@@ -314,21 +312,31 @@ public class MagnificentChart extends View {
                 drawItems(canvas, rect);
                 canvas.rotate(90f, rect.centerX(), rect.centerY());
                 drawInsideCircle(canvas, insideShadowPaint, insideChartPaint);
+                drawsText(canvas);
                 return;
             }
             invalidate();
         }
-
     }
 
     /**
      * 绘制文字
      */
-    private void drawsText() {
+    private void drawsText(Canvas canvas) {
         if(!TextUtils.isEmpty(totalAmount)){
             TextPaint textPaint=new TextPaint(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-            //textPaint.setTextSize(UIUtils.sp2px(14,);
-            //textPaint.getTextBounds(mTextStr1, 0, mTextStr1.length(), mTextBound1);
+            textPaint.setAntiAlias(true);
+            textPaint.setTextSize(UIUtils.sp2px(14,context));
+            Rect mTextBound1 = new Rect();
+            textPaint.setTextAlign(Paint.Align.CENTER);
+            textPaint.setColor(Color.parseColor("#4a4a4a"));
+
+            textPaint.getTextBounds(description, 0, description.length(), mTextBound1);
+            canvas.drawText(description,width/2, height*2/3-2*mTextBound1.height()-UIUtils.dip2px(20), textPaint);
+
+            textPaint.getTextBounds(totalAmount, 0, totalAmount.length(), mTextBound1);
+            canvas.drawText(totalAmount,width/2, height*2/3-2*mTextBound1.height(), textPaint);
+
 
         }
     }

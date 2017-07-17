@@ -18,6 +18,7 @@ import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.userId;
 import static com.haolyy.compliance.base.BaseApplication.version;
+import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.platform;
 
 /**
@@ -60,6 +61,7 @@ public class UserModel extends BaseModel {
      */
 
     public Observable<LoginResponseBean>login(String phone_num, String password) {
+        map.clear();
         map.put("phone_num", phone_num);
         map.put("password", password);
 //        map.put("token", BaseApplication.token);
@@ -72,7 +74,7 @@ public class UserModel extends BaseModel {
         map.put("password", password);
         map.put("smsCode", smsCode);
         map.put("validate_code", imageCode);
-        map.put("client", Config.client);
+        map.put("client", client);
         map.put("platform", platform);
         map.put("version", version);
         map.put("channel",channel);
@@ -91,8 +93,8 @@ public class UserModel extends BaseModel {
         map.put("password", password);
         map.put("smsCode", smsCode);
         map.put("validate_code", imageCode);
-//        map.put("client", client);
-//        map.put("platform", platformhaolyy);
+        map.put("client", client);
+        map.put("platform", platform);
         map.put("token",BaseApplication.token);
         return userApi.forgetPassWord(map);
     }

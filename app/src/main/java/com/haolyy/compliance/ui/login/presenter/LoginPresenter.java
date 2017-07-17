@@ -33,8 +33,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     LogUtils.e("getCode",loginResponseBean.getCode());
                     BaseApplication.mLoginState = true;
                     BaseApplication.userId = loginResponseBean.getModel().getId();
-//                    BaseApplication.mUserName = loginResponseBean.getData().getData().getMobile();
-//                    BaseApplication.juid = loginResponseBean.getData().getData().getUserCode();
+                    BaseApplication.mUserName = loginResponseBean.getModel().getMobile();
+                    BaseApplication.juid = loginResponseBean.getModel().getUserCode();
 
                     ((LoginActivity)mContext).finish();
                 } else {

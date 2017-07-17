@@ -5,24 +5,22 @@ package com.haolyy.compliance.entity.bank;
  */
 
 public class RechargeBean {
-
-
     /**
      * data : {"amount_":"1000.00","code":"1","msg":"成功"}
      * msg : 系统正常
      * status : 200
      */
 
-    private DataBean data;
+    private DataBean model;
     private String msg;
     private String status;
 
-    public DataBean getData() {
-        return data;
+    public DataBean getModel() {
+        return model;
     }
 
-    public void setData(DataBean data) {
-        this.data = data;
+    public void setModel(DataBean model) {
+        this.model = model;
     }
 
     public String getMsg() {

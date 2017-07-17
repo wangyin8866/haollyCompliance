@@ -71,11 +71,11 @@ public abstract class BasePresenter<T> {
         invoke(UserModel.getInstance().findUserStatus(), new ProgressSubscriber<FindUserStatusBean>(new SubscriberOnNextListener<FindUserStatusBean>() {
             @Override
             public void onNext(FindUserStatusBean s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
+                if (s.getCode().equals("200")) {
+                    if (s.getModel().getCode().equals("200")) {
                         overwriteSelectUserState(s, flag);
                     } else {
-                        UIUtils.showToastCommon(mContext, s.getData().getMsg());
+                        UIUtils.showToastCommon(mContext, s.getModel().getMsg());
                     }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
@@ -91,7 +91,7 @@ public abstract class BasePresenter<T> {
     }
 
     public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
-        String third_user_id = fb.getData().getData().getThird_user_id();
+        String third_user_id = fb.getModel().getModel().getThird_user_id();
         if (!TextUtils.isEmpty(third_user_id)) {
             BaseApplication.userCustId = third_user_id;
         }

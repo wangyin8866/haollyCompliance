@@ -36,9 +36,9 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
     @Override
     public void overwriteSelectUserState(FindUserStatusBean f,int flag) {
         super.overwriteSelectUserState(f,flag);
-        if (f.getStatus().equals("200")) {
-            if (f.getData().getStatus().equals("200")) {
-                if (f.getData().getData().getOpen_account_flag() == 1) {
+        if (f.getCode().equals("200")) {
+            if (f.getModel().getCode().equals("200")) {
+                if (f.getModel().getModel().getIs_open_account() == 1) {
                      //开过户
                     if(flag== Config.status_with_draw){
                         mContext.startActivity(new Intent(mContext, WithDrawActivity.class));
@@ -50,7 +50,7 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
                      mContext.startActivity(new Intent(mContext, CheckBankActivity.class));
                 }
             }else {
-                UIUtils.showToastCommon(mContext, f.getData().getMsg());
+                UIUtils.showToastCommon(mContext, f.getModel().getMsg());
             }
         } else {
             UIUtils.showToastCommon(mContext, f.getMsg());

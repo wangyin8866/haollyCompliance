@@ -13,8 +13,9 @@ function jsonchange(data) {
 		dataObjiect = data;
 		 <!--alert("对象"+dataObjiect)-->
 	} else {
+	     alert("字符串"+data)
 		dataObjiect = jQuery.parseJSON(data);
-		 <!--alert("字符串"+dataObjiect)-->
+
 	}
 	return dataObjiect;
 }
@@ -27,9 +28,9 @@ function jsonchange(data) {
 $(document).ready(function() {
  var json=Android.show('来自网页的我');
    var obj=jsonchange(json);
-  <!-- alert('huihu'+obj.data.data.huifu_url);-->
-        $('#subForm').attr('action', obj.data.data.huifu_url);
-        var msgParamDto = obj.data.data;
+  <!-- alert('huihu'+obj.model.data.huifu_url);-->
+        $('#subForm').attr('action', obj.model.data.huifu_url);
+        var msgParamDto = obj.model.data;
         $.each(msgParamDto, function(key, value) {
             if(key=="ReqExt"){
                var ctc='<textarea rows="1" cols="500" style="display: none" name="ReqExt">'+ value +'</textarea>';
@@ -48,14 +49,14 @@ $(document).ready(function() {
    var json=Android.show('来自网页的我');
    var obj=jsonchange(json);
   <!-- alert('huihu'+obj.data.data.huifu_url);-->
-        $('#subForm').attr('action', obj.data.data.huifu_url);
-        var msgParamDto = obj.data.data;
+        $('#subForm').attr('action', obj.model.data.huifu_url);
+        var msgParamDto = obj.model.data;
         $.each(msgParamDto, function(key, value) {
              alert('开始便历key：value')
             var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
             $("#subForm").append(ctc)
         });
-        <!--$("#subForm").submit();-->
+        $("#subForm").submit();
         }
 
 

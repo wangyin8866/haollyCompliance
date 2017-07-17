@@ -1,6 +1,7 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
@@ -11,10 +12,14 @@ import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.service.HuifuShApi;
 
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
 import static com.haolyy.compliance.base.BaseApplication.version;
+import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.mer_id;
 import static com.haolyy.compliance.config.Config.platform;
 import static com.haolyy.compliance.config.Config.returl;
@@ -29,6 +34,12 @@ public class HuifuShModel extends BaseModel {
 
     private HuifuShModel() {
         super();
+        retrofit=new Retrofit.Builder()
+                .client(httpClientBuilder.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(NetConstantValues.HOST_URLY)
+                .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }
 
@@ -57,7 +68,7 @@ public class HuifuShModel extends BaseModel {
         map.put("mer_id_", mer_id);
         map.put("mobile_", mobile_);
         map.put("sms_type_", sms_type_);
-        map.put("client_", "4");
+        map.put("client_", client);
         return huifuShApi.sendSms(map);
     }
 
@@ -104,7 +115,7 @@ public class HuifuShModel extends BaseModel {
     public Observable<ToRegisterBean> register(String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageType, String user_type_) {
         map.clear();
         map.put("mer_id_", mer_id);
-        map.put("moblie_", moblie_);
+        map.put("mobile_", moblie_);
         map.put("from_mobile_", from_mobile_);
         map.put("id_number_", id_number_);
         map.put("user_name_", user_name_);
@@ -117,7 +128,7 @@ public class HuifuShModel extends BaseModel {
         map.put("user_type_", user_type_);
         map.put("version_", version);
         map.put("user_id_", BaseApplication.userId + "");
-        map.put("client_", "4");
+        map.put("client_", client);
         map.put("juid", juid);
         return huifuShApi.register(map);
     }
@@ -129,7 +140,7 @@ public class HuifuShModel extends BaseModel {
         map.put("PageType", PageType);
         map.put("RetUrl", returl);
         map.put("mer_id_", mer_id);
-        map.put("client_", "4");
+        map.put("client_", client);
         map.put("version_", version);
         return huifuShApi.activate(map);
     }
@@ -155,7 +166,7 @@ public class HuifuShModel extends BaseModel {
         map.put("sms_seq_", sms_seq_);
         map.put("trans_amt_", trans_amt_);
         map.put("mer_id_", mer_id);
-        map.put("client_", "4");
+        map.put("client_", client);
         map.put("version_", version);
         map.put("juid", juid);
         map.put("UsrCustId", BaseApplication.userCustId);
@@ -179,7 +190,7 @@ public class HuifuShModel extends BaseModel {
         map.put("trans_amt_", trans_amt_);
         map.put("juid", juid);
         map.put("mer_id_", mer_id);
-        map.put("client_", "4");
+        map.put("client_", client);
         map.put("version_", version);
         map.put("method_", method_);
         return huifuShApi.withDraw(map);
@@ -200,7 +211,7 @@ public class HuifuShModel extends BaseModel {
         map.put("user_name_", realname);
         map.put("user_type", user_type);
         map.put("mer_id_", mer_id);
-        map.put("client_", "4");
+        map.put("client_", client);
         return huifuShApi.isBosAcctActivate(map);
     }
 
@@ -209,7 +220,7 @@ public class HuifuShModel extends BaseModel {
         map.put("type_", type);
         map.put("amount_", amount);
         map.put("platform_", platform);
-        map.put("client_", "4");
+        map.put("client_", client);
         return huifuShApi.calculatefeeamount(map);
     }
 }
