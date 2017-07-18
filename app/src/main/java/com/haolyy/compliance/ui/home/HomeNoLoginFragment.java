@@ -16,6 +16,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.HomeActivityPagerAdapter;
 import com.haolyy.compliance.adapter.HomeNewPagerAdapter;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.LocalImageHolderView;
 import com.haolyy.compliance.custom.MyPointView;
@@ -75,7 +76,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     @BindView(R.id.tv_register)
     TextView tvRegister;
     private View view;
-    private ArrayList<String> images = new ArrayList<String>();
+    private ArrayList<String> images ;
 
     private List<Banner.ModelBeanX.ModelBean> modelBeen;
 
@@ -85,7 +86,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         view = inflater.inflate(R.layout.home_no_login_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         //拉去数据  1
-        mPresenter.getBanner("2");
+        mPresenter.getBanner("1");
         return view;
     }
 
@@ -117,7 +118,9 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         if (images != null) {
             images.clear();
         }
-        mPresenter.getRecommend("1");//首页新闻 2
+        images = new ArrayList<String>();
+
+        mPresenter.getRecommend(BaseApplication.userId+"");//首页新闻 2
         modelBeen = banner.getModel().getModel();
         for (int i = 0; i < modelBeen.size(); i++) {
             images.add(modelBeen.get(i).getImageUrl());

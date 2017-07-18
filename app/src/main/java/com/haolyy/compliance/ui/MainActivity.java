@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTabSelection(currentPage);
     }
     private void init() {
-
+        ActivityCollector.addActivity(this);
         homeNoLoginFragment = new HomeNoLoginFragment();
         homeInvestFragment = new HomeLoginFragment();
 

@@ -98,6 +98,9 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(intent);
             }
         });
+
+        mPresenter.requestUserInfoDetail();
+        mPresenter.getProductFunds(Config.platform, BaseApplication.userId+"");
         return view;
     }
 
@@ -105,8 +108,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            mPresenter.requestUserInfoDetail();
-            mPresenter.getProductFunds(Config.platform, BaseApplication.userId+"");
+
         }
     }
 
@@ -195,6 +197,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     @Override
     public void showData(UserInfoBean userInfoBean) {
         this.userInfoBean = userInfoBean;
+        tvGoldPhone.setText(userInfoBean.getModel().getModel().getMobile());
         availableAmount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
         frezonAmount.setTextBottom(userInfoBean.getModel().getModel().getFrozen_amount());
         vdTotalAsset.setTextBottom(userInfoBean.getModel().getModel().getTotal_amount());

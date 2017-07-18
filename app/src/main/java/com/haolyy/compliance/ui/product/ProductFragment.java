@@ -48,7 +48,8 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
         view = inflater.inflate(R.layout.product_main, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-
+        //获取菜单列表
+        mPresenter.getTitle();
         return view;
     }
 
@@ -61,8 +62,7 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            //获取菜单列表
-            mPresenter.getTitle();
+
         }
     }
 
@@ -80,6 +80,10 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
 
     @Override
     public void showData(ProductTitle productList) {
+        if (mDatas != null) {
+            mDatas.clear();
+
+        }
         mDatas = new ArrayList<>();
         parentTitles = new ArrayList<>();
         for (int i = 0; i < productList.getModel().getModel().getTitleList().size(); i++) {

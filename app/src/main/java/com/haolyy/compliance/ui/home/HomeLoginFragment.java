@@ -97,7 +97,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
     ImageView ivHomeIcon2;
 
     private View view;
-    private ArrayList<String> images = new ArrayList<String>();
+    private ArrayList<String> images ;
     private List<String> auto_roll_strings;
     private List<String> auto_roll_data;
     private boolean isAutoRollRunning;
@@ -204,6 +204,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         if (images != null) {
             images.clear();
         }
+        images = new ArrayList<String>();
         mPresenter.getHomeArticle();//首页新闻 2
         modelBeen = banner.getModel().getModel();
         for (int i = 0; i < modelBeen.size(); i++) {
@@ -249,7 +250,6 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         homeActivityPager.setAdapter(new HomeActivityPagerAdapter(homeActivity.getModel().getModel().getRecommend(), mContext));
 
         homeActivityPager.setPageMargin(UIUtils.dip2px(10));
-        homeActivityPager.setOffscreenPageLimit(3);
     }
 
     @Override
