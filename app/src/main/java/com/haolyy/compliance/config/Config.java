@@ -12,12 +12,13 @@ public interface Config {
     String TIP_PASSS="密码格式错误";
     String TIP_INVITE="邀请码格式错误";
 
+    String service_phone="400-999-6780";
     int seconds=60000;//倒计时时间
     String platform="HLW";//好利网
     String mer_id="HLW";//平台号 好利网
-    String client = "PC";
+    String client = "Android";
     String returl="http://www.chinazyjr.com/";
-
+    String PageType="1";//app风格无标题
     int status_with_draw=9001;
     int staus_recharge=9002;
 

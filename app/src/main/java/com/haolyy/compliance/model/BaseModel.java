@@ -52,7 +52,7 @@ public class BaseModel {
 
     //添加线程订阅
     public static <T> void invoke(LifeSubscription lifeSubscription, Observable<T> observable, Subscriber<T> subscriber) {
-        LogUtils.e("request_params", map.toString());
+        LogUtils.e("ndy_params", map.toString());
         Subscription subscription = observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

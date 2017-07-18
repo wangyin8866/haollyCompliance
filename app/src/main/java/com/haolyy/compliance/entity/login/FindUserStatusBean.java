@@ -95,7 +95,15 @@ public class FindUserStatusBean {
             private int is_auto_tender;
             private String userId;
             private int status;
+            private String orgCustNo;
 
+            public String getOrgCustNo() {
+                return orgCustNo;
+            }
+
+            public void setOrgCustNo(String orgCustNo) {
+                this.orgCustNo = orgCustNo;
+            }
 
             private int is_open_account;
             public String getBank_no() {

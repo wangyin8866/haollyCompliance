@@ -11,6 +11,7 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.BigThreeModel;
@@ -95,7 +96,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
     }
 
     public void RegisterSMS(final String phone){
-       invoke(BigThreeModel.getInstance().requestValidateCode(phone,"", Config.SMS_OPERATION_TYPE_REG),new ProgressSubscriber<BaseBean>(new SubscriberOnNextListener<BaseBean>() {
+       invoke(BigThreeModel.getInstance().requestValidateCode(phone,"0", Config.SMS_OPERATION_TYPE_REG),new ProgressSubscriber<BaseBean>(new SubscriberOnNextListener<BaseBean>() {
            @Override
            public void onNext(BaseBean baseBean) {
                if (baseBean.getCode().equals("200")){
@@ -111,10 +112,10 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
     }
 
     public void validateOldUser(String mobile, String sms) {
-        invoke(HuifuShModel.getInstance().validateOldUser(mobile,account_platform_no,sms),new ProgressSubscriber<IsActivateBean>(new SubscriberOnNextListener<IsActivateBean>() {
+        invoke(HuifuShModel.getInstance().validateOldUser(mobile,account_platform_no,sms),new ProgressSubscriber<OldUserBean>(new SubscriberOnNextListener<OldUserBean>() {
             @Override
-            public void onNext(IsActivateBean isActivateBean) {
-
+            public void onNext(OldUserBean s) {
+               getView().showCard(s);
             }
 
             @Override

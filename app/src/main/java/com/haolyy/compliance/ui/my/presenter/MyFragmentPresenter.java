@@ -38,7 +38,7 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
         super.overwriteSelectUserState(f,flag);
         if (f.getCode().equals("200")) {
             if (f.getModel().getCode().equals("200")) {
-                if (f.getModel().getModel().getIs_open_account() == 0) {
+                if (f.getModel().getModel().getIs_open_account() == 1) {
                      //开过户
                     if(flag== Config.status_with_draw){
                         mContext.startActivity(new Intent(mContext, WithDrawActivity.class));

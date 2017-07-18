@@ -50,7 +50,6 @@ public class ShBankWebActivity extends AppCompatActivity {
                 LogUtils.e("ndyGoUrl", url);
                 if (url.equals(Config.returl)) {
                     finish();
-                    UIUtils.showToastCommon(getApplication(), "成功");
                 }
                 return true;
             }

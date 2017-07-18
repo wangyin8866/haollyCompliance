@@ -8,9 +8,11 @@ import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.WithDrawBean;
 import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.view.WithDrawView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -57,16 +59,28 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView> {
 
             @Override
             public void onNext(WithDrawFee fee) {
-                if (fee.getStatus().equals("200")) {
-                    getView().setFee(fee.getData().getFee());
+                if (fee.getCode().equals("200")) {
+                    getView().setFee(fee.getModel().getFee());
                 }
             }
         });
     }
 
-    @Override
-    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
-        super.overwriteSelectUserState(fb, flag);
-        getView().showCard(fb);
+    public void getUserBaseInfo() {
+        invoke(HuifuShModel.getInstance().getUSerBaseInfo(),new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
+            @Override
+            public void onNext(UserBaseInfoBean userBaseInfoBean) {
+                if(userBaseInfoBean.getCode().equals("200")){
+                    getView().showCard(userBaseInfoBean);
+                }else{
+                    UIUtils.showToastCommon(mContext,userBaseInfoBean.getMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
     }
 }

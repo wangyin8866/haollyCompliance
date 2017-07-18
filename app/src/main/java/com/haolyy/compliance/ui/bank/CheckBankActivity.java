@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.bank;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,10 +13,12 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
-import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.CheckBankPresenter;
 import com.haolyy.compliance.ui.bank.view.CheckBankView;
+import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,16 +82,15 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
             case R.id.tv_bank_next:
                 realname = tvRealName.getText().toString();
                 idCard = tvIdCard.getText().toString().replaceAll(" ", "");
-               /* if(TextUtils.isEmpty(realname)|| !WYUtils.checkChnCharacters(realname)){
+                if(TextUtils.isEmpty(realname)|| !WYUtils.checkChnCharacters(realname)){
                     UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的姓名");
                     return;
                 }
                if(TextUtils.isEmpty(idCard)|| !WYUtils.checkId(idCard)){
                     UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的身份证号");
                     return;
-                }*/
+                }
                 mPresenter.isBosAcctActivate(idCard, realname, "2");
-                //返回的type"type":"1,2"正常开户 3 发短息 4 掉激活接口
                 break;
             case R.id.tv_go_account:
                 startActivity(new Intent(mContext, MainActivity.class));
@@ -96,15 +98,10 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
         }
     }
 
-/*    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-        return super.onTouchEvent(event);
-    }*/
-
+    /**
+     * 其他平台开户信息查询
+     * @param msg
+     */
     @Override
     public void showSuccessToast(final String msg) {
         DialogBankSms dialogBankSms = new DialogBankSms(mContext);
@@ -148,7 +145,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
      * @param s
      */
     @Override
-    public void showCard(IsActivateBean s) {
+    public void showCard(OldUserBean s) {
         llCheck.setVisibility(View.GONE);
         llShowCard.setVisibility(View.VISIBLE);
         tvBankName.setText(s.getModel().getBank_name());

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
-import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.RechargePresenter;
 import com.haolyy.compliance.ui.bank.view.RechargeView;
@@ -66,6 +66,8 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     EditText etRechargeSms;
     @BindView(R.id.tv_success_amount)
     TextView tvSuccessAmount;
+    @BindView(R.id.tv_available)
+    TextView tvAvailable;
     private String smsQue;
     private String phone;
     private String sms;
@@ -73,6 +75,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     private String cardno;
     private String user_cust_id;
     private String bankId;
+    private double availableCredit;
 
     @Override
     protected RechargePresenter createPresenter() {
@@ -92,9 +95,14 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getUserBaseInfo();
+    }
+
     private void initView() {
         tvTitle.setText("充值");
-        mPresenter.selectUserState(-1);
         tvLimitAccount.setText(Html.fromHtml("<font color='#b9b9b9'>招商银行 单笔限额</font><font color='#ff9933'>5万元</font><font color='#b9b9b9'>每日限额</font><font color='#ff9933'>5万元</font>"));
         etRechargeTmt.addTextChangedListener(new TextWatcher() {
             String contents;
@@ -141,7 +149,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         });
     }
 
-    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms,R.id.tv_go_invest,R.id.tv_go_account,R.id.tv_try_again})
+    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms, R.id.tv_go_invest, R.id.tv_go_account, R.id.tv_try_again})
     public void onViewClicked(View view) {
         amt = etRechargeTmt.getText().toString();
         phone = etRechargePhone.getText().toString();
@@ -211,7 +219,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
      */
     @Override
     public void showSucess() {
-         tvSuccessAmount.setText("您本次充值金额为"+amt+"元");
+        tvSuccessAmount.setText("您本次充值金额为" + amt + "元");
         llRecharge.setVisibility(View.GONE);
         llRechargeError.setVisibility(View.GONE);
         llRechargeSuccess.setVisibility(View.VISIBLE);
@@ -226,16 +234,20 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         llRechargeError.setVisibility(View.VISIBLE);
         llRechargeSuccess.setVisibility(View.GONE);
     }
+
     /**
      * 展示银行卡
      *
      * @param fb
      */
     @Override
-    public void showCard(FindUserStatusBean fb) {
-        bankId = fb.getModel().getModel().getBank_no();
-        cardno = fb.getModel().getModel().getBank_card_no();
-        user_cust_id = fb.getModel().getModel().getThird_user_id();
+    public void showCard(UserBaseInfoBean fb) {
+        bankId = fb.getModel().getBankNo();
+        cardno = fb.getModel().getBankCardNo();
+        availableCredit = fb.getModel().getAvailableCredit();
+        tvAvailable.setText(availableCredit+"");
+        tvBankName.setText(fb.getModel().getBankName());
+        tvCardNo.setText(cardno);
     }
 
 

@@ -4,11 +4,13 @@ import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.bank.WithDrawBean;
 import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 
 import java.util.Map;
 
@@ -102,7 +104,7 @@ public interface HuifuShApi {
      */
     @FormUrlEncoded
     @POST(NetConstantValues.P2P_VALIDATEOLDUSER)
-    Observable<IsActivateBean> validateolduser(@FieldMap Map<String, String> params);
+    Observable<OldUserBean> validateolduser(@FieldMap Map<String, String> params);
 
     /**计算提现手续费
      * @param params
@@ -111,4 +113,12 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.P2P_CALCULATEFEEAMOUNT)
     Observable<WithDrawFee> calculatefeeamount(@FieldMap Map<String, String> params);
+
+    /**用户银行卡信息以及资金
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.P2P_USERBASEINFO)
+    Observable<UserBaseInfoBean> getUserBaseInfo(@FieldMap Map<String, String> params);
 }

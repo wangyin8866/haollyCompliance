@@ -17,15 +17,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.SwitchButton;
 import com.haolyy.compliance.custom.dialog.DialogNoTitleDoubleButton;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.utils.CacheManager;
-import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.haolyy.compliance.config.Config.service_phone;
 
 
 public class SettingActivity extends AppCompatActivity {
@@ -56,6 +59,8 @@ public class SettingActivity extends AppCompatActivity {
     TextView tvTitle;
     @BindView(R.id.titleBar)
     RelativeLayout titleBar;
+    @BindView(R.id.tv_login_out)
+    TextView tvLoginOut;
     private DialogNoTitleDoubleButton dialogNoTitleDoubleButton;
     private String totalCacheSize;
 
@@ -98,7 +103,7 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_clear_cache, R.id.tv_version, R.id.tv_about, R.id.tv_contact_us, R.id.tv_feedback})
+    @OnClick({R.id.iv_finish, R.id.tv_clear_cache, R.id.tv_version, R.id.tv_about, R.id.tv_contact_us, R.id.tv_feedback,R.id.tv_login_out})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -124,12 +129,11 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.tv_about:
                 break;
             case R.id.tv_contact_us:
-                dialogNoTitleDoubleButton.setContent("400-999-6780", 21, true).setOnDoubleClickListener(new DialogNoTitleDoubleButton.OnDoubleClickListener() {
+                dialogNoTitleDoubleButton.setContent(service_phone, 21, true).setOnDoubleClickListener(new DialogNoTitleDoubleButton.OnDoubleClickListener() {
                     @Override
                     public void excuteLeft() {
 
                     }
-
                     @Override
                     public void excuteRight() {
                         WYUtils.CallPhone(SettingActivity.this, 0x11);
@@ -138,6 +142,14 @@ public class SettingActivity extends AppCompatActivity {
                 }).show();
                 break;
             case R.id.tv_feedback:
+                break;
+            case R.id.tv_login_out:
+                BaseApplication.mLoginState = false;
+                BaseApplication.userId = -1;
+                BaseApplication.mUserName = "";
+                BaseApplication.juid = "";
+                MainActivity.currentPage=0;
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 break;
         }
     }

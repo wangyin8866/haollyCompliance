@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FindFragment findFragment;
     private MyFragment myFragment;
     private List<Fragment> fragments;
-    private int currentPage;
+    public static int currentPage;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @param isLogin
      */
     private void switchStateHome(boolean isLogin) {
+        LogUtils.e("cu",currentPage+"");
         if (isLogin) {
             if (currentPage == 0) {
                 currentPage = 4;

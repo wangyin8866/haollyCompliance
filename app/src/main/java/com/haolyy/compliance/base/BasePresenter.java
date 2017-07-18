@@ -91,9 +91,9 @@ public abstract class BasePresenter<T> {
     }
 
     public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
-        String third_user_id = fb.getModel().getModel().getThird_user_id();
-        if (!TextUtils.isEmpty(third_user_id)) {
-            BaseApplication.userCustId = third_user_id;
+        String userCustId = fb.getModel().getModel().getOrgCustNo();
+        if (!TextUtils.isEmpty(userCustId)) {
+            BaseApplication.userCustId = userCustId ;
         }
     }
 }

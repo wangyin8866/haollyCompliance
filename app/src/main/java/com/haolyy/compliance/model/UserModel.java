@@ -31,7 +31,6 @@ public class UserModel extends BaseModel {
 
     private UserModel() {
         super();
-
         userApi = retrofit.create(UserApi.class);
     }
 

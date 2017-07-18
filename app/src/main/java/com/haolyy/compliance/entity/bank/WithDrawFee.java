@@ -12,17 +12,10 @@ public class WithDrawFee {
      * status : 200
      */
 
-    private DataBean data;
+    private DataBean model;
     private String msg;
-    private String status;
+    private String code;
 
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
-    }
 
     public String getMsg() {
         return msg;
@@ -32,12 +25,20 @@ public class WithDrawFee {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public DataBean getModel() {
+        return model;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setModel(DataBean model) {
+        this.model = model;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public static class DataBean {

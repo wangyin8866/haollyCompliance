@@ -5,11 +5,13 @@ import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.bank.WithDrawBean;
 import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.service.HuifuShApi;
 
 import retrofit2.Retrofit;
@@ -19,6 +21,7 @@ import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
 import static com.haolyy.compliance.base.BaseApplication.version;
+import static com.haolyy.compliance.config.Config.PageType;
 import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.mer_id;
 import static com.haolyy.compliance.config.Config.platform;
@@ -38,7 +41,7 @@ public class HuifuShModel extends BaseModel {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NetConstantValues.HOST_URLY)
+                .baseUrl(NetConstantValues.HOST_PAY)
                 .build();
         huifuShApi = retrofit.create(HuifuShApi.class);
     }
@@ -112,7 +115,7 @@ public class HuifuShModel extends BaseModel {
      * @param user_type_   客户类型 1：借款账户  2：理财账户
      * @return
      */
-    public Observable<ToRegisterBean> register(String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageType, String user_type_) {
+    public Observable<ToRegisterBean> register(String moblie_, String from_mobile_, String id_number_, String user_name_, String card_number_, String bank_id_, String sms_code_, String sms_seq_, String PageTyp, String user_type_) {
         map.clear();
         map.put("mer_id_", mer_id);
         map.put("mobile_", moblie_);
@@ -133,7 +136,7 @@ public class HuifuShModel extends BaseModel {
         return huifuShApi.register(map);
     }
 
-    public Observable<ActivateBean> activate(String PageType) {
+    public Observable<ActivateBean> activate(String PageTyp) {
         map.clear();
         map.put("user_id_", BaseApplication.userId + "");
         map.put("UsrCustId",BaseApplication.userCustId);
@@ -155,8 +158,7 @@ public class HuifuShModel extends BaseModel {
      * @param trans_amt_    充值金额
      * @return
      */
-    public Observable<RechargeBean> recharge(String from_mobile_, String gate_busi_id_, String sms_code_, String sms_seq_, String trans_amt_, String bank_id_
-                                             ) {
+    public Observable<RechargeBean> recharge(String from_mobile_, String gate_busi_id_, String sms_code_, String sms_seq_, String trans_amt_, String bank_id_) {
         map.clear();
         map.put("user_id_", BaseApplication.userId + "");
         map.put("from_mobile_", from_mobile_);
@@ -193,6 +195,7 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         map.put("version_", version);
         map.put("method_", method_);
+        map.put("PageType",PageType);
         return huifuShApi.withDraw(map);
     }
 
@@ -218,7 +221,7 @@ public class HuifuShModel extends BaseModel {
      * 进行当前平台登陆用户数据复制
      *
      */
-    public Observable<IsActivateBean> validateOldUser(String mobile,String account_platform_no_,String smsCode) {
+    public Observable<OldUserBean> validateOldUser(String mobile, String account_platform_no_, String smsCode) {
         map.clear();
         map.put("user_id_", BaseApplication.userId + "");
         map.put("mobile_", mobile);
@@ -227,6 +230,17 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         return huifuShApi.validateolduser(map);
     }
+    /**
+     * 用户银行卡信息以及资金
+     *
+     */
+    public Observable<UserBaseInfoBean> getUSerBaseInfo() {
+        map.clear();
+        map.put("user_id_", BaseApplication.userId + "");
+        map.put("client_", client);
+        return huifuShApi.getUserBaseInfo(map);
+    }
+
     public Observable<WithDrawFee> calculatefeeamount(String type, String amount) {
         map.clear();
         map.put("type_", type);

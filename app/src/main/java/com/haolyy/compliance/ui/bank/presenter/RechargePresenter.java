@@ -6,6 +6,7 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.view.RechargeView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -27,7 +28,7 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
         invoke(HuifuShModel.getInstance().recharge(from_mobile_, gate_busi_id_, sms_code_, sms_seq_, trans_amt_, bank_id_), new ProgressSubscriber<RechargeBean>(new SubscriberOnNextListener<RechargeBean>() {
             @Override
             public void onNext(RechargeBean s) {
-                if (s.getStatus().equals("200")) {
+                if (s.getCode().equals("200")) {
                     if (s.getModel().getCode().equals("1")) {
                         getView().showSucess();
                     }else {
@@ -70,10 +71,21 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
             }
         }, mContext));
     }
+    public void getUserBaseInfo() {
+        invoke(HuifuShModel.getInstance().getUSerBaseInfo(),new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
+            @Override
+            public void onNext(UserBaseInfoBean userBaseInfoBean) {
+                 if(userBaseInfoBean.getCode().equals("200")){
+                     getView().showCard(userBaseInfoBean);
+                 }else{
+                     UIUtils.showToastCommon(mContext,userBaseInfoBean.getMsg());
+                 }
+            }
 
-    @Override
-    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
-        super.overwriteSelectUserState(fb, flag);
-        getView().showCard(fb);
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
     }
 }

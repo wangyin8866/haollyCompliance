@@ -9,14 +9,16 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.dialog.WithDrawPopupWindow;
-import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.ui.bank.presenter.WithDrawPresenter;
 import com.haolyy.compliance.ui.bank.view.WithDrawView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
 import butterknife.BindView;
@@ -25,7 +27,6 @@ import butterknife.OnClick;
 
 
 public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawView> implements WithDrawView {
-
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.tv_title)
@@ -51,12 +52,19 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
     EditText etWithDraw;
     @BindView(R.id.tv_cash_fee)
     TextView tvCashFee;
+    @BindView(R.id.tv_actual)
+    TextView tvActual;
+    @BindView(R.id.titleBar)
+    RelativeLayout titleBar;
+    @BindView(R.id.tv_available)
+    TextView tvAvailable;
     private String cardno;
     private String user_cust_id;
     private String bankId;
     private String method = "1";
     private String amt;
     private double cashfee;
+    private double availableCredit;
 
     @Override
     protected WithDrawPresenter createPresenter() {
@@ -76,21 +84,27 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getUserBaseInfo();
+    }
+
     private void initView() {
         tvTitle.setText("提现");
-        mPresenter.selectUserState(-1);
         tvWithdrawQuan.setText(Html.fromHtml("<font color='#4a4a4a'>未使用</font><font color='#ff9933'>(1)</font>"));
         etWithDraw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    mPresenter.calculateFeeAmount(method, etWithDraw.getText().toString());
+                    amt = etWithDraw.getText().toString();
+                    mPresenter.calculateFeeAmount(method, amt);
                 }
             }
         });
     }
 
-    @OnClick({R.id.iv_finish, R.id.btn_withdraw, R.id.tv_withdraw_quan, R.id.tv_withdraw_way})
+    @OnClick({R.id.iv_finish, R.id.btn_withdraw, R.id.tv_withdraw_quan, R.id.tv_withdraw_way, R.id.tv_total_withdraw})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -98,10 +112,13 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
                 break;
             case R.id.btn_withdraw:
                 amt = etWithDraw.getText().toString();
-                mPresenter.withDraw(cashfee + "",amt,method);
+                mPresenter.withDraw(cashfee + "", amt, method);
                 break;
             case R.id.tv_withdraw_quan:
                 startActivity(new Intent(WithDrawActivity.this, WithDrawQuanActivity.class));
+                break;
+            case R.id.tv_total_withdraw:
+                etWithDraw.setText(availableCredit + "");
                 break;
             case R.id.tv_withdraw_way:
                 amt = etWithDraw.getText().toString();
@@ -146,19 +163,34 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
     public void pushActivity(String baseResponseBean) {
         Intent intent = new Intent(mContext, ShBankWebActivity.class);
         intent.setAction(baseResponseBean);
-        startActivity(intent);
+        startActivityForResult(intent,0x11);
     }
 
     @Override
-    public void showCard(FindUserStatusBean fb) {
-        bankId = fb.getModel().getModel().getBank_no();
-        cardno = fb.getModel().getModel().getBank_card_no();
-        user_cust_id = fb.getModel().getModel().getThird_user_id();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void showCard(UserBaseInfoBean fb) {
+        bankId = fb.getModel().getBankNo();
+        cardno = fb.getModel().getBankCardNo();
+        availableCredit = fb.getModel().getAvailableCredit();
+        tvAvailable.setText(availableCredit + "");
+        tvBankName.setText(fb.getModel().getBankName());
+        tvCardNo.setText(cardno);
+    }
+
+    /**
+     * 手续费
+     *
+     * @param fee
+     */
     @Override
     public void setFee(double fee) {
         cashfee = fee;
-        tvCashFee.setText(cashfee+"");
+        tvCashFee.setText(cashfee + "");
+        LogUtils.e("ndy", amt + "==" + cashfee);
+        tvActual.setText((Double.parseDouble(amt) - cashfee) + "");
     }
 }

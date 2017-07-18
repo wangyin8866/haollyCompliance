@@ -13,7 +13,7 @@ public class RechargeBean {
 
     private DataBean model;
     private String msg;
-    private String status;
+    private String code;
 
     public DataBean getModel() {
         return model;
@@ -31,12 +31,12 @@ public class RechargeBean {
         this.msg = msg;
     }
 
-    public String getStatus() {
-        return status;
+    public String getCode() {
+        return code;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public static class DataBean {
