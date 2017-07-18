@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
@@ -20,6 +22,7 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
@@ -68,8 +71,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     ImageView joinImageCircle3;
     @BindView(R.id.join_line3)
     View joinLine3;
-    @BindView(R.id.invest_scrollview)
-    ScrollView investScrollview;
     @BindView(R.id.pro_yield1)
     TextView proYield1;
     @BindView(R.id.rate_add)
@@ -112,10 +113,53 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView tvMirrorPlan1;
     @BindView(R.id.tv_profit_plan)
     TextView tvProfitPlan;
+    @BindView(R.id.tv_income)
+    TextView tvIncome;
     private String projectNo;
     private int project_type;
     private String product_no;
     private long currentTime;
+    private String amount;
+    private String rate;
+    private String timeType;
+    private String termTime;
+    private String borrowType;
+    private Double income;
+    private Handler handler = new Handler();
+
+    /**
+     * 延迟线程，看是否还有下一个字符输入
+     */
+    private Runnable delayRun = new Runnable() {
+
+        @Override
+        public void run() {
+            //在这里调用服务器的接口，获取数据
+            //   getSearchResult(editString, "all", 1, "true");
+            mPresenter.getEarnings(amount, rate, timeType, termTime, borrowType);
+        }
+    };
+    private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
+
+    public interface CallBackProductDetail {
+        void callBack(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean,Double aDouble,String amount);
+    }
+
+    private CallBackProductDetail callBackProductDetail;
+
+    public void setCallBackProductDetail(CallBackProductDetail callBackProductDetail) {
+        this.callBackProductDetail = callBackProductDetail;
+    }
+
+    /**
+     * 收益
+     *
+     * @"amount":@"100",
+     * @"rate" : @"11",
+     * @"timeType": @"1",
+     * @"termTime" : @"30",
+     * @"borrowType" : @"1"
+     */
 
     @Nullable
     @Override
@@ -143,13 +187,35 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 }
             }
         });
-        etInvestAccount.setOnTouchListener(new View.OnTouchListener() {
+
+        etInvestAccount.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                changeScrollView();
-                return false;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (delayRun != null) {
+                    //每次editText有变化的时候，则移除上次发出的延迟线程
+                    handler.removeCallbacks(delayRun);
+                }
+                if (TextUtils.isEmpty(s)) {
+                    amount = "0";
+                } else {
+                amount = s.toString().trim();
+                }
+                //延迟800ms，如果不再输入字符，则执行该线程的run方法
+                handler.postDelayed(delayRun, 1000);
+
             }
         });
+
         return view;
     }
 
@@ -186,15 +252,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     }
 
-    void changeScrollView() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                investScrollview.scrollTo(0, investScrollview.getHeight());
-            }
-        }, 100);
-    }
-
 
     @Override
     public void onDestroyView() {
@@ -224,7 +281,9 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
         currentTime = productBaseDetail.getModel().getModel().getNow();
-        ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean = productBaseDetail.getModel().getModel().getInfo();
+        infoBean = productBaseDetail.getModel().getModel().getInfo();
+
+
         //利率
         proYield1.setText(infoBean.getAnnualizedRate());
         //额外利率
@@ -245,15 +304,27 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         //计划金额
         Double amount = Double.valueOf(infoBean.getContractAmount().replace(",", ""));
         double scale = Double.valueOf(infoBean.getAmountScale()) / 100;
-        //剩余可投金额
-        Double amount_wait = Double.valueOf(infoBean.getAmountWait().replace(",", ""));
+
         arcProgressView.setData(amount * scale, amount);
         processProgress(infoBean.getBeginDate(), infoBean.getBidEndDate(), infoBean.getLockDate(), infoBean.getInterestEndDate());
+
+        rate = Float.valueOf(infoBean.getAnnualizedRate()) + Float.valueOf(infoBean.getAppendRate()) + "";
+        timeType = infoBean.getPeriodUnit() + "";
+        termTime = infoBean.getPeriodLength() + "";
+        borrowType = infoBean.getProfitPlan() + "";
     }
 
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
 
+    }
+
+    @Override
+    public void getEarnings(Earnings earnings) {
+        income = earnings.getModel().getExpectedRevenue();
+        tvIncome.setText(income+"元");
+
+        callBackProductDetail.callBack(infoBean,income,amount);
     }
 
 

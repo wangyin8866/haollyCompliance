@@ -1,6 +1,8 @@
 package com.haolyy.compliance.service;
 
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.entity.product.Earnings;
+import com.haolyy.compliance.entity.product.Invest;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
@@ -46,5 +48,10 @@ public interface ProductApi {
     @FormUrlEncoded
     @POST(NetConstantValues.USER_PRODUCT_INFO)
     Observable<AssetRatioBean>  getUserProductInfo(@FieldMap Map<String, String> map);
-
+    @FormUrlEncoded
+    @POST(NetConstantValues.INVEST_EARNINGS)
+    Observable<Earnings>  getEarnings(@FieldMap Map<String, String> map);
+    @FormUrlEncoded
+    @POST(NetConstantValues.INVEST_BUY)
+    Observable<Invest>  invest(@FieldMap Map<String, String> map);
 }

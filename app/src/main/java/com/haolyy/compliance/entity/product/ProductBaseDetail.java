@@ -1,10 +1,21 @@
 package com.haolyy.compliance.entity.product;
 
+import java.io.Serializable;
+
 /**
  * Created by wangyin on 2017/6/28.
  */
 
-public class ProductBaseDetail  {
+public class ProductBaseDetail implements Serializable {
+    @Override
+    public String toString() {
+        return "ProductBaseDetail{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", model=" + model +
+                '}';
+    }
+
     /**
      * code : 200
      * msg : 成功
@@ -39,7 +50,7 @@ public class ProductBaseDetail  {
         this.model = model;
     }
 
-    public static class ModelBeanX {
+    public static class ModelBeanX implements Serializable{
         /**
          * code : 200
          * msg : 成功
@@ -74,7 +85,15 @@ public class ProductBaseDetail  {
             this.model = model;
         }
 
-        public static class ModelBean {
+        public static class ModelBean implements Serializable {
+            @Override
+            public String toString() {
+                return "ModelBean{" +
+                        "now=" + now +
+                        ", info=" + info +
+                        '}';
+            }
+
             /**
              * now : 1500095036007
              * info : {"id":9193,"projectType":3,"projectName":"周周赢00000100","annualizedRate":"11.00","appendRate":"1.00","periodUnit":3,"periodLength":12,"contractAmount":"10,000.00","amountWait":"1.00","amountScale":"0.01","interestStartDate":1501948800000,"interestEndDate":1506700800000,"status":1,"profitPlan":1,"lockPeriod":3,"beginDate":1496851200000,"bidEndDate":1502035200000,"lockDate":1502208000000,"accountBalance":null}
@@ -99,7 +118,7 @@ public class ProductBaseDetail  {
                 this.info = info;
             }
 
-            public static class InfoBean {
+            public static class InfoBean implements Serializable {
                 /**
                  * id : 9193
                  * projectType : 3
@@ -292,6 +311,31 @@ public class ProductBaseDetail  {
 
                 public void setAccountBalance(String accountBalance) {
                     this.accountBalance = accountBalance;
+                }
+
+                @Override
+                public String toString() {
+                    return "InfoBean{" +
+                            "id=" + id +
+                            ", projectType=" + projectType +
+                            ", projectName='" + projectName + '\'' +
+                            ", annualizedRate='" + annualizedRate + '\'' +
+                            ", appendRate='" + appendRate + '\'' +
+                            ", periodUnit=" + periodUnit +
+                            ", periodLength=" + periodLength +
+                            ", contractAmount='" + contractAmount + '\'' +
+                            ", amountWait='" + amountWait + '\'' +
+                            ", amountScale='" + amountScale + '\'' +
+                            ", interestStartDate=" + interestStartDate +
+                            ", interestEndDate=" + interestEndDate +
+                            ", status=" + status +
+                            ", profitPlan=" + profitPlan +
+                            ", lockPeriod=" + lockPeriod +
+                            ", beginDate=" + beginDate +
+                            ", bidEndDate=" + bidEndDate +
+                            ", lockDate=" + lockDate +
+                            ", accountBalance='" + accountBalance + '\'' +
+                            '}';
                 }
             }
         }

@@ -1,45 +1,47 @@
 package com.haolyy.compliance.ui.product;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.databinding.InvestBinding;
+import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
+import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
+import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.WYUtils;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import rx.functions.Action1;
 
 /**
  * Created by wangyin on 2017/5/23.
  */
 
-public class ProductSureInvest extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.top_sure_invest)
-    TopBar topSureInvest;
-    @BindView(R.id.iv_referral_code)
-    ImageView ivReferralCode;
-    @BindView(R.id.ed_referral_code)
-    EditText edReferralCode;
-    @BindView(R.id.tv_invest_sure)
-    TextView tvInvestSure;
-    @BindView(R.id.cb_sure_check)
-    CheckBox cbSureCheck;
+public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,ProductSureInvestView> implements View.OnClickListener,ProductSureInvestView {
+
+    private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
+    private InvestBinding binding;
+    private Double income;
+    private String amount;
+    private String projectNo;
+    @Override
+    protected ProductSureInvestPresenter createPresenter() {
+        return new ProductSureInvestPresenter(mContext);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sure_invest);
-        ButterKnife.bind(this);
-        topSureInvest.setOnItemClickListener(new TopBar.OnItemClickListener() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sure_invest);
+        init();
+        binding.topSureInvest.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {
                 finish();
@@ -50,34 +52,84 @@ public class ProductSureInvest extends AppCompatActivity implements View.OnClick
 
             }
         });
-        RxCompoundButton.checkedChanges(cbSureCheck).subscribe(new Action1<Boolean>() {
+        RxCompoundButton.checkedChanges(binding.cbSureCheck).subscribe(new Action1<Boolean>() {
             @Override
             public void call(Boolean aBoolean) {
 
                 if (aBoolean) {
-                    tvInvestSure.setEnabled(true);
+                    binding.tvInvestSure.setEnabled(true);
                 } else {
-                    tvInvestSure.setEnabled(false);
+                    binding.tvInvestSure.setEnabled(false);
                 }
             }
         });
-        ivReferralCode.setOnClickListener(this);
-        tvInvestSure.setOnClickListener(this);
+        binding.ivReferralCode.setOnClickListener(this);
+        binding.tvInvestSure.setOnClickListener(this);
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
+
+    }
+
+    private void init() {
+        infoBean = (ProductBaseDetail.ModelBeanX.ModelBean.InfoBean) getIntent().getSerializableExtra("productDetail");
+        income = getIntent().getDoubleExtra("income", 0);
+        amount = getIntent().getStringExtra("amount");
+        projectNo = getIntent().getStringExtra("projectNo");
+        mPresenter.requestUserInfoDetail();
+
+        /**
+         * 显示数据
+         */
+        binding.tvInvestProductName.setText(infoBean.getProjectName());
+        binding.tvInvestRate.setText(Float.valueOf(infoBean.getAnnualizedRate())+Float.valueOf(infoBean.getAppendRate())+"%");
+        //投资期限
+        binding.tvInvestDeadline.setText(infoBean.getPeriodLength() + WYUtils.getInvestDeadline(infoBean.getPeriodUnit()));
+        //计息日期
+        binding.tvInvestStartDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterestStartDate()));
+        //退出日期
+        binding.tvInvestEndDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterestEndDate()));
+        //汇款方式
+        binding.tvProfitPlan.setText(WYUtils.getProfitPlan(infoBean.getProfitPlan()));
+        //锁定期
+        binding.tvInvestLockDate.setText(infoBean.getLockPeriod() + "天");
+        //投资金额
+        binding.tvInvestMoney.setText(amount+"元");
+        //预期收益
+        binding.tvInvestEarnings.setText(income+"元");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_referral_code:
-                if (edReferralCode.getVisibility() == View.VISIBLE) {
-                    edReferralCode.setVisibility(View.GONE);
+                if (binding.edReferralCode.getVisibility() == View.VISIBLE) {
+                    binding.edReferralCode.setVisibility(View.GONE);
                 } else {
-                    edReferralCode.setVisibility(View.VISIBLE);
+                    binding.edReferralCode.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tv_invest_sure:
-                startActivity(new Intent(ProductSureInvest.this, InvestSucceed.class));
+                mPresenter.invest(projectNo, "156", amount, income+"", "");
+
                 break;
         }
+    }
+
+    @Override
+    public void showData(UserInfoBean userInfoBean) {
+        //可用余额
+        binding.tvInvestBalance.setText(userInfoBean.getModel().getModel().getAvailable_credit());
+    }
+
+    @Override
+    public void investSuccess() {
+        startActivity(new Intent(ProductSureInvest.this, InvestSucceed.class));
+    }
+
+    @Override
+    public void investError() {
+        startActivity(new Intent(ProductSureInvest.this, InvestError.class));
     }
 }

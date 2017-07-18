@@ -10,6 +10,7 @@ import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.ProjectManageBinding;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.my.ProductFundList;
+import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
@@ -37,7 +38,6 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_manage);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_project_manage);
         init();
         binding.topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
@@ -87,6 +87,11 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
 
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
+
+    }
+
+    @Override
+    public void getEarnings(Earnings earnings) {
 
     }
 }

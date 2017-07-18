@@ -1,5 +1,7 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.entity.product.Earnings;
+import com.haolyy.compliance.entity.product.Invest;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
@@ -85,5 +87,23 @@ public class ProductModel extends BaseModel {
         map.put("user_id",user_id);
         map.put("platform", platform);
         return productApi.getUserProductInfo(map);
+    }
+    public Observable<Earnings> getEarnings(String amount,String rate,String timeType,String termTime,String borrowType){
+        map.clear();
+        map.put("amount",amount);
+        map.put("rate", rate);
+        map.put("timeType", timeType);
+        map.put("termTime", termTime);
+        map.put("borrowType", borrowType);
+        return productApi.getEarnings(map);
+    }
+    public Observable<Invest> invest(String projectNo, String userId, String amount, String expectedRevenue, String return_url){
+        map.clear();
+        map.put("projectNo",projectNo);
+        map.put("userId", userId);
+        map.put("amount", amount);
+        map.put("expectedRevenue", expectedRevenue);
+        map.put("return_url", return_url);
+        return productApi.invest(map);
     }
 }

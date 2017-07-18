@@ -15,6 +15,7 @@ import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.FragmentBottomBorrowDetail;
 import com.haolyy.compliance.ui.product.FragmentBottomCreditorInfo;
@@ -248,6 +249,12 @@ public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter,
     public void getUserState(FindUserStatusBean baseResponseBean) {
 
     }
+
+    @Override
+    public void getEarnings(Earnings earnings) {
+
+    }
+
     /**
      * 处理进度条
      *

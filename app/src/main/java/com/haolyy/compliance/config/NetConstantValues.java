@@ -80,7 +80,14 @@ public interface NetConstantValues {
     String PRODUCT_DETAIL = PRODUCT+"productDetail";//产品详情信息
     String INVESTMENT_RECORD=PRODUCT+"getInvestmentRecord";//投资记录
     String PRODUCT_RETURN_PLAN = PRODUCT + "productReturnPlan";//还款计划
-
+    /**
+     * 投资
+     */
+    String INVEST="zhongying/v1/api/invest/";
+    //计算收益
+    String INVEST_EARNINGS = INVEST + "getExpectedRevenue";// 收益
+    //投资
+    String INVEST_BUY = INVEST + "invest";// 收益
     //p2p
     String P2P_ISBOSACCTACTIVATE = P2P + "isBosAcctActivate";//判断是否是激活用户
     String P2P_VALIDATEOLDUSER=P2P+"validateOldUser";//短信验证其他平台已开户，进行当前平台登陆用户数据复制

@@ -55,7 +55,8 @@
         <!-- 产品详情 -->
         <activity
             android:name=".ui.product.ProductDetailActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <!-- 优惠券 -->
         <activity
             android:name=".ui.product.SelectQuanActivity"

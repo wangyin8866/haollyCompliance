@@ -13,6 +13,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
+import com.haolyy.compliance.entity.product.ProductBaseDetail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProductDetailActivity extends AppCompatActivity {
+public class ProductDetailActivity extends AppCompatActivity implements ProductFragmentTop.CallBackProductDetail {
     @BindView(R.id.tv_product_join)
     TextView tvProductJoin;
     @BindView(R.id.vp_product)
@@ -31,7 +32,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList = new ArrayList<>();
-
+    private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
+    private Double income;
+    String amount;
+    private String projectNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +45,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvProductJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProductDetailActivity.this, ProductSureInvest.class));
+                Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("productDetail",infoBean);
+                bundle.putDouble("income", income);
+                bundle.putString("amount", amount);
+                bundle.putString("projectNo", projectNo);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
@@ -55,9 +66,11 @@ public class ProductDetailActivity extends AppCompatActivity {
 
             }
         });
+        productFragmentTop.setCallBackProductDetail(this);
     }
 
     private void init() {
+        projectNo =getIntent().getStringExtra("projectNo");
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
         fragmentList.add(productFragmentTop);
@@ -65,6 +78,18 @@ public class ProductDetailActivity extends AppCompatActivity {
         vpProduct.setAdapter(new DummyAdapter(getSupportFragmentManager()));
         topBar.setTitle(getIntent().getStringExtra("productName"));
     }
+
+    @Override
+    public void callBack(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean,Double aDouble,String amount) {
+        this.infoBean = infoBean;
+        income = aDouble;
+        this.amount = amount;
+    }
+
+
+
+
+
 
     public class DummyAdapter extends FragmentPagerAdapter {
 
