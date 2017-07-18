@@ -31,7 +31,7 @@ public class ProductListAdapter extends WyBaseAdapter {
         binding.setProduct(product);
         binding.setAdapter(this);
 
-        double scale = Double.valueOf(product.getAmountScale()) / 100;
+        double scale =  WYUtils.processAmount(product.getAmountScale()) / 100;
         binding.tvNum.setText(product.getProjectName());
         binding.tvAmount.setText(product.getContractAmount()+"万");
         WYUtils.selectIcon(product.getProjectName(),binding.ivDuan);

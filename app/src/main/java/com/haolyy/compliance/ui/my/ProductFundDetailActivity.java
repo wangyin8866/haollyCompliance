@@ -1,55 +1,79 @@
-package com.haolyy.compliance.ui.product;
+package com.haolyy.compliance.ui.my;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.custom.BottomScrollView;
-import com.haolyy.compliance.custom.CircleProgressView;
+import com.haolyy.compliance.adapter.TabAdapter;
+import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.ui.product.FragmentBottomBorrowDetail;
+import com.haolyy.compliance.ui.product.FragmentBottomCreditorInfo;
+import com.haolyy.compliance.ui.product.FragmentBottomInvestLog;
+import com.haolyy.compliance.ui.product.FragmentBottomProductDetail;
+import com.haolyy.compliance.ui.product.FragmentBottomRepaymentPlan;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
 
-/**
- * 产品详情顶部页面
- * Created by wangyin on 2017/5/16.
- */
 
-public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, ProductTopView> implements ProductTopView {
-    Unbinder unbinder;
+public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter, ProductTopView> implements ProductTopView {
 
+    @BindView(R.id.top_bar)
+    TopBar topBar;
+    @BindView(R.id.left_label)
+    ImageView leftLabel;
+    @BindView(R.id.pro_yield1)
+    TextView proYield1;
+    @BindView(R.id.rate_add)
+    TextView rateAdd;
+    @BindView(R.id.pro_yield2)
+    TextView proYield2;
+    @BindView(R.id.extra_rate_percent)
+    TextView extraRatePercent;
+    @BindView(R.id.amount_wait)
+    TextView amountWait;
+    @BindView(R.id.interest_end_date)
+    TextView interestEndDate;
+    @BindView(R.id.invest_deadline)
+    TextView investDeadline;
+    @BindView(R.id.lock_period)
+    TextView lockPeriod;
+    @BindView(R.id.tv_mirror_plan1)
+    TextView tvMirrorPlan1;
     @BindView(R.id.tv_mirror_plan)
     TextView tvMirrorPlan;
-    @BindView(R.id.tv_use_quan)
-    TextView tvUseQuan;
-    @BindView(R.id.arc_progress_view)
-    CircleProgressView arcProgressView;
-    @BindView(R.id.bottom_scroll)
-    BottomScrollView bottomScroll;
+    @BindView(R.id.join_image_circle1)
+    ImageView joinImageCircle1;
+    @BindView(R.id.join_line1)
+    View joinLine1;
+    @BindView(R.id.join_image_circle2)
+    ImageView joinImageCircle2;
+    @BindView(R.id.join_line2)
+    View joinLine2;
+    @BindView(R.id.join_image_circle3)
+    ImageView joinImageCircle3;
+    @BindView(R.id.join_line3)
+    View joinLine3;
     @BindView(R.id.join_image_circle4)
     ImageView joinImageCircle4;
     @BindView(R.id.tv_time1)
@@ -62,109 +86,74 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView tvTimeData2;
     @BindView(R.id.tv_time3)
     TextView tvTime3;
-    @BindView(R.id.et_invest_account)
-    EditText etInvestAccount;
-    @BindView(R.id.join_image_circle3)
-    ImageView joinImageCircle3;
-    @BindView(R.id.join_line3)
-    View joinLine3;
-    @BindView(R.id.invest_scrollview)
-    ScrollView investScrollview;
-    @BindView(R.id.pro_yield1)
-    TextView proYield1;
-    @BindView(R.id.rate_add)
-    TextView rateAdd;
-    @BindView(R.id.pro_yield2)
-    TextView proYield2;
-    @BindView(R.id.extra_rate_percent)
-    TextView extraRatePercent;
-    @BindView(R.id.join_image_circle1)
-    ImageView joinImageCircle1;
-    @BindView(R.id.join_line1)
-    View joinLine1;
-    @BindView(R.id.join_image_circle2)
-    ImageView joinImageCircle2;
-    @BindView(R.id.join_line2)
-    View joinLine2;
     @BindView(R.id.tv_time_data3)
     TextView tvTimeData3;
     @BindView(R.id.tv_time4)
     TextView tvTime4;
     @BindView(R.id.tv_time_data4)
     TextView tvTimeData4;
-    @BindView(R.id.amount_wait)
-    TextView amountWait;
-    @BindView(R.id.interest_end_date)
-    TextView interestEndDate;
-    @BindView(R.id.tv_pull)
-    TextView tvPull;
-    @BindView(R.id.invest_deadline)
-    TextView investDeadline;
-    @BindView(R.id.lock_period)
-    TextView lockPeriod;
-    @BindView(R.id.join_progress)
-    LinearLayout joinProgress;
     @BindView(R.id.join_progress4)
     LinearLayout joinProgress4;
-    @BindView(R.id.left_label)
-    ImageView leftLabel;
-    @BindView(R.id.tv_mirror_plan1)
-    TextView tvMirrorPlan1;
-    @BindView(R.id.tv_profit_plan)
-    TextView tvProfitPlan;
+    @BindView(R.id.join_progress)
+    LinearLayout joinProgress;
+    @BindView(R.id.tablayout_bottom)
+    TabLayout tablayoutBottom;
+    @BindView(R.id.vp_join_record)
+    ViewPager vpJoinRecord;
+
+
+    private List<String> titles = new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
+
+    FragmentBottomProductDetail bottomProductDetail;
+    FragmentBottomInvestLog bottomInvestLog;
+    FragmentBottomCreditorInfo bottomCreditorInfo;
+    FragmentBottomBorrowDetail bottomBorrowDetail;
+    FragmentBottomRepaymentPlan bottomRepaymentPlan;
+    private String product_no;
+
     private String projectNo;
     private int project_type;
-    private String product_no;
     private long currentTime;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product_top, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        init();
-
-        bottomScroll.setOnScrollToBottomLintener(new BottomScrollView.OnScrollToBottomListener() {
-            @Override
-            public void onScrollBottomListener(boolean isBottom) {
-                if (isBottom) {
-                    bottomScroll.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            switch (event.getAction()) {
-                                case MotionEvent.ACTION_MOVE:
-                                    //解决滑动冲突
-                                    bottomScroll.getParent().requestDisallowInterceptTouchEvent(false);
-                                    break;
-                            }
-                            return false;
-                        }
-                    });
-                }
-            }
-        });
-        etInvestAccount.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                changeScrollView();
-                return false;
-            }
-        });
-        return view;
-    }
-
     @Override
     protected ProductTopPresenter createPresenter() {
         return new ProductTopPresenter(mContext);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_product_fund_detail);
+        ButterKnife.bind(this);
+        init();
+
+        topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
+            @Override
+            public void OnLeftButtonClicked() {
+                finish();
+            }
+
+            @Override
+            public void OnRightButtonClicked() {
+
+            }
+        });
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
+
+    }
+
     private void init() {
-        projectNo = getActivity().getIntent().getStringExtra("projectNo");
+        topBar.setTitle(getIntent().getStringExtra("productName"));
+        product_no = getIntent().getStringExtra("product_no");
+
+        projectNo = getIntent().getStringExtra("projectNo");
         LogUtils.e("ProductFragmentTop_projectNo", projectNo);
-        project_type = getActivity().getIntent().getIntExtra("project_type", 0);
+        project_type = getIntent().getIntExtra("project_type", 0);
         LogUtils.e("ProductFragmentTop_project_type", project_type + "");
-        product_no = getActivity().getIntent().getStringExtra("product_no");
-        LogUtils.e("ProductFragmentTop_product_no", product_no + "");
+
         //显示进度
         if (project_type == 1) {//散标
             joinProgress.setVisibility(View.GONE);
@@ -184,42 +173,55 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
 //        mPresenter.selectUserState();
 
-    }
 
-    void changeScrollView() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                investScrollview.scrollTo(0, investScrollview.getHeight());
-            }
-        }, 100);
-    }
+        bottomProductDetail = new FragmentBottomProductDetail();
+        bottomInvestLog = new FragmentBottomInvestLog();
+        bottomCreditorInfo = new FragmentBottomCreditorInfo();
+        bottomBorrowDetail = new FragmentBottomBorrowDetail();
+        bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-
-    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_mirror_plan:
-                break;
-
-            case R.id.tv_use_quan:
-                startActivityForResult(new Intent(mContext, SelectQuanActivity.class), 0x00);
-                break;
+        LogUtils.e("ProductFragmentBottom_product_no", product_no);
+        if (product_no.contains("YJH")||product_no.contains("DQY")||product_no.contains("XSB")) {//赢计划,短期赢,新手标
+            titles.add("产品详情");
+            fragments.add(bottomProductDetail);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
+        } else if (product_no.contains("XFD")||product_no.contains("SCD")) {//消费贷,闪车贷
+            titles.add("借款明细");
+            fragments.add(bottomBorrowDetail);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
+            titles.add("还款计划");
+            fragments.add(bottomRepaymentPlan);
+        } else if (product_no.contains("PJD")) {//票据贷
+            titles.add("借款明细");
+            fragments.add(bottomBorrowDetail);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
+        } else if (product_no.contains("ZZY")) {//周周赢
+            titles.add("产品详情");
+            fragments.add(bottomProductDetail);
+            titles.add("债权信息");
+            fragments.add(bottomCreditorInfo);
+            titles.add("投资记录");
+            fragments.add(bottomInvestLog);
         }
+        vpJoinRecord.setAdapter(new TabAdapter(getSupportFragmentManager(),fragments,titles));
+        vpJoinRecord.setOffscreenPageLimit(3);
+        tablayoutBottom.setupWithViewPager(vpJoinRecord);
+
+    }
+
+
+    @Override
+    public void showSuccessToast(String msg) {
+
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+    public void showErrorToast(String msg) {
 
+    }
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
@@ -230,10 +232,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         //额外利率
         proYield2.setText(infoBean.getAppendRate());
 
-        WYUtils.setVisibility(rateAdd, proYield2, extraRatePercent, infoBean.getAppendRate());
-        //回款方式
-        tvProfitPlan.setText(WYUtils.getProfitPlan(infoBean.getProfitPlan()));
-
+        WYUtils.setVisibility(rateAdd,proYield2,extraRatePercent,infoBean.getAppendRate());
         //剩余可投金额
         amountWait.setText(infoBean.getAmountWait() + "元");
         //退出日期
@@ -241,13 +240,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         //投资期限
         investDeadline.setText(infoBean.getPeriodLength() + WYUtils.getInvestDeadline(infoBean.getPeriodUnit()));
         //锁定期
-        lockPeriod.setText(infoBean.getLockPeriod() + "天");
-        //计划金额
-        Double amount = Double.valueOf(infoBean.getContractAmount().replace(",", ""));
-        double scale = Double.valueOf(infoBean.getAmountScale()) / 100;
-        //剩余可投金额
-        Double amount_wait = Double.valueOf(infoBean.getAmountWait().replace(",", ""));
-        arcProgressView.setData(amount * scale, amount);
+        lockPeriod.setText(infoBean.getLockPeriod()+ "天");
         processProgress(infoBean.getBeginDate(), infoBean.getBidEndDate(), infoBean.getLockDate(), infoBean.getInterestEndDate());
     }
 
@@ -255,8 +248,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     public void getUserState(FindUserStatusBean baseResponseBean) {
 
     }
-
-
     /**
      * 处理进度条
      *
@@ -386,16 +377,5 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         tvTimeData2.setTextColor(Color.parseColor("#B9B9B9"));
         tvTimeData3.setTextColor(Color.parseColor("#B9B9B9"));
         tvTimeData4.setTextColor(Color.parseColor("#B9B9B9"));
-    }
-
-
-    @Override
-    public void showSuccessToast(String msg) {
-
-    }
-
-    @Override
-    public void showErrorToast(String msg) {
-
     }
 }

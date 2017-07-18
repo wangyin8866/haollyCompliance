@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,7 +14,6 @@ import android.widget.RadioGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.ProductFundListAdapter;
-import com.haolyy.compliance.adapter.ProductListAdapter;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.config.Config;
@@ -87,17 +87,16 @@ public class ProductFundListFragment extends BaseFragment<ProductFundPresenter, 
         xlvProductThird.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                projectNo = productList.getModel().getModel().getDataList().get(position - 1).getProjectNo();
-//                productName = productList.getModel().getModel().getDataList().get(position - 1).getProjectName();
-//                project_type = productList.getModel().getModel().getDataList().get(position - 1).getProjectType();
-//                product_no = productList.getModel().getModel().getDataList().get(position - 1).getProductNo();
-//                Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
-//                intent.putExtra("projectNo", projectNo);
-//                intent.putExtra("productName", productName);
-//                intent.putExtra("project_type", project_type);
-//                intent.putExtra("product_no", product_no);
-//                intent.putExtra("flag", "product");
-//                startActivity(intent);
+
+                Intent intent = new Intent(getActivity(), ProductManageDetail.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("productFund",productFundList.getModel().getModel().getAssetManagementList().get(position - 1));
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+
+
             }
         });
         return view;
@@ -158,7 +157,8 @@ public class ProductFundListFragment extends BaseFragment<ProductFundPresenter, 
         }
         xlvProductThird.setXListViewListener(new MyListView());
         //获取一级菜单的数据
-        mPresenter.getAssetManagementList(false, BaseApplication.userId+"", Config.platform,Config.client,firstCategoryId,secondCategoryId,pageNum+"","0");
+        state = "0";
+        mPresenter.getAssetManagementList(false, BaseApplication.userId+"", Config.platform,Config.client,firstCategoryId,secondCategoryId,pageNum+"",state);
 
 
     }
@@ -181,7 +181,7 @@ public class ProductFundListFragment extends BaseFragment<ProductFundPresenter, 
         } else {
             this.productFundList.getModel().getModel().getAssetManagementList().addAll(productFundList.getModel().getModel().getAssetManagementList());
             xlvProductThird.setPullLoadEnable(true);
-            xlvProductThird.setAdapter(new ProductListAdapter(this.productFundList.getModel().getModel().getAssetManagementList(), getActivity()));
+            xlvProductThird.setAdapter(new ProductFundListAdapter(this.productFundList.getModel().getModel().getAssetManagementList(), getActivity()));
             xlvProductThird.setSelection(this.productFundList.getModel().getModel().getAssetManagementList().size() - productFundList.getModel().getModel().getAssetManagementList().size());//定位
         }
     }

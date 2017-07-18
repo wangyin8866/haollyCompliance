@@ -93,7 +93,6 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
                 intent.putExtra("productName", productName);
                 intent.putExtra("project_type", project_type);
                 intent.putExtra("product_no", product_no);
-                intent.putExtra("flag", "product");
                 startActivity(intent);
             }
         });

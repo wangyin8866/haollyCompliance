@@ -47,5 +47,12 @@
             android:divider="@null"
             android:scrollbars="none"
             android:visibility="gone" />
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:src="@mipmap/no_record_recharge" />
     </RelativeLayout>
 </LinearLayout>

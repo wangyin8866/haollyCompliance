@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.MyProductFundAdapter;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.InnerScrollListView;
@@ -105,7 +106,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             mPresenter.requestUserInfoDetail();
-            mPresenter.getProductFunds(Config.platform, "2");
+            mPresenter.getProductFunds(Config.platform, BaseApplication.userId+"");
         }
     }
 

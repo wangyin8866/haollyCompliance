@@ -344,4 +344,28 @@ public class WYUtils {
             serviceTel(context);
         }
     }
+
+    /**
+     * 回款方式
+     * @param profitPlan
+     * @return
+     */
+    public static String getProfitPlan(int profitPlan) {
+        String result = "";
+        switch (profitPlan) {
+            case 1:
+                result = "一次还本付息";
+                break;
+            case 2:
+                result = "等额本金";
+                break;
+            case 3:
+                result = "等额本息";
+                break;
+            case 4:
+                result = "按期付息到期还本";
+                break;
+        }
+        return result;
+    }
 }

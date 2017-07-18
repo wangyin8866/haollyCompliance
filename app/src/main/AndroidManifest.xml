@@ -194,6 +194,13 @@
         <activity android:name=".ui.my.ProductFundActivity"
             android:screenOrientation="portrait"
             />
+        <!--用户资产列表详情-->
+        <activity android:name=".ui.my.ProductFundDetailActivity"
+            android:screenOrientation="portrait"/>
+        <!--项目详情-->
+        <activity android:name=".ui.my.ProductManageDetail"
+            android:screenOrientation="portrait"
+            />
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
         <activity android:name=".ui.bank.RebindBankActivity" />

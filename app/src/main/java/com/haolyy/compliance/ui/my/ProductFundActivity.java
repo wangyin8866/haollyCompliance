@@ -1,11 +1,14 @@
 package com.haolyy.compliance.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.ProductFundListAdapter;
@@ -19,6 +22,8 @@ import com.haolyy.compliance.entity.my.ProductFundList;
 import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.ui.my.presenter.ProductFundPresenter;
 import com.haolyy.compliance.ui.my.view.ProductFundView;
+import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.ArrayList;
@@ -41,6 +46,8 @@ public class ProductFundActivity extends BaseActivity<ProductFundPresenter, Prod
     ViewPager vpProductList;
     @BindView(R.id.xlv_product_fund)
     XListView xlvProductFund;
+    @BindView(R.id.iv_empty)
+    ImageView ivEmpty;
     private String productName;//一级菜单的title
     private String firstCategoryId;//一级菜单的Id
     private List<String> secondCategoryTitle;//二级菜单的title
@@ -50,7 +57,12 @@ public class ProductFundActivity extends BaseActivity<ProductFundPresenter, Prod
     private ProductFundListFragment productListFragment;
     private List<Fragment> mDatas;
     private int position;
-
+    private int pageNum = 1;
+    ProductFundList productFundList;
+    private int pageSize;
+    private String projectNo;
+    private int project_type;// 标的类型
+    private String product_no;// 产品类型
     @Override
     protected ProductFundPresenter createPresenter() {
         return new ProductFundPresenter(mContext);
@@ -119,7 +131,7 @@ public class ProductFundActivity extends BaseActivity<ProductFundPresenter, Prod
                 orderStatus.add("3");
                 orderStatus.add("4");
                 orderStatus.add("5");
-                productListFragment = ProductFundListFragment.newInstance(thirdTitle, firstCategoryId,secondCategoryId.get(i), orderStatus);
+                productListFragment = ProductFundListFragment.newInstance(thirdTitle, firstCategoryId, secondCategoryId.get(i), orderStatus);
                 mDatas.add(productListFragment);
             }
 
@@ -131,21 +143,74 @@ public class ProductFundActivity extends BaseActivity<ProductFundPresenter, Prod
             WYUtils.setIndicator(this, tabLayout, 5, 5);
         } else {
             xlvProductFund.setVisibility(View.VISIBLE);
+            xlvProductFund.setXListViewListener(new MyListView());
             tabLayout.setVisibility(View.GONE);
             vpProductList.setVisibility(View.GONE);
-            mPresenter.getAssetManagementList(false,BaseApplication.userId+"",Config.platform,Config.client,firstCategoryId,"","1","0");
+            mPresenter.getAssetManagementList(false, BaseApplication.userId + "", Config.platform, Config.client, firstCategoryId, "", pageNum + "", "0");
+
+            xlvProductFund.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent intent = new Intent(ProductFundActivity.this, ProductManageDetail.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("productFund",productFundList.getModel().getModel().getAssetManagementList().get(position - 1));
+                    intent.putExtras(bundle);
+
+                    startActivity(intent);
+                }
+            });
         }
     }
 
     @Override
     public void showData(ProductFundList productFundList) {
+        pageSize = productFundList.getModel().getModel().getAssetManagementList().size();
 
-        xlvProductFund.setAdapter(new ProductFundListAdapter(productFundList.getModel().getModel().getAssetManagementList(), this));
-
+        LogUtils.e("pageSize", pageSize + "");
+        this.productFundList = productFundList;
+        if (pageSize == 0) {
+            xlvProductFund.setPullLoadEnable(false);
+            ivEmpty.setVisibility(View.VISIBLE);
+            xlvProductFund.setVisibility(View.GONE);
+        } else {
+            if (pageSize < 10) {
+                xlvProductFund.setPullLoadEnable(false);
+            } else {
+                xlvProductFund.setPullLoadEnable(true);
+            }
+            ivEmpty.setVisibility(View.GONE);
+            xlvProductFund.setVisibility(View.VISIBLE);
+            xlvProductFund.setAdapter(new ProductFundListAdapter(this.productFundList.getModel().getModel().getAssetManagementList(), this));
+        }
     }
 
     @Override
     public void showGetMoreData(ProductFundList productFundList) {
+        if (productFundList.getModel().getModel().getAssetManagementList().size() == 0) {
+            pageNum = 1;
+            UIUtils.showToastCommon(mContext, "没有更多数据了！");
+            xlvProductFund.setPullLoadEnable(false);
+        } else {
+            this.productFundList.getModel().getModel().getAssetManagementList().addAll(productFundList.getModel().getModel().getAssetManagementList());
+            xlvProductFund.setPullLoadEnable(true);
+            xlvProductFund.setAdapter(new ProductFundListAdapter(this.productFundList.getModel().getModel().getAssetManagementList(), this));
+            xlvProductFund.setSelection(this.productFundList.getModel().getModel().getAssetManagementList().size() - productFundList.getModel().getModel().getAssetManagementList().size());//定位
+        }
+    }
 
+    private class MyListView implements XListView.IXListViewListener {
+        @Override
+        public void onRefresh() {
+            pageNum = 1;
+            mPresenter.getAssetManagementList(false, BaseApplication.userId + "", Config.platform, Config.client, firstCategoryId, "", pageNum + "", "0");
+        }
+
+        @Override
+        public void onLoadMore() {
+            pageNum += 1;
+            mPresenter.getAssetManagementList(true, BaseApplication.userId + "", Config.platform, Config.client, firstCategoryId, "", pageNum + "", "0");
+        }
     }
 }
