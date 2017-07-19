@@ -76,7 +76,15 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_bind);
+        initView();
         ButterKnife.bind(this);
+    }
+
+    private void initView() {
+        realName=getIntent().getStringExtra("name");
+        idCard=getIntent().getStringExtra("id");
+        tvRealName.setText(realName);
+        tvIdCard.setText(idCard);
     }
 
     @Override

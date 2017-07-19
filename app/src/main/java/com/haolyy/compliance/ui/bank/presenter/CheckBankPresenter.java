@@ -45,8 +45,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
                         if (s.getCode().equals("200")) {
                             String type = s.getModel().getType();
                             if (type.equals("1") || type.equals("2")) {
-                                 mContext.startActivity(new Intent(mContext, BankBindActivity.class));
-                                 ActivityCollector.finishActivity(CheckBankActivity.class);
+                                getView().pushActivity("BankBind");
                             } else if (type.equals("5")) {
                                   //发短息之后，直接展示卡,
                                   //getView().showCard(s);

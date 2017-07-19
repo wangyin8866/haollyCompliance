@@ -21,6 +21,7 @@ import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.my.ProductFund;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
@@ -80,6 +81,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     private ProductFund productFund;
     private ArrayList<String> parentTitle;
     private ArrayList<String> parentNodeNo;//二级菜单的no
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,13 +96,13 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 Intent intent = new Intent(getActivity(), ProductFundActivity.class);
                 intent.putExtra("productName", productFund.getModel().getModel().getProductFunds().get(position).getProjectName());
                 intent.putExtra("firstCategory", productFund.getModel().getModel().getProductFunds().get(position).getFirstCategory());
-                intent.putExtra("position", position+1);
+                intent.putExtra("position", position + 1);
                 startActivity(intent);
             }
         });
 
         mPresenter.requestUserInfoDetail();
-        mPresenter.getProductFunds(Config.platform, BaseApplication.userId+"");
+        mPresenter.getProductFunds(Config.platform, BaseApplication.userId + "");
         return view;
     }
 
@@ -138,18 +140,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 break;
             case R.id.tv_withdraw:
                 mPresenter.selectUserState(Config.status_with_draw);
-                //开户
-              /* dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
-                   @Override
-                   public void excuteLeft() {
-
-                   }
-
-                   @Override
-                   public void excuteRight() {
-                      startActivity(new Intent(mContext,CheckBankActivity.class));
-                   }
-               }).show();*/
               /*  dialogInvestGuides = new DialogInvestGuides(mContext, DialogInvestGuides.INTELLIGENCE);
                 dialogInvestGuides.setOnDoubleClickListener(new DialogInvestGuides.OnDoubleClickListener() {
                     @Override
@@ -220,8 +210,28 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     @Override
     public void getProductFunds(ProductFund productFund) {
         this.productFund = productFund;
-        islProductFund.setAdapter(new MyProductFundAdapter(productFund.getModel().getModel().getProductFunds(),mContext));
+        islProductFund.setAdapter(new MyProductFundAdapter(productFund.getModel().getModel().getProductFunds(), mContext));
     }
+
+    /**
+     * 提示开户
+     */
+    @Override
+    public void showRegisterDialog() {
+        //开户
+        dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+            @Override
+            public void excuteLeft() {
+
+            }
+
+            @Override
+            public void excuteRight() {
+                startActivity(new Intent(mContext, CheckBankActivity.class));
+            }
+        }).show();
+    }
+
     @Override
     public void showSuccessToast(String msg) {
 

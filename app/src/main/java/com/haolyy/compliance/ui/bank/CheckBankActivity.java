@@ -73,7 +73,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_bank_next,R.id.tv_go_account})
+    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_go_account})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -82,12 +82,12 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
             case R.id.tv_bank_next:
                 realname = tvRealName.getText().toString();
                 idCard = tvIdCard.getText().toString().replaceAll(" ", "");
-                if(TextUtils.isEmpty(realname)|| !WYUtils.checkChnCharacters(realname)){
-                    UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的姓名");
+                if (TextUtils.isEmpty(realname) || !WYUtils.checkChnCharacters(realname)) {
+                    UIUtils.showToastCommon(CheckBankActivity.this, "请输入正确的姓名");
                     return;
                 }
-               if(TextUtils.isEmpty(idCard)|| !WYUtils.checkId(idCard)){
-                    UIUtils.showToastCommon(CheckBankActivity.this,"请输入正确的身份证号");
+                if (TextUtils.isEmpty(idCard) || !WYUtils.checkId(idCard)) {
+                    UIUtils.showToastCommon(CheckBankActivity.this, "请输入正确的身份证号");
                     return;
                 }
                 mPresenter.isBosAcctActivate(idCard, realname, "2");
@@ -100,13 +100,14 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
     /**
      * 其他平台开户信息查询
+     *
      * @param msg
      */
     @Override
     public void showSuccessToast(final String msg) {
         DialogBankSms dialogBankSms = new DialogBankSms(mContext);
 
-        dialogBankSms.setContext( msg.substring(msg.length() - 4, msg.length())).setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
+        dialogBankSms.setContext(msg.substring(msg.length() - 4, msg.length())).setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
             public void executeSend() {
 
@@ -121,7 +122,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
             @Override
             public void executeRight(String sms) {
                 //获取银行卡信息展示银行卡界面
-                mPresenter.validateOldUser(msg,sms);
+                mPresenter.validateOldUser(msg, sms);
             }
         }).show();
     }
@@ -133,9 +134,16 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
 
     @Override
     public void pushActivity(String s) {
-        Intent intent = new Intent(mContext, ShBankWebActivity.class);
-        intent.setAction(s);
-        startActivity(intent);
+        if ("BankBind".equals(s)) {
+            Intent intent = new Intent(mContext, BankBindActivity.class);
+            intent.putExtra("name",realname);
+            intent.putExtra("id",idCard);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(mContext, ShBankWebActivity.class);
+            intent.setAction(s);
+            startActivity(intent);
+        }
         finish();
     }
 

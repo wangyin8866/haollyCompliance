@@ -47,7 +47,7 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
                     }
                 } else {
                    //没开户
-                     mContext.startActivity(new Intent(mContext, CheckBankActivity.class));
+                    getView().showRegisterDialog();
                 }
             }else {
                 UIUtils.showToastCommon(mContext, f.getModel().getMsg());

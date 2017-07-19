@@ -3,8 +3,11 @@ package com.haolyy.compliance.ui.bank;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -65,7 +68,20 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
     private String amt;
     private double cashfee;
     private double availableCredit;
+    private Handler handler = new Handler();
 
+    /**
+     * 延迟线程，看是否还有下一个字符输入
+     */
+    private Runnable delayRun = new Runnable() {
+
+        @Override
+        public void run() {
+            //在这里调用服务器的接口，获取数据
+            amt = etWithDraw.getText().toString();
+            mPresenter.calculateFeeAmount(method, amt);
+        }
+    };
     @Override
     protected WithDrawPresenter createPresenter() {
         return new WithDrawPresenter(mContext);
@@ -93,13 +109,31 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
     private void initView() {
         tvTitle.setText("提现");
         tvWithdrawQuan.setText(Html.fromHtml("<font color='#4a4a4a'>未使用</font><font color='#ff9933'>(1)</font>"));
-        etWithDraw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        etWithDraw.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    amt = etWithDraw.getText().toString();
-                    mPresenter.calculateFeeAmount(method, amt);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (delayRun != null) {
+                    //每次editText有变化的时候，则移除上次发出的延迟线程
+                    handler.removeCallbacks(delayRun);
                 }
+                if (TextUtils.isEmpty(s)) {
+                    amt = "0";
+                } else {
+                    amt = s.toString().trim();
+                }
+                //延迟800ms，如果不再输入字符，则执行该线程的run方法
+                handler.postDelayed(delayRun, 1000);
+
             }
         });
     }
