@@ -8,13 +8,18 @@ import android.view.View;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.InvestBinding;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.ui.bank.ShBankWebActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
+import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 
@@ -29,7 +34,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private InvestBinding binding;
     private Double income;
-    private String amount;
+    private int amount;
     private String projectNo;
     @Override
     protected ProductSureInvestPresenter createPresenter() {
@@ -75,7 +80,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     private void init() {
         infoBean = (ProductBaseDetail.ModelBeanX.ModelBean.InfoBean) getIntent().getSerializableExtra("productDetail");
         income = getIntent().getDoubleExtra("income", 0);
-        amount = getIntent().getStringExtra("amount");
+        amount = getIntent().getIntExtra("amount",0);
         projectNo = getIntent().getStringExtra("projectNo");
         mPresenter.requestUserInfoDetail();
 
@@ -111,7 +116,9 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
                 }
                 break;
             case R.id.tv_invest_sure:
-                mPresenter.invest(projectNo, "156", amount, income+"", "");
+
+
+                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income+"", Config.returl);
 
                 break;
         }
@@ -124,12 +131,13 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     }
 
     @Override
-    public void investSuccess() {
-        startActivity(new Intent(ProductSureInvest.this, InvestSucceed.class));
+    public void pushActivity(String baseResponseBean) {
+
+        LogUtils.e("baseResponseBean", baseResponseBean);
+        Intent intent = new Intent(mContext, ShBankWebActivity.class);
+        intent.setAction(baseResponseBean);
+        startActivity(intent);
     }
 
-    @Override
-    public void investError() {
-        startActivity(new Intent(ProductSureInvest.this, InvestError.class));
-    }
+
 }

@@ -21,11 +21,16 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
+import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
+import com.haolyy.compliance.ui.bank.RechargeActivity;
+import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
+import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
@@ -36,6 +41,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
+import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
 /**
  * 产品详情顶部页面
@@ -115,18 +121,22 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView tvProfitPlan;
     @BindView(R.id.tv_income)
     TextView tvIncome;
+    @BindView(R.id.tv_balance)
+    TextView tvBalance;
+    @BindView(R.id.tv_withdraw)
+    TextView tvWithdraw;
     private String projectNo;
     private int project_type;
     private String product_no;
     private long currentTime;
-    private String amount;
+    private int amount;
     private String rate;
     private String timeType;
     private String termTime;
     private String borrowType;
-    private Double income;
+    private double income;
     private Handler handler = new Handler();
-
+    FindUserStatusBean baseResponseBean;
     /**
      * 延迟线程，看是否还有下一个字符输入
      */
@@ -136,13 +146,18 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         public void run() {
             //在这里调用服务器的接口，获取数据
             //   getSearchResult(editString, "all", 1, "true");
-            mPresenter.getEarnings(amount, rate, timeType, termTime, borrowType);
+            mPresenter.getEarnings(amount + "", rate, timeType, termTime, borrowType);
         }
     };
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
+    private int state;
 
     public interface CallBackProductDetail {
-        void callBack(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean,Double aDouble,String amount);
+        void callBackInfo(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean);
+
+        void callBackAmount(int amount);
+
+        void callBackIncome(double income);
     }
 
     private CallBackProductDetail callBackProductDetail;
@@ -206,10 +221,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                     handler.removeCallbacks(delayRun);
                 }
                 if (TextUtils.isEmpty(s)) {
-                    amount = "0";
+                    amount = 0;
                 } else {
-                amount = s.toString().trim();
+                    amount = Integer.valueOf(s.toString().trim());
                 }
+                callBackProductDetail.callBackAmount(amount);
                 //延迟800ms，如果不再输入字符，则执行该线程的run方法
                 handler.postDelayed(delayRun, 1000);
 
@@ -225,6 +241,14 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
     private void init() {
+        if (mLoginState) {
+            //查询用户余额
+            mPresenter.getUserInfo();
+            tvBalance.setClickable(false);
+
+        } else {
+            tvBalance.setClickable(true);
+        }
         projectNo = getActivity().getIntent().getStringExtra("projectNo");
         LogUtils.e("ProductFragmentTop_projectNo", projectNo);
         project_type = getActivity().getIntent().getIntExtra("project_type", 0);
@@ -248,7 +272,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         mPresenter.getBaseDetail(projectNo + "", juid);
 
 
-//        mPresenter.selectUserState();
+        mPresenter.selectUserState(0);
 
     }
 
@@ -260,7 +284,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
 
-    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan})
+    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan, R.id.tv_balance, R.id.tv_withdraw})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_mirror_plan:
@@ -268,6 +292,19 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
             case R.id.tv_use_quan:
                 startActivityForResult(new Intent(mContext, SelectQuanActivity.class), 0x00);
+                break;
+            case R.id.tv_balance:
+                startActivity(new Intent(mContext, LoginActivity.class));
+
+                break;
+            case R.id.tv_withdraw:
+                if (!mLoginState) {
+                    AppToast.showShortText(mContext, "你还没有登录!");
+                } else if (state == 1) {//chongzhi
+                    startActivity(new Intent(mContext, RechargeActivity.class));
+                } else {
+                    startActivity(new Intent(mContext, CheckBankActivity.class));
+                }
                 break;
         }
     }
@@ -282,7 +319,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     public void showData(ProductBaseDetail productBaseDetail) {
         currentTime = productBaseDetail.getModel().getModel().getNow();
         infoBean = productBaseDetail.getModel().getModel().getInfo();
-
+        callBackProductDetail.callBackInfo(infoBean);
 
         //利率
         proYield1.setText(infoBean.getAnnualizedRate());
@@ -316,15 +353,19 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
-
+        state = baseResponseBean.getModel().getModel().getIs_open_account();
     }
 
     @Override
     public void getEarnings(Earnings earnings) {
         income = earnings.getModel().getExpectedRevenue();
-        tvIncome.setText(income+"元");
+        tvIncome.setText(income + "元");
+        callBackProductDetail.callBackIncome(income);
+    }
 
-        callBackProductDetail.callBack(infoBean,income,amount);
+    @Override
+    public void showUserInfoData(UserInfoBean userInfoBean) {
+        tvBalance.setText(userInfoBean.getModel().getModel().getAvailable_credit() + "元");
     }
 
 
@@ -469,4 +510,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     public void showErrorToast(String msg) {
 
     }
+
+
 }

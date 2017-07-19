@@ -8,6 +8,6 @@ import com.haolyy.compliance.entity.home.UserInfoBean;
 
 public interface ProductSureInvestView {
     void showData(UserInfoBean userInfoBean);
-    void investSuccess();
-    void investError();
+
+    void pushActivity(String baseResponseBean);
 }

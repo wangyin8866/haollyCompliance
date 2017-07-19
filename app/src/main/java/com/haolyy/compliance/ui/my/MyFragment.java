@@ -106,7 +106,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         return view;
     }
 
-    @Override
+    @Override          
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {

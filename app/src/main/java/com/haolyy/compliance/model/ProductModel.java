@@ -1,5 +1,6 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.Invest;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
@@ -104,6 +105,8 @@ public class ProductModel extends BaseModel {
         map.put("amount", amount);
         map.put("expectedRevenue", expectedRevenue);
         map.put("return_url", return_url);
+        map.put("platform", Config.platform);
+        map.put("client", client);
         return productApi.invest(map);
     }
 }

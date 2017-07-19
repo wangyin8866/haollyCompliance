@@ -424,6 +424,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="登录后查看"
@@ -436,6 +437,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/tv_withdraw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="去充值"

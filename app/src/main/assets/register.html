@@ -34,10 +34,11 @@ $(document).ready(function() {
         $.each(msgParamDto, function(key, value) {
             if(key=="ReqExt"){
                var ctc='<textarea rows="1" cols="500" style="display: none" name="ReqExt">'+ value +'</textarea>';
+            }else if(key == "BorrowerDetails"){
+				var ctc = '<textarea rows="1" cols="500" style="display: none" name="BorrowerDetails">' + value + '</textarea>'
             }else{
                var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
             }
-
             $("#subForm").append(ctc)
         });
         $("#subForm").submit();

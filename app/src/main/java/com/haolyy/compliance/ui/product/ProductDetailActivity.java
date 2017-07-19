@@ -15,6 +15,7 @@ import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.utils.AppToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,10 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     TopBar topBar;
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
-    private List<BaseFragment> fragmentList = new ArrayList<>();
+    private List<BaseFragment> fragmentList;
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
-    private Double income;
-    String amount;
+    private double income=0.00;
+    private int  amount;
     private String projectNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,24 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
         tvProductJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("productDetail",infoBean);
-                bundle.putDouble("income", income);
-                bundle.putString("amount", amount);
-                bundle.putString("projectNo", projectNo);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
+                if (amount == 0) {
+                    AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
+                } else {
+                    if (amount % 50 == 0 || amount % 100 == 0) {
+                        Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("productDetail", infoBean);
+                        bundle.putDouble("income", income);
+                        bundle.putInt("amount", amount);
+                        bundle.putString("projectNo", projectNo);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    } else {
+                        AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为50或100的整数倍!");
+                    }
+                }
+
             }
         });
         topBar.setOnItemClickListener(new TopBar.OnItemClickListener() {
@@ -71,6 +82,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     private void init() {
+        fragmentList = new ArrayList<>();
         projectNo =getIntent().getStringExtra("projectNo");
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
@@ -80,16 +92,21 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
         topBar.setTitle(getIntent().getStringExtra("productName"));
     }
 
+
     @Override
-    public void callBack(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean,Double aDouble,String amount) {
+    public void callBackInfo(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean) {
         this.infoBean = infoBean;
-        income = aDouble;
+    }
+
+    @Override
+    public void callBackAmount(int amount) {
         this.amount = amount;
     }
 
-
-
-
+    @Override
+    public void callBackIncome(double income) {
+        this.income = income;
+    }
 
 
     public class DummyAdapter extends FragmentPagerAdapter {

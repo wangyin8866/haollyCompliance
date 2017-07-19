@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.product.presenter;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.product.Invest;
@@ -47,16 +48,14 @@ public class ProductSureInvestPresenter extends BasePresenter<ProductSureInvestV
             @Override
             public void onNext(Invest s) {
                 if (s.getCode().equals("200")) {
-                    getView().investSuccess();
-                } else {
-                    getView().investError();
+                    getView().pushActivity(new Gson().toJson(s));
                 }
             }
 
             @Override
             public void onError(Throwable e) {
                 LogUtils.e(e.getMessage());
-                getView().investError();
+
             }
         }, mContext));
 

@@ -8,6 +8,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.ProjectManageBinding;
+import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.my.ProductFundList;
 import com.haolyy.compliance.entity.product.Earnings;
@@ -92,6 +93,11 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
 
     @Override
     public void getEarnings(Earnings earnings) {
+
+    }
+
+    @Override
+    public void showUserInfoData(UserInfoBean userInfoBean) {
 
     }
 }

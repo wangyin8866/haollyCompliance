@@ -14,6 +14,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
@@ -252,6 +253,11 @@ public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter,
 
     @Override
     public void getEarnings(Earnings earnings) {
+
+    }
+
+    @Override
+    public void showUserInfoData(UserInfoBean userInfoBean) {
 
     }
 
