@@ -21,6 +21,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
+import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.Earnings;
@@ -220,13 +221,14 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                     //每次editText有变化的时候，则移除上次发出的延迟线程
                     handler.removeCallbacks(delayRun);
                 }
-                if (TextUtils.isEmpty(s)) {
+                if (TextUtils.isEmpty(etInvestAccount.getText().toString().trim())) {
                     amount = 0;
                 } else {
-                    amount = Integer.valueOf(s.toString().trim());
+                amount =Integer.valueOf(etInvestAccount.getText().toString().trim());
                 }
+                LogUtils.e("afterTextChanged",amount+"");
                 callBackProductDetail.callBackAmount(amount);
-                //延迟800ms，如果不再输入字符，则执行该线程的run方法
+                //延迟1000ms，如果不再输入字符，则执行该线程的run方法
                 handler.postDelayed(delayRun, 1000);
 
             }
@@ -308,7 +310,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 } else if (state == 1) {//chongzhi
                     startActivity(new Intent(mContext, RechargeActivity.class));
                 } else {
-                    startActivity(new Intent(mContext, CheckBankActivity.class));
+                    showDialog();
+
                 }
                 break;
         }
@@ -371,6 +374,21 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void showUserInfoData(UserInfoBean userInfoBean) {
         tvBalance.setText(userInfoBean.getModel().getModel().getAvailable_credit() + "元");
+    }
+
+    public void showDialog() {
+        DialogBank dialogBank=new DialogBank(mContext);
+        dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+            @Override
+            public void excuteLeft() {
+
+            }
+
+            @Override
+            public void excuteRight() {
+                startActivity(new Intent(mContext, CheckBankActivity.class));
+            }
+        }).show();
     }
 
 

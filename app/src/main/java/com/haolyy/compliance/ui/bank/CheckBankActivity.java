@@ -17,6 +17,7 @@ import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.CheckBankPresenter;
 import com.haolyy.compliance.ui.bank.view.CheckBankView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
@@ -135,6 +136,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
     @Override
     public void pushActivity(String s) {
         if ("BankBind".equals(s)) {
+            LogUtils.e("ndy",realname+idCard);
             Intent intent = new Intent(mContext, BankBindActivity.class);
             intent.putExtra("name",realname);
             intent.putExtra("id",idCard);

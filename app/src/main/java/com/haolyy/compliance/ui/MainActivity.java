@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
 import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
+import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 import com.haolyy.compliance.utils.LogUtils;
@@ -154,8 +156,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setTabSelection(currentPage);
                 break;
             case R.id.id_tab_ll_04:
-                currentPage = 3;
-                setTabSelection(currentPage);
+                if (mLoginState) {
+                    currentPage = 3;
+                    setTabSelection(currentPage);
+                } else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+                }
+
                 break;
         }
     }
