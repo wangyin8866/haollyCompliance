@@ -272,10 +272,15 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         mPresenter.getBaseDetail(projectNo + "", juid);
 
 
-        mPresenter.selectUserState(0);
+
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.selectUserState(0);
+    }
 
     @Override
     public void onDestroyView() {
