@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
@@ -82,6 +83,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     private void init() {
+        ActivityCollector.addActivity(this);
         fragmentList = new ArrayList<>();
         projectNo =getIntent().getStringExtra("projectNo");
         productFragmentTop = new ProductFragmentTop();

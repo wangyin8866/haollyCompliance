@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.View;
@@ -70,7 +71,14 @@ public class DialogBankSms extends Dialog {
         btn2Dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mdouble.executeRight(editText.getText().toString());
+                String sms = editText.getText().toString();
+                if(sms.length()<6){
+                    tips.setVisibility(View.VISIBLE);
+                    return;
+                }else {
+                    tips.setVisibility(View.GONE);
+                }
+                mdouble.executeRight(sms);
                 dismiss();
             }
         });

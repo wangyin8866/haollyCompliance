@@ -5,7 +5,7 @@ import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
-import com.xfqz.xjd.mylibrary.LogInterceptor;
+import com.haolyy.compliance.utils.LogInterceptor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,12 +36,9 @@ public class BaseModel {
     public BaseModel() {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = new OkHttpClient.Builder();
-        if(WYUtils.isApkInDebug(BaseApplication.getContext())){
-            httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        }else {
-            httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        }
-        retrofit=new Retrofit.Builder()
+        httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+
+        retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

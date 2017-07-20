@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
+import com.haolyy.compliance.base.RxBus;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -27,6 +29,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action1;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
@@ -89,27 +92,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        RxBus.getInstance().toObserverable(String.class).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                if (s.equals(Config.LoginOUT)) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            }
+        });
+
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         switchStateHome(mLoginState);
 
     }
+
     /**
      * 判断是否登录
      *
      * @param isLogin
      */
     private void switchStateHome(boolean isLogin) {
-        LogUtils.e("cu",currentPage+"");
+        LogUtils.e("cu", currentPage + "");
         if (isLogin) {
             if (currentPage == 0) {
                 currentPage = 4;
             }
+        } else if (currentPage == 4 || currentPage == 3) {
+            currentPage = 0;
         }
         setTabSelection(currentPage);
     }
+
     private void switchClickStateHome(boolean mLoginState) {
         if (mLoginState) {
             currentPage = 4;
@@ -118,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         setTabSelection(currentPage);
     }
+
     private void init() {
         ActivityCollector.addActivity(this);
         homeNoLoginFragment = new HomeNoLoginFragment();
@@ -167,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
 
 
     private void setTabSelection(int currentPage) {
@@ -224,11 +241,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         idTabTv04.setTextColor(getResources().getColor(R.color.tv_navigate));
 
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(TAG, currentPage);
     }
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

@@ -42,6 +42,15 @@ public class LoginResponseBean extends BaseBean {
         private String recommendCode;
         private Integer status;
 
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        private String code;
         public String getUserCode() {
             return userCode;
         }

@@ -156,7 +156,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="55dp"
                 android:layout_marginLeft="54dp"
-                android:text="**** **** **** 3409"
+                android:text="**** **** **** ****"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
         </RelativeLayout>

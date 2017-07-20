@@ -1,9 +1,15 @@
 package com.haolyy.compliance.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.RxBus;
+import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.ui.MainActivity;
+import com.haolyy.compliance.ui.login.LoginActivity;
 
 //实现标记的写入与读取
 public class SPUtils {
@@ -93,18 +99,18 @@ public class SPUtils {
         return psw;
     }
 
-    public String getPhone(){
-        phone=sharedPreferences.getString("gesturePhone","");
+    public String getPhone() {
+        phone = sharedPreferences.getString("gesturePhone", "");
         return phone;
     }
 
-    public int getgId(){
-        gId=sharedPreferences.getInt("gestureId", BaseApplication.userId);
+    public int getgId() {
+        gId = sharedPreferences.getInt("gestureId", BaseApplication.userId);
         return gId;
     }
 
-    public String getgCode(){
-        gCode=sharedPreferences.getString("gestureCode","");
+    public String getgCode() {
+        gCode = sharedPreferences.getString("gestureCode", "");
         return gCode;
     }
 
@@ -112,10 +118,19 @@ public class SPUtils {
     public static void clearGestureInfo(Context context) {
         BaseApplication.mLoginState = false;
         BaseApplication.userId = -1;
-        BaseApplication.mUserName="";
+        BaseApplication.mUserName = "";
         SharedPreferences sharedPreferences = context.getSharedPreferences("gesture", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
+    }
+
+    public static void loginOut() {
+        BaseApplication.mLoginState = false;
+        BaseApplication.userId = -1;
+        BaseApplication.mUserName = "";
+        BaseApplication.juid = "";
+        ActivityCollector.finishAll();
+        RxBus.getInstance().post(Config.LoginOUT);
     }
 }

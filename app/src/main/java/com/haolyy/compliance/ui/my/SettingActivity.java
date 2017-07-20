@@ -17,11 +17,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.SwitchButton;
 import com.haolyy.compliance.custom.dialog.DialogNoTitleDoubleButton;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.utils.CacheManager;
+import com.haolyy.compliance.utils.SPUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
@@ -69,6 +72,7 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
+        ActivityCollector.addActivity(this);
         initView();
     }
 
@@ -144,12 +148,8 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.tv_feedback:
                 break;
             case R.id.tv_login_out:
-                BaseApplication.mLoginState = false;
-                BaseApplication.userId = -1;
-                BaseApplication.mUserName = "";
-                BaseApplication.juid = "";
-                MainActivity.currentPage=0;
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                UIUtils.showToastCommon(SettingActivity.this,"退出登录");
+                SPUtils.loginOut();
                 break;
         }
     }

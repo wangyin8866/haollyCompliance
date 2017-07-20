@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.ui.product.presenter.SelectQuanPresenter;
 import com.haolyy.compliance.ui.product.view.SelectQuanView;
@@ -53,6 +54,7 @@ public class SelectQuanActivity extends BaseActivity<SelectQuanPresenter, Select
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_quan);
         ButterKnife.bind(this);
+        ActivityCollector.addActivity(this);
         titles.add("可用卡券");
         titles.add("不可用卡券");
         FragmentUsefulQuan fragmentUsefulQuan = new FragmentUsefulQuan();

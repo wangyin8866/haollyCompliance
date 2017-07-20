@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.ui.my.presenter.FundStatisticsPresenter;
@@ -39,6 +40,7 @@ public class FundStatisticsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fund_statistics);
         ButterKnife.bind(this);
+        ActivityCollector.addActivity(this);
         initView();
 
     }

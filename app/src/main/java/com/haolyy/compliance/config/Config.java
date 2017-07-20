@@ -32,4 +32,5 @@ public interface Config {
     String SMS_OPERATION_TYPE_MOD = "5";
 
     String SMS_TEMPLATE_CODE_HOLYY = "100";//好利网100
+    String LoginOUT="loginOut";
 }
