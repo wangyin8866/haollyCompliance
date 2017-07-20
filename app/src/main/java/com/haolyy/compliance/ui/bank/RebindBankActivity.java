@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
-import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.ui.bank.presenter.RebindBankPresenter;
 import com.haolyy.compliance.ui.bank.view.BankReBindView;
 import com.haolyy.compliance.utils.DateUtil;
@@ -90,7 +90,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
 
     private void initView() {
         tvTitle.setText("解绑银行卡");
-        mPresenter.selectUserState(-1);
+        mPresenter.selectUserBaseInfo();
     }
 
     @Override
@@ -149,9 +149,11 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                     smsOald = sms;
                     etRebindSms.getText().clear();
                     etRebindPhone.getText().clear();
+
                     subscriptionCount.unsubscribe();
                     tvRebindSms.setEnabled(true);
                     tvRebindSms.setText("发送验证码");
+
                     rlRebind.setVisibility(View.GONE);
                     llRebind.setVisibility(View.VISIBLE);
                     btnRebind.setText("完成");
@@ -203,9 +205,10 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
      * @param fb
      */
     @Override
-    public void setCardInfo(FindUserStatusBean fb) {
-        mobile = fb.getModel().getModel().getMobile();
-        bank_card_no = fb.getModel().getModel().getBank_card_no();
+    public void setCardInfo(UserBaseInfoBean fb) {
+        mobile = fb.getModel().getMobile();
+        bank_card_no = fb.getModel().getBankCardNo();
+        tvCardNo.setText(bank_card_no);
         etRebindPhone.setText(mobile);
     }
 }

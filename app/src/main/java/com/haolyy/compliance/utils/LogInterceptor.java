@@ -40,7 +40,6 @@ public class LogInterceptor implements Interceptor {
         if (null != loginOutBean.getModel()) {
             String code = loginOutBean.getModel().getCode();
             if (!TextUtils.isEmpty(code) && code.equals("2002")) {
-                UIUtils.showToastCommon(BaseApplication.getContext(), "登录超时，请重新登录");
                 SPUtils.loginOut();
             }
         }

@@ -14,22 +14,21 @@ import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
  * Created by User on 2017/7/12.
  */
 
-public class DealRecordPresenter  extends BasePresenter<DealRecordView>{
+public class DealRecordPresenter extends BasePresenter<DealRecordView> {
     public DealRecordPresenter(Context context) {
         super(context);
     }
 
 
-    public void requestDealRecord(String capitalType,String pageIndex,String dateFlag) {
-        invoke(UserModel.getInstance().getDealRecord(capitalType,pageIndex,dateFlag), new ProgressSubscriber<DealRecordBean>(new SubscriberOnNextListener<DealRecordBean>() {
+    public void requestDealRecord(final boolean isRefresh, String capitalType, String pageIndex, String dateFlag) {
+        invoke(UserModel.getInstance().getDealRecord(capitalType, pageIndex, dateFlag), new ProgressSubscriber<DealRecordBean>(new SubscriberOnNextListener<DealRecordBean>() {
             @Override
             public void onNext(DealRecordBean s) {
-                if(s.getCode().equals("200")) {
-                    getView().showData(s);
-                }else {
+                if (s.getCode().equals("200")) {
+                    getView().showData(s,isRefresh);
+                } else {
                     getView().showErrorToast(s.getMsg());
                 }
-
             }
 
             @Override
@@ -41,7 +40,6 @@ public class DealRecordPresenter  extends BasePresenter<DealRecordView>{
 
 
     }
-
 
 
 }

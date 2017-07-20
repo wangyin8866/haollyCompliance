@@ -142,9 +142,16 @@ public class UserModel extends BaseModel {
         return userApi.getUserIncomeInfo(map);
     }
 
+    /**
+     * 资金明细
+     * @param capitalType
+     * @param pageIndex
+     * @param dateFlag
+     * @return
+     */
     public Observable<DealRecordBean> getDealRecord(String capitalType,String pageIndex, String dateFlag) {
         map.clear();
-        map.put("userId",userId+"");
+        map.put("userId","1");
         map.put("capitalType", capitalType);
         map.put("pageIndex", pageIndex);
         map.put("dateFlag", dateFlag);

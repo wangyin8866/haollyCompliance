@@ -10,7 +10,7 @@ public interface NetConstantValues {
      */
     String HOST_URL = "http://192.168.6.59:8010/";
     String HOST_URLY="http://192.168.13.63:9093/";
-
+    //String HOST_URL = "http://192.168.9.229:9090/";
     String HOST_PAY="http://192.168.6.59:8014/";
     //tend（购买）：http://192.168.6.59:8006/
     //pay（支付）：http://192.168.6.59:8014/

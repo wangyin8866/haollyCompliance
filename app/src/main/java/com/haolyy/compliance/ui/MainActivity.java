@@ -23,6 +23,7 @@ import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void call(String s) {
                 if (s.equals(Config.LoginOUT)) {
+                    UIUtils.showToastCommon(MainActivity.this,"登录超时请重新登录");
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             }

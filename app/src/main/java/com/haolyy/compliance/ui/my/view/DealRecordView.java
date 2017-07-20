@@ -8,6 +8,6 @@ import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
  */
 
 public interface DealRecordView extends BaseView{
-    void showData(DealRecordBean dealRecordBean);
+    void showData(DealRecordBean dealRecordBean, boolean isRefresh);
 
 }

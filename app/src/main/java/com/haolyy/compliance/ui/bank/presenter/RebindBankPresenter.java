@@ -6,6 +6,7 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.view.BankReBindView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -25,7 +26,6 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
     @Override
     public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
         super.overwriteSelectUserState(fb, flag);
-        getView().setCardInfo(fb);
     }
 
     public void sendSms(String busi_type_, String card_number_, String mobile_, String sms_type_) {
@@ -76,5 +76,23 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
             }
         },mContext));
 
+    }
+
+    public void selectUserBaseInfo() {
+        invoke(HuifuShModel.getInstance().getUSerBaseInfo(),new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
+            @Override
+            public void onNext(UserBaseInfoBean userBaseInfoBean) {
+                if (userBaseInfoBean.getCode().equals("200")){
+                      getView().setCardInfo(userBaseInfoBean);
+                }else {
+                    UIUtils.showToastCommon(mContext,userBaseInfoBean.getMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
     }
 }

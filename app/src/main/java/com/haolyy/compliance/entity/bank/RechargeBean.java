@@ -6,7 +6,7 @@ package com.haolyy.compliance.entity.bank;
 
 public class RechargeBean {
     /**
-     * data : {"amount_":"1000.00","code":"1","msg":"成功"}
+     * mode: {"amount_":"1000.00","code":"1","msg":"成功"}
      * msg : 系统正常
      * status : 200
      */

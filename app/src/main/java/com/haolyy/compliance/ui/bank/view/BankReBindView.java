@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.bank.view;
 
 import com.haolyy.compliance.base.BaseView;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 
 /**
  * Created by niudeyang on 2017/6/28.
@@ -15,5 +16,5 @@ public interface BankReBindView extends BaseView {
      */
     void countDown(String smsSeq, boolean b);
 
-    void setCardInfo(FindUserStatusBean fb);
+    void setCardInfo(UserBaseInfoBean fb);
 }

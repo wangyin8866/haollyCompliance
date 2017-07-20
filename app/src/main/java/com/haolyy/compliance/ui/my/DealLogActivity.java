@@ -15,6 +15,10 @@ import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 import com.haolyy.compliance.ui.my.presenter.DealRecordPresenter;
 import com.haolyy.compliance.ui.my.view.DealRecordView;
+import com.haolyy.compliance.utils.UIUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,9 +26,10 @@ import butterknife.OnClick;
 
 /**
  * Created by wangyin on 2017/5/24.
+ * 资金明细列表
  */
 
-public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecordView> implements XListView.IXListViewListener,DealRecordView {
+public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecordView> implements XListView.IXListViewListener, DealRecordView {
     @BindView(R.id.top_fund)
     TopBar topFund;
     @BindView(R.id.xlv_deal_log)
@@ -49,12 +54,16 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
     TextView tvDeal8;
     @BindView(R.id.tv_deal_9)
     TextView tvDeal9;
-//    private List<InvestLog> investLogs;
+    //    private List<InvestLog> investLogs;
     private boolean doubleClick;
-
-    private String[] capitalTypes = {"0","1","2","3","4","5","6","7","8"};
-    private int capitalIndex = 0;
-
+    /**
+     * 用户资金明细列表;userId-用户id;capitalType-业务类型:(0:全部;2001:充值;200303:提现;300611:投资;300606:回息;300605:回本;6:手续费;7:奖励;8:其他);pageIndex-页码(开始页为1);dateFlag-时间标识(0:全部,1:自由选择2:七天,3:一个月,4:三个月);startDate:开始日期;endDate结束日期
+     */
+    private int capitalType;
+    private int pageIndex = 0;
+    private List datas;
+    private List<DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean> list;
+    private List<DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean> newList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,17 +88,40 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
                 }
             }
         });
-        mPresenter.requestDealRecord("0","1","1");
-
+        mPresenter.requestDealRecord(true, capitalType + "", "1", "0");
+        xlvDealLog.setXListViewListener(this);
 
 
     }
 
     @Override
-    public void showData(DealRecordBean dealRecordBean) {
-        if(dealRecordBean.getModel().getModel().getFundsRecordList() == null) return;
-        xlvDealLog.setAdapter(new DealLogAdapter(dealRecordBean.getModel().getModel().getFundsRecordList() , this));
-        xlvDealLog.setXListViewListener(this);
+    public void showData(DealRecordBean dealRecordBean, boolean isRefresh) {
+        if (dealRecordBean.getModel().getModel().getFundsRecordList() == null) return;
+        if (isRefresh) {
+            list = new ArrayList<>();
+            list = dealRecordBean.getModel().getModel().getFundsRecordList();
+            if (list.size() == 0) {
+                UIUtils.showToastCommon(mContext, "暂无数据");
+                xlvDealLog.setPullLoadEnable(false);
+            } else {
+                if (list.size() < 10) {
+                    xlvDealLog.setPullLoadEnable(false);
+                } else {
+                    xlvDealLog.setPullLoadEnable(true);
+                }
+                xlvDealLog.setAdapter(new DealLogAdapter(list, this));
+                xlvDealLog.setXListViewListener(this);
+            }
+        } else {
+            if (dealRecordBean.getModel().getModel().getFundsRecordList().size() == 0) {
+                UIUtils.showToastCommon(mContext, "没有更多数据了");
+                xlvDealLog.setPullLoadEnable(false);
+            } else {
+                list.addAll(dealRecordBean.getModel().getModel().getFundsRecordList());
+                xlvDealLog.setAdapter(new DealLogAdapter(list, this));
+                xlvDealLog.setSelection(list.size() - dealRecordBean.getModel().getModel().getFundsRecordList().size());
+            }
+        }
     }
 
     @Override
@@ -112,14 +144,22 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
 
     }
 
+    /**
+     * 刷洗
+     */
     @Override
     public void onRefresh() {
-
+        pageIndex = 0;
+        mPresenter.requestDealRecord(true, capitalType + "", "1", "0");
     }
 
+    /**
+     * 加载更多
+     */
     @Override
     public void onLoadMore() {
-
+        pageIndex += 1;
+        mPresenter.requestDealRecord(false, capitalType + "", pageIndex + "", "0");
     }
 
     @OnClick({R.id.tv_deal_1, R.id.tv_deal_2, R.id.tv_deal_3, R.id.tv_deal_4, R.id.tv_deal_5, R.id.tv_deal_6, R.id.tv_deal_7, R.id.tv_deal_8, R.id.tv_deal_9})
@@ -127,38 +167,47 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
 
         switch (view.getId()) {
             case R.id.tv_deal_1:
+                capitalType = 0;
                 reset();
                 selectTab(tvDeal1);
                 break;
             case R.id.tv_deal_2:
+                capitalType = 2001;
                 reset();
                 selectTab(tvDeal2);
                 break;
             case R.id.tv_deal_3:
+                capitalType = 200303;
                 reset();
                 selectTab(tvDeal3);
                 break;
             case R.id.tv_deal_4:
+                capitalType = 300611;
                 reset();
                 selectTab(tvDeal4);
                 break;
             case R.id.tv_deal_5:
+                capitalType = 300606;
                 reset();
                 selectTab(tvDeal5);
                 break;
             case R.id.tv_deal_6:
+                capitalType = 300605;
                 reset();
                 selectTab(tvDeal6);
                 break;
             case R.id.tv_deal_7:
+                capitalType = 6;
                 reset();
                 selectTab(tvDeal7);
                 break;
             case R.id.tv_deal_8:
+                capitalType = 7;
                 reset();
                 selectTab(tvDeal8);
                 break;
             case R.id.tv_deal_9:
+                capitalType = 8;
                 reset();
                 selectTab(tvDeal9);
                 break;
@@ -170,13 +219,22 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter,DealRecord
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         llDealTab.setVisibility(View.GONE);
         doubleClick = !doubleClick;
+        if(capitalType==0){
+            xlvDealLog.setAdapter(new DealLogAdapter(list, this));
+        }
+        else {
+            if (list.size() != 0) {
+                newList = new ArrayList<>();
+                for (DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean bean : list) {
+                    if (bean.getCapitalType() == capitalType) {
+                        newList.add(bean);
+                    }
+                }
+
+                xlvDealLog.setAdapter(new DealLogAdapter(newList, this));
+            }
+        }
     }
-
-
-    private void refreshView(String capitalType) {
-        mPresenter.requestDealRecord("2001","1","1");
-    }
-
     private void reset() {
         tvDeal1.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal1.setTextColor(Color.parseColor("#FF9933"));
