@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,19 +13,13 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.TabAdapter;
-import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.TopBar;
-import com.haolyy.compliance.entity.home.UserInfoBean;
-import com.haolyy.compliance.entity.login.FindUserStatusBean;
-import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.product.FragmentBottomBorrowDetail;
 import com.haolyy.compliance.ui.product.FragmentBottomCreditorInfo;
 import com.haolyy.compliance.ui.product.FragmentBottomInvestLog;
 import com.haolyy.compliance.ui.product.FragmentBottomProductDetail;
 import com.haolyy.compliance.ui.product.FragmentBottomRepaymentPlan;
-import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
-import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
@@ -35,10 +30,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.haolyy.compliance.base.BaseApplication.juid;
 
-
-public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter, ProductTopView> implements ProductTopView {
+public class ProductFundDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.top_bar)
     TopBar topBar;
@@ -112,15 +105,12 @@ public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter,
     FragmentBottomCreditorInfo bottomCreditorInfo;
     FragmentBottomBorrowDetail bottomBorrowDetail;
     FragmentBottomRepaymentPlan bottomRepaymentPlan;
+    ProductBaseDetail productBaseDetail;
     private String product_no;
 
-    private String projectNo;
     private int project_type;
     private long currentTime;
-    @Override
-    protected ProductTopPresenter createPresenter() {
-        return new ProductTopPresenter(mContext);
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,17 +132,33 @@ public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter,
         });
     }
 
-    @Override
-    protected void handleMessage(Integer s) {
-
-    }
 
     private void init() {
-        topBar.setTitle(getIntent().getStringExtra("productName"));
+        productBaseDetail = (ProductBaseDetail) getIntent().getSerializableExtra("productBaseDetail");
+        LogUtils.e("productBaseDetail",productBaseDetail.toString());
+        currentTime = productBaseDetail.getModel().getModel().getNow();
+        ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean = productBaseDetail.getModel().getModel().getInfo();
+        //利率
+        proYield1.setText(infoBean.getAnnualizedRate());
+        //额外利率
+        proYield2.setText(infoBean.getAppendRate());
+
+        WYUtils.setVisibility(rateAdd,proYield2,extraRatePercent,infoBean.getAppendRate());
+        //剩余可投金额
+        amountWait.setText(infoBean.getAmountWait() + "元");
+        //退出日期
+        interestEndDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterestEndDate()) + "到期");
+        //投资期限
+        investDeadline.setText(infoBean.getPeriodLength() + WYUtils.getInvestDeadline(infoBean.getPeriodUnit()));
+        //锁定期
+        lockPeriod.setText(infoBean.getLockPeriod()+ "天");
+        processProgress(infoBean.getBeginDate(), infoBean.getBidEndDate(), infoBean.getLockDate(), infoBean.getInterestEndDate());
+
+        topBar.setTitle(infoBean.getProjectName());
+
+
         product_no = getIntent().getStringExtra("product_no");
 
-        projectNo = getIntent().getStringExtra("projectNo");
-        LogUtils.e("ProductFragmentTop_projectNo", projectNo);
         project_type = getIntent().getIntExtra("project_type", 0);
         LogUtils.e("ProductFragmentTop_project_type", project_type + "");
 
@@ -170,10 +176,8 @@ public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter,
         if (!product_no.equalsIgnoreCase("pjd")) {//票据贷
             leftLabel.setVisibility(View.GONE);
         }
-        mPresenter.getBaseDetail(projectNo + "", juid);
 
 
-//        mPresenter.selectUserState();
 
 
         bottomProductDetail = new FragmentBottomProductDetail();
@@ -214,52 +218,6 @@ public class ProductFundDetailActivity extends BaseActivity<ProductTopPresenter,
 
     }
 
-
-    @Override
-    public void showSuccessToast(String msg) {
-
-    }
-
-    @Override
-    public void showErrorToast(String msg) {
-
-    }
-
-    @Override
-    public void showData(ProductBaseDetail productBaseDetail) {
-        currentTime = productBaseDetail.getModel().getModel().getNow();
-        ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean = productBaseDetail.getModel().getModel().getInfo();
-        //利率
-        proYield1.setText(infoBean.getAnnualizedRate());
-        //额外利率
-        proYield2.setText(infoBean.getAppendRate());
-
-        WYUtils.setVisibility(rateAdd,proYield2,extraRatePercent,infoBean.getAppendRate());
-        //剩余可投金额
-        amountWait.setText(infoBean.getAmountWait() + "元");
-        //退出日期
-        interestEndDate.setText(DateUtil.getTimeyyyymmdd(infoBean.getInterestEndDate()) + "到期");
-        //投资期限
-        investDeadline.setText(infoBean.getPeriodLength() + WYUtils.getInvestDeadline(infoBean.getPeriodUnit()));
-        //锁定期
-        lockPeriod.setText(infoBean.getLockPeriod()+ "天");
-        processProgress(infoBean.getBeginDate(), infoBean.getBidEndDate(), infoBean.getLockDate(), infoBean.getInterestEndDate());
-    }
-
-    @Override
-    public void getUserState(FindUserStatusBean baseResponseBean) {
-
-    }
-
-    @Override
-    public void getEarnings(Earnings earnings) {
-
-    }
-
-    @Override
-    public void showUserInfoData(UserInfoBean userInfoBean) {
-
-    }
 
     /**
      * 处理进度条

@@ -167,15 +167,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         this.callBackProductDetail = callBackProductDetail;
     }
 
-    /**
-     * 收益
-     *
-     * @"amount":@"100",
-     * @"rate" : @"11",
-     * @"timeType": @"1",
-     * @"termTime" : @"30",
-     * @"borrowType" : @"1"
-     */
+
 
     @Nullable
     @Override
