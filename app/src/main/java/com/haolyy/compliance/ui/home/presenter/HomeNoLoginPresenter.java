@@ -11,6 +11,8 @@ import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
+import rx.Subscriber;
+
 /**
  * Created by wangyin on 2017/5/17.
  */
@@ -26,20 +28,26 @@ public class HomeNoLoginPresenter extends BasePresenter<HomeNoLoginView>{
      * @param type
      */
     public void getBanner(String type) {
-        invoke(HomeModel.getInstance().getBanner(type), new ProgressSubscriber<Banner>(new SubscriberOnNextListener<Banner>() {
+        invoke(HomeModel.getInstance().getBanner(type), new Subscriber<Banner>() {
             @Override
-            public void onNext(Banner s) {
-                if (s.getCode().equals("200")) {
-                    if (s.getModel().getCode().equals("200")) {
-                        getView().showBannerData(s);
-                    }
-                }
+            public void onCompleted() {
+
             }
 
             @Override
             public void onError(Throwable e) {
+
             }
-        }, mContext));
+
+            @Override
+            public void onNext(Banner banner) {
+                if (banner.getCode().equals("200")) {
+                    if (banner.getModel().getCode().equals("200")) {
+                        getView().showBannerData(banner);
+                    }
+                }
+            }
+        });
 
     }
 

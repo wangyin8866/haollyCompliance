@@ -3,6 +3,8 @@ package com.haolyy.compliance.ui.product;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,6 @@ import android.widget.RadioGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.ProductListAdapter;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.base.FragmentCollector;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.ui.product.presenter.ProductListPresenter;
@@ -57,7 +58,9 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     private int pageSize;
     private int project_type;// 标的类型
     private String product_no;// 产品类型
-
+    private static FragmentManager fragmentManager;
+    static FragmentTransaction transaction;
+    private static ProductListFragment contentFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,9 +108,11 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     }
 
 
+
     public static ProductListFragment newInstance(ArrayList<String> childTitle, String node_no, ArrayList<String> childNodeNo) {
-        ProductListFragment contentFragment = new ProductListFragment();
-        FragmentCollector.addFragment(contentFragment);
+
+        contentFragment = new ProductListFragment();
+        LogUtils.e("contentFragment", contentFragment.toString());
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("childTitle", childTitle);
         bundle.putString("parentNodeNo", node_no);
@@ -116,6 +121,8 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         LogUtils.e("onCreateView","newInstance");
         return contentFragment;
     }
+
+
 
     private void init() {
 
@@ -145,6 +152,8 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     pageNum = 1;
                     RadioButton tempButton = (RadioButton) group.findViewById(checkedId); // 通过RadioGroup的findViewById方法，找到ID为checkedID的RadioButton
+                    tempButton.setChecked(true);
+
                     // 以下就可以对这个RadioButton进行处理了
                     if (tempButton.getText().toString().equals("全部")) {
                         flag = parentNodeNo;
@@ -160,6 +169,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 
                 }
             });
+
 
         }
         xlvProductThird.setXListViewListener(new MyListView());

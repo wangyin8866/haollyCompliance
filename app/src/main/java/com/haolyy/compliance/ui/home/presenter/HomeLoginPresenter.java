@@ -15,6 +15,8 @@ import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
+import rx.Subscriber;
+
 /**
  * Created by wangyin on 2017/5/17.
  */
@@ -30,21 +32,26 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
      * @param type
      */
     public void getBanner(String type) {
-        invoke(HomeModel.getInstance().getBanner(type), new ProgressSubscriber<Banner>(new SubscriberOnNextListener<Banner>() {
+        invoke(HomeModel.getInstance().getBanner(type), new Subscriber<Banner>() {
             @Override
-            public void onNext(Banner s) {
-                if (s.getCode().equals("200")) {
-                    if (s.getModel().getCode().equals("200")) {
-                        getView().showBannerData(s);
-                    }
-                }
+            public void onCompleted() {
+
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("getBanner", e.getMessage());
+
             }
-        }, mContext));
+
+            @Override
+            public void onNext(Banner banner) {
+                if (banner.getCode().equals("200")) {
+                    if (banner.getModel().getCode().equals("200")) {
+                        getView().showBannerData(banner);
+                    }
+                }
+            }
+        } );
 
     }
 
@@ -52,12 +59,12 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
      * 首页产品
      */
     public void getHomeProduct() {
-        invoke(HomeModel.getInstance().getHomeProduct(), new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
+        invoke(HomeModel.getInstance().getHomeProduct(),new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
             @Override
-            public void onNext(HomeProduct s) {
-                if (s.getCode().equals("200")) {
-                    if (s.getModel().getCode().equals("200")) {
-                        getView().showHomeProductData(s);
+            public void onNext(HomeProduct homeProduct) {
+                if (homeProduct.getCode().equals("200")) {
+                    if (homeProduct.getModel().getCode().equals("200")) {
+                        getView().showHomeProductData(homeProduct);
 
                     }
                 }
@@ -65,9 +72,9 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("getHomeProduct", e.getMessage());
+
             }
-        }, mContext));
+        },mContext));
 
     }
 
@@ -75,21 +82,26 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
      * 首页新闻
      */
     public void getHomeArticle() {
-        invoke(HomeModel.getInstance().getHomeArticle(), new ProgressSubscriber<HomeArticle>(new SubscriberOnNextListener<HomeArticle>() {
+        invoke(HomeModel.getInstance().getHomeArticle(), new Subscriber<HomeArticle>() {
             @Override
-            public void onNext(HomeArticle s) {
-                if (s.getCode().equals("200")) {
-                    if (s.getModel().getCode().equals("200")) {
-                        getView().showHomeArticleData(s);
-                    }
-                }
+            public void onCompleted() {
+
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("getHomeArticle", e.getMessage());
+
             }
-        }, mContext));
+
+            @Override
+            public void onNext(HomeArticle homeArticle) {
+                if (homeArticle.getCode().equals("200")) {
+                    if (homeArticle.getModel().getCode().equals("200")) {
+                        getView().showHomeArticleData(homeArticle);
+                    }
+                }
+            }
+        });
 
     }
 
@@ -99,40 +111,48 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
      * @param userId
      */
     public void getRecommend(String userId) {
-        invoke(HomeModel.getInstance().getRecommend(userId), new ProgressSubscriber<HomeActivity>(new SubscriberOnNextListener<HomeActivity>() {
+        invoke(HomeModel.getInstance().getRecommend(userId), new Subscriber<HomeActivity>() {
             @Override
-            public void onNext(HomeActivity s) {
-                if (s.getCode().equals("200")) {
-                    if (s.getModel().getCode().equals("200")) {
-                        getView().showHomeActivityData(s);
-                    }
-                }
+            public void onCompleted() {
+
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("getRecommend", e.getMessage());
+
             }
-        }, mContext));
+
+            @Override
+            public void onNext(HomeActivity homeActivity) {
+                if (homeActivity.getCode().equals("200")) {
+                    if (homeActivity.getModel().getCode().equals("200")) {
+                        getView().showHomeActivityData(homeActivity);
+                    }
+                }
+            }
+        });
 
     }
     public void getUserInfo(){
-        invoke(UserModel.getInstance().getUserInfo(),new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
+        invoke(UserModel.getInstance().getUserInfo(), new Subscriber<UserInfoBean>() {
             @Override
-            public void onNext(UserInfoBean userInfoBean) {
-                if (userInfoBean.getCode().equals("200")) {
-                    if (userInfoBean.getModel().getCode().equals("200")) {
-                        LogUtils.e("userInfoBean",userInfoBean.toString());
-                        getView().showUserInfoData(userInfoBean);
+            public void onCompleted() {
 
-                    }
-                }
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("userInfoBean",e.getMessage());
+
             }
-        },mContext));
+
+            @Override
+            public void onNext(UserInfoBean userInfoBean) {
+                if (userInfoBean.getModel().getCode().equals("200")) {
+                    LogUtils.e("userInfoBean",userInfoBean.toString());
+                    getView().showUserInfoData(userInfoBean);
+
+                }
+            }
+        });
     }
 }
