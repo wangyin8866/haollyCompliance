@@ -1,7 +1,6 @@
 package com.haolyy.compliance.custom;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -10,7 +9,7 @@ import android.view.MotionEvent;
  * 不能滑动的ViewPager
  */
 
-public class NoScrollViewPager extends ViewPager {
+public class NoScrollViewPager extends NoPreloadViewPager {
 
   private boolean isPagingEnabled = false;
   public NoScrollViewPager(Context context) {

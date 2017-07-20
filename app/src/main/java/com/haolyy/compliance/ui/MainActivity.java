@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
-        idMainViewPager.setOffscreenPageLimit(5);
+//        idMainViewPager.setOffscreenPageLimit(5);
         idMainViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

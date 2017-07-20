@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.ProductListAdapter;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.base.FragmentCollector;
 import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.ui.product.presenter.ProductListPresenter;
@@ -57,6 +58,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     private int project_type;// 标的类型
     private String product_no;// 产品类型
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
         LogUtils.e("childTitle", childTitle.toString());
         LogUtils.e("childNodeNo", childNodeNo.toString());
         LogUtils.e("parentNodeNo", parentNodeNo);
+        LogUtils.e("onCreateView","onCreate");
     }
 
     @Override
@@ -79,6 +82,8 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.product_list_main, container, false);
         unbinder = ButterKnife.bind(this, view);
+        LogUtils.e("onCreateView","onCreateView");
+
         init();
 
         xlvProductThird.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,15 +107,18 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
 
     public static ProductListFragment newInstance(ArrayList<String> childTitle, String node_no, ArrayList<String> childNodeNo) {
         ProductListFragment contentFragment = new ProductListFragment();
+        FragmentCollector.addFragment(contentFragment);
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("childTitle", childTitle);
         bundle.putString("parentNodeNo", node_no);
         bundle.putStringArrayList("childNodeNo", childNodeNo);
         contentFragment.setArguments(bundle);
+        LogUtils.e("onCreateView","newInstance");
         return contentFragment;
     }
 
     private void init() {
+
         if (childTitle.size() == 0) {
             proListTop.setVisibility(View.GONE);
         } else {

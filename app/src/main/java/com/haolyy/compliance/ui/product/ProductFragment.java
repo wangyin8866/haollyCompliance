@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.base.FragmentCollector;
 import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.ui.product.presenter.ProductPresenter;
 import com.haolyy.compliance.ui.product.view.ProductView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
     Unbinder unbinder;
     private View view;
     private List<Fragment> mDatas;
-    private ProductListFragment thirdFragment;
+
     private List<String> parentTitles;//一级菜单的title
     private String parentNodeNo;//一级菜单的no
     private ArrayList<String> childTitle;//二级菜单的title
@@ -80,11 +82,13 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
 
     @Override
     public void showData(ProductTitle productList) {
+        LogUtils.e("getTitle","getTitle");
         if (mDatas != null) {
             mDatas.clear();
 
         }
         mDatas = new ArrayList<>();
+        FragmentCollector.finishAll();
         parentTitles = new ArrayList<>();
         for (int i = 0; i < productList.getModel().getModel().getTitleList().size(); i++) {
             parentTitles.add(productList.getModel().getModel().getTitleList().get(i).get(0).getCategoryName());
@@ -96,13 +100,15 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
                 childTitle.add(productList.getModel().getModel().getTitleList().get(i).get(j).getCategoryName());
                 childNodeNo.add(productList.getModel().getModel().getTitleList().get(i).get(j).getNodeNo());
             }
-            thirdFragment = ProductListFragment.newInstance(childTitle, parentNodeNo, childNodeNo);
+             ProductListFragment thirdFragment = ProductListFragment.newInstance(childTitle, parentNodeNo, childNodeNo);
 
 
             mDatas.add(thirdFragment);
         }
+        LogUtils.e("mDatas", mDatas.size()+"");
+        LogUtils.e("mDatas", parentTitles.toString());
         vpProductList.setAdapter(new TabAdapter(getFragmentManager(), mDatas, parentTitles));
-        vpProductList.setOffscreenPageLimit(productList.getModel().getModel().getTitleList().size());
+        vpProductList.setOffscreenPageLimit(parentTitles.size());
         productTitle.setupWithViewPager(vpProductList);
 
         WYUtils.setIndicator(mContext, productTitle, 10, 10);
