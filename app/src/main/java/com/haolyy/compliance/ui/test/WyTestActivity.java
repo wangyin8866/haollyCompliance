@@ -60,6 +60,7 @@ public class WyTestActivity extends BaseActivity<RegisterPresenter, RegisterView
                 LogUtils.e("aaaa");
             }
         });
+        //test
     }
 
     @Override
