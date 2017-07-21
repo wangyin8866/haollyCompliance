@@ -16,7 +16,6 @@ import com.haolyy.compliance.entity.product.ProductTitle;
 import com.haolyy.compliance.ui.product.presenter.ProductPresenter;
 import com.haolyy.compliance.ui.product.view.ProductView;
 import com.haolyy.compliance.utils.LogUtils;
-import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +96,7 @@ public class ProductFragment extends BaseFragment<ProductPresenter, ProductView>
         vpProductList.setOffscreenPageLimit(parentTitles.size());
         productTitle.setupWithViewPager(vpProductList);
 
-        WYUtils.setIndicator(mContext, productTitle, 10, 10);
+//        WYUtils.setIndicator(mContext, productTitle, 10, 10);
 
     }
 
