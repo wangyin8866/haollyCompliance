@@ -16,7 +16,7 @@ public interface Config {
     int seconds=60000;//倒计时时间
     String platform="HLW";//好利网
     String mer_id="HLW";//平台号 好利网
-    String client = "PC";
+    String client = "ANDROID";
     String returl="http://www.chinazyjr.com/";
     String PageType="1";//app风格无标题
     int status_with_draw=9001;

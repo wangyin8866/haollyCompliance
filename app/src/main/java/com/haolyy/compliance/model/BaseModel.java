@@ -1,11 +1,9 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.LifeSubscription;
 import com.haolyy.compliance.config.NetConstantValues;
-import com.haolyy.compliance.utils.LogUtils;
-import com.haolyy.compliance.utils.WYUtils;
 import com.haolyy.compliance.utils.LogInterceptor;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;

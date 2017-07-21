@@ -9,7 +9,6 @@ import android.view.View;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
-import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.InvestBinding;
 import com.haolyy.compliance.entity.home.UserInfoBean;
@@ -17,7 +16,6 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.bank.ShBankWebActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
-import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
@@ -118,7 +116,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
             case R.id.tv_invest_sure:
 
 
-                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income+"", Config.returl);
+                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income+"","");
 
                 break;
         }
