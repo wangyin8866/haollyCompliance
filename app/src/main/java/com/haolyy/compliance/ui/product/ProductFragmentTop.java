@@ -146,7 +146,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         @Override
         public void run() {
             //在这里调用服务器的接口，获取数据
-            //   getSearchResult(editString, "all", 1, "true");
             mPresenter.getEarnings(amount + "", rate, timeType, termTime, borrowType);
         }
     };
@@ -220,8 +219,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 }
                 LogUtils.e("afterTextChanged",amount+"");
                 callBackProductDetail.callBackAmount(amount);
-                //延迟1000ms，如果不再输入字符，则执行该线程的run方法
-                handler.postDelayed(delayRun, 1000);
+                //延迟500ms，如果不再输入字符，则执行该线程的run方法
+                handler.postDelayed(delayRun, 500);
 
             }
         });
@@ -317,6 +316,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
+        LogUtils.e("productBaseDetail",productBaseDetail.toString());
         currentTime = productBaseDetail.getModel().getModel().getNow();
         infoBean = productBaseDetail.getModel().getModel().getInfo();
         callBackProductDetail.callBackInfo(infoBean);
