@@ -49,6 +49,7 @@ public class ShBankWebActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 LogUtils.e("ndyGoUrl", url);
                 if (url.equals(Config.returl)) {
+                    setResult(WithDrawActivity.ret_withdraw);
                     finish();
                 }
                 return true;

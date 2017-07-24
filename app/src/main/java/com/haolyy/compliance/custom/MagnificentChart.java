@@ -53,7 +53,7 @@ public class MagnificentChart extends View {
 
     private float globalCurrentAngle = 0.0f;
     private String totalAmount;//总金额
-    private String description="总金额（元）";
+    private String description="总金额(元)";
 
 // #MARK - Constructors
 

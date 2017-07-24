@@ -288,14 +288,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <!--<TextView
-        android:id="@+id/btn_withdraw"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/shape_gradient"
-        android:gravity="center"
-        android:text="提现"
-        android:textColor="@color/white"
-        android:textSize="16sp" />-->
 </RelativeLayout>

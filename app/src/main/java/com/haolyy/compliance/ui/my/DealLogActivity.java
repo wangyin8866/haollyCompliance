@@ -1,9 +1,11 @@
 package com.haolyy.compliance.ui.my;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -90,7 +92,15 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
         });
         mPresenter.requestDealRecord(true, capitalType + "", "1", "0");
         xlvDealLog.setXListViewListener(this);
-
+        xlvDealLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(list.get(position).getCapitalType()==200303){
+                    //到交易明细
+                    startActivity(new Intent(mContext,DealDetailWithDraw.class));
+                }
+            }
+        });
 
     }
 

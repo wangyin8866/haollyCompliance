@@ -1,9 +1,11 @@
 package com.haolyy.compliance.service;
 
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
@@ -121,4 +123,13 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.P2P_USERBASEINFO)
     Observable<UserBaseInfoBean> getUserBaseInfo(@FieldMap Map<String, String> params);
+
+
+    /**查询提现是否成功
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.P2P_ISWITHDRAWSUCCESS)
+    Observable<IsWithDrawSuccess> isWithDraw(@FieldMap Map<String, String> params);
 }

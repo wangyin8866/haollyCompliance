@@ -3,8 +3,10 @@ package com.haolyy.compliance.ui.bank.presenter;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.bank.WithDrawBean;
 import com.haolyy.compliance.entity.bank.WithDrawFee;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
@@ -82,5 +84,35 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView> {
 
             }
         },mContext));
+    }
+
+    /**
+     * 查询提现是否成功
+     */
+    public void isWithDrawSuccess() {
+    invoke(HuifuShModel.getInstance().isWithDrawSuccess(),new ProgressSubscriber<IsWithDrawSuccess>(new SubscriberOnNextListener<IsWithDrawSuccess>() {
+        @Override
+        public void onNext(IsWithDrawSuccess baseBean) {
+            if (baseBean.getCode().equals("200")) {
+                UIUtils.showToastCommon(mContext, baseBean.getModel().getMsg());
+                //000：取现成功443：取现处理中100：取现失败
+                if (baseBean.getCode().equals("000")) {
+
+                } else if (baseBean.getCode().equals("443")) {
+
+                } else if (baseBean.getCode().equals("100")) {
+
+                } else {
+
+                }
+            }else {
+                UIUtils.showToastCommon(mContext, baseBean.getMsg());
+            }
+        }
+        @Override
+        public void onError(Throwable e) {
+
+        }
+    },mContext));
     }
 }

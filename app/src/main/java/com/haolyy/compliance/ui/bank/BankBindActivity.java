@@ -81,6 +81,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     }
 
     private void initView() {
+        etCardNo.requestFocus();
         realName=getIntent().getStringExtra("name");
         idCard=getIntent().getStringExtra("id");
         tvRealName.setText(realName);

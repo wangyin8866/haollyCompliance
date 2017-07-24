@@ -200,10 +200,15 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
         startActivityForResult(intent,0x11);
         finish();
     }
-
+    public static final int ret_withdraw=101;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        LogUtils.e("ndy_result","in");
+        if (resultCode==ret_withdraw){
+            mPresenter.isWithDrawSuccess();
+        }
+
     }
 
     @Override

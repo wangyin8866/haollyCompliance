@@ -1,10 +1,12 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
+import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
@@ -20,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
+import static com.haolyy.compliance.base.BaseApplication.userId;
 import static com.haolyy.compliance.base.BaseApplication.version;
 import static com.haolyy.compliance.config.Config.PageType;
 import static com.haolyy.compliance.config.Config.client;
@@ -201,7 +204,6 @@ public class HuifuShModel extends BaseModel {
 
     /**
      * 判断是否激活
-     *
      * @param idno
      * @param realname
      * @param user_type
@@ -250,5 +252,13 @@ public class HuifuShModel extends BaseModel {
         return huifuShApi.calculatefeeamount(map);
     }
 
+    /**
+     * 提现是否成功
+     * @return
+     */
+    public Observable<IsWithDrawSuccess> isWithDrawSuccess(){
+        map.put("userId",userId+"");
+        return huifuShApi.isWithDraw(map);
+    }
 
 }

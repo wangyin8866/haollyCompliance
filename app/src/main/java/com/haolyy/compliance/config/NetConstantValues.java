@@ -94,6 +94,7 @@ public interface NetConstantValues {
     String P2P_VALIDATEOLDUSER=P2P+"validateOldUser";//短信验证其他平台已开户，进行当前平台登陆用户数据复制
     String P2P_CALCULATEFEEAMOUNT=P2P+"/calculateFeeAmount";//计算手续费
     String P2P_USERBASEINFO=P2P+"/userBaseInfo";//用户银行卡信息以及资金
+    String P2P_ISWITHDRAWSUCCESS=P2P+"/isWithdrawSuccess";
 
 
 
