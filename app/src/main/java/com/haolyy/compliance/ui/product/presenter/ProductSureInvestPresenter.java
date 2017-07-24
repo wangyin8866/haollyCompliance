@@ -49,6 +49,8 @@ public class ProductSureInvestPresenter extends BasePresenter<ProductSureInvestV
             public void onNext(Invest s) {
                 if (s.getCode().equals("200")) {
                     getView().pushActivity(new Gson().toJson(s));
+                } else {
+                    getView().showErrorToast(s.getMsg());
                 }
             }
 

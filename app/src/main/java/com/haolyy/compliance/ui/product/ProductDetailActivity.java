@@ -15,7 +15,10 @@ import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
+import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.ui.bank.CheckBankActivity;
+import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.utils.AppToast;
 
 import java.util.ArrayList;
@@ -23,6 +26,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.haolyy.compliance.base.BaseApplication.mLoginState;
+import static com.haolyy.compliance.base.BaseApplication.state;
 
 
 public class ProductDetailActivity extends AppCompatActivity implements ProductFragmentTop.CallBackProductDetail {
@@ -48,23 +54,29 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
         tvProductJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (amount == 0) {
-                    AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
+                if (!mLoginState) {
+                    AppToast.showShortText(ProductDetailActivity.this, "你还没有登录!");
+                } else if (state != 1) {//chongzhi
+                    showDialog();
                 } else {
-                    if (amount % 50 == 0 || amount % 100 == 0) {
-                        Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("productDetail", infoBean);
-                        bundle.putDouble("income", income);
-                        bundle.putInt("amount", amount);
-                        bundle.putString("projectNo", projectNo);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
+                    if (amount == 0) {
+                        AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
                     } else {
-                        AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为50或100的整数倍!");
+                        if (amount % 50 == 0 || amount % 100 == 0) {
+                            Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("productDetail", infoBean);
+                            bundle.putDouble("income", income);
+                            bundle.putInt("amount", amount);
+                            bundle.putString("projectNo", projectNo);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        } else {
+                            AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为50或100的整数倍!");
+                        }
                     }
                 }
+
 
             }
         });
@@ -129,5 +141,18 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
 
     }
 
+    public void showDialog() {
+        DialogBank dialogBank=new DialogBank(this);
+        dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
+            @Override
+            public void excuteLeft() {
 
+            }
+
+            @Override
+            public void excuteRight() {
+                startActivity(new Intent(ProductDetailActivity.this, CheckBankActivity.class));
+            }
+        }).show();
+    }
 }

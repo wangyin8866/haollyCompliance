@@ -63,7 +63,7 @@ public class BaseApplication extends Application {
     public static String version="";//版本号
     public static String juid="";//平台客户号
     public static String userCustId="";
-
+    public static int state;//是否开户
     @Override
     public void onCreate() {
         super.onCreate();

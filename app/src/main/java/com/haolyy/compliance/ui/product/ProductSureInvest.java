@@ -16,6 +16,7 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.bank.ShBankWebActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
+import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
@@ -77,6 +78,8 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
 
     private void init() {
         infoBean = (ProductBaseDetail.ModelBeanX.ModelBean.InfoBean) getIntent().getSerializableExtra("productDetail");
+
+        LogUtils.e("infoBean",infoBean.toString());
         income = getIntent().getDoubleExtra("income", 0);
         amount = getIntent().getIntExtra("amount",0);
         projectNo = getIntent().getStringExtra("projectNo");
@@ -131,11 +134,19 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     @Override
     public void pushActivity(String baseResponseBean) {
 
-        LogUtils.e("baseResponseBean", baseResponseBean);
         Intent intent = new Intent(mContext, ShBankWebActivity.class);
         intent.setAction(baseResponseBean);
         startActivity(intent);
     }
 
 
+    @Override
+    public void showSuccessToast(String msg) {
+        AppToast.showShortText(mContext, msg);
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
+
+    }
 }

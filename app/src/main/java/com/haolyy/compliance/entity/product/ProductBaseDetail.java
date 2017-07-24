@@ -51,6 +51,15 @@ public class ProductBaseDetail implements Serializable {
     }
 
     public static class ModelBeanX implements Serializable{
+        @Override
+        public String toString() {
+            return "ModelBeanX{" +
+                    "code='" + code + '\'' +
+                    ", msg='" + msg + '\'' +
+                    ", model=" + model +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 成功

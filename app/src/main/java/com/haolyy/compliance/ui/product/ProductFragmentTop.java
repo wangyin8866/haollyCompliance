@@ -43,6 +43,7 @@ import butterknife.Unbinder;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
+import static com.haolyy.compliance.base.BaseApplication.state;
 
 /**
  * 产品详情顶部页面
@@ -64,6 +65,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     ImageView joinImageCircle4;
     @BindView(R.id.tv_time1)
     TextView tvTime1;
+
     @BindView(R.id.tv_time_data1)
     TextView tvTimeData1;
     @BindView(R.id.tv_time2)
@@ -150,7 +152,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         }
     };
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
-    private int state;
+
 
     public interface CallBackProductDetail {
         void callBackInfo(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean);
@@ -354,6 +356,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
         state = baseResponseBean.getModel().getModel().getIs_open_account();
+        LogUtils.e(state+"");
     }
 
     @Override
