@@ -10,7 +10,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.InvestLogAdapter;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.XListView;
-import com.haolyy.compliance.entity.InvestLog;
+import com.haolyy.compliance.entity.product.InvestLog;
 import com.haolyy.compliance.ui.product.presenter.InvestLogPresenter;
 import com.haolyy.compliance.ui.product.view.InvestLogView;
 
@@ -42,12 +42,8 @@ public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,Inv
         View view = inflater.inflate(R.layout.fragment_bottom_invest_log, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        investLogs = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            InvestLog investLog = new InvestLog("0000000000" + i, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()),  1000 * i+"元");
-            investLogs.add(investLog);
-        }
-        xlInvestLog.setAdapter(new InvestLogAdapter(investLogs, getActivity()));
+
+
         xlInvestLog.setXListViewListener(this);
         xlInvestLog.setPullRefreshEnable(false);
         return view;
@@ -57,7 +53,7 @@ public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,Inv
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            //    mPresenter.getInvestmentRecord("HLWL206878","1","1","1","1");
+                mPresenter.getInvestmentRecord("PJD0000253","1");
         }
     }
 
@@ -83,7 +79,7 @@ public class FragmentBottomInvestLog extends BaseFragment<InvestLogPresenter,Inv
     }
 
     @Override
-    public void showData() {
-
+    public void showData(InvestLog investLog) {
+        xlInvestLog.setAdapter(new InvestLogAdapter(investLog.getModel().getModel().getInvestmentRecordList(), getActivity()));
     }
 }

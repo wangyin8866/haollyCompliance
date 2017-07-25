@@ -3,6 +3,7 @@ package com.haolyy.compliance.model;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.Invest;
+import com.haolyy.compliance.entity.product.InvestLog;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
@@ -63,10 +64,10 @@ public class ProductModel extends BaseModel {
         return productApi.getBaseDetail(map);
 
     }
-    public Observable<String> getInvestmentRecord(String projectNo, String pageIndex) {
+    public Observable<InvestLog> getInvestmentRecord(String borrowNid, String pageIndex) {
         map.clear();
-        map.put("project_no", projectNo);
-        map.put("page_index", pageIndex);
+        map.put("borrowNid", borrowNid);
+        map.put("pageIndex", pageIndex);
         map.put("platform", platform);
         map.put("client", client);
         map.put("version", version);

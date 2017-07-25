@@ -1,22 +1,16 @@
 package com.haolyy.compliance.adapter;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.databinding.InvestLogBinding;
-import com.haolyy.compliance.entity.InvestLog;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 import com.haolyy.compliance.utils.DateUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by wangyin on 2017/5/22.

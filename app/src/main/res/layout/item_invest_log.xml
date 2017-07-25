@@ -2,11 +2,11 @@
 <layout>
     <data class="InvestLogBinding" >
 
-        <import type="com.haolyy.compliance.entity.InvestLog" />
+        <import type="com.haolyy.compliance.entity.product.InvestLog.ModelBeanX.ModelBean.InvestmentRecordListBean" />
 
         <variable
             name="investLog"
-            type="InvestLog" />
+            type="InvestmentRecordListBean" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                     android:id="@+id/invest_log_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{investLog.phone}"
+                    android:text="@{investLog.deposit_mobile}"
                     android:textColor="#FF7D7D7D"
                     android:textSize="14sp" />
 
@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/invest_log_phone"
-                    android:text="@{investLog.time}"
+                    android:text="@{investLog.createTime}"
                     android:textColor="#FF7D7D7D"
                     android:textSize="10sp" />
             </RelativeLayout>
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="right|center_vertical"
-                android:text="@{investLog.investMoney}"
+                android:text="@{investLog.inverstSuccessAmount}"
                 android:textColor="#FF7D7D7D"
                 android:textSize="14sp" />
         </LinearLayout>

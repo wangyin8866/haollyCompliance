@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.InvestLogBinding;
-import com.haolyy.compliance.entity.InvestLog;
+import com.haolyy.compliance.entity.product.InvestLog;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class InvestLogAdapter extends WyBaseAdapter {
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        InvestLog investLog = (InvestLog) list.get(position);
+        InvestLog.ModelBeanX.ModelBean.InvestmentRecordListBean investLog = (InvestLog.ModelBeanX.ModelBean.InvestmentRecordListBean) list.get(position);
         binding = DataBindingUtil.inflate(inflater, R.layout.item_invest_log, parent, false);
         binding.setInvestLog(investLog);
         return binding.getRoot();

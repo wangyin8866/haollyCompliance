@@ -91,7 +91,7 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
         }
-        vpJoinRecord.setAdapter(new TabAdapter(getFragmentManager(),fragments,titles));
+        vpJoinRecord.setAdapter(new TabAdapter(getChildFragmentManager(),fragments,titles));
         vpJoinRecord.setOffscreenPageLimit(3);
         tablayoutBottom.setupWithViewPager(vpJoinRecord);
 

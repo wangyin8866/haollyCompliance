@@ -3,8 +3,10 @@ package com.haolyy.compliance.ui.product.presenter;
 import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.entity.product.InvestLog;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.ui.product.view.InvestLogView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -16,16 +18,20 @@ public class InvestLogPresenter extends BasePresenter<InvestLogView>{
     public InvestLogPresenter(Context context) {
         super(context);
     }
-    public void getInvestmentRecord(String projectNo, String pageIndex){
-        invoke(ProductModel.getInstance().getInvestmentRecord(projectNo,pageIndex),new ProgressSubscriber<String>(new SubscriberOnNextListener<String>() {
+    public void getInvestmentRecord(String borrowNid, String pageIndex){
+        invoke(ProductModel.getInstance().getInvestmentRecord(borrowNid,pageIndex),new ProgressSubscriber<InvestLog>(new SubscriberOnNextListener<InvestLog>() {
             @Override
-            public void onNext(String s) {
+            public void onNext(InvestLog s) {
+                if (s.getCode().equals("200")) {
 
+                    getView().showData(s);
+
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-
+                LogUtils.e("InvestLogPresenter",e.getMessage());
             }
         },mContext));
     }

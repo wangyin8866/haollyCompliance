@@ -3,6 +3,7 @@ package com.haolyy.compliance.service;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.Invest;
+import com.haolyy.compliance.entity.product.InvestLog;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.entity.product.ProductTitle;
@@ -39,7 +40,7 @@ public interface ProductApi {
 
     @FormUrlEncoded
     @POST(NetConstantValues.INVESTMENT_RECORD)
-    Observable<String > getInvestmentRecord(@FieldMap Map<String, String> params);
+    Observable<InvestLog> getInvestmentRecord(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST(NetConstantValues.PRODUCT_RETURN_PLAN)
