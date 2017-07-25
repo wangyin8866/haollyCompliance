@@ -33,6 +33,9 @@ public class WyTestActivity extends BaseActivity<RegisterPresenter, RegisterView
     CheckBox cbRegister;
 
 
+
+
+
     @Override
     protected RegisterPresenter createPresenter() {
         return new RegisterPresenter(mContext);
