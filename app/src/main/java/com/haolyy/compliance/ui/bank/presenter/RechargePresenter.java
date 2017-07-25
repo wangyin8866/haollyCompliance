@@ -48,6 +48,13 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
         }, mContext));
     }
 
+    /**
+     *
+     * @param busi_type_
+     * @param card_number_
+     * @param mobile_
+     * @param sms_type_
+     */
     public void sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_) {
         invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override

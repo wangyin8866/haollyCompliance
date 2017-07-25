@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.entity.ItemModel;
@@ -21,24 +22,28 @@ public class SwipeMenuAdapter extends ListBaseAdapter<ItemModel> {
 
     @Override
     public int getLayoutId() {
-        LogUtils.e("isMark"+mPosition,mDataList.get(mPosition).isMark+"");
-        if (mDataList.get(mPosition).isMark) {
+   return R.layout.item_list_swipe;
+       /* if (mDataList.get(mPosition).isMark) {
             return R.layout.item_list_swipe;
         } else {
             return R.layout.item_list_swipe_mark;
-        }
+        }*/
     }
 
     @Override
     public void onBindItemHolder(SuperViewHolder holder, final int position) {
+        LogUtils.e("isMark"+position+mDataList.get(position).isMark+"size"+mDataList.size());
         View contentView = holder.getView(R.id.swipe_content);
 
-        Button btnDelete = holder.getView(R.id.btnDelete);
-
-
+         Button btnDelete = holder.getView(R.id.btnDelete);
+         ImageView iv= holder.getView(R.id.iv_1);
         //这句话关掉IOS阻塞式交互效果 并依次打开左滑右滑
         ((SwipeMenuView)holder.itemView).setIos(false).setLeftSwipe(true);
-//
+        if(mDataList.get(position).isMark){
+            iv.setVisibility(View.VISIBLE);
+        }else {
+            iv.setVisibility(View.GONE);
+        }
 //        title.setText(getDataList().get(position).isMark+"");
 
 

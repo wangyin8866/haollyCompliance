@@ -257,6 +257,7 @@ public class HuifuShModel extends BaseModel {
      * @return
      */
     public Observable<IsWithDrawSuccess> isWithDrawSuccess(){
+        map.clear();
         map.put("userId",userId+"");
         return huifuShApi.isWithDraw(map);
     }

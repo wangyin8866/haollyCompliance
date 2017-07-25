@@ -110,7 +110,6 @@ public class MessageActivity extends AppCompatActivity {
                 requestData();
             }
         });
-
         mRecyclerView.refresh();
 
 
@@ -161,7 +160,9 @@ public class MessageActivity extends AppCompatActivity {
                         ItemModel item = new ItemModel();
                         item.id = currentSize + i;
                         item.title = "item" + (item.id);
-
+                        if(i%3==0){
+                            item.isMark=true;
+                        }
                         newList.add(item);
                     }
 

@@ -198,7 +198,6 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
         Intent intent = new Intent(mContext, ShBankWebActivity.class);
         intent.setAction(baseResponseBean);
         startActivityForResult(intent,0x11);
-        finish();
     }
     public static final int ret_withdraw=101;
     @Override
