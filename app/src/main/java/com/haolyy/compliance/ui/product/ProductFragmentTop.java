@@ -204,6 +204,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             }
 
             @Override
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
@@ -471,6 +472,10 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 break;
         }
     }
+
+
+
+
 
     /**
      * 设置文本值
