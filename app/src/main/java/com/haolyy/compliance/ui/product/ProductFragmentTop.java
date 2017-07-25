@@ -484,6 +484,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
      * @param bid_end_date
      * @param lock_date
      * @param period_unit
+     *
      */
     private void setText(long begin_date, long bid_end_date, long lock_date, long period_unit) {
         if (begin_date != 0) {

@@ -62,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@color/white"
-                app:color_line="#FF9933">
+                >
 
             </com.haolyy.compliance.custom.ShapeLocker>
         </LinearLayout>

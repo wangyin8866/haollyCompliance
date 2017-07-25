@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -88,6 +89,7 @@ public class ShapeLocker extends View {
 
     private float mSquareWidth;
     private float mSquareHeight;
+    private int color_line;
 
     public Bitmap getmBitmapBtnDefault() {
         return mBitmapBtnDefault;
@@ -284,13 +286,17 @@ public class ShapeLocker extends View {
         this(context, null);
     }
 
+    public void setColor_line(int color_line) {
+        this.color_line = color_line;
+    }
+
     public ShapeLocker(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ShapeLocker);
 
         final String aspect = a.getString(R.styleable.ShapeLocker_aspect);
-        final int color_line = a.getColor(R.styleable.ShapeLocker_color_line, 0xffffff);
+        color_line = a.getColor(R.styleable.ShapeLocker_color_line, Color.parseColor("#FF9933"));
         if ("square".equals(aspect)) {
             mAspect = ASPECT_SQUARE;
         } else if ("lock_width".equals(aspect)) {
@@ -307,7 +313,7 @@ public class ShapeLocker extends View {
         mPathPaint.setDither(true);
 //        mPathPaint.setColor(Color.WHITE);   // TODO this should be from the style
 //        mPathPaint.setColor(Color.RED);
-        mPathPaint.setColor(color_line);
+
         mPathPaint.setAlpha(mStrokeAlpha);
         mPathPaint.setStyle(Paint.Style.STROKE);
         mPathPaint.setStrokeJoin(Paint.Join.ROUND);
@@ -926,6 +932,9 @@ public class ShapeLocker extends View {
         final ArrayList<Cell> pattern = mPattern;
         final int count = pattern.size();
         final boolean[][] drawLookup = mPatternDrawLookup;
+        mPathPaint.setColor(color_line);
+
+
 
         if (mPatternDisplayMode == DisplayMode.Animate) {
 

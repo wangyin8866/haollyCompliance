@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.my;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.ShapeLocker;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.SPUtils;
 import com.haolyy.compliance.utils.ShapeLockerUtils;
 
@@ -52,6 +54,7 @@ public class GestureSettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gesture_setting);
         ButterKnife.bind(this);
+        init();
         top_bar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {
@@ -64,9 +67,8 @@ public class GestureSettingActivity extends AppCompatActivity {
 
             }
         });
-        ShapeLocker.mBitmapCircleGreen = BitmapFactory.decodeResource(getResources(), R.mipmap.btn_code_lock_default);
-        ShapeLocker.mBitmapCircleRed = BitmapFactory.decodeResource(getResources(), R.mipmap.btn_code_lock_default);
-//        ShapeLocker.color_line = Color.parseColor("#FFFFFF");
+
+
         sl.setOnPatternListener(new ShapeLocker.OnPatternListener() {
             @Override
             public void onPatternStart() {
@@ -111,6 +113,22 @@ public class GestureSettingActivity extends AppCompatActivity {
         });
     }
 
+    private void init() {
+        boolean isPath = getIntent().getBooleanExtra("isPath", true);
+        LogUtils.e("isPath", isPath + "");
+        if (!isPath) {
+            setNoPath();
+        }
+    }
+
+    /**
+     * 没有路径
+     */
+    private void setNoPath() {
+        ShapeLocker.mBitmapCircleGreen = BitmapFactory.decodeResource(getResources(), R.mipmap.btn_code_lock_default);
+        ShapeLocker.mBitmapCircleRed = BitmapFactory.decodeResource(getResources(), R.mipmap.btn_code_lock_default);
+        sl.setColor_line(Color.parseColor("#FFFFFF"));
+    }
 
 
     @OnClick({R.id.jump_btn})

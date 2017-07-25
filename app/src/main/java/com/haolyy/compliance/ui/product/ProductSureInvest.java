@@ -147,6 +147,6 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
 
     @Override
     public void showErrorToast(String msg) {
-
+        AppToast.showShortText(mContext, msg);
     }
 }

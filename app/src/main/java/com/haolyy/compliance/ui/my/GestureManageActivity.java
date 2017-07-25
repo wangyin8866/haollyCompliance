@@ -28,12 +28,13 @@ public class GestureManageActivity extends AppCompatActivity {
     RelativeLayout modify_gesture;
     @BindView(R.id.gesture_state)
     SwitchButton gesture_state;
-
+    private boolean isPath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gesture_manage);
         ButterKnife.bind(this);
+        init();
         top_bar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {
@@ -48,16 +49,26 @@ public class GestureManageActivity extends AppCompatActivity {
         gesture_state.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                SPUtils.saveBoolean(GestureManageActivity.this, ConstantKey.GESTURE_STATE_KEY,b);
+                isPath = b;
+                SPUtils.saveBoolean(GestureManageActivity.this, ConstantKey.GESTURE_STATE_KEY,isPath);
             }
         });
+    }
+
+    private void init() {
+        isPath=SPUtils.getBoolean(GestureManageActivity.this, ConstantKey.GESTURE_STATE_KEY,true);
+        gesture_state.setChecked(isPath);
+
     }
 
     @OnClick(R.id.modify_gesture)
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.modify_gesture:
-                startActivity(new Intent(GestureManageActivity.this, GestureSettingActivity.class));
+                Intent intent = new Intent(GestureManageActivity.this, GestureSettingActivity.class);
+                intent.putExtra("isPath", isPath);
+                startActivity(intent);
+
                 break;
         }
     }
