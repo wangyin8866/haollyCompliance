@@ -1,6 +1,7 @@
 package com.haolyy.compliance.ui.my;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -63,6 +64,9 @@ public class GestureSettingActivity extends AppCompatActivity {
 
             }
         });
+        ShapeLocker.mBitmapCircleGreen = BitmapFactory.decodeResource(getResources(), R.mipmap.btn_code_lock_default);
+        ShapeLocker.mBitmapCircleRed = BitmapFactory.decodeResource(getResources(), R.mipmap.btn_code_lock_default);
+//        ShapeLocker.color_line = Color.parseColor("#FFFFFF");
         sl.setOnPatternListener(new ShapeLocker.OnPatternListener() {
             @Override
             public void onPatternStart() {
