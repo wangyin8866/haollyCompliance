@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
@@ -169,7 +170,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -218,9 +218,9 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 if (TextUtils.isEmpty(etInvestAccount.getText().toString().trim())) {
                     amount = 0;
                 } else {
-                amount =Integer.valueOf(etInvestAccount.getText().toString().trim());
+                    amount = Integer.valueOf(etInvestAccount.getText().toString().trim());
                 }
-                LogUtils.e("afterTextChanged",amount+"");
+                LogUtils.e("afterTextChanged", amount + "");
                 callBackProductDetail.callBackAmount(amount);
                 //延迟500ms，如果不再输入字符，则执行该线程的run方法
                 handler.postDelayed(delayRun, 500);
@@ -238,9 +238,10 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     private void init() {
         if (mLoginState) {
+            LogUtils.e("mLoginState", mLoginState + "");
+            tvBalance.setClickable(false);
             //查询用户余额
             mPresenter.getUserInfo();
-            tvBalance.setClickable(false);
 
         } else {
             tvBalance.setClickable(true);
@@ -268,14 +269,15 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         mPresenter.getBaseDetail(projectNo + "", juid);
 
 
-
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.selectUserState(0);
+        if (!TextUtils.isEmpty(BaseApplication.mUserName)) {
+
+            mPresenter.selectUserState(0);
+        }
     }
 
     @Override
@@ -319,7 +321,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
-        LogUtils.e("productBaseDetail",productBaseDetail.toString());
+        LogUtils.e("productBaseDetail", productBaseDetail.toString());
         currentTime = productBaseDetail.getModel().getModel().getNow();
         infoBean = productBaseDetail.getModel().getModel().getInfo();
         callBackProductDetail.callBackInfo(infoBean);
@@ -357,7 +359,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
         state = baseResponseBean.getModel().getModel().getIs_open_account();
-        LogUtils.e(state+"");
+        LogUtils.e(state + "");
     }
 
     @Override
@@ -373,7 +375,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
     public void showDialog() {
-        DialogBank dialogBank=new DialogBank(mContext);
+        DialogBank dialogBank = new DialogBank(mContext);
         dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
             @Override
             public void excuteLeft() {
@@ -474,9 +476,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
 
-
-
-
     /**
      * 设置文本值
      *
@@ -484,7 +483,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
      * @param bid_end_date
      * @param lock_date
      * @param period_unit
-     *
      */
     private void setText(long begin_date, long bid_end_date, long lock_date, long period_unit) {
         if (begin_date != 0) {

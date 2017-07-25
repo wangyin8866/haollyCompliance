@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.utils.LogUtils;
-import com.haolyy.compliance.utils.UIUtils;
 
 import org.json.JSONObject;
 
@@ -69,9 +69,25 @@ public class ShBankWebActivity extends AppCompatActivity {
         webviewRecharge.getSettings().setJavaScriptEnabled(true);
         webviewRecharge.getSettings().setDomStorageEnabled(true);//支持所有标签
         webviewRecharge.getSettings().setSupportZoom(true);
+
+        webviewRecharge.loadUrl("file:///android_asset/register.html");
+        webviewRecharge.setDrawingCacheEnabled(true);
+        webviewRecharge.getSettings().setJavaScriptEnabled(true);
+        // 取消滚动条
+        webviewRecharge.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+
+        webviewRecharge.getSettings().setSavePassword(false);// 不弹窗浏览器是否保存密码
+        webviewRecharge.getSettings().setDefaultTextEncodingName("utf-8");
+        webviewRecharge.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webviewRecharge.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        // 自动适应屏幕尺寸
+        webviewRecharge.getSettings().setLoadWithOverviewMode(true);
+        webviewRecharge.getSettings().setUseWideViewPort(true);
+        webviewRecharge.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        // 触摸焦点起作用
+        webviewRecharge.requestFocus();
         webviewRecharge.setWebViewClient(webViewClient);
         webviewRecharge.setWebChromeClient(new WebChromeClient());
-        webviewRecharge.loadUrl("file:///android_asset/register.html");
         webviewRecharge.addJavascriptInterface(new JavaScriptInterface(ShBankWebActivity.this), "Android");//MyBrowserAPI:自定义的js函数名
 
     }
@@ -91,6 +107,7 @@ public class ShBankWebActivity extends AppCompatActivity {
         /**
          * 采用此方法
          * 传递字符串网页里解析成对象
+         *
          *
          * @param message
          * @return

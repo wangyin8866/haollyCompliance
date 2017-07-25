@@ -26,7 +26,7 @@ function jsonchange(data) {
 //自动的
 //页面加载完毕之后调用android方法获取json生成表单自动提交
 $(document).ready(function() {
- var json=Android.show('来自网页的我');
+ var json=Android.show('来自网页的我1');
    var obj=jsonchange(json);
   <!-- alert('huihu'+obj.model.data.huifu_url);-->
         $('#subForm').attr('action', obj.model.data.huifu_url);
@@ -47,7 +47,7 @@ $(document).ready(function() {
         //手动的
         //调用android程序接收json字符串
          function callAndroid() {
-   var json=Android.show('来自网页的我');
+   var json=Android.show('来自网页的我2');
    var obj=jsonchange(json);
   <!-- alert('huihu'+obj.data.data.huifu_url);-->
         $('#subForm').attr('action', obj.model.data.huifu_url);

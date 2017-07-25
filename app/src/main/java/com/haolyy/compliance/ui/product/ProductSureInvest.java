@@ -9,6 +9,7 @@ import android.view.View;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.InvestBinding;
 import com.haolyy.compliance.entity.home.UserInfoBean;
@@ -119,7 +120,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
             case R.id.tv_invest_sure:
 
 
-                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income+"","");
+                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income+"", Config.returl);
 
                 break;
         }
