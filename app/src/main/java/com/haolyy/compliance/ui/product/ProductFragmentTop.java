@@ -44,7 +44,6 @@ import butterknife.Unbinder;
 
 import static com.haolyy.compliance.base.BaseApplication.juid;
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
-import static com.haolyy.compliance.base.BaseApplication.state;
 
 /**
  * 产品详情顶部页面
@@ -143,6 +142,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     private double income;
     private Handler handler = new Handler();
     private String balance;
+
     /**
      * 延迟线程，看是否还有下一个字符输入
      */
@@ -155,6 +155,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         }
     };
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
+    private int state;
 
 
     public interface CallBackProductDetail {
@@ -163,6 +164,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         void callBackAmount(double amount);
 
         void callBackIncome(double income);
+        void callBackState(int state);
     }
 
     private CallBackProductDetail callBackProductDetail;
@@ -368,6 +370,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
         state = baseResponseBean.getModel().getModel().getIs_open_account();
+        callBackProductDetail.callBackState(state);
         LogUtils.e(state + "");
     }
 

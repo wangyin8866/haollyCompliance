@@ -26,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
-import static com.haolyy.compliance.base.BaseApplication.state;
 
 
 public class ProductDetailActivity extends AppCompatActivity implements ProductFragmentTop.CallBackProductDetail {
@@ -43,6 +42,8 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     private double income=0.00;
     private double  amount;
     private String projectNo;
+    private int state;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +122,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     @Override
     public void callBackIncome(double income) {
         this.income = income;
+    }
+
+    @Override
+    public void callBackState(int state) {
+        this.state = state;
     }
 
 

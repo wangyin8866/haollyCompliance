@@ -14,6 +14,7 @@ import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.InvestBinding;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
 import com.haolyy.compliance.utils.AppToast;
@@ -49,6 +50,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
             @Override
             public void OnLeftButtonClicked() {
                 finish();
+
             }
 
             @Override

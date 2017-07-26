@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.utils.LogUtils;
 
 import butterknife.BindView;
@@ -89,6 +90,7 @@ public class InvestWebActivity extends AppCompatActivity {
     @OnClick(R.id.iv_finish)
     public void onViewClicked() {
         finish();
+        startActivity(MainActivity.getMainIntent(InvestWebActivity.this, 1));
     }
 
     public class JavaScriptInterface {
