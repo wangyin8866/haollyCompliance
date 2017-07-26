@@ -11,24 +11,17 @@ function jsonchange(data) {
 	var dataObjiect;
 	if(typeof(data) == "object" && Object.prototype.toString.call(data).toLowerCase() == "[object object]" && !data.length) {
 		dataObjiect = data;
-		 <!--alert("对象"+dataObjiect)-->
 	} else {
-	     <!--alert("字符串"+data)-->
 		dataObjiect = jQuery.parseJSON(data);
 
 	}
 	return dataObjiect;
 }
-
-        function showSelf() {
-            alert("我来自网页")
-        }
 //自动的
 //页面加载完毕之后调用android方法获取json生成表单自动提交
 $(document).ready(function() {
- var json=Android.show('来自网页的我1');
+ var json=window.Android.getJson();
    var obj=jsonchange(json);
-  <!-- alert('huihu'+obj.model.data.huifu_url);-->
         $('#subForm').attr('action', obj.model.data.huifu_url);
         var msgParamDto = obj.model.data;
         $.each(msgParamDto, function(key, value) {
@@ -41,39 +34,9 @@ $(document).ready(function() {
             }
             $("#subForm").append(ctc)
         });
-       <!--alert($("#subForm").html());-->
-
         $("#subForm").submit();
+
 });
-
-        //手动的
-        //调用android程序接收json字符串
-         function callAndroid() {
-   var json=Android.show('来自网页的我2');
-   var obj=jsonchange(json);
-  <!-- alert('huihu'+obj.data.data.huifu_url);-->
-        $('#subForm').attr('action', obj.model.data.huifu_url);
-        var msgParamDto = obj.model.data;
-        $.each(msgParamDto, function(key, value) {
-             alert('开始便历key：value')
-            var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
-            $("#subForm").append(ctc)
-        });
-        $("#subForm").submit();
-        }
-
-
-
-
-
-        //调用android程序接收json对象
-  function callAndroid2() {
-   var json=Android.sendJson();
-   var obj=jsonchange(json);
-   alert('maomao:'+obj.maomao);
-        }
-
-
 
     </script>
 

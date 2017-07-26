@@ -202,6 +202,9 @@
         <activity android:name=".ui.my.ProductManageDetail"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".ui.product.InvestWebActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
         <activity android:name=".ui.bank.RebindBankActivity" />

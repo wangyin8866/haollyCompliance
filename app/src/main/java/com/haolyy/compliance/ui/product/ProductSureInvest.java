@@ -14,7 +14,6 @@ import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.InvestBinding;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
-import com.haolyy.compliance.ui.bank.ShBankWebActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
 import com.haolyy.compliance.utils.AppToast;
@@ -135,7 +134,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     @Override
     public void pushActivity(String baseResponseBean) {
 
-        Intent intent = new Intent(mContext, ShBankWebActivity.class);
+        Intent intent = new Intent(mContext, InvestWebActivity.class);
         intent.setAction(baseResponseBean);
         startActivity(intent);
     }

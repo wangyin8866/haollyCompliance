@@ -1,4 +1,4 @@
-package com.haolyy.compliance.ui.bank;
+package com.haolyy.compliance.ui.product;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,16 +16,13 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.utils.LogUtils;
-
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ShBankWebActivity extends AppCompatActivity {
+public class InvestWebActivity extends AppCompatActivity {
 
     @BindView(R.id.web_sh_register)
     WebView webviewRecharge;
@@ -40,16 +37,13 @@ public class ShBankWebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sh_bank_web);
         ButterKnife.bind(this);
-        tvTitle.setText("上海银行页面");
+        tvTitle.setText("购买");
         urldata = getIntent().getAction();
-        LogUtils.e("shbank",urldata);
+        webviewRecharge.loadUrl("file:///android_asset/invest.html");
         WebViewClient webViewClient = new WebViewClient() {
-
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                LogUtils.e("ndyGoUrl", url);
                 if (url.equals(Config.returl)) {
-                    setResult(WithDrawActivity.ret_withdraw);
                     finish();
                 }
                 return true;
@@ -58,7 +52,6 @@ public class ShBankWebActivity extends AppCompatActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-
             }
 
             @Override
@@ -69,7 +62,7 @@ public class ShBankWebActivity extends AppCompatActivity {
         webviewRecharge.getSettings().setDomStorageEnabled(true);//支持所有标签
         webviewRecharge.getSettings().setSupportZoom(true);
 
-        webviewRecharge.loadUrl("file:///android_asset/register.html");
+
         webviewRecharge.setDrawingCacheEnabled(true);
         webviewRecharge.getSettings().setJavaScriptEnabled(true);
         // 取消滚动条
@@ -87,7 +80,7 @@ public class ShBankWebActivity extends AppCompatActivity {
         webviewRecharge.requestFocus();
         webviewRecharge.setWebViewClient(webViewClient);
         webviewRecharge.setWebChromeClient(new WebChromeClient());
-        webviewRecharge.addJavascriptInterface(new JavaScriptInterface(ShBankWebActivity.this), "Android");//MyBrowserAPI:自定义的js函数名
+        webviewRecharge.addJavascriptInterface(new JavaScriptInterface(InvestWebActivity.this), "Android");//MyBrowserAPI:自定义的js函数名
 
     }
 
@@ -107,24 +100,12 @@ public class ShBankWebActivity extends AppCompatActivity {
          * 采用此方法
          * 传递字符串网页里解析成对象
          *
-         *
-         * @param message
          * @return
          */
         @JavascriptInterface
-        public String show(String message) {
-            LogUtils.e("shbankwebActivity", message);
+        public String getJson() {
             return urldata;
         }
 
-        /**
-         * 直接传json网页上里解析不成功
-         *
-         * @return
-         */
-        @JavascriptInterface
-        public JSONObject sendJson() {
-            return null;
-        }
     }
 }
