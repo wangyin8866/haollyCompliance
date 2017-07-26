@@ -7,6 +7,7 @@ import com.haolyy.compliance.entity.product.InvestLog;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.ui.product.view.InvestLogView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -30,6 +31,8 @@ public class InvestLogPresenter extends BasePresenter<InvestLogView> {
                     } else {
                         getView().showData(s);
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext,s.getMsg());
                 }
             }
 

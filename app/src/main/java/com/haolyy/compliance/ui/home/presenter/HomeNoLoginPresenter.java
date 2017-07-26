@@ -8,6 +8,7 @@ import com.haolyy.compliance.entity.home.HomeActivity;
 import com.haolyy.compliance.model.HomeModel;
 import com.haolyy.compliance.ui.home.view.HomeNoLoginView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -44,7 +45,11 @@ public class HomeNoLoginPresenter extends BasePresenter<HomeNoLoginView>{
                 if (banner.getCode().equals("200")) {
                     if (banner.getModel().getCode().equals("200")) {
                         getView().showBannerData(banner);
+                    } else {
+                        UIUtils.showToastCommon(mContext, banner.getModel().getMsg());
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext,banner.getMsg());
                 }
             }
         });

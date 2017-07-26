@@ -11,6 +11,7 @@ import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -65,6 +66,8 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
                 if (earnings.getCode().equals("200")) {
                     getView().getEarnings(earnings);
 
+                } else {
+                    UIUtils.showToastCommon(mContext,earnings.getMsg());
                 }
             }
         });
@@ -76,10 +79,12 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
             public void onNext(UserInfoBean userInfoBean) {
                 if (userInfoBean.getCode().equals("200")) {
                     if (userInfoBean.getModel().getCode().equals("200")) {
-                        LogUtils.e("userInfoBean",userInfoBean.toString());
+                        LogUtils.e("userInfoBean", userInfoBean.toString());
                         getView().showUserInfoData(userInfoBean);
 
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext,userInfoBean.getMsg());
                 }
             }
 

@@ -10,6 +10,7 @@ import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -29,8 +30,10 @@ public class ProductSureInvestPresenter extends BasePresenter<ProductSureInvestV
         invoke(UserModel.getInstance().getUserInfo(), new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
             @Override
             public void onNext(UserInfoBean s) {
-                if(s.getCode().equals("200")) {
+                if (s.getCode().equals("200")) {
                     getView().showData(s);
+                } else {
+                    UIUtils.showToastCommon(mContext,s.getMsg());
                 }
             }
 
