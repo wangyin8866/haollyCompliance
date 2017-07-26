@@ -33,7 +33,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private InvestBinding binding;
     private Double income;
-    private int amount;
+    private double amount;
     private String projectNo;
     @Override
     protected ProductSureInvestPresenter createPresenter() {
@@ -81,7 +81,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
 
         LogUtils.e("infoBean",infoBean.toString());
         income = getIntent().getDoubleExtra("income", 0);
-        amount = getIntent().getIntExtra("amount",0);
+        amount = getIntent().getDoubleExtra("amount",0);
         projectNo = getIntent().getStringExtra("projectNo");
         mPresenter.requestUserInfoDetail();
 

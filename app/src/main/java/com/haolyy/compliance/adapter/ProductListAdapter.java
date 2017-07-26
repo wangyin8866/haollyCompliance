@@ -2,6 +2,7 @@ package com.haolyy.compliance.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,7 +37,16 @@ public class ProductListAdapter extends WyBaseAdapter {
         binding.tvAmount.setText(product.getContractAmount()+"万");
         WYUtils.selectIcon(product.getProjectName(),binding.ivDuan);
         binding.productCircle.setData(WYUtils.processAmount(product.getContractAmount()) * scale, WYUtils.processAmount(product.getContractAmount()));
+        if (product.getAmountScale().contains("100")) {
+            binding.productCircle.setmCircleText("已售罄");
+            binding.productCircle.setmOutColorEnd(Color.parseColor("#cccccc"));
+            binding.productCircle.setmOutColorStart(Color.parseColor("#cccccc"));
+            binding.productCircle.setmCircleTextColor(Color.parseColor("#cccccc"));
+
+        } else {
         binding.productCircle.setmCircleText(product.getAmountScale() + "%");
+        }
+
         return binding.getRoot();
     }
 

@@ -135,7 +135,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     private int project_type;
     private String product_no;
     private long currentTime;
-    private int amount;
+    private double amount;
     private String rate;
     private String timeType;
     private String termTime;
@@ -160,7 +160,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     public interface CallBackProductDetail {
         void callBackInfo(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean);
 
-        void callBackAmount(int amount);
+        void callBackAmount(double amount);
 
         void callBackIncome(double income);
     }
@@ -220,7 +220,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 if (TextUtils.isEmpty(etInvestAccount.getText().toString().trim())) {
                     amount = 0;
                 } else {
-                    amount = Integer.valueOf(etInvestAccount.getText().toString().trim());
+                    amount = Double.valueOf(etInvestAccount.getText().toString().trim());
                 }
                 LogUtils.e("afterTextChanged", amount + "");
                 callBackProductDetail.callBackAmount(amount);
@@ -380,7 +380,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showUserInfoData(UserInfoBean userInfoBean) {
-        balance = userInfoBean.getModel().getModel().getAvailable_credit();
+        balance = WYUtils.processAmountString(userInfoBean.getModel().getModel().getAvailable_credit());
         tvBalance.setText(balance+ "元");
     }
 

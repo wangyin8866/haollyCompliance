@@ -98,6 +98,9 @@ public class WYUtils {
     public static float processAmount(String string) {
         return Float.valueOf(string.replace(",", ""));
     }
+    public static String processAmountString(String string) {
+        return string.replace(",", "");
+    }
 
     /**
      * 2      * 判断当前应用是否是debug状态

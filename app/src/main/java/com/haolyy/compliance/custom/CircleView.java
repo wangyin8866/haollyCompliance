@@ -123,8 +123,7 @@ public class CircleView extends View {
             }
         }
         a.recycle();
-        mColors = new int[]{mBgColor, mBgColor};
-        mColors1 = new int[]{mOutColorStart, mOutColorEnd};
+
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -135,7 +134,7 @@ public class CircleView extends View {
         mTextBound = new Rect();
         textPaint = new TextPaint(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(mCircleTextSize);
-        textPaint.setColor(mCircleTextColor);
+
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.getTextBounds(mCircleText, 0, mCircleText.length(), mTextBound);
     }
@@ -151,6 +150,9 @@ public class CircleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.save();
+
+        mColors = new int[]{mBgColor, mBgColor};
+        mColors1 = new int[]{mOutColorStart, mOutColorEnd};
         RectF rectOut = new RectF();
         rectOut.set(mOutSweep, mOutSweep, mWidth-mOutSweep, mHeight-mOutSweep);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -171,6 +173,7 @@ public class CircleView extends View {
         //圆心平移
         canvas.translate(mWidth / 2, mHeight / 2);
         //文本
+        textPaint.setColor(mCircleTextColor);
         canvas.drawText(mCircleText, 0, mTextBound.height()/2, textPaint);
     }
 

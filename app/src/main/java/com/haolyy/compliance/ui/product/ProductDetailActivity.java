@@ -41,7 +41,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     private List<BaseFragment> fragmentList;
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private double income=0.00;
-    private int  amount;
+    private double  amount;
     private String projectNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("productDetail", infoBean);
                             bundle.putDouble("income", income);
-                            bundle.putInt("amount", amount);
+                            bundle.putDouble("amount", amount);
                             bundle.putString("projectNo", projectNo);
                             intent.putExtras(bundle);
                             startActivity(intent);
@@ -114,7 +114,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     @Override
-    public void callBackAmount(int amount) {
+    public void callBackAmount(double amount) {
         this.amount = amount;
     }
 
