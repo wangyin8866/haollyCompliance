@@ -8,6 +8,14 @@ import java.util.List;
  */
 
 public class ProductFundList implements Serializable {
+    @Override
+    public String toString() {
+        return "ProductFundList{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", model=" + model +
+                '}';
+    }
 
     /**
      * code : 200
@@ -44,6 +52,15 @@ public class ProductFundList implements Serializable {
     }
 
     public static class ModelBeanX implements Serializable{
+        @Override
+        public String toString() {
+            return "ModelBeanX{" +
+                    "code='" + code + '\'' +
+                    ", msg='" + msg + '\'' +
+                    ", model=" + model +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 成功
@@ -79,6 +96,14 @@ public class ProductFundList implements Serializable {
         }
 
         public static class ModelBean implements Serializable{
+            @Override
+            public String toString() {
+                return "ModelBean{" +
+                        "pageSum=" + pageSum +
+                        ", assetManagementList=" + assetManagementList +
+                        '}';
+            }
+
             /**
              * assetManagementList : [{"id":2175,"projectName":"短期赢B2175","projectNo":"PJD000124013","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":4,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2168,"projectName":"短期赢C2168","projectNo":"PJD00012406","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":1,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":8997,"projectName":"消费贷0000015","projectNo":"XFD0000015","productNo":"XFD","projectType":1,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"30,000.00","orderDate":"2017-07-12","orderStatus":5,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2186,"projectName":"短期赢A2186","projectNo":"PJD000124024","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":1,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2179,"projectName":"短期赢A2179","projectNo":"PJD000124017","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":2,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2172,"projectName":"短期赢A2172","projectNo":"PJD000124010","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":2,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2165,"projectName":"短期赢A2165","projectNo":"PJD00012403","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":2,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2190,"projectName":"短期赢A2190","projectNo":"PJD000124028","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":1,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2183,"projectName":"短期赢B2183","projectNo":"PJD000124021","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":2,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null},{"id":2176,"projectName":"短期赢C2176","projectNo":"PJD000124014","productNo":"XFD","projectType":2,"annualizedRate":"1.00","appendRate":"0.00","couponRate":"0.00","amount":"13,000.00","orderDate":"2017-07-11","orderStatus":1,"income":"0.00","appendIncome":"0.00","couponProfit":"0.00","expireDate":1,"interestDay":null}]
              * pageSum : 4
@@ -104,6 +129,28 @@ public class ProductFundList implements Serializable {
             }
 
             public static class AssetManagementListBean implements Serializable{
+                @Override
+                public String toString() {
+                    return "AssetManagementListBean{" +
+                            "id=" + id +
+                            ", projectName='" + projectName + '\'' +
+                            ", projectNo='" + projectNo + '\'' +
+                            ", productNo='" + productNo + '\'' +
+                            ", projectType=" + projectType +
+                            ", annualizedRate='" + annualizedRate + '\'' +
+                            ", appendRate='" + appendRate + '\'' +
+                            ", couponRate='" + couponRate + '\'' +
+                            ", amount='" + amount + '\'' +
+                            ", orderDate='" + orderDate + '\'' +
+                            ", orderStatus=" + orderStatus +
+                            ", income='" + income + '\'' +
+                            ", appendIncome='" + appendIncome + '\'' +
+                            ", couponProfit='" + couponProfit + '\'' +
+                            ", expireDate=" + expireDate +
+                            ", interestDay=" + interestDay +
+                            '}';
+                }
+
                 /**
                  * id : 2175
                  * projectName : 短期赢B2175

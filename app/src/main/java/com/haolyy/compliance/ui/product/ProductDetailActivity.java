@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +17,6 @@ import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
-import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.utils.AppToast;
 
 import java.util.ArrayList;
@@ -96,6 +94,9 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
 
     private void init() {
         ActivityCollector.addActivity(this);
+        if (fragmentList != null) {
+            fragmentList.clear();
+        }
         fragmentList = new ArrayList<>();
         projectNo =getIntent().getStringExtra("projectNo");
         productFragmentTop = new ProductFragmentTop();
@@ -136,7 +137,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
 
         @Override
         public int getCount() {
-            return 2;
+            return fragmentList.size();
         }
 
     }

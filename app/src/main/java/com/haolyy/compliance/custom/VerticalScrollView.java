@@ -7,7 +7,7 @@ import android.widget.ScrollView;
 
 /**
  * Created by wangyin on 2017/7/17.
- * 解决ScrollView嵌套viewpager滑动事件冲突问题
+ * 解决ScrollView嵌套viewpager滑动事件冲突问题，viewPager中嵌套listView
  */
 
 public class VerticalScrollView extends ScrollView {

@@ -10,7 +10,9 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
+import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -89,6 +91,7 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
 
             @Override
             public void onError(Throwable e) {
+                LogUtils.e("getUserInfo", e.getMessage());
             }
         },mContext));
     }

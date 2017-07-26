@@ -120,7 +120,6 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         }
         images = new ArrayList<String>();
 
-        mPresenter.getRecommend(BaseApplication.userId+"");//首页新闻 2
         modelBeen = banner.getModel().getModel();
         for (int i = 0; i < modelBeen.size(); i++) {
             images.add(modelBeen.get(i).getImageUrl());
@@ -134,6 +133,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
         this.banner.startTurning(2000);
 
+        mPresenter.getRecommend(BaseApplication.userId+"");//首页新闻 2
     }
 
     @Override
