@@ -61,7 +61,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
                     if (amount == 0) {
                         AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
                     } else {
-                        if (amount % 50 == 0 || amount % 100 == 0) {
+                        if (amount % 100 == 0) {
                             Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("productDetail", infoBean);
@@ -71,7 +71,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
                             intent.putExtras(bundle);
                             startActivity(intent);
                         } else {
-                            AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为50或100的整数倍!");
+                            AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为100的整数倍!");
                         }
                     }
                 }

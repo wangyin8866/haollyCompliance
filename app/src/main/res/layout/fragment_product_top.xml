@@ -481,7 +481,7 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:inputType="number"
-                            android:hint="起投金额为50元或100元的整数倍"
+                            android:hint="起投金额为100元的整数倍"
                             android:textColor="@color/text_4a4a4a"
                             android:textSize="14sp" />
 
