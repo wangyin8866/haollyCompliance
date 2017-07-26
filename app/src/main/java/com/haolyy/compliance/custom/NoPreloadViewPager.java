@@ -2,6 +2,7 @@ package com.haolyy.compliance.custom;
 
 /**
  * Created by wangyin on 2017/7/20.
+ * viewPager不缓存
  */
 
 import android.content.Context;
