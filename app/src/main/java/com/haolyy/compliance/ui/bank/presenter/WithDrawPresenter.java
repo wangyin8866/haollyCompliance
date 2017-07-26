@@ -96,15 +96,8 @@ public class WithDrawPresenter extends BasePresenter<WithDrawView> {
             if (baseBean.getCode().equals("200")) {
                 UIUtils.showToastCommon(mContext, baseBean.getModel().getMsg());
                 //000：取现成功443：取现处理中100：取现失败
-                if (baseBean.getCode().equals("000")) {
+                getView().showIsSucess(baseBean.getModel());
 
-                } else if (baseBean.getCode().equals("443")) {
-
-                } else if (baseBean.getCode().equals("100")) {
-
-                } else {
-
-                }
             }else {
                 UIUtils.showToastCommon(mContext, baseBean.getMsg());
             }

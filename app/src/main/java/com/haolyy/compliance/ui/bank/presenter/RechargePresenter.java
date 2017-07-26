@@ -30,10 +30,10 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
             public void onNext(RechargeBean s) {
                 if (s.getCode().equals("200")) {
                     if (s.getModel().getCode().equals("1")) {
-                        getView().showSucess();
+                        getView().showSucess(s.getModel().getAmount_());
                     }else {
                         //充值失败
-                        getView().showFail();
+                        getView().showFail(s);
                         UIUtils.showToastCommon(mContext, s.getModel().getMsg());
                     }
                 } else {
@@ -63,7 +63,7 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
                     if (s.getModel().getRespCode().equals("000")) {
                         getView().countDown(s.getModel().getSmsSeq(), false);
                     } else {
-                        UIUtils.showToastCommon(mContext, s.getMsg());
+                        UIUtils.showToastCommon(mContext, s.getModel().getRespDesc());
                         getView().countDown("", true);
                     }
                 } else {

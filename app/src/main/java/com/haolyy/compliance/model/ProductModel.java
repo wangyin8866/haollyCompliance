@@ -16,6 +16,7 @@ import rx.Observable;
 import static com.haolyy.compliance.base.BaseApplication.version;
 import static com.haolyy.compliance.config.Config.client;
 import static com.haolyy.compliance.config.Config.platform;
+import static com.haolyy.compliance.config.Config.returl;
 
 /**
  * Created by LL on 2017/1/7.
@@ -105,8 +106,8 @@ public class ProductModel extends BaseModel {
         map.put("userId", userId);
         map.put("amount", amount);
         map.put("expectedRevenue", expectedRevenue);
-        map.put("return_url", return_url);
-        map.put("platform", Config.platform);
+        map.put("return_url", returl);
+        map.put("platform", platform);
         map.put("client", client);
         return productApi.invest(map);
     }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.List;
 
@@ -34,13 +35,26 @@ public class DealLogAdapter extends WyBaseAdapter {
             dealHolder.tv_recharge_date = (TextView) convertView.findViewById(R.id.tv_recharge_date);
             dealHolder.tv_recharge_account = (TextView) convertView.findViewById(R.id.tv_recharge_account);
             dealHolder.tv_recharge_process = (TextView) convertView.findViewById(R.id.tv_recharge_process);
+            dealHolder.tv_group = (TextView) convertView.findViewById(R.id.tv_group);
             convertView.setTag(dealHolder);
         } else {
             dealHolder = (DealHolder) convertView.getTag();
         }
-
         DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean bean = list.get(position);
-        dealHolder.tv_recharge_date.setText(DateUtil.getTimeYHMDHM(Long.parseLong(bean.getTransferDate())*1000));
+        String timeYHMDHM = DateUtil.getTimeYHMDHM(Long.parseLong(bean.getTransferDate()) * 1000);
+        dealHolder.tv_recharge_date.setText(timeYHMDHM);
+        String year = timeYHMDHM.substring(0, 7);
+        if (position == 0) {
+            LogUtils.e("ndy","position0");
+            dealHolder.tv_group.setVisibility(View.VISIBLE);
+            dealHolder.tv_group.setText(year);
+        } else if (!DateUtil.getTimeYHMDHM(Long.parseLong(list.get(position - 1).getTransferDate()) * 1000).substring(0, 7).equals(year)) {
+            //LogUtils.e("ndy",DateUtil.getTimeYHMDHM(Long.parseLong(list.get(position - 1).getTransferDate()) * 1000).substring(0, 7)+position+year);
+            dealHolder.tv_group.setVisibility(View.VISIBLE);
+            dealHolder.tv_group.setText(year);
+        }else {
+            dealHolder.tv_group.setVisibility(View.GONE);
+        }
         dealHolder.tv_recharge_process.setText("余额：" + bean.getAvailableAmount() + "元");
         switch (bean.getCapitalType()) {
             case 2001:
@@ -68,12 +82,12 @@ public class DealLogAdapter extends WyBaseAdapter {
                 dealHolder.tv_recharge_account.setTextColor(Color.parseColor("#f8676f"));
                 dealHolder.tv_recharge_account.setText("+" + bean.getAmount() + "元");
                 break;
-            case 6:
+            case 200304:
                 dealHolder.tv_recharge_account.setTextColor(Color.parseColor("#20b795"));
                 dealHolder.tv_recharge_account.setText("-" + bean.getAmount() + "元");
                 dealHolder.title.setText("手续费");
                 break;
-            case 7:
+            case 300634:
                 dealHolder.tv_recharge_account.setTextColor(Color.parseColor("#20b795"));
                 dealHolder.tv_recharge_account.setText("-" + bean.getAmount() + "元");
                 dealHolder.title.setText("奖励");
@@ -90,7 +104,7 @@ public class DealLogAdapter extends WyBaseAdapter {
 
     public class DealHolder {
         View view;
-        TextView title, tv_recharge_date, tv_recharge_account, tv_recharge_process;
+        TextView title, tv_recharge_date, tv_recharge_account, tv_recharge_process, tv_group;
 
         public DealHolder() {
             view = View.inflate(mContext, R.layout.item_deal_log, null);

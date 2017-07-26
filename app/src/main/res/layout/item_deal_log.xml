@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +11,7 @@
         android:background="#F5F5F5"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:text="2017年"
+        android:text="----年--月"
         android:textColor="#4A4A4A"
         android:textSize="15sp"
         android:textStyle="bold" android:visibility="gone" />

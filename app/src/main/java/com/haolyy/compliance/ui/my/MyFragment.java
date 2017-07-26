@@ -25,6 +25,7 @@ import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -100,13 +101,18 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(intent);
             }
         });
-
-        mPresenter.requestUserInfoDetail();
         mPresenter.getProductFunds(Config.platform, BaseApplication.userId + "");
         return view;
     }
 
-    @Override          
+    @Override
+    public void onResume() {
+        super.onResume();
+        //需要刷新余额
+        mPresenter.requestUserInfoDetail();
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {

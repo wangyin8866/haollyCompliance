@@ -57,36 +57,6 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
     }
 
     /**
-     * 换绑定银行卡
-     * @param trade_type_
-     * @param bank_code_
-     * @param card_number_
-     * @param mobile_
-     * @param sms_code_
-     * @param sms_seq_
-     * @param ordsms_ext_
-     */
-    public void quikBind(String trade_type_, String bank_code_, String card_number_, String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
-        invoke(HuifuShModel.getInstance().quikBind(trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new Subscriber<BaseResponseBean>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e(e.getMessage());
-            }
-
-            @Override
-            public void onNext(BaseResponseBean baseResponseBean) {
-                //TODO 设置交易密码
-            }
-        });
-
-    }
-
-    /**
      * 开户借口
      * @param moblie_
      * @param from_mobile_

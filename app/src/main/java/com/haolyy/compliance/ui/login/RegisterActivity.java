@@ -153,21 +153,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
 
     }
 
-    /**
-     * 图形验证码成功之后调用发送短息的接口
-     *
-     * @param isGetSms true 发送验证码 false 让按钮可点击
-     */
-    @Override
-    public void getSms(boolean isGetSms) {
-        if (isGetSms) {
-//            phone = etPhone.getText().toString();
-//            imageCode = etImageCode.getText().toString();
-//            mPresenter.requestValidateCode(phone, imageCode, "regist");
-        } else {
-            tvRegisterSms.setEnabled(true);
-        }
-    }
 
     @Override
     public void showImageCode() {
@@ -189,20 +174,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
         }
     }
 
-    /**
-     * 图形验证码刷新 获取焦点
-     */
-    @Override
-    public void modifyImageCode() {
-        Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
-        etImageCode.requestFocus();
-        etImageCode.getText().clear();
-    }
-
     @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish,R.id.ll_invite_code})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
+                etImageCode.getText().clear();
                 Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.textView3:

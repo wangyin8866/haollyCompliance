@@ -178,7 +178,7 @@
             android:gravity="right"
             android:paddingRight="20dp"
             android:paddingTop="9dp"
-            android:text="招商银行 单笔限额5万元，每日限额5万元"
+            android:text=""
             android:textSize="14sp"
             android:visibility="gone" />
 

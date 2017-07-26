@@ -6,10 +6,11 @@ package com.haolyy.compliance.entity.bank;
 
 public class IsWithDrawSuccess {
 
+
     /**
      * code : 200
      * msg : 成功
-     * model : {"msg":"取现失败:今日可取现余额不足","code":"100"}
+     * model : {"amonut":1000,"msg":"取现成功!","code":"1","createTime":"2017-07-25 19:27:37"}
      */
 
     private String code;
@@ -42,12 +43,24 @@ public class IsWithDrawSuccess {
 
     public static class ModelBean {
         /**
-         * msg : 取现失败:今日可取现余额不足
-         * code : 100
+         * amonut : 1000.0
+         * msg : 取现成功!
+         * code : 1
+         * createTime : 2017-07-25 19:27:37
          */
 
+        private double amonut;
         private String msg;
         private String code;
+        private String createTime;
+
+        public double getAmonut() {
+            return amonut;
+        }
+
+        public void setAmonut(double amonut) {
+            this.amonut = amonut;
+        }
 
         public String getMsg() {
             return msg;
@@ -63,6 +76,14 @@ public class IsWithDrawSuccess {
 
         public void setCode(String code) {
             this.code = code;
+        }
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
         }
     }
 }

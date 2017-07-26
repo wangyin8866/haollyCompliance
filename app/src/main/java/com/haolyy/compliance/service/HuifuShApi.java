@@ -4,9 +4,11 @@ import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
+import com.haolyy.compliance.entity.bank.BankListBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.bank.OldUserBean;
+import com.haolyy.compliance.entity.bank.QuikBindBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.bank.WithDrawBean;
@@ -43,7 +45,7 @@ public interface HuifuShApi {
      */
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_QUIK_BIND)
-    Observable<BaseResponseBean> quikBind(@FieldMap Map<String, String> params);
+    Observable<QuikBindBean> quikBind(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST(NetConstantValues.HUIFU_CORP_REGISTER)
@@ -132,4 +134,6 @@ public interface HuifuShApi {
     @FormUrlEncoded
     @POST(NetConstantValues.P2P_ISWITHDRAWSUCCESS)
     Observable<IsWithDrawSuccess> isWithDraw(@FieldMap Map<String, String> params);
+
+
 }

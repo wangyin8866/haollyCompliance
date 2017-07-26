@@ -87,7 +87,9 @@ public class IncomeFragment extends BaseFragment<FundStatisticsPresenter, FundSt
             xLabel = new String[fundStatictisIncomeBean.getModel().getModel().getIncomeList7().size()];
 
             for (int i = 0; i < fundStatictisIncomeBean.getModel().getModel().getIncomeList7().size(); i++) {
-                xLabel[i] = DateUtil.getTimeyyyymmdd(fundStatictisIncomeBean.getModel().getModel().getIncomeList7().get(i).getIncomeDate());
+                long xdate=fundStatictisIncomeBean.getModel().getModel().getIncomeList7().get(i).getIncomeDate();
+                LogUtils.e("ndy_date",xdate+"");
+                 xLabel[i] = DateUtil.getTimeMd(xdate*1000);
             }
             List<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean> income_list_7 = new ArrayList<FundStatictisIncomeBean.ModelBeanX.ModelBean.IncomeList7Bean>();
             income_list_7.addAll(fundStatictisIncomeBean.getModel().getModel().getIncomeList7());
@@ -96,7 +98,8 @@ public class IncomeFragment extends BaseFragment<FundStatisticsPresenter, FundSt
             }
             //与折线图无关数据
             total_amount.setText(income_list_7.get(income_list_7.size() - 1).getIncomeSum()+"");
-            date.setText(DateUtil.getTimeyyyymmdd(income_list_7.get(income_list_7.size() - 1).getIncomeDate()));
+            long datelong=income_list_7.get(income_list_7.size() - 1).getIncomeDate();
+            date.setText(DateUtil.getTimeyyyymmdd(datelong*1000));
             win_plan_value.setText(income_list_7.get(income_list_7.size() - 1).getXSB()+"");
             win_plan_week_value.setText(income_list_7.get(income_list_7.size() - 1).getDQY()+"");
             consumer_credit_value.setText(income_list_7.get(income_list_7.size() - 1).getYJH()+"");

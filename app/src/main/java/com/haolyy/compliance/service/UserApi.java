@@ -3,6 +3,7 @@ package com.haolyy.compliance.service;
 
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
+import com.haolyy.compliance.entity.bank.BankListBean;
 import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
@@ -80,7 +81,13 @@ public interface UserApi {
     @POST(NetConstantValues.DEAL_RECORD_INFO)
     Observable<DealRecordBean>  getDealRecord(@FieldMap Map<String, String> map);
 
-
+    /**获取银行卡列表
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConstantValues.GET_BANKLIST)
+    Observable<BankListBean> getBankList(@FieldMap Map<String, String> params);
 
 
 }

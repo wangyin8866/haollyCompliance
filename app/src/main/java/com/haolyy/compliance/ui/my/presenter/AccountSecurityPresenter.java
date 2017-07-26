@@ -1,11 +1,15 @@
 package com.haolyy.compliance.ui.my.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.UserModel;
+import com.haolyy.compliance.ui.bank.RebindBankActivity;
 import com.haolyy.compliance.ui.my.view.AccountSecurityView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
@@ -43,7 +47,16 @@ public class AccountSecurityPresenter extends BasePresenter<AccountSecurityView>
 
     }
 
+    @Override
+    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
+        super.overwriteSelectUserState(fb, flag);
+        if(fb.getModel().getModel().getIs_open_account()==0){
+            //弹出框
+            getView().showErrorToast("");
+        }else {
+               getView().pushActivity(flag);
 
+        }
 
-
+    }
 }

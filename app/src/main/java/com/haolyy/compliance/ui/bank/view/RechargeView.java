@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.bank.view;
 
+import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 
@@ -16,5 +17,7 @@ public interface RechargeView {
 
     void showCard(UserBaseInfoBean fb);
 
-    void showFail();
+    void showFail(RechargeBean s);
+
+    void showSucess(String amount_);
 }

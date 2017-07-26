@@ -144,6 +144,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
+                etForgetImage.getText().clear();
                 Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.tv_send_sms:

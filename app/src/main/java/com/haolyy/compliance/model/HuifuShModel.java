@@ -5,9 +5,11 @@ import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
+import com.haolyy.compliance.entity.bank.BankListBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.bank.OldUserBean;
+import com.haolyy.compliance.entity.bank.QuikBindBean;
 import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
 import com.haolyy.compliance.entity.bank.WithDrawBean;
@@ -40,7 +42,7 @@ public class HuifuShModel extends BaseModel {
 
     private HuifuShModel() {
         super();
-        retrofit=new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -61,12 +63,12 @@ public class HuifuShModel extends BaseModel {
     }
 
     /**
-     * @param busi_type_    开户：user_register，充值：recharge，换卡：rebind
-     * @param card_number_  除了业务类型是recharge以外，都必传
-     * @param mobile_       银行卡号对应的银行预留手机号
-     * @param sms_type_     O-原手机号发送短信，N-新手机号。只有busi_type_为rebind时才必输
+     * @param busi_type_   开户：user_register，充值：recharge，换卡：rebind
+     * @param card_number_ 除了业务类型是recharge以外，都必传
+     * @param mobile_      银行卡号对应的银行预留手机号
+     * @param sms_type_    O-原手机号发送短信，N-新手机号。只有busi_type_为rebind时才必输
      */
-    public Observable<HuifuSmsBean> sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_) {
+    public Observable<HuifuSmsBean> sendSms(String busi_type_, String card_number_, String mobile_, String sms_type_) {
         map.clear();
         map.put("busi_type_", busi_type_);
         map.put("card_number_", card_number_);
@@ -79,17 +81,17 @@ public class HuifuShModel extends BaseModel {
     }
 
     /**
-     * @param trade_type_   交易类型
-     * @param bank_code_    银行简称
-     * @param card_number_  银行卡号
-     * @param mobile_       新绑定银行卡卡号对应的银行预留手机号
-     * @param sms_code_     新绑定银行预留手机号发送的短信验证码
-     * @param sms_seq_      新绑定银行预留手机号请求短信验证码接口时，返回的短信序号
-     * @param ordsms_ext_   原绑定卡预留手机号发送的短信验证码+短信序号
+     * @param trade_type_  交易类型
+     * @param bank_code_   银行简称
+     * @param card_number_ 银行卡号
+     * @param mobile_      新绑定银行卡卡号对应的银行预留手机号
+     * @param sms_code_    新绑定银行预留手机号发送的短信验证码
+     * @param sms_seq_     新绑定银行预留手机号请求短信验证码接口时，返回的短信序号
+     * @param ordsms_ext_  原绑定卡预留手机号发送的短信验证码+短信序号
      * @return
      */
-    public Observable<BaseResponseBean> quikBind(String trade_type_, String bank_code_, String card_number_,
-                                                 String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
+    public Observable<QuikBindBean> quikBind(String trade_type_, String bank_code_, String card_number_,
+                                             String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
         map.clear();
         map.put("mer_id_", mer_id);
         map.put("user_cust_id_", BaseApplication.userCustId);
@@ -100,7 +102,7 @@ public class HuifuShModel extends BaseModel {
         map.put("sms_code_", sms_code_);
         map.put("sms_seq_", sms_seq_);
         map.put("ordsms_ext_", ordsms_ext_);
-        map.put("client_", "4");
+        map.put("client_", client);
         map.put("version_", version);
         return huifuShApi.quikBind(map);
     }
@@ -114,7 +116,7 @@ public class HuifuShModel extends BaseModel {
      * @param bank_id_     银行 如ABC
      * @param sms_code_    用户输入的短信验证码
      * @param sms_seq_     调用发送短信接口返回
-     * @param PageType     PageType为空：即自适应风格页面 ，PageType =1：app应用风格页面（无标题）， PageType =2：app应用风格页面（有标题
+     * @param PageTyp      PageType为空：即自适应风格页面 ，PageType =1：app应用风格页面（无标题）， PageType =2：app应用风格页面（有标题
      * @param user_type_   客户类型 1：借款账户  2：理财账户
      * @return
      */
@@ -142,7 +144,7 @@ public class HuifuShModel extends BaseModel {
     public Observable<ActivateBean> activate(String PageTyp) {
         map.clear();
         map.put("user_id_", BaseApplication.userId + "");
-        map.put("UsrCustId",BaseApplication.userCustId);
+        map.put("UsrCustId", BaseApplication.userCustId);
         map.put("PageType", PageType);
         map.put("RetUrl", returl);
         map.put("mer_id_", mer_id);
@@ -185,7 +187,7 @@ public class HuifuShModel extends BaseModel {
      * @param method_        提现方式 1:普通取现 2:即时取现 3:快速取现'
      * @return
      */
-    public Observable<WithDrawBean> withDraw(String cash_serv_fee_,String trans_amt_, String method_
+    public Observable<WithDrawBean> withDraw(String cash_serv_fee_, String trans_amt_, String method_
     ) {
         map.clear();
         map.put("user_id_", BaseApplication.userId + "");
@@ -198,12 +200,13 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         map.put("version_", version);
         map.put("method_", method_);
-        map.put("PageType",PageType);
+        map.put("PageType", PageType);
         return huifuShApi.withDraw(map);
     }
 
     /**
      * 判断是否激活
+     *
      * @param idno
      * @param realname
      * @param user_type
@@ -219,9 +222,9 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         return huifuShApi.isBosAcctActivate(map);
     }
+
     /**
      * 进行当前平台登陆用户数据复制
-     *
      */
     public Observable<OldUserBean> validateOldUser(String mobile, String account_platform_no_, String smsCode) {
         map.clear();
@@ -232,9 +235,9 @@ public class HuifuShModel extends BaseModel {
         map.put("client_", client);
         return huifuShApi.validateolduser(map);
     }
+
     /**
      * 用户银行卡信息以及资金
-     *
      */
     public Observable<UserBaseInfoBean> getUSerBaseInfo() {
         map.clear();
@@ -254,12 +257,14 @@ public class HuifuShModel extends BaseModel {
 
     /**
      * 提现是否成功
+     *
      * @return
      */
-    public Observable<IsWithDrawSuccess> isWithDrawSuccess(){
+    public Observable<IsWithDrawSuccess> isWithDrawSuccess() {
         map.clear();
-        map.put("userId",userId+"");
+        map.put("userId", userId + "");
         return huifuShApi.isWithDraw(map);
     }
+
 
 }

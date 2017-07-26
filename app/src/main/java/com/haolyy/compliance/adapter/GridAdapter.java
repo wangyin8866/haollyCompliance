@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.entity.bank.BankListBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,7 @@ import java.util.List;
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ListHolder> {
 
     private Context mContext;
-    private List<Integer> datas = new ArrayList<>();
+    private List<BankListBean.ModelBeanX.ModelBean> datas = new ArrayList<>();
 
     public GridAdapter(Context context, List list) {
         this.mContext = context;
@@ -68,13 +71,17 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ListHolder> {
 
     class ListHolder extends RecyclerView.ViewHolder {
         TextView name;
+        ImageView logo;
+
         public ListHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.tv_bank_item);
+            logo = (ImageView) itemView.findViewById(R.id.iv_bank_logo);
         }
 
         public void setData(int position) {
-            name.setText(datas.get(position) + "");
+            name.setText(datas.get(position).getBankName());
+            Glide.with(mContext).load(datas.get(position).getMapUrl()).into(logo);
         }
 
     }

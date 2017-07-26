@@ -99,7 +99,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
                 startActivityForResult(new Intent(AccountSecurityActivity.this, GestureManageActivity.class),100);
                 break;
             case R.id.tv_bind_card:
-                startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
+                mPresenter.selectUserState(Config.status_rebind);
                 break;
         }
     }
@@ -151,6 +151,14 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         auto_invest.setText(accountSecurityBean.getModel().getModel().getIs_auto_tender() == 1? "已开启":"未开启");
         gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
 
+    }
+
+    @Override
+    public void pushActivity(int flag) {
+        if(flag==Config.status_rebind){
+            startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
+            finish();
+        }
     }
 
     @Override

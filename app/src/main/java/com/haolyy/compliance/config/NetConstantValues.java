@@ -10,6 +10,7 @@ public interface NetConstantValues {
      */
     String HOST_URL = "http://192.168.6.59:8010/";
     String HOST_PAY="http://192.168.6.59:8014/";
+    //String HOST_PAY="http://192.168.12.212:8088/";
     //帅帅
 //    String HOST_URL = "http://192.168.10.36:9090/";
 //    String HOST_PAY="http://192.168.13.63:9093/";
@@ -23,14 +24,13 @@ public interface NetConstantValues {
     String P2P = "pay/http/p2p/";
 
 
-
     String user_login = USERMANAGE + "user/login";//登录
     String user_register = USERMANAGE + "user/register";//注册
     String USER_FORGETPWD = USERMANAGE + "user/resetPassword";//忘记密码
     String IMAGE_CHECK = USERMANAGE + "image/checkcode";//检查图形验证
     String IMAGE_GET = USERMANAGE + "kaptcha";//获取图形验证码
     String GET_TOKEN = USERMANAGE + "getToken";//获取token
-
+    String GET_BANKLIST=USERMANAGE+"p2pBank/selectP2pBankList";//获取银行列表
     //我的页面
     String USER_FINDSTATUS=USERMANAGE+"account/findUserstatus";//查询用户状态
     /**

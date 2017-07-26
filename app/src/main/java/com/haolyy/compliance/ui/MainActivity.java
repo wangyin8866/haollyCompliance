@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void call(String s) {
                 if (s.equals(Config.LoginOUT)) {
-                    UIUtils.showToastCommon(MainActivity.this,"登录超时请重新登录");
+                    UIUtils.showToastCommon(MainActivity.this, "登录超时请重新登录");
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             }
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
+  /*  @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(TAG, currentPage);
@@ -261,5 +261,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         currentPage = savedInstanceState.getInt(TAG);
+    }
+*/
+    /**
+     * 跳转到主页的方法
+     * @param context
+     * @param page
+     * @return
+     */
+    public static Intent getMainIntent(Context context, int page) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("currentpage", page);
+        return intent;
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        int cp = getIntent().getIntExtra("currentpage", -1);
+        if(cp!=-1){
+            LogUtils.e("ndy","cp"+cp);
+            currentPage=cp;
+            switchPager(cp);
+        }
     }
 }

@@ -12,6 +12,7 @@
     <include layout="@layout/public_title_back" />
 
     <ScrollView
+        android:id="@+id/scroll_withdraw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/titleBar">
@@ -72,7 +73,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="55dp"
                     android:layout_marginLeft="54dp"
-                    android:text="**** **** **** 3409"
+                    android:text="**** **** **** ****"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
             </RelativeLayout>
@@ -287,5 +288,107 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/ll_withdraw_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical"
+        android:visibility="gone">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_error"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="提现失败"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_error_withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="系统繁忙，请稍后重试"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_back_account"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/shape_yellow_radius"
+            android:gravity="center"
+            android:text="返回账户中心"
+            android:textColor="@color/bg_ff9933"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_with_draw_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_success"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="申请已提交"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_success_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="您本次提现金额为元"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_success_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="预计到账时间 "
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_withdraw_complete"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/shape_yellow_radius"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/bg_ff9933"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_waiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/waiting"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
 </RelativeLayout>

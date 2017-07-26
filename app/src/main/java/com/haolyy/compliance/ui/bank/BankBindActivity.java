@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.bank;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -10,15 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
+import com.haolyy.compliance.entity.bank.BankListBean;
 import com.haolyy.compliance.ui.bank.presenter.BankBindPresenter;
 import com.haolyy.compliance.ui.bank.view.BankBindView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,8 +87,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
     private void initView() {
         etCardNo.requestFocus();
-        realName=getIntent().getStringExtra("name");
-        idCard=getIntent().getStringExtra("id");
+        realName = getIntent().getStringExtra("name");
+        idCard = getIntent().getStringExtra("id");
         tvRealName.setText(realName);
         tvIdCard.setText(idCard);
     }
@@ -105,19 +110,17 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 bankName = tvBankNameLogo.getText().toString();
                 bankPhone = etBankPhone.getText().toString();
                 cardno = etCardNo.getText().toString();
-                if(TextUtils.isEmpty(bankName)){
-                    UIUtils.showToastCommon(mContext,"请选择银行");
+                if (TextUtils.isEmpty(bankName)) {
+                    UIUtils.showToastCommon(mContext, "请选择银行");
+                    return;
+                } else if (TextUtils.isEmpty(bankPhone)) {
+                    UIUtils.showToastCommon(mContext, "请填写手机号码");
+                    return;
+                } else if (TextUtils.isEmpty(cardno)) {
+                    UIUtils.showToastCommon(mContext, "请填写银行卡号");
                     return;
                 }
-                else if(TextUtils.isEmpty(bankPhone)){
-                    UIUtils.showToastCommon(mContext,"请填写手机号码");
-                    return;
-                }
-                else if(TextUtils.isEmpty(cardno)){
-                    UIUtils.showToastCommon(mContext,"请填写银行卡号");
-                    return;
-                }
-                mPresenter.sendSms("user_register", cardno,bankPhone,"", 0);
+                mPresenter.sendSms("user_register", cardno, bankPhone, "", 0);
                 break;
             case R.id.tv_select_bank:
                 startActivityForResult(new Intent(BankBindActivity.this, BankListActivity.class), 0x03);
@@ -129,10 +132,13 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (null != data) {
-            UIUtils.showToastCommon(this, "收到银行data");
-            tvBankNameLogo.setText("招行");
-            ivBankLogo.setImageResource(R.mipmap.bank_logo);
+            etCardNo.requestFocus();
+            BankListBean.ModelBeanX.ModelBean model = (BankListBean.ModelBeanX.ModelBean) data.getSerializableExtra("data");
+            tvBankNameLogo.setText(model.getBankName());
+            Glide.with(mContext).load(model.getMapUrl()).into(ivBankLogo);
             tvLimit.setVisibility(View.VISIBLE);
+            // 招商银行 单笔限额5万元，每日限额5万元
+            tvLimit.setText(Html.fromHtml("<font color='#4a4a4a'>" + model.getBankName() + "单笔限额</font><font color='#ff9933'>" + model.getSingerMaxAmount() + "</font><font color='#4a4a4a4a'>元,每日限额</font><font color='#ff9933'>" + model.getSingerDayAmount() + "</font><font color='#4a4a4a'>元</font>"));
         }
     }
 
@@ -160,7 +166,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             @Override
             public void executeSend() {
                 dialogBankSms.getBtn().setEnabled(false);
-                mPresenter.sendSms("user_register", cardno,bankPhone,"",1);
+                mPresenter.sendSms("user_register", cardno, bankPhone, "", 1);
             }
 
             @Override

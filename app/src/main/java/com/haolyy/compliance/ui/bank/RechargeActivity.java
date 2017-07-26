@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.entity.bank.RechargeBean;
 import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.RechargePresenter;
@@ -68,6 +69,8 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     TextView tvSuccessAmount;
     @BindView(R.id.tv_available)
     TextView tvAvailable;
+    @BindView(R.id.tv_recharge_error)
+    TextView tvRechargeError;
     private String smsQue;
     private String phone;
     private String sms;
@@ -149,7 +152,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         });
     }
 
-    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms, R.id.tv_go_invest, R.id.tv_go_account, R.id.tv_try_again})
+    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms, R.id.tv_go_invest, R.id.tv_back_account, R.id.tv_try_again,R.id.tv_go_account})
     public void onViewClicked(View view) {
         amt = etRechargeTmt.getText().toString();
         phone = etRechargePhone.getText().toString();
@@ -184,15 +187,20 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                 break;
             case R.id.tv_go_invest:
                 //去投资
-                startActivity(new Intent(mContext, MainActivity.class));
+                startActivity(MainActivity.getMainIntent(mContext, 1));
                 break;
             case R.id.tv_go_account:
                 //去账户中心
-                startActivity(new Intent(mContext, MainActivity.class));
+                startActivity(MainActivity.getMainIntent(mContext, 3));
                 break;
             case R.id.tv_try_again:
                 //再试试
-                mPresenter.recharge(phone, "QP", "666666", "AAAAAAAA", amt, bankId);
+                llRechargeError.setVisibility(View.GONE);
+                llRecharge.setVisibility(View.VISIBLE);
+                break;
+            case R.id.tv_back_account:
+                //去账户中心
+                startActivity(MainActivity.getMainIntent(mContext, 3));
                 break;
         }
     }
@@ -206,6 +214,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
 
     @Override
     public void countDown(String smsSeq, boolean b) {
+        etRechargeSms.requestFocus();
         smsQue = smsSeq;
         if (b) {
             tvRechargeSms.setEnabled(true);
@@ -214,25 +223,34 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         }
     }
 
-    /**
-     * 展示成功页面
-     */
+
     @Override
     public void showSucess() {
-        tvSuccessAmount.setText("您本次充值金额为" + amt + "元");
-        llRecharge.setVisibility(View.GONE);
-        llRechargeError.setVisibility(View.GONE);
-        llRechargeSuccess.setVisibility(View.VISIBLE);
+
     }
 
     /**
      * 展示失败页面
+     *
+     * @param s
      */
     @Override
-    public void showFail() {
+    public void showFail(RechargeBean s) {
         llRecharge.setVisibility(View.GONE);
         llRechargeError.setVisibility(View.VISIBLE);
         llRechargeSuccess.setVisibility(View.GONE);
+        tvRechargeError.setText(s.getModel().getMsg());
+    }
+
+    /**
+     * 展示成功页面
+     */
+    @Override
+    public void showSucess(String amount_) {
+        tvSuccessAmount.setText("您本次充值金额为" + amount_ + "元");
+        llRecharge.setVisibility(View.GONE);
+        llRechargeError.setVisibility(View.GONE);
+        llRechargeSuccess.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -245,9 +263,11 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         bankId = fb.getModel().getBankNo();
         cardno = fb.getModel().getBankCardNo();
         availableCredit = fb.getModel().getAvailableCredit();
-        tvAvailable.setText(availableCredit+"");
+        tvAvailable.setText(availableCredit + "");
         tvBankName.setText(fb.getModel().getBankName());
         tvCardNo.setText(cardno);
+
+        tvLimitAccount.setText(Html.fromHtml("<font color='#4a4a4a'>" + fb.getModel().getBankName() + "单笔限额</font><font color='#ff9933'>" + fb.getModel().getLimitSingle() + "</font><font color='#4a4a4a4a'>元,每日限额</font><font color='#ff9933'>" + fb.getModel().getLimitDay() + "</font><font color='#4a4a4a'>元</font>"));
     }
 
 

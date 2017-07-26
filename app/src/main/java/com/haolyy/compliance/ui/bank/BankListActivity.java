@@ -13,8 +13,15 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.GridAdapter;
+import com.haolyy.compliance.base.ActivityCollector;
+import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseView;
+import com.haolyy.compliance.entity.bank.BankListBean;
+import com.haolyy.compliance.ui.bank.presenter.BankListPresenter;
+import com.haolyy.compliance.ui.bank.view.BanklistView;
 import com.haolyy.compliance.utils.UIUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class BankListActivity extends AppCompatActivity {
-
+public class BankListActivity extends BaseActivity<BankListPresenter,BanklistView> implements BanklistView {
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.tv_title)
@@ -35,21 +41,29 @@ public class BankListActivity extends AppCompatActivity {
     RecyclerView recycleView;
     @BindView(R.id.titleBar)
     RelativeLayout titleBar;
-    private List<Integer> bankList = new ArrayList<>();
+    private List<BankListBean.ModelBeanX.ModelBean> bankList = new ArrayList<>();
     private GridAdapter gridAdapter;
+
+    @Override
+    protected BankListPresenter createPresenter() {
+        return new BankListPresenter(mContext);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_list);
         ButterKnife.bind(this);
-        initGridView();
+        ActivityCollector.addActivity(this);
+        mPresenter.getBankList();
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
+
     }
 
     private void initGridView() {
-        for (int i = 0; i < 32; i++) {
-            bankList.add(i);
-        }
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycleView.setLayoutManager(layoutManager);
@@ -59,8 +73,7 @@ public class BankListActivity extends AppCompatActivity {
         gridAdapter.setOnRecyclerViewItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int data) {
-                UIUtils.showToastCommon(BankListActivity.this, data + "");
-                setResult(0x03, new Intent().putExtra("data", data));
+                setResult(0x03, new Intent().putExtra("data", bankList.get(data)));
                 finish();
             }
         });
@@ -69,6 +82,12 @@ public class BankListActivity extends AppCompatActivity {
     @OnClick(R.id.iv_finish)
     public void onViewClicked() {
         finish();
+    }
+
+    @Override
+    public void showList(List<BankListBean.ModelBeanX.ModelBean> model) {
+        bankList=model;
+        initGridView();
     }
 }
 

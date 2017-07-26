@@ -102,12 +102,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
             case R.id.tv_register:
                 intent = new Intent(mContext, RegisterActivity.class);
                 startActivity(intent);
-                ActivityCollector.finishAll();
-
+                finish();
                 break;
             case R.id.tv_forget:
                 intent = new Intent(mContext, ForgetActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

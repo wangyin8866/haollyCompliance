@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.bank.view;
 
+import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.UserBaseInfoBean;
 
@@ -13,4 +14,6 @@ public interface WithDrawView {
     void showCard(UserBaseInfoBean fb);
 
     void setFee(double fee);
+
+    void showIsSucess(IsWithDrawSuccess.ModelBean model);
 }

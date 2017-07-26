@@ -83,41 +83,6 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
         });
     }
-
-    public void sendTextSms(String phone_num) {
-        invoke(UserModel.getInstance().sendTextSms(phone_num), new Subscriber<CheckImageCode>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e(tag, e.getMessage());
-            }
-
-            @Override
-            public void onNext(CheckImageCode s) {
-                if (s.getStatus().equals("200")) {
-                    if (s.getData().getStatus().equals("200")) {
-                        getView().getSms(true);
-                    }  else if(s.getData().getStatus().equals("10102")){
-                        UIUtils.showToastCommon(mContext,s.getData().getMsg());
-                        getView().modifyImageCode();
-                        getView().getSms(false);
-                    }else {
-                        UIUtils.showToastCommon(mContext,s.getData().getMsg());
-                        getView().getSms(false);
-                    }
-                } else {
-                    UIUtils.showToastCommon(mContext, s.getMsg());
-                    getView().getSms(false);
-                }
-
-            }
-        });
-    }
-
     public void getToken() {
         invoke(UserModel.getInstance().getToken(), new Subscriber<TokenResponseBean>() {
             @Override

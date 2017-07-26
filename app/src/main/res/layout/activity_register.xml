@@ -175,7 +175,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="5dp"
-        android:text="至少包含数字、字母（区分大小写）2种，且不能有空格"
+        android:text="请设置6-12位字母数字组合密码"
         android:textColor="@color/text_9b9b9b"
         android:textSize="12sp" />
 

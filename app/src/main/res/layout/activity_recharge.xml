@@ -67,7 +67,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="55dp"
                 android:layout_marginLeft="54dp"
-                android:text="**** **** **** 3409"
+                android:text="**** **** **** ****"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
         </RelativeLayout>
@@ -135,7 +135,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:text="招商银行 单笔限额5万元，每日限额5万元"
+            android:text=""
             android:textColor="@color/text_b9b9b9"
             android:textSize="12sp" />
 
@@ -251,6 +251,7 @@
             android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/tv_recharge_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

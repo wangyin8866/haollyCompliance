@@ -148,7 +148,6 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.tv_feedback:
                 break;
             case R.id.tv_login_out:
-                UIUtils.showToastCommon(SettingActivity.this,"退出登录");
                 SPUtils.loginOut();
                 break;
         }

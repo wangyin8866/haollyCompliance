@@ -81,10 +81,6 @@ public class WyTestActivity extends BaseActivity<RegisterPresenter, RegisterView
 
     }
 
-    @Override
-    public void getSms(boolean b) {
-
-    }
 
 
 
@@ -98,9 +94,6 @@ public class WyTestActivity extends BaseActivity<RegisterPresenter, RegisterView
 
     }
 
-    @Override
-    public void modifyImageCode() {
 
-    }
 
 }

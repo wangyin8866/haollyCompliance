@@ -59,7 +59,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
     //    private List<InvestLog> investLogs;
     private boolean doubleClick;
     /**
-     * 用户资金明细列表;userId-用户id;capitalType-业务类型:(0:全部;2001:充值;200303:提现;300611:投资;300606:回息;300605:回本;6:手续费;7:奖励;8:其他);pageIndex-页码(开始页为1);dateFlag-时间标识(0:全部,1:自由选择2:七天,3:一个月,4:三个月);startDate:开始日期;endDate结束日期
+     * 用户资金明细列表;userId-用户id;capitalType-业务类型:(0:全部;2001:充值;200303:提现;300611:投资;300606:回息;300605:回本;200304手续费;300634:奖励;8:其他);pageIndex-页码(开始页为1);dateFlag-时间标识(0:全部,1:自由选择2:七天,3:一个月,4:三个月);startDate:开始日期;endDate结束日期
      */
     private int capitalType;
     private int pageIndex = 0;
@@ -207,12 +207,12 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
                 selectTab(tvDeal6);
                 break;
             case R.id.tv_deal_7:
-                capitalType = 6;
+                capitalType = 200304;
                 reset();
                 selectTab(tvDeal7);
                 break;
             case R.id.tv_deal_8:
-                capitalType = 7;
+                capitalType = 300634;
                 reset();
                 selectTab(tvDeal8);
                 break;
