@@ -8,5 +8,5 @@ import com.haolyy.compliance.entity.product.InvestLog;
 
 public interface InvestLogView {
     void showData(InvestLog investLog);
-
+    void showGetMoreData(InvestLog investLog);
 }

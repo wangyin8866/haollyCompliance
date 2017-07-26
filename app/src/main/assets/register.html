@@ -8,7 +8,7 @@
     <script>
     //ajax传参json化
 function jsonchange(data) {
-	var dataObjiect
+	var dataObjiect;
 	if(typeof(data) == "object" && Object.prototype.toString.call(data).toLowerCase() == "[object object]" && !data.length) {
 		dataObjiect = data;
 		 <!--alert("对象"+dataObjiect)-->
@@ -35,12 +35,14 @@ $(document).ready(function() {
             if(key=="ReqExt"){
                 var ctc='<textarea rows="1" cols="500" style="display: none" name="ReqExt">'+ value +'</textarea>';
             }else if(key == "BorrowerDetails"){
-				var ctc = '<textarea rows="1" cols="500" style="display: none" name="BorrowerDetails">' + value + '</textarea>'
+				var ctc = '<textarea rows="1" cols="500" style="display: none" name="BorrowerDetails">' + value + '</textarea>';
             }else{
                var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
             }
             $("#subForm").append(ctc)
         });
+       alert($("#subForm").html());
+
         $("#subForm").submit();
 });
 
