@@ -320,6 +320,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         }
     }
 
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
