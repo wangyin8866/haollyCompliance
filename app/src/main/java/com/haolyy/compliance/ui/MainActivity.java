@@ -17,7 +17,7 @@ import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.NoScrollViewPager;
-import com.haolyy.compliance.ui.find.FindFragment;
+import com.haolyy.compliance.ui.find.FindNewFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
 import com.haolyy.compliance.ui.home.HomeNoLoginFragment;
 import com.haolyy.compliance.ui.login.LoginActivity;
@@ -69,8 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private HomeNoLoginFragment homeNoLoginFragment;
     private HomeLoginFragment homeInvestFragment;
     private ProductFragment productFragment;
-    private FindFragment findFragment;
+//    private FindFragment findFragment;
     private MyFragment myFragment;
+    private FindNewFragment findNewFragment;
     private List<Fragment> fragments;
     public static int currentPage;
     private static final String TAG = "MainActivity";
@@ -145,12 +146,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         homeInvestFragment = new HomeLoginFragment();
 
         productFragment = new ProductFragment();
-        findFragment = new FindFragment();
+//        findFragment = new FindFragment();
+        findNewFragment = new FindNewFragment();
         myFragment = new MyFragment();
         fragments = new ArrayList<>();
         fragments.add(homeNoLoginFragment);
         fragments.add(productFragment);
-        fragments.add(findFragment);
+        fragments.add(findNewFragment);
         fragments.add(myFragment);
         fragments.add(homeInvestFragment);
 
