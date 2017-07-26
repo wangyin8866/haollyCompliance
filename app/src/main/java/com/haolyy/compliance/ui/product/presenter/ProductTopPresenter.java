@@ -10,7 +10,7 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
-import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.AppToast;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -76,16 +76,17 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
             public void onNext(UserInfoBean userInfoBean) {
                 if (userInfoBean.getCode().equals("200")) {
                     if (userInfoBean.getModel().getCode().equals("200")) {
-                        LogUtils.e("userInfoBean",userInfoBean.toString());
                         getView().showUserInfoData(userInfoBean);
-
+                    } else {
+                        AppToast.showShortText(mContext, userInfoBean.getModel().getMsg());
                     }
+                } else {
+                    AppToast.showShortText(mContext, userInfoBean.getMsg());
                 }
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("userInfoBean",e.getMessage());
             }
         },mContext));
     }

@@ -2,8 +2,6 @@ package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
-import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
@@ -11,11 +9,13 @@ import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.service.UserApi;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 
 import rx.Observable;
 
+import static com.haolyy.compliance.base.BaseApplication.mUserName;
 import static com.haolyy.compliance.base.BaseApplication.userId;
 import static com.haolyy.compliance.base.BaseApplication.version;
 import static com.haolyy.compliance.config.Config.client;
@@ -115,8 +115,9 @@ public class UserModel extends BaseModel {
      */
    public Observable<UserInfoBean> getUserInfo(){
        map.clear();
-       map.put("user_id",userId+"");
        map.put("platform", platform);
+       map.put("user_id",userId+"");
+       map.put("mobile", mUserName);
        return userApi.getUserInfo(map);
     }
 

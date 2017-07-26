@@ -129,6 +129,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     TextView tvBalance;
     @BindView(R.id.tv_withdraw)
     TextView tvWithdraw;
+    @BindView(R.id.tv_invest_all)
+    TextView tvInvestAll;
     private String projectNo;
     private int project_type;
     private String product_no;
@@ -140,7 +142,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     private String borrowType;
     private double income;
     private Handler handler = new Handler();
-    FindUserStatusBean baseResponseBean;
+    private String balance;
     /**
      * 延迟线程，看是否还有下一个字符输入
      */
@@ -287,7 +289,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
 
-    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan, R.id.tv_balance, R.id.tv_withdraw})
+    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan, R.id.tv_balance, R.id.tv_withdraw,R.id.tv_invest_all})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_mirror_plan:
@@ -308,6 +310,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 } else {
                     showDialog();
 
+                }
+                break;
+            case R.id.tv_invest_all:
+                if (!TextUtils.isEmpty(balance)) {
+                etInvestAccount.setText(balance);
                 }
                 break;
         }
@@ -371,7 +378,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showUserInfoData(UserInfoBean userInfoBean) {
-        tvBalance.setText(userInfoBean.getModel().getModel().getAvailable_credit() + "元");
+        balance = userInfoBean.getModel().getModel().getAvailable_credit();
+        tvBalance.setText(balance+ "元");
     }
 
     public void showDialog() {

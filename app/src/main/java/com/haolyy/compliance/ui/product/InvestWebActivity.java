@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.utils.LogUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +44,7 @@ public class InvestWebActivity extends AppCompatActivity {
         WebViewClient webViewClient = new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                LogUtils.e("buyUrl", url);
                 if (url.equals(Config.returl)) {
                     finish();
                 }
