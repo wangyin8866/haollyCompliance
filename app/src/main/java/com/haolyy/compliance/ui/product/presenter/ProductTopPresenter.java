@@ -10,7 +10,7 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
-import com.haolyy.compliance.utils.AppToast;
+import com.haolyy.compliance.utils.LogUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -65,6 +65,8 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
                 if (earnings.getCode().equals("200")) {
                     getView().getEarnings(earnings);
 
+                } else {
+                    UIUtils.showToastCommon(mContext,earnings.getMsg());
                 }
             }
         });

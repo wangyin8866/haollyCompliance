@@ -12,6 +12,7 @@ import com.haolyy.compliance.model.HomeModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.home.view.HomeLoginView;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -48,10 +49,15 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
                 if (banner.getCode().equals("200")) {
                     if (banner.getModel().getCode().equals("200")) {
                         getView().showBannerData(banner);
+                    } else {
+                        UIUtils.showToastCommon(mContext, banner
+                                .getModel().getMsg());
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext, banner.getMsg());
                 }
             }
-        } );
+        });
 
     }
 
@@ -59,14 +65,20 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
      * 首页产品
      */
     public void getHomeProduct() {
-        invoke(HomeModel.getInstance().getHomeProduct(),new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
+        invoke(HomeModel.getInstance().getHomeProduct(), new ProgressSubscriber<HomeProduct>(new SubscriberOnNextListener<HomeProduct>() {
             @Override
             public void onNext(HomeProduct homeProduct) {
                 if (homeProduct.getCode().equals("200")) {
                     if (homeProduct.getModel().getCode().equals("200")) {
                         getView().showHomeProductData(homeProduct);
 
+                    } else {
+                        UIUtils.showToastCommon(mContext, homeProduct.getModel().getMsg());
                     }
+
+
+                } else {
+                    UIUtils.showToastCommon(mContext, homeProduct.getMsg());
                 }
             }
 
@@ -74,7 +86,7 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
             public void onError(Throwable e) {
 
             }
-        },mContext));
+        }, mContext));
 
     }
 
@@ -98,7 +110,11 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
                 if (homeArticle.getCode().equals("200")) {
                     if (homeArticle.getModel().getCode().equals("200")) {
                         getView().showHomeArticleData(homeArticle);
+                    } else {
+                        UIUtils.showToastCommon(mContext, homeArticle.getModel().getMsg());
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext,homeArticle.getMsg());
                 }
             }
         });
@@ -127,13 +143,18 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
                 if (homeActivity.getCode().equals("200")) {
                     if (homeActivity.getModel().getCode().equals("200")) {
                         getView().showHomeActivityData(homeActivity);
+                    } else {
+                        UIUtils.showToastCommon(mContext, homeActivity.getModel().getMsg());
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext,homeActivity.getMsg());
                 }
             }
         });
 
     }
-    public void getUserInfo(){
+
+    public void getUserInfo() {
         invoke(UserModel.getInstance().getUserInfo(), new Subscriber<UserInfoBean>() {
             @Override
             public void onCompleted() {
@@ -148,9 +169,11 @@ public class HomeLoginPresenter extends BasePresenter<HomeLoginView> {
             @Override
             public void onNext(UserInfoBean userInfoBean) {
                 if (userInfoBean.getModel().getCode().equals("200")) {
-                    LogUtils.e("userInfoBean",userInfoBean.toString());
+                    LogUtils.e("userInfoBean", userInfoBean.toString());
                     getView().showUserInfoData(userInfoBean);
 
+                } else {
+                    UIUtils.showToastCommon(mContext,userInfoBean.getMsg());
                 }
             }
         });

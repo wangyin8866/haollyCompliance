@@ -6,6 +6,7 @@ import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.product.ProductList;
 import com.haolyy.compliance.model.ProductModel;
 import com.haolyy.compliance.ui.product.view.ProductListView;
+import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
@@ -31,6 +32,8 @@ public class ProductListPresenter extends BasePresenter<ProductListView> {
                             getView().showData(o);
                         }
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext,o.getMsg());
                 }
             }
 
