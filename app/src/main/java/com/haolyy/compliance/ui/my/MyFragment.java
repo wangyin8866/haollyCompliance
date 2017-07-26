@@ -18,16 +18,12 @@ import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
-import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.my.ProductFund;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
-import com.haolyy.compliance.utils.LogUtils;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,11 +73,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
     private View view;
     private DialogBank dialogBank;
-    private DialogInvestGuides dialogInvestGuides;
-    private UserInfoBean userInfoBean;
     private ProductFund productFund;
-    private ArrayList<String> parentTitle;
-    private ArrayList<String> parentNodeNo;//二级菜单的no
 
     @Nullable
     @Override
@@ -192,7 +184,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
     @Override
     public void showData(UserInfoBean userInfoBean) {
-        this.userInfoBean = userInfoBean;
         tvGoldPhone.setText(userInfoBean.getModel().getModel().getMobile());
         availableAmount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
         frezonAmount.setTextBottom(userInfoBean.getModel().getModel().getFrozen_amount());
