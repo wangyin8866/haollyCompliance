@@ -3,6 +3,7 @@ package com.haolyy.compliance.model;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.service.UserApi;
 
 import java.util.HashMap;
@@ -43,7 +44,7 @@ public class BigThreeModel extends BaseModel {
      * @param operationType register forget
      * @return
      */
-    public Observable<BaseBean> requestValidateCode(String phone_num, String imagecode,String operationType) {
+    public Observable<ValidateCode> requestValidateCode(String phone_num, String imagecode, String operationType) {
         map.clear();
         map.put("phone_num", phone_num);
         map.put("token",BaseApplication.token );

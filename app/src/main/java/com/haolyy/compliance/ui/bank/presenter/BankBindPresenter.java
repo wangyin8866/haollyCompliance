@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ToRegisterBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.HuifuSmsBean;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.ui.bank.view.BankBindView;
@@ -91,6 +92,15 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
     }
 
 
-
-
+    @Override
+    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
+        super.overwriteSelectUserState(fb, flag);
+        if(fb.getModel().getModel().getIs_open_account()==1){
+            //展示开户成功
+            getView().showSuccessToast("");
+        }else {
+            //展示开户失败
+            getView().showErrorToast("");
+        }
+    }
 }

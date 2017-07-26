@@ -10,6 +10,7 @@ import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.RegisterBean;
 import com.haolyy.compliance.entity.login.SmsBean;
+import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.view.RegisterView;
@@ -34,7 +35,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
     }
 
     public void register(String phone_num, String password, String smsCode, String imageCode, String chnnel, String regsiterCode) {
-        invoke(UserModel.getInstance().register(phone_num, password, smsCode, imageCode,chnnel, regsiterCode), new Subscriber<BaseBean>() {
+        invoke(UserModel.getInstance().register(phone_num, password, smsCode, imageCode, chnnel, regsiterCode), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
 
@@ -60,7 +61,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
 
 
     public void requestValidateCode(String phone_num, String imagecode) {
-        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode,Config.SMS_OPERATION_TYPE_REG), new Subscriber<BaseBean>() {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode, Config.SMS_OPERATION_TYPE_REG), new Subscriber<ValidateCode>() {
             @Override
             public void onCompleted() {
 
@@ -73,9 +74,14 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
 
             @Override
-            public void onNext(BaseBean s) {
+            public void onNext(ValidateCode s) {
                 if (s.getCode().equals("200")) {
-                    getView().countDown(true);
+                    if (s.getModel().getCode().equals("200")) {
+                        getView().countDown(true);
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getModel().getMsg());
+                        getView().countDown(false);
+                    }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                     getView().countDown(false);
@@ -83,6 +89,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView> {
             }
         });
     }
+
     public void getToken() {
         invoke(UserModel.getInstance().getToken(), new Subscriber<TokenResponseBean>() {
             @Override

@@ -12,6 +12,7 @@ import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.SmsBean;
+import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.LoginActivity;
@@ -60,7 +61,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
     }
 
     public void requestValidateCode(String phone_num, String imagecode) {
-        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode,Config.SMS_OPERATION_TYPE_FOR), new Subscriber<BaseBean>() {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone_num, imagecode, Config.SMS_OPERATION_TYPE_FOR), new Subscriber<ValidateCode>() {
             @Override
             public void onCompleted() {
 
@@ -72,9 +73,14 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             }
 
             @Override
-            public void onNext(BaseBean s) {
+            public void onNext(ValidateCode s) {
                 if (s.getCode().equals("200")) {
-                    getView().countDown(true);
+                    if (s.getModel().getCode().equals("200")) {
+                        getView().countDown(true);
+                    } else {
+                        UIUtils.showToastCommon(mContext, s.getModel().getMsg());
+                        getView().countDown(false);
+                    }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                     getView().countDown(false);
@@ -101,7 +107,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
                 if (s.getStatus().equals("200")) {
                     if (s.getData().getStatus().equals("200")) {
                         getView().getSms(true);
-                    } else if(s.getData().getStatus().equals("10102")){
+                    } else if (s.getData().getStatus().equals("10102")) {
                         //图形验证码错误
                         UIUtils.showToastCommon(mContext, s.getData().getMsg());
                         getView().modifyImageCode();
@@ -130,15 +136,13 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             public void onError(Throwable e) {
 
 
-
-
             }
 
             @Override
             public void onNext(BaseBean s) {
                 if (s.getCode().equals("200")) {
                     mContext.startActivity(new Intent(mContext, LoginActivity.class));
-                    ((Activity)mContext).finish();
+                    ((Activity) mContext).finish();
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }

@@ -14,6 +14,7 @@ import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.OldUserBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
+import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.HuifuShModel;
 import com.haolyy.compliance.model.UserModel;
@@ -32,11 +33,12 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
     public CheckBankPresenter(Context context) {
         super(context);
     }
+
     private String account_platform_no;
+
     public void isBosAcctActivate(String idno, String realname, String user_type) {
         invoke(HuifuShModel.getInstance().isBosAcctActivate(idno, realname, user_type),
                 new ProgressSubscriber<IsActivateBean>(new SubscriberOnNextListener<IsActivateBean>() {
-
 
 
                     @Override
@@ -47,17 +49,17 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
                             if (type.equals("1") || type.equals("2")) {
                                 getView().pushActivity("BankBind");
                             } else if (type.equals("5")) {
-                                  //发短息之后，直接展示卡,
-                                  //getView().showCard(s);
-                                  // getView().showSuccessToast();
+                                //发短息之后，直接展示卡,
+                                //getView().showCard(s);
+                                // getView().showSuccessToast();
                                 //作业账户编号（老用户的）
                                 account_platform_no = s.getModel().getAccount_platform_no();
                                 RegisterSMS(s.getModel().getMobile());
 
                             } else if (type.equals("3")) {
-                                BaseApplication.userCustId=s.getModel().getUsrCustId();
+                                BaseApplication.userCustId = s.getModel().getUsrCustId();
                                 //激活
-                               activate("");
+                                activate("");
                             }
                         } else {
                             UIUtils.showToastCommon(mContext, s.getMsg());
@@ -76,7 +78,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
      *
      * @param PageType
      */
-    public void activate( String PageType) {
+    public void activate(String PageType) {
         invoke(HuifuShModel.getInstance().activate(PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
             @Override
             public void onNext(ActivateBean s) {
@@ -94,33 +96,33 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
         }, mContext));
     }
 
-    public void RegisterSMS(final String phone){
-       invoke(BigThreeModel.getInstance().requestValidateCode(phone,"0", Config.SMS_OPERATION_TYPE_REG),new ProgressSubscriber<BaseBean>(new SubscriberOnNextListener<BaseBean>() {
-           @Override
-           public void onNext(BaseBean baseBean) {
-               if (baseBean.getCode().equals("200")){
-                   getView().showSuccessToast(phone);
-               }
-           }
-
-           @Override
-           public void onError(Throwable e) {
-
-           }
-       },mContext));
-    }
-
-    public void validateOldUser(String mobile, String sms) {
-        invoke(HuifuShModel.getInstance().validateOldUser(mobile,account_platform_no,sms),new ProgressSubscriber<OldUserBean>(new SubscriberOnNextListener<OldUserBean>() {
+    public void RegisterSMS(final String phone) {
+        invoke(BigThreeModel.getInstance().requestValidateCode(phone, "0", Config.SMS_OPERATION_TYPE_ACTIVATE), new ProgressSubscriber<ValidateCode>(new SubscriberOnNextListener<ValidateCode>() {
             @Override
-            public void onNext(OldUserBean s) {
-               getView().showCard(s);
+            public void onNext(ValidateCode baseBean) {
+                if (baseBean.getCode().equals("200")) {
+                    getView().showSuccessToast(phone);
+                }
             }
 
             @Override
             public void onError(Throwable e) {
 
             }
-        },mContext));
+        }, mContext));
+    }
+
+    public void validateOldUser(String mobile, String sms) {
+        invoke(HuifuShModel.getInstance().validateOldUser(mobile, account_platform_no, sms), new ProgressSubscriber<OldUserBean>(new SubscriberOnNextListener<OldUserBean>() {
+            @Override
+            public void onNext(OldUserBean s) {
+                getView().showCard(s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        }, mContext));
     }
 }

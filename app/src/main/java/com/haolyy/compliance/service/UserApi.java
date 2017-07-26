@@ -4,6 +4,7 @@ package com.haolyy.compliance.service;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.bank.BankListBean;
+import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
@@ -40,7 +41,7 @@ public interface UserApi {
 
     @FormUrlEncoded
     @POST(NetConstantValues.REQUEST_VALIDATE_CODE)
-    Observable<BaseBean> requestValidateCode(@FieldMap Map<String, String> params);
+    Observable<ValidateCode> requestValidateCode(@FieldMap Map<String, String> params);
 
 
     @GET(NetConstantValues.IMAGE_CHECK)

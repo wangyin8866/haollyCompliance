@@ -31,7 +31,7 @@ public interface Config {
     String SMS_OPERATION_TYPE_REC = "3";
     String SMS_OPERATION_TYPE_INV = "4";
     String SMS_OPERATION_TYPE_MOD = "5";
-
+    String SMS_OPERATION_TYPE_ACTIVATE="bosAcctActivate";
     String SMS_TEMPLATE_CODE_HOLYY = "100";//好利网100
     String LoginOUT="loginOut";
 }

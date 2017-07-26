@@ -64,6 +64,7 @@ public class BankListActivity extends BaseActivity<BankListPresenter,BanklistVie
     }
 
     private void initGridView() {
+        tvTitle.setText("银行列表");
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycleView.setLayoutManager(layoutManager);

@@ -2,6 +2,7 @@ package com.haolyy.compliance.ui.bank;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,12 +19,12 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
 import com.haolyy.compliance.entity.bank.BankListBean;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.BankBindPresenter;
 import com.haolyy.compliance.ui.bank.view.BankBindView;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
-
-import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,10 +68,22 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     ClearEditText etBankPhone;
     @BindView(R.id.et_card_no)
     ClearEditText etCardNo;
+    @BindView(R.id.tv_back_account)
+    TextView tvBackAccount;
+    @BindView(R.id.ll_open_error)
+    LinearLayout llOpenError;
+    @BindView(R.id.tv_back_account_success)
+    TextView tvBackAccountSuccess;
+    @BindView(R.id.ll_open_success)
+    LinearLayout llOpenSuccess;
+    @BindView(R.id.iv_waiting)
+    ImageView ivWaiting;
 
     private String realName, idCard, bankName, bankPhone, cardno;
     private DialogBankSms dialogBankSms;
     private String smseq;//短信序列号
+    private Handler handler = new Handler();
+    private Runnable check;
 
     @Override
     protected BankBindPresenter createPresenter() {
@@ -86,6 +99,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     }
 
     private void initView() {
+        tvTitle.setText("开通上海银行存管");
         etCardNo.requestFocus();
         realName = getIntent().getStringExtra("name");
         idCard = getIntent().getStringExtra("id");
@@ -98,7 +112,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
 
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_select_bank})
+    @OnClick({R.id.iv_finish, R.id.tv_bank_next, R.id.tv_select_bank, R.id.tv_back_account, R.id.tv_back_account_success})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -125,13 +139,20 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             case R.id.tv_select_bank:
                 startActivityForResult(new Intent(BankBindActivity.this, BankListActivity.class), 0x03);
                 break;
+            case R.id.tv_back_account:
+                startActivity(MainActivity.getMainIntent(mContext, 3));
+                break;
+            case R.id.tv_back_account_success:
+                startActivity(MainActivity.getMainIntent(mContext, 3));
+                break;
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (null != data) {
+        if (resultCode == 0x03) {
+            LogUtils.e("ndyb", "banklisdy");
             etCardNo.requestFocus();
             BankListBean.ModelBeanX.ModelBean model = (BankListBean.ModelBeanX.ModelBean) data.getSerializableExtra("data");
             tvBankNameLogo.setText(model.getBankName());
@@ -139,17 +160,39 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             tvLimit.setVisibility(View.VISIBLE);
             // 招商银行 单笔限额5万元，每日限额5万元
             tvLimit.setText(Html.fromHtml("<font color='#4a4a4a'>" + model.getBankName() + "单笔限额</font><font color='#ff9933'>" + model.getSingerMaxAmount() + "</font><font color='#4a4a4a4a'>元,每日限额</font><font color='#ff9933'>" + model.getSingerDayAmount() + "</font><font color='#4a4a4a'>元</font>"));
+        } else {
+            LogUtils.e("ndyb", "汇付返回陈宫失败");
+            //上海银行界面返回
+            llInputInfo.setVisibility(View.GONE);
+            ivWaiting.setVisibility(View.VISIBLE);
+            //延时三秒查询是否成功
+            check = new Runnable() {
+                @Override
+                public void run() {
+                    mPresenter.selectUserState(-1);
+                }
+            };
+            handler.postDelayed(check, 3000);
+
         }
     }
 
     @Override
-    public void showSuccessToast(String msg) {
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(check);
+    }
 
+    @Override
+    public void showSuccessToast(String msg) {
+        ivWaiting.setVisibility(View.GONE);
+        llOpenSuccess.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showErrorToast(String msg) {
-
+        ivWaiting.setVisibility(View.GONE);
+        llOpenError.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -161,8 +204,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     public void showSmsDialog(final String smsSeq) {
         smseq = smsSeq;
         dialogBankSms = new DialogBankSms(BankBindActivity.this);
-        //bankPhone.substring(bankPhone.length() - 4, bankPhone.length())
-        dialogBankSms.setContext("2946").setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
+        dialogBankSms.setContext(bankPhone.substring(bankPhone.length() - 4, bankPhone.length())).setOnDoubleClickListener(new DialogBankSms.OnDoubleClickListener() {
             @Override
             public void executeSend() {
                 dialogBankSms.getBtn().setEnabled(false);
@@ -206,7 +248,6 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     public void pushActivity(String baseResponseBean) {
         Intent intent = new Intent(mContext, ShBankWebActivity.class);
         intent.setAction(baseResponseBean);
-        startActivity(intent);
-        finish();
+        startActivityForResult(intent, 0);
     }
 }
