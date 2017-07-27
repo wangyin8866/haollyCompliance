@@ -17,6 +17,7 @@ import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.custom.dialog.DialogBank;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
+import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.utils.AppToast;
 
 import java.math.BigDecimal;
@@ -42,7 +43,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private BigDecimal income;
     private BigDecimal earning;
-    private double  amount;
+    private double amount;
     private String projectNo;
     private int state;
 
@@ -56,7 +57,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
             @Override
             public void onClick(View v) {
                 if (!mLoginState) {
-                    AppToast.showShortText(ProductDetailActivity.this, "你还没有登录!");
+                    startActivity(new Intent(ProductDetailActivity.this, LoginActivity.class));
                 } else if (state != 1) {//chongzhi
                     showDialog();
                 } else {
@@ -103,7 +104,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
             fragmentList.clear();
         }
         fragmentList = new ArrayList<>();
-        projectNo =getIntent().getStringExtra("projectNo");
+        projectNo = getIntent().getStringExtra("projectNo");
         productFragmentTop = new ProductFragmentTop();
         productFragmentBottom = new ProductFragmentBottom();
         fragmentList.add(productFragmentTop);
@@ -154,7 +155,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     public void showDialog() {
-        DialogBank dialogBank=new DialogBank(this);
+        DialogBank dialogBank = new DialogBank(this);
         dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
             @Override
             public void excuteLeft() {
