@@ -165,7 +165,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
         void callBackAmount(double amount);
 
-        void callBackIncome(BigDecimal income);
+        void callBackIncome(BigDecimal income, BigDecimal earning);
         void callBackState(int state);
     }
 
@@ -384,7 +384,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         account.setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal earning = income.subtract(account);
         tvIncome.setText(earning.toString()+ "元");
-        callBackProductDetail.callBackIncome(income);
+        callBackProductDetail.callBackIncome(income,earning);
     }
 
     @Override

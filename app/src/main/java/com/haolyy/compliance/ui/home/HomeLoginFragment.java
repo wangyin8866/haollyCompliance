@@ -215,6 +215,8 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
         imgs.add(R.mipmap.banner1);
         imgs.add(R.mipmap.banner2);
         imgs.add(R.mipmap.banner3);
+
+
         this.banner.setPages(new CBViewHolderCreator() {
             @Override
             public Object createHolder() {

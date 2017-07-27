@@ -41,6 +41,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     private List<BaseFragment> fragmentList;
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private BigDecimal income;
+    private BigDecimal earning;
     private double  amount;
     private String projectNo;
     private int state;
@@ -67,6 +68,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("productDetail", infoBean);
                             bundle.putString("income", income.toString());
+                            bundle.putString("earning", earning.toString());
                             bundle.putDouble("amount", amount);
                             bundle.putString("projectNo", projectNo);
                             intent.putExtras(bundle);
@@ -122,8 +124,9 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     @Override
-    public void callBackIncome(BigDecimal income) {
+    public void callBackIncome(BigDecimal income, BigDecimal earning) {
         this.income = income;
+        this.earning = earning;
     }
 
     @Override

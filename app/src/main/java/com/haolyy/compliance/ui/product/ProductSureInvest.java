@@ -33,6 +33,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private InvestBinding binding;
     private String income;
+    private String earning;
     private double amount;
     private String projectNo;
     @Override
@@ -82,6 +83,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
 
         LogUtils.e("infoBean",infoBean.toString());
         income = getIntent().getStringExtra("income");
+        earning = getIntent().getStringExtra("earning");
         amount = getIntent().getDoubleExtra("amount",0);
         projectNo = getIntent().getStringExtra("projectNo");
         mPresenter.requestUserInfoDetail();
@@ -104,7 +106,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
         //投资金额
         binding.tvInvestMoney.setText(amount+"元");
         //预期收益
-        binding.tvInvestEarnings.setText(income+"元");
+        binding.tvInvestEarnings.setText(earning+"元");
     }
 
     @Override
