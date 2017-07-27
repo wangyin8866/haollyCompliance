@@ -38,6 +38,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:drawableRight="@mipmap/login_delete"
+                android:maxLength="10"
                 android:gravity="center"
                 android:hint="请输入本人姓名,核实后不可更改"
                 android:textColor="@color/text_9b9b9b"

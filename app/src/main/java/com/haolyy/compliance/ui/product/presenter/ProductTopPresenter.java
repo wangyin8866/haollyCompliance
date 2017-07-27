@@ -78,6 +78,7 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
         invoke(UserModel.getInstance().getUserInfo(),new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
             @Override
             public void onNext(UserInfoBean userInfoBean) {
+                LogUtils.e("mLoginState",  "true3");
                 if (userInfoBean.getCode().equals("200")) {
                     if (userInfoBean.getModel().getCode().equals("200")) {
                         getView().showUserInfoData(userInfoBean);
@@ -91,6 +92,7 @@ public class ProductTopPresenter extends BasePresenter<ProductTopView>{
 
             @Override
             public void onError(Throwable e) {
+                LogUtils.e("mLoginState",  "true4");
             }
         },mContext));
     }

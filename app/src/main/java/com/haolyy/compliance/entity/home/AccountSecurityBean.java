@@ -10,7 +10,7 @@ public class AccountSecurityBean {
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"mobile":"176****0704","is_password":0,"to_bank_name":"CMB","set_hand_password_flag":"0","is_auto_tender":1,"set_login_password_flag":"1","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","to_acc_name":"苏子童","status":"0","to_acc_no":"***************5121","card_mobile":"185****0795"}}
+     * model : {"code":"200","msg":"成功","model":{"mobile":"150****0005","is_password":1,"real_name":"单科捷","bank_card_no":"6228223211212310066","set_hand_password_flag":"0","bank_no":"101","is_auto_tender":0,"set_login_password_flag":"1","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","is_open_account":1,"status":"1"}}
      */
 
     private String code;
@@ -45,7 +45,7 @@ public class AccountSecurityBean {
         /**
          * code : 200
          * msg : 成功
-         * model : {"mobile":"176****0704","is_password":0,"to_bank_name":"CMB","set_hand_password_flag":"0","is_auto_tender":1,"set_login_password_flag":"1","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","to_acc_name":"苏子童","status":"0","to_acc_no":"***************5121","card_mobile":"185****0795"}
+         * model : {"mobile":"150****0005","is_password":1,"real_name":"单科捷","bank_card_no":"6228223211212310066","set_hand_password_flag":"0","bank_no":"101","is_auto_tender":0,"set_login_password_flag":"1","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","is_open_account":1,"status":"1"}
          */
 
         private String code;
@@ -78,34 +78,34 @@ public class AccountSecurityBean {
 
         public static class ModelBean {
             /**
-             * mobile : 176****0704
-             * is_password : 0
-             * to_bank_name : CMB
+             * mobile : 150****0005
+             * is_password : 1
+             * real_name : 单科捷
+             * bank_card_no : 6228223211212310066
              * set_hand_password_flag : 0
-             * is_auto_tender : 1
+             * bank_no : 101
+             * is_auto_tender : 0
              * set_login_password_flag : 1
              * bind_mobile_flag : 1
              * risk_level : 0
              * bind_bank_card_flag : 1
-             * to_acc_name : 苏子童
-             * status : 0
-             * to_acc_no : ***************5121
-             * card_mobile : 185****0795
+             * is_open_account : 1
+             * status : 1
              */
 
             private String mobile;
             private int is_password;
-            private String to_bank_name;
+            private String real_name;
+            private String bank_card_no;
             private String set_hand_password_flag;
+            private String bank_no;
             private int is_auto_tender;
             private String set_login_password_flag;
             private String bind_mobile_flag;
             private int risk_level;
             private String bind_bank_card_flag;
-            private String to_acc_name;
+            private int is_open_account;
             private String status;
-            private String to_acc_no;
-            private String card_mobile;
 
             public String getMobile() {
                 return mobile;
@@ -123,12 +123,20 @@ public class AccountSecurityBean {
                 this.is_password = is_password;
             }
 
-            public String getTo_bank_name() {
-                return to_bank_name;
+            public String getReal_name() {
+                return real_name;
             }
 
-            public void setTo_bank_name(String to_bank_name) {
-                this.to_bank_name = to_bank_name;
+            public void setReal_name(String real_name) {
+                this.real_name = real_name;
+            }
+
+            public String getBank_card_no() {
+                return bank_card_no;
+            }
+
+            public void setBank_card_no(String bank_card_no) {
+                this.bank_card_no = bank_card_no;
             }
 
             public String getSet_hand_password_flag() {
@@ -137,6 +145,14 @@ public class AccountSecurityBean {
 
             public void setSet_hand_password_flag(String set_hand_password_flag) {
                 this.set_hand_password_flag = set_hand_password_flag;
+            }
+
+            public String getBank_no() {
+                return bank_no;
+            }
+
+            public void setBank_no(String bank_no) {
+                this.bank_no = bank_no;
             }
 
             public int getIs_auto_tender() {
@@ -179,12 +195,12 @@ public class AccountSecurityBean {
                 this.bind_bank_card_flag = bind_bank_card_flag;
             }
 
-            public String getTo_acc_name() {
-                return to_acc_name;
+            public int getIs_open_account() {
+                return is_open_account;
             }
 
-            public void setTo_acc_name(String to_acc_name) {
-                this.to_acc_name = to_acc_name;
+            public void setIs_open_account(int is_open_account) {
+                this.is_open_account = is_open_account;
             }
 
             public String getStatus() {
@@ -193,22 +209,6 @@ public class AccountSecurityBean {
 
             public void setStatus(String status) {
                 this.status = status;
-            }
-
-            public String getTo_acc_no() {
-                return to_acc_no;
-            }
-
-            public void setTo_acc_no(String to_acc_no) {
-                this.to_acc_no = to_acc_no;
-            }
-
-            public String getCard_mobile() {
-                return card_mobile;
-            }
-
-            public void setCard_mobile(String card_mobile) {
-                this.card_mobile = card_mobile;
             }
         }
     }

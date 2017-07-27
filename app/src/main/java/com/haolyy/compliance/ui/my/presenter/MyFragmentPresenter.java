@@ -60,7 +60,6 @@ public class MyFragmentPresenter extends BasePresenter<MyFragmentView> {
     /**
      * 账户中心首页信息
      */
-
         public void requestUserInfoDetail() {
             invoke(UserModel.getInstance().getUserInfo(), new ProgressSubscriber<UserInfoBean>(new SubscriberOnNextListener<UserInfoBean>() {
                 @Override

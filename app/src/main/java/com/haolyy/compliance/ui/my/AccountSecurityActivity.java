@@ -120,7 +120,8 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
 
     @Override
     public void showData(AccountSecurityBean accountSecurityBean) {
-        real_name_status.setText(TextUtils.isEmpty(accountSecurityBean.getModel().getModel().getTo_acc_name()) ? "未认证" : accountSecurityBean.getModel().getModel().getTo_acc_name());
+        real_name_status.setText(accountSecurityBean.getModel().getModel().getReal_name());
+        //real_name_status.setText(TextUtils.isEmpty(accountSecurityBean.getModel().getModel().getTo_acc_name()) ? "未认证" : accountSecurityBean.getModel().getModel().getTo_acc_name());
         tvBindCard.setText(accountSecurityBean.getModel().getModel().getBind_bank_card_flag().equals("1") ? "已认证" : "未认证");
         mobile.setText(accountSecurityBean.getModel().getModel().getMobile());
         int riskLevel = accountSecurityBean.getModel().getModel().getRisk_level();
