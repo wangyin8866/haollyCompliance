@@ -14,7 +14,6 @@ import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.databinding.InvestBinding;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
-import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductSureInvestPresenter;
 import com.haolyy.compliance.ui.product.view.ProductSureInvestView;
 import com.haolyy.compliance.utils.AppToast;
@@ -33,7 +32,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
 
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
     private InvestBinding binding;
-    private Double income;
+    private String income;
     private double amount;
     private String projectNo;
     @Override
@@ -82,7 +81,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
         infoBean = (ProductBaseDetail.ModelBeanX.ModelBean.InfoBean) getIntent().getSerializableExtra("productDetail");
 
         LogUtils.e("infoBean",infoBean.toString());
-        income = getIntent().getDoubleExtra("income", 0);
+        income = getIntent().getStringExtra("income");
         amount = getIntent().getDoubleExtra("amount",0);
         projectNo = getIntent().getStringExtra("projectNo");
         mPresenter.requestUserInfoDetail();
@@ -121,7 +120,7 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
             case R.id.tv_invest_sure:
 
 
-                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income+"", Config.returl);
+                mPresenter.invest(projectNo, BaseApplication.userId+"", amount+"", income, Config.returl);
 
                 break;
         }

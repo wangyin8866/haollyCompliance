@@ -37,6 +37,8 @@ import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
+import java.math.BigDecimal;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -139,7 +141,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     private String timeType;
     private String termTime;
     private String borrowType;
-    private float income;
+    private BigDecimal income;
     private Handler handler = new Handler();
     private String balance;
 
@@ -163,7 +165,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
         void callBackAmount(double amount);
 
-        void callBackIncome(double income);
+        void callBackIncome(BigDecimal income);
         void callBackState(int state);
     }
 
@@ -378,10 +380,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     public void getEarnings(Earnings earnings) {
         income = earnings.getModel().getExpectedRevenue();
         LogUtils.e("income",income+"");
-        float earning=income-Float.valueOf(etInvestAccount.getText().toString().trim());
-
-        tvIncome.setText(earning + "元");
-        callBackProductDetail.callBackIncome(earning);
+        BigDecimal account = new BigDecimal(etInvestAccount.getText().toString().trim());
+        account.setScale(2, BigDecimal.ROUND_DOWN);
+        BigDecimal earning = income.subtract(account);
+        tvIncome.setText(earning.toString()+ "元");
+        callBackProductDetail.callBackIncome(income);
     }
 
     @Override

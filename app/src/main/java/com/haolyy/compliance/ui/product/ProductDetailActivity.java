@@ -19,6 +19,7 @@ import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.utils.AppToast;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList;
     private ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean;
-    private double income=0.00;
+    private BigDecimal income;
     private double  amount;
     private String projectNo;
     private int state;
@@ -65,7 +66,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
                             Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("productDetail", infoBean);
-                            bundle.putDouble("income", income);
+                            bundle.putString("income", income.toString());
                             bundle.putDouble("amount", amount);
                             bundle.putString("projectNo", projectNo);
                             intent.putExtras(bundle);
@@ -91,6 +92,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
             }
         });
         productFragmentTop.setCallBackProductDetail(this);
+
     }
 
     private void init() {
@@ -120,7 +122,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     @Override
-    public void callBackIncome(double income) {
+    public void callBackIncome(BigDecimal income) {
         this.income = income;
     }
 

@@ -36,7 +36,7 @@ public class FragmentBottomBorrowDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bottom_borrow_detail, container, false);
         unbinder = ButterKnife.bind(this, view);
-        WYUtils.loadHtml("https://www.baidu.com/?tn=62095104_oem_dg", agreementWebview,agreementProgressBar);
+        WYUtils.loadHtml("http://www.chinazyjr.com/", agreementWebview,agreementProgressBar);
         return view;
     }
 

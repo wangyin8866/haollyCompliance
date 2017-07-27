@@ -1,5 +1,7 @@
 package com.haolyy.compliance.entity.product;
 
+import java.math.BigDecimal;
+
 /**
  * Created by wangyin on 2017/7/18.
  */
@@ -45,13 +47,13 @@ public class Earnings  {
          * expectedRevenue : 100.9
          */
 
-        private float expectedRevenue;
+        private BigDecimal expectedRevenue;
 
-        public float getExpectedRevenue() {
+        public BigDecimal getExpectedRevenue() {
             return expectedRevenue;
         }
 
-        public void setExpectedRevenue(float expectedRevenue) {
+        public void setExpectedRevenue(BigDecimal expectedRevenue) {
             this.expectedRevenue = expectedRevenue;
         }
     }
