@@ -32,7 +32,6 @@ import com.haolyy.compliance.ui.bank.RechargeActivity;
 import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductTopPresenter;
 import com.haolyy.compliance.ui.product.view.ProductTopView;
-import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.WYUtils;
@@ -308,7 +307,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 break;
             case R.id.tv_withdraw:
                 if (!mLoginState) {
-                    AppToast.showShortText(mContext, "你还没有登录!");
+                    startActivity(new Intent(mContext, LoginActivity.class));
                 } else if (state == 1) {//chongzhi
                     startActivity(new Intent(mContext, RechargeActivity.class));
                 } else {
