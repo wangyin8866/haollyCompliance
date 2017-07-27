@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.databinding.ProductFundListBinding;
 import com.haolyy.compliance.entity.my.ProductFundList;
+import com.haolyy.compliance.utils.DateUtil;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ProductFundListAdapter extends WyBaseAdapter {
 
         binding.productName.setText(product.getProjectName());
         binding.productBuyMoney.setText(product.getAmount());
-        binding.productInvestDate.setText(product.getOrderDate());
+        binding.productInvestDate.setText(DateUtil.getTimeyyyymmdd(Long.valueOf(product.getOrderDate())*1000));
         return binding.getRoot();
     }
 

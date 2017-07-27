@@ -45,13 +45,13 @@ public class Earnings  {
          * expectedRevenue : 100.9
          */
 
-        private double expectedRevenue;
+        private float expectedRevenue;
 
-        public double getExpectedRevenue() {
+        public float getExpectedRevenue() {
             return expectedRevenue;
         }
 
-        public void setExpectedRevenue(double expectedRevenue) {
+        public void setExpectedRevenue(float expectedRevenue) {
             this.expectedRevenue = expectedRevenue;
         }
     }

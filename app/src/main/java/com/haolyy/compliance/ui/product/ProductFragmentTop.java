@@ -139,7 +139,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     private String timeType;
     private String termTime;
     private String borrowType;
-    private double income;
+    private float income;
     private Handler handler = new Handler();
     private String balance;
 
@@ -377,8 +377,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void getEarnings(Earnings earnings) {
         income = earnings.getModel().getExpectedRevenue();
-        tvIncome.setText(income + "元");
-        callBackProductDetail.callBackIncome(income);
+        LogUtils.e("income",income+"");
+        float earning=income-Float.valueOf(etInvestAccount.getText().toString().trim());
+
+        tvIncome.setText(earning + "元");
+        callBackProductDetail.callBackIncome(earning);
     }
 
     @Override

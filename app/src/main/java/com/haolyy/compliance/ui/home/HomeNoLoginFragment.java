@@ -19,7 +19,7 @@ import com.haolyy.compliance.adapter.HomeActivityPagerAdapter;
 import com.haolyy.compliance.adapter.HomeNewPagerAdapter;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.custom.LocalImageHolderView;
+import com.haolyy.compliance.custom.LocalImageHolderViewNative;
 import com.haolyy.compliance.custom.MyPointView;
 import com.haolyy.compliance.entity.home.Banner;
 import com.haolyy.compliance.entity.home.HomeActivity;
@@ -135,13 +135,24 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         for (int i = 0; i < modelBeen.size(); i++) {
             images.add(modelBeen.get(i).getImageUrl());
         }
-
+        //本地图片
+        ArrayList<Integer> imgs = new ArrayList<>();
+        imgs.add(R.mipmap.banner1);
+        imgs.add(R.mipmap.banner2);
+        imgs.add(R.mipmap.banner3);
         this.banner.setPages(new CBViewHolderCreator() {
             @Override
             public Object createHolder() {
-                return new LocalImageHolderView();
+                return new LocalImageHolderViewNative();
             }
-        }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
+        }, imgs).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
+
+//        this.banner.setPages(new CBViewHolderCreator() {
+//            @Override
+//            public Object createHolder() {
+//                return new LocalImageHolderView();
+//            }
+//        }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
         this.banner.startTurning(2000);
 
         mPresenter.getRecommend(BaseApplication.userId + "");//首页新闻 2

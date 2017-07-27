@@ -71,7 +71,7 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
         //产品介绍
         binding.tvProductName.setText(assetManagementListBean.getProjectName());
         //购买日期
-        binding.tvBuyDate.setText(assetManagementListBean.getOrderDate());
+        binding.tvBuyDate.setText(DateUtil.getTimeyyyymmdd(Long.valueOf(assetManagementListBean.getOrderDate())*1000));
         //预期年化收益率
         binding.tvRate.setText(assetManagementListBean.getAnnualizedRate()+"%+"+assetManagementListBean.getAppendRate()+"%");
         //预期收益
