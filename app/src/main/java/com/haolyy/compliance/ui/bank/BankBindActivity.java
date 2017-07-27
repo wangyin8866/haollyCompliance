@@ -20,6 +20,7 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
 import com.haolyy.compliance.entity.bank.BankListBean;
+import com.haolyy.compliance.inteface.EditTextChangeBankCardListener;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.BankBindPresenter;
 import com.haolyy.compliance.ui.bank.view.BankBindView;
@@ -106,6 +107,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
         idCard = getIntent().getStringExtra("id");
         tvRealName.setText(realName);
         tvIdCard.setText(idCard);
+        etCardNo.addTextChangedListener(new EditTextChangeBankCardListener(etCardNo));
         cbBindProctor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -133,8 +135,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 realName = tvRealName.getText().toString();
                 idCard = tvIdCard.getText().toString();
                 bankName = tvBankNameLogo.getText().toString();
-                bankPhone = etBankPhone.getText().toString();
-                cardno = etCardNo.getText().toString();
+                bankPhone = etBankPhone.getText().toString().trim();
+                cardno = etCardNo.getText().toString().replaceAll(" ","");
                 if (TextUtils.isEmpty(bankName)) {
                     UIUtils.showToastCommon(mContext, "请选择银行");
                     return;

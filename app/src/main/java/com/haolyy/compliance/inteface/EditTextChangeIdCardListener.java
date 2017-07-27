@@ -4,6 +4,9 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.widget.EditText;
+
+import com.haolyy.compliance.utils.LogUtils;
+
 /**
  * 在控制小X的显示与隐藏基础上 对ID card数据类型 控制其显示方式为33444
  * Created by gsyf on 16/6/14.
@@ -57,6 +60,7 @@ public class EditTextChangeIdCardListener implements TextWatcher {
                     contents = contents.substring(0, 17) + addString + contents.substring(17);
                 }
                 editText.setText(contents);
+                LogUtils.e("aaa",contents+"---"+contents.length());
                 editText.setSelection(contents.length());
             }else if(length>=21){//最后一位切换键盘
                 editText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);

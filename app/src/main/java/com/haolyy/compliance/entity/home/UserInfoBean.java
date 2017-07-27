@@ -125,6 +125,15 @@ public class UserInfoBean  implements Serializable{
             private String vip_level;
             private String available_credit;
             private String status;
+            private int is_open_account;
+
+            public int getIs_open_account() {
+                return is_open_account;
+            }
+
+            public void setIs_open_account(int is_open_account) {
+                this.is_open_account = is_open_account;
+            }
 
             public String getCumulative_income() {
                 return cumulative_income;

@@ -1,5 +1,6 @@
 package com.haolyy.compliance.ui.product;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -232,7 +234,16 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
             }
         });
-       WYUtils.showSoftPan(etInvestAccount);
+        //自动弹出软键盘
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                etInvestAccount.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        },500);
+
         return view;
     }
 

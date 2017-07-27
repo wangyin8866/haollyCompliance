@@ -95,7 +95,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
             case R.id.security_bind_phone:
                 startActivity(new Intent(AccountSecurityActivity.this, CheckPhone.class));
                 break;
-            case R.id.gesture_layout:
+            case R.id.gesture_layout://手势密码
                 startActivityForResult(new Intent(AccountSecurityActivity.this, GestureManageActivity.class),100);
                 break;
             case R.id.tv_bind_card:

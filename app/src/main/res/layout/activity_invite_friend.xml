@@ -15,7 +15,7 @@
         android:paddingRight="4dp"
         app:drawableLeft="@mipmap/nav_back"
         app:drawableLeftVisibility="true"
-        app:rightText="邀请记录"
+        app:rightText="邀请好友"
         app:rightTextColor="#444444"
         app:rightTextSize="14sp"
         app:title="邀请记录"

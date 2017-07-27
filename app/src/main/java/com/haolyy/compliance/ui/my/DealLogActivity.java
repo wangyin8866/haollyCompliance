@@ -230,7 +230,8 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
         llDealTab.setVisibility(View.GONE);
         doubleClick = !doubleClick;
         if(capitalType==0){
-            xlvDealLog.setAdapter(new DealLogAdapter(list, this));
+            pageIndex = 0;
+            mPresenter.requestDealRecord(true, capitalType + "", "1", "0");
         }
         else {
             if (list.size() != 0) {

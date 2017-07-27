@@ -44,6 +44,7 @@ public class InviteFriendActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
         topInviteFriend.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {

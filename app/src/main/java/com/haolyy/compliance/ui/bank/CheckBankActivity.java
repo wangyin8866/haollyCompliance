@@ -14,6 +14,7 @@ import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.ClearEditText;
 import com.haolyy.compliance.custom.dialog.DialogBankSms;
 import com.haolyy.compliance.entity.bank.OldUserBean;
+import com.haolyy.compliance.inteface.EditTextChangeIdCardListener;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.bank.presenter.CheckBankPresenter;
 import com.haolyy.compliance.ui.bank.view.CheckBankView;
@@ -68,6 +69,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
         ButterKnife.bind(this);
         tvTitle.setText("开通上海银行存管账户");
         WYUtils.showSoftPan(tvRealName);
+        tvIdCard.addTextChangedListener(new EditTextChangeIdCardListener(tvIdCard));
     }
 
     @Override

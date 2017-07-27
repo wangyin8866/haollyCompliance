@@ -31,6 +31,7 @@
 
         <!-- 登录 -->
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait"></activity>
 

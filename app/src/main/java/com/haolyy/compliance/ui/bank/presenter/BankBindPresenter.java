@@ -26,6 +26,14 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
         super(context);
     }
 
+    /**
+     *
+     * @param busi_type_
+     * @param card_number_
+     * @param mobile_
+     * @param sms_type_
+     * @param useType 自定义的参数
+     */
     public void sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_, final int useType) {
         invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
@@ -40,7 +48,7 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
                             getView().refreshDialog(s.getModel().getSmsSeq(), false);
                         }
                     } else {
-                        UIUtils.showToastCommon(mContext, s.getMsg());
+                        UIUtils.showToastCommon(mContext, s.getModel().getRespDesc());
                         getView().refreshDialog("", true);
                     }
                 } else {

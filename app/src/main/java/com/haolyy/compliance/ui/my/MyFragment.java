@@ -204,7 +204,9 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             ivGold.setVisibility(View.INVISIBLE);
         }
 
-        //if(userInfoBean.getModel().getModel().get)
+        if (userInfoBean.getModel().getModel().getIs_open_account()==0) {
+            showRegisterDialog();
+        }
     }
 
     @Override

@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
@@ -23,6 +25,10 @@ import com.haolyy.compliance.utils.NetworkUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by wangyin on 2017/6/6.
@@ -45,6 +51,12 @@ public class MessageActivity extends AppCompatActivity {
      * 已经获取到多少条数据了
      */
     private static int mCurrentCounter = 0;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.tv_mark)
+    TextView tvMark;
+    @BindView(R.id.lrv_message)
+    LRecyclerView lrvMessage;
 
     private LRecyclerView mRecyclerView = null;
 
@@ -59,6 +71,7 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        ButterKnife.bind(this);
 
 
         mRecyclerView = (LRecyclerView) findViewById(R.id.lrv_message);
@@ -126,6 +139,17 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
+    @OnClick({R.id.iv_back, R.id.tv_mark})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.tv_mark:
+                break;
+        }
+    }
+
     private static class PreviewHandler extends Handler {
 
         private WeakReference<MessageActivity> ref;
@@ -160,8 +184,8 @@ public class MessageActivity extends AppCompatActivity {
                         ItemModel item = new ItemModel();
                         item.id = currentSize + i;
                         item.title = "item" + (item.id);
-                        if(i%3==0){
-                            item.isMark=true;
+                        if (i % 3 == 0) {
+                            item.isMark = true;
                         }
                         newList.add(item);
                     }
