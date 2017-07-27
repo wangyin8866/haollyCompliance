@@ -167,7 +167,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         void callBackAmount(double amount);
 
         void callBackIncome(BigDecimal income, BigDecimal earning);
-        void callBackState(int state);
     }
 
     private CallBackProductDetail callBackProductDetail;
@@ -287,14 +286,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!TextUtils.isEmpty(BaseApplication.mUserName)) {
-
-            mPresenter.selectUserState(0);
-        }
-    }
 
     @Override
     public void onDestroyView() {
@@ -319,12 +310,13 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
             case R.id.tv_withdraw:
                 if (!mLoginState) {
                     startActivity(new Intent(mContext, LoginActivity.class));
-                } else if (state == 1) {//chongzhi
-                    startActivity(new Intent(mContext, RechargeActivity.class));
                 } else {
-                    showDialog();
-
+                    if (!TextUtils.isEmpty(BaseApplication.mUserName)) {
+                        mPresenter.selectUserState(0);
+                    }
                 }
+
+
                 break;
             case R.id.tv_invest_all:
                 if (!TextUtils.isEmpty(balance)) {
@@ -382,7 +374,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
         state = baseResponseBean.getModel().getModel().getIs_open_account();
-        callBackProductDetail.callBackState(state);
+        if (state == 1) {//chongzhi
+            startActivity(new Intent(mContext, RechargeActivity.class));
+        } else {
+            showDialog();
+        }
         LogUtils.e(state + "");
     }
 

@@ -5,19 +5,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
+import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.custom.dialog.DialogBank;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.login.LoginActivity;
+import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
+import com.haolyy.compliance.ui.product.view.ProductDetailView;
 import com.haolyy.compliance.utils.AppToast;
 
 import java.math.BigDecimal;
@@ -30,7 +35,7 @@ import butterknife.ButterKnife;
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
 
-public class ProductDetailActivity extends AppCompatActivity implements ProductFragmentTop.CallBackProductDetail {
+public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter,ProductDetailView> implements ProductFragmentTop.CallBackProductDetail,ProductDetailView {
     @BindView(R.id.tv_product_join)
     TextView tvProductJoin;
     @BindView(R.id.vp_product)
@@ -48,6 +53,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     private int state;
 
     @Override
+    protected ProductDetailPresenter createPresenter() {
+        return new ProductDetailPresenter(mContext);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
@@ -58,28 +68,15 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
             public void onClick(View v) {
                 if (!mLoginState) {
                     startActivity(new Intent(ProductDetailActivity.this, LoginActivity.class));
-                } else if (state != 1) {//chongzhi
-                    showDialog();
+                } else if (amount == 0) {
+                    AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
+                } else if (amount % 100 != 0) {
+                    AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为100的整数倍!");
                 } else {
-                    if (amount == 0) {
-                        AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
-                    } else {
-                        if (amount % 100 == 0) {
-                            Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("productDetail", infoBean);
-                            bundle.putString("income", income.toString());
-                            bundle.putString("earning", earning.toString());
-                            bundle.putDouble("amount", amount);
-                            bundle.putString("projectNo", projectNo);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        } else {
-                            AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为100的整数倍!");
-                        }
+                    if (!TextUtils.isEmpty(BaseApplication.mUserName)) {
+                        mPresenter.selectUserState(0);
                     }
                 }
-
 
             }
         });
@@ -95,6 +92,11 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
             }
         });
         productFragmentTop.setCallBackProductDetail(this);
+
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
 
     }
 
@@ -131,8 +133,31 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductF
     }
 
     @Override
-    public void callBackState(int state) {
-        this.state = state;
+    public void showSuccessToast(String msg) {
+
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
+
+    }
+
+    @Override
+    public void getUserState(FindUserStatusBean baseResponseBean) {
+        state = baseResponseBean.getModel().getModel().getIs_open_account();
+        if (state == 1) {//chongzhi
+            Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("productDetail", infoBean);
+            bundle.putString("income", income.toString());
+            bundle.putString("earning", earning.toString());
+            bundle.putDouble("amount", amount);
+            bundle.putString("projectNo", projectNo);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        } else {
+            showDialog();
+        }
     }
 
 
