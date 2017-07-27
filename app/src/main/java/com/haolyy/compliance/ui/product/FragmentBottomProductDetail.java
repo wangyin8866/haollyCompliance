@@ -40,7 +40,7 @@ public class FragmentBottomProductDetail extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bottom_product_detail, container, false);
         unbinder = ButterKnife.bind(this, view);
         init();
-        WYUtils.loadHtml(Config.borrow_detail+"?id="+ id+"&juid="+ BaseApplication.juid+"&projectType="+project_type+"&productKind="+product_no+"&projectNo="+projectNo, agreementWebview,agreementProgressBar);
+        WYUtils.loadHtml(Config.borrow_detail+"?id="+ id+"&juid="+ BaseApplication.mUserName+"&projectType="+project_type+"&productKind="+product_no+"&projectNo="+projectNo, agreementWebview,agreementProgressBar);
         return view;
     }
     private void init() {

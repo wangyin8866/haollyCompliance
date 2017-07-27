@@ -1,6 +1,5 @@
 package com.haolyy.compliance.model;
 
-import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.product.Earnings;
 import com.haolyy.compliance.entity.product.Invest;
 import com.haolyy.compliance.entity.product.InvestLog;
@@ -77,8 +76,8 @@ public class ProductModel extends BaseModel {
     }
     public Observable<RepaymentPlan> getProductReturnPlan(String projectNo, String pageIndex) {
         map.clear();
-        map.put("project_no", projectNo);
-        map.put("page_index", pageIndex);
+        map.put("projectNo", projectNo);
+        map.put("pageIndex", pageIndex);
         map.put("platform", platform);
         map.put("client", client);
         return productApi.getProductReturnPlan(map);
