@@ -163,6 +163,7 @@ public class HomeLoginFragment extends BaseFragment<HomeLoginPresenter, HomeLogi
             case R.id.iv_zhang_dan:
                 break;
             case R.id.rl_activity:
+                startActivity(new Intent(getActivity(), ActivityActivity.class));
                 break;
             case R.id.rl_invite_friend:
                 startActivity(new Intent(getActivity(), InviteFriendActivity.class));

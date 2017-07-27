@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.haolyy.compliance.custom.TopBar
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        app:drawableLeft="@mipmap/nav_back"
+        app:drawableLeftVisibility="true"
+        app:title="活动专区"
+        app:titleTextColor="#FF4A4A4A"
+        app:titleTextSize="16sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/activity1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F0F0F0" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/activity1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F0F0F0" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/activity1" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F0F0F0" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/activity1" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F0F0F0" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/activity1" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F0F0F0" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/activity1" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

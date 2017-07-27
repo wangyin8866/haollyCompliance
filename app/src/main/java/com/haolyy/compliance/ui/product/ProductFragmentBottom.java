@@ -39,10 +39,9 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
 
-    FragmentBottomProductDetail bottomProductDetail;
+    FragmentBottomH5Detail fragmentBottomH5Detail;
     FragmentBottomInvestLog bottomInvestLog;
     FragmentBottomCreditorInfo bottomCreditorInfo;
-    FragmentBottomBorrowDetail bottomBorrowDetail;
     FragmentBottomRepaymentPlan bottomRepaymentPlan;
     private String product_no;
     @Override
@@ -59,33 +58,32 @@ public class ProductFragmentBottom extends BaseFragment<ProductBottomPresenter, 
         return view;
     }
     private void initView() {
-        bottomProductDetail = new FragmentBottomProductDetail();
+        fragmentBottomH5Detail = new FragmentBottomH5Detail();
         bottomInvestLog = new FragmentBottomInvestLog();
         bottomCreditorInfo = new FragmentBottomCreditorInfo();
-        bottomBorrowDetail = new FragmentBottomBorrowDetail();
         bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
         product_no = getActivity().getIntent().getStringExtra("product_no");
         LogUtils.e("ProductFragmentBottom_product_no", product_no);
         if (product_no.contains("YJH")||product_no.contains("DQY")||product_no.contains("XSB")) {//赢计划,短期赢,新手标
             titles.add("产品详情");
-            fragments.add(bottomProductDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
         } else if (product_no.contains("XFD")||product_no.contains("SCD")) {//消费贷,闪车贷
             titles.add("借款明细");
-            fragments.add(bottomBorrowDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
             titles.add("还款计划");
             fragments.add(bottomRepaymentPlan);
         } else if (product_no.contains("PJD")) {//票据贷
             titles.add("借款明细");
-            fragments.add(bottomBorrowDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
         } else if (product_no.contains("ZZY")) {//周周赢
             titles.add("产品详情");
-            fragments.add(bottomProductDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("债权信息");
             fragments.add(bottomCreditorInfo);
             titles.add("投资记录");

@@ -15,10 +15,9 @@ import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.TabAdapter;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.entity.product.ProductBaseDetail;
-import com.haolyy.compliance.ui.product.FragmentBottomBorrowDetail;
 import com.haolyy.compliance.ui.product.FragmentBottomCreditorInfo;
 import com.haolyy.compliance.ui.product.FragmentBottomInvestLog;
-import com.haolyy.compliance.ui.product.FragmentBottomProductDetail;
+import com.haolyy.compliance.ui.product.FragmentBottomH5Detail;
 import com.haolyy.compliance.ui.product.FragmentBottomRepaymentPlan;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
@@ -100,10 +99,9 @@ public class ProductFundDetailActivity extends AppCompatActivity {
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
 
-    FragmentBottomProductDetail bottomProductDetail;
+    FragmentBottomH5Detail fragmentBottomH5Detail;
     FragmentBottomInvestLog bottomInvestLog;
     FragmentBottomCreditorInfo bottomCreditorInfo;
-    FragmentBottomBorrowDetail bottomBorrowDetail;
     FragmentBottomRepaymentPlan bottomRepaymentPlan;
     ProductBaseDetail productBaseDetail;
     private String product_no;
@@ -180,33 +178,32 @@ public class ProductFundDetailActivity extends AppCompatActivity {
 
 
 
-        bottomProductDetail = new FragmentBottomProductDetail();
+        fragmentBottomH5Detail = new FragmentBottomH5Detail();
         bottomInvestLog = new FragmentBottomInvestLog();
         bottomCreditorInfo = new FragmentBottomCreditorInfo();
-        bottomBorrowDetail = new FragmentBottomBorrowDetail();
         bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
 
         LogUtils.e("ProductFragmentBottom_product_no", product_no);
         if (product_no.contains("YJH")||product_no.contains("DQY")||product_no.contains("XSB")) {//赢计划,短期赢,新手标
             titles.add("产品详情");
-            fragments.add(bottomProductDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
         } else if (product_no.contains("XFD")||product_no.contains("SCD")) {//消费贷,闪车贷
             titles.add("借款明细");
-            fragments.add(bottomBorrowDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
             titles.add("还款计划");
             fragments.add(bottomRepaymentPlan);
         } else if (product_no.contains("PJD")) {//票据贷
             titles.add("借款明细");
-            fragments.add(bottomBorrowDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
         } else if (product_no.contains("ZZY")) {//周周赢
             titles.add("产品详情");
-            fragments.add(bottomProductDetail);
+            fragments.add(fragmentBottomH5Detail);
             titles.add("债权信息");
             fragments.add(bottomCreditorInfo);
             titles.add("投资记录");
