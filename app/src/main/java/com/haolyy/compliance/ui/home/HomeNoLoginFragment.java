@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -75,8 +76,12 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
     ImageView iv3;
     @BindView(R.id.tv_register)
     TextView tvRegister;
+    @BindView(R.id.btn_tab1)
+    Button btnTab1;
+    @BindView(R.id.btn_tab2)
+    Button btnTab2;
     private View view;
-    private ArrayList<String> images ;
+    private ArrayList<String> images;
 
     private List<Banner.ModelBeanX.ModelBean> modelBeen;
 
@@ -90,7 +95,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         return view;
     }
 
-    @OnClick({R.id.home_login, R.id.tv_register})
+    @OnClick({R.id.home_login, R.id.tv_register,R.id.btn_tab1,R.id.btn_tab2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_login:
@@ -98,6 +103,12 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
                 break;
             case R.id.tv_register:
                 startActivity(new Intent(getActivity(), RegisterActivity.class));
+                break;
+            case R.id.btn_tab1:
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                break;
+            case R.id.btn_tab2:
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
         }
     }
@@ -133,7 +144,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         }, images).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused});
         this.banner.startTurning(2000);
 
-        mPresenter.getRecommend(BaseApplication.userId+"");//首页新闻 2
+        mPresenter.getRecommend(BaseApplication.userId + "");//首页新闻 2
     }
 
     @Override

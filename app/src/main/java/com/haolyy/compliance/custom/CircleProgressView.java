@@ -19,7 +19,9 @@ import android.view.View;
 
 import com.haolyy.compliance.R;
 
-//import android.graphics.Rect;
+/**
+ * 水平进度条
+ */
 
 
 public class CircleProgressView extends View {

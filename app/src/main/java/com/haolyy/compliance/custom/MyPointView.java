@@ -15,6 +15,7 @@ import static com.haolyy.compliance.R.id.viewGroup;
 
 /**
  * Created by wangyin on 2017/6/19.
+ * 跟随viewpager滑动的小圆点
  */
 
 public class MyPointView extends LinearLayout {
