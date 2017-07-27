@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.entity.bank.RechargeBean;
@@ -62,7 +63,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     @BindView(R.id.et_recharge_tmt)
     EditText etRechargeTmt;
     @BindView(R.id.et_recharge_phone)
-    EditText etRechargePhone;
+    TextView etRechargePhone;
     @BindView(R.id.et_recharge_sms)
     EditText etRechargeSms;
     @BindView(R.id.tv_success_amount)
@@ -71,6 +72,8 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
     TextView tvAvailable;
     @BindView(R.id.tv_recharge_error)
     TextView tvRechargeError;
+    @BindView(R.id.iv_logo)
+    ImageView ivLogo;
     private String smsQue;
     private String phone;
     private String sms;
@@ -150,9 +153,10 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
                 }
             }
         });
+        WYUtils.showSoftPan(etRechargeTmt);
     }
 
-    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms, R.id.tv_go_invest, R.id.tv_back_account, R.id.tv_try_again,R.id.tv_go_account})
+    @OnClick({R.id.iv_finish, R.id.btn_recharge, R.id.tv_recharge_sms, R.id.tv_go_invest, R.id.tv_back_account, R.id.tv_try_again, R.id.tv_go_account})
     public void onViewClicked(View view) {
         amt = etRechargeTmt.getText().toString();
         phone = etRechargePhone.getText().toString();
@@ -266,7 +270,9 @@ public class RechargeActivity extends BaseActivity<RechargePresenter, RechargeVi
         tvAvailable.setText(availableCredit + "");
         tvBankName.setText(fb.getModel().getBankName());
         tvCardNo.setText(cardno);
-
+        Glide.with(mContext).load(fb.getModel().getMapUrl()).into(ivLogo);
+        etRechargePhone.setText(fb.getModel().getMobile());
+        etRechargePhone.setEnabled(false);
         tvLimitAccount.setText(Html.fromHtml("<font color='#4a4a4a'>" + fb.getModel().getBankName() + "单笔限额</font><font color='#ff9933'>" + fb.getModel().getLimitSingle() + "</font><font color='#4a4a4a4a'>元,每日限额</font><font color='#ff9933'>" + fb.getModel().getLimitDay() + "</font><font color='#4a4a4a'>元</font>"));
     }
 

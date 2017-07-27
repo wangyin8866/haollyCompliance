@@ -224,6 +224,7 @@
 
             <CheckBox
                 android:id="@+id/cb_bind_proctor"
+                android:checked="true"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="6dp"

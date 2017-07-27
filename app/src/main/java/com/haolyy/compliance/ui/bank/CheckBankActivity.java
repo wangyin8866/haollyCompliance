@@ -67,6 +67,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
         setContentView(R.layout.content_check_bank);
         ButterKnife.bind(this);
         tvTitle.setText("开通上海银行存管账户");
+        WYUtils.showSoftPan(tvRealName);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class CheckBankActivity extends BaseActivity<CheckBankPresenter, CheckBan
                 finish();
                 break;
             case R.id.tv_bank_next:
-                realname = tvRealName.getText().toString();
+                realname = tvRealName.getText().toString().trim();
                 idCard = tvIdCard.getText().toString().replaceAll(" ", "");
                 if (TextUtils.isEmpty(realname) || !WYUtils.checkChnCharacters(realname)) {
                     UIUtils.showToastCommon(CheckBankActivity.this, "请输入正确的姓名");

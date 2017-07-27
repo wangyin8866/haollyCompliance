@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers;
 
 public class BaseModel {
 
-    public static final int DEFAULT_TIMEOUT = 10;
+    public static final int DEFAULT_TIMEOUT = 20;
     Retrofit retrofit;
     static Map<String, String> map = new HashMap<>();
     OkHttpClient.Builder httpClientBuilder;

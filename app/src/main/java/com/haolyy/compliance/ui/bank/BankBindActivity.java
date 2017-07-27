@@ -7,6 +7,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -84,7 +85,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     private String smseq;//短信序列号
     private Handler handler = new Handler();
     private Runnable check;
-
+    private boolean isAgree=true;
     @Override
     protected BankBindPresenter createPresenter() {
         return new BankBindPresenter(mContext);
@@ -105,6 +106,16 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
         idCard = getIntent().getStringExtra("id");
         tvRealName.setText(realName);
         tvIdCard.setText(idCard);
+        cbBindProctor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    isAgree=true;
+                }else {
+                    isAgree=false;
+                }
+            }
+        });
     }
 
     @Override
@@ -132,6 +143,9 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                     return;
                 } else if (TextUtils.isEmpty(cardno)) {
                     UIUtils.showToastCommon(mContext, "请填写银行卡号");
+                    return;
+                }else if(!isAgree){
+                    UIUtils.showToastCommon(mContext, "请勾选服务协议");
                     return;
                 }
                 mPresenter.sendSms("user_register", cardno, bankPhone, "", 0);

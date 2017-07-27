@@ -69,6 +69,15 @@ public class UserBaseInfoBean {
         private String limitDay;
         private String idNo;
         private double frozenAmount;
+        private String mapUrl;
+
+        public String getMapUrl() {
+            return mapUrl;
+        }
+
+        public void setMapUrl(String mapUrl) {
+            this.mapUrl = mapUrl;
+        }
 
         public String getRealName() {
             return realName;

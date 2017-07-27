@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.utils.DateUtil;
+import com.haolyy.compliance.utils.WYUtils;
 
 public class DialogBankSms extends Dialog {
     private TextView btn1Dialog;
@@ -43,6 +44,7 @@ public class DialogBankSms extends Dialog {
         btn = (TextView) super.findViewById(R.id.btn_sms);
         tvContent = (TextView) super.findViewById(R.id.tv_sms_content);
         tips=(TextView) super.findViewById(R.id.tv_wrong_tips);
+        WYUtils.showSoftPan(editText);
         initListener();
     }
 

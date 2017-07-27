@@ -17,12 +17,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -92,12 +94,14 @@ public class WYUtils {
 
     /**
      * 把金额字符串转化为数字
+     *
      * @param string
      * @return
      */
     public static float processAmount(String string) {
         return Float.valueOf(string.replace(",", ""));
     }
+
     public static String processAmountString(String string) {
         return string.replace(",", "");
     }
@@ -307,23 +311,26 @@ public class WYUtils {
 
     /**
      * 设置利率的隐藏和显示
+     *
      * @param textView1
      * @param textView2
      * @param textView3
      * @param str
      */
     public static void setVisibility(TextView textView1, TextView textView2, TextView textView3, String str) {
-        textView1.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
-        textView2.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
-        textView3.setVisibility(Double.valueOf(str)==0? View.GONE:View.VISIBLE);
+        textView1.setVisibility(Double.valueOf(str) == 0 ? View.GONE : View.VISIBLE);
+        textView2.setVisibility(Double.valueOf(str) == 0 ? View.GONE : View.VISIBLE);
+        textView3.setVisibility(Double.valueOf(str) == 0 ? View.GONE : View.VISIBLE);
     }
+
     /**
      * 拨打客服电话
+     *
      * @param context
      */
     public static void serviceTel(Context context) {
         Uri uri;
-            uri = Uri.parse("tel:4009996780");
+        uri = Uri.parse("tel:4009996780");
         Intent intent = new Intent(Intent.ACTION_CALL, uri);
         //此处不判断就会报错
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
@@ -332,11 +339,12 @@ public class WYUtils {
     }
 
     /**
-     *  6.0以上拨打客服电话判断权限
+     * 6.0以上拨打客服电话判断权限
+     *
      * @param context
      * @param i
      */
-    public static void CallPhone(Context context,int i) {
+    public static void CallPhone(Context context, int i) {
         if (Build.VERSION.SDK_INT >= 23) {
             //判断有没有拨打电话权限
             if (PermissionChecker.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -352,6 +360,7 @@ public class WYUtils {
 
     /**
      * 回款方式
+     *
      * @param profitPlan
      * @return
      */
@@ -376,20 +385,23 @@ public class WYUtils {
 
     /**
      * 判断软键盘是否显示
+     *
      * @param activity
      * @return
      */
-    public static boolean isSoftShowing(Activity  activity) {
+    public static boolean isSoftShowing(Activity activity) {
         //获取当前屏幕内容的高度
-        int screenHeight =activity.getWindow().getDecorView().getHeight();
+        int screenHeight = activity.getWindow().getDecorView().getHeight();
         //获取View可见区域的bottom
         Rect rect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
 
-        return screenHeight - rect.bottom -getSoftButtonsBarHeight(activity)!= 0;
+        return screenHeight - rect.bottom - getSoftButtonsBarHeight(activity) != 0;
     }
+
     /**
      * 底部虚拟按键栏的高度
+     *
      * @return
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -406,5 +418,17 @@ public class WYUtils {
         } else {
             return 0;
         }
+    }
+
+    public static void showSoftPan(final EditText editText) {
+        editText.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager inputManager =
+                        (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.showSoftInput(editText, 0);
+            }
+        }, 500);
+
     }
 }

@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.custom.dialog.WithDrawPopupWindow;
@@ -27,6 +28,7 @@ import com.haolyy.compliance.ui.bank.presenter.WithDrawPresenter;
 import com.haolyy.compliance.ui.bank.view.WithDrawView;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,6 +85,8 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
     ImageView ivWaiting;
     @BindView(R.id.tv_error_withdraw)
     TextView tvErrorWithdraw;
+    @BindView(R.id.iv_logo)
+    ImageView ivLogo;
     private String cardno;
     private String user_cust_id;
     private String bankId;
@@ -160,6 +164,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
 
             }
         });
+        WYUtils.showSoftPan(etWithDraw);
     }
 
     @OnClick({R.id.iv_finish, R.id.btn_withdraw, R.id.tv_withdraw_quan, R.id.tv_withdraw_way, R.id.tv_total_withdraw, R.id.tv_withdraw_complete, R.id.tv_back_account})
@@ -173,7 +178,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
                 if (Double.parseDouble(amt) > availableCredit) {
                     UIUtils.showToastCommon(mContext, "提现金额不能大于可用余额");
                     return;
-                }else if(Double.parseDouble(amt) <100){
+                } else if (Double.parseDouble(amt) < 100) {
                     UIUtils.showToastCommon(mContext, "提现金额不能小于100");
                     return;
                 }
@@ -275,6 +280,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawPresenter, WithDrawVi
         tvAvailable.setText(availableCredit + "");
         tvBankName.setText(fb.getModel().getBankName());
         tvCardNo.setText(cardno);
+        Glide.with(mContext).load(fb.getModel().getMapUrl()).into(ivLogo);
     }
 
     /**

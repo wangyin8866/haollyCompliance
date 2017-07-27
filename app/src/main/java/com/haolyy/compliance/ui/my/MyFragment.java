@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.MyProductFundAdapter;
 import com.haolyy.compliance.base.BaseApplication;
@@ -156,7 +157,6 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 break;
             case R.id.tv_recharge:
                 mPresenter.selectUserState(Config.staus_recharge);
-                //startActivity(new Intent(mContext, RechargeActivity.class));
                 break;
             case R.id.v_invite_friend:
                 startActivity(new Intent(mContext, InviteFriendActivity.class));
@@ -184,6 +184,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
     @Override
     public void showData(UserInfoBean userInfoBean) {
+        Glide.with(mContext).load(userInfoBean.getModel().getModel().getUser_head_photo()).into(ivHeadIcon);
         tvGoldPhone.setText(userInfoBean.getModel().getModel().getMobile());
         availableAmount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
         frezonAmount.setTextBottom(userInfoBean.getModel().getModel().getFrozen_amount());
@@ -202,6 +203,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         } else {
             ivGold.setVisibility(View.INVISIBLE);
         }
+
+        //if(userInfoBean.getModel().getModel().get)
     }
 
     @Override

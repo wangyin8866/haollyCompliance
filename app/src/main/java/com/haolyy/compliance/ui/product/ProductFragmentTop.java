@@ -231,7 +231,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
             }
         });
-
+       WYUtils.showSoftPan(etInvestAccount);
         return view;
     }
 

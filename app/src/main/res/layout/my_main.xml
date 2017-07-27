@@ -80,7 +80,7 @@
                     android:layout_alignLeft="@+id/iv_gold"
                     android:layout_below="@+id/iv_gold"
                     android:layout_marginTop="6dp"
-                    android:text="156****3941"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 

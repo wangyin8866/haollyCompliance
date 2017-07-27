@@ -99,7 +99,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     public void initView() {
         tvTitle.setText("快速注册");
         viewLine.setVisibility(View.VISIBLE);
-
+        WYUtils.showSoftPan(etPhone);
         cbRegister.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -110,8 +110,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 }
             }
         });
-
-        mPresenter.getToken();
+         cbRegister.setChecked(true);
+         textView3.setEnabled(true);
+         mPresenter.getToken();
 
 //        etImageCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override

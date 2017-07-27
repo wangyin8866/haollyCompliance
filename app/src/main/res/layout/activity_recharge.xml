@@ -27,6 +27,7 @@
             android:paddingTop="25dp">
 
             <ImageView
+                android:id="@+id/iv_logo"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginLeft="25dp"
@@ -117,7 +118,7 @@
 
             <EditText
                 android:id="@+id/et_recharge_tmt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:background="@null"
@@ -155,7 +156,7 @@
                 android:textColor="@color/text_4a4a4a"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_recharge_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

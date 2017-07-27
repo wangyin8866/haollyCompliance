@@ -143,6 +143,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
                 if (s.getCode().equals("200")) {
                     mContext.startActivity(new Intent(mContext, LoginActivity.class));
                     ((Activity) mContext).finish();
+                    UIUtils.showToastCommon(mContext,"设置成功");
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }
