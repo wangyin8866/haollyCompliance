@@ -34,4 +34,9 @@ public interface Config {
     String SMS_OPERATION_TYPE_ACTIVATE="bosAcctActivate";
     String SMS_TEMPLATE_CODE_HOLYY = "100";//好利网100
     String LoginOUT="loginOut";
+
+    /**
+     * h5页面
+     */
+    String borrow_detail="http://192.168.6.60/h5/html/second/IAdetailSpecial.html";
 }

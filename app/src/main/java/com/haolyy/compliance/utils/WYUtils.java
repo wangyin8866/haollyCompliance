@@ -225,6 +225,7 @@ public class WYUtils {
      * webView加载
      */
     public static void loadHtml(final String url, final WebView mWebView, final ProgressBar mProgressBar) {
+        LogUtils.e("webViewUrl", url);
         WebSettings settings = mWebView.getSettings();
         /**
          * setAllowFileAccess 启用或禁止WebView访问文件数据 setBlockNetworkImage 是否显示网络图像
@@ -269,6 +270,7 @@ public class WYUtils {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                LogUtils.e("webViewUrl", url);
                 view.loadUrl(url);
                 return true;
 

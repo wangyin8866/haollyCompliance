@@ -101,6 +101,7 @@ public class ProductListFragment extends BaseFragment<ProductListPresenter, Prod
                 intent.putExtra("productName", productName);
                 intent.putExtra("project_type", project_type);
                 intent.putExtra("product_no", product_no);
+                intent.putExtra("product_id", productList.getModel().getModel().getDataList().get(position - 1).getId());
                 startActivity(intent);
             }
         });
