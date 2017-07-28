@@ -95,7 +95,7 @@ public class HomeNoLoginFragment extends BaseFragment<HomeNoLoginPresenter, Home
         return view;
     }
 
-    @OnClick({R.id.home_login, R.id.tv_register,R.id.btn_tab1,R.id.btn_tab2})
+    @OnClick({R.id.home_login, R.id.tv_register, R.id.btn_tab1, R.id.btn_tab2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_login:

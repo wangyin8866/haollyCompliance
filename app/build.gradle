@@ -42,8 +42,9 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.3.0'
     compile 'tech.michaelx.authcode:authcode:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'jp.wasabeef:glide-transformations:2.0.2'
+    compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    compile 'jp.wasabeef:glide-transformations:2.0.2'
 }

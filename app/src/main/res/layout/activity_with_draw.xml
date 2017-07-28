@@ -211,6 +211,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:layout_marginBottom="5dp"

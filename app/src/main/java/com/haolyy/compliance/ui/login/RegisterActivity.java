@@ -1,11 +1,23 @@
 package com.haolyy.compliance.ui.login;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.transition.Slide;
+import android.view.GestureDetector;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,6 +29,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.config.Config;
@@ -29,6 +42,7 @@ import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
+import com.liuguangqiang.swipeback.SwipeBackLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,8 +52,7 @@ import butterknife.OnClick;
  * 注册页面
  * 作者：User on 2017/4/27 16:54
  */
-public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterView> implements RegisterView {
-
+public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterView> implements RegisterView, SwipeBackLayout.SwipeBackListener {
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.iv_service)
@@ -85,15 +98,48 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     private String imageCode;
     private String smsCode;
     private String password;
-    private boolean showPwd,closeInvite;
+    private boolean showPwd, closeInvite;
     private String regsiterCode;
+
+    private SwipeBackLayout swipeBackLayout;
+    private ImageView ivShadow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(getContainer());
+        View view = LayoutInflater.from(this).inflate(R.layout.activity_register, null);
+        swipeBackLayout.addView(view);
         ButterKnife.bind(this);
+        setDragEdge(SwipeBackLayout.DragEdge.LEFT);
         initView();
+        //getWindow().setEnterTransition(new Slide(Gravity.RIGHT).setDuration(500));
+        //getWindow().setExitTransition(new Slide(Gravity.RIGHT).setDuration(500));5.0转场动画
+    }
+
+    private View getContainer() {
+        RelativeLayout container = new RelativeLayout(this);
+        swipeBackLayout = new SwipeBackLayout(this);
+        swipeBackLayout.setOnSwipeBackListener(this);
+        ivShadow = new ImageView(this);
+        ivShadow.setBackgroundColor(getResources().getColor(R.color.black_p50));
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        container.addView(ivShadow, params);
+        container.addView(swipeBackLayout);
+        return container;
+    }
+
+    public void setDragEdge(SwipeBackLayout.DragEdge dragEdge) {
+        swipeBackLayout.setDragEdge(dragEdge);
+    }
+
+    public SwipeBackLayout getSwipeBackLayout() {
+        return swipeBackLayout;
+    }
+
+    @Override
+    public void onViewPositionChanged(float fractionAnchor, float fractionScreen) {
+        ivShadow.setAlpha(1 - fractionScreen);
     }
 
     public void initView() {
@@ -110,18 +156,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 }
             }
         });
-         cbRegister.setChecked(true);
-         textView3.setEnabled(true);
-         mPresenter.getToken();
-
-//        etImageCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(!hasFocus){
-//                    mPresenter.checkImageCode(etImageCode.getText().toString());
-//                }
-//            }
-//        });
+        cbRegister.setChecked(true);
+        textView3.setEnabled(true);
+        mPresenter.getToken();
     }
 
 
@@ -175,7 +212,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
         }
     }
 
-    @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish,R.id.ll_invite_code})
+    @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish, R.id.ll_invite_code})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
@@ -233,11 +270,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 }
                 break;
             case R.id.ll_invite_code:
-                if(closeInvite){
-                    closeInvite=false;
+                if (closeInvite) {
+                    closeInvite = false;
                     etRegisterInvite.setVisibility(View.VISIBLE);
-                }else {
-                    closeInvite=true;
+                } else {
+                    closeInvite = true;
                     etRegisterInvite.setVisibility(View.GONE);
                 }
                 break;

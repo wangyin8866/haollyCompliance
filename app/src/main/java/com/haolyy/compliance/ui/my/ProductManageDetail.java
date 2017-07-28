@@ -31,7 +31,6 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
 
     private ProjectManageBinding binding;
     private String product_no;
-
     private String projectNo;
     private int project_type;
     ProductBaseDetail productBaseDetail;
@@ -81,7 +80,27 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
         projectNo = assetManagementListBean.getProjectNo();
         LogUtils.e("projectNo",projectNo);
         project_type = assetManagementListBean.getProjectType();
-
+        //查询用户资产列表;orderStatus(订单状态):0.全部1、投资中 2、正在支付 3、投资成功 4、投资失败 5、计息中 6、已还款
+        switch (assetManagementListBean.getOrderStatus()){
+            case 1:
+                binding.tvBorrowState.setText("投资中");
+                break;
+            case 2:
+                binding.tvBorrowState.setText("正在支付");
+                break;
+            case 3:
+                binding.tvBorrowState.setText("投资成功");
+                break;
+            case 4:
+                binding.tvBorrowState.setText("投资失败");
+                break;
+            case 5:
+                binding.tvBorrowState.setText("计息中");
+                break;
+            case 6:
+                binding.tvBorrowState.setText("已还款");
+                break;
+        }
         mPresenter.getBaseDetail(projectNo + "", juid);
     }
 
