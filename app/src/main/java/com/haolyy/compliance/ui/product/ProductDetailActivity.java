@@ -14,6 +14,7 @@ import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.custom.dialog.DialogBank;
@@ -23,7 +24,9 @@ import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
 import com.haolyy.compliance.ui.product.view.ProductDetailView;
+import com.haolyy.compliance.utils.AccountUtil;
 import com.haolyy.compliance.utils.AppToast;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -31,11 +34,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action1;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
 
-public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter,ProductDetailView> implements ProductFragmentTop.CallBackProductDetail,ProductDetailView {
+public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, ProductDetailView> implements ProductFragmentTop.CallBackProductDetail, ProductDetailView {
     @BindView(R.id.tv_product_join)
     TextView tvProductJoin;
     @BindView(R.id.vp_product)
@@ -51,6 +55,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter,P
     private double amount;
     private String projectNo;
     private int state;
+    private long amountwait;
 
     @Override
     protected ProductDetailPresenter createPresenter() {
@@ -72,6 +77,10 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter,P
                     AppToast.showShortText(ProductDetailActivity.this, "投资金额不能为空!");
                 } else if (amount % 100 != 0) {
                     AppToast.showShortText(ProductDetailActivity.this, "起投金额必须为100的整数倍!");
+                } else if (amount > balance) {
+                    AppToast.showShortText(ProductDetailActivity.this, "您的余额不足，请充值!");
+                } else if (amount > amountwait) {
+                    AppToast.showShortText(ProductDetailActivity.this, "标的剩余额度不足!");
                 } else {
                     if (!TextUtils.isEmpty(BaseApplication.mUserName)) {
                         mPresenter.selectUserState(0);
@@ -102,6 +111,13 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter,P
 
     private void init() {
         ActivityCollector.addActivity(this);
+        RxBus.getInstance().toObserverable(ProductBaseDetail.class).subscribe(new Action1<ProductBaseDetail>() {
+            @Override
+            public void call(ProductBaseDetail s) {
+                String amountWait = s.getModel().getModel().getInfo().getAmountWait();
+                amountwait = AccountUtil.MoneyTolong(amountWait);
+            }
+        });
         if (fragmentList != null) {
             fragmentList.clear();
         }
@@ -130,6 +146,13 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter,P
     public void callBackIncome(BigDecimal income, BigDecimal earning) {
         this.income = income;
         this.earning = earning;
+    }
+
+    private double balance;
+
+    @Override
+    public void callBackUseful(double usefulAmount) {
+        this.balance = usefulAmount;
     }
 
     @Override

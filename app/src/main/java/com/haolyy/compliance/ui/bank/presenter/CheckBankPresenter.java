@@ -30,14 +30,18 @@ import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
  */
 
 public class CheckBankPresenter extends BasePresenter<CheckBankView> {
+
+    private final HuifuShModel instance;
+
     public CheckBankPresenter(Context context) {
         super(context);
+        instance = HuifuShModel.getInstance();
     }
 
     private String account_platform_no;
 
     public void isBosAcctActivate(String idno, String realname, String user_type) {
-        invoke(HuifuShModel.getInstance().isBosAcctActivate(idno, realname, user_type),
+        invoke(instance.isBosAcctActivate(idno, realname, user_type),
                 new ProgressSubscriber<IsActivateBean>(new SubscriberOnNextListener<IsActivateBean>() {
 
 
@@ -79,7 +83,7 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
      * @param PageType
      */
     public void activate(String PageType) {
-        invoke(HuifuShModel.getInstance().activate(PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
+        invoke(instance.activate(PageType), new ProgressSubscriber<ActivateBean>(new SubscriberOnNextListener<ActivateBean>() {
             @Override
             public void onNext(ActivateBean s) {
                 if (s.getCode().equals("200")) {
@@ -112,8 +116,14 @@ public class CheckBankPresenter extends BasePresenter<CheckBankView> {
         }, mContext));
     }
 
+    /**
+     * 展示其他平台已经开过户的资料
+     *
+     * @param mobile
+     * @param sms
+     */
     public void validateOldUser(String mobile, String sms) {
-        invoke(HuifuShModel.getInstance().validateOldUser(mobile, account_platform_no, sms), new ProgressSubscriber<OldUserBean>(new SubscriberOnNextListener<OldUserBean>() {
+        invoke(instance.validateOldUser(mobile, account_platform_no, sms), new ProgressSubscriber<OldUserBean>(new SubscriberOnNextListener<OldUserBean>() {
             @Override
             public void onNext(OldUserBean s) {
                 getView().showCard(s);

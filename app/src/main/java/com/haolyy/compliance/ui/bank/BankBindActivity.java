@@ -86,7 +86,8 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     private String smseq;//短信序列号
     private Handler handler = new Handler();
     private Runnable check;
-    private boolean isAgree=true;
+    private boolean isAgree = true;
+
     @Override
     protected BankBindPresenter createPresenter() {
         return new BankBindPresenter(mContext);
@@ -111,10 +112,10 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
         cbBindProctor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    isAgree=true;
-                }else {
-                    isAgree=false;
+                if (isChecked) {
+                    isAgree = true;
+                } else {
+                    isAgree = false;
                 }
             }
         });
@@ -136,7 +137,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 idCard = tvIdCard.getText().toString();
                 bankName = tvBankNameLogo.getText().toString();
                 bankPhone = etBankPhone.getText().toString().trim();
-                cardno = etCardNo.getText().toString().replaceAll(" ","");
+                cardno = etCardNo.getText().toString().replaceAll(" ", "");
                 if (TextUtils.isEmpty(bankName)) {
                     UIUtils.showToastCommon(mContext, "请选择银行");
                     return;
@@ -146,7 +147,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 } else if (TextUtils.isEmpty(cardno)) {
                     UIUtils.showToastCommon(mContext, "请填写银行卡号");
                     return;
-                }else if(!isAgree){
+                } else if (!isAgree) {
                     UIUtils.showToastCommon(mContext, "请勾选服务协议");
                     return;
                 }

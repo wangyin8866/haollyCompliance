@@ -20,6 +20,9 @@ import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
  */
 
 public class RebindBankPresenter extends BasePresenter<BankReBindView> {
+
+    private HuifuShModel instance;
+
     public RebindBankPresenter(Context context) {
         super(context);
     }
@@ -30,7 +33,7 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
     }
 
     public void sendSms(String busi_type_, String card_number_, String mobile_, String sms_type_) {
-        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_, mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
+        invoke(instance.sendSms(busi_type_, card_number_, mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
                 if (s.getCode().equals("200")) {
@@ -49,6 +52,7 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
 
             @Override
             public void onError(Throwable e) {
+                getView().countDown("", true);
                 LogUtils.e(e.getMessage());
             }
         }, mContext));
@@ -66,12 +70,12 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
      * @param ordsms_ext_
      */
     public void quikBind(String trade_type_, final String bank_code_, String card_number_, final String mobile_, String sms_code_, String sms_seq_, String ordsms_ext_) {
-        invoke(HuifuShModel.getInstance().quikBind(trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new ProgressSubscriber<QuikBindBean>(new SubscriberOnNextListener<QuikBindBean>() {
+        invoke(instance.quikBind(trade_type_, bank_code_, card_number_, mobile_, sms_code_, sms_seq_, ordsms_ext_), new ProgressSubscriber<QuikBindBean>(new SubscriberOnNextListener<QuikBindBean>() {
             @Override
             public void onNext(QuikBindBean bean) {
                 if (bean.getCode().equals("200")) {
                     if (bean.getModel().getRespCode().equals("000")) {
-                         getView().showSuccessToast(bean.getModel().getRespDesc());
+                        getView().showSuccessToast(bean.getModel().getRespDesc());
                     } else {
                         UIUtils.showToastCommon(mContext, bean.getModel().getRespDesc());
                     }
@@ -90,7 +94,8 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
     }
 
     public void selectUserBaseInfo() {
-        invoke(HuifuShModel.getInstance().getUSerBaseInfo(), new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
+        instance = HuifuShModel.getInstance();
+        invoke(instance.getUSerBaseInfo(), new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
             @Override
             public void onNext(UserBaseInfoBean userBaseInfoBean) {
                 if (userBaseInfoBean.getCode().equals("200")) {

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
+import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
@@ -167,6 +168,8 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         void callBackAmount(double amount);
 
         void callBackIncome(BigDecimal income, BigDecimal earning);
+
+        void callBackUseful(double usefulAmount);
     }
 
     private CallBackProductDetail callBackProductDetail;
@@ -241,7 +244,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
             }
-        },500);
+        }, 500);
 
         return view;
     }
@@ -282,7 +285,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         if (!product_no.equalsIgnoreCase("pjd")) {//票据贷
             leftLabel.setVisibility(View.GONE);
         }
-       // mPresenter.getBaseDetail(projectNo + "", juid);
+        // mPresenter.getBaseDetail(projectNo + "", juid);
 
 
     }
@@ -295,7 +298,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     }
 
 
-    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan, R.id.tv_balance, R.id.tv_withdraw,R.id.tv_invest_all})
+    @OnClick({R.id.tv_mirror_plan, R.id.tv_use_quan, R.id.tv_balance, R.id.tv_withdraw, R.id.tv_invest_all})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_mirror_plan:
@@ -321,12 +324,11 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                 break;
             case R.id.tv_invest_all:
                 if (!TextUtils.isEmpty(balance)) {
-                etInvestAccount.setText(balance);
+                    etInvestAccount.setText(balance);
                 }
                 break;
         }
     }
-
 
 
     @Override
@@ -337,6 +339,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
+        RxBus.getInstance().post(productBaseDetail);//传递数据给Activity
         if (mLoginState) {
             LogUtils.e("mLoginState", mLoginState + "");
             tvBalance.setClickable(false);
@@ -395,18 +398,20 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
     @Override
     public void getEarnings(Earnings earnings) {
         income = earnings.getModel().getExpectedRevenue();
-        LogUtils.e("income",income+"");
+        LogUtils.e("income", income + "");
         BigDecimal account = new BigDecimal(etInvestAccount.getText().toString().trim());
         account.setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal earning = income.subtract(account);
-        tvIncome.setText(earning.toString()+ "元");
-        callBackProductDetail.callBackIncome(income,earning);
+        tvIncome.setText(earning.toString() + "元");
+        callBackProductDetail.callBackIncome(income, earning);
     }
 
     @Override
     public void showUserInfoData(UserInfoBean userInfoBean) {
         balance = WYUtils.processAmountString(userInfoBean.getModel().getModel().getAvailable_credit());
-        tvBalance.setText(balance+ "元");
+        tvBalance.setText(balance + "元");
+        callBackProductDetail.callBackUseful(Double.parseDouble(balance));
+
     }
 
     public void showDialog() {

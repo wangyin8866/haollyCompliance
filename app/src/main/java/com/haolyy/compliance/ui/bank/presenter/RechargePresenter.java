@@ -19,13 +19,16 @@ import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
  */
 
 public class RechargePresenter extends BasePresenter<RechargeView> {
+
+    private HuifuShModel instance;
+
     public RechargePresenter(Context context) {
         super(context);
     }
 
     public void recharge(String from_mobile_, String gate_busi_id_, String sms_code_, String sms_seq_, String trans_amt_, String bank_id_
                          ) {
-        invoke(HuifuShModel.getInstance().recharge(from_mobile_, gate_busi_id_, sms_code_, sms_seq_, trans_amt_, bank_id_), new ProgressSubscriber<RechargeBean>(new SubscriberOnNextListener<RechargeBean>() {
+        invoke(instance.recharge(from_mobile_, gate_busi_id_, sms_code_, sms_seq_, trans_amt_, bank_id_), new ProgressSubscriber<RechargeBean>(new SubscriberOnNextListener<RechargeBean>() {
             @Override
             public void onNext(RechargeBean s) {
                 if (s.getCode().equals("200")) {
@@ -56,7 +59,7 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
      * @param sms_type_
      */
     public void sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_) {
-        invoke(HuifuShModel.getInstance().sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
+        invoke(instance.sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
                 if (s.getCode().equals("200")) {
@@ -74,12 +77,13 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
 
             @Override
             public void onError(Throwable e) {
-
+                getView().countDown("", true);
             }
         }, mContext));
     }
     public void getUserBaseInfo() {
-        invoke(HuifuShModel.getInstance().getUSerBaseInfo(),new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
+        instance = HuifuShModel.getInstance();
+        invoke(instance.getUSerBaseInfo(),new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
             @Override
             public void onNext(UserBaseInfoBean userBaseInfoBean) {
                  if(userBaseInfoBean.getCode().equals("200")){

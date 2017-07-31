@@ -44,9 +44,16 @@ import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * 注册页面
@@ -206,10 +213,54 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
     @Override
     public void countDown(boolean b) {
         if (b) {
-            DateUtil.countDown(tvRegisterSms, "重新发送");
+            countDown(tvRegisterSms, "重新发送");
         } else {
             tvRegisterSms.setEnabled(true);
         }
+    }
+
+    /**
+     * 倒计时工具
+     *
+     * @param tv
+     * @param reset
+     * @return
+     */
+    public Subscription countDown(final TextView tv, final String reset) {
+        final long[] currentTime = {Config.seconds - 1000};
+        tv.setText((Config.seconds - 1000) / 1000 + "s");
+        Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Long>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        unsubscribe();
+                        tv.setEnabled(true);
+
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        currentTime[0] -= 1000;
+                        if (currentTime[0] < 0) {
+                            etImageCode.getText().clear();
+                            etImageCode.requestFocus();
+                            Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
+                            tv.setText(reset);
+                            tv.setEnabled(true);
+                            unsubscribe();
+                        } else {
+                            tv.setText(currentTime[0] / 1000 + "s");
+                        }
+                    }
+                });
+        return subscribe;
     }
 
     @OnClick({R.id.iv_code, R.id.textView3, R.id.tv_register_sms, R.id.tv_show_pwd, R.id.tv_contract_register, R.id.iv_finish, R.id.ll_invite_code})
@@ -242,6 +293,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter, RegisterVi
                 mPresenter.register(phone, passWord, smsCode, imageCode, "1", regsiterCode);
                 break;
             case R.id.tv_register_sms:
+                etSmsCode.requestFocus();
                 phone = etPhone.getText().toString();
                 imageCode = etImageCode.getText().toString();
                 if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
