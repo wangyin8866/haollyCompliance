@@ -2,7 +2,6 @@ package com.haolyy.compliance.ui.my;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -18,7 +17,6 @@ import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.ui.bank.RebindBankActivity;
 import com.haolyy.compliance.ui.my.presenter.AccountSecurityPresenter;
 import com.haolyy.compliance.ui.my.view.AccountSecurityView;
-import com.haolyy.compliance.utils.CommonUtils;
 import com.haolyy.compliance.utils.SPUtils;
 
 import butterknife.BindView;
@@ -26,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresenter,AccountSecurityView> implements AccountSecurityView {
+public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresenter, AccountSecurityView> implements AccountSecurityView {
 
     @BindView(R.id.security_bind_phone)
     RelativeLayout securityBindPhone;
@@ -81,7 +79,6 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         });
 
 
-
     }
 
     @Override
@@ -89,17 +86,17 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
 
     }
 
-    @OnClick({R.id.security_bind_phone, R.id.gesture_layout,R.id.tv_bind_card})
+    @OnClick({R.id.security_bind_phone, R.id.gesture_layout, R.id.tv_bind_card})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.security_bind_phone:
                 startActivity(new Intent(AccountSecurityActivity.this, CheckPhone.class));
                 break;
             case R.id.gesture_layout://手势密码
-                startActivityForResult(new Intent(AccountSecurityActivity.this, GestureManageActivity.class),100);
+                startActivityForResult(new Intent(AccountSecurityActivity.this, GestureManageActivity.class), 100);
                 break;
             case R.id.tv_bind_card:
-                mPresenter.selectUserState(Config.status_rebind);
+//                mPresenter.selectUserState(Config.status_rebind);
                 break;
         }
     }
@@ -107,22 +104,22 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 100) {
-            gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
+        if (requestCode == 100) {
+            gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this, ConstantKey.GESTURE_KEY, "")) ? "未开启" : "已开启");
         }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
+        gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this, ConstantKey.GESTURE_KEY, "")) ? "未开启" : "已开启");
     }
 
     @Override
     public void showData(AccountSecurityBean accountSecurityBean) {
-        real_name_status.setText(accountSecurityBean.getModel().getModel().getReal_name());
-        //real_name_status.setText(TextUtils.isEmpty(accountSecurityBean.getModel().getModel().getTo_acc_name()) ? "未认证" : accountSecurityBean.getModel().getModel().getTo_acc_name());
-        tvBindCard.setText(accountSecurityBean.getModel().getModel().getBind_bank_card_flag().equals("1") ? "已认证" : "未认证");
+       AccountSecurityBean.ModelBeanX.ModelBean modelBean= accountSecurityBean.getModel().getModel();
+        real_name_status.setText(modelBean.getStatus().equals("0") ? "未认证" : modelBean.getReal_name());
+        tvBindCard.setText(accountSecurityBean.getModel().getModel().getBind_bank_card_flag().equals("1") ? "已绑定" : "未未绑定");
         mobile.setText(accountSecurityBean.getModel().getModel().getMobile());
         int riskLevel = accountSecurityBean.getModel().getModel().getRisk_level();
         String level = "未设置";
@@ -147,16 +144,16 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
                 break;
         }
         risk_assessment.setText(level);
-        transaction_pwd_status.setText(accountSecurityBean.getModel().getModel().getIs_password()==1 ? "已设置" : "未设置");
-        login_pwd_status.setText(accountSecurityBean.getModel().getModel().getSet_login_password_flag().equals("1") ?"已设置" : "未设置");
-        auto_invest.setText(accountSecurityBean.getModel().getModel().getIs_auto_tender() == 1? "已开启":"未开启");
-        gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this,ConstantKey.GESTURE_KEY,"")) ? "未开启":"已开启");
+        transaction_pwd_status.setText(accountSecurityBean.getModel().getModel().getIs_password() == 1 ? "已设置" : "未设置");
+        login_pwd_status.setText(accountSecurityBean.getModel().getModel().getSet_login_password_flag().equals("1") ? "已设置" : "未设置");
+        auto_invest.setText(accountSecurityBean.getModel().getModel().getIs_auto_tender() == 1 ? "已开启" : "未开启");
+        gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this, ConstantKey.GESTURE_KEY, "")) ? "未开启" : "已开启");
 
     }
 
     @Override
     public void pushActivity(int flag) {
-        if(flag==Config.status_rebind){
+        if (flag == Config.status_rebind) {
             startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
             finish();
         }
