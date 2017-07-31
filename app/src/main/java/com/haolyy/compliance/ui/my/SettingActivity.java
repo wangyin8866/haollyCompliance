@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -18,13 +19,10 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.custom.SwitchButton;
 import com.haolyy.compliance.custom.dialog.DialogNoTitleDoubleButton;
-import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.utils.CacheManager;
 import com.haolyy.compliance.utils.SPUtils;
-import com.haolyy.compliance.utils.UIUtils;
 import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
@@ -66,7 +64,8 @@ public class SettingActivity extends AppCompatActivity {
     TextView tvLoginOut;
     private DialogNoTitleDoubleButton dialogNoTitleDoubleButton;
     private String totalCacheSize;
-
+    private boolean isNotification;
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,13 @@ public class SettingActivity extends AppCompatActivity {
         initView();
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void initView() {
+
+        //判断用户是否开启权限
+        isNotification = WYUtils.isNotificationEnabled(this);
+
         tvTitle.setText("设置");
         try {
             totalCacheSize = CacheManager.getTotalCacheSize(getApplicationContext());
@@ -85,24 +90,32 @@ public class SettingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         dialogNoTitleDoubleButton = new DialogNoTitleDoubleButton(SettingActivity.this);
+        if (isNotification) {
+            switch1.setChecked(true);
+        } else {
+            switch1.setChecked(false);
+        }
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Spanned spanned = Html.fromHtml("您现在无法收到消息通知。请到<font color='#ff9933'>“设置-好利网-通知”</font>中，开启允 许通知选项。");
-                    dialogNoTitleDoubleButton.setContent(spanned).setOnDoubleClickListener(new DialogNoTitleDoubleButton.OnDoubleClickListener() {
-                        @Override
-                        public void excuteLeft() {
-
-                        }
-
-                        @Override
-                        public void excuteRight() {
-                            getAppDetailSettingIntent(SettingActivity.this);
-                            dialogNoTitleDoubleButton.dismiss();
-                        }
-                    }).show();
+                Spanned spanned = null;
+                if (isNotification) {
+                    spanned = Html.fromHtml("您现在可以收到消息通知。请到<font color='#ff9933'>“设置-好利网-通知”</font>中，关闭允许通知选项。");
+                } else {
+                    spanned = Html.fromHtml("您现在无法收到消息通知。请到<font color='#ff9933'>“设置-好利网-通知”</font>中，开启允许通知选项。");
                 }
+                dialogNoTitleDoubleButton.setContent(spanned).setOnDoubleClickListener(new DialogNoTitleDoubleButton.OnDoubleClickListener() {
+                    @Override
+                    public void excuteLeft() {
+
+                    }
+
+                    @Override
+                    public void excuteRight() {
+                        getAppDetailSettingIntent(SettingActivity.this);
+                        dialogNoTitleDoubleButton.dismiss();
+                    }
+                }).show();
             }
         });
     }
@@ -125,6 +138,12 @@ public class SettingActivity extends AppCompatActivity {
                     public void excuteRight() {
                         CacheManager.clearAllCache(getApplicationContext());
                         dialogNoTitleDoubleButton.dismiss();
+                        try {
+                            totalCacheSize = CacheManager.getTotalCacheSize(getApplicationContext());
+                            tvClearCache.setText(totalCacheSize);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }).show();
                 break;
@@ -174,6 +193,10 @@ public class SettingActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 跳到设置
+     * @param context
+     */
     private void getAppDetailSettingIntent(Context context) {
         Intent localIntent = new Intent();
         localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -183,4 +206,6 @@ public class SettingActivity extends AppCompatActivity {
         }
         startActivity(localIntent);
     }
+
+
 }

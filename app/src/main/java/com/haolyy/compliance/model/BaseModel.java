@@ -36,11 +36,11 @@ public class BaseModel {
     public BaseModel() {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = new OkHttpClient.Builder();
-        /*if (WYUtils.isApkInDebug(BaseApplication.getContext())) {
+        if (WYUtils.isApkInDebug(BaseApplication.getContext())) {
             httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         }else {
             httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        }*/
+        }
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())

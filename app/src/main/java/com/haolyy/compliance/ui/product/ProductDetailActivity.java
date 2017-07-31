@@ -42,7 +42,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
     @BindView(R.id.vp_product)
     VerticalViewPager vpProduct;
     @BindView(R.id.top_bar)
-    TopBar topBar;
+    TopBar topBar;                  
     private ProductFragmentTop productFragmentTop;
     private ProductFragmentBottom productFragmentBottom;
     private List<BaseFragment> fragmentList;
