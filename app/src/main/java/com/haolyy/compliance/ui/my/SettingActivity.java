@@ -118,9 +118,11 @@ public class SettingActivity extends AppCompatActivity {
                 }).show();
             }
         });
+
+        tvVersion.setText("V"+WYUtils.getAppVersionName(this));
     }
 
-    @OnClick({R.id.iv_finish, R.id.tv_clear_cache, R.id.tv_version, R.id.tv_about, R.id.tv_contact_us, R.id.tv_feedback,R.id.tv_login_out})
+    @OnClick({R.id.iv_finish, R.id.tv_clear_cache, R.id.tv_about, R.id.tv_contact_us, R.id.tv_feedback,R.id.tv_login_out})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -147,8 +149,7 @@ public class SettingActivity extends AppCompatActivity {
                     }
                 }).show();
                 break;
-            case R.id.tv_version:
-                break;
+
             case R.id.tv_about:
                 break;
             case R.id.tv_contact_us:
@@ -194,7 +195,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     /**
-     * 跳到设置
+     * 跳到权限设置
      * @param context
      */
     private void getAppDetailSettingIntent(Context context) {
