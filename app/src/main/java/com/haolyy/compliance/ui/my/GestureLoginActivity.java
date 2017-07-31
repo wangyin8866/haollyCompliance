@@ -5,15 +5,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haolyy.compliance.R;
+import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.ShapeLocker;
 import com.haolyy.compliance.custom.TopBar;
+import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.utils.SPUtils;
 import com.haolyy.compliance.utils.ShapeLockerUtils;
 
@@ -21,13 +23,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by User on 2017/6/9.
  */
 
-public class GestureSettingActivity extends AppCompatActivity {
+public class GestureLoginActivity extends AppCompatActivity {
     @BindView(R.id.sl)
     ShapeLocker sl;
     @BindView(R.id.tips)
@@ -37,28 +38,17 @@ public class GestureSettingActivity extends AppCompatActivity {
     @BindView(R.id.setting_layout)
     LinearLayout setting_layout;
 
-    @BindView(R.id.jump_btn)
-    Button jump_btn;
-
-
-    @BindView(R.id.success_layout)
-    View success_layout;
-
-    private int selectIndex = 1;
-    private String firstPattern ;
-    private String secondPattern;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gesture_setting);
+        setContentView(R.layout.activity_gesture_login);
         ButterKnife.bind(this);
+        ActivityCollector.addActivity(this);
         init();
         top_bar.setOnItemClickListener(new TopBar.OnItemClickListener() {
             @Override
             public void OnLeftButtonClicked() {
                 finish();
-                setResult(101);
             }
 
             @Override
@@ -84,36 +74,32 @@ public class GestureSettingActivity extends AppCompatActivity {
 
             @Override
             public void onPatternDetected(List<ShapeLocker.Cell> pattern) {
-                if(selectIndex == 1) {
-                    if(pattern.size() < 4) {
-                        tips.setVisibility(View.VISIBLE);
-                        tips.setText("请至少连接4个点");
-                    }else {
-                        firstPattern =  ShapeLockerUtils.patternToString(pattern);
-                        selectIndex = 2;
-                        sl.clearPattern();
-                        tips.setVisibility(View.INVISIBLE);
-                    }
 
-                }else if(selectIndex == 2) {
-                    secondPattern =  ShapeLockerUtils.patternToString(pattern);
-                    if(secondPattern.equals(firstPattern)) {
-                        SPUtils.saveString(GestureSettingActivity.this, ConstantKey.GESTURE_KEY,secondPattern);
-                        setting_layout.setVisibility(View.GONE);
-                        success_layout.setVisibility(View.VISIBLE);
-                    }else {
-                        tips.setVisibility(View.VISIBLE);
-                        tips.setText("两次绘制不一样，请重新绘制");
-                        selectIndex = 1;
-                        sl.clearPattern();
-                    }
+                if (SPUtils.getString(GestureLoginActivity.this, ConstantKey.GESTURE_KEY, "").equals(ShapeLockerUtils.patternToString(pattern))) {
+                    tips.setVisibility(View.VISIBLE);
+                    tips.setText("登录成功!");
+                    startActivity(new Intent(GestureLoginActivity.this, MainActivity.class));
+
+                } else {
+                    tips.setVisibility(View.VISIBLE);
+                    tips.setText("验证失败，请重新绘制!");
+                    sl.clearPattern();
                 }
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (TextUtils.isEmpty(SPUtils.getString(GestureLoginActivity.this, ConstantKey.GESTURE_KEY, ""))) {
+            startActivity(new Intent(GestureLoginActivity.this, MainActivity.class));
+            finish();
+        }
+    }
+
     private void init() {
-        boolean isPath = SPUtils.getBoolean(GestureSettingActivity.this, ConstantKey.GESTURE_STATE_KEY,true);
+        boolean isPath = SPUtils.getBoolean(GestureLoginActivity.this, ConstantKey.GESTURE_STATE_KEY,true);
         if (!isPath) {
             setNoPath();
         }
@@ -129,21 +115,7 @@ public class GestureSettingActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.jump_btn})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.jump_btn:
-                Intent intent = new Intent(this,AccountSecurityActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                break;
-        }
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-        setResult(101);
-    }
+
+
 }

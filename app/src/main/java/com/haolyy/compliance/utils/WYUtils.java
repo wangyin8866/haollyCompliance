@@ -3,8 +3,11 @@ package com.haolyy.compliance.utils;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.AppOpsManager;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -19,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.SslErrorHandler;
@@ -501,5 +505,43 @@ public class WYUtils {
             Log.e("VersionInfo", "Exception", e);
         }
         return versionName;
+    }
+
+
+    /**
+     * 判断按返回键是否退出本应用弹出对话框
+     *
+     * @param keyCode
+     * @param event
+     * @param context
+     * @return
+     */
+    public static long exitTime = 0;//设置当前点击返回键的退出系统时间
+    public static boolean clickBack(int keyCode, KeyEvent event, final Context context) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            // System.currentTimeMillis()无论何时调用，肯定大于2000
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                AppToast.makeShortToast(context,"再按一次退出程序");
+                exitTime = System.currentTimeMillis();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("温馨提示").setMessage("您是否要退出本应用程序？").setNegativeButton("取消", null)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Activity activity = (Activity) context;
+                                activity.finish();
+                ActivityCollector.finishAll();
+                System.exit(0);
+                            }
+                        });
+                // 设置窗口外点击dialog不消失
+                Dialog dialog = builder.create();
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.show();
+            }
+            return true;
+        }
+        return false;
     }
 }

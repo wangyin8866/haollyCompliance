@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import com.haolyy.compliance.ui.my.MyFragment;
 import com.haolyy.compliance.ui.product.ProductFragment;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -274,7 +276,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        LogUtils.e("onNewIntent","onNewIntent");
         setIntent(intent);
         int cp = getIntent().getIntExtra("currentpage", -1);
         if(cp!=-1){
@@ -282,5 +283,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             currentPage=cp;
             switchPager(cp);
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        WYUtils.clickBack(keyCode, event, MainActivity.this);
+        return true;
     }
 }

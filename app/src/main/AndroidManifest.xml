@@ -47,11 +47,7 @@
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- 产品详情 -->
         <activity
@@ -204,12 +200,23 @@
         <activity
             android:name=".ui.my.ProductManageDetail"
             android:screenOrientation="portrait" />
+        <!--回复投资-->
         <activity
             android:name=".ui.product.InvestWebActivity"
             android:screenOrientation="portrait" />
+        <!--活动也-->
         <activity
             android:name=".ui.home.ActivityActivity"
             android:screenOrientation="portrait" />
+        <!--解锁-->
+        <activity android:name=".ui.my.GestureLoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
         <activity android:name=".ui.bank.RebindBankActivity" />

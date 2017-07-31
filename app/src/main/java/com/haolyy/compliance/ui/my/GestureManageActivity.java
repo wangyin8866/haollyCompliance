@@ -66,7 +66,6 @@ public class GestureManageActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.modify_gesture:
                 Intent intent = new Intent(GestureManageActivity.this, GestureSettingActivity.class);
-                intent.putExtra("isPath", isPath);
                 startActivity(intent);
 
                 break;

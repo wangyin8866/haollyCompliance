@@ -218,7 +218,7 @@
     <RelativeLayout android:id="@+id/gesture_layout"
         android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="@color/white">
 
         <TextView
