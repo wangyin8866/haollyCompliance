@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.BottomScrollView;
 import com.haolyy.compliance.custom.CircleProgressView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
@@ -319,8 +318,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
                         mPresenter.selectUserState(0);
                     }
                 }
-
-
                 break;
             case R.id.tv_invest_all:
                 if (!TextUtils.isEmpty(balance)) {
@@ -339,7 +336,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
 
     @Override
     public void showData(ProductBaseDetail productBaseDetail) {
-        RxBus.getInstance().post(productBaseDetail);//传递数据给Activity
         if (mLoginState) {
             LogUtils.e("mLoginState", mLoginState + "");
             tvBalance.setClickable(false);

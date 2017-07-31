@@ -14,7 +14,6 @@ import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseActivity;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
-import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.VerticalViewPager;
 import com.haolyy.compliance.custom.dialog.DialogBank;
@@ -26,7 +25,6 @@ import com.haolyy.compliance.ui.product.presenter.ProductDetailPresenter;
 import com.haolyy.compliance.ui.product.view.ProductDetailView;
 import com.haolyy.compliance.utils.AccountUtil;
 import com.haolyy.compliance.utils.AppToast;
-import com.haolyy.compliance.utils.LogUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.functions.Action1;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
@@ -111,13 +108,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
 
     private void init() {
         ActivityCollector.addActivity(this);
-        RxBus.getInstance().toObserverable(ProductBaseDetail.class).subscribe(new Action1<ProductBaseDetail>() {
-            @Override
-            public void call(ProductBaseDetail s) {
-                String amountWait = s.getModel().getModel().getInfo().getAmountWait();
-                amountwait = AccountUtil.MoneyTolong(amountWait);
-            }
-        });
+
         if (fragmentList != null) {
             fragmentList.clear();
         }
@@ -135,6 +126,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
     @Override
     public void callBackInfo(ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean) {
         this.infoBean = infoBean;
+        amountwait = AccountUtil.MoneyTolong(infoBean.getAmountWait());
     }
 
     @Override
