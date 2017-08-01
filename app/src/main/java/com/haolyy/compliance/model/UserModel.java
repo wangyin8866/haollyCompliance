@@ -62,6 +62,7 @@ public class UserModel extends BaseModel {
         map.clear();
         map.put("phone_num", phone_num);
         map.put("password", password);
+        //map.put("client",client);
 //        map.put("token", BaseApplication.token);
         return userApi.login(map);
     }

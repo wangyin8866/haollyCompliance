@@ -25,6 +25,8 @@ import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
+import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.SPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +34,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static com.haolyy.compliance.R.id.iv_gold;
+import static com.haolyy.compliance.base.BaseApplication.userId;
 
 /**
  * Created by wangyin on 2017/5/16.
@@ -94,14 +97,19 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
                 startActivity(intent);
             }
         });
-        mPresenter.getProductFunds(Config.platform, BaseApplication.userId + "");
+        mPresenter.getProductFunds(Config.platform, userId + "");
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        LogUtils.e(tag,"onresume");
         //需要刷新余额
+        if(userId==-1){
+            SPUtils.loginOut();
+            return;
+        }
         mPresenter.requestUserInfoDetail();
     }
 
@@ -109,7 +117,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-
+            LogUtils.e(tag,"isVisibleToUser");
         }
     }
 

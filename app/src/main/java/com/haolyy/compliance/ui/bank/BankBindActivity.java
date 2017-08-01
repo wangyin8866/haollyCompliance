@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +28,7 @@ import com.haolyy.compliance.ui.bank.view.BankBindView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
+import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,9 +51,9 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     @BindView(R.id.titleBar)
     RelativeLayout titleBar;
     @BindView(R.id.tv_real_name)
-    ClearEditText tvRealName;
+    EditText tvRealName;
     @BindView(R.id.tv_id_card)
-    ClearEditText tvIdCard;
+    EditText tvIdCard;
     @BindView(R.id.ll_input_info)
     LinearLayout llInputInfo;
     @BindView(R.id.tv_bank_next)
@@ -141,11 +143,11 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
                 if (TextUtils.isEmpty(bankName)) {
                     UIUtils.showToastCommon(mContext, "请选择银行");
                     return;
-                } else if (TextUtils.isEmpty(bankPhone)) {
-                    UIUtils.showToastCommon(mContext, "请填写手机号码");
+                } else if (TextUtils.isEmpty(bankPhone)||!WYUtils.checkPhone(bankPhone)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确的手机号码");
                     return;
-                } else if (TextUtils.isEmpty(cardno)) {
-                    UIUtils.showToastCommon(mContext, "请填写银行卡号");
+                } else if (TextUtils.isEmpty(cardno)||!WYUtils.checkCard(cardno)) {
+                    UIUtils.showToastCommon(mContext, "请填写正确的银行卡号");
                     return;
                 } else if (!isAgree) {
                     UIUtils.showToastCommon(mContext, "请勾选服务协议");
@@ -169,7 +171,7 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 0x03) {
-            LogUtils.e("ndyb", "banklisdy");
+            //银行卡列表界面返回
             etCardNo.requestFocus();
             BankListBean.ModelBeanX.ModelBean model = (BankListBean.ModelBeanX.ModelBean) data.getSerializableExtra("data");
             tvBankNameLogo.setText(model.getBankName());
@@ -178,7 +180,6 @@ public class BankBindActivity extends BaseActivity<BankBindPresenter, BankBindVi
             // 招商银行 单笔限额5万元，每日限额5万元
             tvLimit.setText(Html.fromHtml("<font color='#4a4a4a'>" + model.getBankName() + "单笔限额</font><font color='#ff9933'>" + model.getSingerMaxAmount() + "</font><font color='#4a4a4a4a'>元,每日限额</font><font color='#ff9933'>" + model.getSingerDayAmount() + "</font><font color='#4a4a4a'>元</font>"));
         } else {
-            LogUtils.e("ndyb", "汇付返回陈宫失败");
             //上海银行界面返回
             llInputInfo.setVisibility(View.GONE);
             ivWaiting.setVisibility(View.VISIBLE);

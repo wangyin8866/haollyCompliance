@@ -27,6 +27,7 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
 
     public BankBindPresenter(Context context) {
         super(context);
+        instance = HuifuShModel.getInstance();
     }
 
     /**
@@ -38,7 +39,6 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
      * @param useType 自定义的参数
      */
     public void sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_, final int useType) {
-        instance = HuifuShModel.getInstance();
         invoke(instance.sendSms(busi_type_, card_number_,mobile_, sms_type_), new ProgressSubscriber<HuifuSmsBean>(new SubscriberOnNextListener<HuifuSmsBean>() {
             @Override
             public void onNext(HuifuSmsBean s) {
@@ -68,7 +68,24 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
             }
         }, mContext));
     }
+   /* public void sendSms(String busi_type_, String card_number_,String mobile_, String sms_type_, final int useType) {
+       invoke(instance.sendSms(busi_type_, card_number_, mobile_, sms_type_), new Subscriber<HuifuSmsBean>() {
+           @Override
+           public void onCompleted() {
 
+           }
+
+           @Override
+           public void onError(Throwable e) {
+
+           }
+
+           @Override
+           public void onNext(HuifuSmsBean huifuSmsBean) {
+
+           }
+       });
+    }*/
     /**
      * 开户借口
      * @param moblie_
@@ -98,7 +115,7 @@ public class BankBindPresenter extends BasePresenter<BankBindView> {
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e("Throwable", e.getMessage());
+                LogUtils.e("ndy_Throwable", e.getMessage());
             }
         }, mContext));
     }
