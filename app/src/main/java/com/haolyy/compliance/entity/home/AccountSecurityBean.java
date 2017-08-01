@@ -6,11 +6,10 @@ package com.haolyy.compliance.entity.home;
 
 public class AccountSecurityBean {
 
-
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"mobile":"150****0005","is_password":1,"real_name":"单科捷","bank_card_no":"6228223211212310066","set_hand_password_flag":"0","bank_no":"101","is_auto_tender":0,"set_login_password_flag":"1","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","is_open_account":1,"status":"1"}}
+     * model : {"code":"200","msg":"成功","model":{"mobile":"150****1060","is_password":1,"real_name":"季淼","bank_card_no":"6228223211212310250","set_hand_password_flag":"0","bank_no":"101","is_auto_tender":0,"set_login_password_flag":"0","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","is_open_account":1,"status":"1"}}
      */
 
     private String code;
@@ -45,7 +44,7 @@ public class AccountSecurityBean {
         /**
          * code : 200
          * msg : 成功
-         * model : {"mobile":"150****0005","is_password":1,"real_name":"单科捷","bank_card_no":"6228223211212310066","set_hand_password_flag":"0","bank_no":"101","is_auto_tender":0,"set_login_password_flag":"1","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","is_open_account":1,"status":"1"}
+         * model : {"mobile":"150****1060","is_password":1,"real_name":"季淼","bank_card_no":"6228223211212310250","set_hand_password_flag":"0","bank_no":"101","is_auto_tender":0,"set_login_password_flag":"0","bind_mobile_flag":"1","risk_level":0,"bind_bank_card_flag":"1","is_open_account":1,"status":"1"}
          */
 
         private String code;
@@ -78,14 +77,14 @@ public class AccountSecurityBean {
 
         public static class ModelBean {
             /**
-             * mobile : 150****0005
+             * mobile : 150****1060
              * is_password : 1
-             * real_name : 单科捷
-             * bank_card_no : 6228223211212310066
+             * real_name : 季淼
+             * bank_card_no : 6228223211212310250
              * set_hand_password_flag : 0
              * bank_no : 101
              * is_auto_tender : 0
-             * set_login_password_flag : 1
+             * set_login_password_flag : 0
              * bind_mobile_flag : 1
              * risk_level : 0
              * bind_bank_card_flag : 1
@@ -96,14 +95,14 @@ public class AccountSecurityBean {
             private String mobile;
             private int is_password;
             private String real_name;
-            private int bank_card_no;
-            private String set_hand_password_flag;
+            private String bank_card_no;
+            private int set_hand_password_flag;
             private String bank_no;
             private int is_auto_tender;
-            private String set_login_password_flag;
-            private String bind_mobile_flag;
+            private int set_login_password_flag;
+            private int bind_mobile_flag;
             private int risk_level;
-            private String bind_bank_card_flag;
+            private int bind_bank_card_flag;
             private int is_open_account;
             private int status;
 
@@ -131,19 +130,19 @@ public class AccountSecurityBean {
                 this.real_name = real_name;
             }
 
-            public int getBank_card_no() {
+            public String getBank_card_no() {
                 return bank_card_no;
             }
 
-            public void setBank_card_no(int bank_card_no) {
+            public void setBank_card_no(String bank_card_no) {
                 this.bank_card_no = bank_card_no;
             }
 
-            public String getSet_hand_password_flag() {
+            public int getSet_hand_password_flag() {
                 return set_hand_password_flag;
             }
 
-            public void setSet_hand_password_flag(String set_hand_password_flag) {
+            public void setSet_hand_password_flag(int set_hand_password_flag) {
                 this.set_hand_password_flag = set_hand_password_flag;
             }
 
@@ -163,19 +162,19 @@ public class AccountSecurityBean {
                 this.is_auto_tender = is_auto_tender;
             }
 
-            public String getSet_login_password_flag() {
+            public int getSet_login_password_flag() {
                 return set_login_password_flag;
             }
 
-            public void setSet_login_password_flag(String set_login_password_flag) {
+            public void setSet_login_password_flag(int set_login_password_flag) {
                 this.set_login_password_flag = set_login_password_flag;
             }
 
-            public String getBind_mobile_flag() {
+            public int getBind_mobile_flag() {
                 return bind_mobile_flag;
             }
 
-            public void setBind_mobile_flag(String bind_mobile_flag) {
+            public void setBind_mobile_flag(int bind_mobile_flag) {
                 this.bind_mobile_flag = bind_mobile_flag;
             }
 
@@ -187,11 +186,11 @@ public class AccountSecurityBean {
                 this.risk_level = risk_level;
             }
 
-            public String getBind_bank_card_flag() {
+            public int getBind_bank_card_flag() {
                 return bind_bank_card_flag;
             }
 
-            public void setBind_bank_card_flag(String bind_bank_card_flag) {
+            public void setBind_bank_card_flag(int bind_bank_card_flag) {
                 this.bind_bank_card_flag = bind_bank_card_flag;
             }
 

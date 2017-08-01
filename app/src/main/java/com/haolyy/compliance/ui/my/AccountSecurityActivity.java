@@ -26,6 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.haolyy.compliance.R.id.rl_real_name;
+
 
 public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresenter, AccountSecurityView> implements AccountSecurityView {
 
@@ -53,8 +55,6 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     TextView gesture_pwd_status;
     @BindView(R.id.auto_invest)
     TextView auto_invest;
-    @BindView(R.id.rl_real_name)
-    RelativeLayout rlRealName;
     @BindView(R.id.rl_bind_card)
     RelativeLayout rlBindCard;
     @BindView(R.id.rl_transaction_pwd_status)
@@ -63,6 +63,8 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     RelativeLayout rlLoginPwdStatus;
     @BindView(R.id.rl_auto_invest)
     RelativeLayout rlAutoInvest;
+    @BindView(R.id.rl_real_name)
+    RelativeLayout rlRealName;
     private DialogBank dialogBank;
     private UserInfoBean userInfoBean;
     private AccountSecurityBean.ModelBeanX.ModelBean modelBean;
@@ -110,10 +112,10 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
 
     }
 
-    @OnClick({R.id.security_bind_phone, R.id.gesture_layout, R.id.rl_bind_card, R.id.rl_real_name, R.id.rl_transaction_pwd_status, R.id.rl_login_pwd_status, R.id.rl_auto_invest})
+    @OnClick({R.id.security_bind_phone, R.id.gesture_layout, R.id.rl_bind_card, rl_real_name, R.id.rl_transaction_pwd_status, R.id.rl_login_pwd_status, R.id.rl_auto_invest})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.rl_real_name://真实姓名
+            case rl_real_name://真实姓名
                 showRegisterDialog();
                 break;
             case R.id.rl_bind_card://银行卡
@@ -162,7 +164,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
 
     @Override
     public void showData(AccountSecurityBean accountSecurityBean) {
-         modelBean = accountSecurityBean.getModel().getModel();
+        modelBean = accountSecurityBean.getModel().getModel();
 
         initState();
         initView();
@@ -171,8 +173,8 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     }
 
     private void initState() {
-        isReal = modelBean.getStatus()==1;
-        isBank = modelBean.getBank_card_no()==1;
+        isReal = modelBean.getStatus() == 1;
+        isBank = modelBean.getBind_bank_card_flag() == 1;
         isPassword = modelBean.getIs_password() == 1;
         isAutoTender = modelBean.getIs_auto_tender() == 1;
     }
@@ -180,14 +182,13 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     private void initView() {
         if (isReal) {
             real_name_status.setText(modelBean.getReal_name());
-            real_name_status.setCompoundDrawables(null, null, null, null);
-            real_name_status.setEnabled(false);
+            rlRealName.setEnabled(false);
         } else {
             real_name_status.setText("未认证");
 
         }
-        tvBindCard.setText(isBank? "已绑定" : "未绑定");
-        LogUtils.e("phone",modelBean.getMobile()+"'");
+        tvBindCard.setText(isBank ? "已绑定" : "未绑定");
+        LogUtils.e("phone", modelBean.getMobile() + "'");
         mobile.setText(modelBean.getMobile());
         int riskLevel = modelBean.getRisk_level();
         String level = "未设置";
@@ -213,14 +214,13 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         }
         risk_assessment.setText(level);
         transaction_pwd_status.setText(isPassword ? "已设置" : "未设置");
-        login_pwd_status.setText(modelBean.getSet_login_password_flag().equals("1") ? "已设置" : "未设置");
         auto_invest.setText(isAutoTender ? "已开启" : "未开启");
         gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this, ConstantKey.GESTURE_KEY, "")) ? "未开启" : "已开启");
     }
 
     public void pushActivity() {
-            startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
-            finish();
+        startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
+        finish();
     }
 
     @Override
