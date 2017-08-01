@@ -168,7 +168,7 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.tv_feedback:
                 break;
             case R.id.tv_login_out:
-                SPUtils.loginOut();
+                SPUtils.loginOut(this);
                 break;
         }
     }

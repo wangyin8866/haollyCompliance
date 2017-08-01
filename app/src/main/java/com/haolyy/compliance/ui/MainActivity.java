@@ -3,6 +3,7 @@ package com.haolyy.compliance.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -101,7 +102,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void call(String s) {
                 if (s.equals(Config.LoginOUT)) {
+                    Looper.prepare();
                     UIUtils.showToastCommon(MainActivity.this, "登录超时请重新登录");
+                    Looper.loop();
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             }

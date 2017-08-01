@@ -1,15 +1,12 @@
 package com.haolyy.compliance.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.RxBus;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.ui.MainActivity;
-import com.haolyy.compliance.ui.login.LoginActivity;
 
 //实现标记的写入与读取
 public class SPUtils {
@@ -130,6 +127,18 @@ public class SPUtils {
         BaseApplication.userId = -1;
         BaseApplication.mUserName = "";
         BaseApplication.juid = "";
+        ActivityCollector.finishAll();
+        RxBus.getInstance().post(Config.LoginOUT);
+    }
+    public static void loginOut(Context context) {
+        BaseApplication.mLoginState = false;
+        BaseApplication.userId = -1;
+        BaseApplication.mUserName = "";
+        BaseApplication.juid = "";
+        if (sp == null) {
+            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        }
+        sp.edit().clear().apply();
         ActivityCollector.finishAll();
         RxBus.getInstance().post(Config.LoginOUT);
     }

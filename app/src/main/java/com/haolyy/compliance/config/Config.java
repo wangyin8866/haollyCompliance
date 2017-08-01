@@ -39,4 +39,5 @@ public interface Config {
      * h5页面
      */
     String borrow_detail="http://192.168.6.60/h5/html/second/IAdetailSpecial.html";
+    String bill="http://192.168.6.60/h5/html/fourth/monthlyBill.html";
 }

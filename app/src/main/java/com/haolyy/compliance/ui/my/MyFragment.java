@@ -71,6 +71,8 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     InnerScrollListView islProductFund;
     @BindView(R.id.v_invite_friend)
     View vInviteFriend;
+    @BindView(R.id.iv_bill)
+    ImageView ivBill;
 
     private View view;
     private DialogBank dialogBank;
@@ -119,10 +121,13 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_head_icon, R.id.score, iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
+    @OnClick({R.id.iv_bill,R.id.iv_setting, R.id.iv_head_icon, R.id.score, iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
     public void onViewClicked(View view) {
         Bundle bundle = null;
         switch (view.getId()) {
+            case R.id.iv_bill:
+                startActivity(new Intent(getActivity(), BillActivity.class));
+                break;
             case R.id.iv_setting:
                 startActivity(new Intent(mContext, SettingActivity.class));
                 break;
@@ -204,7 +209,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             ivGold.setVisibility(View.INVISIBLE);
         }
 
-        if (userInfoBean.getModel().getModel().getIs_open_account()==0) {
+        if (userInfoBean.getModel().getModel().getIs_open_account() == 0) {
             showRegisterDialog();
         }
     }
@@ -243,4 +248,5 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     public void showErrorToast(String msg) {
 
     }
+
 }
