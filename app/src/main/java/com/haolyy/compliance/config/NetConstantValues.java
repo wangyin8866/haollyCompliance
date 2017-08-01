@@ -6,10 +6,13 @@ package com.haolyy.compliance.config;
 
 public interface NetConstantValues {
     /**
-     * 测试服务器
+     * 开发环境
      */
     String HOST_URL = "http://192.168.6.59:8010/";
     String HOST_PAY="http://192.168.6.59:8014/";
+    /**
+     * 测试服务器
+     */
 //    String HOST_URL = "http://192.168.6.60:8010/";
 //    String HOST_PAY = "http://192.168.6.60:8014/";
     //帅帅

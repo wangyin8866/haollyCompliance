@@ -96,7 +96,7 @@ public class AccountSecurityBean {
             private String mobile;
             private int is_password;
             private String real_name;
-            private String bank_card_no;
+            private int bank_card_no;
             private String set_hand_password_flag;
             private String bank_no;
             private int is_auto_tender;
@@ -105,7 +105,7 @@ public class AccountSecurityBean {
             private int risk_level;
             private String bind_bank_card_flag;
             private int is_open_account;
-            private String status;
+            private int status;
 
             public String getMobile() {
                 return mobile;
@@ -131,11 +131,11 @@ public class AccountSecurityBean {
                 this.real_name = real_name;
             }
 
-            public String getBank_card_no() {
+            public int getBank_card_no() {
                 return bank_card_no;
             }
 
-            public void setBank_card_no(String bank_card_no) {
+            public void setBank_card_no(int bank_card_no) {
                 this.bank_card_no = bank_card_no;
             }
 
@@ -203,11 +203,11 @@ public class AccountSecurityBean {
                 this.is_open_account = is_open_account;
             }
 
-            public String getStatus() {
+            public int getStatus() {
                 return status;
             }
 
-            public void setStatus(String status) {
+            public void setStatus(int status) {
                 this.status = status;
             }
         }

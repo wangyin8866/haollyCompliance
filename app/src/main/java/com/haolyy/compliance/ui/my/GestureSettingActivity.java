@@ -47,6 +47,7 @@ public class GestureSettingActivity extends AppCompatActivity {
     private int selectIndex = 1;
     private String firstPattern ;
     private String secondPattern;
+    private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,10 +114,18 @@ public class GestureSettingActivity extends AppCompatActivity {
     }
 
     private void init() {
+        flag = getIntent().getBooleanExtra("flag", false);
+        if (flag) {
+            top_bar.setTitle("修改手势密码");
+        } else {
+            top_bar.setTitle("设置手势密码");
+        }
+
         boolean isPath = SPUtils.getBoolean(GestureSettingActivity.this, ConstantKey.GESTURE_STATE_KEY,true);
         if (!isPath) {
             setNoPath();
         }
+
     }
 
     /**

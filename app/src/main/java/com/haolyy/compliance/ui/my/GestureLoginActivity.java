@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.ShapeLocker;
 import com.haolyy.compliance.custom.TopBar;
@@ -77,7 +78,12 @@ public class GestureLoginActivity extends AppCompatActivity {
 
                 if (SPUtils.getString(GestureLoginActivity.this, ConstantKey.GESTURE_KEY, "").equals(ShapeLockerUtils.patternToString(pattern))) {
                     tips.setVisibility(View.VISIBLE);
-                    tips.setText("登录成功!");
+                    tips.setText("验证成功");
+                    BaseApplication.mLoginState=SPUtils.getBoolean(GestureLoginActivity.this,"mLoginState", false);
+                    BaseApplication.userId=SPUtils.getInt(GestureLoginActivity.this,"userId",-1);
+                    BaseApplication.mUserName=SPUtils.getString(GestureLoginActivity.this,"mUserName","");
+                    BaseApplication.juid=SPUtils.getString(GestureLoginActivity.this,"juid","");
+
                     startActivity(new Intent(GestureLoginActivity.this, MainActivity.class));
 
                 } else {

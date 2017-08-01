@@ -10,7 +10,7 @@ import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.MainActivity;
 import com.haolyy.compliance.ui.login.view.LoginView;
-import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.SPUtils;
 import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
@@ -32,11 +32,19 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             @Override
             public void onNext(LoginResponseBean loginResponseBean) {
                 if (loginResponseBean.getCode().equals("200")) {
-                    LogUtils.e("getCode",loginResponseBean.getCode());
                     BaseApplication.mLoginState = true;
                     BaseApplication.userId = loginResponseBean.getModel().getId();
                     BaseApplication.mUserName = loginResponseBean.getModel().getMobile();
                     BaseApplication.juid = loginResponseBean.getModel().getUserCode();
+
+                    //保存用户信息
+
+                    SPUtils.saveBoolean(mContext,"mLoginState",BaseApplication.mLoginState);
+                    SPUtils.saveInt(mContext,"userId",BaseApplication.userId);
+                    SPUtils.saveString(mContext,"mUserName",BaseApplication.mUserName);
+                    SPUtils.saveString(mContext,"juid",BaseApplication.juid);
+
+
                     ActivityCollector.finishAll();
                    Intent intent = new Intent(mContext, MainActivity.class);
                     mContext.startActivity(intent);
