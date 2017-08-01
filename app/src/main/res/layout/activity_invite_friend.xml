@@ -15,10 +15,10 @@
         android:paddingRight="4dp"
         app:drawableLeft="@mipmap/nav_back"
         app:drawableLeftVisibility="true"
-        app:rightText="邀请好友"
+        app:rightText="邀请记录"
         app:rightTextColor="#444444"
         app:rightTextSize="14sp"
-        app:title="邀请记录"
+        app:title="邀请好友"
         app:titleTextColor="#FF4A4A4A"
         app:titleTextSize="17sp" />
 
@@ -28,162 +28,173 @@
         android:layout_below="@+id/top_invite_friend"
         android:background="@color/bg_f5f5f5" />
 
-    <ImageView
-        android:id="@+id/iv_invite_banner"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/top_invite_friend"
-        android:layout_marginBottom="27dp"
-        android:layout_marginTop="4dp"
-        android:src="@mipmap/banner_friend" />
-
-    <LinearLayout
-        android:id="@+id/ll_invite_reward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_invite_banner"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:text="奖励一"
-                android:textColor="@color/text_4a4a4a"
-                android:textSize="12sp" />
-
-            <LinearLayout
-                android:layout_width="114dp"
-                android:layout_height="57dp"
-                android:background="@mipmap/financing_cash_bg"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:text="50"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="21dp"
-                    android:gravity="center"
-                    android:text="理财现金券"
-                    android:textColor="@color/white"
-                    android:textSize="8sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:gravity="bottom"
-            android:text="+"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:text="奖励二"
-                android:textColor="@color/text_4a4a4a"
-                android:textSize="12sp" />
-
-            <LinearLayout
-                android:layout_width="114dp"
-                android:layout_height="57dp"
-                android:background="@mipmap/year_reward_bg"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:text="50"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="21dp"
-                    android:gravity="center"
-                    android:text="年化收益奖励"
-                    android:textColor="@color/white"
-                    android:textSize="8sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="211dp"
-        android:layout_height="206dp"
-        android:layout_below="@+id/ll_invite_reward"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@mipmap/bg_horse_code">
-
-        <ImageView
-            android:layout_width="134dp"
-            android:layout_height="134dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@+id/btn_invite_friend"
-        android:layout_marginBottom="14dp"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
+        android:layout_below="@+id/top_invite_friend">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:text="分享您的推荐码"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="23543346"
-            android:textColor="@color/text_4a4a4a"
-            android:textSize="20sp" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_invite_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="27dp"
+                android:layout_marginTop="4dp"
+                android:src="@mipmap/banner_friend" />
+
+            <LinearLayout
+                android:id="@+id/ll_invite_reward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="11dp"
+                        android:text="奖励一"
+                        android:textColor="@color/text_4a4a4a"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="114dp"
+                        android:layout_height="57dp"
+                        android:background="@mipmap/financing_cash_bg"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="50"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:gravity="center"
+                            android:text="理财现金券"
+                            android:textColor="@color/white"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="bottom"
+                    android:text="+"
+                    android:textColor="@color/text_4a4a4a"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="11dp"
+                        android:text="奖励二"
+                        android:textColor="@color/text_4a4a4a"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="114dp"
+                        android:layout_height="57dp"
+                        android:background="@mipmap/year_reward_bg"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="50"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:gravity="center"
+                            android:text="年化收益奖励"
+                            android:textColor="@color/white"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="211dp"
+                android:layout_height="206dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/bg_horse_code">
+
+                <ImageView
+                    android:layout_width="134dp"
+                    android:layout_height="134dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/white" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="分享您的推荐码"
+                    android:textColor="@color/text_4a4a4a"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="23543346"
+                    android:textColor="@color/text_4a4a4a"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/btn_invite_friend"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_gradient"
+        android:gravity="center"
         android:text="邀请好友"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:background="@drawable/shape_gradient" />
+        android:textSize="16sp" />
+
     <TextView
         android:id="@+id/tv_activity_rule"
         android:layout_width="35dp"
@@ -197,68 +208,68 @@
         android:text="奖\n励\n规\n则"
         android:textColor="@color/white"
         android:textSize="14sp" />
+
     <LinearLayout
         android:id="@+id/ll_rule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top_invite_friend"
         android:layout_above="@+id/btn_invite_friend"
+        android:layout_below="@+id/top_invite_friend"
         android:background="#80000000"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_margin="30dp"
             android:background="@drawable/shape_white_radius"
+            android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="15dp"
-            >
+            android:paddingTop="15dp">
+
             <TextView
                 android:id="@+id/tv_close"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:drawableRight="@mipmap/close"
                 android:text="奖励规则明细"
                 android:textColor="@color/text_fc8c15"
-                android:textSize="18sp"
-                android:drawableRight="@mipmap/close"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="18sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
                 android:text="每成功邀请一位好友成功投资(限赢计划产品)，双方各得一组价值50元的投资返现券，激活条件详见优惠券说明。
 另外，邀请人可获得好友注册后90天内每笔投资（不包含短期赢标的）的0.5%年化收益奖励（此项奖励将随标的到期日以现金形式返还 。）"
                 android:textColor="@color/text_7d7d7d"
-                android:textSize="12sp"
-                android:layout_marginBottom="15dp"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="活动规则"
                 android:textColor="@color/text_fc8c15"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="14sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="活动时间自2017年6月25日起，结束时间见公告。"
                 android:textColor="@color/text_7d7d7d"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="奖励将以返现券和现金形式发放。"
                 android:textColor="@color/text_7d7d7d"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -272,35 +283,34 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="活动声明"
                 android:textColor="@color/text_fc8c15"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="14sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="若推荐人恶意采用特殊手段刷奖或盗用他人身份信息，扰乱正常活动秩序，好利网有权取消其获奖资格；"
                 android:textColor="@color/text_7d7d7d"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="本活动由好利网举办，奖品均由好利网提供；好利网有权对本活动进行修改、暂停或终止；"
                 android:textColor="@color/text_7d7d7d"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="本活动最终解释权归好利网所有，如有任何疑问，请咨询好利网客服；"
                 android:textColor="@color/text_7d7d7d"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp"
-                />
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

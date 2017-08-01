@@ -24,6 +24,7 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
 
     public RechargePresenter(Context context) {
         super(context);
+        instance = HuifuShModel.getInstance();
     }
 
     public void recharge(String from_mobile_, String gate_busi_id_, String sms_code_, String sms_seq_, String trans_amt_, String bank_id_
@@ -82,7 +83,7 @@ public class RechargePresenter extends BasePresenter<RechargeView> {
         }, mContext));
     }
     public void getUserBaseInfo() {
-        instance = HuifuShModel.getInstance();
+
         invoke(instance.getUSerBaseInfo(),new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
             @Override
             public void onNext(UserBaseInfoBean userBaseInfoBean) {

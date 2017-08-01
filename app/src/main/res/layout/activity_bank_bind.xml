@@ -35,14 +35,12 @@
                 android:textColor="@color/text_4a4a4a"
                 android:textSize="14sp" />
 
-            <com.haolyy.compliance.custom.ClearEditText
+            <EditText
                 android:id="@+id/tv_real_name"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:drawableRight="@mipmap/login_delete"
-                android:gravity="center"
                 android:inputType="text"
                 android:textColor="@color/text_9b9b9b"
                 android:textColorHint="@color/text_9b9b9b"
@@ -70,16 +68,13 @@
                 android:textColor="@color/text_4a4a4a"
                 android:textSize="14sp" />
 
-            <com.haolyy.compliance.custom.ClearEditText
+            <EditText
                 android:id="@+id/tv_id_card"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:digits="0123456789xX"
-                android:drawablePadding="10dp"
-                android:drawableRight="@mipmap/login_delete"
-                android:gravity="center"
                 android:maxLength="18"
                 android:paddingRight="10dp"
                 android:textColor="@color/text_9b9b9b"

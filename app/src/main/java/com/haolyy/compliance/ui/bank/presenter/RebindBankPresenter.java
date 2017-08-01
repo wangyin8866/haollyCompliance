@@ -25,6 +25,7 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
 
     public RebindBankPresenter(Context context) {
         super(context);
+        instance = HuifuShModel.getInstance();
     }
 
     @Override
@@ -94,7 +95,7 @@ public class RebindBankPresenter extends BasePresenter<BankReBindView> {
     }
 
     public void selectUserBaseInfo() {
-        instance = HuifuShModel.getInstance();
+
         invoke(instance.getUSerBaseInfo(), new ProgressSubscriber<UserBaseInfoBean>(new SubscriberOnNextListener<UserBaseInfoBean>() {
             @Override
             public void onNext(UserBaseInfoBean userBaseInfoBean) {
