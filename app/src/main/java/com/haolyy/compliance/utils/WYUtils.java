@@ -3,11 +3,8 @@ package com.haolyy.compliance.utils;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AppOpsManager;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -524,21 +521,21 @@ public class WYUtils {
                 AppToast.makeShortToast(context,"再按一次退出程序");
                 exitTime = System.currentTimeMillis();
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("温馨提示").setMessage("您是否要退出本应用程序？").setNegativeButton("取消", null)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Activity activity = (Activity) context;
-                                activity.finish();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                builder.setTitle("温馨提示").setMessage("您是否要退出本应用程序？").setNegativeButton("取消", null)
+//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                Activity activity = (Activity) context;
+//                                activity.finish();
                 ActivityCollector.finishAll();
                 System.exit(0);
-                            }
-                        });
+//                            }
+//                        });
                 // 设置窗口外点击dialog不消失
-                Dialog dialog = builder.create();
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+//                Dialog dialog = builder.create();
+//                dialog.setCanceledOnTouchOutside(false);
+//                dialog.show();
             }
             return true;
         }
