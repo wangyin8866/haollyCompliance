@@ -10,6 +10,7 @@ public interface Config {
     String TIP_IMAGE="图片验证码错误";
     String TIP_SMS="短信验证码错误";
     String TIP_PASSS="密码格式错误";
+    String TIP_PASSS2="密码不一致";
     String TIP_INVITE="邀请码格式错误";
 
     String service_phone="400-999-6780";

@@ -37,8 +37,8 @@
         <!-- 注册 -->
         <activity
             android:name=".ui.login.RegisterActivity"
-            android:theme="@style/Theme.Swipe.Back"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Swipe.Back" />
         <!-- 忘记密码 -->
         <activity
             android:name=".ui.login.ForgetActivity"
@@ -209,7 +209,8 @@
             android:name=".ui.home.ActivityActivity"
             android:screenOrientation="portrait" />
         <!--解锁-->
-        <activity android:name=".ui.my.GestureLoginActivity"
+        <activity
+            android:name=".ui.my.GestureLoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -218,17 +219,29 @@
             </intent-filter>
         </activity>
         <!--月度账单-->
-        <activity android:name=".ui.my.BillActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.my.BillActivity"
+            android:screenOrientation="portrait" />
         <!--换帮卡-->
-        <activity android:name=".ui.bank.RebindBankActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.bank.RebindBankActivity"
+            android:screenOrientation="portrait" />
         <!--账户设置-->
-        <activity android:name=".ui.my.SettingActivity" android:screenOrientation="portrait"/>
-
-
-
-
-
-
+        <activity
+            android:name=".ui.my.SettingActivity"
+            android:screenOrientation="portrait" />
+        <!--修改密码 step1-->
+        <activity
+            android:name=".ui.my.ModificationPasswordActivity"
+            android:screenOrientation="portrait" />
+        <!--修改密码 step2-->
+        <activity
+            android:name=".ui.my.ModificationPasswordStep2Activity"
+            android:screenOrientation="portrait" />
+        <!--修改密码 step3-->
+        <activity
+            android:name=".ui.my.ModificationPasswordSucceed"
+            android:screenOrientation="portrait" />
 
 
         <!-- 汪银测试 -->

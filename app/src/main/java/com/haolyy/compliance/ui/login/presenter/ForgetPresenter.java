@@ -8,15 +8,14 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
-import com.haolyy.compliance.entity.login.SmsBean;
 import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.login.view.ForgetView;
+import com.haolyy.compliance.ui.my.ModificationPasswordSucceed;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
@@ -125,7 +124,15 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
         });
     }
 
-    public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode) {
+    /**
+     *
+     * @param phone_num
+     * @param password
+     * @param smsCode
+     * @param imageCode
+     * @param flag  0:忘记密码   ，  1：修改密码
+     */
+    public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode, final int flag) {
         invoke(UserModel.getInstance().forgetPassWord(phone_num, password, smsCode, imageCode), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
@@ -141,9 +148,13 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             @Override
             public void onNext(BaseBean s) {
                 if (s.getCode().equals("200")) {
-                    mContext.startActivity(new Intent(mContext, LoginActivity.class));
-                    ((Activity) mContext).finish();
-                    UIUtils.showToastCommon(mContext,"设置成功");
+                    if (flag == 0) {
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                        ((Activity) mContext).finish();
+                        UIUtils.showToastCommon(mContext,"设置成功");
+                    } else if (flag == 1) {
+                        mContext.startActivity(new Intent(mContext, ModificationPasswordSucceed.class));
+                    }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }

@@ -1,11 +1,8 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
-import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.bank.ActivateBean;
-import com.haolyy.compliance.entity.bank.BankListBean;
 import com.haolyy.compliance.entity.bank.IsActivateBean;
 import com.haolyy.compliance.entity.bank.IsWithDrawSuccess;
 import com.haolyy.compliance.entity.bank.OldUserBean;
@@ -104,6 +101,7 @@ public class HuifuShModel extends BaseModel {
         map.put("ordsms_ext_", ordsms_ext_);
         map.put("client_", client);
         map.put("version_", version);
+        map.put("userId", userId+"");
         return huifuShApi.quikBind(map);
     }
 

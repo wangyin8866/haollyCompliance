@@ -28,7 +28,6 @@
         android:id="@+id/tv_product_join"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="bottom"
         android:background="@drawable/selector_btn_join"
         android:gravity="center"
         android:text="立即加入"

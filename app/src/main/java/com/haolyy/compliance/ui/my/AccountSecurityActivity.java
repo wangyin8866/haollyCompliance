@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.config.ConstantKey;
 import com.haolyy.compliance.custom.TopBar;
 import com.haolyy.compliance.custom.dialog.DialogBank;
@@ -19,6 +20,7 @@ import com.haolyy.compliance.ui.bank.RebindBankActivity;
 import com.haolyy.compliance.ui.my.presenter.AccountSecurityPresenter;
 import com.haolyy.compliance.ui.my.view.AccountSecurityView;
 import com.haolyy.compliance.utils.AppToast;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.SPUtils;
 
 import butterknife.BindView;
@@ -72,6 +74,7 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     private boolean isRisk;
     private boolean isPassword;
     private boolean isAutoTender;
+    private Intent intent;
 
 
     @Override
@@ -119,15 +122,15 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
                 break;
             case R.id.rl_bind_card://银行卡
                 if (isBank) {
-                    pushActivity();
+                    mPresenter.selectUserState(0);
                 } else {
                     showRegisterDialog();
                 }
                 break;
             case R.id.security_bind_phone://绑定手机
-                Intent intent1 = new Intent(AccountSecurityActivity.this, CheckPhone.class);
-                intent1.putExtra("phone", modelBean.getMobile());
-                startActivity(intent1);
+                intent = new Intent(AccountSecurityActivity.this, CheckPhone.class);
+                intent.putExtra("phone", modelBean.getMobile());
+                startActivity(intent);
                 break;
             case R.id.rl_transaction_pwd_status://交易密码
                 if (isPassword) {
@@ -137,9 +140,12 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
                 }
                 break;
             case R.id.rl_login_pwd_status://登录密码
+                intent = new Intent(AccountSecurityActivity.this, ModificationPasswordActivity.class);
+                intent.putExtra("phone", modelBean.getMobile());
+                startActivity(intent);
                 break;
             case R.id.gesture_layout://手势密码
-                Intent intent = new Intent(AccountSecurityActivity.this, GestureManageActivity.class);
+                intent = new Intent(AccountSecurityActivity.this, GestureManageActivity.class);
                 boolean flag = !TextUtils.isEmpty(SPUtils.getString(this, ConstantKey.GESTURE_KEY, ""));
                 intent.putExtra("flag", flag);
                 startActivityForResult(intent, 100);
@@ -218,11 +224,12 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
         gesture_pwd_status.setText(TextUtils.isEmpty(SPUtils.getString(this, ConstantKey.GESTURE_KEY, "")) ? "未开启" : "已开启");
     }
 
+    @Override
     public void pushActivity() {
+        LogUtils.e("userCustId", BaseApplication.userCustId);
         Intent intent = new Intent(getApplicationContext(), RebindBankActivity.class);
         intent.putExtra("bank", modelBean.getBank_card_no());
         startActivity(intent);
-        finish();
     }
 
     @Override

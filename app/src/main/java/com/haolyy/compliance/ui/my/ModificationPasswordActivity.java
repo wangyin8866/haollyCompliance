@@ -1,9 +1,8 @@
-package com.haolyy.compliance.ui.login;
+package com.haolyy.compliance.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,66 +20,62 @@ import com.haolyy.compliance.ui.login.presenter.ForgetPresenter;
 import com.haolyy.compliance.ui.login.view.ForgetView;
 import com.haolyy.compliance.utils.DateUtil;
 import com.haolyy.compliance.utils.UIUtils;
-import com.haolyy.compliance.utils.WYUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 忘记密码
+ * 修改密码
  * 作者：User on 2017/4/28 16:11
  */
-public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> implements ForgetView {
+public class ModificationPasswordActivity extends BaseActivity<ForgetPresenter, ForgetView> implements ForgetView {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.view_line)
-    View viewLine;
+
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
-    @BindView(R.id.titleBar)
-    RelativeLayout titleBar;
-    @BindView(R.id.et_forget_account)
-    ClearEditText etForgetAccount;
-    @BindView(R.id.et_forget_image)
-    ClearEditText etForgetImage;
-    @BindView(R.id.et_forget_sms)
-    ClearEditText etForgetSms;
-    @BindView(R.id.tv_send_sms)
-    TextView tvSendSms;
-    @BindView(R.id.et_forget_pwd)
-    ClearEditText etForgetPwd;
     @BindView(R.id.iv_service)
     ImageView ivService;
     @BindView(R.id.tv_menu)
     TextView tvMenu;
     @BindView(R.id.iv_share)
     ImageView ivShare;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.view_line)
+    View viewLine;
+    @BindView(R.id.titleBar)
+    RelativeLayout titleBar;
+    @BindView(R.id.tv_phone)
+    TextView tvPhone;
+    @BindView(R.id.et_forget_image)
+    ClearEditText etForgetImage;
     @BindView(R.id.iv_code)
     ImageView ivCode;
-    @BindView(R.id.tv_forget_next)
-    TextView tvForgetNext;
-    @BindView(R.id.iv_show_pwd)
-    ImageView ivShowPwd;
-
+    @BindView(R.id.et_forget_sms)
+    ClearEditText etForgetSms;
+    @BindView(R.id.tv_send_sms)
+    TextView tvSendSms;
+    @BindView(R.id.tv_next)
+    TextView tvNext;
     private String phone;
-    private String passWord;
     private String imageCode;
     private String smsCode;
-    private boolean showPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forget);
+        setContentView(R.layout.activity_modification_password);
         ButterKnife.bind(this);
         initView();
     }
 
     private void initView() {
+        phone = BaseApplication.mUserName;
         viewLine.setVisibility(View.VISIBLE);
-        tvTitle.setText("忘记密码");
+        tvTitle.setText("身份验证");
+        tvPhone.setText(getIntent().getStringExtra("phone"));
+
         mPresenter.getToken();
     }
 
@@ -140,7 +135,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
         Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
     }
 
-    @OnClick({R.id.iv_code, R.id.tv_send_sms, R.id.tv_forget_next, R.id.iv_finish, R.id.iv_show_pwd})
+    @OnClick({R.id.iv_code, R.id.tv_send_sms, R.id.tv_next, R.id.iv_finish})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_code:
@@ -148,50 +143,28 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 Glide.with(mContext).load(NetConstantValues.HOST_URL + NetConstantValues.IMAGE_GET + "?token=" + BaseApplication.token).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(ivCode);
                 break;
             case R.id.tv_send_sms:
-                phone = etForgetAccount.getText().toString();
                 imageCode = etForgetImage.getText().toString();
-                if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
-                    UIUtils.showToastCommon(mContext, Config.TIP_MOBILE);
-                    return;
-                } else if (TextUtils.isEmpty(imageCode)) {
+               if (TextUtils.isEmpty(imageCode)) {
                     UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
                     return;
                 }
                 tvSendSms.setEnabled(false);
                 mPresenter.requestValidateCode(phone, imageCode);
                 break;
-            case R.id.tv_forget_next:
-                phone = etForgetAccount.getText().toString();
+            case R.id.tv_next:
                 imageCode = etForgetImage.getText().toString();
-                passWord = etForgetPwd.getText().toString();
                 smsCode = etForgetSms.getText().toString();
-                if (TextUtils.isEmpty(phone) || !WYUtils.checkPhone(phone)) {
-                    UIUtils.showToastCommon(mContext, Config.TIP_MOBILE);
-                    return;
-                } else if (TextUtils.isEmpty(imageCode)) {
+               if (TextUtils.isEmpty(imageCode)) {
                     UIUtils.showToastCommon(mContext, Config.TIP_IMAGE);
                     return;
-                } else if (TextUtils.isEmpty(smsCode)) {
-                    UIUtils.showToastCommon(mContext, Config.TIP_SMS);
-                    return;
-                } else if (TextUtils.isEmpty(passWord) || !WYUtils.checkPass(passWord)) {
-                    UIUtils.showToastCommon(mContext, Config.TIP_PASSS);
-                    return;
-                }
-
-
-                mPresenter.forgetPassWord(phone, passWord, smsCode, imageCode,0);
-                break;
-            case R.id.iv_show_pwd:
-                if (showPwd) {
-                    showPwd = false;
-                    ivShowPwd.setImageResource(R.mipmap.login_unshow);
-                    etForgetPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                } else {
-                    showPwd = true;
-                    ivShowPwd.setImageResource(R.mipmap.login_show);
-                    etForgetPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
+               } else if (TextUtils.isEmpty(smsCode)) {
+                   UIUtils.showToastCommon(mContext, Config.TIP_SMS);
+                   return;
+               }
+                Intent intent = new Intent(ModificationPasswordActivity.this, ModificationPasswordStep2Activity.class);
+                intent.putExtra("imageCode", imageCode);
+                intent.putExtra("smsCode", smsCode);
+                startActivity(intent);
                 break;
             case R.id.iv_finish:
                 finish();

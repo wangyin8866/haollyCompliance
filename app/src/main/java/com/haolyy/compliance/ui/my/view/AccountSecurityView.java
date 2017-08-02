@@ -11,5 +11,6 @@ public interface AccountSecurityView extends BaseView {
 
     void showData(AccountSecurityBean accountSecurityBean);
 
+    void pushActivity();
     void showRegisterDialog();
 }

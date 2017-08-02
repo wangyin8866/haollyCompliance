@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.my.view.AccountSecurityView;
 import com.haolyy.compliance.utils.LogUtils;
@@ -42,4 +43,9 @@ public class AccountSecurityPresenter extends BasePresenter<AccountSecurityView>
 
     }
 
+    @Override
+    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
+        super.overwriteSelectUserState(fb, flag);
+        getView().pushActivity();
+    }
 }
