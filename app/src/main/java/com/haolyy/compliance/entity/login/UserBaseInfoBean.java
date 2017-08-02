@@ -5,12 +5,10 @@ package com.haolyy.compliance.entity.login;
  */
 
 public class UserBaseInfoBean {
-
-
     /**
      * code : 200
      * msg : 成功
-     * model : {"realName":"酆俊博","totalAmount":163710,"availableCredit":161810,"bankCardNo":"6228223211212310088","userMobile":"15001230079","bankNo":"101","mobile":"15001230079","limitSingle":"2000000.00","bankName":"农业银行","limitDay":"2000000.00","idNo":"152223198702118537","frozenAmount":1900}
+     * model : {"availableCredit":900,"bankCardNo":"622822*********0250","mobile":"15001231060","limitSingle":"2000000000.00","bankName":"农业银行","limitDay":"2000000000.00","idNo":"131181********5657","frozenAmount":100,"realName":"季淼","totalAmount":1000,"userMobile":"15001231060","bankNo":"101","mapUrl":"http://192.168.7.114/pictures/color/ABC.png"}
      */
 
     private String code;
@@ -43,57 +41,34 @@ public class UserBaseInfoBean {
 
     public static class ModelBean {
         /**
-         * realName : 酆俊博
-         * totalAmount : 163710.0
-         * availableCredit : 161810.0
-         * bankCardNo : 6228223211212310088
-         * userMobile : 15001230079
-         * bankNo : 101
-         * mobile : 15001230079
-         * limitSingle : 2000000.00
+         * availableCredit : 900.0
+         * bankCardNo : 622822*********0250
+         * mobile : 15001231060
+         * limitSingle : 2000000000.00
          * bankName : 农业银行
-         * limitDay : 2000000.00
-         * idNo : 152223198702118537
-         * frozenAmount : 1900.0
+         * limitDay : 2000000000.00
+         * idNo : 131181********5657
+         * frozenAmount : 100.0
+         * realName : 季淼
+         * totalAmount : 1000.0
+         * userMobile : 15001231060
+         * bankNo : 101
+         * mapUrl : http://192.168.7.114/pictures/color/ABC.png
          */
 
-        private String realName;
-        private double totalAmount;
         private double availableCredit;
         private String bankCardNo;
-        private String userMobile;
-        private String bankNo;
         private String mobile;
         private String limitSingle;
         private String bankName;
         private String limitDay;
         private String idNo;
         private double frozenAmount;
+        private String realName;
+        private double totalAmount;
+        private String userMobile;
+        private String bankNo;
         private String mapUrl;
-
-        public String getMapUrl() {
-            return mapUrl;
-        }
-
-        public void setMapUrl(String mapUrl) {
-            this.mapUrl = mapUrl;
-        }
-
-        public String getRealName() {
-            return realName;
-        }
-
-        public void setRealName(String realName) {
-            this.realName = realName;
-        }
-
-        public double getTotalAmount() {
-            return totalAmount;
-        }
-
-        public void setTotalAmount(double totalAmount) {
-            this.totalAmount = totalAmount;
-        }
 
         public double getAvailableCredit() {
             return availableCredit;
@@ -109,22 +84,6 @@ public class UserBaseInfoBean {
 
         public void setBankCardNo(String bankCardNo) {
             this.bankCardNo = bankCardNo;
-        }
-
-        public String getUserMobile() {
-            return userMobile;
-        }
-
-        public void setUserMobile(String userMobile) {
-            this.userMobile = userMobile;
-        }
-
-        public String getBankNo() {
-            return bankNo;
-        }
-
-        public void setBankNo(String bankNo) {
-            this.bankNo = bankNo;
         }
 
         public String getMobile() {
@@ -173,6 +132,46 @@ public class UserBaseInfoBean {
 
         public void setFrozenAmount(double frozenAmount) {
             this.frozenAmount = frozenAmount;
+        }
+
+        public String getRealName() {
+            return realName;
+        }
+
+        public void setRealName(String realName) {
+            this.realName = realName;
+        }
+
+        public double getTotalAmount() {
+            return totalAmount;
+        }
+
+        public void setTotalAmount(double totalAmount) {
+            this.totalAmount = totalAmount;
+        }
+
+        public String getUserMobile() {
+            return userMobile;
+        }
+
+        public void setUserMobile(String userMobile) {
+            this.userMobile = userMobile;
+        }
+
+        public String getBankNo() {
+            return bankNo;
+        }
+
+        public void setBankNo(String bankNo) {
+            this.bankNo = bankNo;
+        }
+
+        public String getMapUrl() {
+            return mapUrl;
+        }
+
+        public void setMapUrl(String mapUrl) {
+            this.mapUrl = mapUrl;
         }
     }
 }

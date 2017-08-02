@@ -61,6 +61,10 @@ public class ProductManageDetail extends BaseActivity<ProductTopPresenter, Produ
 
     private void init() {
         assetManagementListBean = (ProductFundList.ModelBeanX.ModelBean.AssetManagementListBean) getIntent().getSerializableExtra("productFund");
+
+        if (assetManagementListBean.getProjectType() == 1) {//散标
+            binding.rlLock.setVisibility(View.GONE);
+        }
         //金额
         binding.tvBuyMoney.setText(assetManagementListBean.getAmount());
         //实际收益

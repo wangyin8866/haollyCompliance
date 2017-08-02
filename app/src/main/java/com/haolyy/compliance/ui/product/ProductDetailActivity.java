@@ -160,7 +160,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
     @Override
     public void getUserState(FindUserStatusBean baseResponseBean) {
         state = baseResponseBean.getModel().getModel().getIs_open_account();
-        if (state == 1) {//chongzhi
+        if (state == 1) {
             Intent intent = new Intent(ProductDetailActivity.this, ProductSureInvest.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("productDetail", infoBean);
@@ -170,7 +170,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
             bundle.putString("projectNo", projectNo);
             intent.putExtras(bundle);
             startActivity(intent);
-        } else {
+        } else {//没有开户
             showDialog();
         }
     }

@@ -36,6 +36,8 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
     private String earning;
     private double amount;
     private String projectNo;
+    private int project_type;
+
     @Override
     protected ProductSureInvestPresenter createPresenter() {
         return new ProductSureInvestPresenter(mContext);
@@ -82,11 +84,18 @@ public class ProductSureInvest extends BaseActivity<ProductSureInvestPresenter,P
         infoBean = (ProductBaseDetail.ModelBeanX.ModelBean.InfoBean) getIntent().getSerializableExtra("productDetail");
 
         LogUtils.e("infoBean",infoBean.toString());
+
+        project_type = infoBean.getProjectType();
         income = getIntent().getStringExtra("income");
         earning = getIntent().getStringExtra("earning");
         amount = getIntent().getDoubleExtra("amount",0);
         projectNo = getIntent().getStringExtra("projectNo");
         mPresenter.requestUserInfoDetail();
+
+        if (project_type==1) {//散标
+            binding.tvLockDate.setVisibility(View.GONE);
+            binding.tvInvestLockDate.setVisibility(View.GONE);
+        }
 
         /**
          * 显示数据

@@ -25,6 +25,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 
+import static com.haolyy.compliance.base.BaseApplication.context;
+
 /**
  * 解绑与换绑共享页面
  */
@@ -69,6 +71,8 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     TextView tvRebindSms;
     @BindView(R.id.btn_rebind)
     TextView btnRebind;
+    @BindView(R.id.iv_bank)
+    ImageView ivBank;
     private boolean isNew = false;
     private String smsSqOld, smsOald, smsNew, smsSqnew;
     private String rebindPhone;
@@ -76,7 +80,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     private String mobile;
     private String bank_card_no;
     private String newCardNo;
-    private String bankNo="";
+    private String bankNo = "";
 
     @Override
     protected RebindBankPresenter createPresenter() {
@@ -222,6 +226,8 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
         mobile = fb.getModel().getMobile();
         bank_card_no = fb.getModel().getBankCardNo();
         tvCardNo.setText(bank_card_no);
+        tvBankName.setText(fb.getModel().getBankName());
+        Glide.with(context).load(fb.getModel().getMapUrl()).into(ivBank);
         etRebindPhone.setText(mobile);
     }
 }

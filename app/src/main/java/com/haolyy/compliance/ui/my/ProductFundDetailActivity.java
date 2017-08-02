@@ -133,7 +133,7 @@ public class ProductFundDetailActivity extends AppCompatActivity {
 
     private void init() {
         productBaseDetail = (ProductBaseDetail) getIntent().getSerializableExtra("productBaseDetail");
-        LogUtils.e("productBaseDetail",productBaseDetail.toString());
+        LogUtils.e("productBaseDetail", productBaseDetail.toString());
         currentTime = productBaseDetail.getModel().getModel().getNow();
         ProductBaseDetail.ModelBeanX.ModelBean.InfoBean infoBean = productBaseDetail.getModel().getModel().getInfo();
         //利率
@@ -141,7 +141,7 @@ public class ProductFundDetailActivity extends AppCompatActivity {
         //额外利率
         proYield2.setText(infoBean.getAppendRate());
 
-        WYUtils.setVisibility(rateAdd,proYield2,extraRatePercent,infoBean.getAppendRate());
+        WYUtils.setVisibility(rateAdd, proYield2, extraRatePercent, infoBean.getAppendRate());
         //剩余可投金额
         amountWait.setText(infoBean.getAmountWait() + "元");
         //退出日期
@@ -149,7 +149,7 @@ public class ProductFundDetailActivity extends AppCompatActivity {
         //投资期限
         investDeadline.setText(infoBean.getPeriodLength() + WYUtils.getInvestDeadline(infoBean.getPeriodUnit()));
         //锁定期
-        lockPeriod.setText(infoBean.getLockPeriod()+ "天");
+        lockPeriod.setText(infoBean.getLockPeriod() + "天");
         processProgress(infoBean.getBeginDate(), infoBean.getBidEndDate(), infoBean.getLockDate(), infoBean.getInterestEndDate());
 
         topBar.setTitle(infoBean.getProjectName());
@@ -163,6 +163,7 @@ public class ProductFundDetailActivity extends AppCompatActivity {
         //显示进度
         if (project_type == 1) {//散标
             joinProgress.setVisibility(View.GONE);
+            lockPeriod.setVisibility(View.GONE);
         } else {
             if (product_no.equalsIgnoreCase("scd")) {//新手标
                 joinLine3.setVisibility(View.GONE);
@@ -176,20 +177,18 @@ public class ProductFundDetailActivity extends AppCompatActivity {
         }
 
 
-
-
         fragmentBottomH5Detail = new FragmentBottomH5Detail();
         bottomInvestLog = new FragmentBottomInvestLog();
         bottomCreditorInfo = new FragmentBottomCreditorInfo();
         bottomRepaymentPlan = new FragmentBottomRepaymentPlan();
 
         LogUtils.e("ProductFragmentBottom_product_no", product_no);
-        if (product_no.contains("YJH")||product_no.contains("DQY")||product_no.contains("XSB")) {//赢计划,短期赢,新手标
+        if (product_no.contains("YJH") || product_no.contains("DQY") || product_no.contains("XSB")) {//赢计划,短期赢,新手标
             titles.add("产品详情");
             fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
-        } else if (product_no.contains("XFD")||product_no.contains("SCD")) {//消费贷,闪车贷
+        } else if (product_no.contains("XFD") || product_no.contains("SCD")) {//消费贷,闪车贷
             titles.add("借款明细");
             fragments.add(fragmentBottomH5Detail);
             titles.add("投资记录");
@@ -209,7 +208,7 @@ public class ProductFundDetailActivity extends AppCompatActivity {
             titles.add("投资记录");
             fragments.add(bottomInvestLog);
         }
-        vpJoinRecord.setAdapter(new TabAdapter(getSupportFragmentManager(),fragments,titles));
+        vpJoinRecord.setAdapter(new TabAdapter(getSupportFragmentManager(), fragments, titles));
         vpJoinRecord.setOffscreenPageLimit(3);
         tablayoutBottom.setupWithViewPager(vpJoinRecord);
 

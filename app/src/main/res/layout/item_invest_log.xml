@@ -27,7 +27,7 @@
                     android:id="@+id/invest_log_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{investLog.deposit_mobile}"
+                    android:text="@{investLog.mobile}"
                     android:textColor="#FF7D7D7D"
                     android:textSize="14sp" />
 

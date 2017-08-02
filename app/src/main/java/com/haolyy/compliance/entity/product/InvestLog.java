@@ -10,7 +10,7 @@ public class InvestLog {
     /**
      * code : 200
      * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"pageSum":1,"investmentRecordList":[{"createTime":"2017-07-11 10:27:06","inverstSuccessAmount":"13,000.00","client":"ANDROID","deposit_mobile":"18500002339"}]}}
+     * model : {"code":"200","msg":"成功","model":{"pageSum":2,"investmentRecordList":[{"createTime":"2017-08-01 17:22:26","mobile":"15001231060","inverstSuccessAmount":"100.00","client":"ANDROID"},{"createTime":"2017-08-01 13:55:19","mobile":"18000000001","inverstSuccessAmount":"500.00","client":"PC"},{"createTime":"2017-07-31 19:28:56","mobile":"15001231062","inverstSuccessAmount":"1,000.00","client":"PC"},{"createTime":"2017-07-31 15:05:12","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:44","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:41","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:32","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 10:19:09","mobile":"18221740013","inverstSuccessAmount":"1,000.00","client":"IOS"},{"createTime":"2017-07-28 21:07:00","mobile":"15001234003","inverstSuccessAmount":"100.00","client":"IOS"},{"createTime":"2017-07-28 20:52:55","mobile":"15001234003","inverstSuccessAmount":"100.00","client":"IOS"}]}}
      */
 
     private String code;
@@ -45,7 +45,7 @@ public class InvestLog {
         /**
          * code : 200
          * msg : 成功
-         * model : {"pageSum":1,"investmentRecordList":[{"createTime":"2017-07-11 10:27:06","inverstSuccessAmount":"13,000.00","client":"ANDROID","deposit_mobile":"18500002339"}]}
+         * model : {"pageSum":2,"investmentRecordList":[{"createTime":"2017-08-01 17:22:26","mobile":"15001231060","inverstSuccessAmount":"100.00","client":"ANDROID"},{"createTime":"2017-08-01 13:55:19","mobile":"18000000001","inverstSuccessAmount":"500.00","client":"PC"},{"createTime":"2017-07-31 19:28:56","mobile":"15001231062","inverstSuccessAmount":"1,000.00","client":"PC"},{"createTime":"2017-07-31 15:05:12","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:44","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:41","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:32","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 10:19:09","mobile":"18221740013","inverstSuccessAmount":"1,000.00","client":"IOS"},{"createTime":"2017-07-28 21:07:00","mobile":"15001234003","inverstSuccessAmount":"100.00","client":"IOS"},{"createTime":"2017-07-28 20:52:55","mobile":"15001234003","inverstSuccessAmount":"100.00","client":"IOS"}]}
          */
 
         private String code;
@@ -78,8 +78,8 @@ public class InvestLog {
 
         public static class ModelBean {
             /**
-             * pageSum : 1
-             * investmentRecordList : [{"createTime":"2017-07-11 10:27:06","inverstSuccessAmount":"13,000.00","client":"ANDROID","deposit_mobile":"18500002339"}]
+             * pageSum : 2
+             * investmentRecordList : [{"createTime":"2017-08-01 17:22:26","mobile":"15001231060","inverstSuccessAmount":"100.00","client":"ANDROID"},{"createTime":"2017-08-01 13:55:19","mobile":"18000000001","inverstSuccessAmount":"500.00","client":"PC"},{"createTime":"2017-07-31 19:28:56","mobile":"15001231062","inverstSuccessAmount":"1,000.00","client":"PC"},{"createTime":"2017-07-31 15:05:12","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:44","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:41","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 15:03:32","mobile":"17000000005","inverstSuccessAmount":"100.00","client":"WECHAT"},{"createTime":"2017-07-31 10:19:09","mobile":"18221740013","inverstSuccessAmount":"1,000.00","client":"IOS"},{"createTime":"2017-07-28 21:07:00","mobile":"15001234003","inverstSuccessAmount":"100.00","client":"IOS"},{"createTime":"2017-07-28 20:52:55","mobile":"15001234003","inverstSuccessAmount":"100.00","client":"IOS"}]
              */
 
             private int pageSum;
@@ -103,16 +103,16 @@ public class InvestLog {
 
             public static class InvestmentRecordListBean {
                 /**
-                 * createTime : 2017-07-11 10:27:06
-                 * inverstSuccessAmount : 13,000.00
+                 * createTime : 2017-08-01 17:22:26
+                 * mobile : 15001231060
+                 * inverstSuccessAmount : 100.00
                  * client : ANDROID
-                 * deposit_mobile : 18500002339
                  */
 
                 private String createTime;
+                private String mobile;
                 private String inverstSuccessAmount;
                 private String client;
-                private String deposit_mobile;
 
                 public String getCreateTime() {
                     return createTime;
@@ -120,6 +120,14 @@ public class InvestLog {
 
                 public void setCreateTime(String createTime) {
                     this.createTime = createTime;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
                 }
 
                 public String getInverstSuccessAmount() {
@@ -136,14 +144,6 @@ public class InvestLog {
 
                 public void setClient(String client) {
                     this.client = client;
-                }
-
-                public String getDeposit_mobile() {
-                    return deposit_mobile;
-                }
-
-                public void setDeposit_mobile(String deposit_mobile) {
-                    this.deposit_mobile = deposit_mobile;
                 }
             }
         }

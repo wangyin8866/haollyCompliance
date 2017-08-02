@@ -273,6 +273,7 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         //显示进度
         if (project_type == 1) {//散标
             joinProgress.setVisibility(View.GONE);
+            lockPeriod.setVisibility(View.GONE);
         } else {
             if (product_no.equalsIgnoreCase("scd")) {//新手标
                 joinLine3.setVisibility(View.GONE);
@@ -284,7 +285,6 @@ public class ProductFragmentTop extends BaseFragment<ProductTopPresenter, Produc
         if (!product_no.equalsIgnoreCase("pjd")) {//票据贷
             leftLabel.setVisibility(View.GONE);
         }
-        // mPresenter.getBaseDetail(projectNo + "", juid);
 
 
     }
