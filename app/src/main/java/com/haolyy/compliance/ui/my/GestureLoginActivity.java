@@ -83,6 +83,7 @@ public class GestureLoginActivity extends AppCompatActivity {
                     BaseApplication.userId=SPUtils.getInt(GestureLoginActivity.this,"userId",-1);
                     BaseApplication.mUserName=SPUtils.getString(GestureLoginActivity.this,"mUserName","");
                     BaseApplication.juid=SPUtils.getString(GestureLoginActivity.this,"juid","");
+                    BaseApplication.userCustId=SPUtils.getString(GestureLoginActivity.this,"userCustId","");
 
                     startActivity(new Intent(GestureLoginActivity.this, MainActivity.class));
 

@@ -76,6 +76,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     private String mobile;
     private String bank_card_no;
     private String newCardNo;
+    private String bankNo="";
 
     @Override
     protected RebindBankPresenter createPresenter() {
@@ -124,7 +125,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                     }
                     mPresenter.sendSms("rebind", newCardNo, rebindPhone, "N");
                 } else {
-                    mPresenter.sendSms("rebind", bank_card_no, mobile, "O");
+                    mPresenter.sendSms("rebind", getIntent().getStringExtra("bank"), mobile, "O");
                 }
                 tvRebindSms.setEnabled(false);//发短信按钮不可点击
                 break;
@@ -149,7 +150,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                         UIUtils.showToastCommon(mContext, "银行卡号不能为空");
                         return;
                     }
-                    mPresenter.quikBind("REBIND", "ABC", newCardNo, rebindPhone, "666666", "AAAAAAAA", "666666AAAAAAAA");
+                    mPresenter.quikBind("REBIND", bankNo, newCardNo, rebindPhone, "666666", "AAAAAAAA", "666666AAAAAAAA");
                 } else {
                     //解绑页面
                     smsOald = sms;
@@ -176,6 +177,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
         if (null != data) {
             etCardNo.requestFocus();
             BankListBean.ModelBeanX.ModelBean model = (BankListBean.ModelBeanX.ModelBean) data.getSerializableExtra("data");
+            bankNo = model.getBankNo();
             tvBankNameLogo.setText(model.getBankName());
             Glide.with(mContext).load(model.getMapUrl()).into(ivBankLogo);
         }

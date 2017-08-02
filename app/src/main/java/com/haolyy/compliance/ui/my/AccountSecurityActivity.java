@@ -219,7 +219,9 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
     }
 
     public void pushActivity() {
-        startActivity(new Intent(getApplicationContext(), RebindBankActivity.class));
+        Intent intent = new Intent(getApplicationContext(), RebindBankActivity.class);
+        intent.putExtra("bank", modelBean.getBank_card_no());
+        startActivity(intent);
         finish();
     }
 

@@ -3,11 +3,11 @@ package com.haolyy.compliance.base;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.haolyy.compliance.entity.BaseResponseBean;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.model.BaseModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.SPUtils;
 import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
@@ -94,6 +94,7 @@ public abstract class BasePresenter<T> {
         String userCustId = fb.getModel().getModel().getOrgCustNo();
         if (!TextUtils.isEmpty(userCustId)) {
             BaseApplication.userCustId = userCustId ;
+            SPUtils.saveString(mContext,"userCustId",BaseApplication.userCustId);
         }
     }
 }

@@ -219,10 +219,20 @@
         </activity>
         <!--月度账单-->
         <activity android:name=".ui.my.BillActivity" android:screenOrientation="portrait"/>
+        <!--换帮卡-->
+        <activity android:name=".ui.bank.RebindBankActivity" android:screenOrientation="portrait"/>
+        <!--账户设置-->
+        <activity android:name=".ui.my.SettingActivity" android:screenOrientation="portrait"/>
+
+
+
+
+
+
+
+
         <!-- 汪银测试 -->
         <activity android:name=".ui.test.WyTestActivity" />
-        <activity android:name=".ui.bank.RebindBankActivity" />
-        <activity android:name=".ui.my.SettingActivity" />
     </application>
 
 </manifest>

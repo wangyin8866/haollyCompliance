@@ -39,27 +39,8 @@ public class BaseApplication extends Application {
     public static boolean mLoginState;//是否登录
     public static int userId = -1;
     public static String mUserName;
-
-    public static String mInviteCode;//用户邀请码
-    public static String registerInviteCode = "";//注册邀请码
-    public static String buyInviteCode;
-    public static String mSharedPreferencesName;
-
-    public static int loginDefeatCount = 0;// 登录失败次数
-
-    public static boolean isNeedGesture = true;// 是否需要手势密码
-    public static boolean isRegisterSucceed = false;
-    public static String tryBorrowNid;
-
-    public static String fromActivity = "";//哪来回哪去
-    public static String BorrowId;
-    private static Context context;
-    public static long time_limit = 86400;
-    public static int huoti_count;
-    public static String Borrow_Amount;
-    public static String Borrow_Deline;
+    public static Context context;
     public static String token = "";
-    public static String BankFrom;
     public static String version="";//版本号
     public static String juid="";//平台客户号
     public static String userCustId="";
