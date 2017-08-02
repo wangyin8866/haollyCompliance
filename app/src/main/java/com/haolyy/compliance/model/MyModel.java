@@ -1,5 +1,8 @@
 package com.haolyy.compliance.model;
 
+import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.entity.my.ProductFund;
 import com.haolyy.compliance.entity.my.ProductFundList;
 import com.haolyy.compliance.service.MyApi;
@@ -40,5 +43,13 @@ public class MyModel extends BaseModel {
         map.put("pageIndex", pageIndex);
         map.put("orderStatus", orderStatus);
         return myApi.assetManagementList(map);
+    }
+    public Observable<MessageBean> getMessage(String page_index){
+        map.clear();
+        map.put("platform", Config.platform);
+        map.put("user_id", BaseApplication.userId+"");
+        map.put("page_index", page_index);
+        map.put("mobile", BaseApplication.mUserName);
+        return myApi.getMessage(map);
     }
 }

@@ -19,7 +19,6 @@ import com.haolyy.compliance.ui.bank.RebindBankActivity;
 import com.haolyy.compliance.ui.my.presenter.AccountSecurityPresenter;
 import com.haolyy.compliance.ui.my.view.AccountSecurityView;
 import com.haolyy.compliance.utils.AppToast;
-import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.SPUtils;
 
 import butterknife.BindView;
@@ -126,7 +125,9 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
                 }
                 break;
             case R.id.security_bind_phone://绑定手机
-                startActivity(new Intent(AccountSecurityActivity.this, CheckPhone.class));
+                Intent intent1 = new Intent(AccountSecurityActivity.this, CheckPhone.class);
+                intent1.putExtra("phone", modelBean.getMobile());
+                startActivity(intent1);
                 break;
             case R.id.rl_transaction_pwd_status://交易密码
                 if (isPassword) {
@@ -188,7 +189,6 @@ public class AccountSecurityActivity extends BaseActivity<AccountSecurityPresent
 
         }
         tvBindCard.setText(isBank ? "已绑定" : "未绑定");
-        LogUtils.e("phone", modelBean.getMobile() + "'");
         mobile.setText(modelBean.getMobile());
         int riskLevel = modelBean.getRisk_level();
         String level = "未设置";

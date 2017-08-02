@@ -1,12 +1,8 @@
 package com.haolyy.compliance.ui.my;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,12 +15,14 @@ import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.github.jdsjlzx.util.RecyclerViewStateUtils;
 import com.github.jdsjlzx.view.LoadingFooter;
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.entity.ItemModel;
+import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.swipe.SwipeMenuAdapter;
-import com.haolyy.compliance.utils.NetworkUtils;
+import com.haolyy.compliance.ui.my.presenter.MessagePresenter;
+import com.haolyy.compliance.ui.my.view.MessageView;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +32,7 @@ import butterknife.OnClick;
  * Created by wangyin on 2017/6/6.
  */
 
-public class MessageActivity extends AppCompatActivity {
+public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>implements MessageView  {
     private static final String TAG = "lzx";
 
     /**
@@ -62,10 +60,15 @@ public class MessageActivity extends AppCompatActivity {
 
     private SwipeMenuAdapter mDataAdapter = null;
 
-    private PreviewHandler mHandler = new PreviewHandler(this);
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
 
     private boolean isRefresh = false;
+    private List<MessageBean.ModelBeanX.ModelBean.AccountMessagesBean> accountMessagesBeanList;
+    private int pageIndex=0;
+    @Override
+    protected MessagePresenter createPresenter() {
+        return new MessagePresenter(mContext);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,19 +76,45 @@ public class MessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message);
         ButterKnife.bind(this);
 
+        mPresenter.getMessage(pageIndex+"");
 
         mRecyclerView = (LRecyclerView) findViewById(R.id.lrv_message);
 
-        ArrayList<ItemModel> dataList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            ItemModel itemModel = new ItemModel();
-            itemModel.title = "item" + i;
-            dataList.add(itemModel);
 
-            mCurrentCounter += dataList.size();
+    }
+
+    @Override
+    protected void handleMessage(Integer s) {
+
+    }
+
+    private void notifyDataSetChanged() {
+        mLRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private void addItems(ArrayList<MessageBean.ModelBeanX.ModelBean.AccountMessagesBean> list) {
+
+        mDataAdapter.addAll(list);
+        mCurrentCounter += list.size();
+
+    }
+
+    @OnClick({R.id.iv_back, R.id.tv_mark})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.tv_mark:
+                break;
         }
+    }
+
+    @Override
+    public void showData(MessageBean messageBean) {
+        accountMessagesBeanList =  messageBean.getModel().getModel().getAccountMessages();
         mDataAdapter = new SwipeMenuAdapter(this);
-        mDataAdapter.setDataList(dataList);
+        mDataAdapter.setDataList(accountMessagesBeanList);
         mDataAdapter.setOnDelListener(new SwipeMenuAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
@@ -113,6 +142,8 @@ public class MessageActivity extends AppCompatActivity {
 
 //        mLRecyclerViewAdapter.addHeaderView(new SampleHeader(this));//添加头部布局
 
+
+
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -120,129 +151,18 @@ public class MessageActivity extends AppCompatActivity {
                 mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
                 mCurrentCounter = 0;
                 isRefresh = true;
-                requestData();
+               mPresenter.getMessage(pageIndex+"");
             }
         });
         mRecyclerView.refresh();
-
-
     }
 
-    private void notifyDataSetChanged() {
-        mLRecyclerViewAdapter.notifyDataSetChanged();
-    }
-
-    private void addItems(ArrayList<ItemModel> list) {
-
-        mDataAdapter.addAll(list);
-        mCurrentCounter += list.size();
-
-    }
-
-    @OnClick({R.id.iv_back, R.id.tv_mark})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.tv_mark:
-                break;
-        }
-    }
-
-    private static class PreviewHandler extends Handler {
-
-        private WeakReference<MessageActivity> ref;
-
-        PreviewHandler(MessageActivity activity) {
-            ref = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            final MessageActivity activity = ref.get();
-            if (activity == null || activity.isFinishing()) {
-                return;
-            }
-            switch (msg.what) {
-
-                case -1:
-                    if (activity.isRefresh) {
-                        activity.mDataAdapter.clear();
-                        mCurrentCounter = 0;
-                    }
-
-                    int currentSize = activity.mDataAdapter.getItemCount();
-
-                    //模拟组装10个数据
-                    ArrayList<ItemModel> newList = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        if (newList.size() + currentSize >= TOTAL_COUNTER) {
-                            break;
-                        }
-
-                        ItemModel item = new ItemModel();
-                        item.id = currentSize + i;
-                        item.title = "item" + (item.id);
-                        if (i % 3 == 0) {
-                            item.isMark = true;
-                        }
-                        newList.add(item);
-                    }
-
-
-                    activity.addItems(newList);
-
-                    activity.mRecyclerView.refreshComplete(REQUEST_COUNT);
-                    activity.notifyDataSetChanged();
-                    break;
-                case -2:
-                    activity.notifyDataSetChanged();
-                    break;
-                case -3:
-                    activity.mRecyclerView.refreshComplete(REQUEST_COUNT);
-                    activity.notifyDataSetChanged();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
 
     private View.OnClickListener mFooterClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             RecyclerViewStateUtils.setFooterViewState(MessageActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
-            requestData();
         }
     };
-
-    /**
-     * 模拟请求网络
-     */
-    private void requestData() {
-        Log.d(TAG, "requestData");
-        new Thread() {
-
-            @Override
-            public void run() {
-                super.run();
-
-                try {
-                    Thread.sleep(800);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                //模拟一下网络请求失败的情况
-                if (NetworkUtils.isNetAvailable(MessageActivity.this)) {
-                    mHandler.sendEmptyMessage(-1);
-                } else {
-                    mHandler.sendEmptyMessage(-3);
-                }
-            }
-        }.start();
-    }
-
 
 }

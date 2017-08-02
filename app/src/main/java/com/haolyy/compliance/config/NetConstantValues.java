@@ -45,7 +45,7 @@ public interface NetConstantValues {
     String DEAL_RECORD_INFO = USERMANAGE + "account/findFundsDetailList";//交易记录
     String PRODUCT_FUNDS = USERMANAGE + "account/productFunds";//持有产品分类总额
     String ASSET_MANAGMENT_LIST = USERMANAGE + "account/assetManagementList";//持有产品分类总额
-
+    String MESSAGE_LIST=USERMANAGE+"/account/accountMessage";//消息列表
 
     //短信
     String REQUEST_VALIDATE_CODE = USERMANAGE + "sms/requestValidateCode";

@@ -8,13 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.haolyy.compliance.R;
-import com.haolyy.compliance.entity.ItemModel;
+import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.ui.my.MessageDetail;
 import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.LogUtils;
 
 
-public class SwipeMenuAdapter extends ListBaseAdapter<ItemModel> {
+public class SwipeMenuAdapter extends ListBaseAdapter<MessageBean.ModelBeanX.ModelBean.AccountMessagesBean> {
     public SwipeMenuAdapter(Context context) {
         super(context);
 
@@ -22,24 +22,24 @@ public class SwipeMenuAdapter extends ListBaseAdapter<ItemModel> {
 
     @Override
     public int getLayoutId() {
-   return R.layout.item_list_swipe;
-       /* if (mDataList.get(mPosition).isMark) {
+        if (mDataList.get(mPosition).getStatus()==1) {
             return R.layout.item_list_swipe;
-        } else {
+        } else if (mDataList.get(mPosition).getStatus()==2){
             return R.layout.item_list_swipe_mark;
-        }*/
+        }
+        return 0;
     }
 
     @Override
     public void onBindItemHolder(SuperViewHolder holder, final int position) {
-        LogUtils.e("isMark"+position+mDataList.get(position).isMark+"size"+mDataList.size());
+        LogUtils.e("isMark"+position+mDataList.get(position).getStatus()+"size"+mDataList.size());
         View contentView = holder.getView(R.id.swipe_content);
 
          Button btnDelete = holder.getView(R.id.btnDelete);
          ImageView iv= holder.getView(R.id.iv_1);
         //这句话关掉IOS阻塞式交互效果 并依次打开左滑右滑
         ((SwipeMenuView)holder.itemView).setIos(false).setLeftSwipe(true);
-        if(mDataList.get(position).isMark){
+        if(mDataList.get(position).getStatus()==1){
             iv.setVisibility(View.VISIBLE);
         }else {
             iv.setVisibility(View.GONE);
@@ -62,7 +62,7 @@ public class SwipeMenuAdapter extends ListBaseAdapter<ItemModel> {
         contentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppToast.makeShortToast(mContext, getDataList().get(position).title);
+                AppToast.makeShortToast(mContext, getDataList().get(position).getTitle());
                 Log.d("TAG", "onClick() called with: v = [" + v + "]");
                 mContext.startActivity(new Intent(mContext, MessageDetail.class));
             }
