@@ -8,13 +8,13 @@ public interface NetConstantValues {
     /**
      * 开发环境
      */
-//    String HOST_URL = "http://192.168.6.59:8010/";
-//    String HOST_PAY="http://192.168.6.59:8014/";
+    String HOST_URL = "http://192.168.6.59:8010/";
+    String HOST_PAY="http://192.168.6.59:8014/";
     /**
      * 测试服务器
      */
-    String HOST_URL = "http://192.168.6.60:8010/";
-    String HOST_PAY = "http://192.168.6.60:8014/";
+    //String HOST_URL = "http://192.168.6.60:8010/";
+    //String HOST_PAY = "http://192.168.6.60:8014/";
     //帅帅
     // String HOST_URL = "http://192.168.10.36:9090/";
     // String HOST_PAY="http://192.168.13.63:9093/";
@@ -45,7 +45,7 @@ public interface NetConstantValues {
     String DEAL_RECORD_INFO = USERMANAGE + "account/findFundsDetailList";//交易记录
     String PRODUCT_FUNDS = USERMANAGE + "account/productFunds";//持有产品分类总额
     String ASSET_MANAGMENT_LIST = USERMANAGE + "account/assetManagementList";//持有产品分类总额
-    String MESSAGE_LIST=USERMANAGE+"/account/accountMessage";//消息列表
+    String MESSAGE_LIST = USERMANAGE + "/account/accountMessage";//消息列表
 
     //短信
     String REQUEST_VALIDATE_CODE = USERMANAGE + "sms/requestValidateCode";

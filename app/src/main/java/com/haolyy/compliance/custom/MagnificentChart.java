@@ -13,6 +13,7 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -367,6 +368,7 @@ public class MagnificentChart extends View {
             String title = currentItem.title;
             int value = currentItem.value;
             float currentPercentValue = getPercent(value, maxValue);
+            //Log.e("ndy",title+color+value+"&&"+currentPercentValue);
             float currentAngle = currentPercentValue * 360;
             anglesSum += currentAngle;
             currentPaint.setColor(color);

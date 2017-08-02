@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BasePresenter;
+import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.MainActivity;
@@ -37,6 +38,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     BaseApplication.userId = loginResponseBean.getModel().getId();
                     BaseApplication.mUserName = loginResponseBean.getModel().getMobile();
                     BaseApplication.juid = loginResponseBean.getModel().getUserCode();
+                    //selectUserState(0);
 
                     //保存用户信息
 
@@ -59,5 +61,11 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
             }
         },mContext));
+    }
+
+    @Override
+    public void overwriteSelectUserState(FindUserStatusBean fb, int flag) {
+        super.overwriteSelectUserState(fb, flag);
+
     }
 }

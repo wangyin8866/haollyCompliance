@@ -23,6 +23,7 @@ public class DealLogAdapter extends WyBaseAdapter {
     public DealLogAdapter(List<DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean> list, Context context) {
         super(list, context);
         this.list = list;
+        notifyDataSetChanged();
     }
 
     @Override

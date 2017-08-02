@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -19,8 +20,11 @@ import com.haolyy.compliance.ui.my.presenter.DealRecordPresenter;
 import com.haolyy.compliance.ui.my.view.DealRecordView;
 import com.haolyy.compliance.utils.UIUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +70,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
     private List datas;
     private List<DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean> list;
     private List<DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean> newList;
+    private DealLogAdapter dealLogAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,9 +100,9 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
         xlvDealLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(list.get(position).getCapitalType()==200303){
+                if (list.get(position).getCapitalType() == 200303) {
                     //到交易明细
-                    startActivity(new Intent(mContext,DealDetailWithDraw.class));
+                    startActivity(new Intent(mContext, DealDetailWithDraw.class));
                 }
             }
         });
@@ -119,7 +124,8 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
                 } else {
                     xlvDealLog.setPullLoadEnable(true);
                 }
-                xlvDealLog.setAdapter(new DealLogAdapter(list, this));
+                dealLogAdapter = new DealLogAdapter(list, this);
+                xlvDealLog.setAdapter(dealLogAdapter);
                 xlvDealLog.setXListViewListener(this);
             }
         } else {
@@ -128,8 +134,13 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
                 xlvDealLog.setPullLoadEnable(false);
             } else {
                 list.addAll(dealRecordBean.getModel().getModel().getFundsRecordList());
-                xlvDealLog.setAdapter(new DealLogAdapter(list, this));
-                xlvDealLog.setSelection(list.size() - dealRecordBean.getModel().getModel().getFundsRecordList().size());
+                Log.e(tag,list.size()+"size");
+                if (null == dealLogAdapter) {
+                    dealLogAdapter = new DealLogAdapter(list, mContext);
+                    xlvDealLog.setAdapter(dealLogAdapter);
+                } else {
+                    dealLogAdapter.notifyDataSetChanged();
+                }
             }
         }
     }
@@ -159,8 +170,16 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
      */
     @Override
     public void onRefresh() {
-        pageIndex = 0;
-        mPresenter.requestDealRecord(true, capitalType + "", "1", "0");
+        pageIndex = 1;
+        mPresenter.requestDealRecord(true, capitalType + "", pageIndex+"", "0");
+        onLoad();
+    }
+
+    private void onLoad() {
+        xlvDealLog.stopRefresh();
+        xlvDealLog.stopLoadMore();
+        xlvDealLog.setRefreshTime(new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()));
+
     }
 
     /**
@@ -168,8 +187,9 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
      */
     @Override
     public void onLoadMore() {
-        pageIndex += 1;
+        ++pageIndex;
         mPresenter.requestDealRecord(false, capitalType + "", pageIndex + "", "0");
+        onLoad();
     }
 
     @OnClick({R.id.tv_deal_1, R.id.tv_deal_2, R.id.tv_deal_3, R.id.tv_deal_4, R.id.tv_deal_5, R.id.tv_deal_6, R.id.tv_deal_7, R.id.tv_deal_8, R.id.tv_deal_9})
@@ -229,11 +249,10 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
         textView.setTextColor(Color.parseColor("#FFFFFF"));
         llDealTab.setVisibility(View.GONE);
         doubleClick = !doubleClick;
-        if(capitalType==0){
+        if (capitalType == 0) {
             pageIndex = 0;
             mPresenter.requestDealRecord(true, capitalType + "", "1", "0");
-        }
-        else {
+        } else {
             if (list.size() != 0) {
                 newList = new ArrayList<>();
                 for (DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean bean : list) {
@@ -246,6 +265,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
             }
         }
     }
+
     private void reset() {
         tvDeal1.setBackground(getResources().getDrawable(R.drawable.shape_yellow_radius));
         tvDeal1.setTextColor(Color.parseColor("#FF9933"));

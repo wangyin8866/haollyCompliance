@@ -177,13 +177,11 @@
             android:textColor="@color/text_4a4a4a"
             android:textSize="14sp" />
 
-        <com.haolyy.compliance.custom.ClearEditText
+        <EditText
             android:id="@+id/et_rebind_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:drawableRight="@mipmap/login_delete"
-            android:gravity="center"
             android:hint="请输入11位手机号码"
             android:inputType="number"
             android:maxLength="11"
@@ -210,15 +208,13 @@
             android:textColor="@color/text_4a4a4a"
             android:textSize="14sp" />
 
-        <com.haolyy.compliance.custom.ClearEditText
+        <EditText
             android:enabled="false"
             android:id="@+id/et_rebind_sms"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableRight="@mipmap/login_delete"
-            android:gravity="center"
             android:hint="请输入6位验证码"
             android:inputType="number"
             android:maxLength="6"

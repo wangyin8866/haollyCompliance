@@ -135,7 +135,7 @@ public class ProductRatioBean {
                  */
 
                 private String first_category_id;
-                private String proportion;
+                private int proportion;
                 private double cumulative_profit;
                 private String hold_amount;
                 private String second_category_id;
@@ -151,13 +151,10 @@ public class ProductRatioBean {
                     this.first_category_id = first_category_id;
                 }
 
-                public String getProportion() {
+                public int getProportion() {
                     return proportion;
                 }
 
-                public void setProportion(String proportion) {
-                    this.proportion = proportion;
-                }
 
                 public double getCumulative_profit() {
                     return cumulative_profit;

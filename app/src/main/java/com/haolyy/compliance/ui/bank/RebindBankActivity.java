@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -64,9 +65,9 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     @BindView(R.id.ll_rebind)
     LinearLayout llRebind;
     @BindView(R.id.et_rebind_phone)
-    ClearEditText etRebindPhone;
+    EditText etRebindPhone;
     @BindView(R.id.et_rebind_sms)
-    ClearEditText etRebindSms;
+    EditText etRebindSms;
     @BindView(R.id.tv_rebind_sms)
     TextView tvRebindSms;
     @BindView(R.id.btn_rebind)
@@ -96,7 +97,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
     }
 
     private void initView() {
-        etRebindPhone.clearFocus();
+        etRebindPhone.setEnabled(false);
         tvTitle.setText("解绑银行卡");
         mPresenter.selectUserBaseInfo();
     }
@@ -160,7 +161,7 @@ public class RebindBankActivity extends BaseActivity<RebindBankPresenter, BankRe
                     smsOald = sms;
                     etRebindSms.getText().clear();
                     etRebindPhone.getText().clear();
-
+                    etRebindPhone.setEnabled(true);
                     subscriptionCount.unsubscribe();
                     tvRebindSms.setEnabled(true);
                     tvRebindSms.setText("发送验证码");
