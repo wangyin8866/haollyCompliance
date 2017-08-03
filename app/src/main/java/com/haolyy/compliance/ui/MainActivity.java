@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
-import com.haolyy.compliance.base.RxBus;
-import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.NoScrollViewPager;
 import com.haolyy.compliance.ui.find.FindNewFragment;
 import com.haolyy.compliance.ui.home.HomeLoginFragment;
@@ -32,7 +30,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.functions.Action1;
 
 import static com.haolyy.compliance.base.BaseApplication.mLoginState;
 
@@ -96,17 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        RxBus.getInstance().toObserverable(String.class).subscribe(new Action1<String>() {
-            @Override
-            public void call(String s) {
-                if (s.equals(Config.LoginOUT)) {
-//                    Looper.prepare();
-//                    UIUtils.showToastCommon(MainActivity.this, "登录超时请重新登录");
-//                    Looper.loop();
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                }
-            }
-        });
 
     }
 

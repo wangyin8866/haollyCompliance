@@ -17,6 +17,7 @@ import com.haolyy.compliance.ui.login.view.ForgetView;
 import com.haolyy.compliance.ui.my.ModificationPasswordStep2Activity;
 import com.haolyy.compliance.ui.my.ModificationPasswordSucceed;
 import com.haolyy.compliance.utils.LogUtils;
+import com.haolyy.compliance.utils.SPUtils;
 import com.haolyy.compliance.utils.UIUtils;
 import com.xfqz.xjd.mylibrary.ProgressSubscriber;
 import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
@@ -166,7 +167,8 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             @Override
             public void onNext(BaseBean baseBean) {
                 if (baseBean.getCode().equals("200")) {
-                    mContext.startActivity(new Intent(mContext, ModificationPasswordSucceed.class));
+                    SPUtils.modification(mContext);
+
                 } else {
                     UIUtils.showToastCommon(mContext,baseBean.getMsg());
                 }

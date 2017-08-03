@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.adapter.MyProductFundAdapter;
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseFragment;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.InnerScrollListView;
@@ -109,7 +108,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         LogUtils.e(tag,"onresume");
         //需要刷新余额
         if(userId==-1){
-            SPUtils.loginOut();
+            SPUtils.loginOut(getActivity());
             return;
         }
         mPresenter.requestUserInfoDetail();

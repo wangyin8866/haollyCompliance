@@ -1,12 +1,13 @@
 package com.haolyy.compliance.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.base.BaseApplication;
-import com.haolyy.compliance.base.RxBus;
-import com.haolyy.compliance.config.Config;
+import com.haolyy.compliance.ui.login.LoginActivity;
+import com.haolyy.compliance.ui.my.ModificationPasswordSucceed;
 
 //实现标记的写入与读取
 public class SPUtils {
@@ -122,14 +123,10 @@ public class SPUtils {
         editor.apply();
     }
 
-    public static void loginOut() {
-        BaseApplication.mLoginState = false;
-        BaseApplication.userId = -1;
-        BaseApplication.mUserName = "";
-        BaseApplication.juid = "";
-        ActivityCollector.finishAll();
-        RxBus.getInstance().post(Config.LoginOUT);
-    }
+    /**
+     * 退出登录,登录超时
+     * @param context
+     */
     public static void loginOut(Context context) {
         BaseApplication.mLoginState = false;
         BaseApplication.userId = -1;
@@ -140,6 +137,23 @@ public class SPUtils {
         }
         sp.edit().clear().apply();
         ActivityCollector.finishAll();
-        RxBus.getInstance().post(Config.LoginOUT);
+        context.startActivity(new Intent(context, LoginActivity.class));
+        UIUtils.showToastCommon(context, "登录超时请重新登录");
     }
+    /**
+     * 修改密码成功
+     */
+    public static void modification(Context context) {
+        BaseApplication.mLoginState = false;
+        BaseApplication.userId = -1;
+        BaseApplication.mUserName = "";
+        BaseApplication.juid = "";
+        if (sp == null) {
+            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        }
+        sp.edit().clear().apply();
+        ActivityCollector.finishAll();
+        context.startActivity(new Intent(context, ModificationPasswordSucceed.class));
+    }
+
 }

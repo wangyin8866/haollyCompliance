@@ -7,7 +7,6 @@ import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.entity.LoginOutBean;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -40,7 +39,7 @@ public class LogInterceptor implements Interceptor {
         if (null != loginOutBean.getModel()) {
             String code = loginOutBean.getModel().getCode();
             if (!TextUtils.isEmpty(code) && code.equals("2002")) {
-                SPUtils.loginOut();
+                SPUtils.loginOut(BaseApplication.context);
             }
         }
         return response.newBuilder()

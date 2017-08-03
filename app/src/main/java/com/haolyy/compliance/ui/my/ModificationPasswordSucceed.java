@@ -50,7 +50,7 @@ public class ModificationPasswordSucceed extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.btn_continue:
                 startActivity(new Intent(ModificationPasswordSucceed.this, LoginActivity.class));
-
+                finish();
                 break;
         }
     }
