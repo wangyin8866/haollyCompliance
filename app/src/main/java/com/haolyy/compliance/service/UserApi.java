@@ -4,6 +4,7 @@ package com.haolyy.compliance.service;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.bank.BankListBean;
+import com.haolyy.compliance.entity.login.ReBindPhoneBean;
 import com.haolyy.compliance.entity.login.ValidateCode;
 import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
@@ -51,7 +52,9 @@ public interface UserApi {
     Observable<TokenResponseBean> getToken();
 
 
-
+    @FormUrlEncoded
+    @POST(NetConstantValues.REBIND_PHONE)
+    Observable<ReBindPhoneBean> rebindPhone(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST(NetConstantValues.USER_FORGETPWD)

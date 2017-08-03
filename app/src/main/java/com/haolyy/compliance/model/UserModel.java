@@ -10,6 +10,7 @@ import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
+import com.haolyy.compliance.entity.login.ReBindPhoneBean;
 import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.service.UserApi;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
@@ -62,7 +63,7 @@ public class UserModel extends BaseModel {
         map.clear();
         map.put("phone_num", phone_num);
         map.put("password", password);
-        map.put("client",client);
+        map.put("client", client);
 //        map.put("token", BaseApplication.token);
         return userApi.login(map);
     }
@@ -107,7 +108,7 @@ public class UserModel extends BaseModel {
         map.clear();
         map.put("mobile", BaseApplication.mUserName);
         map.put("platform", platform);
-        map.put("client",client);
+        map.put("client", client);
         return userApi.findStatus(map);
     }
 
@@ -147,6 +148,7 @@ public class UserModel extends BaseModel {
 
     /**
      * 资金明细
+     *
      * @param capitalType
      * @param pageIndex
      * @param dateFlag
@@ -154,7 +156,7 @@ public class UserModel extends BaseModel {
      */
     public Observable<DealRecordBean> getDealRecord(String capitalType, String pageIndex, String dateFlag) {
         map.clear();
-        map.put("userId", userId+"");
+        map.put("userId", userId + "");
         map.put("capitalType", capitalType);
         map.put("pageIndex", pageIndex);
         map.put("dateFlag", dateFlag);
@@ -169,26 +171,39 @@ public class UserModel extends BaseModel {
     public Observable<BankListBean> getBankList() {
         return userApi.getBankList(map);
     }
+
     /**
      * 身份校验
      */
-    public Observable<BaseBean> authentication(String smsCode, String validateCode, String mobile,String token) {
+    public Observable<BaseBean> authentication(String smsCode, String validateCode, String mobile, String token) {
         map.clear();
-        map.put("smsCode", smsCode+"");
+        map.put("smsCode", smsCode + "");
         map.put("validateCode", validateCode);
         map.put("mobile", mobile);
         map.put("token", token);
         return userApi.authentication(map);
     }
+
     /**
      * 重置密码啊
-     *
      */
     public Observable<BaseBean> resetPasswordInMore(String userId, String password, String newPassword) {
         map.clear();
-        map.put("userId", userId+"");
+        map.put("userId", userId + "");
         map.put("password", password);
         map.put("newPassword", newPassword);
         return userApi.resetPasswordInMore(map);
+    }
+
+    public Observable<ReBindPhoneBean> reBindPhone(int type, String password, String phone, String smsCode, String imageCode) {
+        map.clear();
+        map.put("type", type + "");
+        map.put("password", password);
+        map.put("mobile", phone);
+        map.put("validateCode", imageCode);
+        map.put("smsCode", smsCode);
+        map.put("userId", userId + "");
+        map.put("token", token);
+        return userApi.rebindPhone(map);
     }
 }

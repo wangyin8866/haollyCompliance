@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.haolyy.compliance.custom.TopBar
+        android:id="@+id/top_rebind_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        app:drawableLeft="@mipmap/nav_back"
+        app:drawableLeftVisibility="true"
+        app:title="修改手机"
+        app:titleTextColor="@color/text_4a4a4a"
+        app:titleTextSize="17sp"
+        app:top_background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/ll_rebind_phone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="手机号"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_rebind_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@null"
+                android:maxLength="11"
+                android:textColor="@color/text_4a4a4a"
+                android:textColorHint="@color/text_b9b9b9"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="图形验证码"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_rebind_img"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="6dp"
+                android:layout_weight="2.5"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="请输入短信验证码"
+                android:maxLength="4"
+                android:textColor="@color/text_4a4a4a"
+                android:textColorHint="@color/text_9b9b9b"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_code"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="验证码"
+                android:textColor="@color/text_4a4a4a"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_rebind_sms"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="6dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="请输入短信验证码"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/text_4a4a4a"
+                android:textColorHint="@color/text_9b9b9b"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_rebind_sms"
+                android:layout_width="80dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/shape_yellow_radius"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/bg_ff9933"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btn_rebind_next"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/shape_gradient"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_rebind_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBar"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:drawableLeft="@mipmap/join_success"
+            android:drawablePadding="15dp"
+            android:gravity="center"
+            android:text="修改成功"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_success_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="恭喜您，您已成功绑定新手机号！"
+            android:textColor="@color/text_4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_go_security"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="返回账户安全"
+            android:textColor="#FF69ACFC"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

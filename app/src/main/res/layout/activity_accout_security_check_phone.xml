@@ -13,107 +13,71 @@
         android:paddingRight="10dp"
         app:drawableLeft="@mipmap/nav_back"
         app:drawableLeftVisibility="true"
-        app:title="验证手机"
+        app:title="身份验证"
         app:titleTextColor="@color/text_4a4a4a"
         app:titleTextSize="17sp"
         app:top_background="@color/white" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#F5F5F5"
-        android:gravity="center_vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="14dp"
+        android:text="为保障您的账户安全  我们已经发送验证码到您的手机"
+        android:textColor="@color/text_9b9b9b"
+        android:textSize="12sp" />
 
-        <RelativeLayout
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="20dp"
-                android:text="我们已经发送验证码到您的手机"
-                android:textColor="#FF9B9B9B"
-                android:textSize="12sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_toRightOf="@+id/tv1">
-
-            <TextView
-                android:id="@+id/bind_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="10dp"
-                android:text="182****1877"
-                android:textColor="#FF4A4A4A"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:gravity="center_vertical">
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
 
         <TextView
-            android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="验证码"
-            android:textColor="#FF4A4A4A"
+            android:layout_marginRight="12dp"
+            android:text="登录密码"
+            android:textColor="@color/text_4a4a4a"
             android:textSize="14sp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/et_next"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/tv2"
+            android:layout_weight="1"
             android:background="@null"
-            android:hint="请输入短信验证码"
-            android:textColorHint="#FFB9B9B9"
+            android:inputType="textPassword"
+            android:hint="密码由6-20位英文字母，数字或字符组成"
+            android:textColor="@color/text_4a4a4a"
+            android:textColorHint="@color/text_b9b9b9"
             android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/tv_show_pwd"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:text="重新发送"
-            android:textColor="#FFFF9933"
-            android:textSize="14sp" />
-    </RelativeLayout>
+            android:layout_gravity="center"
+            android:paddingRight="10dp"
+            android:src="@mipmap/login_show"
+            android:visibility="visible" />
+    </LinearLayout>
 
-    <RelativeLayout
+    <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#F5F5F5">
+        android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:text="验证码输入错误"
-            android:textColor="#FFFF7753"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_alignParentBottom="true"
-            android:background="#FF9933"
-            android:text="下一步"
-            android:textColor="#FFFFFFFF"
-            android:textSize="16sp" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@drawable/shape_gradient"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 </LinearLayout>

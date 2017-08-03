@@ -226,6 +226,10 @@
         <activity
             android:name=".ui.bank.RebindBankActivity"
             android:screenOrientation="portrait" />
+        <!--换绑手机-->
+        <activity
+            android:name=".ui.my.RebindPhoneActivity"
+            android:screenOrientation="portrait" />
         <!--账户设置-->
         <activity
             android:name=".ui.my.SettingActivity"

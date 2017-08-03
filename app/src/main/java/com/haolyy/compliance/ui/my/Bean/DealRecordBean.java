@@ -7,14 +7,6 @@ import java.util.List;
  */
 
 public class DealRecordBean {
-
-
-    /**
-     * code : 200
-     * msg : 成功
-     * model : {"code":"200","msg":"成功","model":{"pageSum":1,"fundsRecordList":[{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"}]}}
-     */
-
     private String code;
     private String msg;
     private ModelBeanX model;
@@ -44,12 +36,6 @@ public class DealRecordBean {
     }
 
     public static class ModelBeanX {
-        /**
-         * code : 200
-         * msg : 成功
-         * model : {"pageSum":1,"fundsRecordList":[{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"}]}
-         */
-
         private String code;
         private String msg;
         private ModelBean model;
@@ -79,13 +65,9 @@ public class DealRecordBean {
         }
 
         public static class ModelBean {
-            /**
-             * pageSum : 1
-             * fundsRecordList : [{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"},{"transferDate":"2017-07-11 09:57:08.0","transferTime":null,"capitalType":2001,"capitalNo":"123","type":1,"amount":"1256465.00","availableAmount":"1231231233.00"}]
-             */
-
             private int pageSum;
             private List<FundsRecordListBean> fundsRecordList;
+            private List<FrozenDetaisBean> frozenDetais;
 
             public int getPageSum() {
                 return pageSum;
@@ -103,15 +85,27 @@ public class DealRecordBean {
                 this.fundsRecordList = fundsRecordList;
             }
 
+            public List<FrozenDetaisBean> getFrozenDetais() {
+                return frozenDetais;
+            }
+
+            public void setFrozenDetais(List<FrozenDetaisBean> frozenDetais) {
+                this.frozenDetais = frozenDetais;
+            }
+
             public static class FundsRecordListBean {
                 /**
-                 * transferDate : 2017-07-11 09:57:08.0
+                 * transferDate : 1501660487
                  * transferTime : null
-                 * capitalType : 2001
-                 * capitalNo : 123
-                 * type : 1
-                 * amount : 1256465.00
-                 * availableAmount : 1231231233.00
+                 * capitalType : 300611
+                 * capitalNo : 20170802155416868357359
+                 * type : 2
+                 * amount : 20000.00
+                 * availableAmount : 69810.00
+                 * projectName : 消费贷XFD5566
+                 * remark : 20170802155416868357359
+                 * requestTime : null
+                 * finishTime : 2017-08-02 15:54:47
                  */
 
                 private String transferDate;
@@ -121,6 +115,10 @@ public class DealRecordBean {
                 private int type;
                 private String amount;
                 private String availableAmount;
+                private String projectName;
+                private String remark;
+                private String requestTime;
+                private String finishTime;
 
                 public String getTransferDate() {
                     return transferDate;
@@ -176,6 +174,74 @@ public class DealRecordBean {
 
                 public void setAvailableAmount(String availableAmount) {
                     this.availableAmount = availableAmount;
+                }
+
+                public String getProjectName() {
+                    return projectName;
+                }
+
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
+                }
+
+                public String getRemark() {
+                    return remark;
+                }
+
+                public void setRemark(String remark) {
+                    this.remark = remark;
+                }
+
+                public String getRequestTime() {
+                    return requestTime;
+                }
+
+                public void setRequestTime(String requestTime) {
+                    this.requestTime = requestTime;
+                }
+
+                public String getFinishTime() {
+                    return finishTime;
+                }
+
+                public void setFinishTime(String finishTime) {
+                    this.finishTime = finishTime;
+                }
+            }
+
+            public static class FrozenDetaisBean {
+                /**
+                 * 计划标 : 0.0
+                 * 散标 : 40200.0
+                 * 预约标 : 0.0
+                 */
+
+                private double 计划标;
+                private double 散标;
+                private double 预约标;
+
+                public double get计划标() {
+                    return 计划标;
+                }
+
+                public void set计划标(double 计划标) {
+                    this.计划标 = 计划标;
+                }
+
+                public double get散标() {
+                    return 散标;
+                }
+
+                public void set散标(double 散标) {
+                    this.散标 = 散标;
+                }
+
+                public double get预约标() {
+                    return 预约标;
+                }
+
+                public void set预约标(double 预约标) {
+                    this.预约标 = 预约标;
                 }
             }
         }

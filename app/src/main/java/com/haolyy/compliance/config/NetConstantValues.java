@@ -46,6 +46,7 @@ public interface NetConstantValues {
     String PRODUCT_FUNDS = USERMANAGE + "account/productFunds";//持有产品分类总额
     String ASSET_MANAGMENT_LIST = USERMANAGE + "account/assetManagementList";//持有产品分类总额
     String MESSAGE_LIST = USERMANAGE + "/account/accountMessage";//消息列表
+    String REBIND_PHONE=USERMANAGE+"user/rebindMobile";//换绑手机
     String AUTHENTICATION = USERMANAGE + "user/authentication";//身份校验
     String RESETPASSWORDINMORE = USERMANAGE + "user/resetPasswordInMore";//重置密码
     //短信

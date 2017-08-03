@@ -18,6 +18,7 @@ import com.haolyy.compliance.custom.XListView;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 import com.haolyy.compliance.ui.my.presenter.DealRecordPresenter;
 import com.haolyy.compliance.ui.my.view.DealRecordView;
+import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
 
 import java.text.SimpleDateFormat;
@@ -100,9 +101,20 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
         xlvDealLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (list.get(position).getCapitalType() == 200303) {
+                DealRecordBean.ModelBeanX.ModelBean.FundsRecordListBean bean = list.get(position-1);
+                String capitalNo = bean.getCapitalNo();
+                String amount = bean.getAmount();
+                String remark = bean.getRemark();
+                String transferDate = bean.getTransferDate();
+                int capitalType = bean.getCapitalType();
+                if (list.get(position-1).getCapitalType() == 200303) {
+                    LogUtils.e("ndy","pos"+position+"capitalno"+capitalNo+"amount"+amount+"renmark"+remark+"transferdate"+transferDate+"capitaltype"+capitalType);
                     //到交易明细
-                    startActivity(new Intent(mContext, DealDetailWithDraw.class));
+                    String requestTime = bean.getRequestTime();
+                    String finishTime = bean.getFinishTime();
+                    startActivity(DealDetailWithDraw.getMainIntent(mContext,amount,transferDate,capitalNo,remark,requestTime,finishTime));
+                } else {
+                    startActivity(DealDetailRecycle.getMainIntent(mContext,capitalType,amount,transferDate,capitalNo,remark));
                 }
             }
         });
@@ -134,7 +146,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
                 xlvDealLog.setPullLoadEnable(false);
             } else {
                 list.addAll(dealRecordBean.getModel().getModel().getFundsRecordList());
-                Log.e(tag,list.size()+"size");
+                Log.e(tag, list.size() + "size");
                 if (null == dealLogAdapter) {
                     dealLogAdapter = new DealLogAdapter(list, mContext);
                     xlvDealLog.setAdapter(dealLogAdapter);
@@ -171,7 +183,7 @@ public class DealLogActivity extends BaseActivity<DealRecordPresenter, DealRecor
     @Override
     public void onRefresh() {
         pageIndex = 1;
-        mPresenter.requestDealRecord(true, capitalType + "", pageIndex+"", "0");
+        mPresenter.requestDealRecord(true, capitalType + "", pageIndex + "", "0");
         onLoad();
     }
 

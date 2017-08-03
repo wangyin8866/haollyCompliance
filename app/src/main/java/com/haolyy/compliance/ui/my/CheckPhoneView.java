@@ -6,4 +6,8 @@ package com.haolyy.compliance.ui.my;
 
 public interface CheckPhoneView {
     void countDown(boolean b);
+
+    void pushActivity(int i);
+
+    void showImageCode();
 }
