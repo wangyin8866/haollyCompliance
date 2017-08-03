@@ -90,5 +90,10 @@ public interface UserApi {
     @POST(NetConstantValues.GET_BANKLIST)
     Observable<BankListBean> getBankList(@FieldMap Map<String, String> params);
 
-
+    @FormUrlEncoded
+    @POST(NetConstantValues.AUTHENTICATION)
+    Observable<BaseBean>  authentication(@FieldMap Map<String, String> map);
+    @FormUrlEncoded
+    @POST(NetConstantValues.RESETPASSWORDINMORE)
+    Observable<BaseBean>  resetPasswordInMore(@FieldMap Map<String, String> map);
 }

@@ -1,6 +1,5 @@
 package com.haolyy.compliance.ui.my;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -161,10 +160,7 @@ public class ModificationPasswordActivity extends BaseActivity<ForgetPresenter, 
                    UIUtils.showToastCommon(mContext, Config.TIP_SMS);
                    return;
                }
-                Intent intent = new Intent(ModificationPasswordActivity.this, ModificationPasswordStep2Activity.class);
-                intent.putExtra("imageCode", imageCode);
-                intent.putExtra("smsCode", smsCode);
-                startActivity(intent);
+               mPresenter.authentication(smsCode,imageCode,BaseApplication.mUserName,BaseApplication.token);
                 break;
             case R.id.iv_finish:
                 finish();

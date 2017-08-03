@@ -48,9 +48,8 @@ public class ModificationPasswordStep2Activity extends BaseActivity<ForgetPresen
     ClearEditText surePassword;
     @BindView(R.id.tv_next)
     TextView tvNext;
-    private String passWord;
-    private String imageCode;
-    private String smsCode;
+    private String password;
+    private String secondPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +61,8 @@ public class ModificationPasswordStep2Activity extends BaseActivity<ForgetPresen
 
     private void initView() {
 
-        imageCode = getIntent().getStringExtra("imageCode");
-        smsCode = getIntent().getStringExtra("smsCode");
-
         viewLine.setVisibility(View.VISIBLE);
         tvTitle.setText("忘记密码");
-        mPresenter.getToken();
     }
 
     @Override
@@ -114,15 +109,13 @@ public class ModificationPasswordStep2Activity extends BaseActivity<ForgetPresen
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_next:
-                passWord=newPassword.getText().toString().trim();
-                if (TextUtils.isEmpty(passWord) || !WYUtils.checkPass(passWord)) {
+                password=newPassword.getText().toString().trim();
+                secondPassword=surePassword.getText().toString().trim();
+                if (TextUtils.isEmpty(password) || !WYUtils.checkPass(password)) {
                     UIUtils.showToastCommon(mContext, Config.TIP_PASSS);
                     return;
-                } else if (!newPassword.getText().toString().trim().equals(surePassword.getText().toString().trim())) {
-                    UIUtils.showToastCommon(mContext, Config.TIP_PASSS2);
-                    return;
                 }
-                mPresenter.forgetPassWord(BaseApplication.mUserName, passWord, smsCode, imageCode,1);
+                mPresenter.resetPasswordInMore(BaseApplication.userId+"", password, secondPassword);
                 break;
             case R.id.iv_finish:
                 finish();

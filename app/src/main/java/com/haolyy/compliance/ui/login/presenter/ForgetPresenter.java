@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.base.BasePresenter;
 import com.haolyy.compliance.config.Config;
@@ -15,9 +14,12 @@ import com.haolyy.compliance.model.BigThreeModel;
 import com.haolyy.compliance.model.UserModel;
 import com.haolyy.compliance.ui.login.LoginActivity;
 import com.haolyy.compliance.ui.login.view.ForgetView;
+import com.haolyy.compliance.ui.my.ModificationPasswordStep2Activity;
 import com.haolyy.compliance.ui.my.ModificationPasswordSucceed;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.UIUtils;
+import com.xfqz.xjd.mylibrary.ProgressSubscriber;
+import com.xfqz.xjd.mylibrary.SubscriberOnNextListener;
 
 import rx.Subscriber;
 
@@ -47,7 +49,7 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             public void onNext(TokenResponseBean s) {
                 if (s.getCode().equals("200")) {
                     String token = s.getModel().getToken();
-                    BaseApplication.token = token;
+                    token = token;
                     getView().showImageCode();
 
                 } else {
@@ -125,14 +127,13 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
     }
 
     /**
-     *
+     *忘记密码
      * @param phone_num
      * @param password
      * @param smsCode
      * @param imageCode
-     * @param flag  0:忘记密码   ，  1：修改密码
      */
-    public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode, final int flag) {
+    public void forgetPassWord(String phone_num, String password, String smsCode, String imageCode) {
         invoke(UserModel.getInstance().forgetPassWord(phone_num, password, smsCode, imageCode), new Subscriber<BaseBean>() {
             @Override
             public void onCompleted() {
@@ -148,17 +149,57 @@ public class ForgetPresenter extends BasePresenter<ForgetView> {
             @Override
             public void onNext(BaseBean s) {
                 if (s.getCode().equals("200")) {
-                    if (flag == 0) {
                         mContext.startActivity(new Intent(mContext, LoginActivity.class));
                         ((Activity) mContext).finish();
                         UIUtils.showToastCommon(mContext,"设置成功");
-                    } else if (flag == 1) {
-                        mContext.startActivity(new Intent(mContext, ModificationPasswordSucceed.class));
-                    }
                 } else {
                     UIUtils.showToastCommon(mContext, s.getMsg());
                 }
             }
         });
+    }
+    /**
+     * 重置密码POST /v1/api/user/resetPasswordInMore
+     */
+    public void resetPasswordInMore(String userId, String password, String newPassword){
+        invoke(UserModel.getInstance().resetPasswordInMore(userId,password,newPassword),new ProgressSubscriber<BaseBean>(new SubscriberOnNextListener<BaseBean>() {
+            @Override
+            public void onNext(BaseBean baseBean) {
+                if (baseBean.getCode().equals("200")) {
+                    mContext.startActivity(new Intent(mContext, ModificationPasswordSucceed.class));
+                } else {
+                    UIUtils.showToastCommon(mContext,baseBean.getMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
+    }
+    /**
+     * 身份校验
+     * @param smsCode
+     * @param validateCode
+     * @param mobile
+     * @param token
+     */
+    public void authentication(String smsCode, String validateCode, String mobile,String token){
+        invoke(UserModel.getInstance().authentication(smsCode,validateCode,mobile,token),new ProgressSubscriber<BaseBean>(new SubscriberOnNextListener<BaseBean>() {
+            @Override
+            public void onNext(BaseBean baseBean) {
+                if (baseBean.getCode().equals("200")) {
+                    mContext.startActivity(new Intent(mContext, ModificationPasswordStep2Activity.class));
+                } else {
+                    UIUtils.showToastCommon(mContext,baseBean.getMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        },mContext));
     }
 }

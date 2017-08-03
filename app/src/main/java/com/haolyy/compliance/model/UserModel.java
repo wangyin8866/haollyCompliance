@@ -2,21 +2,21 @@ package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.base.BaseBean;
-import com.haolyy.compliance.config.Config;
-import com.haolyy.compliance.entity.bank.BankListBean;
-import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.entity.TokenResponseBean;
+import com.haolyy.compliance.entity.bank.BankListBean;
 import com.haolyy.compliance.entity.home.AccountSecurityBean;
 import com.haolyy.compliance.entity.home.FundStatictisIncomeBean;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.login.CheckImageCode;
 import com.haolyy.compliance.entity.login.FindUserStatusBean;
 import com.haolyy.compliance.entity.login.LoginResponseBean;
+import com.haolyy.compliance.entity.my.ProductRatioBean;
 import com.haolyy.compliance.service.UserApi;
 import com.haolyy.compliance.ui.my.Bean.DealRecordBean;
 
 import rx.Observable;
 
+import static com.haolyy.compliance.base.BaseApplication.token;
 import static com.haolyy.compliance.base.BaseApplication.userId;
 import static com.haolyy.compliance.base.BaseApplication.version;
 import static com.haolyy.compliance.config.Config.client;
@@ -78,7 +78,7 @@ public class UserModel extends BaseModel {
         map.put("version", version);
         map.put("channel", channel);
         map.put("inviteCode", inviteCode);
-        map.put("token", BaseApplication.token);
+        map.put("token", token);
         return userApi.register(map);
     }
 
@@ -94,7 +94,7 @@ public class UserModel extends BaseModel {
         map.put("validate_code", imageCode);
         map.put("client", client);
         map.put("platform", platform);
-        map.put("token", BaseApplication.token);
+        map.put("token", token);
         return userApi.forgetPassWord(map);
     }
 
@@ -168,5 +168,27 @@ public class UserModel extends BaseModel {
      */
     public Observable<BankListBean> getBankList() {
         return userApi.getBankList(map);
+    }
+    /**
+     * 身份校验
+     */
+    public Observable<BaseBean> authentication(String smsCode, String validateCode, String mobile,String token) {
+        map.clear();
+        map.put("smsCode", smsCode+"");
+        map.put("validateCode", validateCode);
+        map.put("mobile", mobile);
+        map.put("token", token);
+        return userApi.authentication(map);
+    }
+    /**
+     * 重置密码啊
+     *
+     */
+    public Observable<BaseBean> resetPasswordInMore(String userId, String password, String newPassword) {
+        map.clear();
+        map.put("userId", userId+"");
+        map.put("password", password);
+        map.put("newPassword", newPassword);
+        return userApi.resetPasswordInMore(map);
     }
 }

@@ -180,7 +180,7 @@ public class ForgetActivity extends BaseActivity<ForgetPresenter, ForgetView> im
                 }
 
 
-                mPresenter.forgetPassWord(phone, passWord, smsCode, imageCode,0);
+                mPresenter.forgetPassWord(phone, passWord, smsCode, imageCode);
                 break;
             case R.id.iv_show_pwd:
                 if (showPwd) {
