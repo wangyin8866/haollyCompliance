@@ -212,7 +212,10 @@
         <activity
             android:name=".ui.my.GestureLoginActivity"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN">true</action>
+                <category android:name="android.intent.category.LAUNCHER">true</category>
+            </intent-filter>
         </activity>
         <!--月度账单-->
         <activity

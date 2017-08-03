@@ -1,5 +1,6 @@
 package com.haolyy.compliance.service;
 
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.NetConstantValues;
 import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.entity.my.ProductFund;
@@ -27,4 +28,8 @@ public interface MyApi {
     @FormUrlEncoded
     @POST(NetConstantValues.MESSAGE_LIST)
     Observable<MessageBean> getMessage(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST(NetConstantValues.MODIFICATION_MESSAGE)
+    Observable<BaseBean> modificationStatus(@FieldMap Map<String, String> params);
 }

@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * 封装adapter（注意：仅供参考，根据需要选择使用demo中提供的封装adapter）
+ *
  * @param <T>
  */
 public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewHolder> {
@@ -34,7 +35,13 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     @Override
     public void onBindViewHolder(SuperViewHolder holder, int position) {
         onBindItemHolder(holder, position);
-        mPosition = position;
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        this.mPosition = position;
+        return mPosition;
     }
 
     //局部刷新关键：带payload的这个onBindViewHolder方法必须实现
@@ -49,9 +56,10 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     }
 
     public abstract int getLayoutId();
+
     public abstract void onBindItemHolder(SuperViewHolder holder, int position);
 
-    public void onBindItemHolder(SuperViewHolder holder, int position, List<Object> payloads){
+    public void onBindItemHolder(SuperViewHolder holder, int position, List<Object> payloads) {
 
     }
 
@@ -81,8 +89,8 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
         this.mDataList.remove(position);
         notifyItemRemoved(position);
 
-        if(position != (getDataList().size())){ // 如果移除的是最后一个，忽略
-            notifyItemRangeChanged(position,this.mDataList.size()-position);
+        if (position != (getDataList().size())) { // 如果移除的是最后一个，忽略
+            notifyItemRangeChanged(position, this.mDataList.size() - position);
         }
     }
 

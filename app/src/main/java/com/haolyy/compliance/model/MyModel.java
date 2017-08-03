@@ -1,6 +1,7 @@
 package com.haolyy.compliance.model;
 
 import com.haolyy.compliance.base.BaseApplication;
+import com.haolyy.compliance.base.BaseBean;
 import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.entity.my.ProductFund;
@@ -51,5 +52,11 @@ public class MyModel extends BaseModel {
         map.put("page_index", page_index);
         map.put("mobile", BaseApplication.mUserName);
         return myApi.getMessage(map);
+    }
+    public Observable<BaseBean> modificationStatus(int id, int status){
+        map.clear();
+        map.put("id", id+"");
+        map.put("status", status+"");
+        return myApi.modificationStatus(map);
     }
 }

@@ -1,12 +1,13 @@
 package com.haolyy.compliance.entity.my;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by wangyin on 2017/8/2.
  */
 
-public class MessageBean {
+public class MessageBean implements Serializable{
 
     /**
      * code : 200
@@ -42,7 +43,7 @@ public class MessageBean {
         this.model = model;
     }
 
-    public static class ModelBeanX {
+    public static class ModelBeanX implements Serializable{
         /**
          * code : 200
          * msg : 成功
@@ -77,7 +78,7 @@ public class MessageBean {
             this.model = model;
         }
 
-        public static class ModelBean {
+        public static class ModelBean implements Serializable{
             private List<AccountMessagesBean> accountMessages;
 
             public List<AccountMessagesBean> getAccountMessages() {
@@ -88,7 +89,7 @@ public class MessageBean {
                 this.accountMessages = accountMessages;
             }
 
-            public static class AccountMessagesBean {
+            public static class AccountMessagesBean implements Serializable{
                 /**
                  * send_time : 2017-07-04 11:06:26
                  * id : 16

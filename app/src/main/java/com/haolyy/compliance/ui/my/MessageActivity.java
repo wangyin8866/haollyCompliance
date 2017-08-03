@@ -20,6 +20,7 @@ import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.swipe.SwipeMenuAdapter;
 import com.haolyy.compliance.ui.my.presenter.MessagePresenter;
 import com.haolyy.compliance.ui.my.view.MessageView;
+import com.haolyy.compliance.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  * Created by wangyin on 2017/6/6.
  */
 
-public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>implements MessageView  {
+public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>implements MessageView,SwipeMenuAdapter.onSwipeListener {
     private static final String TAG = "lzx";
 
     /**
@@ -54,9 +55,8 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
     @BindView(R.id.tv_mark)
     TextView tvMark;
     @BindView(R.id.lrv_message)
-    LRecyclerView lrvMessage;
+    LRecyclerView mRecyclerView;
 
-    private LRecyclerView mRecyclerView = null;
 
     private SwipeMenuAdapter mDataAdapter = null;
 
@@ -64,7 +64,9 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
 
     private boolean isRefresh = false;
     private List<MessageBean.ModelBeanX.ModelBean.AccountMessagesBean> accountMessagesBeanList;
-    private int pageIndex=0;
+    private int pageIndex=1;
+
+
     @Override
     protected MessagePresenter createPresenter() {
         return new MessagePresenter(mContext);
@@ -75,12 +77,23 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         ButterKnife.bind(this);
+        mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                LogUtils.e("onRefresh","onRefresh");
+                mDataAdapter.clear();
+                mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
+                mCurrentCounter = 0;
+                isRefresh = true;
+                mPresenter.getMessage("1");
+            }
+        });
+    }
 
-        mPresenter.getMessage(pageIndex+"");
-
-        mRecyclerView = (LRecyclerView) findViewById(R.id.lrv_message);
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getMessage("1");
     }
 
     @Override
@@ -106,6 +119,7 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
                 finish();
                 break;
             case R.id.tv_mark:
+
                 break;
         }
     }
@@ -115,23 +129,7 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
         accountMessagesBeanList =  messageBean.getModel().getModel().getAccountMessages();
         mDataAdapter = new SwipeMenuAdapter(this);
         mDataAdapter.setDataList(accountMessagesBeanList);
-        mDataAdapter.setOnDelListener(new SwipeMenuAdapter.onSwipeListener() {
-            @Override
-            public void onDel(int pos) {
-                Toast.makeText(MessageActivity.this, "删除:" + pos, Toast.LENGTH_SHORT).show();
-
-                //RecyclerView关于notifyItemRemoved的那点小事 参考：http://blog.csdn.net/jdsjlzx/article/details/52131528
-                mDataAdapter.getDataList().remove(pos);
-                mDataAdapter.notifyItemRemoved(pos);//推荐用这个
-
-                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
-                    mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
-                }
-                //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
-            }
-
-
-        });
+        mDataAdapter.setOnDelListener(this);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mDataAdapter);
         mRecyclerView.setAdapter(mLRecyclerViewAdapter);
 
@@ -139,22 +137,8 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
 
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
+        mRecyclerView.refreshComplete(REQUEST_COUNT);
 
-//        mLRecyclerViewAdapter.addHeaderView(new SampleHeader(this));//添加头部布局
-
-
-
-        mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mDataAdapter.clear();
-                mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
-                mCurrentCounter = 0;
-                isRefresh = true;
-               mPresenter.getMessage(pageIndex+"");
-            }
-        });
-        mRecyclerView.refresh();
     }
 
 
@@ -165,4 +149,15 @@ public class MessageActivity extends BaseActivity<MessagePresenter,MessageView>i
         }
     };
 
+    @Override
+    public void onDel(int pos,int id,int status) {
+
+        mPresenter.deleteMessage(pos,id,status,mDataAdapter);
+
+    }
+
+    @Override
+    public void modificationMessage(int id, int status,MessageBean.ModelBeanX.ModelBean.AccountMessagesBean accountMessagesBean) {
+        mPresenter.modificationStatus(id, status,accountMessagesBean);
+    }
 }
