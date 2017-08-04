@@ -26,13 +26,17 @@ public class MessagePresenter extends BasePresenter<MessageView> {
         super(context);
     }
 
-    public void getMessage(String page_index) {
+    public void getMessage(String page_index , final boolean isLoadMore) {
         invoke(MyModel.getInstance().getMessage(page_index), new ProgressSubscriber<MessageBean>(new SubscriberOnNextListener<MessageBean>() {
             @Override
             public void onNext(MessageBean messageBean) {
                 if (messageBean.getCode().equals("200")) {
                     if (messageBean.getModel().getCode().equals("200")) {
+                        if (isLoadMore) {
+                            getView().showGetMoreData(messageBean);
+                        } else {
                         getView().showData(messageBean);
+                        }
                     } else {
                         UIUtils.showToastCommon(mContext, messageBean.getModel().getMsg());
                     }

@@ -28,7 +28,7 @@ import rx.schedulers.Schedulers;
 
 public class BaseModel {
 
-    public static final int DEFAULT_TIMEOUT = 20;
+    public static final int DEFAULT_TIMEOUT = 15;
     Retrofit retrofit;
     static Map<String, String> map = new HashMap<>();
     OkHttpClient.Builder httpClientBuilder;
@@ -37,7 +37,7 @@ public class BaseModel {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = new OkHttpClient.Builder();
         if (WYUtils.isApkInDebug(BaseApplication.getContext())) {
-            httpClientBuilder.addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+            httpClientBuilder.retryOnConnectionFailure(true).addInterceptor(new LogInterceptor()).connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         }else {
             httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         }

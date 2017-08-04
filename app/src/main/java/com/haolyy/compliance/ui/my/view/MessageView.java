@@ -8,4 +8,5 @@ import com.haolyy.compliance.entity.my.MessageBean;
 
 public interface MessageView {
     void showData(MessageBean messageBean);
+    void showGetMoreData(MessageBean messageBean);
 }

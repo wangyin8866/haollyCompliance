@@ -204,6 +204,12 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         coupon.setTextTop(userInfoBean.getModel().getModel().getCoupon());
         vdMission.setTextTop(userInfoBean.getModel().getModel().getTask());
         score.setTextTop(userInfoBean.getModel().getModel().getPoint());
+
+        if (userInfoBean.getModel().getModel().getMessage() == 0) {
+            messageCenter.setImageResource(R.mipmap.no_message);
+        } else {
+            messageCenter.setImageResource(R.mipmap.messages);
+        }
         if ("0".equals(userInfoBean.getModel().getModel().getVip_level())) {
             ivGold.setImageResource(R.mipmap.account_set_vip_level0);
         } else if ("1".equals(userInfoBean.getModel().getModel().getVip_level())) {
