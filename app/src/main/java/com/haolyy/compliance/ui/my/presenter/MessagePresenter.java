@@ -79,11 +79,40 @@ public class MessagePresenter extends BasePresenter<MessageView> {
                     bundle.putSerializable("message", accountMessagesBean);
                     intent.putExtras(bundle);
                     mContext.startActivity(intent);
+                }else {
+                    UIUtils.showToastCommon(mContext, baseBean.getMsg());
                 }
             }
         });
     }
 
+    /**
+     * 全部已读
+     * @param id
+     * @param status
+     */
+    public void modificationStatus(int id, int status) {
+        invoke(MyModel.getInstance().modificationStatus(id, status), new Subscriber<BaseBean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(BaseBean baseBean) {
+                if (baseBean.getCode().equals("200")) {
+                    getMessage("1",false);
+                }else {
+                    UIUtils.showToastCommon(mContext, baseBean.getMsg());
+                }
+            }
+        });
+    }
     /**
      * 删除
      *
@@ -111,6 +140,8 @@ public class MessagePresenter extends BasePresenter<MessageView> {
                     if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
                         mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
                     }
+                } else {
+                    UIUtils.showToastCommon(mContext, baseBean.getMsg());
                 }
             }
         });

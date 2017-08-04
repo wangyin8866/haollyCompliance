@@ -18,12 +18,14 @@ import com.haolyy.compliance.config.Config;
 import com.haolyy.compliance.custom.InnerScrollListView;
 import com.haolyy.compliance.custom.VeticalDoubleTextView;
 import com.haolyy.compliance.custom.dialog.DialogBank;
+import com.haolyy.compliance.custom.dialog.DialogInvestGuides;
 import com.haolyy.compliance.entity.home.UserInfoBean;
 import com.haolyy.compliance.entity.my.ProductFund;
 import com.haolyy.compliance.ui.bank.CheckBankActivity;
 import com.haolyy.compliance.ui.find.ShoppingActivity;
 import com.haolyy.compliance.ui.my.presenter.MyFragmentPresenter;
 import com.haolyy.compliance.ui.my.view.MyFragmentView;
+import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.LogUtils;
 import com.haolyy.compliance.utils.SPUtils;
 
@@ -34,6 +36,7 @@ import butterknife.Unbinder;
 
 import static com.haolyy.compliance.R.id.iv_gold;
 import static com.haolyy.compliance.base.BaseApplication.userId;
+import static com.haolyy.compliance.custom.dialog.DialogInvestGuides.INTELLIGENCE;
 
 /**
  * Created by wangyin on 2017/5/16.
@@ -78,15 +81,16 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
     private View view;
     private DialogBank dialogBank;
+    private DialogInvestGuides dialogInvest;
     private ProductFund productFund;
-
+    private int tender;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.my_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         dialogBank = new DialogBank(mContext);
-
+        dialogInvest = new DialogInvestGuides(mContext, INTELLIGENCE);
 
         islProductFund.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -105,9 +109,9 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     @Override
     public void onResume() {
         super.onResume();
-        LogUtils.e(tag,"onresume");
+        LogUtils.e(tag, "onresume");
         //需要刷新余额
-        if(userId==-1){
+        if (userId == -1) {
             SPUtils.loginOut(getActivity());
             return;
         }
@@ -118,7 +122,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            LogUtils.e(tag,"isVisibleToUser");
+            LogUtils.e(tag, "isVisibleToUser");
         }
     }
 
@@ -128,7 +132,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         unbinder.unbind();
     }
 
-    @OnClick({R.id.iv_bill,R.id.iv_setting, R.id.iv_head_icon, R.id.score, iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
+    @OnClick({R.id.iv_bill, R.id.iv_setting, R.id.iv_head_icon, R.id.score, iv_gold, R.id.tv_gold_phone, R.id.account_manage, R.id.vd_total_asset, R.id.tv_withdraw, R.id.tv_recharge, R.id.v_invite_friend, R.id.message_center, R.id.vd_mission})
     public void onViewClicked(View view) {
         Bundle bundle = null;
         switch (view.getId()) {
@@ -196,6 +200,7 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
 
     @Override
     public void showData(UserInfoBean userInfoBean) {
+        tender = userInfoBean.getModel().getModel().getIs_auto_tender();
         Glide.with(mContext).load(userInfoBean.getModel().getModel().getUser_head_photo()).into(ivHeadIcon);
         tvGoldPhone.setText(userInfoBean.getModel().getModel().getMobile());
         availableAmount.setTextBottom(userInfoBean.getModel().getModel().getAvailable_credit());
@@ -222,9 +227,14 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
             ivGold.setVisibility(View.INVISIBLE);
         }
 
-        if (userInfoBean.getModel().getModel().getIs_open_account() == 0) {
+        if (userInfoBean.getModel().getModel().getIs_open_account() == 0) {//是否开户
             showRegisterDialog();
+        } else {
+            if (tender == 0) {//是否开启自动复投
+                showInvestDialog();
+            }
         }
+
     }
 
     @Override
@@ -242,12 +252,34 @@ public class MyFragment extends BaseFragment<MyFragmentPresenter, MyFragmentView
         dialogBank.setOnDoubleClickListener(new DialogBank.OnDoubleClickListener() {
             @Override
             public void excuteLeft() {
+                LogUtils.e("showRegisterDialog","showRegisterDialog");
+                if (tender == 0) {//是否开启自动复投
+                    showInvestDialog();
+                }
+            }
+
+            @Override
+            public void excuteRight() {
+                dialogInvest.dismiss();
+                startActivity(new Intent(mContext, CheckBankActivity.class));
+            }
+        }).show();
+    }
+
+    /**
+     * 自动复投
+     */
+    public void showInvestDialog() {
+        //开户
+        dialogInvest.setButtonRight("点击开启").setOnDoubleClickListener(new DialogInvestGuides.OnDoubleClickListener() {
+            @Override
+            public void excuteLeft() {
 
             }
 
             @Override
             public void excuteRight() {
-                startActivity(new Intent(mContext, CheckBankActivity.class));
+                AppToast.makeShortToast(mContext, "开启自动复投");
             }
         }).show();
     }

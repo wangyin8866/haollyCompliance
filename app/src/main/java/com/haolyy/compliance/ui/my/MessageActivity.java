@@ -15,12 +15,13 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.BaseActivity;
+import com.haolyy.compliance.base.BaseApplication;
 import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.swipe.SwipeMenuAdapter;
 import com.haolyy.compliance.ui.my.presenter.MessagePresenter;
 import com.haolyy.compliance.ui.my.view.MessageView;
+import com.haolyy.compliance.utils.AppToast;
 import com.haolyy.compliance.utils.LogUtils;
-import com.haolyy.compliance.utils.UIUtils;
 
 import java.util.List;
 
@@ -33,13 +34,7 @@ import butterknife.OnClick;
  */
 
 public class MessageActivity extends BaseActivity<MessagePresenter, MessageView> implements MessageView, SwipeMenuAdapter.onSwipeListener {
-    private static final String TAG = "lzx";
 
-
-    /**
-     * 每一页展示多少条数据
-     */
-    private static final int REQUEST_COUNT = 10;
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -51,13 +46,15 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
     ImageView ivEmpty;
 
 
+    /**已经获取到多少条数据了*/
+    private static int mCurrentCounter = 0;
     private SwipeMenuAdapter mDataAdapter = null;
 
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
 
     private boolean isRefresh = false;
     MessageBean messageBean;
-    private int pageNum =1;
+    private int pageNum = 1;
     private int pageSize;
     private List<MessageBean.ModelBeanX.ModelBean.AccountMessagesBean> accountMessagesBeanList;
 
@@ -79,30 +76,32 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
                 mDataAdapter.clear();
                 mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
                 isRefresh = true;
-                mPresenter.getMessage("1",false);
+                mPresenter.getMessage("1", false);
             }
         });
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
                 pageNum += 1;
-                mPresenter.getMessage(pageNum+"",true);
-                mRecyclerView.setNoMore(false);
+                mPresenter.getMessage(pageNum + "", true);
+
+
             }
         });
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.getMessage("1",false);
+        mPresenter.getMessage("1", false);
     }
 
     @Override
     protected void handleMessage(Integer s) {
 
     }
-
 
 
     @OnClick({R.id.iv_back, R.id.tv_mark})
@@ -112,13 +111,14 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
                 finish();
                 break;
             case R.id.tv_mark:
-
+                mPresenter.modificationStatus(BaseApplication.userId, 2);
                 break;
         }
     }
 
     @Override
     public void showData(MessageBean messageBean) {
+        this.messageBean = messageBean;
         accountMessagesBeanList = messageBean.getModel().getModel().getAccountMessages();
         pageSize = accountMessagesBeanList.size();
         if (pageSize == 0) {
@@ -126,11 +126,7 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
             ivEmpty.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         } else {
-            if (pageSize < 10) {
-                mRecyclerView.setLoadMoreEnabled(false);
-            } else {
-                mRecyclerView.setLoadMoreEnabled(true);
-            }
+            mCurrentCounter = pageSize;
             ivEmpty.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
             mDataAdapter = new SwipeMenuAdapter(this);
@@ -143,7 +139,14 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
 
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
             mRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
-//            mRecyclerView.setLoadMoreEnabled(true);
+            mLRecyclerViewAdapter.removeFooterView();
+            if (pageSize < 10) {
+                mRecyclerView.setLoadMoreEnabled(false);
+                mRecyclerView.setNoMore(true);
+            } else {
+                mRecyclerView.setLoadMoreEnabled(true);
+                mRecyclerView.setNoMore(false);
+            }
             complete();
         }
 
@@ -151,13 +154,17 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
 
     @Override
     public void showGetMoreData(MessageBean messageBean) {
+        LogUtils.e("showGetMoreData", messageBean.toString());
         if (messageBean.getModel().getModel().getAccountMessages().size() == 0) {
             pageNum = 1;
-            UIUtils.showToastCommon(mContext, "没有更多数据了！");
+            AppToast.makeShortToast(mContext, "没有数据了");
             mRecyclerView.setLoadMoreEnabled(false);
+            mRecyclerView.setNoMore(true);
         } else {
-            this.messageBean.getModel().getModel().getAccountMessages().addAll(messageBean.getModel().getModel().getAccountMessages());
             mRecyclerView.setLoadMoreEnabled(true);
+            mRecyclerView.setNoMore(false);
+            mCurrentCounter += messageBean.getModel().getModel().getAccountMessages().size();
+            this.messageBean.getModel().getModel().getAccountMessages().addAll(messageBean.getModel().getModel().getAccountMessages());
             mDataAdapter = new SwipeMenuAdapter(this);
             mDataAdapter.setDataList(accountMessagesBeanList);
             mDataAdapter.setOnDelListener(this);
@@ -166,9 +173,10 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
             mRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
-            complete();
+            mLRecyclerViewAdapter.removeFooterView();
             //定位
-            MoveToPosition(new LinearLayoutManager(this),mRecyclerView,this.messageBean.getModel().getModel().getAccountMessages().size() - messageBean.getModel().getModel().getAccountMessages().size());
+            MoveToPosition(new LinearLayoutManager(this), mRecyclerView, this.messageBean.getModel().getModel().getAccountMessages().size() - messageBean.getModel().getModel().getAccountMessages().size());
+            complete();
         }
     }
 
@@ -176,7 +184,8 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
      * 刷新结束调用
      */
     private void complete() {
-        mRecyclerView.refreshComplete(REQUEST_COUNT);
+        LogUtils.e("mCurrentCounter",mCurrentCounter+"");
+        mRecyclerView.refreshComplete(mCurrentCounter);
         mLRecyclerViewAdapter.notifyDataSetChanged();
     }
 
@@ -195,11 +204,11 @@ public class MessageActivity extends BaseActivity<MessagePresenter, MessageView>
     /**
      * RecyclerView 移动到当前位置，
      *
-     * @param manager   设置RecyclerView对应的manager
-     * @param mRecyclerView  当前的RecyclerView
-     * @param n  要跳转的位置
+     * @param manager       设置RecyclerView对应的manager
+     * @param mRecyclerView 当前的RecyclerView
+     * @param n             要跳转的位置
      */
-    private  void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
+    private void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
 
 
         int firstItem = manager.findFirstVisibleItemPosition();

@@ -44,6 +44,7 @@ public class DialogBank extends Dialog {
             @Override
             public void onClick(View view) {
                 dismiss();
+                mdouble.excuteLeft();
             }
         });
         btn2Dialog.setOnClickListener(new View.OnClickListener() {

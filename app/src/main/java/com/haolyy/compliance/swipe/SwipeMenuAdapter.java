@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.entity.my.MessageBean;
 import com.haolyy.compliance.ui.my.MessageDetail;
-import com.haolyy.compliance.utils.LogUtils;
 
 
 public class SwipeMenuAdapter extends ListBaseAdapter<MessageBean.ModelBeanX.ModelBean.AccountMessagesBean> {
@@ -22,7 +21,6 @@ public class SwipeMenuAdapter extends ListBaseAdapter<MessageBean.ModelBeanX.Mod
 
     @Override
     public int getLayoutId() {
-        LogUtils.e("mPosition", mPosition + "");
         if (mDataList.get(mPosition).getStatus() == 1) {
             return R.layout.item_list_swipe;
         } else if (mDataList.get(mPosition).getStatus() == 2) {

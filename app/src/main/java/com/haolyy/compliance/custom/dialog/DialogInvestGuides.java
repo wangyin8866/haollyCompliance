@@ -33,11 +33,11 @@ public class DialogInvestGuides extends Dialog {
         tvContent = (TextView) super.findViewById(R.id.tv_content);
         imageView = (ImageView) super.findViewById(R.id.iv_head_dialog);
         initListener();
-        if (type == TEST) {
+        if (type.equals(TEST)) {
             setIcon(R.mipmap.icon_dialog_test).setButtonRight("开始评测").setContent("为了对您的风险识别能力和风险承担能力进行评估，请您认真作答");
-        } else if (type == TRADEPWD) {
+        } else if (type.equals(TRADEPWD)) {
             setIcon(R.mipmap.icon_dialog_pwd).setButtonRight("设置密码").setContent("为保障您的账户资金安全，请设置存管账户交易密码");
-        } else {
+        } else if (type.equals(INTELLIGENCE)) {
             setIcon(R.mipmap.icon_dialog_open).setButtonRight("点击开启").setContent("自动投标队列功能、项目集合的一键投标功能和快捷投标功能都需要开启自动投标授权后才可以使用");
         }
     }
@@ -58,13 +58,14 @@ public class DialogInvestGuides extends Dialog {
         btn1Dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mdouble.excuteLeft();
                 dismiss();
+                mdouble.excuteLeft();
             }
         });
         btn2Dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dismiss();
                 mdouble.excuteRight();
             }
         });
