@@ -51,6 +51,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter, 
     private BigDecimal earning;
     private double amount;
     private String projectNo;
+    private String ordId;
     private int state;
     private long amountwait;
 
