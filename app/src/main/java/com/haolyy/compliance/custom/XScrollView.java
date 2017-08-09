@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 import com.haolyy.compliance.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class XScrollView extends ScrollView implements OnScrollListener {
 //    private static final String TAG = "XScrollView";
@@ -352,7 +356,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     }
 
 
-
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
@@ -409,12 +412,20 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
             mListener.onRefresh();
         }
+        onLoad();
     }
 
     private void loadMore() {
         if (mEnablePullLoad && null != mListener) {
             mListener.onLoadMore();
         }
+        onLoad();
+    }
+
+    private void onLoad() {
+        this.stopRefresh();
+        this.stopLoadMore();
+        this.setRefreshTime(new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()));
     }
 
     /**
