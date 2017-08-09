@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.haolyy.compliance.R;
 import com.haolyy.compliance.base.ActivityCollector;
 import com.haolyy.compliance.custom.NoScrollViewPager;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Fragment> fragments;
     public static int currentPage;
     private static final String TAG = "MainActivity";
-
+    private ImmersionBar mImmersionBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
+        mImmersionBar=ImmersionBar.with(this);
+        mImmersionBar.statusBarDarkFont(true).init();
         ActivityCollector.addActivity(this);
         homeNoLoginFragment = new HomeNoLoginFragment();
         homeInvestFragment = new HomeLoginFragment();
@@ -275,5 +278,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         WYUtils.clickBack(keyCode, event, MainActivity.this);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mImmersionBar.destroy();
     }
 }

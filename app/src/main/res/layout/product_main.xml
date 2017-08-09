@@ -9,6 +9,7 @@
         android:id="@+id/product_title"
         android:layout_width="match_parent"
         android:layout_height="44dp"
+        android:layout_marginTop="25dp"
         app:tabMode="fixed"
         app:tabIndicatorHeight="3dp"
         app:tabIndicatorColor="@color/bg_ff9933"

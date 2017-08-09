@@ -46,6 +46,6 @@ dependencies {
     compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-
-    compile 'org.zackratos:ultimatebar:1.0.3'
+    //沉浸式
+    compile 'com.gyf.barlibrary:barlibrary:2.2.7'
 }
